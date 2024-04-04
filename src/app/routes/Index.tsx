@@ -15,7 +15,7 @@ const Index: React.FunctionComponent<any> = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/animation" element={<Animation />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/programming" element={<ProgrammingHome />} />
+        <Route path="/programminghome" element={<ProgrammingHome />} />
         <Route path="/training" element={<Training />} />
       </Routes>
     </BrowserRouter>

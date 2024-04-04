@@ -1,7 +1,13 @@
 import React from "react";
+import NavBar from "../../components/navbar/NavBar";
 
 const Home: React.FunctionComponent = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <NavBar />
+      <a href="/contact">Home</a>
+    </div>
+  );
 };
 
 export default Home;
