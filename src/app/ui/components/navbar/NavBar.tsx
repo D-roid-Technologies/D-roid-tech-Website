@@ -27,7 +27,7 @@ const NavBar: React.FunctionComponent = () => {
       <div className="logo-image">
         <a href="/">
           <img
-            src={Assets.images.companyLogo}
+            src={Assets.images.companyLogoNoBg}
             alt="company logo"
             width={40}
             height={40}
