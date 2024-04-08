@@ -1,7 +1,12 @@
 import React from "react";
+import NavBar from "../../components/navbar/NavBar";
 
 const ProgrammingHome: React.FunctionComponent = () => {
-  return <div>ProgrammingHome</div>;
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
 };
 
 export default ProgrammingHome;

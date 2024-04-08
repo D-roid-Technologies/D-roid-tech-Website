@@ -1,7 +1,10 @@
 import React from "react";
+import NavBar from "../../components/navbar/NavBar";
 
 const AboutUs: React.FunctionComponent = () => {
-  return <div>AboutUs</div>;
+  return <div>
+    <NavBar/>
+  </div>;
 };
 
 export default AboutUs;

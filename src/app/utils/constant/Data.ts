@@ -25,5 +25,19 @@ export const DATA = {
       link: "Contact",
       path: "/contact",
     },
+    {
+      link: "More",
+      path: "/more",
+    },
+  ],
+  dropDownLinks: [
+    {
+      link: "Drone Services",
+      path: "/drone",
+    },
+    {
+      link: "Equipment",
+      path: "/offices",
+    },
   ],
 };
