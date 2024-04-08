@@ -14,5 +14,7 @@ export const Assets = {
     companyName: "D'roid Technologies International",
     companyShortName: "D'roid Technologies",
     companyInitials: "DTI",
+    modalTitle: "This is the Modal Heading.",
+    modalBody: "This is the Body.",
   },
 };

@@ -7,7 +7,6 @@ const Home: React.FunctionComponent = () => {
     <div>
       <NavBar />
       <a href="/contact">Home</a>
-      <Footer />
     </div>
   );
 };

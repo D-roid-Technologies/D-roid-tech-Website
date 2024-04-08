@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +11,39 @@
 .main-container {
   padding-left: 100px;
   padding-right: 100px;
+}
+
+.modal-main {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
+  display: flex;
+}
+
+.modal-inner {
+  background-color: #ffffff;
+  width: 60%;
+  height: 65%;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-x {
+  align-self: flex-end;
+}
+
+.modal-text {
+  margin-top: 40px;
+  overflow: scroll;
+}
+
+.modal-header {
+  margin-bottom: 10px;
+  color: #282a94;
+  font-size: 18px;
 }
 
 /* On screens that are 992px or less, set the background color to blue */

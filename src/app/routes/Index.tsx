@@ -6,8 +6,9 @@ import Animation from "../ui/pages/animations/Animation";
 import Contact from "../ui/pages/contact/Contact";
 import ProgrammingHome from "../ui/pages/programming/ProgrammingHome";
 import Training from "../ui/pages/training/Training";
+import { RouterType } from "../utils/Types";
 
-const Index: React.FunctionComponent<any> = () => {
+const Index: React.FunctionComponent<RouterType> = ({width}) => {
   return (
     <BrowserRouter>
       <Routes>

@@ -10,3 +10,17 @@ export type ProjectType = {
   techTitle: string;
   techUsed: string[];
 };
+
+export type AppEntryType = {
+  showModal?: boolean;
+  closeModal?: () => void;
+};
+
+export type RouterType = {
+  width: number;
+};
+
+export type DimensionType = {
+  width: number;
+  height: number;
+};
