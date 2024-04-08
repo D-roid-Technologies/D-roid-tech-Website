@@ -4,6 +4,7 @@ import { Assets } from "../../../utils/constant/Assets";
 import { NavLink } from "react-router-dom";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
+import companyBanner from "../../../images/png/droid banner.png";
 
 const NavBar: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -22,12 +23,13 @@ const NavBar: React.FunctionComponent = () => {
       );
     });
   };
+  console.log(companyBanner);
   return (
     <div className="nav-main">
       <div className="logo-image">
         <a href="/">
           <img
-            src={Assets.images.companyLogo}
+            src={Assets.images.companyLogoNoBg}
             alt="company logo"
             width={40}
             height={40}
