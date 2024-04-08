@@ -1,0 +1,29 @@
+.nav-list {
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nav-list:hover {
+  transition: 0.8s;
+  color: aqua !important;
+}
+.list-container {
+  list-style: none;
+}
+
+.nav-main {
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+  height: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.list {
+  display: flex;
+  gap: 20px;
+}
