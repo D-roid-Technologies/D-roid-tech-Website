@@ -131,6 +131,10 @@
   color: rgb(124, 124, 124);
   font-family: Georgia, "Times New Roman", Times, serif;
 }
+
+.color-change {
+  text-decoration: none;
+}
 .policy {
   display: flex;
   justify-content: center;
@@ -141,6 +145,116 @@
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
+  .footer-main {
+    padding: 0 50px;
+  }
+  .heading {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+
+  .footer-logo-container {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    padding-top: 3em;
+    padding-bottom: 4em;
+  }
+
+  .logo-size {
+    color: #fff;
+    width: 27px;
+    height: 27px;
+  }
+
+  .twitter-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: black;
+    width: 55px;
+    height: 55px;
+  }
+
+  .linkedin-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #5764ef;
+    width: 55px;
+    height: 55px;
+  }
+
+  .instagram-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ef4444;
+    width: 55px;
+    height: 55px;
+  }
+  .youtube-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ec4e68;
+    width: 55px;
+    height: 55px;
+  }
+  .connect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(124, 124, 124);
+    margin-bottom: 1.2em;
+    font-weight: 500;
+    font-size: large;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  /* FORM */
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 25px;
+    margin-bottom: 3em;
+  }
+  .newsletter-email-input {
+    padding: 16px;
+    margin-right: 10px;
+    border: 2px solid #ccc;
+    width: 60%;
+    font-weight: 600;
+    font-size: large;
+  }
+
+  .newsletter-button {
+    padding: 10px 25px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: large;
+  }
+  .footer-buttom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    font-weight: 500;
+    font-size: 19px;
+  }
 }
 
 /* On screens that are 600px or less, set the background color to olive */
@@ -206,11 +320,13 @@
     border: 2px solid #ccc;
     width: 100%;
     font-weight: 600;
+    font-size: medium;
   }
 
   .newsletter-button {
     padding: 14px 20px;
     font-weight: 600;
+    font-size: medium;
   }
 
   /* FOOTER LAST SECTION */

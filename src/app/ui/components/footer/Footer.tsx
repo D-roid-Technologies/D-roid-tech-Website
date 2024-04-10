@@ -47,13 +47,10 @@ const Footer: React.FunctionComponent = () => {
       </article>
       {/* FORM */}
       <form className="newsletter-form">
-        {/* onSubmit={handleSubmit} */}
         <input
           className="newsletter-email-input"
           type="email"
           placeholder="Email"
-          //   value={email}
-          //   onChange={handleChange}
           required
         />
         <button type="submit" className="newsletter-button">
@@ -67,16 +64,15 @@ const Footer: React.FunctionComponent = () => {
         <p className="text-center md:text-left ">
           Copyright &copy; 2024 D'roid Technologies International - All Right
           Reserved
-        </p>
+        </p>{" "}
         <span className="powered">
           Powered by{" "}
-          <span
-            className="color-change"
-            style={{ color: Assets.colors.primary }}
-          >
-            {" "}
-            D'roid Technolgies International
-          </span>
+          <a href="/" className="color-change">
+            <span style={{ color: Assets.colors.primary }}>
+              {" "}
+              D'roid Technolgies International
+            </span>
+          </a>
         </span>
       </div>
       <p className="policy"> Privacy Policy</p>

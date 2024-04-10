@@ -27,59 +27,20 @@
   display: flex;
   gap: 20px;
 }
-/* CONTENT */
-.nav-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding-top: 100px;
-}
-.business {
-  font-size: 4.5rem;
-  letter-spacing: 3px;
-  text-align: center;
-  font-weight: 500;
-}
-/* hr {
-  padding-left: 100px;
-  padding-right: 100px;
-  border-top: 2px solid rgb(218, 214, 214);
-} */
-
-.empower {
-  margin-top: 1em;
-  font-size: 1.2rem;
-  word-spacing: 2px;
-  text-align: center;
-  color: #fff;
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4em;
-}
-.product-button {
-  padding: 20px 40px;
-  background-color: #fff;
-  color: black;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
+  .nav-main {
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    align-items: center;
+    height: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
-  .business {
-    font-size: 2rem;
-    letter-spacing: 3px;
-    text-align: center;
-    font-weight: 500;
-  }
 }
