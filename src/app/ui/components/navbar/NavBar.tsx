@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
 import companyBanner from "../../../images/png/droid banner.png";
+import { IoIosSwitch } from "react-icons/io";
 
 const NavBar: React.FunctionComponent = () => {
   // React states
@@ -78,6 +79,9 @@ const NavBar: React.FunctionComponent = () => {
           <ul className="list"> {navMap()} </ul>
           <div>
             <span className="version">v3.2</span>
+          </div>
+          <div>
+            <IoIosSwitch className="dark-mode" />
           </div>
         </div>
         {showDropDown ? (

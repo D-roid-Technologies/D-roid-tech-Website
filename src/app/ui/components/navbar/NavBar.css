@@ -1,12 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
+
 .nav-link-container {
   display: flex;
 }
 
-.version{
+.dark-mode {
+  width: 20px;
+  height: 20px;
+}
+
+.version {
   font-weight: 200;
   background-color: #00ffff;
   padding: 5px;
   font-size: 13px;
+  margin-right: 45px;
 }
 .drop-down-links {
   position: absolute;
@@ -18,6 +29,7 @@
   text-decoration: none;
   background-color: #000000;
   padding: 12px;
+  font-family: "Rammetto One";
 }
 .drop-down-links:hover {
   transition: 0.8s;
@@ -29,6 +41,7 @@
   cursor: pointer;
   font-weight: 700;
   letter-spacing: 2px;
+  font-family: "Rammetto One";
 }
 
 .nav-list:hover {
@@ -37,6 +50,12 @@
 }
 .list-container {
   list-style: none;
+  margin-bottom: 15px;
+}
+
+.list-container:hover {
+  color: #282a94 !important;
+  transition: 0.8s;
 }
 
 .nav-main {

@@ -11,10 +11,6 @@ const Home: React.FunctionComponent = () => {
       <div
         style={{
           backgroundImage: `url("${companyBanner}")`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          height: "100vh",
         }}
         className="bg-image"
       >
@@ -23,13 +19,11 @@ const Home: React.FunctionComponent = () => {
         {/* CONTENT */}
         <article className="home-content">
           <p className="business">
-            {" "}
             TRANSFORM YOUR <br />
             BUSINESS TODAY
           </p>
         </article>
         <p className="empower">
-          {" "}
           Empower your team with cutting-edge software solutions.
         </p>
         <div className="button">

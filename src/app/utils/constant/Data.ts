@@ -39,5 +39,9 @@ export const DATA = {
       link: "Equipment",
       path: "/offices",
     },
+    {
+      link: "Staff Login",
+      path: "/staff",
+    },
   ],
 };
