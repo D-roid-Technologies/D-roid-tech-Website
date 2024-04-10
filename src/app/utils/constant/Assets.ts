@@ -4,6 +4,8 @@ export const Assets = {
     companyBanner: require("../../images/png/droid banner.png"),
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
+    coding: require("../../images/png/coding.png"),
+    statistics: require("../../images/png/statistics.png"),
   },
   colors: {
     basic: "#00000",

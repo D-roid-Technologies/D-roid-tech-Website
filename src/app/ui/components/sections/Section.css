@@ -1,0 +1,145 @@
+/* SECTIONS */
+.section-main {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 2em;
+}
+.head {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  padding-bottom: 0.8em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.ruler {
+  border-top: 2px solid rgb(218, 214, 214);
+}
+/* SECTION ONE */
+.section-one {
+  display: flex;
+  gap: 60px;
+  padding-top: 1.8em;
+  padding-bottom: 2.2em;
+}
+.image-size {
+  width: 600px;
+  height: 300px;
+}
+.history {
+  padding: 70px 30px;
+  text-align: center;
+}
+.our-history {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.histoy-details {
+  line-height: 25px;
+  color: rgb(124, 124, 124);
+}
+.gap-space {
+  height: 20px;
+}
+/* ARTICLE */
+.discover {
+  text-align: center;
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.deliverable {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.discover-details {
+  line-height: 25px;
+  color: rgb(124, 124, 124);
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  /* SECTIONS */
+  .section-main {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .head {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  /* SECTION ONE */
+  .section-one {
+    display: flex;
+    gap: 20px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 370px;
+    height: 200px;
+  }
+  .history {
+    padding: 20px 0px;
+    text-align: left;
+  }
+  .our-history {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .histoy-details {
+    line-height: 0.5cm;
+    text-align: center;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .section-main {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .head {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  /* SECTION ONE */
+  .section-one {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 370px;
+    height: 200px;
+  }
+  .history {
+    padding: 20px 0px;
+    text-align: left;
+  }
+  .our-history {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .histoy-details {
+    line-height: 0.5cm;
+    text-align: center;
+    font-size: medium;
+  }
+}
