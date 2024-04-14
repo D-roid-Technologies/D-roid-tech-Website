@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
-
 .nav-link-container {
   display: flex;
 }
@@ -10,6 +9,11 @@
 .dark-mode {
   width: 20px;
   height: 20px;
+}
+.menu-button {
+  width: 20px;
+  height: 20px;
+  display: none;
 }
 
 .version {
@@ -74,6 +78,24 @@
   margin-right: 30px;
 }
 
+.mobile-x {
+  align-self: right;
+  width: 40px;
+  height: 40px;
+  color: #00ffff;
+}
+.mobile-nav {
+  position: absolute;
+  background-color: #000000;
+  right: 0px;
+  padding: 25px;
+  width: 100%;
+  height: 500px;
+  top: 10px;
+  justify-content: center;
+  transition: 10s;
+}
+
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .nav-main {
@@ -89,4 +111,19 @@
 
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .menu-button {
+    display: block;
+  }
+  .list {
+    display: none;
+  }
+  .nav-link-container {
+    display: flex;
+  }
+  .icons-right {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    color: #282a94;
+  }
 }

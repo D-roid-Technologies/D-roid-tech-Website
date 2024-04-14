@@ -19,5 +19,6 @@ export const Assets = {
     companyInitials: "DTI",
     modalTitle: "This is the Modal Heading.",
     modalBody: "This is the Body.",
+    appVersion: "v3.2",
   },
 };
