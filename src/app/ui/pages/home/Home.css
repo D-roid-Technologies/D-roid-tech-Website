@@ -55,10 +55,24 @@
   font-family: "Mazzard";
 }
 
-/* IPAD On screens that are 992px or less, set the background color to blue */
+/* TABLET On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
+  .home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 80px;
+  }
+  .bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 50vh;
+  }
+
   .business {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     letter-spacing: 2px;
     text-align: center;
     font-weight: 500;
@@ -90,8 +104,22 @@
 
 /*MOBILE On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 30px;
+  }
+  .bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 70vh;
+  }
+
   .business {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     letter-spacing: 3px;
     text-align: center;
     font-weight: 500;
@@ -111,12 +139,12 @@
     padding: 3em;
   }
   .product-button {
-    padding: 14px 28px;
+    padding: 10px 18px;
     background-color: #fff;
     color: black;
     border: none;
     cursor: pointer;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 12px;
   }
 }
