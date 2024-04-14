@@ -1,5 +1,5 @@
 import React from "react";
-import "../sections/Section.css";
+import "./AboutSection.css";
 import { Assets } from "../../../utils/constant/Assets";
 
 const Section: React.FunctionComponent = () => {
@@ -49,26 +49,28 @@ const Section: React.FunctionComponent = () => {
           />
         </div>
       </div>
-      <span className="gap-space"></span>
-      {/* ARTICLE */}
-      <h3 className="discover">
-        {" "}
-        Discover the Power of D'roid Technologies International Software
-        Solutions
-      </h3>
-      <article className="deliverable">
-        <p className="discover-details">
-          At D'roid Technologies International, we understand that every
-          business has unique needs and challenges <br /> that's why we offer a
-          wide range of software solutions designed to help you streamline your
-          operations, <br />
-          increase efficency, and drive growth. From custom software development
-          to cloud-based applications, our <br />
-          team of expertise has the expertise and experience to help you achieve
-          your goals. Explore our website to learn <br /> more about our
-          offerings and how we can help your business succeed.
-        </p>
-      </article>
+      {/* SECTION THREE */}
+      <div className="section-one">
+        <div className="coding-image">
+          <img
+            src={Assets.images.ourServices}
+            alt="codingImage"
+            className="image-size"
+          />
+        </div>
+        <div className="history">
+          <p className="our-history"> Our Services</p>
+          <p className="histoy-details">
+            {" "}
+            We offer a wide range of software development services, including
+            web <br /> development, mobile app development, and custom software
+            development. we <br /> use the latest technologies and tools to
+            ensure that our clients recieve cutting-
+            <br /> edge solutions that drive their business forward.
+          </p>{" "}
+        </div>
+      </div>
+      <span className="gap"></span>
     </div>
   );
 };

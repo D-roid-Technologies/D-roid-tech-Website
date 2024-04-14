@@ -6,6 +6,7 @@ export const Assets = {
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
     coding: require("../../images/png/coding.png"),
     statistics: require("../../images/png/statistics.png"),
+    ourServices: require("../../images/png/our services.png"),
   },
   colors: {
     basic: "#00000",
