@@ -10,6 +10,7 @@ import { RouterType } from "../utils/Types";
 import Equipments from "../ui/pages/equipments/Equipments";
 import Drone from "../ui/pages/drone/Drone";
 import Staff from "../ui/pages/staff/Staff";
+import AllStaffs from "../ui/pages/staff/allstaffs/AllStaffs";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -24,6 +25,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/drone" element={<Drone />} />
         <Route path="/offices" element={<Equipments />} />
         <Route path="/staff" element={<Staff />} />
+        <Route path="/allstaffs" element={<AllStaffs />} />
       </Routes>
     </BrowserRouter>
   );
