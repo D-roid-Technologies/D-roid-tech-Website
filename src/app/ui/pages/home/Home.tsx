@@ -2,7 +2,8 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import companyBanner from "../../../images/png/droid banner.png";
 import "../home/Home.css";
-import Section from "../../components/sections/Section";
+import AboutSection from "../../components/aboutsections/AboutSection";
+import CustomerFeedBack from "../../components/customerfeedback/CustomerFeedBack";
 
 const Home: React.FunctionComponent = () => {
   console.log(companyBanner);
@@ -31,7 +32,8 @@ const Home: React.FunctionComponent = () => {
         </div>
         {/* END OF CONTENT */}
       </div>
-      <Section />
+      <AboutSection />
+      <CustomerFeedBack />
     </div>
   );
 };

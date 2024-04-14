@@ -105,11 +105,11 @@
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
   .section-main {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
   .head {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #333;
     font-weight: 500;
     padding-bottom: 0.8em;
@@ -123,7 +123,7 @@
     padding-top: 1.8em;
   }
   .image-size {
-    width: 370px;
+    width: 350px;
     height: 200px;
   }
   .history {
@@ -134,12 +134,12 @@
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
   .histoy-details {
     line-height: 0.5cm;
-    text-align: center;
-    font-size: medium;
+    text-align: left;
+    font-size: 15px;
   }
 }

@@ -1,0 +1,175 @@
+.feedback-bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 70vh;
+}
+.read {
+  color: #fff;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 500;
+  font-family: "Rammetto One";
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+/* CONTENT */
+.read-content {
+  display: flex;
+  justify-content: center;
+}
+.read-details {
+  border-radius: 10px;
+  padding: 30px 70px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.show {
+  color: #fff;
+}
+.facebook {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2em;
+}
+.facebook-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #5764ef;
+  width: 35px;
+  height: 35px;
+}
+.connect-to {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5em;
+}
+.connect-to-facebook {
+  padding: 15px 35px;
+  background-color: aqua;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  font-family: "Mazzard";
+}
+/* Tablet: On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .feedback-bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 40vh;
+  }
+  .read {
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Rammetto One";
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  /* CONTENT */
+  .read-content {
+    display: flex;
+    justify-content: center;
+  }
+  .read-details {
+    border-radius: 10px;
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .show {
+    color: #fff;
+  }
+  .facebook-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #5764ef;
+    width: 45px;
+    height: 45px;
+  }
+  .connect-to {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5em;
+  }
+  .connect-to-facebook {
+    padding: 10px 25px;
+    background-color: aqua;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: "Mazzard";
+  }
+}
+
+/*Mobile: On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .feedback-bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30vh;
+  }
+  .read {
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Rammetto One";
+    padding-top: 2em;
+    padding-bottom: 1em;
+  }
+  /* CONTENT */
+  .read-content {
+    display: flex;
+    justify-content: center;
+  }
+  .read-details {
+    border-radius: 10px;
+    /* padding: 3px 3px; */
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .show {
+    color: #fff;
+    font-size: 12px;
+  }
+  .facebook-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #3e4ce9;
+    width: 25px;
+    height: 25px;
+  }
+  .connect-to {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 2.5em; */
+  }
+  .connect-to-facebook {
+    padding: 10px 10px;
+    background-color: aqua;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: "Mazzard";
+  }
+}
