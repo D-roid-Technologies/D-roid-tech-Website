@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Link,Routes, Route, useRoutes, useLocation } from "react-router-dom";
 import NavBar from "../../components/navbar/NavBar";
 import companyBanner from "../../../images/png/droid banner.png";
 import "../training/Training.css";
 import AboutSection from "../../components/aboutsections/AboutSection";
+import CourseDetail from "./CourseDetail";
 
 interface Photo {
   image: string;
@@ -17,6 +19,11 @@ const photos: Photo[] = [
 
 const Training: React.FC = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const location = useLocation();
+
+  let element = useRoutes([
+    { path: `${location.pathname}/course-detail`, element: <CourseDetail /> },
+  ]);
 
   const handlePreviousPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
@@ -60,39 +67,42 @@ const Training: React.FC = () => {
         </section>
       </div>
       <div className="Container">
-        <div className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}> {/* Fixed inline style */}
+        <Link to={`${location.pathname}/course-detail`} className="Column">
+          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
-              {/* SVG content */}
+        
             </svg>
           </div>
-          <h4 className="Heading"><a href="https://kikora.no/barnetrinn-1-4/">Level 1-4</a></h4> {/* Changed 'class' to 'className' */}
-        </div>
-        <div className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}> {/* Fixed inline style */}
+          <h4 className="Heading">Level 1-4</h4>
+        </Link>
+        <Link to={`${location.pathname}/course-detail`} className="Column">
+          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
-              {/* SVG content */}
+            
             </svg>
           </div>
-          <h4 className="Heading"><a href="https://kikora.no/barnetrinn-1-4/">Level 1-4</a></h4> {/* Changed 'class' to 'className' */}
-        </div>
-        <div className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}> {/* Fixed inline style */}
+          <h4 className="Heading">Level 1-4</h4>
+        </Link>
+        <Link to={`${location.pathname}/course-detail`} className="Column">
+          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
-              {/* SVG content */}
+           
             </svg>
           </div>
-          <h4 className="Heading"><a href="https://kikora.no/barnetrinn-1-4/">Level 1-4</a></h4> {/* Changed 'class' to 'className' */}
-        </div>
-        <div className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}> {/* Fixed inline style */}
+          <h4 className="Heading">Level 1-4</h4>
+        </Link>
+        <Link to={`${location.pathname}/course-detail`} className="Column">
+          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
-              {/* SVG content */}
+              
             </svg>
           </div>
-          <h4 className="Heading"><a href="https://kikora.no/barnetrinn-1-4/">Level 1-4</a></h4> {/* Changed 'class' to 'className' */}
-        </div>
+          <h4 className="Heading">Level 1-4</h4>
+        </Link>
       </div>
+      <Routes>
+  <Route path={`${location.pathname}/course-detail`} element={<CourseDetail />} />
+</Routes>
     </div>
   );
 };
