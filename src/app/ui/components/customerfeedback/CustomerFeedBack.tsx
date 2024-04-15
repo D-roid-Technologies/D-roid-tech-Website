@@ -32,6 +32,28 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
+      {/* DISCOVER */}
+      <article className="heading">
+        <p className="discover-heading">
+          {" "}
+          Discover The Power of D'roid Technologies International Software
+          Solutions
+        </p>
+        <div className="discover-section">
+          <p className="discover-details">
+            {" "}
+            At D'roid Technoogies International, we understand that every
+            business has unique needs and challenges. <br />
+            That's why we offer a wide range of software solutions designed to
+            help you streamline your operations, <br />
+            increase efficiency, and drive growth. From custom software
+            development to cloud-based applications, our <br />
+            team of expertise has the expertise and experience to help you
+            achieve your goals. Explore our website to learn <br />
+            more about our offerings and how we can help your business succed.
+          </p>
+        </div>
+      </article>
     </div>
   );
 };
