@@ -1,0 +1,132 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.auth button {
+  margin-left: 1rem;
+}
+
+.photo-section {
+  height: 500px;
+  position: relative;
+  border: 2cqh solid #0e0d0d;
+}
+
+.photo-background {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.photo-text {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.prev-button {
+  left: 1rem;
+}
+
+.next-button {
+  right: 1rem;
+}
+
+.container2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem 6rem 2rem 6rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.container2 > h2 {
+  color: blue;
+}
+
+.Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem 8rem 2rem 8rem;
+}
+
+.Column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.Column:hover {
+  transform: scale(1.1);
+}
+
+.Icon {
+  width: 41px;
+  height: 37px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.IconWrapper {
+  width: 41px;
+  height: 37px;
+  background-color: #135CFB;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Heading {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.Heading a {
+  color: #232A33;
+  text-decoration: none;
+}
