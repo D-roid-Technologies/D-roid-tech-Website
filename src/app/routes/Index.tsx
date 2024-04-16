@@ -6,8 +6,13 @@ import Animation from "../ui/pages/animations/Animation";
 import Contact from "../ui/pages/contact/Contact";
 import ProgrammingHome from "../ui/pages/programming/ProgrammingHome";
 import Training from "../ui/pages/training/Training";
+import { RouterType } from "../utils/Types";
+import Equipments from "../ui/pages/equipments/Equipments";
+import Drone from "../ui/pages/drone/Drone";
+import Staff from "../ui/pages/staff/Staff";
+import AllStaffs from "../ui/pages/staff/allstaffs/AllStaffs";
 
-const Index: React.FunctionComponent<any> = () => {
+const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,8 +20,12 @@ const Index: React.FunctionComponent<any> = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/animation" element={<Animation />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/programming" element={<ProgrammingHome />} />
+        <Route path="/programminghome" element={<ProgrammingHome />} />
         <Route path="/training" element={<Training />} />
+        <Route path="/drone" element={<Drone />} />
+        <Route path="/offices" element={<Equipments />} />
+        <Route path="/staff" element={<Staff />} />
+        <Route path="/allstaffs" element={<AllStaffs />} />
       </Routes>
     </BrowserRouter>
   );

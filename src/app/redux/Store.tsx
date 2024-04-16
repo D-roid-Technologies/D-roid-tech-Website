@@ -1,7 +1,12 @@
-import React from "react";
+import { configureStore } from "@reduxjs/toolkit";
+import { DimensionSlice } from "./slices/Dimension";
+import { UserSlice } from "./slices/User";
 
-const Store: React.FunctionComponent = () => {
-  return <div>Store</div>;
-};
+export const store = configureStore({
+  reducer: {
+    dimension: DimensionSlice.reducer,
+    user: UserSlice.reducer,
+  },
+});
 
-export default Store;
+export type RootState = ReturnType<typeof store.getState>;

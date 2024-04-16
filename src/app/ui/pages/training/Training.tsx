@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Training: React.FunctionComponent = () => {
-  return <div>Training</div>;
+  return (
+    <div>
+      <p>Training</p>
+    </div>
+  );
 };
 
 export default Training;

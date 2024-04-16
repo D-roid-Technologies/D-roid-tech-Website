@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans");
+
+.input:focus {
+  border: 2px solid #479be8;
+  outline: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .inputContact {
+    width: 100%;
+    border: 0.5px solid gray;
+    padding-left: 15px;
+  }
+}
