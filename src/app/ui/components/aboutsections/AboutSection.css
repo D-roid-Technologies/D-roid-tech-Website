@@ -33,7 +33,7 @@
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 .histoy-details {
   line-height: 25px;
@@ -94,11 +94,13 @@
     text-align: center;
     line-height: 0;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
+    font-family: "Rammetto";
   }
   .histoy-details {
     line-height: 0.5cm;
     text-align: center;
+    font-family: "Mazzard";
   }
 }
 
@@ -135,10 +137,10 @@
     text-align: center;
     line-height: 0;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 500;
   }
   .histoy-details {
-    line-height: 0.5cm;
+    /* line-height: 0.5cm; */
     text-align: left;
     font-size: 15px;
   }

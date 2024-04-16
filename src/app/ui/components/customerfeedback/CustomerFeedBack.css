@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
 .feedback-bg-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,6 +27,7 @@
   border-radius: 10px;
   padding: 30px 70px;
   background-color: rgba(0, 0, 0, 0.4);
+  font-family: "Mazzard";
 }
 
 .show {
@@ -56,6 +61,27 @@
   cursor: pointer;
   font-weight: 800;
   font-family: "Mazzard";
+}
+
+/* ARTICLE */
+.discover-heading {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Rammetto";
+  padding-top: 2em;
+  text-align: center;
+}
+.discover-section {
+  display: flex;
+  justify-content: center;
+}
+
+.discover-details {
+  font-family: "Mazzard";
+  text-align: center;
+  color: rgb(124, 124, 124);
 }
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -113,6 +139,27 @@
     font-weight: 800;
     font-family: "Mazzard";
   }
+
+  /* ARTICLE */
+  .discover-heading {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    font-family: "Rammetto";
+    padding-top: 2em;
+    text-align: center;
+  }
+  .discover-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .discover-details {
+    font-family: "Mazzard";
+    text-align: center;
+    color: rgb(124, 124, 124);
+  }
 }
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
@@ -135,6 +182,7 @@
   }
   /* CONTENT */
   .read-content {
+    display: hidden;
     display: flex;
     justify-content: center;
   }
@@ -171,5 +219,29 @@
     cursor: pointer;
     font-weight: 500;
     font-family: "Mazzard";
+  }
+  /* ARTICLE */
+  .heading {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .discover-heading {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: "Rammetto";
+    padding-top: 4em;
+    text-align: center;
+  }
+  .discover-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .discover-details {
+    font-family: "Mazzard";
+    text-align: left;
+    color: rgb(124, 124, 124);
   }
 }
