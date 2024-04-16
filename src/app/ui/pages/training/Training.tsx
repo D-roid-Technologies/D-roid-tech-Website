@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link,Routes, Route, useRoutes, useLocation } from "react-router-dom";
 import NavBar from "../../components/navbar/NavBar";
-import companyBanner from "../../../images/png/droid banner.png";
+import companyBanner from "../../../images/png/droid banner.png"; // This is a wrong way of importing images, check what has been done on other pages and implement.
 import "../training/Training.css";
 import AboutSection from "../../components/aboutsections/AboutSection";
 import CourseDetail from "./CourseDetail";
 
-interface Photo {
+interface Photo { // Make use of types not interfaces. All types must be in the types file which is in Utils folder.
   image: string;
   text: string;
 }
@@ -17,7 +17,7 @@ const photos: Photo[] = [
   { image: companyBanner, text: "Learn at your own pace" },
 ];
 
-const Training: React.FC = () => {
+const Training: React.FC = () => { // use functional component flly rather than fc
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
 
@@ -36,6 +36,9 @@ const Training: React.FC = () => {
       prevIndex === photos.length - 1 ? 0 : prevIndex + 1
     );
   };
+
+  // There is a button component and an input component already built in this project. USE IT!
+  // There are colors already there in the  project, use them instead. If have issues ask specific questions.
 
   return (
     <div>
