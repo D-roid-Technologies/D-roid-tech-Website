@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-
-const Training: React.FunctionalComponent = () => {
-  
+const Training: React.FunctionComponent = () => {
   return (
     <div>
       <p>Training</p>
     </div>
+  );
 };
 
 export default Training;
