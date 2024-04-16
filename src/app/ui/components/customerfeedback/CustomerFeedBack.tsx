@@ -2,6 +2,7 @@ import React from "react";
 import feedBackImage from "../../../images/png/feedbackpics.png";
 import "../customerfeedback/CustomerFeedBack.css";
 import { FaFacebookF } from "react-icons/fa6";
+import Button from "../button/Button";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   return (
@@ -54,6 +55,22 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           </p>
         </div>
       </article>
+      <div className="contact-us">
+        <div className="contactus-button">
+          <Button
+            bgColor={"black"}
+            mTop={0}
+            mBottom={0}
+            mLeft={0}
+            mRight={0}
+            title="Contact us"
+            color="white"
+            onClickButton={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

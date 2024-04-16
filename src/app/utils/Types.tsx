@@ -28,6 +28,9 @@ export type UserType = {
   sixDigitCode: string;
   sixDigitCodeFromUser: string;
 };
+export type EmailType = {
+  emailFromUser: string;
+};
 
 export type AppInputType = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,

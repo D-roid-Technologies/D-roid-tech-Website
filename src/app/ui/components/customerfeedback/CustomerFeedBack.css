@@ -79,10 +79,23 @@
 }
 
 .discover-details {
+  font-size: 18px;
   font-family: "Mazzard";
   text-align: center;
   color: rgb(124, 124, 124);
 }
+
+.contact-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactus-button {
+  width: 10%;
+  border-radius: none;
+}
+
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .feedback-bg-image {
@@ -156,6 +169,7 @@
   }
 
   .discover-details {
+    font-size: 15px;
     font-family: "Mazzard";
     text-align: center;
     color: rgb(124, 124, 124);

@@ -5,6 +5,8 @@ import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { FiInstagram } from "react-icons/fi";
 import { IoLogoYoutube } from "react-icons/io";
 import { Assets } from "../../../utils/constant/Assets";
+import AppInput from "../textInput/AppInput";
+import Button from "../button/Button";
 
 const Footer: React.FunctionComponent = () => {
   return (
@@ -45,8 +47,27 @@ const Footer: React.FunctionComponent = () => {
           Sign up to hear from us about specials, sales, and events.{" "}
         </p>
       </article>
+      {/* FORM SECTION */}
+      <div className="footer-form">
+        <div className="form-input">
+          <AppInput w="100%" h={40} pLeft={10} pHolder="Email" />
+        </div>
+        <div className="signup-btn">
+          <Button
+            title="Sign up"
+            bgColor="black"
+            mTop={0}
+            mBottom={0}
+            mLeft={10}
+            mRight={10}
+            color="white"
+            // onClickButton={() => verifyCode()}
+          />
+        </div>
+      </div>
+
       {/* FORM */}
-      <form className="newsletter-form">
+      {/* <form className="newsletter-form">
         <input
           className="newsletter-email-input"
           type="email"
@@ -56,7 +77,7 @@ const Footer: React.FunctionComponent = () => {
         <button type="submit" className="newsletter-button">
           Sign up
         </button>
-      </form>
+      </form> */}
       {/* END OF FORM */}
       <hr className="rule" />
       {/* LAST FOOTER SECTION */}
