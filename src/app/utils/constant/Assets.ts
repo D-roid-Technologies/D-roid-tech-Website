@@ -9,8 +9,8 @@ export const Assets = {
     ourServices: require("../../images/png/our services.png"),
   },
   colors: {
-    basic: "#00000",
-    light: "#fffff",
+    basic: "#0000",
+    light: "#ffff",
     primary: "#282A94",
     secondary: "#479BE8",
   },
