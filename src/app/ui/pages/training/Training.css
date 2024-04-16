@@ -5,6 +5,7 @@
   color: black;
   padding: 1rem;
   margin-bottom: 1rem;
+  text-decoration: none;
 }
 
 .logo {
@@ -51,10 +52,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1rem;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
   border: none;
-  border-radius: 50%;
   cursor: pointer;
   padding: 0.5rem 1rem;
 }
@@ -75,9 +73,9 @@
   margin-bottom: 2rem;
 }
 
-.container2 > h2 {
-  color: blue;
-}
+/* .container2 > h2 {
+  color: #282A94;
+} */
 
 .Container {
   display: flex;
@@ -102,7 +100,6 @@
 .Icon {
   width: 41px;
   height: 37px;
-  background-color: #ffffff;
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -112,7 +109,7 @@
 .IconWrapper {
   width: 41px;
   height: 37px;
-  background-color: #135CFB;
+  background-color: #479BE8;
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -127,6 +124,5 @@
 }
 
 .Heading a {
-  color: #232A33;
   text-decoration: none;
 }

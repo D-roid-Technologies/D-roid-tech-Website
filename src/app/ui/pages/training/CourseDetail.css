@@ -6,11 +6,10 @@
   }
   
   .main-content {
-    margin: 8px 16px;
-    margin-top: 8px;
+    margin: 2rem 2rem 0 2rem;
     width: 67%;
     overflow: auto;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
     background-color: white;
   }
   

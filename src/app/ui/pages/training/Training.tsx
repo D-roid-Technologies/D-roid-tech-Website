@@ -1,29 +1,21 @@
 import React, { useState } from "react";
 import { Link,Routes, Route, useRoutes, useLocation } from "react-router-dom";
 import NavBar from "../../components/navbar/NavBar";
-import companyBanner from "../../../images/png/droid banner.png"; // This is a wrong way of importing images, check what has been done on other pages and implement.
 import "../training/Training.css";
-import AboutSection from "../../components/aboutsections/AboutSection";
+import { TrainingPhoto } from "../../../utils/Types";
+import Button from "../../components/button/Button";
+import { Assets } from "../../../utils/constant/Assets";
 import CourseDetail from "./CourseDetail";
 
-interface Photo { // Make use of types not interfaces. All types must be in the types file which is in Utils folder.
-  image: string;
-  text: string;
-}
-
-const photos: Photo[] = [
-  { image: companyBanner, text: "Learn new skills with us" },
-  { image: companyBanner, text: "Expert trainers available" },
-  { image: companyBanner, text: "Learn at your own pace" },
+const photos: TrainingPhoto[] = [
+  { image: Assets.images.companyBanner, text: "Learn new skills with us" },
+  { image: Assets.images.companyBanner, text: "Expert trainers available" },
+  { image: Assets.images.companyBanner, text: "Learn at your own pace" },
 ];
 
-const Training: React.FC = () => { // use functional component flly rather than fc
+const Training: React.FunctionComponent = () => { // use functional component flly rather than fc
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
-
-  let element = useRoutes([
-    { path: `${location.pathname}/course-detail`, element: <CourseDetail /> },
-  ]);
 
   const handlePreviousPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
@@ -44,7 +36,7 @@ const Training: React.FC = () => { // use functional component flly rather than 
     <div>
       <div
         style={{
-          backgroundImage: `url("${companyBanner}")`,
+          backgroundImage: `url("${Assets.images.companyBanner}")`,
         }}
         className="bg-image"
       >
@@ -54,24 +46,42 @@ const Training: React.FC = () => { // use functional component flly rather than 
             {photos[currentPhotoIndex].text}
           </p>
         </article>
-        <button className="prev-button" onClick={handlePreviousPhoto}>
-          &lt;
-        </button>
-        <button className="next-button" onClick={handleNextPhoto}>
-          &gt;
-        </button>
+        <div className="prev-button">
+        <Button
+          title="<"
+          bgColor="rgba(0, 0, 0, 0.5)"
+          color={Assets.colors.light}
+          onClickButton={handlePreviousPhoto}
+          mLeft={10}
+          mRight={10}
+          mTop={0}
+          mBottom={0}
+          />
+          </div>
+          <div className="next-button">
+        <Button
+          title=">"
+          bgColor="rgba(0, 0, 0, 0.5)"
+          color={Assets.colors.light}
+          onClickButton={handleNextPhoto}
+          mLeft={10}
+          mRight={10}
+          mTop={0}
+          mBottom={0}
+          />
+          </div>
       </div>
       <div className="container2">
         <h2>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </h2>
-        <section>
+        <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt aliquid dolores in deleniti, autem natus repudiandae nobis voluptates culpa facere libero eum adipisci porro corporis, illo obcaecati minus. Animi, dolores.
-        </section>
+        </p>
       </div>
       <div className="Container">
         <Link to={`${location.pathname}/course-detail`} className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
+          <div className="Icon" style={{ backgroundColor: Assets.colors.secondary }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
         
             </svg>
@@ -79,7 +89,7 @@ const Training: React.FC = () => { // use functional component flly rather than 
           <h4 className="Heading">Level 1-4</h4>
         </Link>
         <Link to={`${location.pathname}/course-detail`} className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
+          <div className="Icon" style={{ backgroundColor: Assets.colors.secondary }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
             
             </svg>
@@ -87,7 +97,7 @@ const Training: React.FC = () => { // use functional component flly rather than 
           <h4 className="Heading">Level 1-4</h4>
         </Link>
         <Link to={`${location.pathname}/course-detail`} className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
+          <div className="Icon" style={{ backgroundColor: Assets.colors.secondary }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
            
             </svg>
@@ -95,7 +105,7 @@ const Training: React.FC = () => { // use functional component flly rather than 
           <h4 className="Heading">Level 1-4</h4>
         </Link>
         <Link to={`${location.pathname}/course-detail`} className="Column">
-          <div className="Icon" style={{ backgroundColor: "#135CFB" }}>
+          <div className="Icon" style={{ backgroundColor: Assets.colors.secondary }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="13" viewBox="0 0 31 13" fill="none">
               
             </svg>
