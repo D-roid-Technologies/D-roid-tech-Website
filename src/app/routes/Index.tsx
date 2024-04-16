@@ -11,6 +11,7 @@ import Equipments from "../ui/pages/equipments/Equipments";
 import Drone from "../ui/pages/drone/Drone";
 import Staff from "../ui/pages/staff/Staff";
 import AllStaffs from "../ui/pages/staff/allstaffs/AllStaffs";
+import CourseDetail from "../ui/pages/training/CourseDetail";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -26,6 +27,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/offices" element={<Equipments />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/allstaffs" element={<AllStaffs />} />
+        <Route path="/training/course-detail" element={<CourseDetail />} />
       </Routes>
     </BrowserRouter>
   );
