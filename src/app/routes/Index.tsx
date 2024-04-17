@@ -27,7 +27,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/offices" element={<Equipments />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/allstaffs" element={<AllStaffs />} />
-        <Route path="/training/course-detail" element={<CourseDetail />} />
+        <Route path="/training/course-detail/:courseId" element={<CourseDetail />} />
       </Routes>
     </BrowserRouter>
   );
