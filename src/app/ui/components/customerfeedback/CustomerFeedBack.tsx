@@ -56,6 +56,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           </p>
         </div>
       </article>
+      {/* CONTACT US BUTTON */}
       <div className="contact-us">
         <div className="contactus-button">
           <Button
@@ -77,7 +78,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
         <div className="section-four-container">
           <div className="coding-image">
             <img
-              src={Assets.images.coding}
+              src={Assets.images.tour}
               alt="codingImage"
               className="image-sizes"
             />
@@ -92,6 +93,27 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               Maximize your sightseeing with this exceptional tour.
             </p>{" "}
           </div>
+        </div>
+        {/* CONTACT US SECTION */}
+        <div className="">
+          <h1 className="heading"> CONTACT US </h1>
+          <hr className="rule" />
+          <article>
+            <h3 className="questions">Questions or Comments? </h3>
+            <p className="clients">
+              We know that our clients have unique needs. Send us a message, and
+              we will get back to you. <br />
+            </p>
+            <h2 className="droid"> D'roid Technologies International</h2>
+            <p className="hours"> Hours</p>
+            <p>
+              {" "}
+              Open today{" "}
+              <form action="">
+                <input type="text" />
+              </form>
+            </p>
+          </article>
         </div>
       </div>
     </div>

@@ -84,7 +84,7 @@
   text-align: center;
   color: rgb(124, 124, 124);
 }
-
+/* CONTACT US BOTTON */
 .contact-us {
   display: flex;
   justify-content: center;
@@ -133,8 +133,43 @@
   line-height: 25px;
   color: rgb(124, 124, 124);
 }
-.gap-space {
-  height: 20px;
+.heading {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  padding-bottom: 0.8em;
+  font-family: "Rammetto";
+}
+.rule {
+  border-top: 2px solid rgb(218, 214, 214);
+}
+/* CONTACT US SECTION */
+.questions {
+  text-align: center;
+  padding: 30px 0;
+  font-family: "Rammetto";
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+.clients {
+  text-align: center;
+  color: rgb(124, 124, 124);
+  padding-bottom: 30px;
+  font-family: "Mazzard";
+}
+.droid {
+  font-family: "Rammetto";
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding-bottom: 30px;
+}
+.hours {
+  font-family: "Rammetto";
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding-bottom: 27px;
 }
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -212,6 +247,55 @@
     font-size: 15px;
     font-family: "Mazzard";
     text-align: center;
+    color: rgb(124, 124, 124);
+  }
+  /* CONTACT US BOTTON */
+  .contact-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactus-button {
+    width: 20%;
+    border-radius: none;
+  }
+  /* SECTION FOUR */
+  .section-four {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 2em;
+  }
+
+  .section-four-container {
+    display: flex;
+    gap: 60px;
+    padding-top: 1.8em;
+    padding-bottom: 2.2em;
+  }
+  .image-sizes {
+    width: 370px;
+    height: 200px;
+  }
+  .city-walking-tours {
+    /* padding: 70px 30px; */
+    text-align: center;
+  }
+
+  .walking-tour {
+    padding-bottom: 0.6em;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(22, 169, 169);
+    font-family: "Rammetto";
+  }
+  .pounds {
+    margin-bottom: 0.7em;
+    font-size: 1.1rem;
+  }
+  .walking-tour-details {
+    line-height: 25px;
     color: rgb(124, 124, 124);
   }
 }
