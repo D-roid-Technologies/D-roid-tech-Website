@@ -67,4 +67,22 @@ export type AppButtonType = React.DetailedHTMLProps<
 export type TrainingPhoto = {
   image: string;
   text: string;
+};
+
+export type Course = {
+  id: number;
+  title: string;
+  description: string;
+  benefits: {
+    title: string;
+    description: string;
+  }[];
+  projects: {
+    title: string;
+    description: string;
+  }[];
+  howItWorks: {
+    title: string;
+    content: string;
+  }[];
 }
