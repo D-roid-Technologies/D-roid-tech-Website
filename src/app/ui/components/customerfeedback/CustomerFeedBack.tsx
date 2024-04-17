@@ -3,6 +3,7 @@ import feedBackImage from "../../../images/png/feedbackpics.png";
 import "../customerfeedback/CustomerFeedBack.css";
 import { FaFacebookF } from "react-icons/fa6";
 import Button from "../button/Button";
+import { Assets } from "../../../utils/constant/Assets";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   return (
@@ -69,6 +70,28 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               throw new Error("Function not implemented.");
             }}
           />
+        </div>
+      </div>
+      {/* SECTION FOUR */}
+      <div className="section-four">
+        <div className="section-four-container">
+          <div className="coding-image">
+            <img
+              src={Assets.images.coding}
+              alt="codingImage"
+              className="image-sizes"
+            />
+          </div>
+          <div className="city-walking-tour">
+            <h2 className="walking-tour"> City Walking Tour </h2>
+            <p className="pounds"> &#163;20.00</p>
+            <p className="walking-tour-details">
+              {" "}
+              A unique walking tour of the city with time to enjoy lunch and
+              shoppinng too! <br />
+              Maximize your sightseeing with this exceptional tour.
+            </p>{" "}
+          </div>
         </div>
       </div>
     </div>

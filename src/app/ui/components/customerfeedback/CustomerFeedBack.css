@@ -95,7 +95,47 @@
   width: 10%;
   border-radius: none;
 }
+/* SECTION FOUR */
+.section-four {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 2em;
+}
 
+.section-four-container {
+  display: flex;
+  gap: 60px;
+  padding-top: 1.8em;
+  padding-bottom: 2.2em;
+}
+.image-sizes {
+  width: 600px;
+  height: 300px;
+}
+.city-walking-tours {
+  /* padding: 70px 30px; */
+  text-align: center;
+}
+
+.walking-tour {
+  padding-bottom: 0.6em;
+  line-height: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(22, 169, 169);
+  font-family: "Rammetto";
+}
+.pounds {
+  margin-bottom: 1em;
+  font-size: 1.3rem;
+}
+.walking-tour-details {
+  line-height: 25px;
+  color: rgb(124, 124, 124);
+}
+.gap-space {
+  height: 20px;
+}
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .feedback-bg-image {
