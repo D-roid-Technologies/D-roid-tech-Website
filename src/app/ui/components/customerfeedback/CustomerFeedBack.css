@@ -167,7 +167,7 @@
   font-family: "Rammetto";
   text-align: center;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding-bottom: 27px;
 }
 .time {
@@ -253,14 +253,17 @@ select {
     align-items: center;
     padding: 2.5em;
   }
+  .connect-to {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5em;
+  }
+
   .connect-to-facebook {
-    padding: 10px 25px;
-    background-color: aqua;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: 800;
     font-family: "Mazzard";
+    cursor: pointer;
+    width: 53%;
   }
 
   /* ARTICLE */
@@ -401,7 +404,7 @@ select {
   }
 
   .contactus-button-style {
-    width: 18%;
+    width: 22%;
     border: none;
     font-family: "Mazzard";
     font-size: 1.2rem;
