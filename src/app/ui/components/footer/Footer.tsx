@@ -67,18 +67,6 @@ const Footer: React.FunctionComponent = () => {
         </div>
       </div>
 
-      {/* FORM */}
-      {/* <form className="newsletter-form">
-        <input
-          className="newsletter-email-input"
-          type="email"
-          placeholder="Email"
-          required
-        />
-        <button type="submit" className="newsletter-button">
-          Sign up
-        </button>
-      </form> */}
       {/* END OF FORM */}
       <hr className="rule" />
       {/* LAST FOOTER SECTION */}
