@@ -16,9 +16,20 @@ const CourseDetail: React.FC = () => {
         >
           <NavBar />
         </div>
-        <div>
-          <h4>Course Description</h4>
-          <p className="course-detail-description">
+        <div className="course-detail-description">
+          <h2>Course Description</h2>
+          <p>
+            Welcome to the world of Frontend Development with React Js, where
+            you'll learn to create stunning and dynamic user interfaces for web
+            applications. React Js is a powerful JavaScript library that enables
+            you to build reusable UI components, making the development process
+            efficient and enjoyable. Imagine having the ability to bring
+            websites to life with captivating animations, seamless transitions,
+            and interactive elements that engage users. With React Js, you can
+            create highly responsive and feature-rich web applications that
+            deliver exceptional user experience across devices.
+          </p>
+          <p>
             Welcome to the world of Frontend Development with React Js, where
             you'll learn to create stunning and dynamic user interfaces for web
             applications. React Js is a powerful JavaScript library that enables
@@ -33,7 +44,7 @@ const CourseDetail: React.FC = () => {
       </div>
       <div className="sidebar">
         <div className="benefits">
-          <h2>What you will learn</h2>
+          <h3>What you will learn</h3>
           <div className="benefits-grid">
             <div>
               <h4>Html & css</h4>
@@ -91,7 +102,7 @@ const CourseDetail: React.FC = () => {
           </div>
         </div>
         <div className="projects">
-          <h2 className="projects-title">Projects you will be building</h2>
+          <h3 className="projects-title">Projects you will be building</h3>
           <p>
             During the course of 8 weeks learning, you'll be able to build the
             following projects.
@@ -127,30 +138,57 @@ const CourseDetail: React.FC = () => {
           <div className="how-it-works-header">
             <div>
               <h2>How it works</h2>
-              <p>Lorem ipsum</p>
+              <p>four easy steps to become a high paid tech bro/sis.</p>
             </div>
-            <div className="get-started-btn">Get Started</div>
+            <div className="get-started-btn">
+            <Button
+            title="Get Started"
+            bgColor={Assets.colors.primary}
+            color={Assets.colors.light}
+            onClickButton = {() => {}}
+            mLeft={10}
+            mRight={10}
+            mTop={0}
+            mBottom={0}
+          />
+            </div>
           </div>
           <div className="how-it-works-steps">
             <div className="step">
               <div className="step-number">1</div>
-              <h2 className="step-title">Title 1</h2>
-              <p className="step-content">Content 1</p>
+              <h2 className="step-title">Register</h2>
+              <p className="step-content">
+                Sign up and select the tech skill you want to learn. The system
+                matches you with a group of three to four other users who are
+                also interested in learning the same skill
+              </p>
             </div>
             <div className="step">
               <div className="step-number">2</div>
-              <h2 className="step-title">Title 2</h2>
-              <p className="step-content">Content 2</p>
+              <h2 className="step-title">Assign</h2>
+              <p className="step-content">
+                The group is assigned to dedicated mentor who is an expert in
+                the chosen skill. The mentor leads the group through a
+                structured learning program that includes video lectures,
+                interactive exercises and quizzes.{" "}
+              </p>
             </div>
             <div className="step">
               <div className="step-number">3</div>
-              <h2 className="step-title">Title 3</h2>
-              <p className="step-content">Content 3</p>
+              <h2 className="step-title">Interact</h2>
+              <p className="step-content">
+                The group meets weekly via video conference to discuss their
+                progress, ask questions, and receive feedback from the mentor
+                and each other.
+              </p>
             </div>
             <div className="step">
               <div className="step-number">4</div>
-              <h2 className="step-title">Title 4</h2>
-              <p className="step-content">Content 4</p>
+              <h2 className="step-title">Get Certified</h2>
+              <p className="step-content">
+                Upon completion of the program, users receive a certificate of
+                achievement.
+              </p>
             </div>
           </div>
         </div>

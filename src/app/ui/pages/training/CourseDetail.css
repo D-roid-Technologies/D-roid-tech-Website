@@ -2,16 +2,20 @@
   margin-bottom: 2rem;
 }
 
+.course-detail-description{
+  margin: 3rem 2rem 1rem 2rem;
+}
+
+.course-detail-description > *{
+  margin-bottom: 1rem;
+}
+
 .main-content {
   background-color: #fbfbfb;
 }
 
-.sidebar {
-  background-color: #fbfbfb;
-}
-
 .benefits {
-  padding: 1rem;
+  margin: 2rem;
 }
 
 .benefits-grid {
@@ -22,32 +26,40 @@
 
 .benefits-grid > div {
   padding: 0.5rem;
-  border-top: 0.0625rem solid #f4f4f5;
-  border-left: 0.0625rem solid #f4f4f5;
+  border: 0.0625rem solid #f4f4f5;
+  box-shadow: 0 0.1875rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
+.benefits > h3{
+  padding: 2rem 0;
+}
+
+
 .projects {
-  padding: 1rem;
-  text-align: center;
+  margin: 4rem 2rem;
 }
 
 .projects-title {
   margin-bottom: 0.5rem;
+  
 }
 
 .projects-list {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0 1rem;
 }
 
-.projects-list > div {
-  flex-grow: 1;
+.projects > h3,
+.projects > p{
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .how-it-works {
   background-color: black;
   color: white;
-  padding: 1rem;
+  padding: 3rem;
 }
 
 .how-it-works-header {
@@ -56,27 +68,38 @@
   margin-bottom: 1rem;
 }
 
+.how-it-works-header > div > h2,
+.how-it-works-header > div > p {
+  margin-bottom: 1rem;
+}
+
 .get-started-btn {
   cursor: pointer;
+  width: 10%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.get-started-btn:hover {
+  transform: scale(1.1);
 }
 
 .how-it-works-steps {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
 }
 
 .step {
-  padding: 1rem;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.step > *{
+  margin-bottom: 1rem;
 }
 
 .step-number {
-  background-color: #3b82f6;
+  background-color: #282A94;
   border-radius: 50%;
   width: 1.25rem;
   height: 1.25rem;
@@ -93,8 +116,4 @@
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
-}
-
-.step-content {
-  text-align: center;
 }
