@@ -106,13 +106,33 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             </p>
             <h2 className="droid"> D'roid Technologies International</h2>
             <p className="hours"> Hours</p>
-            <p>
+            <p className="time">
               {" "}
-              Open today{" "}
-              <form action="">
-                <input type="text" />
+              <span className="open"> Open today </span>{" "}
+              <form action="" className="select-time">
+                <select id="time" name="time">
+                  <option value="09:00-17:00">09:00-17:00</option>
+                  <option value="08:00-16:00">08:00-16:00</option>
+                  <option value="07:00-15:00">07:00-15:00</option>
+                </select>
               </form>
             </p>
+            <div className="contact-button">
+              <div className="contactus-button-style">
+                <Button
+                  bgColor={"black"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Get in Touch"
+                  color="white"
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
+            </div>
           </article>
         </div>
       </div>
