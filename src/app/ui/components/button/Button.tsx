@@ -11,6 +11,8 @@ const Button: React.FunctionComponent<AppButtonType> = ({
   mLeft,
   mRight,
   mTop,
+  fWeight,
+
   onClickButton,
 }) => {
   return (
@@ -23,6 +25,7 @@ const Button: React.FunctionComponent<AppButtonType> = ({
         marginLeft: mLeft,
         marginRight: mRight,
         marginTop: mTop,
+        fontWeight: fWeight,
       }}
     >
       <p style={{ color: color }}>{title}</p>

@@ -61,7 +61,8 @@ const Footer: React.FunctionComponent = () => {
             mLeft={10}
             mRight={10}
             color="white"
-            // onClickButton={() => verifyCode()}
+            fWeight={600}
+            onClickButton={() => {}}
           />
         </div>
       </div>

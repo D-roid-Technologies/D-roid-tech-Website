@@ -39,13 +39,21 @@
   color: #fff;
   font-family: "Mazzard";
 }
-.button {
+
+.product-button {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4em;
 }
-.product-button {
+
+.See-our-product {
+  font-family: "Mazzard";
+  cursor: pointer;
+  width: 15%;
+}
+
+/* .product-button {
   padding: 20px 45px;
   background-color: #fff;
   color: black;
@@ -53,7 +61,7 @@
   cursor: pointer;
   font-weight: 800;
   font-family: "Mazzard";
-}
+} */
 
 /* TABLET On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

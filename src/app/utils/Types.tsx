@@ -63,6 +63,7 @@ export type AppButtonType = React.DetailedHTMLProps<
   mBottom: number;
   mLeft: number;
   mRight: number;
+  fWeight?: number;
   onClickButton: () => void;
   // color: string;
 };

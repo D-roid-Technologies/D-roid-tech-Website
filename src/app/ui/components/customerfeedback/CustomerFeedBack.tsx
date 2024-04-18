@@ -27,9 +27,21 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               To show reviews on your site, connect your account to Facebook
             </p>
             <div className="connect-to">
-              <button className="connect-to-facebook">
-                Connect to Facebook
-              </button>
+              <div className="connect-to-facebook">
+                <Button
+                  bgColor={"aqua"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Connect to Facebook"
+                  color="black"
+                  fWeight={800}
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -67,6 +79,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             mRight={0}
             title="Contact us"
             color="white"
+            fWeight={800}
             onClickButton={function (): void {
               throw new Error("Function not implemented.");
             }}
@@ -106,16 +119,12 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             </p>
             <h2 className="droid"> D'roid Technologies International</h2>
             <p className="hours"> Hours</p>
-            <p className="time">
-              {" "}
-              <span className="open"> Open today </span>{" "}
-              <form action="" className="select-time">
-                <select id="time" name="time">
-                  <option value="09:00-17:00">09:00-17:00</option>
-                  <option value="08:00-16:00">08:00-16:00</option>
-                  <option value="07:00-15:00">07:00-15:00</option>
-                </select>
-              </form>
+            <p>
+              <p className="time">
+                {" "}
+                Open Mondays - Fridays &nbsp;{" "}
+                <span className="friday"> 8am - 9pm </span>{" "}
+              </p>{" "}
             </p>
             <div className="contact-button">
               <div className="contactus-button-style">
@@ -127,6 +136,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   mRight={0}
                   title="Get in Touch"
                   color="white"
+                  fWeight={800}
                   onClickButton={function (): void {
                     throw new Error("Function not implemented.");
                   }}

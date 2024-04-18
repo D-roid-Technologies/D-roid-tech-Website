@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
 /* SECTIONS */
 .section-main {
   padding-left: 100px;
@@ -9,8 +13,7 @@
   color: #333;
   font-weight: 500;
   margin-bottom: 0.8em;
-  /* padding-bottom: 0.8em; */
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Rammetto One";
 }
 .ruler {
   border-top: 2px solid rgb(218, 214, 214);
@@ -37,8 +40,10 @@
   font-weight: 500;
 }
 .histoy-details {
+  font-size: 1.2rem;
   line-height: 25px;
   color: rgb(124, 124, 124);
+  font-family: "Mazzard";
 }
 
 ARTICLE .discover {
