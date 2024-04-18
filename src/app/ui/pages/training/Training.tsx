@@ -5,7 +5,7 @@ import "./Training.css";
 import { TrainingPhoto } from "../../../utils/Types";
 import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
-import CourseDetail from "./CourseDetail";
+import CourseDetail from "./course/CourseDetail";
 
 //I'll move it
 const photos: TrainingPhoto[] = [
