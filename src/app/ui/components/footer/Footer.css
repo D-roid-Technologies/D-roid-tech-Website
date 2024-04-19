@@ -81,7 +81,7 @@
   font-size: 2.3rem;
   line-height: 1.8;
 }
-.connect {
+.connect-subscribe {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,7 +140,7 @@
   margin-bottom: 3em;
 }
 
-/* On screens that are 992px or less, set the background color to blue */
+/* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .footer-main {
     padding: 0 50px;
@@ -205,7 +205,17 @@
     width: 50px;
     height: 50px;
   }
-  .connect {
+  .subscribe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5em;
+    font-size: 2.3rem;
+    line-height: 1.8;
+  }
+  .connect-subscribe {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -251,7 +261,7 @@
   }
 }
 
-/* On screens that are 600px or less, set the background color to olive */
+/*Mobile:  On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
   .footer-main {
     padding-left: 15px;
@@ -260,19 +270,10 @@
   .heading {
     font-size: 1rem;
   }
-  .subscribe {
-    font-size: 1.8rem;
-    line-height: 1.5;
-  }
-
-  .connect {
-    font-weight: 500;
-    font-size: smaller;
-  }
 
   /* SOCIAL LOGO */
   .footer-logo-container {
-    gap: 40px;
+    gap: 30px;
     padding-top: 2em;
     padding-bottom: 3em;
   }
@@ -298,6 +299,57 @@
     height: 40px;
   }
   /* END OF SOCIAL LOGO */
+  .subscribe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    /* margin-bottom: 0.5em; */
+    font-size: 1.8rem;
+    /* line-height: 1.5; */
+  }
+  /* .subscribe {
+    font-size: 1.8rem;
+    line-height: 1.5;
+  } */
+  .connect-subscribe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(124, 124, 124);
+    /* margin-bottom: 1.2em; */
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-family: "Mazzard";
+  }
+  /* .connect {
+    font-weight: 500;
+    font-size: smaller;
+  } */
+  /* FORM SECTION */
+  .footer-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 1.5em; */
+    /* gap: 10px; */
+  }
+
+  .form-input {
+    width: 100%;
+    /* margin-top: 50px; */
+  }
+  .signup-btn {
+    width: 100%;
+    /* margin-top: 50px; */
+    background-color: black;
+  }
+  .signup-btn:hover {
+    background-color: #52525b;
+    transition: 0.8s;
+  }
 
   /* FOOTER LAST SECTION */
   .footer-buttom {

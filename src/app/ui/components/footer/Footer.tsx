@@ -42,7 +42,7 @@ const Footer: React.FunctionComponent = () => {
       {/* END OF LOGO */}
       <article>
         <h1 className="subscribe"> SUBSCRIBE </h1>
-        <p className="connect">
+        <p className="connect-subscribe">
           {" "}
           Sign up to hear from us about specials, sales, and events.{" "}
         </p>
