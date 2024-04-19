@@ -19,7 +19,12 @@ const CourseDetail: React.FunctionComponent = () => {
             <div className="course-detail-info">
               <h4>Front-End Development (React)</h4>
               <h1>Master Front-End Development with React.</h1>
-              <p>Elevate your web development skills with our Front-End Development (React) Mastery course. Dive into the world of React and unleash your creativity to build stunning, interactive user interfaces.</p>
+              <p>
+                Elevate your web development skills with our Front-End
+                Development (React) Mastery course. Dive into the world of React
+                and unleash your creativity to build stunning, interactive user
+                interfaces.
+              </p>
               <p>Course Starts: 1st August, 2023</p>
               <p>Course Duration: 10 weeks</p>
               <div className="course-detail-price">
@@ -27,29 +32,34 @@ const CourseDetail: React.FunctionComponent = () => {
                   <h2>N60,000</h2>
                   <p>pay in 3 installments</p>
                 </div>
-                <s><h4>N250,000</h4></s>
+                <s>
+                  <h4>N250,000</h4>
+                </s>
                 <div>
                   <p>Offer expires in</p>
-                  <h4>21  :  10  :  05</h4>
-                  <p>days    hrs    mins</p>
+                  <h4>21 : 10 : 05</h4>
+                  <p>days hrs mins</p>
                 </div>
               </div>
               <div className="action-btn">
-              <Button
-                title="Apply Now"
-                bgColor={Assets.colors.primary}
-                color={Assets.colors.light}
-                onClickButton={() => {}}
-                mLeft={15}
-                mRight={15}
-                mTop={0}
-                mBottom={0}
-              />
+                <Button
+                  title="Apply Now"
+                  bgColor={Assets.colors.primary}
+                  color={Assets.colors.light}
+                  onClickButton={() => {}}
+                  mLeft={15}
+                  mRight={15}
+                  mTop={0}
+                  mBottom={0}
+                />
               </div>
             </div>
-            <div>
-              <h4>Picture</h4>
-            </div>
+            <div
+              style={{
+                // backgroundImage: `url("${Assets.images.manLearning}")`,
+              }}
+              className="course-detail-image"
+            ></div>
           </div>
         </div>
         <div className="course-detail-description">

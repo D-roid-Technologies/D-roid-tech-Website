@@ -6,7 +6,22 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 2rem;
+}
+
+.course-detail-image{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.course-detail-info{
   padding: 1rem;
+  margin-right: 0.5rem;
   background-color: rgba(71, 155, 232, 0.5);
 }
 
