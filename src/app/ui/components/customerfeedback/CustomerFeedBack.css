@@ -442,8 +442,9 @@ select {
   }
 
   .show {
+    display: none;
     color: #fff;
-    font-size: 0.5rem;
+    font-size: 1rem;
   }
   .facebook-icon {
     display: flex;
@@ -464,7 +465,7 @@ select {
   .connect-to-facebook {
     font-family: "Mazzard";
     cursor: pointer;
-    width: 55%;
+    width: 50%;
     font-size: 0.4rem;
   }
 
