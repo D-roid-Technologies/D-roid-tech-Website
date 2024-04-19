@@ -282,7 +282,7 @@ select {
   }
 
   .discover-details {
-    font-size: 15px;
+    font-size: 1rem;
     font-family: "Mazzard";
     text-align: center;
     color: rgb(124, 124, 124);
@@ -437,7 +437,7 @@ select {
   }
   .read-details {
     border-radius: 10px;
-    padding: 10px 10px;
+    padding: 0 0;
     background-color: rgba(0, 0, 0, 0.6);
   }
 
@@ -574,7 +574,7 @@ select {
     font-family: "Rammetto";
     text-align: center;
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     padding-bottom: 20px;
   }
   .hours {

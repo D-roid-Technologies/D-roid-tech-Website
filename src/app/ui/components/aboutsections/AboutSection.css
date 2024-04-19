@@ -109,7 +109,7 @@
   .section-one {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
     padding-top: 1.8em;
   }
   .image-size {
@@ -117,7 +117,7 @@
     height: 200px;
   }
   .history {
-    padding: 15px 0px;
+    padding: 5px 0px;
     text-align: left;
   }
   .our-history {
