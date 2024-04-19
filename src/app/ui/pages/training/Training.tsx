@@ -10,8 +10,8 @@ import CourseDetail from "./course/CourseDetail";
 //I'll move it
 const photos: TrainingPhoto[] = [
   { image: Assets.images.companyBanner, text: "Learn new skills with us" },
-  { image: Assets.images.companyBanner, text: "Expert trainers available" },
-  { image: Assets.images.companyBanner, text: "Learn at your own pace" },
+  { image: Assets.images.manLearning, text: "Expert trainers available" },
+  { image: Assets.images.feedBack, text: "Learn at your own pace" },
 ];
 
 //I'll move it to utils/Data
@@ -111,7 +111,7 @@ const Training: React.FunctionComponent = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url("${Assets.images.companyBanner}")`,
+          backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
         }}
         className="bg-image"
       >

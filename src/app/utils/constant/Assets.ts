@@ -7,6 +7,8 @@ export const Assets = {
     coding: require("../../images/png/coding.png"),
     statistics: require("../../images/png/statistics.png"),
     ourServices: require("../../images/png/our services.png"),
+    manLearning: require("../../images/png/Man-learning-online.jpg"),
+    feedBack: require("../../images/png/cusfeedback.png"),
   },
   colors: {
     basic: "#0000",
