@@ -11,6 +11,7 @@ const CourseDetail: React.FunctionComponent = () => {
         <div
           style={{
             backgroundImage: `url("${Assets.images.companyBanner}")`,
+            padding: '2rem',
           }}
           className="bg-image"
         >
