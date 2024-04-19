@@ -259,6 +259,13 @@
     font-weight: 500;
     font-size: 19px;
   }
+  .policy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 3em;
+  }
 }
 
 /*Mobile:  On screens that are 600px or less, set the background color to olive */
@@ -307,12 +314,9 @@
     letter-spacing: 0.1em;
     /* margin-bottom: 0.5em; */
     font-size: 1.8rem;
-    /* line-height: 1.5; */
-  }
-  /* .subscribe {
-    font-size: 1.8rem;
     line-height: 1.5;
-  } */
+  }
+
   .connect-subscribe {
     display: flex;
     justify-content: center;
@@ -323,18 +327,14 @@
     font-size: 0.9rem;
     font-family: "Mazzard";
   }
-  /* .connect {
-    font-weight: 500;
-    font-size: smaller;
-  } */
+
   /* FORM SECTION */
   .footer-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-bottom: 1.5em; */
-    /* gap: 10px; */
+    gap: 0;
   }
 
   .form-input {
@@ -358,8 +358,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    /* margin-top: 1.5em; */
+    /* margin-bottom: 1.5em; */
     font-weight: 500;
     font-size: small;
   }
@@ -367,7 +367,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-bottom: 1em; */
     font-weight: 600;
+    margin-bottom: 2em;
   }
 }

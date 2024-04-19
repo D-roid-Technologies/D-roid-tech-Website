@@ -57,14 +57,13 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           <p className="discover-details">
             {" "}
             At D'roid Technoogies International, we understand that every
-            business has unique needs and challenges. <br />
-            That's why we offer a wide range of software solutions designed to
-            help you streamline your operations, <br />
-            increase efficiency, and drive growth. From custom software
-            development to cloud-based applications, our <br />
-            team of expertise has the expertise and experience to help you
-            achieve your goals. Explore our website to learn <br />
-            more about our offerings and how we can help your business succed.
+            business has unique needs and challenges. That's why we offer a wide
+            range of software solutions designed to help you streamline your
+            operations, increase efficiency, and drive growth. From custom
+            software development to cloud-based applications, our team of
+            expertise has the expertise and experience to help you achieve your
+            goals. Explore our website to learn more about our offerings and how
+            we can help your business succed.
           </p>
         </div>
       </article>
@@ -108,7 +107,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           </div>
         </div>
         {/* CONTACT US SECTION */}
-        <div className="">
+        <div className="cont">
           <h1 className="heading"> CONTACT US </h1>
           <hr className="rule" />
           <article>

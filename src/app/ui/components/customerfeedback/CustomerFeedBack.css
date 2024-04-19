@@ -422,7 +422,7 @@ select {
   }
   .read {
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 1rem;
     letter-spacing: 1px;
     text-align: center;
     font-weight: 500;
@@ -432,26 +432,25 @@ select {
   }
   /* CONTENT */
   .read-content {
-    display: hidden;
     display: flex;
     justify-content: center;
   }
   .read-details {
     border-radius: 10px;
-    /* padding: 3px 3px; */
-    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 10px;
+    background-color: rgba(0, 0, 0, 0.6);
   }
 
   .show {
     color: #fff;
-    font-size: 12px;
+    font-size: 0.5rem;
   }
   .facebook-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: #3e4ce9;
+    background-color: #5764ef;
     width: 25px;
     height: 25px;
   }
@@ -461,23 +460,21 @@ select {
     align-items: center;
     /* padding: 2.5em; */
   }
+
   .connect-to-facebook {
-    padding: 10px 10px;
-    background-color: aqua;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
     font-family: "Mazzard";
+    cursor: pointer;
+    width: 55%;
+    font-size: 0.4rem;
   }
+
   /* ARTICLE */
   .heading {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .discover-heading {
     margin-bottom: 1em;
-    line-height: 10px;
     font-size: 1.2rem;
     font-weight: 500;
     font-family: "Rammetto";
@@ -493,8 +490,9 @@ select {
     font-family: "Mazzard";
     text-align: left;
     color: rgb(124, 124, 124);
-    line-height: 10px;
+    font-size: 1rem;
   }
+
   /* CONTACT US BOTTON */
   .contact-us {
     display: flex;
@@ -503,27 +501,29 @@ select {
   }
 
   .contactus-button {
-    width: 20%;
+    width: 37%;
     border-radius: none;
   }
   /* SECTION FOUR */
   .section-four {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
     margin-top: 2em;
   }
 
   .section-four-container {
     display: flex;
-    gap: 60px;
+    flex-direction: column;
+    gap: 10px;
     padding-top: 1.8em;
     padding-bottom: 2.2em;
   }
   .image-sizes {
-    width: 370px;
+    width: 350px;
     height: 200px;
   }
   .city-walking-tours {
+    /* padding: 70px 30px; */
     text-align: center;
   }
 
@@ -543,6 +543,79 @@ select {
     /* line-height: 25px; */
     color: rgb(124, 124, 124);
     font-size: 1rem;
+  }
+  /* CONTACT US LAST SECTION */
+  .heading {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+    font-family: "Rammetto";
+  }
+  .rule {
+    border-top: 2px solid rgb(218, 214, 214);
+  }
+
+  .questions {
+    text-align: center;
+    padding: 20px 0;
+    font-family: "Rammetto";
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+  .clients {
+    text-align: center;
+    color: rgb(124, 124, 124);
+    padding-bottom: 20px;
     font-family: "Mazzard";
+    font-size: 1rem;
+  }
+  .droid {
+    font-family: "Rammetto";
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.6rem;
+    padding-bottom: 20px;
+  }
+  .hours {
+    font-family: "Rammetto";
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding-bottom: 27px;
+  }
+  .time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    padding-bottom: 30px;
+  }
+  .select-time select {
+    border: none;
+    outline: none;
+  }
+
+  select {
+    border: none;
+    outline: none;
+    color: aqua;
+    /* font-size: 0.6rem; */
+  }
+  .contact-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Mazzard";
+    padding-bottom: 50px;
+  }
+
+  .contactus-button-style {
+    width: 37%;
+    border: none;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }
