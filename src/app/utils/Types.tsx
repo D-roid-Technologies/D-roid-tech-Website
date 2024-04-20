@@ -72,6 +72,7 @@ export type TrainingPhoto = {
 export type Course = {
   id: number;
   title: string;
+  subtitle: string;
   description: string;
   benefits: {
     title: string;
@@ -85,4 +86,11 @@ export type Course = {
     title: string;
     content: string;
   }[];
-}
+  courseDetails: {
+    startDate: string;
+    duration: string;
+    price: number;
+    discountedPrice: number;
+    offerExpiry: string;
+  };
+};
