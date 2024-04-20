@@ -12,8 +12,11 @@ import Drone from "../ui/pages/drone/Drone";
 import Staff from "../ui/pages/staff/Staff";
 import AllStaffs from "../ui/pages/staff/allstaffs/AllStaffs";
 import CourseDetail from "../ui/pages/training/course/CourseDetail";
+import { DATA } from "../utils/constant/Data";
+import { useParams } from "react-router-dom";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
+  const params = useParams();
   return (
     <BrowserRouter>
       <Routes>
@@ -22,12 +25,15 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/animation" element={<Animation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/programminghome" element={<ProgrammingHome />} />
-        <Route path="/training" element={<Training />} />
+        <Route path="/training/*" element={<Training />} />
         <Route path="/drone" element={<Drone />} />
         <Route path="/offices" element={<Equipments />} />
         <Route path="/staff" element={<Staff />} />
         <Route path="/allstaffs" element={<AllStaffs />} />
-        <Route path="/training/course-detail/:courseId" element={<CourseDetail />} />
+        <Route
+          path="/training/course-detail/:courseId"
+          element={<CourseDetail course={DATA.courses.find((course) => course.id.toString() === params.courseId)} />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -6,7 +6,23 @@
   padding: 1rem;
   margin-bottom: 1rem;
   text-decoration: none;
+};
+
+/* .home-content {
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
 
 .logo {
   font-size: 1.5rem;
@@ -109,7 +125,7 @@
 .IconWrapper {
   width: 41px;
   height: 37px;
-  background-color: #479BE8;
+  background-color: #0000;
   border-radius: 4px;
   display: flex;
   justify-content: center;

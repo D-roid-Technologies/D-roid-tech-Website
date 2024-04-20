@@ -17,8 +17,8 @@
 .course-detail-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin: 2rem;
+  gap: 1rem;
+  margin: 1rem;
 }
 
 .course-detail-info {
@@ -28,7 +28,7 @@
 }
 
 .course-detail-info > * {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .course-detail-price {
