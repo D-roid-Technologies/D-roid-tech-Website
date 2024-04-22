@@ -310,6 +310,96 @@ export const DATA = {
         offerExpiry: "24 : 12 : 04",
       },
     },
+    {
+      id: 4,
+      title: "Mobile App Development with Flutter",
+      subtitle: "Build Cross-Platform Mobile Apps with Flutter.",
+      description:
+        "Dive into the world of mobile app development with Flutter, Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase. This course will teach you everything you need to know to create beautiful, high-performance mobile apps for iOS and Android.",
+      benefits: [
+        {
+          title: "Flutter Fundamentals",
+          description:
+            "Master the fundamentals of Flutter, including widgets, layouts, navigation, state management, and theming. Learn how to build responsive and visually appealing user interfaces for mobile apps using Flutter's rich set of widgets and components.",
+        },
+        {
+          title: "Dart Programming",
+          description:
+            "Deepen your understanding of Dart, the programming language used for developing Flutter apps. Learn Dart syntax, data types, functions, classes, and asynchronous programming techniques to write clean, efficient, and maintainable code.",
+        },
+        {
+          title: "UI Design Principles",
+          description:
+            "Explore UI design principles and best practices for creating engaging and intuitive user interfaces. Learn how to design app layouts, use typography and color effectively, and create consistent and accessible user experiences.",
+        },
+        {
+          title: "State Management",
+          description:
+            "Understand different state management approaches in Flutter and choose the right one for your app's architecture. Explore techniques such as setState, Provider, BLoC (Business Logic Component), and Riverpod for managing app state effectively.",
+        },
+        {
+          title: "API Integration",
+          description:
+            "Learn how to integrate APIs into your Flutter apps to fetch and display dynamic data. Explore techniques for making network requests, handling responses, and parsing JSON data to build data-driven mobile applications.",
+        },
+        {
+          title: "Deployment and Publishing",
+          description:
+            "Discover the process of deploying and publishing Flutter apps to the Google Play Store and Apple App Store. Learn how to configure app settings, generate app bundles and APKs, and manage app releases for distribution to users.",
+        },
+      ],
+      projects: [
+        {
+          title: "Weather App",
+          description:
+            "Create a Weather App that provides real-time weather forecasts based on the user's location. Implement features such as current weather conditions, hourly and daily forecasts, and weather alerts.",
+        },
+        {
+          title: "Todo List App",
+          description:
+            "Build a Todo List App for managing tasks and to-do items. Implement features such as task creation, editing, deletion, and marking tasks as completed, and sync data across devices.",
+        },
+        {
+          title: "Fitness Tracker App",
+          description:
+            "Develop a Fitness Tracker App for tracking workouts and fitness activities. Implement features such as exercise logging, activity tracking, progress tracking, and personalized workout plans.",
+        },
+      ],
+      howItWorks: [
+        {
+          title: "Enroll",
+          content:
+            "Sign up for the course and gain access to the learning materials and resources.",
+        },
+        {
+          title: "Learn",
+          content:
+            "Engage with comprehensive tutorials, hands-on exercises, and real-world projects to master Flutter app development.",
+        },
+        {
+          title: "Build",
+          content:
+            "Apply your knowledge to build fully functional mobile apps from scratch, tackling real-world use cases and scenarios.",
+        },
+        {
+          title: "Collaborate",
+          content:
+            "Collaborate with peers and instructors through online forums, discussions, and group projects.",
+        },
+        {
+          title: "Certify",
+          content:
+            "Upon completion of the course, earn a certificate of achievement to showcase your proficiency in mobile app development with Flutter.",
+        },
+      ],
+      courseDetails: {
+        startDate: "1st November, 2024",
+        duration: "12 weeks",
+        price: 300000,
+        discountedPrice: 70000,
+        offerExpiry: "24 : 02 : 05",
+      },
+    }
   ],
   
 };
