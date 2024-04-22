@@ -220,5 +220,96 @@ export const DATA = {
         offerExpiry: "24 : 06 : 10",
       },
     },
+    {
+      id: 3,
+      title: "Full-Stack Web Development with MERN",
+      subtitle: "Become a Full-Stack Developer with the MERN Stack.",
+      description:
+        "Embark on a journey to become a proficient Full-Stack Web Developer using the MERN (MongoDB, Express.js, React.js, Node.js) stack. This comprehensive course will equip you with the skills and knowledge needed to build modern, scalable, and dynamic web applications from scratch.",
+      benefits: [
+        {
+          title: "MongoDB",
+          description:
+            "Master MongoDB, a NoSQL database used for storing and managing data in modern web applications. Learn to design schemas, perform CRUD operations, and integrate MongoDB with Node.js for seamless data handling.",
+        },
+        {
+          title: "Express.js",
+          description:
+            "Explore Express.js, a powerful web application framework for Node.js. Learn to build RESTful APIs, handle HTTP requests and responses, and implement middleware for routing, authentication, and error handling.",
+        },
+        {
+          title: "React.js",
+          description:
+            "Deepen your understanding of React.js, a popular JavaScript library for building user interfaces. Learn advanced concepts such as state management, hooks, and context API, and build interactive UI components for your web applications.",
+        },
+        {
+          title: "Node.js",
+          description:
+            "Delve into Node.js, a runtime environment for executing JavaScript code outside of a web browser. Learn to build server-side applications, handle asynchronous operations, and deploy Node.js applications to production.",
+        },
+        {
+          title: "Authentication and Authorization",
+          description:
+            "Implement authentication and authorization mechanisms in your web applications using techniques such as JWT (JSON Web Tokens) and OAuth. Secure your APIs, authenticate users, and manage user sessions effectively.",
+        },
+        {
+          title: "Deployment and DevOps",
+          description:
+            "Learn best practices for deploying and managing web applications in production environments. Explore containerization with Docker, orchestration with Kubernetes, and continuous integration and deployment (CI/CD) pipelines with tools like Jenkins and GitLab CI/CD.",
+        },
+      ],
+      projects: [
+        {
+          title: "E-Commerce Platform",
+          description:
+            "Build a fully functional E-Commerce platform from scratch using the MERN stack. Implement features such as user authentication, product management, shopping cart functionality, and secure payment processing.",
+        },
+        {
+          title: "Social Media Application",
+          description:
+            "Create a Social Media application where users can create profiles, connect with friends, share posts, and interact with content. Implement features like user authentication, news feed, comments, and likes.",
+        },
+        {
+          title: "Task Management System",
+          description:
+            "Develop a Task Management System for organizing and tracking tasks and projects. Implement features such as user authentication, task creation, assignment, tracking, and notifications.",
+        },
+      ],
+      howItWorks: [
+        {
+          title: "Enroll",
+          content:
+            "Sign up for the course and gain access to the learning materials and resources.",
+        },
+        {
+          title: "Learn",
+          content:
+            "Engage with comprehensive tutorials, hands-on exercises, and real-world projects to master the MERN stack.",
+        },
+        {
+          title: "Build",
+          content:
+            "Apply your knowledge to build full-stack web applications from scratch, tackling real-world challenges and scenarios.",
+        },
+        {
+          title: "Collaborate",
+          content:
+            "Collaborate with peers and instructors through online forums, discussions, and group projects.",
+        },
+        {
+          title: "Certify",
+          content:
+            "Upon completion of the course, earn a certificate of achievement to showcase your proficiency as a Full-Stack Web Developer with the MERN stack.",
+        },
+      ],
+      courseDetails: {
+        startDate: "1st October, 2024",
+        duration: "14 weeks",
+        price: 350000,
+        discountedPrice: 80000,
+        offerExpiry: "24 : 12 : 04",
+      },
+    },
   ],
+  
 };
