@@ -58,8 +58,8 @@ const Footer: React.FunctionComponent = () => {
             bgColor="black"
             mTop={0}
             mBottom={0}
-            mLeft={10}
-            mRight={10}
+            mLeft={0}
+            mRight={0}
             color="white"
             fWeight={600}
             onClickButton={() => {}}

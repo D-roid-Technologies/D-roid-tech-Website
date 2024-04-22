@@ -37,9 +37,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   title="Connect to Facebook"
                   color="black"
                   fWeight={800}
-                  onClickButton={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
+                  onClickButton={() => {}}
                 />
               </div>
             </div>
@@ -47,15 +45,13 @@ const CustomerFeedBack: React.FunctionComponent = () => {
         </div>
       </div>
       {/* DISCOVER */}
-      <article className="heading">
+      <div className="heading">
         <p className="discover-heading">
-          {" "}
           Discover The Power of D'roid Technologies International Software
           Solutions
         </p>
         <div className="discover-section">
           <p className="discover-details">
-            {" "}
             At D'roid Technoogies International, we understand that every
             business has unique needs and challenges. That's why we offer a wide
             range of software solutions designed to help you streamline your
@@ -66,7 +62,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             we can help your business succed.
           </p>
         </div>
-      </article>
+      </div>
       {/* CONTACT US BUTTON */}
       <div className="contact-us">
         <div className="contactus-button">

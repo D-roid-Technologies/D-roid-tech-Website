@@ -7,7 +7,7 @@ import CustomerFeedBack from "../../components/customerfeedback/CustomerFeedBack
 import Button from "../../components/button/Button";
 
 const Home: React.FunctionComponent = () => {
-  console.log(companyBanner);
+  // console.log(companyBanner);
   return (
     <div>
       <div
@@ -40,9 +40,7 @@ const Home: React.FunctionComponent = () => {
                 title="See our products"
                 color="black"
                 fWeight={800}
-                onClickButton={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
+                onClickButton={() => {}}
               />
             </div>
           </div>

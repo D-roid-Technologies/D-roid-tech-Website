@@ -10,15 +10,15 @@ export const DATA = {
       path: "/aboutus",
     },
     {
-      link: "Programming",
+      link: "Software Development",
       path: "/programminghome",
     },
     {
-      link: "Animation",
+      link: "Animation Creation",
       path: "/animation",
     },
     {
-      link: "Training",
+      link: "Tech Training",
       path: "/training",
     },
     {

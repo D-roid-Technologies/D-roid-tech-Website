@@ -22,7 +22,7 @@ const Staff: React.FunctionComponent<any> = () => {
   function verifyCode() {
     if (fixedCode === userCode) {
       console.log("User code matches");
-      navigate("/allstaffs");
+      navigate("/staff/allstaffs");
     } else {
       console.log("User code does not match");
     }
