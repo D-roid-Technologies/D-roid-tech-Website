@@ -103,13 +103,6 @@ const Training: React.FunctionComponent = () => {
           </Link>
         ))}
       </div>
-      <Routes>
-        <Route
-          path={`${location.pathname}/course-detail/:courseId`}
-          element={<CourseDetail course={DATA.courses.find((c) => c.id === parseInt(params.courseId || '1'))}/>}
-          // element={<CourseDetail course={DATA.courses[0]}/>}
-        />
-      </Routes>
     </div>
   );
 };

@@ -5,15 +5,13 @@ import NavBar from "../../../components/navbar/NavBar";
 import { Assets } from "../../../../utils/constant/Assets";
 import Button from "../../../components/button/Button";
 import { DATA } from "../../../../utils/constant/Data";
+import { useParams } from "react-router-dom";
 
-
-interface CourseDetailProps {
-  course: Course | undefined;
-
-}
-
-const CourseDetail: React.FunctionComponent<CourseDetailProps> = ({ course }) => {
-  course = course || DATA.courses[0];
+const CourseDetail: React.FunctionComponent = () => {
+  const { courseId } = useParams();
+  console.log("courseId", courseId);
+  const course = DATA.courses.find((c) => c.id === parseInt(`${courseId}`, 10));
+  
   return (
     <div className="course-detail">
       <div className="main-content">
