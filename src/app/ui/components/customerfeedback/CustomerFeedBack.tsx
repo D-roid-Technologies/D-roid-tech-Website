@@ -2,6 +2,8 @@ import React from "react";
 import feedBackImage from "../../../images/png/feedbackpics.png";
 import "../customerfeedback/CustomerFeedBack.css";
 import { FaFacebookF } from "react-icons/fa6";
+import Button from "../button/Button";
+import { Assets } from "../../../utils/constant/Assets";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   return (
@@ -25,9 +27,21 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               To show reviews on your site, connect your account to Facebook
             </p>
             <div className="connect-to">
-              <button className="connect-to-facebook">
-                Connect to Facebook
-              </button>
+              <div className="connect-to-facebook">
+                <Button
+                  bgColor={"aqua"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Connect to Facebook"
+                  color="black"
+                  fWeight={800}
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -43,17 +57,94 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           <p className="discover-details">
             {" "}
             At D'roid Technoogies International, we understand that every
-            business has unique needs and challenges. <br />
-            That's why we offer a wide range of software solutions designed to
-            help you streamline your operations, <br />
-            increase efficiency, and drive growth. From custom software
-            development to cloud-based applications, our <br />
-            team of expertise has the expertise and experience to help you
-            achieve your goals. Explore our website to learn <br />
-            more about our offerings and how we can help your business succed.
+            business has unique needs and challenges. That's why we offer a wide
+            range of software solutions designed to help you streamline your
+            operations, increase efficiency, and drive growth. From custom
+            software development to cloud-based applications, our team of
+            expertise has the expertise and experience to help you achieve your
+            goals. Explore our website to learn more about our offerings and how
+            we can help your business succed.
           </p>
         </div>
       </article>
+      {/* CONTACT US BUTTON */}
+      <div className="contact-us">
+        <div className="contactus-button">
+          <Button
+            bgColor={"black"}
+            mTop={0}
+            mBottom={0}
+            mLeft={0}
+            mRight={0}
+            title="Contact us"
+            color="white"
+            fWeight={800}
+            onClickButton={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        </div>
+      </div>
+      {/* SECTION FOUR */}
+      <div className="section-four">
+        <div className="section-four-container">
+          <div className="coding-image">
+            <img
+              src={Assets.images.tour}
+              alt="codingImage"
+              className="image-sizes"
+            />
+          </div>
+          <div className="city-walking-tour">
+            <h2 className="walking-tour"> City Walking Tour </h2>
+            <p className="pounds"> &#163;20.00</p>
+            <p className="walking-tour-details">
+              {" "}
+              A unique walking tour of the city with time to enjoy lunch and
+              shoppinng too! <br />
+              Maximize your sightseeing with this exceptional tour.
+            </p>{" "}
+          </div>
+        </div>
+        {/* CONTACT US SECTION */}
+        <div className="cont">
+          <h1 className="heading"> CONTACT US </h1>
+          <hr className="rule" />
+          <article>
+            <h3 className="questions">Questions or Comments? </h3>
+            <p className="clients">
+              We know that our clients have unique needs. Send us a message, and
+              we will get back to you. <br />
+            </p>
+            <h2 className="droid"> D'roid Technologies International</h2>
+            <p className="hours"> Hours</p>
+            <p>
+              <p className="time">
+                {" "}
+                Open Mondays - Fridays &nbsp;{" "}
+                <span className="friday"> 8am - 9pm </span>{" "}
+              </p>{" "}
+            </p>
+            <div className="contact-button">
+              <div className="contactus-button-style">
+                <Button
+                  bgColor={"black"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Get in Touch"
+                  color="white"
+                  fWeight={800}
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   );
 };

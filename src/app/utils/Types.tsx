@@ -28,6 +28,9 @@ export type UserType = {
   sixDigitCode: string;
   sixDigitCodeFromUser: string;
 };
+export type EmailType = {
+  emailFromUser: string;
+};
 
 export type AppInputType = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -60,6 +63,7 @@ export type AppButtonType = React.DetailedHTMLProps<
   mBottom: number;
   mLeft: number;
   mRight: number;
+  fWeight?: number;
   onClickButton: () => void;
   // color: string;
 };

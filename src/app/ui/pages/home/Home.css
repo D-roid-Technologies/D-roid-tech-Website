@@ -39,20 +39,18 @@
   color: #fff;
   font-family: "Mazzard";
 }
-.button {
+
+.product-button {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4em;
 }
-.product-button {
-  padding: 20px 45px;
-  background-color: #fff;
-  color: black;
-  border: none;
-  cursor: pointer;
-  font-weight: 800;
+
+.See-our-product {
   font-family: "Mazzard";
+  cursor: pointer;
+  width: 15%;
 }
 
 /* TABLET On screens that are 992px or less, set the background color to blue */
@@ -85,41 +83,43 @@
     color: #fff;
     font-family: Georgia, "Times New Roman", Times, serif;
   }
-  .button {
+  .product-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 4em; */
+    padding: 4em;
   }
-  .product-button {
-    padding: 20px 70px;
-    background-color: #fff;
-    color: black;
-    border: none;
+
+  .See-our-product {
+    font-family: "Mazzard";
     cursor: pointer;
-    font-weight: 900;
-    font-size: 20px;
+    width: 27%;
   }
 }
 
 /*MOBILE On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  /* .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
   .home-content {
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
-    padding-top: 30px;
+    padding-top: 150px;
   }
   .bg-image {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 70vh;
+    height: 100vh;
   }
 
   .business {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     letter-spacing: 3px;
     text-align: center;
     font-weight: 500;
@@ -132,19 +132,16 @@
     color: #fff;
     font-family: Georgia, "Times New Roman", Times, serif;
   }
-  .button {
+  .product-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3em;
+    padding: 4em;
   }
-  .product-button {
-    padding: 10px 18px;
-    background-color: #fff;
-    color: black;
-    border: none;
+
+  .See-our-product {
+    font-family: "Mazzard";
     cursor: pointer;
-    font-weight: 600;
-    font-size: 12px;
+    width: 55%;
   }
 }
