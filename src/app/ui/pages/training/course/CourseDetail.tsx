@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { Course } from "../../../../utils/Types";
 import "./CourseDetail.css";
 import NavBar from "../../../components/navbar/NavBar";
@@ -11,7 +12,56 @@ const CourseDetail: React.FunctionComponent = () => {
   const { courseId } = useParams();
   console.log("courseId", courseId);
   const course = DATA.courses.find((c) => c.id === parseInt(`${courseId}`, 10));
-  
+
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeRemaining = () => {
+      const now = new Date();
+      const [expiryHours, expiryMinutes, expirySeconds] = course?.courseDetails.offerExpiry.split(" : ").map(Number) ?? [0, 0, 0];
+      const offerExpiryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), expiryHours, expiryMinutes, expirySeconds);
+
+      const difference = offerExpiryDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const remainingDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const remainingHours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const remainingMinutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const remainingSeconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeRemaining({
+          days: remainingDays,
+          hours: remainingHours,
+          minutes: remainingMinutes,
+          seconds: remainingSeconds,
+        });
+      } else {
+        // Offer has expired
+        setTimeRemaining({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+        clearInterval(interval);
+      }
+    };
+
+    const interval = setInterval(calculateTimeRemaining, 1000);
+
+    return () => clearInterval(interval);
+  }, [course]);
+
+
   return (
     <div className="course-detail">
       <div className="main-content">
@@ -36,12 +86,14 @@ const CourseDetail: React.FunctionComponent = () => {
                   <p>pay in 3 installments</p>
                 </div>
                 <s>
-                  <h4>N{course?.courseDetails.price}</h4>
+                  <h4 style={{color: Assets.colors.tertiary}}>N{course?.courseDetails.price}</h4>
                 </s>
                 <div>
                   <p>Offer expires in</p>
-                  <h4>{course?.courseDetails.offerExpiry}</h4>
-                  <p>days hrs mins</p>
+                  <h4 style={{color: Assets.colors.tertiary}}>
+            {timeRemaining.days} :  {timeRemaining.hours}  : {timeRemaining.minutes} :  {timeRemaining.seconds}
+          </h4>
+                  <p>days hrs mins secs</p>
                 </div>
               </div>
               <div className="action-btn">
