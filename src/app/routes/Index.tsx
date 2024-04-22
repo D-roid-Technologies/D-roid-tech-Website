@@ -11,7 +11,7 @@ import Equipments from "../ui/pages/equipments/Equipments";
 import Drone from "../ui/pages/drone/Drone";
 import Staff from "../ui/pages/staff/Staff";
 import AllStaffs from "../ui/pages/staff/allstaffs/AllStaffs";
-import CourseDetail from "../ui/pages/training/CourseDetail";
+import CourseDetail from "../ui/pages/training/course/CourseDetail";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (

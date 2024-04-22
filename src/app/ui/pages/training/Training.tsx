@@ -4,7 +4,7 @@ import NavBar from "../../components/navbar/NavBar";
 import companyBanner from "../../../images/png/droid banner.png";
 import "../training/Training.css";
 import AboutSection from "../../components/aboutsections/AboutSection";
-import CourseDetail from "./CourseDetail";
+import CourseDetail from "./course/CourseDetail";
 
 interface Photo {
   image: string;
