@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Course } from "../../../../utils/Types";
 import "./CourseDetail.css";
 import NavBar from "../../../components/navbar/NavBar";
@@ -7,60 +6,13 @@ import { Assets } from "../../../../utils/constant/Assets";
 import Button from "../../../components/button/Button";
 import { DATA } from "../../../../utils/constant/Data";
 import { useParams } from "react-router-dom";
+import { useTimer } from '../../../../utils/countDown';
 
 const CourseDetail: React.FunctionComponent = () => {
   const { courseId } = useParams();
   console.log("courseId", courseId);
   const course = DATA.courses.find((c) => c.id === parseInt(`${courseId}`, 10));
-
-  const [timeRemaining, setTimeRemaining] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const calculateTimeRemaining = () => {
-      const now = new Date();
-      const [expiryHours, expiryMinutes, expirySeconds] = course?.courseDetails.offerExpiry.split(" : ").map(Number) ?? [0, 0, 0];
-      const offerExpiryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), expiryHours, expiryMinutes, expirySeconds);
-
-      const difference = offerExpiryDate.getTime() - now.getTime();
-
-      if (difference > 0) {
-        const remainingDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const remainingHours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const remainingMinutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const remainingSeconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        setTimeRemaining({
-          days: remainingDays,
-          hours: remainingHours,
-          minutes: remainingMinutes,
-          seconds: remainingSeconds,
-        });
-      } else {
-        // Offer has expired
-        setTimeRemaining({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
-        clearInterval(interval);
-      }
-    };
-
-    const interval = setInterval(calculateTimeRemaining, 1000);
-
-    return () => clearInterval(interval);
-  }, [course]);
-
+  const timeRemaining = useTimer(course);
 
   return (
     <div className="course-detail">
