@@ -75,9 +75,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             title="Contact us"
             color="white"
             fWeight={800}
-            onClickButton={function (): void {
-              throw new Error("Function not implemented.");
-            }}
+            onClickButton={() => {}}
           />
         </div>
       </div>

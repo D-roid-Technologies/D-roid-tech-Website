@@ -10,10 +10,11 @@ export const Assets = {
     tour: require("../../images/png/travel-6493621_640.png"),
   },
   colors: {
-    basic: "#00000",
-    light: "#fffff",
+    basic: "#0000",
+    light: "#ffff",
     primary: "#282A94",
     secondary: "#479BE8",
+    tertiary: "#FF6F61" 
   },
   text: {
     companyName: "D'roid Technologies International",

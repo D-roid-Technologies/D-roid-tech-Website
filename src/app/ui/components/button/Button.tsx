@@ -12,7 +12,6 @@ const Button: React.FunctionComponent<AppButtonType> = ({
   mRight,
   mTop,
   fWeight,
-
   onClickButton,
 }) => {
   return (
