@@ -426,7 +426,7 @@ select {
     text-align: center;
     font-weight: 500;
     font-family: "Rammetto One";
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
   }
   /* CONTENT */
@@ -441,6 +441,7 @@ select {
   }
 
   .show {
+    /* display: none; */
     color: #fff;
     font-size: 11px;
   }
