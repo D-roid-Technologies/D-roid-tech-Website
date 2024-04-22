@@ -121,23 +121,25 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                 <span className="friday"> 8am - 9pm </span>{" "}
               </p>{" "}
             </p>
-            <div className="contact-button">
-              <div className="contactus-button-style">
-                <Button
-                  bgColor={"black"}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="Get in Touch"
-                  color="white"
-                  fWeight={800}
-                  onClickButton={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                />
-              </div>
-            </div>
+            <a href="/contact ">
+              <div className="contact-button">
+                <div className="contactus-button-style">
+                  <Button
+                    bgColor={"black"}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="Get in Touch"
+                    color="white"
+                    fWeight={800}
+                    onClickButton={function (): void {
+                      throw new Error("Function not implemented.");
+                    }}
+                  />
+                </div>
+              </div>{" "}
+            </a>
           </article>
         </div>
       </div>

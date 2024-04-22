@@ -105,11 +105,11 @@
   margin-top: 50px;
 }
 .signup-btn {
-  /* width: 10%; */
+  width: 10%;
   margin-top: 50px;
   background-color: black;
 }
-.signup-btn:hover {
+.signup-btn :hover {
   background-color: #52525b;
   transition: 0.8s;
 }

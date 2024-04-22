@@ -45,6 +45,18 @@
   color: rgb(124, 124, 124);
   font-family: "Mazzard";
 }
+/* CONTACT US BOTTON */
+.history-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.readmore-btn {
+  width: 30%;
+  border-radius: none;
+}
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

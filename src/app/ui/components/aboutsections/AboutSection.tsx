@@ -1,6 +1,7 @@
 import React from "react";
 import "./AboutSection.css";
 import { Assets } from "../../../utils/constant/Assets";
+import Button from "../button/Button";
 
 const Section: React.FunctionComponent = () => {
   return (
@@ -25,6 +26,25 @@ const Section: React.FunctionComponent = () => {
             Over the years, we have grouwn into a leading software development
             company, serving clients in a wide range of industries.
           </p>{" "}
+          <a href="/aboutus">
+            <div className="history-btn">
+              <div className="readmore-btn">
+                <Button
+                  bgColor={"black"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Read more about us"
+                  color="white"
+                  fWeight={800}
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       {/* SECTION TWO */}
