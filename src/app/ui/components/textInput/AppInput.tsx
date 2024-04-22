@@ -21,23 +21,12 @@ const AppInput: React.FunctionComponent<AppInputType> = ({
   pHolder,
 }) => {
   const [sixDigitCode, setSixDigitCode] = React.useState<string>("");
-  console.log(sixDigitCode);
 
   useEffect(() => {
     store.dispatch(addSixDigitCodeFromUser(sixDigitCode));
   }, [sixDigitCode]);
   return (
     <label style={{ fontFamily: fFamily, fontWeight: fWeight }}>
-      {/* {pHolder && (
-        <div>
-          {title}
-          {required ? (
-            <span style={{ color: "red" }}> *</span>
-          ) : (
-            <span style={{ fontWeight: fWeight }}> (Optional)</span>
-          )}
-        </div>
-      )} */}
       <input
         onChange={(e) => setSixDigitCode(e.target.value)}
         maxLength={6}

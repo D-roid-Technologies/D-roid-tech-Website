@@ -5,14 +5,18 @@ import { AppEntryType } from "../utils/Types";
 import Footer from "./components/footer/Footer";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Assets } from "../utils/constant/Assets";
-import { store } from "../redux/Store";
+import { RootState, store } from "../redux/Store";
 import { addHeight, addWidth } from "../redux/slices/Dimension";
+import { useSelector } from "react-redux";
+import { updateModal } from "../redux/slices/AppEntrySlice";
 
-const AppEntry: React.FunctionComponent<AppEntryType> = ({
-  showModal = false,
-  closeModal,
-}) => {
-  const [showM, setShowM] = React.useState<boolean>(true);
+const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
+  const appEntry = useSelector((state: RootState) => state.appEntry);
+
+  const modal = appEntry.showModal;
+  const aTitle = appEntry.appTitle;
+  const aBody = appEntry.appBody;
+
   const [appWidth, setAppWidth] = React.useState<number>(window.innerWidth);
   const [appHeight, setAppHeight] = React.useState<number>(window.innerHeight);
 
@@ -23,18 +27,18 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({
 
   return (
     <div>
-      {showModal ? (
+      {modal ? (
         <div className="modal-main">
           <div className="modal-inner">
             <div
               className="modal-x"
-              onClick={() => alert("The close button is pressed.")}
+              onClick={() => store.dispatch(updateModal(false))}
             >
               <HiX />
             </div>
             <div className="modal-text">
-              <h2 className="modal-header">{Assets.text.modalTitle}</h2>
-              <p>{Assets.text.modalBody}</p>
+              <h2 className="modal-header">{aTitle}</h2>
+              <p className="modal-body">{aBody}</p>
             </div>
           </div>
         </div>
