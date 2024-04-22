@@ -74,9 +74,9 @@ const Footer: React.FunctionComponent = () => {
         <p className="text-center md:text-left ">
           Copyright &copy; 2024 D'roid Technologies International - All Right
           Reserved
-        </p>{" "}
+        </p>
         <span className="powered">
-          Powered by{" "}
+          Powered by
           <a href="/" className="color-change">
             <span style={{ color: Assets.colors.primary }}>
               {" "}
