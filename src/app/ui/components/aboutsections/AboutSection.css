@@ -18,7 +18,7 @@
 .ruler {
   border-top: 2px solid rgb(218, 214, 214);
 }
-/* SECTION ONE */
+/* SECTION ONE OUR HISTORY */
 .section-one {
   display: flex;
   gap: 60px;
@@ -58,6 +58,66 @@
   border-radius: none;
 }
 
+/* SECTION TWO OUR APPROACH */
+.section-two {
+  display: flex;
+  gap: 60px;
+  padding-top: 1.8em;
+  padding-bottom: 2.2em;
+}
+.image-size {
+  width: 600px;
+  height: 300px;
+}
+.approach {
+  padding: 70px 30px;
+  text-align: center;
+}
+.our-approach {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.approach-details {
+  font-size: 1.2rem;
+  line-height: 25px;
+  color: rgb(124, 124, 124);
+  font-family: "Mazzard";
+}
+
+/* SECTION THREE OUR SERVICES */
+.section-three {
+  display: flex;
+  gap: 60px;
+  padding-top: 1.8em;
+  padding-bottom: 2.2em;
+}
+.image-size {
+  width: 600px;
+  height: 300px;
+}
+.services {
+  padding: 70px 30px;
+  text-align: center;
+}
+.our-services {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.services-details {
+  font-size: 1.2rem;
+  line-height: 25px;
+  color: rgb(124, 124, 124);
+  font-family: "Mazzard";
+}
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   /* SECTIONS */
@@ -102,6 +162,67 @@
     font-family: "Mazzard";
     color: rgb(124, 124, 124);
   }
+
+  /* SECTION TWO OUR APPROACH */
+  .section-two {
+    display: flex;
+    gap: 20px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 370px;
+    height: 200px;
+  }
+  .approach {
+    padding: 20px 0px;
+    text-align: left;
+  }
+  .our-approach {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: "Rammetto";
+  }
+
+  .approach-details {
+    font-size: 1rem;
+    line-height: 0.5cm;
+    text-align: left;
+    font-family: "Mazzard";
+    color: rgb(124, 124, 124);
+  }
+  /* SECTION THREE OUR SERVICES */
+  .section-three {
+    display: flex;
+    gap: 20px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 370px;
+    height: 200px;
+  }
+  .services {
+    padding: 20px 0px;
+    text-align: left;
+  }
+  .our-services {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: "Rammetto";
+  }
+
+  .services-details {
+    font-size: 1rem;
+    line-height: 0.5cm;
+    text-align: left;
+    font-family: "Mazzard";
+    color: rgb(124, 124, 124);
+  }
 }
 
 /* On screens that are 600px or less, set the background color to olive */
@@ -140,6 +261,60 @@
     font-weight: 500;
   }
   .histoy-details {
+    /* line-height: 0.5cm; */
+    text-align: left;
+    font-size: 15px;
+  }
+  /* SECTION TWO OUR APPROACH */
+  .section-two {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 350px;
+    height: 200px;
+  }
+  .approach {
+    padding: 5px 0px;
+    text-align: left;
+  }
+  .our-approach {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .approach-details {
+    /* line-height: 0.5cm; */
+    text-align: left;
+    font-size: 15px;
+  }
+  /* SECTION TREE OUR SERVICES */
+  .section-three {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 350px;
+    height: 200px;
+  }
+  .services {
+    padding: 5px 0px;
+    text-align: left;
+  }
+  .our-services {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .services-details {
     /* line-height: 0.5cm; */
     text-align: left;
     font-size: 15px;

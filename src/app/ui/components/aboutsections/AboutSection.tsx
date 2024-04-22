@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AboutSection.css";
 import { Assets } from "../../../utils/constant/Assets";
 import Button from "../button/Button";
 
 const Section: React.FunctionComponent = () => {
+  // State to keep track of the current slide index
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Array of image URLs
+  const images = [
+    "https://pixabay.com/photos/wine-glass-drink-tasting-hand-1952051/",
+    "https://example.com/image2.jpg",
+    "https://example.com/image3.jpg",
+  ];
+
+  // Function to handle next slide
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+  };
+
+  // Function to handle previous slide
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? images.length - 1 : prevSlide - 1
+    );
+  };
   return (
     <div className="section-main">
-      {/* <h1 className="head"> ABOUT D'ROID TECHNOLOGIES INTERNATIONAL </h1>
-      <hr className="rule" /> */}
       {/* SECTION ONE */}
       <div className="section-one">
         <div className="coding-image">
@@ -48,10 +67,10 @@ const Section: React.FunctionComponent = () => {
         </div>
       </div>
       {/* SECTION TWO */}
-      <div className="section-one">
-        <div className="history">
-          <p className="our-history"> Our Approach</p>
-          <p className="histoy-details">
+      <div className="section-two">
+        <div className="approach">
+          <p className="our-approach"> Our Approach</p>
+          <p className="approach-details">
             {" "}
             At D'roid Technologies International, we take a collaborative
             approach to software development. We work closely with our clients
@@ -69,17 +88,10 @@ const Section: React.FunctionComponent = () => {
         </div>
       </div>
       {/* SECTION THREE */}
-      <div className="section-one">
-        <div className="coding-image">
-          <img
-            src={Assets.images.ourServices}
-            alt="codingImage"
-            className="image-size"
-          />
-        </div>
-        <div className="history">
-          <p className="our-history"> Our Services</p>
-          <p className="histoy-details">
+      <div className="section-three">
+        <div className="services">
+          <p className="our-services"> Our Services</p>
+          <p className="services-details">
             {" "}
             We offer a wide range of software development services, including
             web development, mobile app development, and custom software
@@ -89,7 +101,21 @@ const Section: React.FunctionComponent = () => {
           </p>{" "}
         </div>
       </div>
-      <span className="gap"></span>
+      {/* SLIDER SECTION */}
+      <div className="slider">
+        <button onClick={prevSlide}>Previous</button>
+        <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} />
+        <button onClick={nextSlide}>Next</button>
+      </div>
+      {/* <div className="coding-image">
+        <img
+          src={Assets.images.ourServices}
+          alt="codingImage"
+          className="image-size"
+        />
+      </div> */}
+
+      {/* <span className="gap"></span> */}
     </div>
   );
 };

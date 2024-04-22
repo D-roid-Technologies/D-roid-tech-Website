@@ -68,10 +68,10 @@
   padding-top: 20px;
   text-align: center;
 }
-/* .discover-section {
-  display: flex;
-  justify-content: center;
-} */
+.discover-section {
+  padding-left: 100px;
+  padding-right: 100px;
+}
 
 .discover-details {
   font-size: 1.2rem;
