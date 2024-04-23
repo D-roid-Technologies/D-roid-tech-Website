@@ -8,16 +8,6 @@
   padding-right: 100px;
   margin-top: 2em;
 }
-.header {
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
-  margin-bottom: 0.8em;
-  font-family: "Rammetto One";
-}
-.ruler {
-  border-top: 2px solid rgb(218, 214, 214);
-}
 /* SECTION ONE OUR HISTORY */
 .section-one {
   display: flex;
@@ -38,6 +28,7 @@
   line-height: 10px;
   font-size: 1.5rem;
   font-weight: 500;
+  font-family: "Rammetto";
 }
 .histoy-details {
   font-size: 1.2rem;
@@ -117,9 +108,9 @@
   color: rgb(124, 124, 124);
   font-family: "Mazzard";
 }
-/* SLIDER SECTION */
+/* CAROUSEL SECTION */
 .carousel-container {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 2em;
 }
@@ -154,7 +145,7 @@
 }
 
 .services-btn {
-  width: 20%;
+  width: 15%;
   border-radius: none;
 }
 
@@ -183,7 +174,7 @@
     height: 200px;
   }
   .history {
-    padding: 20px 0px;
+    padding: 10px 0px;
     text-align: left;
   }
   .our-history {
@@ -201,6 +192,18 @@
     text-align: left;
     font-family: "Mazzard";
     color: rgb(124, 124, 124);
+  }
+  /* CONTACT US BOTTON */
+  .history-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.4em;
+  }
+
+  .readmore-btn {
+    width: 48%;
+    border-radius: none;
   }
 
   /* SECTION TWO OUR APPROACH */

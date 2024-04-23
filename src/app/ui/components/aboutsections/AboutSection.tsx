@@ -14,7 +14,7 @@ const Section: React.FunctionComponent = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
   };
 
   return (
@@ -93,7 +93,7 @@ const Section: React.FunctionComponent = () => {
           </p>{" "}
         </div>
       </div>
-      {/* SLIDER SECTION */}
+      {/* CAROUSEL SECTION */}
       <div className="carousel-container">
         <Slider {...settings}>
           <div className="imageone">
