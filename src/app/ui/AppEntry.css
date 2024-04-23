@@ -33,6 +33,7 @@
 
 .modal-x {
   align-self: flex-end;
+  cursor: pointer;
 }
 
 .modal-text {
@@ -43,7 +44,13 @@
 .modal-header {
   margin-bottom: 10px;
   color: #282a94;
+  font-size: 24px;
+  font-family: "Rammetto One";
+}
+.modal-body {
+  color: #000000;
   font-size: 18px;
+  font-family: "MazzardH";
 }
 
 /* On screens that are 992px or less, set the background color to blue */

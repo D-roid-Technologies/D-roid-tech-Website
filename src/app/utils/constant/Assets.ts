@@ -8,6 +8,7 @@ export const Assets = {
     statistics: require("../../images/png/statistics.png"),
     ourServices: require("../../images/png/our services.png"),
     tour: require("../../images/png/travel-6493621_640.png"),
+    staffBg: require("../../images/png/allstaff.png"),
   },
   colors: {
     basic: "#0000",
