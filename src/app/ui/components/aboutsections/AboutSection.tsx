@@ -1,30 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import "./AboutSection.css";
 import { Assets } from "../../../utils/constant/Assets";
 import Button from "../button/Button";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Section: React.FunctionComponent = () => {
-  // State to keep track of the current slide index
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Array of image URLs
-  const images = [
-    "https://pixabay.com/photos/wine-glass-drink-tasting-hand-1952051/",
-    "https://example.com/image2.jpg",
-    "https://example.com/image3.jpg",
-  ];
-
-  // Function to handle next slide
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
-  // Function to handle previous slide
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? images.length - 1 : prevSlide - 1
-    );
-  };
   return (
     <div className="section-main">
       {/* SECTION ONE */}
@@ -102,20 +94,22 @@ const Section: React.FunctionComponent = () => {
         </div>
       </div>
       {/* SLIDER SECTION */}
-      <div className="slider">
-        <button onClick={prevSlide}>Previous</button>
-        <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} />
-        <button onClick={nextSlide}>Next</button>
+      <div className="carousel-container">
+        <Slider {...settings}>
+          <div>
+            <img src={Assets.images.ourServices} alt="Image 1" />
+            <p>Text for Image 1</p>
+          </div>
+          <div>
+            <img src="image2.jpg" alt="Image 2" />
+            <p>Text for Image 2</p>
+          </div>
+          <div>
+            <img src="image3.jpg" alt="Image 3" />
+            <p>Text for Image 3</p>
+          </div>
+        </Slider>
       </div>
-      {/* <div className="coding-image">
-        <img
-          src={Assets.images.ourServices}
-          alt="codingImage"
-          className="image-size"
-        />
-      </div> */}
-
-      {/* <span className="gap"></span> */}
     </div>
   );
 };

@@ -113,10 +113,21 @@
   color: rgb(124, 124, 124);
   font-family: "Mazzard";
 }
-.slider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* SLIDER SECTION */
+.carousel-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+
+.carousel-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.slick-slide div {
+  text-align: center;
 }
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

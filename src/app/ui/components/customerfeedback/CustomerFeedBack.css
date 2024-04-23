@@ -126,7 +126,8 @@
 }
 .walking-tour-details {
   font-size: 1.2rem;
-  line-height: 25px;
+  font-family: "Mazzard";
+  /* line-height: 25px; */
   color: rgb(124, 124, 124);
 }
 /* CONTACT US LAST SECTION */
@@ -205,6 +206,7 @@ select {
   font-size: 1.2rem;
   /* font-weight: 600; */
 }
+
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .feedback-bg-image {
