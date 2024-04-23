@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link, useLocation, Routes, Route, useParams} from "react-router-dom";
+import { Link, useLocation, useParams} from "react-router-dom";
 import NavBar from "../../components/navbar/NavBar";
 import "./Training.css";
 import { TrainingPhoto } from "../../../utils/Types";
 import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
-import CourseDetail from "./course/CourseDetail";
 import { DATA } from "../../../utils/constant/Data";
 
 //I'll move it
