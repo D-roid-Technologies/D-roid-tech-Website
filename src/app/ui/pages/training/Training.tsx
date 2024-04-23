@@ -14,6 +14,9 @@ const photos: TrainingPhoto[] = [
   { image: Assets.images.companyBanner, text: "Learn at your own pace" },
 ];
 
+// The agreed padding left and padding right for the app is 100px.
+// You need to change the images to different images on the slider.
+
 
 const Training: React.FunctionComponent = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
