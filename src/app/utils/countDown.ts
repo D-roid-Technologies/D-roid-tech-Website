@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Course } from './Types';
+// A React hook that calculates and updates the remaining time until an offer expires, 
+// based on the provided course details. It returns an object with days, hours, minutes, and seconds.
+import { useState, useEffect } from "react";
+import { Course } from "./Types";
 
 export const useTimer = (course: Course | undefined) => {
   const [timeRemaining, setTimeRemaining] = useState({
@@ -12,8 +14,16 @@ export const useTimer = (course: Course | undefined) => {
   useEffect(() => {
     const calculateTimeRemaining = () => {
       const now = new Date();
-      const [expiryHours, expiryMinutes, expirySeconds] = course?.courseDetails.offerExpiry.split(' : ').map(Number) ?? [0, 0, 0];
-      const offerExpiryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), expiryHours, expiryMinutes, expirySeconds);
+      const [expiryHours, expiryMinutes, expirySeconds] =
+        course?.courseDetails.offerExpiry.split(" : ").map(Number) ?? [0, 0, 0];
+      const offerExpiryDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        expiryHours,
+        expiryMinutes,
+        expirySeconds
+      );
 
       const difference = offerExpiryDate.getTime() - now.getTime();
 

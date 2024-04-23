@@ -7,7 +7,7 @@ import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 
-//I'll move it
+// Mock data for the photo slides
 const photos: TrainingPhoto[] = [
   { image: Assets.images.companyBanner, text: "Learn new skills with us" },
   { image: Assets.images.companyBanner, text: "Expert trainers available" },
@@ -18,15 +18,15 @@ const photos: TrainingPhoto[] = [
 const Training: React.FunctionComponent = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
-  const params = useParams();
-  console.log("params:", params);
-
+  
+// Function to handle the previous button click
   const handlePreviousPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
       prevIndex === 0 ? photos.length - 1 : prevIndex - 1
     );
   };
 
+  // Function to handle the next button click
   const handleNextPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
       prevIndex === photos.length - 1 ? 0 : prevIndex + 1
@@ -79,6 +79,7 @@ const Training: React.FunctionComponent = () => {
           eum adipisci porro corporis, illo obcaecati minus. Animi, dolores.
         </p>
       </div>
+      {/* Render the container with course links */}
       <div className="Container">
         {DATA.courses.map((course) => (
           <Link
