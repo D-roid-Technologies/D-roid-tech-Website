@@ -4,8 +4,8 @@ import { Assets } from "../../../utils/constant/Assets";
 import { NavLink } from "react-router-dom";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
-import companyBanner from "../../../images/png/droid banner.png";
-import { IoIosSwitch } from "react-icons/io";
+import companyBanner from "../../../images/png/droid banner.png"; // this should not be sed this way
+import { IoIosSwitch } from "react-icons/io"; // Do you remember what i said about external libaries?
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { HiMenu, HiX } from "react-icons/hi";
