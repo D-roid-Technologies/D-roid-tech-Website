@@ -35,3 +35,17 @@
   color: rgb(124, 124, 124);
   font-family: "Mazzard";
 }
+
+/* VISION AND MISSION SECTION */
+.vision {
+  text-align: center;
+  margin-bottom: 1em;
+  font-family: "Rammetto";
+  font-size: 2rem;
+}
+.vision-details {
+  text-align: center;
+  font-family: "Mazzard";
+  font-size: 1.2rem;
+  color: rgb(124, 124, 124);
+}

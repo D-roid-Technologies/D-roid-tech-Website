@@ -1,10 +1,11 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
+import "../aboutus/AboutUs.css";
 
 const AboutUs: React.FunctionComponent = () => {
   return (
-    <div>
+    <>
       <NavBar />
       <div className="about-main">
         <div className="section-one">
@@ -27,8 +28,25 @@ const AboutUs: React.FunctionComponent = () => {
             </p>{" "}
           </div>
         </div>
+        {/* VISON AND MISSION SECTION */}
+        <section>
+          <article>
+            <h2 className="vision"> Vision & Mission </h2>
+            <p className="vision-details">
+              {" "}
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel quis
+              fugiat ut, non ipsum veritatis nam minima magni doloremque,
+              ratione maxime dignissimos nulla, autem nesciunt dolor tenetur
+              obcaecati minus ex. Lorem ipsum dolor sit amet consectetur,
+              adipisicing elit. Perspiciatis delectus, repudiandae, quos
+              eligendi neque qui voluptas quam error eaque soluta minima
+              corporis! Cum laboriosam deserunt quia reiciendis earum
+              voluptatibus inventore.
+            </p>
+          </article>
+        </section>
       </div>
-    </div>
+    </>
   );
 };
 
