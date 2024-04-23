@@ -14,7 +14,7 @@ const Section: React.FunctionComponent = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
   };
 
   return (
@@ -96,19 +96,55 @@ const Section: React.FunctionComponent = () => {
       {/* SLIDER SECTION */}
       <div className="carousel-container">
         <Slider {...settings}>
-          <div>
-            <img src={Assets.images.ourServices} alt="Image 1" />
-            <p>Text for Image 1</p>
+          <div className="imageone">
+            <div>
+              <img src={Assets.images.mobiledev} alt="Image 1" />
+              <span className="padded">
+                {" "}
+                <h2>Mobile Application Development </h2>
+              </span>
+            </div>
           </div>
-          <div>
-            <img src="image2.jpg" alt="Image 2" />
-            <p>Text for Image 2</p>
+
+          <div className="imageone">
+            <img src={Assets.images.softwaredesign} alt="Image 2" />
+            <span className="padded">
+              {" "}
+              <h2>Software Design & Development </h2>
+              <p>
+                We design and develop all the types of software applications for
+                any requirement. We are flexible team who is ready to gather
+                your requirements and develop the essential solutions according
+                to modern trends and standard.
+              </p>
+            </span>
           </div>
-          <div>
-            <img src="image3.jpg" alt="Image 3" />
-            <p>Text for Image 3</p>
+          <div className="imageone">
+            <img src={Assets.images.webdesign} alt="Image 3" />
+            <span className="padded">
+              <h2>Web Design & Development</h2>
+            </span>
           </div>
         </Slider>
+        <a href="">
+          <div className="our-services-btn">
+            <div className="services-btn">
+              <Button
+                bgColor={"black"}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="See all our services"
+                color="white"
+                fWeight={700}
+                onClickButton={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   );

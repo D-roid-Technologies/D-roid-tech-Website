@@ -9,13 +9,16 @@ export const Assets = {
     ourServices: require("../../images/png/our services.png"),
     tour: require("../../images/png/travel-6493621_640.png"),
     staffBg: require("../../images/png/allstaff.png"),
+    mobiledev: require("../../images/png/mobile developer.png"),
+    softwaredesign: require("../../images/png/software-design.png"),
+    webdesign: require("../../images/png/web design d.png"),
   },
   colors: {
     basic: "#0000",
     light: "#ffff",
     primary: "#282A94",
     secondary: "#479BE8",
-    tertiary: "#FF6F61" 
+    tertiary: "#FF6F61",
   },
   text: {
     companyName: "D'roid Technologies International",
