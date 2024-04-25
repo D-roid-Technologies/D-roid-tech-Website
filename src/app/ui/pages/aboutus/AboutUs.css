@@ -49,3 +49,37 @@
   font-size: 1.2rem;
   color: rgb(124, 124, 124);
 }
+/* VISION MISSION VALUE - BOX SECTIONS */
+.vision-misson-value {
+  padding: 55px 0;
+}
+/* BOX ONE */
+/* .vision-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+.vision-header {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.vision-box {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 40px 10px;
+  width: 22%;
+  text-align: center;
+  box-shadow: 0 0 30px grey;
+}
+.vision-box p {
+  line-height: 1.5;
+  color: #666;
+  /* transition: transform 0.5s; */
+}
+
+/* .vision-box :hover {
+  transform: scale(-0.5);
+} */
