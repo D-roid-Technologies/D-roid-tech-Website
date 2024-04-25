@@ -9,6 +9,9 @@ export const Assets = {
     ourServices: require("../../images/png/our services.png"),
     tour: require("../../images/png/travel-6493621_640.png"),
     staffBg: require("../../images/png/allstaff.png"),
+    background1: require("../../images/png/background1.jpg"),
+    background2: require("../../images/png/Digital-experience.png"),
+    manLearning: require("../../images/png/Man-learning-online.jpg"),
   },
   colors: {
     basic: "#0000",

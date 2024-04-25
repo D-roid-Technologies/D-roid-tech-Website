@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation, useParams} from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import NavBar from "../../components/navbar/NavBar";
 import "./Training.css";
 import { TrainingPhoto } from "../../../utils/Types";
@@ -10,8 +10,8 @@ import { DATA } from "../../../utils/constant/Data";
 // Mock data for the photo slides
 const photos: TrainingPhoto[] = [
   { image: Assets.images.companyBanner, text: "Learn new skills with us" },
-  { image: Assets.images.companyBanner, text: "Expert trainers available" },
-  { image: Assets.images.companyBanner, text: "Learn at your own pace" },
+  { image: Assets.images.background1, text: "Expert trainers available" },
+  { image: Assets.images.background2, text: "Learn at your own pace" },
 ];
 
 // The agreed padding left and padding right for the app is 100px.
@@ -37,7 +37,7 @@ const Training: React.FunctionComponent = () => {
   };
 
   return (
-    <div>
+    <div className="training">
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
