@@ -1,3 +1,8 @@
+.bg-image{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -70,16 +75,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  padding: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .Container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  padding: 2rem;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .Column {
