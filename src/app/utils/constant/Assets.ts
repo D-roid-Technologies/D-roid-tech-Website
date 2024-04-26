@@ -12,6 +12,9 @@ export const Assets = {
     mobiledev: require("../../images/png/mobile developer.png"),
     softwaredesign: require("../../images/png/software-design.png"),
     webdesign: require("../../images/png/web design d.png"),
+    imageone: require("../../images/png/image-one.png"),
+    imagetwo: require("../../images/png/image-two.png"),
+    imagethree: require("../../images/png/image-three.png"),
   },
   colors: {
     basic: "#0000",

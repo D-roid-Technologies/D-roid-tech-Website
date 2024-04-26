@@ -86,6 +86,70 @@ const AboutUs: React.FunctionComponent = () => {
             </div>
           </div>
         </section>
+        {/* OUR TEAM SECTION */}
+        <section>
+          <article>
+            <h2 className="our-team"> Our Team </h2>
+            <p className="our-team-details">
+              {" "}
+              We are a team with young & enthusiastic developers and designers
+              who is passionate about their feild of study.
+            </p>
+          </article>
+        </section>
+        {/* OUR TEAM PROFILE IMAGES */}
+        <div className="profile-image">
+          {/* PROFILE ONE */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imageone}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Ekene </h3>
+            <p>Software Engineer</p>
+          </div>
+          {/* PROFILE TWO */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imagetwo}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Stella </h3>
+            <p>Frontend Developer </p>
+          </div>
+          {/* PROFILE THREE */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imagethree}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Uzochukwu </h3>
+            <p>Frontend Development</p>
+          </div>
+          {/* PROFILE FOUR */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imageone}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Name Unknown </h3>
+            <p> UI UX Engineer </p>
+          </div>
+          {/* PROFILE FIVE */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imagethree}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Name Unknown </h3>
+            <p>Software Engineer</p>
+          </div>
+        </div>
       </div>
     </>
   );
