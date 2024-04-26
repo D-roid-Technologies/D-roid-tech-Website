@@ -44,42 +44,177 @@
   font-size: 2rem;
 }
 .vision-details {
+  padding: 0 80px;
   text-align: center;
   font-family: "Mazzard";
   font-size: 1.2rem;
   color: rgb(124, 124, 124);
 }
 /* VISION MISSION VALUE - BOX SECTIONS */
-.vision-misson-value {
+.vision-mission-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 55px 0;
+  gap: 80px;
 }
 /* BOX ONE */
 /* .vision-main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 } */
 .vision-header {
+  text-align: center;
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 500;
   color: #333;
+  font-family: "Rammetto";
 }
 
 .vision-box {
   background-color: #f0f0f0;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 40px 10px;
-  width: 22%;
+  /* width: 80%; */
+  height: 100%;
   text-align: center;
-  box-shadow: 0 0 30px grey;
+  box-shadow: 0.35em 0.35em 1em grey;
 }
 .vision-box p {
+  font-size: 1.2rem;
   line-height: 1.5;
   color: #666;
+  font-family: "Mazzard";
   /* transition: transform 0.5s; */
 }
 
-/* .vision-box :hover {
-  transform: scale(-0.5);
+/* Tablet: On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .about-main {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 2em;
+  }
+  /* SECTION ONE OUR HISTORY */
+  .section-one {
+    display: flex;
+    gap: 20px;
+    padding-top: 1.8em;
+    padding-bottom: 2.2em;
+  }
+  .image-size {
+    width: 370px;
+    height: 200px;
+  }
+  .history {
+    padding: 20px 0px;
+    text-align: left;
+  }
+  .our-history {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: "Rammetto";
+  }
+  .histoy-details {
+    font-size: 1rem;
+    line-height: 0.5cm;
+    text-align: left;
+    font-family: "Mazzard";
+    color: rgb(124, 124, 124);
+  }
+
+  /* VISION AND MISSION SECTION */
+  .vision {
+    text-align: center;
+    margin-bottom: 1em;
+    font-family: "Rammetto";
+    font-size: 2rem;
+  }
+  .vision-details {
+    padding: 0 80px;
+    text-align: center;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    color: rgb(124, 124, 124);
+  }
+  /* VISION MISSION VALUE - BOX SECTIONS */
+  .vision-mission-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 0;
+    gap: 80px;
+  }
+  /* BOX ONE */
+  /* .vision-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } */
+  .vision-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    font-family: "Rammetto";
+  }
+
+  .vision-box {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 40px 10px;
+    /* width: 80%; */
+    height: 100%;
+    text-align: center;
+    box-shadow: 0.35em 0.35em 1em grey;
+  }
+  .vision-box p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #666;
+    font-family: "Mazzard";
+    /* transition: transform 0.5s; */
+  }
+}
+
+/*Mobile:  On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .about-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* SECTION ONE */
+  .section-one {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 1.8em;
+  }
+  .image-size {
+    width: 350px;
+    height: 200px;
+  }
+  .history {
+    padding: 5px 0px;
+    text-align: left;
+  }
+  .our-history {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .histoy-details {
+    /* line-height: 0.5cm; */
+    text-align: left;
+    font-size: 15px;
+  }
+}

@@ -278,8 +278,8 @@ select {
     text-align: center;
   }
   .discover-section {
-    display: flex;
-    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   .discover-details {
@@ -288,6 +288,7 @@ select {
     text-align: center;
     color: rgb(124, 124, 124);
   }
+
   /* CONTACT US BOTTON */
   .contact-us {
     display: flex;
@@ -471,19 +472,18 @@ select {
   }
 
   /* ARTICLE */
-  .heading {
-    /* padding-left: 15px;
-    padding-right: 15px; */
-  }
+
   .discover-heading {
     font-weight: 700;
     font-family: "Rammetto";
     letter-spacing: 2px;
     line-height: 25px;
+    font-size: 1.4rem;
+    text-align: center;
   }
   .discover-section {
-    display: flex;
-    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .discover-details {
@@ -491,8 +491,6 @@ select {
     text-align: left;
     color: rgb(124, 124, 124);
     font-size: 1rem;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   /* CONTACT US BOTTON */
@@ -545,6 +543,7 @@ select {
     /* line-height: 25px; */
     color: rgb(124, 124, 124);
     font-size: 1rem;
+    font-family: "Mazzard";
   }
   /* CONTACT US LAST SECTION */
   .heading {

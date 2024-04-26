@@ -149,20 +149,14 @@
   border-radius: none;
 }
 
-/* On screens that are 992px or less, set the background color to blue */
+/*Tablet:  On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   /* SECTIONS */
   .section-main {
     padding-left: 50px;
     padding-right: 50px;
   }
-  .head {
-    font-size: 1.3rem;
-    color: #333;
-    font-weight: 500;
-    padding-bottom: 0.8em;
-    font-family: Georgia, "Times New Roman", Times, serif;
-  }
+
   /* SECTION ONE */
   .section-one {
     display: flex;
@@ -309,19 +303,13 @@
   }
 }
 
-/* On screens that are 600px or less, set the background color to olive */
+/*Tablet: On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
   .section-main {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
-  .head {
-    font-size: 0.8rem;
-    color: #333;
-    font-weight: 500;
-    padding-bottom: 0.8em;
-    font-family: Georgia, "Times New Roman", Times, serif;
-  }
+
   /* SECTION ONE */
   .section-one {
     display: flex;
@@ -348,6 +336,18 @@
     /* line-height: 0.5cm; */
     text-align: left;
     font-size: 15px;
+  }
+  /* CONTACT US BOTTON */
+  .history-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.4em;
+  }
+
+  .readmore-btn {
+    width: 48%;
+    border-radius: none;
   }
   /* SECTION TWO OUR APPROACH */
   .section-two {

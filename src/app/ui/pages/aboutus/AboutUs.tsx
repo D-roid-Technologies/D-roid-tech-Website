@@ -45,46 +45,47 @@ const AboutUs: React.FunctionComponent = () => {
             </p>
           </article>
         </section>
-        <div className="vision-misson-value">
-          <div className="vision-main">
-            <h2 className="vision-header">Vision</h2>
-            <div className="vision-box">
-              {" "}
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam
-                obcaecati iusto alias sunt dolores eos.
-              </p>
+        <section>
+          <div>
+            <div className="vision-mission-value">
+              <div className="vision-main">
+                <h2 className="vision-header">Vision</h2>
+                <div className="vision-box">
+                  {" "}
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                    molestias pariatur et modi reprehenderit! Quidem fugiat,
+                    voluptatum odio est debitis, at inventore, aut laboriosam.
+                  </p>
+                </div>
+              </div>
+              {/* BOX TWO */}
+              <div className="vision-main">
+                <h2 className="vision-header">Mission</h2>
+                <div className="vision-box">
+                  {" "}
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                    molestias pariatur et modi reprehenderit! Quidem fugiat,
+                    voluptatum odio est debitis, at inventore, aut laboriosam.
+                  </p>
+                </div>
+              </div>
+              {/* BOX THREE */}
+              <div className="vision-main">
+                <h2 className="vision-header">Core Values</h2>
+                <div className="vision-box">
+                  {" "}
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                    molestias pariatur et modi reprehenderit! Quidem fugiat,
+                    voluptatum odio est debitis, at inventore, aut laboriosam.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-          {/* BOX TWO */}
-          <div className="vision-main">
-            <h2 className="vision-header">Mission</h2>
-            <div className="vision-box">
-              {" "}
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam
-                obcaecati iusto alias sunt dolores eos.
-              </p>
-            </div>
-          </div>
-          {/* BOX THREE */}
-          <div className="vision-main">
-            <h2 className="vision-header">Core Values</h2>
-            <div className="vision-box">
-              {" "}
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam
-                obcaecati iusto alias sunt dolores eos.
-              </p>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </>
   );
