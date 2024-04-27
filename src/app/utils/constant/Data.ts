@@ -47,6 +47,7 @@ export const DATA = {
   courses: [
     {
       id: 1,
+      level: "Level 1-4",
       title: "Front-End Development (React)",
       subtitle: "Master Front-End Development with React.",
       description:
@@ -132,6 +133,7 @@ export const DATA = {
     },
     {
       id: 2,
+      level: "Level 5-6",
       title: "Data Science with Python",
       subtitle: "Master Data Science Techniques with Python.",
       description:
@@ -222,6 +224,7 @@ export const DATA = {
     },
     {
       id: 3,
+      level: "Level 6-7",
       title: "Full-Stack Web Development with MERN",
       subtitle: "Become a Full-Stack Developer with the MERN Stack.",
       description:
@@ -312,6 +315,7 @@ export const DATA = {
     },
     {
       id: 4,
+      level: "Level 7-9",
       title: "Mobile App Development with Flutter",
       subtitle: "Build Cross-Platform Mobile Apps with Flutter.",
       description:

@@ -61,6 +61,7 @@ export type TrainingPhoto = {
 
 export type Course = {
   id: number;
+  level: string;
   title: string;
   subtitle: string;
   description: string;
