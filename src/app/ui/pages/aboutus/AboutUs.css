@@ -126,6 +126,16 @@
   color: rgb(124, 124, 124);
   font-weight: 600;
 }
+/* SECTION TWO */
+.profile-imagetwo {
+  padding: 5px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+  margin-bottom: 2em;
+}
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -255,6 +265,16 @@
     color: rgb(124, 124, 124);
     font-weight: 600;
   }
+  /* SECTION TWO  */
+  .profile-imagetwo {
+    padding: 5px 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+    margin-bottom: 2em;
+  }
 }
 
 /*Mobile:  On screens that are 600px or less, set the background color to olive */
@@ -383,5 +403,16 @@
     font-family: "Mazzard";
     color: rgb(124, 124, 124);
     font-weight: 600;
+  }
+  /* SECTION TWO  */
+  .profile-imagetwo {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+    margin-bottom: 2em;
   }
 }

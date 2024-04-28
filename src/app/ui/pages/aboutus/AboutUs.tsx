@@ -150,6 +150,48 @@ const AboutUs: React.FunctionComponent = () => {
             <p>Software Engineer</p>
           </div>
         </div>
+        {/* PROFILE SECTION TWO */}
+        <div className="profile-imagetwo">
+          {/* PROFILE ONE */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imageone}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Name Unknown </h3>
+            <p>Software Engineer</p>
+          </div>
+          {/* PROFILE TWO */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imagetwo}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Name Unknown </h3>
+            <p>Frontend Developer </p>
+          </div>
+          {/* PROFILE THREE */}
+          <div className="profile-one">
+            <img
+              src={Assets.images.imagethree}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Name Unknown </h3>
+            <p>Frontend Development</p>
+          </div>
+          <div className="profile-one">
+            <img
+              src={Assets.images.imagetwo}
+              alt="profileImage"
+              className="image-sizes"
+            />
+            <h3> Name Unknown </h3>
+            <p>Frontend Developer </p>
+          </div>
+        </div>
       </div>
     </>
   );

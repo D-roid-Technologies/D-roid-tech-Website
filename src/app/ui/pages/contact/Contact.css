@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
+.contact-main {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 2em;
+}
+.contactpage-container {
+  display: flex;
+  /* justify-content: space-evenly; */
+  gap: 20%;
+}
+.contact-page h1 {
+  font-size: 3.7rem;
+  font-weight: 600;
+  font-family: "Rammetto";
+  margin-bottom: 0.3em;
+}
+
+.contact-page h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: "Rammetto";
+  margin-bottom: 1em;
+  word-spacing: 5px;
+}
+/* BUTTON */
+.contactpage-button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.contactpage-button div {
+  width: 40%;
+  border-radius: none;
+}
+/* IMAGE */
+.image-s {
+  width: 160%;
+  height: auto;
+}
+
+/* SPEAK WITHOUR TEAM SECTION */
+.speak-main {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+.speak-container {
+  display: flex;
+  gap: 10%;
+}
+.speak-page h3 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: "Rammetto";
+  margin-bottom: 0.7em;
+}
+
+.speak-page p {
+  font-size: 1.5rem;
+  font-family: "Mazzard";
+  margin-bottom: 1.5em;
+  color: rgb(124, 124, 124);
+  word-spacing: 5px;
+}
+/* BUTTON */
+.speakwith-button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.speakwith-button div {
+  width: 10%;
+  border-radius: none;
+}
+/* IMAGE */
+.speak-image {
+  width: 180%;
+  height: auto;
+}
+/* MESSAGE SECTION */
+.message {
+  text-align: center;
+}
+
+.message h2 {
+  margin-bottom: 0.6em;
+}
+
+.message p {
+  color: rgb(124, 124, 124);
+  font-family: "Mazzard";
+  font-size: 1.2em;
+}

@@ -15,6 +15,7 @@ export const Assets = {
     imageone: require("../../images/png/image-one.png"),
     imagetwo: require("../../images/png/image-two.png"),
     imagethree: require("../../images/png/image-three.png"),
+    customercare: require("../../images/png/customer care.png"),
   },
   colors: {
     basic: "#0000",
