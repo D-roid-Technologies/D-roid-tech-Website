@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/NavBar";
 import "../contact/Contact.css";
 import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
+import AppInput from "../../components/textInput/AppInput";
 
 const Contact: React.FunctionComponent = () => {
   return (
@@ -20,13 +21,13 @@ const Contact: React.FunctionComponent = () => {
             <div className="contactpage-button">
               <div>
                 <Button
-                  bgColor={"black"}
+                  bgColor={"aqua"}
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
                   title="Contact us"
-                  color="white"
+                  color="black"
                   fWeight={800}
                   onClickButton={() => {}}
                 />
@@ -86,6 +87,52 @@ const Contact: React.FunctionComponent = () => {
         <div className="message">
           <h2>Contact Us</h2>
           <p>Any Question or remark? Just write us a message!</p>
+        </div>
+        {/* input section */}
+        <div className="input-section">
+          <div className="input-section-child">
+            <div className="name-cta">
+              <div>
+                <label
+                  htmlFor=""
+                  style={{
+                    color: Assets.colors.light,
+                  }}
+                >
+                  {" "}
+                  First Name
+                </label>{" "}
+                <br />
+                <AppInput
+                  w="150%"
+                  h={40}
+                  pLeft={10}
+                  pHolder=""
+                  className="input-cta"
+                />
+              </div>
+              {/* last name */}
+              <div>
+                <label
+                  htmlFor=""
+                  style={{
+                    color: Assets.colors.light,
+                  }}
+                >
+                  {" "}
+                  Last Name
+                </label>{" "}
+                <br />
+                <AppInput
+                  w="150%"
+                  h={40}
+                  pLeft={10}
+                  pHolder=""
+                  className="input-cta"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
