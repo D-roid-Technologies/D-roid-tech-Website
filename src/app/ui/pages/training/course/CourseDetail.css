@@ -6,6 +6,11 @@
   background-color: #fbfbfb;
 }
 
+.main-content > *{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 .bg-image {
   background-size: cover;
   background-position: center;
@@ -55,7 +60,7 @@
 
 /* Course Description */
 .course-detail-description {
-  margin: 3rem 2rem 1rem 2rem;
+  margin: 3rem 0rem 1rem 0rem;
 }
 
 .course-detail-description > * {

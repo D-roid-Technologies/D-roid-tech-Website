@@ -1,7 +1,6 @@
 import React from "react";
 import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { NavLink } from "react-router-dom";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
 import companyBanner from "../../../images/png/droid banner.png"; // this should not be sed this way
