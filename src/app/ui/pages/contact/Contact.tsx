@@ -128,47 +128,7 @@ const Contact: React.FunctionComponent = () => {
                 </div>
               </div>
               {/* section two */}
-              {/* <div className="name-cta">
-                <div>
-                  <label
-                    htmlFor=""
-                    style={{
-                      color: Assets.colors.light,
-                    }}
-                  >
-                    {" "}
-                    E-mail
-                  </label>{" "}
-                  <br />
-                  <AppInput
-                    w="200%"
-                    h={40}
-                    pLeft={10}
-                    pHolder=""
-                    className="input-cta"
-                  />
-                </div> */}
-              {/* last name */}
-              {/* <div>
-                  <label
-                    htmlFor=""
-                    style={{
-                      color: Assets.colors.light,
-                    }}
-                  >
-                    {" "}
-                    Phone
-                  </label>{" "}
-                  <br />
-                  <AppInput
-                    w="200%"
-                    h={40}
-                    pLeft={10}
-                    pHolder=""
-                    className="input-cta"
-                  />
-                </div>
-              </div>n */}
+
               <section className="text-area">
                 <div>
                   <textarea rows="8" cols="60" name="comment" form="usrform">
