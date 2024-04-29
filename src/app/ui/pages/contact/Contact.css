@@ -100,20 +100,32 @@
   font-size: 1.2em;
 }
 /* FORM SECTION */
-.input-section {
-  padding-left: 100px;
-  padding-right: 100px;
+.input-area {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #282a94;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.input-section {
+  width: auto;
+  padding: 25px 40px;
+  /* background-image: linear-gradient(#282a94, #282a94, #4143d8); */
+  background-color: #8aa0eb;
 }
 .input-section-child {
-  padding: 25px 10px;
 }
 .name-cta {
   display: flex;
-  gap: 20px;
+  /* justify-content: center;
+  align-items: center; */
+  gap: 25px;
 }
 .input-cta {
+  width: 50%;
+}
+/* TEXT AREA */
+.text-area {
+  display: flex;
+  gap: 30px;
+  margin-top: 4em;
 }

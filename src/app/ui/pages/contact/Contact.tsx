@@ -89,48 +89,112 @@ const Contact: React.FunctionComponent = () => {
           <p>Any Question or remark? Just write us a message!</p>
         </div>
         {/* input section */}
-        <div className="input-section">
-          <div className="input-section-child">
-            <div className="name-cta">
-              <div>
-                <label
-                  htmlFor=""
-                  style={{
-                    color: Assets.colors.light,
-                  }}
-                >
-                  {" "}
-                  First Name
-                </label>{" "}
-                <br />
-                <AppInput
-                  w="150%"
-                  h={40}
-                  pLeft={10}
-                  pHolder=""
-                  className="input-cta"
-                />
+        <div className="input-area">
+          <div className="input-section">
+            <div className="input-section-child">
+              <div className="name-cta">
+                {/* INPUT SECTION ONE */}
+                {/* first name */}
+                <div>
+                  <label
+                    htmlFor=""
+                    style={{
+                      color: Assets.colors.light,
+                    }}
+                  >
+                    {" "}
+                    First Name
+                  </label>{" "}
+                  <br />
+                  <div className="input-cta">
+                    <AppInput w="200%" h={40} pLeft={10} pHolder="" />
+                  </div>
+                </div>
+                {/* last name */}
+                <div>
+                  <label
+                    htmlFor=""
+                    style={{
+                      color: Assets.colors.light,
+                    }}
+                  >
+                    {" "}
+                    Last Name
+                  </label>{" "}
+                  <br />
+                  <div className="input-cta">
+                    <AppInput w="200%" h={40} pLeft={10} pHolder="" />
+                  </div>
+                </div>
               </div>
+              {/* section two */}
+              {/* <div className="name-cta">
+                <div>
+                  <label
+                    htmlFor=""
+                    style={{
+                      color: Assets.colors.light,
+                    }}
+                  >
+                    {" "}
+                    E-mail
+                  </label>{" "}
+                  <br />
+                  <AppInput
+                    w="200%"
+                    h={40}
+                    pLeft={10}
+                    pHolder=""
+                    className="input-cta"
+                  />
+                </div> */}
               {/* last name */}
-              <div>
-                <label
-                  htmlFor=""
-                  style={{
-                    color: Assets.colors.light,
-                  }}
-                >
-                  {" "}
-                  Last Name
-                </label>{" "}
-                <br />
-                <AppInput
-                  w="150%"
-                  h={40}
-                  pLeft={10}
-                  pHolder=""
-                  className="input-cta"
-                />
-              </div>
+              {/* <div>
+                  <label
+                    htmlFor=""
+                    style={{
+                      color: Assets.colors.light,
+                    }}
+                  >
+                    {" "}
+                    Phone
+                  </label>{" "}
+                  <br />
+                  <AppInput
+                    w="200%"
+                    h={40}
+                    pLeft={10}
+                    pHolder=""
+                    className="input-cta"
+                  />
+                </div>
+              </div>n */}
+              <section className="text-area">
+                <div>
+                  <textarea rows="8" cols="60" name="comment" form="usrform">
+                    Write your message here...
+                  </textarea>
+                  <Button
+                    bgColor={"#8aa0eb"}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="Submit"
+                    color="white"
+                    onClickButton={function (): void {
+                      throw new Error("Function not implemented.");
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <img
+                    src="https://avatars.mds.yandex.net/i?id=a49c15ada6f922a645876caaf45895cb810b0c8f-8456725-images-thumbs&n=13"
+                    alt=""
+                  />
+                </div>
+              </section>
             </div>
           </div>
         </div>
