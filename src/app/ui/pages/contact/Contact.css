@@ -110,14 +110,12 @@
   width: auto;
   padding: 25px 40px;
   /* background-image: linear-gradient(#282a94, #282a94, #4143d8); */
-  background-color: #8aa0eb;
+  background-color: #282a94;
 }
 .input-section-child {
 }
 .name-cta {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   gap: 25px;
 }
 .input-cta {
@@ -128,4 +126,10 @@
   display: flex;
   gap: 30px;
   margin-top: 4em;
+}
+textarea {
+  margin-bottom: 30px;
+}
+.textarea-cta {
+  width: 60%;
 }

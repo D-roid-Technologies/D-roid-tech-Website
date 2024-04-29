@@ -134,23 +134,25 @@ const Contact: React.FunctionComponent = () => {
                   <textarea rows="8" cols="60" name="comment" form="usrform">
                     Write your message here...
                   </textarea>
-                  <Button
-                    bgColor={"#8aa0eb"}
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="Submit"
-                    color="white"
-                    onClickButton={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
+                  <div className="textarea-cta">
+                    <Button
+                      bgColor={"white"}
+                      mTop={0}
+                      mBottom={0}
+                      mLeft={0}
+                      mRight={0}
+                      title="Submit"
+                      color="#282a94"
+                      onClickButton={function (): void {
+                        throw new Error("Function not implemented.");
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <img
-                    src="https://avatars.mds.yandex.net/i?id=a49c15ada6f922a645876caaf45895cb810b0c8f-8456725-images-thumbs&n=13"
+                    src="https://avatars.mds.yandex.net/i?id=8d16e36a37486fd11212f7800b4a4932a70a0acb-8496986-images-thumbs&n=13"
                     alt=""
                   />
                 </div>
