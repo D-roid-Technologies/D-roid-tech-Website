@@ -20,13 +20,12 @@ const AboutUs: React.FunctionComponent = () => {
           <div className="history">
             <p className="our-history"> Our History</p>
             <p className="histoy-details">
-              {" "}
               D'roid Technologies International was founded in 2005 by a group
               of software developers with passion for creating innovative
               solutions. Over the years, we have grouwn into a leading software
               development company, serving clients in a wide range of
               industries.
-            </p>{" "}
+            </p>
           </div>
         </div>
         {/* VISON AND MISSION SECTION */}
@@ -34,7 +33,6 @@ const AboutUs: React.FunctionComponent = () => {
           <article>
             <h2 className="vision"> Vision & Mission </h2>
             <p className="vision-details">
-              {" "}
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel quis
               fugiat ut, non ipsum veritatis nam minima magni doloremque,
               ratione maxime dignissimos nulla, autem nesciunt dolor tenetur
