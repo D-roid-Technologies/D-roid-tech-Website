@@ -78,6 +78,9 @@
 }
 
 /* SECTION THREE OUR SERVICES */
+.our-service-main {
+  margin-bottom: 50px;
+}
 .section-three {
   display: flex;
   gap: 60px;
@@ -231,6 +234,9 @@
     color: rgb(124, 124, 124);
   }
   /* SECTION THREE OUR SERVICES */
+  .our-service-main {
+    margin-bottom: 50px;
+  }
   .section-three {
     display: flex;
     gap: 20px;
@@ -377,6 +383,9 @@
     font-size: 15px;
   }
   /* SECTION TREE OUR SERVICES */
+  .our-service-main {
+    margin-bottom: 20px;
+  }
   .section-three {
     display: flex;
     flex-direction: column;

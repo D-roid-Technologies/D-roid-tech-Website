@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
+.customerfeedback-main {
+  margin-bottom: 50px;
+}
+
 .feedback-bg-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -60,6 +64,9 @@
   width: 53%;
 }
 /* ARTICLE */
+.heading-container {
+  margin-bottom: 50px;
+}
 .discover-heading {
   margin-bottom: 1em;
   font-size: 1.5rem;
@@ -131,6 +138,9 @@
   color: rgb(124, 124, 124);
 }
 /* CONTACT US LAST SECTION */
+.cont-main {
+  margin-bottom: 50px;
+}
 .heading {
   font-size: 1.5rem;
   color: #333;
@@ -196,7 +206,6 @@ select {
   justify-content: center;
   align-items: center;
   font-family: "Mazzard";
-  padding-bottom: 50px;
 }
 
 .contactus-button-style {
@@ -339,6 +348,9 @@ select {
     color: rgb(124, 124, 124);
   }
   /* CONTACT US LAST SECTION */
+  .cont-main {
+    margin-bottom: 50px;
+  }
   .heading {
     font-size: 1.5rem;
     color: #333;
@@ -402,7 +414,6 @@ select {
     justify-content: center;
     align-items: center;
     font-family: "Mazzard";
-    padding-bottom: 50px;
   }
 
   .contactus-button-style {
@@ -478,7 +489,7 @@ select {
     font-family: "Rammetto";
     letter-spacing: 2px;
     line-height: 25px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     text-align: center;
   }
   .discover-section {
@@ -546,6 +557,9 @@ select {
     font-family: "Mazzard";
   }
   /* CONTACT US LAST SECTION */
+  .cont-main {
+    margin-bottom: 50px;
+  }
   .heading {
     font-size: 1.5rem;
     color: #333;
@@ -609,7 +623,6 @@ select {
     justify-content: center;
     align-items: center;
     font-family: "Mazzard";
-    padding-bottom: 50px;
   }
 
   .contactus-button-style {
