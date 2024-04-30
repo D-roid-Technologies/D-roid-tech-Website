@@ -4,8 +4,10 @@ import "../customerfeedback/CustomerFeedBack.css";
 import { FaFacebookF } from "react-icons/fa6";
 import Button from "../button/Button";
 import { Assets } from "../../../utils/constant/Assets";
+import { useNavigate } from "react-router-dom";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div
@@ -27,6 +29,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               To show reviews on your site, connect your account to Facebook
             </p>
             <div className="connect-to">
+              {/* This is how to navigate to another page, always se react router navigation */}
               <div className="connect-to-facebook">
                 <Button
                   bgColor={"aqua"}
@@ -34,7 +37,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  title="Connect to Facebook"
+                  title="See More Testimonials"
                   color="black"
                   fWeight={800}
                   onClickButton={() => {}}
@@ -75,13 +78,15 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             title="Contact us"
             color="white"
             fWeight={800}
-            onClickButton={() => {}}
+            onClickButton={() => {
+              navigate("/contact");
+            }}
           />
         </div>
       </div>
       {/* SECTION FOUR */}
       <div className="section-four">
-        <div className="section-four-container">
+        {/* <div className="section-four-container">
           <div className="coding-image">
             <img
               src={Assets.images.tour}
@@ -99,7 +104,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               Maximize your sightseeing with this exceptional tour.
             </p>{" "}
           </div>
-        </div>
+        </div> */}
         {/* CONTACT US SECTION */}
         <div className="cont">
           <h1 className="heading"> CONTACT US </h1>
@@ -114,30 +119,27 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             <p className="hours"> Hours</p>
             <p>
               <p className="time">
-                {" "}
-                Open Mondays - Fridays &nbsp;{" "}
-                <span className="friday"> 8am - 9pm </span>{" "}
-              </p>{" "}
+                Open Mondays - Fridays &nbsp;
+                <span className="friday"> 8am - 9pm </span>
+              </p>
             </p>
-            <a href="/contact ">
-              <div className="contact-button">
-                <div className="contactus-button-style">
-                  <Button
-                    bgColor={"black"}
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="Get in Touch"
-                    color="white"
-                    fWeight={800}
-                    onClickButton={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                </div>
-              </div>{" "}
-            </a>
+            <div className="contact-button">
+              <div className="contactus-button-style">
+                <Button
+                  bgColor={"black"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Get in Touch"
+                  color="white"
+                  fWeight={800}
+                  onClickButton={() => {
+                    navigate("/contact");
+                  }}
+                />
+              </div>
+            </div>
           </article>
         </div>
       </div>

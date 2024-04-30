@@ -6,6 +6,9 @@ import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../../components/textInput/AppInput";
 
 const Contact: React.FunctionComponent = () => {
+  // Your divs are not aligned properly
+  //Your text are too big and using the wrong format
+  // There shold be space between contact us and footer
   return (
     <>
       <NavBar />
@@ -21,7 +24,7 @@ const Contact: React.FunctionComponent = () => {
             <div className="contactpage-button">
               <div>
                 <Button
-                  bgColor={"aqua"}
+                  bgColor={"#CFC0F8"}
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
@@ -102,9 +105,8 @@ const Contact: React.FunctionComponent = () => {
                       color: Assets.colors.light,
                     }}
                   >
-                    {" "}
                     First Name
-                  </label>{" "}
+                  </label>
                   <br />
                   <div className="input-cta">
                     <AppInput w="200%" h={40} pLeft={10} pHolder="" />
@@ -118,9 +120,8 @@ const Contact: React.FunctionComponent = () => {
                       color: Assets.colors.light,
                     }}
                   >
-                    {" "}
                     Last Name
-                  </label>{" "}
+                  </label>
                   <br />
                   <div className="input-cta">
                     <AppInput w="200%" h={40} pLeft={10} pHolder="" />
@@ -131,7 +132,7 @@ const Contact: React.FunctionComponent = () => {
 
               <section className="text-area">
                 <div>
-                  <textarea rows="8" cols="60" name="comment" form="usrform">
+                  <textarea rows={8} cols={60} name="comment" form="usrform">
                     Write your message here...
                   </textarea>
                   <div className="textarea-cta">
@@ -143,9 +144,7 @@ const Contact: React.FunctionComponent = () => {
                       mRight={0}
                       title="Submit"
                       color="#282a94"
-                      onClickButton={function (): void {
-                        throw new Error("Function not implemented.");
-                      }}
+                      onClickButton={() => {}}
                     />
                   </div>
                 </div>
