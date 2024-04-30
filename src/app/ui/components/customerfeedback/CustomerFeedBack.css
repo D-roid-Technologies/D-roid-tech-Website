@@ -68,10 +68,10 @@
   padding-top: 20px;
   text-align: center;
 }
-/* .discover-section {
-  display: flex;
-  justify-content: center;
-} */
+.discover-section {
+  padding-left: 100px;
+  padding-right: 100px;
+}
 
 .discover-details {
   font-size: 1.2rem;
@@ -126,7 +126,8 @@
 }
 .walking-tour-details {
   font-size: 1.2rem;
-  line-height: 25px;
+  font-family: "Mazzard";
+  /* line-height: 25px; */
   color: rgb(124, 124, 124);
 }
 /* CONTACT US LAST SECTION */
@@ -205,6 +206,7 @@ select {
   font-size: 1.2rem;
   /* font-weight: 600; */
 }
+
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .feedback-bg-image {
@@ -276,8 +278,8 @@ select {
     text-align: center;
   }
   .discover-section {
-    display: flex;
-    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   .discover-details {
@@ -286,6 +288,7 @@ select {
     text-align: center;
     color: rgb(124, 124, 124);
   }
+
   /* CONTACT US BOTTON */
   .contact-us {
     display: flex;
@@ -426,7 +429,7 @@ select {
     text-align: center;
     font-weight: 500;
     font-family: "Rammetto One";
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
   }
   /* CONTENT */
@@ -441,6 +444,7 @@ select {
   }
 
   .show {
+    /* display: none; */
     color: #fff;
     font-size: 11px;
   }
@@ -468,19 +472,18 @@ select {
   }
 
   /* ARTICLE */
-  .heading {
-    /* padding-left: 15px;
-    padding-right: 15px; */
-  }
+
   .discover-heading {
     font-weight: 700;
     font-family: "Rammetto";
     letter-spacing: 2px;
     line-height: 25px;
+    font-size: 1.4rem;
+    text-align: center;
   }
   .discover-section {
-    display: flex;
-    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .discover-details {
@@ -488,8 +491,6 @@ select {
     text-align: left;
     color: rgb(124, 124, 124);
     font-size: 1rem;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   /* CONTACT US BOTTON */
@@ -542,6 +543,7 @@ select {
     /* line-height: 25px; */
     color: rgb(124, 124, 124);
     font-size: 1rem;
+    font-family: "Mazzard";
   }
   /* CONTACT US LAST SECTION */
   .heading {

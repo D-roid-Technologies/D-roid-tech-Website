@@ -9,6 +9,13 @@ export const Assets = {
     ourServices: require("../../images/png/our services.png"),
     tour: require("../../images/png/travel-6493621_640.png"),
     staffBg: require("../../images/png/allstaff.png"),
+    mobiledev: require("../../images/png/mobile developer.png"),
+    softwaredesign: require("../../images/png/software-design.png"),
+    webdesign: require("../../images/png/web design d.png"),
+    imageone: require("../../images/png/image-one.png"),
+    imagetwo: require("../../images/png/image-two.png"),
+    imagethree: require("../../images/png/image-three.png"),
+    customercare: require("../../images/png/customer care.png"),
     background1: require("../../images/png/background1.jpg"),
     background2: require("../../images/png/Digital-experience.png"),
     manLearning: require("../../images/png/Man-learning-online.jpg"),
@@ -18,7 +25,7 @@ export const Assets = {
     light: "#ffff",
     primary: "#282A94",
     secondary: "#479BE8",
-    tertiary: "#FF6F61" 
+    tertiary: "#FF6F61",
   },
   text: {
     companyName: "D'roid Technologies International",
