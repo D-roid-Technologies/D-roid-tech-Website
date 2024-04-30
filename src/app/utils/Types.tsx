@@ -90,5 +90,5 @@ export type AppEntrySliceType = {
   showModal: boolean;
   showToast: boolean;
   appTitle: string;
-  appBody: string;
+  appBody: any;
 };
