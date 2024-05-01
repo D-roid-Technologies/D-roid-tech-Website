@@ -15,9 +15,16 @@
   padding-top: 1.8em;
   padding-bottom: 2.2em;
 }
+.coding-image {
+  /* box-shadow: 0.35em 0.35em 1em grey; */
+  border-radius: 10px;
+}
+
 .image-size {
   width: 600px;
   height: 300px;
+  border-radius: 10px;
+  box-shadow: 0.35em 0.35em 1em grey;
 }
 .history {
   padding: 70px 30px;
