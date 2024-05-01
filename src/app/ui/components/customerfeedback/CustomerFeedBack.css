@@ -5,6 +5,9 @@
 .customerfeedback-main {
   margin-bottom: 50px;
 }
+.customer-testimonials {
+  margin-bottom: 50px;
+}
 
 .feedback-bg-image {
   background-size: cover;
@@ -57,11 +60,10 @@
   margin-bottom: 50px;
 }
 .discover-heading {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   font-size: 1.5rem;
   font-weight: 500;
   font-family: "Rammetto";
-  padding-top: 20px;
   text-align: center;
 }
 .discover-section {
@@ -207,12 +209,20 @@ select {
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
+  .customerfeedback-main {
+    margin-bottom: 50px;
+  }
+  .customer-testimonials {
+    margin-bottom: 40px;
+  }
+
   .feedback-bg-image {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 40vh;
   }
+
   .read {
     color: #fff;
     font-size: 1.5rem;
@@ -254,13 +264,14 @@ select {
   }
 
   /* ARTICLE */
+  .heading-container {
+    margin-bottom: 20px;
+  }
   .discover-heading {
-    margin-bottom: 1em;
-    line-height: 10px;
+    margin-bottom: 0.4em;
     font-size: 1.4rem;
     font-weight: 500;
     font-family: "Rammetto";
-    padding-top: 2em;
     text-align: center;
   }
   .discover-section {
@@ -404,6 +415,12 @@ select {
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .customerfeedback-main {
+    margin-bottom: 50px;
+  }
+  .customer-testimonials {
+    margin-bottom: 50px;
+  }
   .feedback-bg-image {
     background-size: cover;
     background-repeat: no-repeat;
@@ -464,9 +481,13 @@ select {
   }
 
   /* ARTICLE */
+  .heading-container {
+    margin-bottom: 20px;
+  }
 
   .discover-heading {
-    font-weight: 700;
+    margin-bottom: 0.4em;
+    font-weight: 500;
     font-family: "Rammetto";
     letter-spacing: 2px;
     line-height: 25px;
