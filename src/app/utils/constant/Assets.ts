@@ -19,6 +19,7 @@ export const Assets = {
     background1: require("../../images/png/background1.jpg"),
     background2: require("../../images/png/Digital-experience.png"),
     manLearning: require("../../images/png/Man-learning-online.jpg"),
+    contactarealogo: require("../../images/png/i-removebg-preview.png"),
   },
   colors: {
     basic: "#0000",

@@ -9,7 +9,7 @@
 }
 .contactpage-container {
   display: flex;
-  /* justify-content: space-evenly; */
+  /* justify-content: space-between; */
   gap: 20%;
 }
 .contact-page h1 {
@@ -258,7 +258,6 @@ textarea {
   .contactpage-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
     gap: 10%;
   }
   .contact-page h1 {

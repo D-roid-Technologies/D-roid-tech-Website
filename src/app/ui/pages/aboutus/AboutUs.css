@@ -8,6 +8,9 @@
   margin-top: 2em;
 }
 /* SECTION ONE OUR HISTORY */
+.aboutus-marginbutton {
+  margin-bottom: 50px;
+}
 .section-one {
   display: flex;
   gap: 60px;
@@ -38,6 +41,9 @@
 }
 
 /* VISION AND MISSION SECTION */
+.vision-marginbuttom {
+  margin-bottom: 50px;
+}
 .vision {
   text-align: center;
   margin-bottom: 0.6em;
@@ -90,6 +96,9 @@
   font-family: "Mazzard";
 }
 /* OUR TEAM SECTION */
+.ourteam-marginbottom {
+  margin-bottom: 50px;
+}
 .our-team {
   text-align: center;
   margin-bottom: 0.6em;
@@ -146,6 +155,9 @@
     margin-top: 2em;
   }
   /* SECTION ONE OUR HISTORY */
+  .aboutus-marginbutton {
+    margin-bottom: 25px;
+  }
   .section-one {
     display: flex;
     gap: 20px;
@@ -287,6 +299,9 @@
   }
 
   /* SECTION ONE */
+  .aboutus-marginbutton {
+    margin-bottom: 20px;
+  }
   .section-one {
     display: flex;
     flex-direction: column;

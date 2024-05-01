@@ -150,10 +150,7 @@ const Contact: React.FunctionComponent = () => {
                 </div>
 
                 <div>
-                  <img
-                    src="https://avatars.mds.yandex.net/i?id=8d16e36a37486fd11212f7800b4a4932a70a0acb-8496986-images-thumbs&n=13"
-                    alt=""
-                  />
+                  <img src={Assets.images.contactarealogo} alt="" />
                 </div>
               </section>
             </div>
