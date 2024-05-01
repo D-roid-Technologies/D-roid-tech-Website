@@ -88,6 +88,10 @@
   height: 100%;
   text-align: center;
   box-shadow: 0.35em 0.35em 1em grey;
+  transition: transform 0.3s ease-in-out;
+}
+.vision-box:hover {
+  transform: scale(1.1);
 }
 .vision-box p {
   font-size: 1.2rem;

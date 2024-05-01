@@ -45,12 +45,17 @@
   justify-content: center;
   align-items: center;
   padding: 4em;
+  transition: transform 0.3s ease-in-out;
 }
 
 .See-our-product {
   font-family: "Mazzard";
   cursor: pointer;
   width: 15%;
+  transition: transform 0.3s ease-in-out;
+}
+.See-our-product:hover {
+  transform: scale(1.1);
 }
 
 /* TABLET On screens that are 992px or less, set the background color to blue */

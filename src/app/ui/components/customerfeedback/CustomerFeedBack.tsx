@@ -46,7 +46,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               <p className="show">See all our testimonials</p>
               <div className="connect-to">
                 {/* This is how to navigate to another page, always se react router navigation */}
-                <div className="connect-to-facebook">
+                <div className="see-more-btn">
                   <Button
                     bgColor={"aqua"}
                     mTop={0}
