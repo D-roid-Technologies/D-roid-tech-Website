@@ -14,9 +14,10 @@
   padding-top: 1.8em;
   padding-bottom: 2.2em;
 }
-.image-size {
+.image-sized {
   width: 600px;
   height: 300px;
+  object-fit: contain;
 }
 .history {
   padding: 70px 30px;
@@ -151,9 +152,10 @@
     padding-top: 1.8em;
     padding-bottom: 2.2em;
   }
-  .image-size {
+  .image-sized {
     width: 370px;
     height: 200px;
+    object-fit: contain;
   }
   .history {
     padding: 35px 0px;
@@ -291,10 +293,12 @@
     gap: 5px;
     padding-top: 1.8em;
   }
-  .image-size {
+  .image-sized {
     width: 350px;
     height: 200px;
+    object-fit: contain;
   }
+
   .history {
     padding: 5px 0px;
     text-align: left;

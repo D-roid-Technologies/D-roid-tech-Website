@@ -12,9 +12,9 @@ const AboutUs: React.FunctionComponent = () => {
         <div className="section-one">
           <div className="coding-image">
             <img
-              src={Assets.images.coding}
+              src={Assets.images.companyLogo}
               alt="codingImage"
-              className="image-size"
+              className="image-sized"
             />
           </div>
           <div className="history">
