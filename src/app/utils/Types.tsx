@@ -13,6 +13,10 @@ export type DimensionType = {
 export type UserType = {
   sixDigitCode: string;
   sixDigitCodeFromUser: string;
+  userFName: string;
+  userLName: string;
+  message: string;
+  userEmail: string;
 };
 export type EmailType = {
   emailFromUser: string;
