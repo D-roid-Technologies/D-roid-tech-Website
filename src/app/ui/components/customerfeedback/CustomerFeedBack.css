@@ -5,6 +5,9 @@
 .customerfeedback-main {
   margin-bottom: 50px;
 }
+.customer-testimonials {
+  margin-bottom: 50px;
+}
 
 .feedback-bg-image {
   background-size: cover;
@@ -29,50 +32,42 @@
 }
 .read-details {
   border-radius: 10px;
-  padding: 30px 70px;
+  padding: 50px 140px;
   background-color: rgba(0, 0, 0, 0.4);
   font-family: "Mazzard";
 }
 
 .show {
   color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
 }
-.facebook {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2em;
-}
-.facebook-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #5764ef;
-  width: 35px;
-  height: 35px;
-}
+
 .connect-to {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.5em;
+  margin-top: 1.5em;
 }
 
-.connect-to-facebook {
+.see-more-btn {
   font-family: "Mazzard";
   cursor: pointer;
-  width: 53%;
+  width: 120%;
+  transition: transform 0.3s ease-in-out;
+}
+.see-more-btn:hover {
+  transform: scale(1.1);
 }
 /* ARTICLE */
 .heading-container {
   margin-bottom: 50px;
 }
 .discover-heading {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   font-size: 1.5rem;
   font-weight: 500;
   font-family: "Rammetto";
-  padding-top: 20px;
   text-align: center;
 }
 .discover-section {
@@ -96,6 +91,10 @@
 .contactus-button {
   width: 10%;
   border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.contactus-button:hover {
+  transform: scale(1.1);
 }
 /* SECTION FOUR */
 .section-four {
@@ -213,17 +212,28 @@ select {
   border: none;
   font-family: "Mazzard";
   font-size: 1.2rem;
-  /* font-weight: 600; */
+  transition: transform 0.3s ease-in-out;
+}
+.contactus-button-style:hover {
+  transform: scale(1.1);
 }
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
+  .customerfeedback-main {
+    margin-bottom: 50px;
+  }
+  .customer-testimonials {
+    margin-bottom: 40px;
+  }
+
   .feedback-bg-image {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 40vh;
   }
+
   .read {
     color: #fff;
     font-size: 1.5rem;
@@ -241,49 +251,38 @@ select {
   }
   .read-details {
     border-radius: 10px;
-    padding: 20px 30px;
+    padding: 30px 140px;
     background-color: rgba(0, 0, 0, 0.6);
   }
 
   .show {
     color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
   }
-  .facebook-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #5764ef;
-    width: 45px;
-    height: 45px;
-  }
+
   .connect-to {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2.5em;
-  }
-  .connect-to {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2.5em;
+    padding: 1em;
   }
 
   .connect-to-facebook {
     font-family: "Mazzard";
     cursor: pointer;
-    width: 53%;
+    width: 120%;
   }
 
   /* ARTICLE */
+  .heading-container {
+    margin-bottom: 20px;
+  }
   .discover-heading {
-    margin-bottom: 1em;
-    line-height: 10px;
+    margin-bottom: 0.4em;
     font-size: 1.4rem;
     font-weight: 500;
     font-family: "Rammetto";
-    padding-top: 2em;
     text-align: center;
   }
   .discover-section {
@@ -427,6 +426,12 @@ select {
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .customerfeedback-main {
+    margin-bottom: 50px;
+  }
+  .customer-testimonials {
+    margin-bottom: 50px;
+  }
   .feedback-bg-image {
     background-size: cover;
     background-repeat: no-repeat;
@@ -447,45 +452,53 @@ select {
   .read-content {
     display: flex;
     justify-content: center;
-    height: 200px;
+    /* height: 200px; */
   }
   .read-details {
+    border-radius: 10px;
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  /* .read-details {
     background-color: rgba(0, 0, 0, 0.6);
     height: 90%;
-  }
+  } */
 
   .show {
-    /* display: none; */
     color: #fff;
-    font-size: 11px;
+    font-size: 16px;
+    text-align: center;
   }
-  .facebook-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #5764ef;
-    width: 25px;
-    height: 25px;
-  }
+  /* paste */
   .connect-to {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60%;
+    margin-top: 0.2em;
   }
+  /* paste */
+  /* .connect-to {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+  } */
 
   .connect-to-facebook {
     font-family: "Mazzard";
     cursor: pointer;
-    width: 80%;
-    font-size: 0.4rem;
+    width: 120%;
+    /* font-size: 0.4rem; */
   }
 
   /* ARTICLE */
+  .heading-container {
+    margin-bottom: 20px;
+  }
 
   .discover-heading {
-    font-weight: 700;
+    margin-bottom: 0.4em;
+    font-weight: 500;
     font-family: "Rammetto";
     letter-spacing: 2px;
     line-height: 25px;

@@ -8,15 +8,19 @@
   margin-top: 2em;
 }
 /* SECTION ONE OUR HISTORY */
+.aboutus-marginbutton {
+  margin-bottom: 50px;
+}
 .section-one {
   display: flex;
   gap: 60px;
   padding-top: 1.8em;
-  padding-bottom: 2.2em;
+  /* padding-bottom: 2.2em; */
 }
-.image-size {
+.image-sized {
   width: 600px;
   height: 300px;
+  object-fit: contain;
 }
 .history {
   padding: 70px 30px;
@@ -37,6 +41,9 @@
 }
 
 /* VISION AND MISSION SECTION */
+.vision-marginbuttom {
+  margin-bottom: 50px;
+}
 .vision {
   text-align: center;
   margin-bottom: 0.6em;
@@ -55,7 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 55px 0;
+  padding-top: 30px;
   gap: 80px;
 }
 /* BOX ONE */
@@ -81,6 +88,10 @@
   height: 100%;
   text-align: center;
   box-shadow: 0.35em 0.35em 1em grey;
+  transition: transform 0.3s ease-in-out;
+}
+.vision-box:hover {
+  transform: scale(1.1);
 }
 .vision-box p {
   font-size: 1.2rem;
@@ -89,6 +100,9 @@
   font-family: "Mazzard";
 }
 /* OUR TEAM SECTION */
+.ourteam-marginbottom {
+  margin-bottom: 50px;
+}
 .our-team {
   text-align: center;
   margin-bottom: 0.6em;
@@ -145,15 +159,19 @@
     margin-top: 2em;
   }
   /* SECTION ONE OUR HISTORY */
+  .aboutus-marginbutton {
+    margin-bottom: 25px;
+  }
   .section-one {
     display: flex;
     gap: 20px;
     padding-top: 1.8em;
-    padding-bottom: 2.2em;
+    /* padding-bottom: 2.2em; */
   }
-  .image-size {
+  .image-sized {
     width: 370px;
     height: 200px;
+    object-fit: contain;
   }
   .history {
     padding: 35px 0px;
@@ -178,7 +196,7 @@
   /* VISION AND MISSION SECTION */
   .vision {
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     font-family: "Rammetto";
     font-size: 2rem;
   }
@@ -194,7 +212,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 55px 0;
+    padding-top: 30px;
     gap: 30px;
   }
   /* BOX ONE */
@@ -285,16 +303,21 @@
   }
 
   /* SECTION ONE */
+  .aboutus-marginbutton {
+    margin-bottom: 20px;
+  }
   .section-one {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: 1.8em;
+    /* padding-top: 1.8em; */
   }
-  .image-size {
+  .image-sized {
     width: 350px;
     height: 200px;
+    object-fit: contain;
   }
+
   .history {
     padding: 5px 0px;
     text-align: left;

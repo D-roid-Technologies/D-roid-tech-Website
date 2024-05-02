@@ -12,6 +12,7 @@ import Drone from "../ui/pages/drone/Drone";
 import Staff from "../ui/pages/staff/Staff";
 import AllStaffs from "../ui/pages/staff/allstaffs/AllStaffs";
 import CourseDetail from "../ui/pages/training/course/CourseDetail";
+import Services from "../ui/pages/home/services/Services";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -31,6 +32,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
           path="/training/course-detail/:courseId"
           element={<CourseDetail />}
         />
+        <Route path="/services" element={<Services />} />
       </Routes>
     </BrowserRouter>
   );

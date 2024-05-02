@@ -15,9 +15,16 @@
   padding-top: 1.8em;
   padding-bottom: 2.2em;
 }
+.coding-image {
+  /* box-shadow: 0.35em 0.35em 1em grey; */
+  border-radius: 10px;
+}
+
 .image-size {
   width: 600px;
   height: 300px;
+  border-radius: 10px;
+  box-shadow: 0.35em 0.35em 1em grey;
 }
 .history {
   padding: 70px 30px;
@@ -47,6 +54,10 @@
 .readmore-btn {
   width: 30%;
   border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.readmore-btn:hover {
+  transform: scale(1.1);
 }
 
 /* SECTION TWO OUR APPROACH */
@@ -150,6 +161,10 @@
 .services-btn {
   width: 15%;
   border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.services-btn:hover {
+  transform: scale(1.1);
 }
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
@@ -158,6 +173,7 @@
   .section-main {
     padding-left: 50px;
     padding-right: 50px;
+    margin-top: 2em;
   }
 
   /* SECTION ONE */
@@ -165,6 +181,7 @@
     display: flex;
     gap: 20px;
     padding-top: 1.8em;
+    padding-bottom: 1.8em;
   }
   .image-size {
     width: 370px;
@@ -314,6 +331,7 @@
   .section-main {
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 0.5em;
   }
 
   /* SECTION ONE */
@@ -321,7 +339,8 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: 1.8em;
+    padding-top: 0.5em;
+    padding-bottom: 1.2em;
   }
   .image-size {
     width: 350px;
@@ -394,7 +413,7 @@
   }
   .image-size {
     width: 350px;
-    height: 80px;
+    height: 200px;
   }
   .services {
     padding: 5px 0px;

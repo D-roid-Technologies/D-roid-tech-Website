@@ -32,39 +32,41 @@ const CustomerFeedBack: React.FunctionComponent = () => {
 
   return (
     <div className="customerfeedback-main">
-      <div
-        style={{
-          backgroundImage: `url("${feedBackImage}")`,
-        }}
-        className="feedback-bg-image"
-      >
-        {/* CONTENT */}
-        <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
-        <div className="read-content">
-          <div className="read-details">
-            <p className="show">See all our testimonials</p>
-            <div className="connect-to">
-              {/* This is how to navigate to another page, always se react router navigation */}
-              <div className="connect-to-facebook">
-                <Button
-                  bgColor={"aqua"}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="See More Testimonials"
-                  color="black"
-                  fWeight={800}
-                  onClickButton={() => {
-                    store.dispatch(updateModal(true));
-                    store.dispatch(
-                      updateModalContent({
-                        appTitle: onSuccessTitle,
-                        appBody: onSuccessBody,
-                      })
-                    );
-                  }}
-                />
+      <div className="customer-testimonials">
+        <div
+          style={{
+            backgroundImage: `url("${feedBackImage}")`,
+          }}
+          className="feedback-bg-image"
+        >
+          {/* CONTENT */}
+          <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
+          <div className="read-content">
+            <div className="read-details">
+              <p className="show">See all our testimonials</p>
+              <div className="connect-to">
+                {/* This is how to navigate to another page, always se react router navigation */}
+                <div className="see-more-btn">
+                  <Button
+                    bgColor={"aqua"}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="See More Testimonials"
+                    color="black"
+                    fWeight={800}
+                    onClickButton={() => {
+                      store.dispatch(updateModal(true));
+                      store.dispatch(
+                        updateModalContent({
+                          appTitle: onSuccessTitle,
+                          appBody: onSuccessBody,
+                        })
+                      );
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
