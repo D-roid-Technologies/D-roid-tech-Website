@@ -40,6 +40,7 @@ const Contact: React.FunctionComponent = () => {
           {/* IMAGE */}
           <div className="customer-care">
             <img
+              // src={Assets.images.ccare}
               src="https://avatars.mds.yandex.net/i?id=91dabd6801c1c25cbf286348a6ad0c5272dccfeb-12585680-images-thumbs&n=13"
               alt="codingImage"
               className="image-s"
@@ -150,10 +151,7 @@ const Contact: React.FunctionComponent = () => {
                 </div>
 
                 <div>
-                  <img
-                    src="https://avatars.mds.yandex.net/i?id=8d16e36a37486fd11212f7800b4a4932a70a0acb-8496986-images-thumbs&n=13"
-                    alt=""
-                  />
+                  <img src={Assets.images.ccare} alt="" />
                 </div>
               </section>
             </div>
