@@ -9,20 +9,34 @@
 }
 .contactpage-container {
   display: flex;
-  /* justify-content: space-between; */
-  gap: 20%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 100px;
+  /* background-color: red; */
+}
+
+.contact-page {
+  width: 50%;
+}
+
+.customer-care {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  background-color: red;
 }
 .contact-page h1 {
-  font-size: 3.7rem;
+  font-size: 56px;
   font-weight: 600;
   font-family: "Rammetto";
   margin-bottom: 0.3em;
 }
 
 .contact-page h2 {
-  font-size: 2.5rem;
+  font-size: 18px;
   font-weight: 600;
-  font-family: "Rammetto";
+  font-family: "MazzardH";
   margin-bottom: 2em;
   word-spacing: 5px;
 }
@@ -39,8 +53,7 @@
 }
 /* IMAGE */
 .image-s {
-  width: 160%;
-  height: auto;
+  width: 100%;
 }
 
 /* SPEAK WITHOUR TEAM SECTION */
@@ -48,11 +61,12 @@
   padding-left: 100px;
   padding-right: 100px;
   margin-top: 2em;
-  margin-bottom: 3em;
+  margin-bottom: 120px;
 }
 .speak-container {
   display: flex;
-  gap: 10%;
+  justify-content: space-between;
+  align-items: center;
 }
 .speak-page h3 {
   font-size: 2.5rem;
@@ -258,6 +272,7 @@ textarea {
   .contactpage-container {
     display: flex;
     flex-direction: column;
+    /* justify-content: space-evenly; */
     gap: 10%;
   }
   .contact-page h1 {
@@ -287,9 +302,7 @@ textarea {
   }
   /* IMAGE */
   .customer-care {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 50%;
   }
   .image-s {
     width: 70%;
