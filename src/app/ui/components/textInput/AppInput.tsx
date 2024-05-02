@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { AppInputType } from "../../../utils/Types";
 import "../textInput/AppInput.css";
 import { store } from "../../../redux/Store";
-import { addSixDigitCodeFromUser } from "../../../redux/slices/User";
+import { addContactInfo, addSixDigitCodeFromUser } from "../../../redux/slices/User";
 
 const AppInput: React.FunctionComponent<AppInputType> = ({
   title,
@@ -21,26 +21,24 @@ const AppInput: React.FunctionComponent<AppInputType> = ({
   pHolder,
 }) => {
   const [sixDigitCode, setSixDigitCode] = React.useState<string>("");
-  console.log(sixDigitCode);
+  const [mLength, setMLength] = React.useState<number>(0);
+  const windowPath: string = window.location.pathname;
 
   useEffect(() => {
-    store.dispatch(addSixDigitCodeFromUser(sixDigitCode));
+    if (windowPath === "/staff") {
+      setMLength(6);
+      store.dispatch(addSixDigitCodeFromUser(sixDigitCode));
+    } else if(windowPath === "/contact") {
+      setMLength(30);
+      // store.dispatch(addContactInfo())
+    }
   }, [sixDigitCode]);
+
   return (
     <label style={{ fontFamily: fFamily, fontWeight: fWeight }}>
-      {/* {pHolder && (
-        <div>
-          {title}
-          {required ? (
-            <span style={{ color: "red" }}> *</span>
-          ) : (
-            <span style={{ fontWeight: fWeight }}> (Optional)</span>
-          )}
-        </div>
-      )} */}
       <input
         onChange={(e) => setSixDigitCode(e.target.value)}
-        maxLength={6}
+        maxLength={mLength}
         placeholder={pHolder}
         {...AppInput}
         className="input"

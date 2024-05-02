@@ -2,6 +2,13 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
+.customerfeedback-main {
+  margin-bottom: 50px;
+}
+.customer-testimonials {
+  margin-bottom: 50px;
+}
+
 .feedback-bg-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,72 +32,208 @@
 }
 .read-details {
   border-radius: 10px;
-  padding: 30px 70px;
+  padding: 50px 140px;
   background-color: rgba(0, 0, 0, 0.4);
   font-family: "Mazzard";
 }
 
 .show {
   color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
 }
-.facebook {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 2em;
-}
-.facebook-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #5764ef;
-  width: 35px;
-  height: 35px;
-}
+
 .connect-to {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.5em;
-}
-.connect-to-facebook {
-  padding: 15px 35px;
-  background-color: aqua;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: 800;
-  font-family: "Mazzard";
+  margin-top: 1.5em;
 }
 
+.see-more-btn {
+  font-family: "Mazzard";
+  cursor: pointer;
+  width: 120%;
+  transition: transform 0.3s ease-in-out;
+}
+.see-more-btn:hover {
+  transform: scale(1.1);
+}
 /* ARTICLE */
+.heading-container {
+  margin-bottom: 50px;
+}
 .discover-heading {
-  margin-bottom: 1em;
-  line-height: 10px;
+  margin-bottom: 0.5em;
   font-size: 1.5rem;
   font-weight: 500;
   font-family: "Rammetto";
-  padding-top: 2em;
   text-align: center;
 }
 .discover-section {
-  display: flex;
-  justify-content: center;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .discover-details {
+  font-size: 1.2rem;
   font-family: "Mazzard";
   text-align: center;
   color: rgb(124, 124, 124);
 }
+/* CONTACT US BOTTON */
+.contact-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactus-button {
+  width: 10%;
+  border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.contactus-button:hover {
+  transform: scale(1.1);
+}
+/* SECTION FOUR */
+.section-four {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 2em;
+}
+
+.section-four-container {
+  display: flex;
+  gap: 60px;
+  padding-top: 1.8em;
+  padding-bottom: 2.2em;
+}
+.image-sizes {
+  width: 600px;
+  height: 300px;
+}
+.city-walking-tours {
+  /* padding: 70px 30px; */
+  text-align: center;
+}
+
+.walking-tour {
+  padding-bottom: 0.6em;
+  line-height: 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(22, 169, 169);
+  font-family: "Rammetto";
+}
+.pounds {
+  margin-bottom: 1em;
+  font-size: 1.3rem;
+}
+.walking-tour-details {
+  font-size: 1.2rem;
+  font-family: "Mazzard";
+  /* line-height: 25px; */
+  color: rgb(124, 124, 124);
+}
+/* CONTACT US LAST SECTION */
+.cont-main {
+  margin-bottom: 50px;
+}
+.heading {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  padding-bottom: 0.8em;
+  font-family: "Rammetto";
+}
+.rule {
+  border-top: 2px solid rgb(218, 214, 214);
+}
+
+.questions {
+  text-align: center;
+  padding: 30px 0;
+  font-family: "Rammetto";
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+.clients {
+  text-align: center;
+  color: rgb(124, 124, 124);
+  padding-bottom: 30px;
+  font-family: "Mazzard";
+  font-size: 1.2rem;
+}
+.droid {
+  font-family: "Rammetto";
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding-bottom: 30px;
+}
+.hours {
+  font-family: "Rammetto";
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.6rem;
+  padding-bottom: 27px;
+}
+.time {
+  text-align: center;
+  font-size: 1.2rem;
+  padding-bottom: 30px;
+  color: rgb(124, 124, 124);
+  font-family: "Mazzard";
+}
+.friday {
+  color: aqua;
+}
+/* .select-time select {
+  border: none;
+  outline: none;
+}
+
+select {
+  border: none;
+  outline: none;
+  color: aqua;
+  font-size: 1.1rem;
+} */
+.contact-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Mazzard";
+}
+
+.contactus-button-style {
+  width: 12%;
+  border: none;
+  font-family: "Mazzard";
+  font-size: 1.2rem;
+  transition: transform 0.3s ease-in-out;
+}
+.contactus-button-style:hover {
+  transform: scale(1.1);
+}
+
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
+  .customerfeedback-main {
+    margin-bottom: 50px;
+  }
+  .customer-testimonials {
+    margin-bottom: 40px;
+  }
+
   .feedback-bg-image {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 40vh;
   }
+
   .read {
     color: #fff;
     font-size: 1.5rem;
@@ -108,62 +251,187 @@
   }
   .read-details {
     border-radius: 10px;
-    padding: 20px 30px;
+    padding: 30px 140px;
     background-color: rgba(0, 0, 0, 0.6);
   }
 
   .show {
     color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
   }
-  .facebook-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #5764ef;
-    width: 45px;
-    height: 45px;
-  }
+
   .connect-to {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2.5em;
+    padding: 1em;
   }
+
   .connect-to-facebook {
-    padding: 10px 25px;
-    background-color: aqua;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: 800;
     font-family: "Mazzard";
+    cursor: pointer;
+    width: 120%;
   }
 
   /* ARTICLE */
+  .heading-container {
+    margin-bottom: 20px;
+  }
   .discover-heading {
-    margin-bottom: 1em;
-    line-height: 10px;
+    margin-bottom: 0.4em;
     font-size: 1.4rem;
     font-weight: 500;
     font-family: "Rammetto";
-    padding-top: 2em;
     text-align: center;
   }
   .discover-section {
-    display: flex;
-    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
   .discover-details {
+    font-size: 1rem;
     font-family: "Mazzard";
     text-align: center;
     color: rgb(124, 124, 124);
+  }
+
+  /* CONTACT US BOTTON */
+  .contact-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactus-button {
+    width: 20%;
+    border-radius: none;
+  }
+  /* SECTION FOUR */
+  .section-four {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 2em;
+  }
+
+  .section-four-container {
+    display: flex;
+    gap: 60px;
+    padding-top: 1.8em;
+    padding-bottom: 2.2em;
+  }
+  .image-sizes {
+    width: 370px;
+    height: 200px;
+  }
+  .city-walking-tours {
+    /* padding: 70px 30px; */
+    text-align: center;
+  }
+
+  .walking-tour {
+    padding-bottom: 0.6em;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(22, 169, 169);
+    font-family: "Rammetto";
+  }
+  .pounds {
+    margin-bottom: 0.7em;
+    font-size: 1.1rem;
+  }
+  .walking-tour-details {
+    line-height: 25px;
+    color: rgb(124, 124, 124);
+  }
+  /* CONTACT US LAST SECTION */
+  .cont-main {
+    margin-bottom: 50px;
+  }
+  .heading {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+    font-family: "Rammetto";
+  }
+  .rule {
+    border-top: 2px solid rgb(218, 214, 214);
+  }
+
+  .questions {
+    text-align: center;
+    padding: 30px 0;
+    font-family: "Rammetto";
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+  .clients {
+    text-align: center;
+    color: rgb(124, 124, 124);
+    padding-bottom: 30px;
+    font-family: "Mazzard";
+    font-size: 1rem;
+  }
+  .droid {
+    font-family: "Rammetto";
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.8rem;
+    padding-bottom: 30px;
+  }
+  .hours {
+    font-family: "Rammetto";
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.8rem;
+    padding-bottom: 27px;
+  }
+  .time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    padding-bottom: 30px;
+  }
+  .select-time select {
+    border: none;
+    outline: none;
+  }
+
+  select {
+    border: none;
+    outline: none;
+    color: aqua;
+    /* font-size: 0.6rem; */
+  }
+  .contact-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Mazzard";
+  }
+
+  .contactus-button-style {
+    width: 22%;
+    border: none;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .customerfeedback-main {
+    margin-bottom: 50px;
+  }
+  .customer-testimonials {
+    margin-bottom: 50px;
+  }
   .feedback-bg-image {
     background-size: cover;
     background-repeat: no-repeat;
@@ -172,76 +440,209 @@
   }
   .read {
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 1rem;
     letter-spacing: 1px;
     text-align: center;
     font-weight: 500;
     font-family: "Rammetto One";
-    padding-top: 2em;
+    padding-top: 1em;
     padding-bottom: 1em;
   }
   /* CONTENT */
   .read-content {
-    display: hidden;
     display: flex;
     justify-content: center;
+    /* height: 200px; */
   }
   .read-details {
     border-radius: 10px;
-    /* padding: 3px 3px; */
-    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.6);
   }
+  /* .read-details {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 90%;
+  } */
 
   .show {
     color: #fff;
-    font-size: 12px;
+    font-size: 16px;
+    text-align: center;
   }
-  .facebook-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #3e4ce9;
-    width: 25px;
-    height: 25px;
-  }
+  /* paste */
   .connect-to {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 2.5em; */
+    margin-top: 0.2em;
   }
+  /* paste */
+  /* .connect-to {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+  } */
+
   .connect-to-facebook {
-    padding: 10px 10px;
-    background-color: aqua;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
     font-family: "Mazzard";
+    cursor: pointer;
+    width: 120%;
+    /* font-size: 0.4rem; */
   }
+
   /* ARTICLE */
-  .heading {
-    padding-left: 18px;
-    padding-right: 18px;
+  .heading-container {
+    margin-bottom: 20px;
   }
+
   .discover-heading {
-    margin-bottom: 1em;
-    line-height: 10px;
-    font-size: 1.2rem;
+    margin-bottom: 0.4em;
     font-weight: 500;
     font-family: "Rammetto";
-    padding-top: 4em;
+    letter-spacing: 2px;
+    line-height: 25px;
+    font-size: 1.2rem;
     text-align: center;
   }
   .discover-section {
-    display: flex;
-    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .discover-details {
     font-family: "Mazzard";
     text-align: left;
     color: rgb(124, 124, 124);
+    font-size: 1rem;
+  }
+
+  /* CONTACT US BOTTON */
+  .contact-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactus-button {
+    width: 37%;
+    border-radius: none;
+  }
+  /* SECTION FOUR */
+  .section-four {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 2em;
+  }
+
+  .section-four-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 1.8em;
+    padding-bottom: 2.2em;
+  }
+  .image-sizes {
+    width: 350px;
+    height: 200px;
+  }
+  .city-walking-tours {
+    /* padding: 70px 30px; */
+    text-align: center;
+  }
+
+  .walking-tour {
+    padding-bottom: 0.6em;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(22, 169, 169);
+    font-family: "Rammetto";
+  }
+  .pounds {
+    margin-bottom: 0.7em;
+    font-size: 1.1rem;
+  }
+  .walking-tour-details {
+    /* line-height: 25px; */
+    color: rgb(124, 124, 124);
+    font-size: 1rem;
+    font-family: "Mazzard";
+  }
+  /* CONTACT US LAST SECTION */
+  .cont-main {
+    margin-bottom: 50px;
+  }
+  .heading {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 0.8em;
+    font-family: "Rammetto";
+  }
+  .rule {
+    border-top: 2px solid rgb(218, 214, 214);
+  }
+
+  .questions {
+    text-align: center;
+    padding: 20px 0;
+    font-family: "Rammetto";
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+  .clients {
+    text-align: center;
+    color: rgb(124, 124, 124);
+    padding-bottom: 20px;
+    font-family: "Mazzard";
+    font-size: 1rem;
+  }
+  .droid {
+    font-family: "Rammetto";
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+  }
+  .hours {
+    font-family: "Rammetto";
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding-bottom: 27px;
+  }
+  .time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    padding-bottom: 30px;
+  }
+  .select-time select {
+    border: none;
+    outline: none;
+  }
+
+  select {
+    border: none;
+    outline: none;
+    color: aqua;
+    /* font-size: 0.6rem; */
+  }
+  .contact-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Mazzard";
+  }
+
+  .contactus-button-style {
+    width: 37%;
+    border: none;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }

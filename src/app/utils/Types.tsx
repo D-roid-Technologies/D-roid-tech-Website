@@ -1,18 +1,4 @@
-export type ProjectType = {
-  icon: any;
-  title: string;
-  header: string;
-  company: string;
-  date: string;
-  aboutApp: string;
-  jobDescriptionTitle: string;
-  jobDescription: string[];
-  techTitle: string;
-  techUsed: string[];
-};
-
 export type AppEntryType = {
-  showModal?: boolean;
   closeModal?: () => void;
 };
 
@@ -27,6 +13,13 @@ export type DimensionType = {
 export type UserType = {
   sixDigitCode: string;
   sixDigitCodeFromUser: string;
+  userFName: string;
+  userLName: string;
+  message: string;
+  userEmail: string;
+};
+export type EmailType = {
+  emailFromUser: string;
 };
 
 export type AppInputType = React.DetailedHTMLProps<
@@ -60,6 +53,46 @@ export type AppButtonType = React.DetailedHTMLProps<
   mBottom: number;
   mLeft: number;
   mRight: number;
+  fWeight?: number;
   onClickButton: () => void;
   // color: string;
+};
+
+export type TrainingPhoto = {
+  image: string;
+  text: string;
+};
+
+export type Course = {
+  id: number;
+  level: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  benefits: {
+    title: string;
+    description: string;
+  }[];
+  projects: {
+    title: string;
+    description: string;
+  }[];
+  howItWorks: {
+    title: string;
+    content: string;
+  }[];
+  courseDetails: {
+    startDate: string;
+    duration: string;
+    price: number;
+    discountedPrice: number;
+    offerExpiry: string;
+  };
+};
+
+export type AppEntrySliceType = {
+  showModal: boolean;
+  showToast: boolean;
+  appTitle: string;
+  appBody: any;
 };

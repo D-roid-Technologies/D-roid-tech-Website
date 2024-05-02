@@ -7,24 +7,54 @@ import { Assets } from "../../../utils/constant/Assets";
 import Button from "../../components/button/Button";
 import AppInput from "../../components/textInput/AppInput";
 import { useNavigate } from "react-router-dom";
+import {
+  updateModal,
+  updateModalContent,
+} from "../../../redux/slices/AppEntrySlice";
 
 const Staff: React.FunctionComponent<any> = () => {
   const dimension = useSelector((state: RootState) => state.dimension);
+  const appEntry = useSelector((state: RootState) => state.appEntry);
   const user = useSelector((state: RootState) => state.user);
 
   const wStaff = dimension.width;
   const hStaff = dimension.height;
   const fixedCode = user.sixDigitCode;
   const userCode = user.sixDigitCodeFromUser;
+  const modal = appEntry.showModal;
+
+  const onSuccessTitle = "Congratulations";
+  const onFailedTitle = "Failed";
+  const onSuccessBody =
+    "Your login was successful, navigating to the next page in 3 seconds.";
+  const onFailedBody =
+    "Your login was unsuccessful, kindly try again or contact your Admin!";
 
   const navigate = useNavigate();
 
   function verifyCode() {
     if (fixedCode === userCode) {
-      console.log("User code matches");
-      navigate("/allstaffs");
+      store.dispatch(updateModal(true));
+      store.dispatch(
+        updateModalContent({
+          appTitle: onSuccessTitle,
+          appBody: onSuccessBody,
+        })
+      );
+      setTimeout(() => {
+        store.dispatch(updateModal(false));
+      }, 5000);
+      setTimeout(() => {
+        navigate("/allstaffs");
+      }, 7000);
     } else {
-      console.log("User code does not match");
+      store.dispatch(updateModal(true));
+      store.dispatch(
+        updateModalContent({
+          appTitle: onFailedTitle,
+          appBody: onFailedBody,
+        })
+      );
     }
   }
 
@@ -57,6 +87,8 @@ const Staff: React.FunctionComponent<any> = () => {
               mBottom={0}
               mLeft={0}
               mRight={0}
+              color="#ffffff"
+              fWeight={700}
               onClickButton={() => verifyCode()}
             />
           </div>
