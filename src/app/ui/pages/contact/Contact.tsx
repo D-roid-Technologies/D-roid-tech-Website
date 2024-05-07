@@ -17,9 +17,9 @@ const Contact: React.FunctionComponent = () => {
         <div className="contactpage-container">
           <div className="contact-page">
             <h1>Got an Idea?</h1>
-            <h2>
+            <p>
               Reach to us, <br /> Let us implement your success.
-            </h2>
+            </p>
             {/* BUTTON */}
             <div className="contactpage-button">
               <div>
@@ -86,17 +86,17 @@ const Contact: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
-      {/* MESSAGE SECTION */}
-      <section>
-        <div className="message">
-          <h2>Contact Us</h2>
-          <p>Any Question or remark? Just write us a message!</p>
-        </div>
-        {/* input section */}
-        <div className="input-area">
-          <div className="input-section">
-            <div className="input-section-child">
-              <div className="name-cta">
+      {/* CONTACT US INPUT & MESSAGE  SECTION */}
+      <div className="message-section">
+        <section>
+          <div className="message">
+            <h2>Contact Us</h2>
+            <p>Any Question or remark? Just write us a message!</p>
+          </div>
+          {/* FORM INPUT AREA */}
+          <div className="input-area">
+            <div className="input-section">
+              <div className="name-btn">
                 {/* INPUT SECTION ONE */}
                 {/* first name */}
                 <div>
@@ -109,8 +109,8 @@ const Contact: React.FunctionComponent = () => {
                     First Name
                   </label>
                   <br />
-                  <div className="input-cta">
-                    <AppInput w="200%" h={40} pLeft={10} pHolder="" />
+                  <div className="input-container">
+                    <AppInput w="100%" h={40} pLeft={10} pHolder="" />
                   </div>
                 </div>
                 {/* last name */}
@@ -124,19 +124,27 @@ const Contact: React.FunctionComponent = () => {
                     Last Name
                   </label>
                   <br />
-                  <div className="input-cta">
-                    <AppInput w="200%" h={40} pLeft={10} pHolder="" />
+                  <div className="input-container">
+                    <AppInput w="100%" h={40} pLeft={10} pHolder="" />
                   </div>
                 </div>
               </div>
-              {/* section two */}
-
+              {/* MESSAGE AREA*/}
               <section className="text-area">
                 <div>
+                  <label
+                    htmlFor=""
+                    style={{
+                      color: Assets.colors.light,
+                    }}
+                  >
+                    Message
+                  </label>
+                  <br />
                   <textarea rows={8} cols={60} name="comment" form="usrform">
                     Write your message here...
                   </textarea>
-                  <div className="textarea-cta">
+                  <div className="textarea-btn">
                     <Button
                       bgColor={"white"}
                       mTop={0}
@@ -149,15 +157,14 @@ const Contact: React.FunctionComponent = () => {
                     />
                   </div>
                 </div>
-
                 <div>
-                  <img src={Assets.images.ccare} alt="" />
+                  <img src={Assets.images.contactarealogo} alt="" />
                 </div>
               </section>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 };
