@@ -106,7 +106,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE ONE */}
             <div className="profile-one">
               <img
-                src={Assets.images.imageone}
+                src={Assets.images.malestaffone}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -116,7 +116,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE TWO */}
             <div className="profile-one">
               <img
-                src={Assets.images.imagetwo}
+                src={Assets.images.femalestaffthree}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -126,7 +126,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE THREE */}
             <div className="profile-one">
               <img
-                src={Assets.images.imagethree}
+                src={Assets.images.malestaffthree}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -136,7 +136,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE FOUR */}
             <div className="profile-one">
               <img
-                src={Assets.images.imageone}
+                src={Assets.images.femalestaffthree}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -146,7 +146,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE FIVE */}
             <div className="profile-one">
               <img
-                src={Assets.images.imagethree}
+                src={Assets.images.femalestaffthree}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -159,7 +159,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE ONE */}
             <div className="profile-one">
               <img
-                src={Assets.images.imageone}
+                src={Assets.images.malestafffour}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -169,7 +169,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE TWO */}
             <div className="profile-one">
               <img
-                src={Assets.images.imagetwo}
+                src={Assets.images.malestafffive}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -179,7 +179,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* PROFILE THREE */}
             <div className="profile-one">
               <img
-                src={Assets.images.imagethree}
+                src={Assets.images.malestafftwo}
                 alt="profileImage"
                 className="image-sizes"
               />
@@ -188,7 +188,7 @@ const AboutUs: React.FunctionComponent = () => {
             </div>
             <div className="profile-one">
               <img
-                src={Assets.images.imagetwo}
+                src={Assets.images.malestaffone}
                 alt="profileImage"
                 className="image-sizes"
               />
