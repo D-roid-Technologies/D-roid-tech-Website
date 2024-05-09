@@ -42,26 +42,57 @@
 }
 .drone-approach-main {
   padding-left: 100px;
-  padding-left: 100px;
+  padding-right: 100px;
 }
 
 /* OUR APPROACH SECTION */
+.drone-approach-main {
+  margin-bottom: 50px;
+}
 
 .droneapproach-head {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   font-family: "Rammetto One";
 }
+
 .droneapproach-item {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   list-style: none;
-  padding: 0;
+  gap: 2%;
 }
 
 .droneapproach-list {
   margin-bottom: 20px;
+}
+
+.droneapproach-list h2 {
+  margin-bottom: 20px;
+  font-family: "Rammetto One";
+  color: #000;
+  transition: color 0.3s ease;
+}
+.droneapproach-list h2:hover {
+  color: #12d6d6;
+  cursor: pointer;
+}
+.droneapproach-list p {
+  font-family: "Mazzard";
+  font-size: 1rem;
+  color: rgb(124, 124, 124);
+  margin-bottom: 1em;
+}
+.list-button {
+  color: #12d6d6;
+  font-weight: 700;
+  font-family: "Rammetto One";
+  transition: color 0.3s ease;
+}
+.list-button:hover {
+  color: #000;
+  cursor: pointer;
 }
 
 /* TABLET On screens that are 992px or less, set the background color to blue */

@@ -42,10 +42,15 @@ const Drone: React.FunctionComponent<any> = () => {
             <li className="droneapproach-list" key={index}>
               <h2>{item.title}</h2>
               <p>{item.content}</p>
+              <span className="list-button">{item.Button}</span>
             </li>
           ))}
         </ul>
       </div>
+      {/*  Featured Drone Service */}
+      <section>
+        <div></div>
+      </section>
     </div>
   );
 };

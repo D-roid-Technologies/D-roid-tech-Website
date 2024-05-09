@@ -1,4 +1,5 @@
 import { title } from "process";
+import Button from "../../ui/components/button/Button";
 
 export const DATA = {
   socialLinks: {
@@ -412,21 +413,25 @@ export const DATA = {
       title: "Customized Solutions",
       content:
         "We understand that every project is unique, which is why we work closely with our clients to develop customized drone solutions that address their specific requirements and objectives. Whether it's aerial photography, mapping, or inspection, we have the expertise to deliver results that exceed expectations.",
+      Button: "LEARN MORE",
     },
     {
       title: "State-of-the-Art Technology",
       content:
         "Our drones are equipped with the latest technology, including high-resolution cameras, LiDAR sensors, and thermal imaging capabilities. This allows us to capture detailed and accurate data from the air, providing valuable insights for our clients' projects.",
+      Button: "LEARN MORE",
     },
     {
       title: "Safety & Compliance",
       content:
         "Safety is our top priority, and we adhere to strict safety protocols and regulations to ensure the safe operation of our drones. Our team of certified pilots undergoes rigorous training and certification processes to ensure compliance with aviation laws and regulations.",
+      Button: "LEARN MORE",
     },
     {
       title: "Data Analysis & Reporting",
       content:
         "In addition to capturing aerial imagery and data, we also offer comprehensive data analysis and reporting services. Our team of data analysts and engineers processes and interprets the data collected by our drones, providing actionable insights and recommendations for our clients.",
+      Button: "LEARN MORE",
     },
   ],
 };
