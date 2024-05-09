@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
+/* CONTENT */
+.drone-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding-top: 100px;
+}
+
+.bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin-bottom: 50px;
+}
+
+.drone-heading {
+  font-size: 4.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 500;
+  font-family: "Rammetto One";
+}
+/* hr {
+  padding-left: 100px;
+  padding-right: 100px;
+  border-top: 2px solid rgb(218, 214, 214);
+} */
+
+.drone-heading-details {
+  margin-top: 1em;
+  font-size: 1.8rem;
+  word-spacing: 2px;
+  text-align: center;
+  color: #fff;
+  font-family: "Mazzard";
+}
+.drone-approach-main {
+  padding-left: 100px;
+  padding-left: 100px;
+}
+
+/* OUR APPROACH SECTION */
+
+.droneapproach-head {
+  text-align: center;
+  margin-bottom: 1em;
+  font-family: "Rammetto One";
+}
+.droneapproach-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+}
+
+.droneapproach-list {
+  margin-bottom: 20px;
+}
+
+/* TABLET On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .drone-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 80px;
+  }
+  .bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 50vh;
+  }
+
+  .drone-heading {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Rammetto One";
+  }
+  .drone-heading-details {
+    margin-top: 1em;
+    font-size: 1.7rem;
+    word-spacing: 2px;
+    text-align: center;
+    color: #fff;
+    font-family: "Mazzard";
+  }
+}
+
+/*MOBILE On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  /* .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+  .drone-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 150px;
+  }
+  .bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+  }
+
+  .drone-heading {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Rammetto One";
+  }
+  .drone-heading-details {
+    margin-top: 0.6em;
+    font-size: 1rem;
+    word-spacing: 1.2px;
+    text-align: center;
+    color: #fff;
+    font-family: "Mazzard";
+  }
+}
