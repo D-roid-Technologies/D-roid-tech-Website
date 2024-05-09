@@ -49,7 +49,18 @@ const Drone: React.FunctionComponent<any> = () => {
       </div>
       {/*  Featured Drone Service */}
       <section>
-        <div></div>
+        <div>
+          <h1 className="droneapproach-head">FEATURED DRONE SERVICES</h1>
+          <ul className="droneapproach-item">
+            {DATA.FeaturedDroneServices.map((item, index) => (
+              <li className="droneapproach-list" key={index}>
+                <img src={item.image} alt="" />
+                <h2>{item.title}</h2>
+                <p>{item.content}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </div>
   );
