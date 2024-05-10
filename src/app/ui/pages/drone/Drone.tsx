@@ -4,8 +4,11 @@ import NavBar from "../../components/navbar/NavBar";
 import "../drone/Drone.css";
 import droneImage from "../../../images/png/drone.png";
 import { DATA } from "../../../utils/constant/Data";
+import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
+  const navigate = useNavigate();
   return (
     <div>
       <div
@@ -49,7 +52,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
       </div>
       {/*  Featured Drone Service */}
       <section className="ft-drone-service">
-        <div>
+        <div className="videography-main">
           <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
           <ul className="droneapproach-details">
             {DATA.FeaturedDroneServices.map((item, index) => (
@@ -60,6 +63,37 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 <div className="video-details">
                   <h2 className="video-heading">{item.title}</h2>
                   <p>{item.content}</p>
+                  <div className="video-btn">
+                    <Button
+                      bgColor={"black"}
+                      mTop={0}
+                      mBottom={0}
+                      mLeft={0}
+                      mRight={0}
+                      title="Get in Touch"
+                      color="white"
+                      fWeight={800}
+                      onClickButton={() => {
+                        navigate("/contact");
+                      }}
+                    />
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* SECTION TWO */}
+        <div>
+          <ul className="mapping-ul">
+            {DATA.MappingSurveying.map((item, index) => (
+              <li className="mappping-services" key={index}>
+                <div className="mapping-text">
+                  <h2 className="mapping-heading">{item.title}</h2>
+                  <p>{item.content}</p>
+                </div>
+                <div>
+                  <img src={item.image} alt="survey Image" />
                 </div>
               </li>
             ))}

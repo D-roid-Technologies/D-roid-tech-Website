@@ -95,6 +95,9 @@
   cursor: pointer;
 }
 /* FEATURED DRONE SERVICE */
+.videography-main {
+  margin-bottom: 50px;
+}
 .ft-drone-service {
   margin-bottom: 50px;
   padding-left: 100px;
@@ -110,10 +113,34 @@
   gap: 5%;
 }
 .video-details {
-  padding: 90px 0;
+  padding: 50px 0;
 }
 .video-heading {
   font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+.video-btn {
+  margin-top: 2em;
+  width: 30%;
+}
+
+/* SECTION TWO */
+.mapping-ul {
+  display: flex;
+  gap: 5%;
+}
+.mappping-services {
+  display: flex;
+  gap: 5%;
+}
+.mapping-text {
+  padding: 150px 0;
+}
+.mapping-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.3em;
 }
 
 /* TABLET On screens that are 992px or less, set the background color to blue */

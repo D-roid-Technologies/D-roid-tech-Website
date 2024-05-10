@@ -437,9 +437,17 @@ export const DATA = {
   FeaturedDroneServices: [
     {
       video: require("../../videos/dronevideo.mp4"),
-      title: "Aerial Photography &  Videography",
+      title: "AERIAL PHOTOGRAPHY AND VIDEOGRAPHY",
       content:
         "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
+    },
+  ],
+  MappingSurveying: [
+    {
+      image: require("../../images/png/drone survey.png"),
+      title: "MAPPING & SURVEYING",
+      content:
+        "Generate high-resolution maps and 3D models for land surveying, construction planning, and site analysis.",
     },
   ],
 };
