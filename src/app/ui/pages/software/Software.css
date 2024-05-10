@@ -1,0 +1,79 @@
+.home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 100px;
+  }
+  
+  .home-content {
+    text-align: center;
+    padding: 0 100px;
+  }
+  
+  .full-screen-background-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+  }
+  
+  .large-centered-heading {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    font-weight: 500;
+    font-family: "Rammetto One";
+  }
+  
+  .smaller-centered-heading {
+    margin-top: 1em;
+    font-size: 1.8rem;
+    word-spacing: 2px;
+    color: #fff;
+    font-family: "Mazzard";
+  }
+  
+  .main-content-section {
+    padding: 0 100px;
+    margin-top: 2em;
+  }
+  
+  .flex-row-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    margin-top: 2rem;
+    padding: 1.8em 0;
+  }
+  
+  .centered-text-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .section-heading {
+    margin-bottom: 1em;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .section-details {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: rgb(124, 124, 124);
+    font-family: "Mazzard";
+    text-align: left;
+  }
+  
+  .rounded-image {
+    border-radius: 10px;
+  }
+  
+  .boxed-image {
+    width: 600px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0.35em 0.35em 0 grey;
+  }
