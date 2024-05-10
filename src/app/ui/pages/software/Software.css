@@ -1,113 +1,163 @@
 .home-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding-top: 100px;
-    padding-bottom: 50px;
-  }
-  
-  .home-content {
-    text-align: center;
-    padding: 0 20px;
-  }
-  
-  .full-screen-background-image {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-  }
-  
-  .large-centered-heading {
-    font-size: 2rem;
-    letter-spacing: 2px;
-    font-weight: 500;
-    font-family: "Rammetto One";
-  }
-  
-  .smaller-centered-heading {
-    margin-top: 1em;
-    font-size: 1.5rem;
-    word-spacing: 1px;
-    color: #fff;
-    font-family: "Mazzard";
-  }
-  
-  .main-content-section {
-    padding: 20px;
-    margin-top: 2em;
-  }
-  
-  .flex-row-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 2rem;
-    padding: 1.8em 0;
-  }
-  
-  .centered-text-section {
-    flex: 1 1 400px;
-    text-align: center;
-    max-width: 600px;
-  }
-  
-  .section-heading {
-    margin-bottom: 1em;
-    line-height: 1.5;
-    font-size: 1.3rem;
-    font-weight: 500;
-  }
-  
-  .section-details {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: rgb(124, 124, 124);
-    font-family: "Mazzard";
-    text-align: left;
-  }
-  
-  .rounded-image {
-    border-radius: 10px;
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .boxed-image {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0.35em 0.35em 0 grey;
-  }
-  
-  /* Media queries for smaller screens */
-  @media (max-width: 768px) {
-    .large-centered-heading {
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-    }
-  
-    .smaller-centered-heading {
-      font-size: 1.2rem;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
 
-    .reverse{
-        display: flex;
-        flex-direction: row-reverse;
-    }
-  
-    .section-heading {
-      font-size: 1.2rem;
-    }
-  
-    .section-details {
-      font-size: 0.9rem;
-    }
-  
-    .boxed-image {
-      max-width: 400px;
-    }
+.home-content {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.full-screen-background-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.large-centered-heading {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-family: "Rammetto One";
+}
+
+.smaller-centered-heading {
+  margin-top: 1em;
+  font-size: 1.5rem;
+  word-spacing: 1px;
+  color: #fff;
+  font-family: "Mazzard";
+}
+
+.main-content-section {
+  padding: 20px 100px;
+  margin-top: 2em;
+}
+
+.flex-row-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 2rem;
+  padding: 1.8em 0;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.centered-text-section {
+  flex: 1 1 400px;
+  text-align: center;
+  max-width: 600px;
+}
+
+.section-heading {
+  margin-bottom: 1em;
+  line-height: 1.5;
+  font-family: "Rammetto One";
+}
+
+.section-details {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgb(124, 124, 124);
+  font-family: "Mazzard";
+  text-align: left;
+}
+
+.rounded-image {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.boxed-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0.35em 0.35em 0 grey;
+}
+
+/* Approach Section */
+.software-approach-main {
+  margin-bottom: 50px;
+}
+
+.software-approach-head {
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-family: "Rammetto One";
+}
+
+.software-approach-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 2%;
+}
+
+.software-approach-item {
+  margin-bottom: 20px;
+}
+
+.software-approach-item h2 {
+  margin-bottom: 20px;
+  font-family: "Rammetto One";
+  color: #232e35;
+  transition: color 0.3s ease;
+}
+
+.software-approach-item h2:hover {
+  color: #12d6d6;
+  cursor: pointer;
+}
+
+.software-approach-item p {
+  font-family: "Mazzard";
+  font-size: 1rem;
+  color: rgb(124, 124, 124);
+  margin-bottom: 1em;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  .large-centered-heading {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
   }
+
+  .smaller-centered-heading {
+    font-size: 1.2rem;
+  }
+
+  .section-heading {
+    font-size: 1.2rem;
+  }
+
+  .section-details {
+    font-size: 0.9rem;
+  }
+
+  .boxed-image {
+    max-width: 400px;
+  }
+
+  .software-approach-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .software-approach-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

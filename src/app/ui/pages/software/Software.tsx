@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Software.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { DATA } from "../../../utils/constant/Data";
 
 const Software: React.FunctionComponent = () => {
   return (
@@ -26,53 +25,57 @@ const Software: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
+
       <div className="main-content-section">
-        <div className="flex-row-section">
-          <div className="centered-text-section">
-            <p className="section-heading">Our Approach</p>
-            <div className="section-details">
-              <ul>
-                <li>
-                  <strong>Understanding Your Needs:</strong> We begin by
-                  conducting a comprehensive analysis of your requirements,
-                  ensuring that we fully understand your objectives and
-                  challenges.
-                </li>
-                <li>
-                  <strong>Design & Planning:</strong> Our team collaborates
-                  closely with you to design a solution that aligns with your
-                  vision and goals. We emphasize usability, scalability, and
-                  performance in our design process.
-                </li>
-                <li>
-                  <strong>Development & Implementation:</strong> Leveraging the
-                  latest tools and technologies, we develop custom software
-                  solutions that address your specific needs. Our agile
-                  development methodology ensures flexibility and adaptability
-                  throughout the process.
-                </li>
-                <li>
-                  <strong>Testing & Quality Assurance:</strong> We rigorously
-                  test each software product to ensure functionality,
-                  reliability, and security. Our goal is to deliver a flawless
-                  user experience that exceeds your expectations.
-                </li>
-                <li>
-                  <strong>Deployment & Support:</strong> Once the software is
-                  ready, we assist with deployment and provide ongoing support
-                  to ensure smooth operation and user satisfaction.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="rounded-image">
-            <img
-              src={Assets.images.softwaredesign}
-              alt="coding-image"
-              className="boxed-image"
-            />
-          </div>
+        {/* Approach Section */}
+        <div className="software-approach-main">
+          <h1 className="software-approach-head">Our Approach</h1>
+          <ul className="software-approach-list">
+            <li className="software-approach-item">
+              <h2>Understanding Your Needs</h2>
+              <p>
+                We begin by conducting a comprehensive analysis of your
+                requirements, ensuring that we fully understand your objectives
+                and challenges.
+              </p>
+            </li>
+            <li className="software-approach-item">
+              <h2>Design & Planning</h2>
+              <p>
+                Our team collaborates closely with you to design a solution that
+                aligns with your vision and goals. We emphasize usability,
+                scalability, and performance in our design process.
+              </p>
+            </li>
+            <li className="software-approach-item">
+              <h2>Development & Implementation</h2>
+              <p>
+                Leveraging the latest tools and technologies, we develop custom
+                software solutions that address your specific needs. Our agile
+                development methodology ensures flexibility and adaptability
+                throughout the process.
+              </p>
+            </li>
+            <li className="software-approach-item">
+              <h2>Testing & Quality Assurance</h2>
+              <p>
+                We rigorously test each software product to ensure
+                functionality, reliability, and security. Our goal is to deliver
+                a flawless user experience that exceeds your expectations.
+              </p>
+            </li>
+            <li className="software-approach-item">
+              <h2>Deployment & Support</h2>
+              <p>
+                Once the software is ready, we assist with deployment and
+                provide ongoing support to ensure smooth operation and user
+                satisfaction.
+              </p>
+            </li>
+          </ul>
         </div>
+
+        {/* Featured Training Programs Section */}
         <div className="flex-row-section reverse">
           <div className="rounded-image">
             <img
@@ -82,7 +85,7 @@ const Software: React.FunctionComponent = () => {
             />
           </div>
           <div className="centered-text-section">
-            <p className="section-heading">Featured Training Programs</p>
+            <h2 className="section-heading">Featured Training Programs</h2>
             <div className="section-details">
               <ul>
                 <li>
@@ -105,9 +108,18 @@ const Software: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
+
+        {/* Technologies and Tools Section */}
         <div className="flex-row-section">
+          <div className="rounded-image">
+            <img
+              src={Assets.images.statistics}
+              alt="coding-image"
+              className="boxed-image"
+            />
+          </div>
           <div className="centered-text-section">
-            <p className="section-heading">Technologies And Tools</p>
+            <h2 className="section-heading">Technologies And Tools</h2>
             <div className="section-details">
               <ul>
                 <li>
@@ -124,13 +136,6 @@ const Software: React.FunctionComponent = () => {
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="rounded-image">
-            <img
-              src={Assets.images.statistics}
-              alt="coding-image"
-              className="boxed-image"
-            />
           </div>
         </div>
       </div>
