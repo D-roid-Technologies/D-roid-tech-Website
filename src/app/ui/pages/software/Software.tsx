@@ -73,7 +73,7 @@ const Software: React.FunctionComponent = () => {
             />
           </div>
         </div>
-        <div className="flex-row-section">
+        <div className="flex-row-section reverse">
           <div className="rounded-image">
             <img
               src={Assets.images.mobiledev}
