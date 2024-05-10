@@ -71,7 +71,7 @@
 .droneapproach-list h2 {
   margin-bottom: 20px;
   font-family: "Rammetto One";
-  color: #000;
+  color: #232e35;
   transition: color 0.3s ease;
 }
 .droneapproach-list h2:hover {
@@ -91,8 +91,29 @@
   transition: color 0.3s ease;
 }
 .list-button:hover {
-  color: #000;
+  color: #232e35;
   cursor: pointer;
+}
+/* FEATURED DRONE SERVICE */
+.ft-drone-service {
+  margin-bottom: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.featured-head {
+  text-align: center;
+  font-family: "Rammetto One";
+  margin-bottom: 2em;
+}
+.droneapproach-services {
+  display: flex;
+  gap: 5%;
+}
+.video-details {
+  padding: 90px 0;
+}
+.video-heading {
+  font-size: 3rem;
 }
 
 /* TABLET On screens that are 992px or less, set the background color to blue */

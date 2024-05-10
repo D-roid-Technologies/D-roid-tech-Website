@@ -436,8 +436,8 @@ export const DATA = {
   ],
   FeaturedDroneServices: [
     {
-      image: "",
-      title: "Aerial Photography & Videography",
+      video: require("../../videos/dronevideo.mp4"),
+      title: "Aerial Photography &  Videography",
       content:
         "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
     },

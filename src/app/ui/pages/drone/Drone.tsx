@@ -5,7 +5,7 @@ import "../drone/Drone.css";
 import droneImage from "../../../images/png/drone.png";
 import { DATA } from "../../../utils/constant/Data";
 
-const Drone: React.FunctionComponent<any> = () => {
+const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   return (
     <div>
       <div
@@ -48,15 +48,19 @@ const Drone: React.FunctionComponent<any> = () => {
         </ul>
       </div>
       {/*  Featured Drone Service */}
-      <section>
+      <section className="ft-drone-service">
         <div>
-          <h1 className="droneapproach-head">FEATURED DRONE SERVICES</h1>
-          <ul className="droneapproach-item">
+          <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
+          <ul className="droneapproach-details">
             {DATA.FeaturedDroneServices.map((item, index) => (
-              <li className="droneapproach-list" key={index}>
-                <img src={item.image} alt="" />
-                <h2>{item.title}</h2>
-                <p>{item.content}</p>
+              <li className="droneapproach-services" key={index}>
+                <div>
+                  <video controls src={item.video} type="video/mp4" />
+                </div>
+                <div className="video-details">
+                  <h2 className="video-heading">{item.title}</h2>
+                  <p>{item.content}</p>
+                </div>
               </li>
             ))}
           </ul>
