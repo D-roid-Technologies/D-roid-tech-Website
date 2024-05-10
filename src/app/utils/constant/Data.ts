@@ -11,7 +11,7 @@ export const DATA = {
     },
     {
       link: "Software Development",
-      path: "/programminghome",
+      path: "/software",
     },
     {
       link: "Animation Creation",
