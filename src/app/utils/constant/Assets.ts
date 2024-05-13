@@ -21,6 +21,7 @@ export const Assets = {
     manLearning: require("../../images/png/Man-learning-online.jpg"),
     contactarealogo: require("../../images/png/i-removebg-preview.png"),
     ccare: require("../../images/png/ccare.png"),
+    software: require("../../images/png/image.png"),
   },
   colors: {
     basic: "#0000",
