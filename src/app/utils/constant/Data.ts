@@ -444,10 +444,48 @@ export const DATA = {
   ],
   MappingSurveying: [
     {
-      image: require("../../images/png/drone survey.png"),
+      // image: require("../../images/png/drone survey.png"),
+      image: require("../../images/png/dronesurveying.png"),
       title: "MAPPING & SURVEYING",
       content:
         "Generate high-resolution maps and 3D models for land surveying, construction planning, and site analysis.",
+    },
+  ],
+  InfrastructureInspection: [
+    {
+      image: require("../../images/png/infrastructure.png"),
+      title: "INFRASTRUCTURE INSPECTION",
+      content:
+        "Conduct thorough inspections of infrastructure assets such as buildings, bridges, and power lines to identify defects and maintenance needs.",
+    },
+  ],
+  CropMonitoringAgriculture: [
+    {
+      // image: require("../../images/png/cropmonitoring3.png"),
+      title: "CROP MONITORING & AGRICULTURE",
+      content:
+        "Monitor crop health, assess field conditions, and optimize agricultural operations using aerial imagery and data analysis.",
+    },
+  ],
+  DroneModels: [
+    {
+      image: require("../../images/png/dronemodel.png"),
+      title: "Drone Models",
+      content: " DJI Phantom, DJI Mavic, DJI Inspire, SenseFly eBee",
+    },
+  ],
+  CamerasSensors: [
+    {
+      image: require("../../images/png/camerasandsensors.png"),
+      title: "Cameras & Sensors",
+      content: " RGB cameras, multispectral cameras, LiDAR sensors",
+    },
+  ],
+  SoftwareTools: [
+    {
+      image: require("../../images/png/softwaretools.png"),
+      title: "Software Tools",
+      content: "Pix4D, DroneDeploy, Agisoft Metashape ",
     },
   ],
 };

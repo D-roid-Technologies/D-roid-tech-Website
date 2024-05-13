@@ -6,11 +6,12 @@ import droneImage from "../../../images/png/drone.png";
 import { DATA } from "../../../utils/constant/Data";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import cropMonitoring from "../../../images/png/cropmonitoring3.png";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   const navigate = useNavigate();
   return (
-    <div>
+    <main>
       <div
         style={{
           backgroundImage: `url("${droneImage}")`,
@@ -20,7 +21,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         <NavBar />
 
         {/* CONTENT */}
-        <div className="drone">
+        <article className="drone">
           <article className="drone-content">
             <p className="drone-heading">
               DRONES ARE CHANGING
@@ -35,10 +36,10 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             high-quality aerial imaging, mapping, inspection, and surveillance
             solutions tailored to meet the unique needs of our clients.
           </p>
-        </div>
+        </article>
       </div>
       {/* OUR APPROACH SECTION */}
-      <div className="drone-approach-main">
+      <section className="drone-approach-main">
         <h1 className="droneapproach-head">OUR APPROACH</h1>
         <ul className="droneapproach-item">
           {DATA.droneApproach.map((item, index) => (
@@ -49,17 +50,18 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </section>
       {/*  Featured Drone Service */}
       <section className="ft-drone-service">
-        <div className="videography-main">
+        <section className="videography-main">
           <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
+          {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
           <ul className="droneapproach-details">
             {DATA.FeaturedDroneServices.map((item, index) => (
               <li className="droneapproach-services" key={index}>
-                <div>
+                <figure>
                   <video controls src={item.video} type="video/mp4" />
-                </div>
+                </figure>
                 <div className="video-details">
                   <h2 className="video-heading">{item.title}</h2>
                   <p>{item.content}</p>
@@ -82,9 +84,9 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               </li>
             ))}
           </ul>
-        </div>
-        {/* SECTION TWO */}
-        <div>
+        </section>
+        {/* MAPPING & SURVEYING */}
+        <section className="mapping">
           <ul className="mapping-ul">
             {DATA.MappingSurveying.map((item, index) => (
               <li className="mappping-services" key={index}>
@@ -92,15 +94,102 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   <h2 className="mapping-heading">{item.title}</h2>
                   <p>{item.content}</p>
                 </div>
-                <div>
+                <picture>
                   <img src={item.image} alt="survey Image" />
+                </picture>
+              </li>
+            ))}
+          </ul>
+        </section>
+        {/* Infrastructure Inspection */}
+        <section className="infrastructure">
+          <ul className="mapping-ul">
+            {DATA.InfrastructureInspection.map((item, index) => (
+              <li className="mappping-services" key={index}>
+                <picture>
+                  <img src={item.image} alt="survey Image" />
+                </picture>
+                <div className="mapping-text">
+                  <h2 className="mapping-heading">{item.title}</h2>
+                  <p>{item.content}</p>
                 </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </section>
+      {/* Crop Monitoring & Agricultur */}
+      <section className="cropmonitoring">
+        <div
+          style={{
+            backgroundImage: `url("${cropMonitoring}")`,
+          }}
+          className="bg-image"
+        >
+          <ul className="mapping-ul">
+            {DATA.CropMonitoringAgriculture.map((item, index) => (
+              <li className="mappping-services" key={index}>
+                <div className="mapping-text">
+                  <h2 className="mapping-heading">{item.title}</h2>
+                  <p>{item.content}</p>
+                </div>
+                {/* <picture>
+                    <img src={item.image} alt="survey Image" />
+                  </picture> */}
               </li>
             ))}
           </ul>
         </div>
       </section>
-    </div>
+      {/* Technologies & Equipment */}
+      <section className="techandequipment">
+        <h1 className="tech-heading">TECHNOLOGIES AND EQUIPMENT </h1>
+        {/* drone-model */}
+        <div className="drone-camera-software">
+          <div>
+            <ul>
+              {DATA.DroneModels.map((item, index) => (
+                <li className="mappping-services" key={index}>
+                  <div className="">
+                    <img src={item.image} alt="" className="imagesize" />
+                    <h2 className="">{item.title}</h2>
+                    <p>{item.content}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Camera & Sensors */}
+          <div>
+            <ul>
+              {DATA.CamerasSensors.map((item, index) => (
+                <li className="mappping-services" key={index}>
+                  <div className="">
+                    <img src={item.image} alt="" className="imagesize" />
+                    <h2 className="">{item.title}</h2>
+                    <p>{item.content}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Software Tools */}
+          <div>
+            <ul>
+              {DATA.SoftwareTools.map((item, index) => (
+                <li className="mappping-services" key={index}>
+                  <div>
+                    <img src={item.image} alt="" className="imagesize" />
+                    <h2 className="">{item.title}</h2>
+                    <p>{item.content}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 
