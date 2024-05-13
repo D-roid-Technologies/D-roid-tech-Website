@@ -7,8 +7,34 @@ import { DATA } from "../../../utils/constant/Data";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import cropMonitoring from "../../../images/png/cropmonitoring3.png";
+import { useSelector } from "react-redux";
+import { RootState, store } from "../../../redux/Store";
+import {
+  updateModal,
+  updateModalContent,
+} from "../../../redux/slices/AppEntrySlice";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
+  const appEntry = useSelector((state: RootState) => state.appEntry);
+  // console.log(companyBanner);
+  const modal = appEntry.showModal;
+  const aTitle = appEntry.appTitle;
+  const aBody = appEntry.appBody;
+
+  const onSuccessTitle = "Our Testimonies";
+  const onFailedTitle = "Failed";
+  const onSuccessBody = (
+    <>
+      <p>
+        {" "}
+        "D'roid Technologies drone services helped us streamline our
+        construction projects by providing accurate aerial mapping and surveying
+        data. Their team's professionalism and attention to detail were
+        commendable, and the results exceeded our expectations." - Sarah Smith,
+        Project Manager.{" "}
+      </p>
+    </>
+  );
   const navigate = useNavigate();
   return (
     <main>
@@ -153,8 +179,8 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 <li className="mappping-services" key={index}>
                   <div className="">
                     <img src={item.image} alt="" className="imagesize" />
-                    <h2 className="">{item.title}</h2>
-                    <p>{item.content}</p>
+                    <h2 className="title">{item.title}</h2>
+                    <p className="content">{item.content}</p>
                   </div>
                 </li>
               ))}
@@ -167,8 +193,8 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 <li className="mappping-services" key={index}>
                   <div className="">
                     <img src={item.image} alt="" className="imagesize" />
-                    <h2 className="">{item.title}</h2>
-                    <p>{item.content}</p>
+                    <h2 className="title">{item.title}</h2>
+                    <p className="content">{item.content}</p>
                   </div>
                 </li>
               ))}
@@ -181,12 +207,37 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 <li className="mappping-services" key={index}>
                   <div>
                     <img src={item.image} alt="" className="imagesize" />
-                    <h2 className="">{item.title}</h2>
-                    <p>{item.content}</p>
+                    <h2 className="title">{item.title}</h2>
+                    <p className="content">{item.content}</p>
                   </div>
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="product-button">
+          <div className="See-our-product">
+            <Button
+              bgColor={"black"}
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              mRight={0}
+              title="See our Testimonials"
+              color="white"
+              fWeight={800}
+              onClickButton={() => {
+                store.dispatch(updateModal(true));
+                store.dispatch(
+                  updateModalContent({
+                    appTitle: onSuccessTitle,
+                    appBody: onSuccessBody,
+                  })
+                );
+              }}
+            />
           </div>
         </div>
       </section>

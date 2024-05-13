@@ -163,8 +163,8 @@
 }
 .tech-heading {
   text-align: center;
-  color: #fff;
-  padding-top: 6em;
+  /* color: #fff; */
+  padding-top: 4em;
   font-size: 2rem;
   font-weight: 700;
   line-height: 40px;
@@ -182,6 +182,12 @@
 .imagesize {
   width: 100%;
   height: 400px;
+}
+.title {
+  text-align: center;
+}
+.content {
+  text-align: center;
 }
 
 /* TABLET On screens that are 992px or less, set the background color to blue */
