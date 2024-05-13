@@ -117,15 +117,15 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             ))}
           </ul>
         </section>
-      </section>
-      {/* Crop Monitoring & Agricultur */}
-      <section className="cropmonitoring">
-        <div
+
+        {/* Crop Monitoring & Agricultur */}
+        <section className="cropmonitoring">
+          {/* <div
           style={{
             backgroundImage: `url("${cropMonitoring}")`,
           }}
           className="bg-image"
-        >
+        > */}
           <ul className="mapping-ul">
             {DATA.CropMonitoringAgriculture.map((item, index) => (
               <li className="mappping-services" key={index}>
@@ -133,13 +133,14 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   <h2 className="mapping-heading">{item.title}</h2>
                   <p>{item.content}</p>
                 </div>
-                {/* <picture>
-                    <img src={item.image} alt="survey Image" />
-                  </picture> */}
+                <picture>
+                  <img src={item.image} alt="survey Image" />
+                </picture>
               </li>
             ))}
           </ul>
-        </div>
+          {/* </div> */}
+        </section>
       </section>
       {/* Technologies & Equipment */}
       <section className="techandequipment">

@@ -461,7 +461,7 @@ export const DATA = {
   ],
   CropMonitoringAgriculture: [
     {
-      // image: require("../../images/png/cropmonitoring3.png"),
+      image: require("../../images/png/cropmonitorimage.png"),
       title: "CROP MONITORING & AGRICULTURE",
       content:
         "Monitor crop health, assess field conditions, and optimize agricultural operations using aerial imagery and data analysis.",
