@@ -5,6 +5,20 @@
   height: 100vh;
 }
 
+.prev-button {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.next-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .training-home-section {
   display: flex;
   justify-content: center;
@@ -185,7 +199,6 @@
 
   .training-smaller-centered-heading {
     display: none;
-    /* font-size: 1.2rem; */
   }
 
   .training-section-heading {
