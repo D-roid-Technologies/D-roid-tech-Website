@@ -5,6 +5,20 @@
   height: 100vh;
 }
 
+.prev-button {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.next-button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .training-home-section {
   display: flex;
   justify-content: center;
@@ -159,6 +173,17 @@
   flex-basis: calc(23% - 2%);
 }
 
+.icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 3rem;
+  color: #12d6d6;
+}
+
 .training-program-item:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -185,7 +210,6 @@
 
   .training-smaller-centered-heading {
     display: none;
-    /* font-size: 1.2rem; */
   }
 
   .training-section-heading {

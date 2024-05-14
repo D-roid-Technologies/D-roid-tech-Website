@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
+import { FaLaptopCode, FaVideo, FaChalkboardTeacher } from "react-icons/fa";
 import "./Training.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { Link, useLocation } from "react-router-dom";
+import { TrainingPhoto } from "../../../utils/Types";
+import Button from "../../components/button/Button";
+
+const photos: TrainingPhoto[] = [
+  { image: Assets.images.staffBg, text: "Expert trainers available" },
+  {
+    image: Assets.images.companyBanner,
+    text: "At D'roid Technologies, we offer comprehensive tech training programs designed to empower individuals with the knowledge and skills needed to excel in today's rapidly evolving tech landscape.",
+  },
+  { image: Assets.images.background2, text: "Learn at your own pace" },
+];
 
 const Training: React.FunctionComponent = () => {
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
+
+  // Function to handle the previous button click
+  const handlePreviousPhoto = () => {
+    setCurrentPhotoIndex((prevIndex) =>
+      prevIndex === 0 ? photos.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Function to handle the next button click
+  const handleNextPhoto = () => {
+    setCurrentPhotoIndex((prevIndex) =>
+      prevIndex === photos.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div>
       <div
         style={{
-          backgroundImage: `url("${Assets.images.background1}")`,
+          backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
         }}
         className="training-full-screen-background-image"
       >
@@ -20,15 +48,37 @@ const Training: React.FunctionComponent = () => {
         <div className="training-home-section">
           <div className="training-home-content">
             <p className="training-large-centered-heading">
-              At D'roid Technologies, we offer comprehensive tech training
-              programs designed to empower individuals with the knowledge and
-              skills needed to excel in today's rapidly evolving tech landscape.
+              {photos[currentPhotoIndex].text}
             </p>
             <p className="training-smaller-centered-heading">
               Our training courses cover a wide range of topics, from
               programming languages and software development methodologies to
               emerging technologies and industry best practices.
             </p>
+          </div>
+          <div className="prev-button">
+            <Button
+              title="<"
+              bgColor="rgba(0, 0, 0, 0.5)"
+              color={Assets.colors.light}
+              onClickButton={handlePreviousPhoto}
+              mLeft={10}
+              mRight={10}
+              mTop={0}
+              mBottom={0}
+            />
+          </div>
+          <div className="next-button">
+            <Button
+              title=">"
+              bgColor="rgba(0, 0, 0, 0.5)"
+              color={Assets.colors.light}
+              onClickButton={handleNextPhoto}
+              mLeft={10}
+              mRight={10}
+              mTop={0}
+              mBottom={0}
+            />
           </div>
         </div>
       </div>
@@ -93,58 +143,68 @@ const Training: React.FunctionComponent = () => {
         {/* Featured Training Programs Section */}
 
         <div className="training-approach-main">
-  <h1 className="training-approach-head">Featured Training Programs</h1>
-  <ul className="training-approach-list">
-    {DATA.courses.map((course) => (
-      <li className="training-approach-item" style={{border: "1px solid #ccc"}} key={course.id}>
-        <Link
-          to={`${location.pathname}/course-detail/${course.id}`}
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <h3 style={{marginBottom: "1rem"}}>{course.title}</h3>
-          <h5 style={{marginBottom: "1rem"}}>{course.subtitle}</h5>
-          <p>
-            {course.description.slice(0, 100)}
-            {course.description.length > 100 && "..."}
-            {course.description.length > 100 && (
-              <span style={{ color: `${Assets.colors.secondary}`, cursor: "pointer" }}> Read More</span>
-            )}
-          </p>
-        </Link>
-      </li>
-    ))}
-  </ul>
-</div>
+          <h1 className="training-approach-head">Featured Training Programs</h1>
+          <ul className="training-approach-list">
+            {DATA.courses.map((course) => (
+              <li
+                className="training-approach-item"
+                style={{ border: "1px solid #ccc" }}
+                key={course.id}
+              >
+                <Link
+                  to={`${location.pathname}/course-detail/${course.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <h3 style={{ marginBottom: "1rem" }}>{course.title}</h3>
+                  <h5 style={{ marginBottom: "1rem" }}>{course.subtitle}</h5>
+                  <p>
+                    {course.description.slice(0, 100)}
+                    {course.description.length > 100 && "..."}
+                    {course.description.length > 100 && (
+                      <span
+                        style={{
+                          color: `${Assets.colors.secondary}`,
+                          cursor: "pointer",
+                        }}
+                      >
+                        {" "}
+                        Read More
+                      </span>
+                    )}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Technologies and Tools Section */}
-        <div className="training-flex-row-section reverse">
-          <div className="training-rounded-image">
-            <img
-              src={Assets.images.statistics}
-              alt="tools"
-              className="training-boxed-image"
-            />
-          </div>
-          <div className="training-centered-text-section">
-            <h2 className="training-section-heading">Technologies And Tools</h2>
-            <div className="training-section-details">
-              <ul>
-                <li>
-                  <strong>Learning Management Systems:</strong> Moodle, Canvas,
-                  Blackboard
-                </li>
-                <li>
-                  <strong>Video Conferencing Platforms:</strong> Zoom, Microsoft
-                  Teams, Google Meet
-                </li>
-                <li>
-                  <strong>Code Editors:</strong> Visual Studio Code, Atom,
-                  Sublime Text
-                </li>
-              </ul>
+      </div>
+      <div className="training-approach-main">
+        <h1 className="training-approach-head">Technologies and Tools</h1>
+        <ul className="training-approach-list">
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaChalkboardTeacher className="icon" />
             </div>
-          </div>
-        </div>
+            <h2>Learning Management Systems</h2>
+            <p>Moodle, Canvas, Blackboard</p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaVideo className="icon" />
+            </div>
+            <h2>Video Conferencing Platforms</h2>
+            <p>Zoom, Microsoft Teams, Google Meet</p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaLaptopCode className="icon" />
+            </div>
+            <h2>Code Editors</h2>
+            <p>Visual Studio Code, Atom, Sublime Text</p>
+          </li>
+        </ul>
       </div>
     </div>
   );
