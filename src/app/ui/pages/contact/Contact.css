@@ -2,103 +2,98 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
+.contact-bgimage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 70vh;
+  margin-bottom: 50px;
+}
+/* CONTENT */
 .contact-main {
-  padding-left: 100px;
-  padding-right: 100px;
-  margin-top: 2em;
-}
-.contactpage-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 80px;
-  margin-bottom: 100px;
-  /* background-color: red; */
-}
-
-.contact-page {
-  width: 50%;
-}
-
-.customer-care {
-  width: 50%;
   display: flex;
   justify-content: center;
-  background-color: red;
-}
-.contact-page h1 {
-  font-size: 56px;
-  font-weight: 600;
-  font-family: "Rammetto";
-  margin-bottom: 0.3em;
-}
-
-.contact-page h2 {
-  font-size: 18px;
-  font-weight: 600;
-  font-family: "MazzardH";
-  margin-bottom: 2em;
-  word-spacing: 5px;
-}
-/* BUTTON */
-.contactpage-button {
-  display: flex;
-  justify-content: left;
   align-items: center;
+  padding-top: 100px;
 }
 
-.contactpage-button div {
-  width: 40%;
-  border-radius: none;
-}
-/* IMAGE */
-.image-s {
-  width: 100%;
+.contactheader-details {
+  margin-top: 1em;
+  font-size: 1.8rem;
+  word-spacing: 2px;
+  text-align: center;
+  color: black;
+  font-family: "Mazzard";
 }
 
-/* SPEAK WITHOUR TEAM SECTION */
-.speak-main {
-  padding-left: 100px;
-  padding-right: 100px;
-  margin-top: 2em;
-  margin-bottom: 120px;
-}
-.speak-container {
+/* SAY HELLO SECTION */
+.say-hello {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 50px;
 }
-.speak-page h3 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  font-family: "Rammetto";
-  margin-bottom: 0.7em;
+.hello-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.4em;
 }
-
-.speak-page p {
-  font-size: 1.5rem;
-  font-family: "Mazzard";
-  margin-bottom: 1.5em;
+.hello-details {
+  font-size: 1.6rem;
   color: rgb(124, 124, 124);
-  word-spacing: 5px;
 }
-/* BUTTON */
-.speakwith-button {
+.hello-image {
+  width: 70%;
+}
+/* CONTACT INFORMATION */
+.contact-information {
+  background-color: #292929;
+  width: fit-content;
+  border-radius: 5px;
+}
+.contact-info-details {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 140px;
+}
+.info-details-head {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 0.6em;
+  font-family: "Rammetto One";
+}
+.info-details-p {
+  color: rgb(124, 124, 124);
+  font-size: 1.1rem;
+  font-family: "Mazzard";
+  margin-bottom: 4em;
+}
+/* phone number */
+.call-contact {
+  gap: 10px;
+  padding-bottom: 1.5em;
   display: flex;
-  justify-content: left;
   align-items: center;
 }
-
-.speakwith-button div {
-  width: 10%;
-  border-radius: none;
+.phone-icon {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 25px;
 }
-/* IMAGE */
-.speak-image {
-  width: 180%;
-  height: auto;
+.phone-no {
+  color: rgb(124, 124, 124);
+  text-decoration: none;
 }
-/* MESSAGE SECTION */
+.address {
+  padding-bottom: 3em;
+}
+/* CONTACT US INPUT & MESSAGE  SECTION*/
+.message-section {
+  margin-bottom: 50px;
+}
 .message {
   text-align: center;
   margin-bottom: 25px;
@@ -113,7 +108,7 @@
   font-family: "Mazzard";
   font-size: 1.2em;
 }
-/* FORM SECTION */
+/* FORM INPUT AREA  */
 .input-area {
   display: flex;
   justify-content: center;
@@ -123,260 +118,43 @@
 .input-section {
   width: auto;
   padding: 25px 40px;
-  /* background-image: linear-gradient(#282a94, #282a94, #4143d8); */
   background-color: #282a94;
+  border-radius: 10px;
 }
-.input-section-child {
-}
-.name-cta {
+
+/* INPUT SECTION ONE */
+.name-btn {
   display: flex;
-  gap: 25px;
+  align-items: center;
+  gap: 30%;
 }
-.input-cta {
-  width: 50%;
+.input-container {
+  width: 120%;
 }
-/* TEXT AREA */
+/* MESSAGE AREA */
 .text-area {
   display: flex;
-  gap: 30px;
-  margin-top: 4em;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }
 textarea {
+  margin-top: 10px;
   margin-bottom: 30px;
 }
-.textarea-cta {
+.textarea-btn {
   width: 60%;
+  transition: transform 0.3s ease-in-out;
+}
+.textarea-btn:hover {
+  transform: scale(1.1);
+  background-color: #737458;
 }
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
-  .contact-main {
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 2em;
-  }
-  .contactpage-container {
-    display: flex;
-    /* justify-content: space-evenly; */
-    gap: 18%;
-  }
-  .contact-page h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    font-family: "Rammetto";
-    margin-bottom: 0.3em;
-  }
-
-  .contact-page h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    font-family: "Rammetto";
-    margin-bottom: 0.2em;
-    word-spacing: 5px;
-  }
-  /* BUTTON */
-  .contactpage-button {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-  }
-
-  .contactpage-button div {
-    width: 40%;
-    border-radius: none;
-  }
-  /* IMAGE */
-  .image-s {
-    width: 90%;
-    height: auto;
-  }
-
-  /* SPEAK WITHOUR TEAM SECTION */
-  .speak-main {
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 3em;
-    margin-bottom: 3em;
-  }
-  .speak-container {
-    display: flex;
-    gap: 10%;
-  }
-  .speak-page h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    font-family: "Rammetto";
-    margin-bottom: 0.7em;
-  }
-
-  .speak-page p {
-    font-size: 1.2rem;
-    font-family: "Mazzard";
-    margin-bottom: 1.5em;
-    color: rgb(124, 124, 124);
-    word-spacing: 5px;
-  }
-  /* BUTTON */
-  .speakwith-button {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-  }
-
-  .speakwith-button div {
-    width: 10%;
-    border-radius: none;
-  }
-  /* IMAGE */
-  .speak-image {
-    width: 100%;
-    height: auto;
-  }
-  /* MESSAGE SECTION */
-  .message {
-    text-align: center;
-    margin-bottom: 25px;
-  }
-
-  .message h2 {
-    margin-bottom: 0.6em;
-  }
-
-  .message p {
-    color: rgb(124, 124, 124);
-    font-family: "Mazzard";
-    font-size: 1.2em;
-  }
-  /* FORM SECTION */
-  .input-area {
-    display: flex;
-    justify-content: center;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .input-section {
-    width: auto;
-    padding: 25px 40px;
-    /* background-image: linear-gradient(#282a94, #282a94, #4143d8); */
-    background-color: #282a94;
-  }
 }
 
 /*Mobile:  On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
-  .contact-main {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 2em;
-  }
-  .contactpage-container {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-evenly; */
-    gap: 10%;
-  }
-  .contact-page h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    font-family: "Rammetto";
-    margin-bottom: 0.3em;
-  }
-
-  .contact-page h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: "Rammetto";
-    margin-bottom: 0.2em;
-    word-spacing: 5px;
-  }
-  /* BUTTON */
-  .contactpage-button {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-  }
-
-  .contactpage-button div {
-    width: 40%;
-    border-radius: none;
-  }
-  /* IMAGE */
-  .customer-care {
-    width: 50%;
-  }
-  .image-s {
-    width: 70%;
-    height: auto;
-  }
-
-  /* SPEAK WITHOUR TEAM SECTION */
-  .speak-main {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 3em;
-    margin-bottom: 3em;
-  }
-  .speak-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5%;
-  }
-  .speak-page h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: "Rammetto";
-    margin-bottom: 0.7em;
-  }
-
-  .speak-page p {
-    font-size: 1rem;
-    font-family: "Mazzard";
-    margin-bottom: 0.5em;
-    color: rgb(124, 124, 124);
-    word-spacing: 5px;
-  }
-  /* BUTTON */
-  .speakwith-button {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-  }
-
-  .speakwith-button div {
-    width: 10%;
-    border-radius: none;
-  }
-  /* IMAGE */
-  .speak-image {
-    width: 80%;
-    height: auto;
-  }
-  /* MESSAGE SECTION */
-  .message {
-    text-align: center;
-    margin-bottom: 25px;
-  }
-
-  .message h2 {
-    margin-bottom: 0.4em;
-  }
-
-  .message p {
-    color: rgb(124, 124, 124);
-    font-family: "Mazzard";
-    font-size: 1.1em;
-  }
-  /* FORM SECTION */
-  .input-area {
-    display: flex;
-    justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .input-section {
-    width: auto;
-    padding: 25px 40px;
-    /* background-image: linear-gradient(#282a94, #282a94, #4143d8); */
-    background-color: #282a94;
-  }
 }
