@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
-import { FaLaptopCode, FaVideo, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaLaptopCode, FaVideo, FaChalkboardTeacher } from "react-icons/fa";
 import "./Training.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
@@ -40,6 +40,7 @@ const Training: React.FunctionComponent = () => {
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
         }}
         className="training-full-screen-background-image"
       >
@@ -47,7 +48,7 @@ const Training: React.FunctionComponent = () => {
         <div className="training-home-section">
           <div className="training-home-content">
             <p className="training-large-centered-heading">
-            {photos[currentPhotoIndex].text}
+              {photos[currentPhotoIndex].text}
             </p>
             <p className="training-smaller-centered-heading">
               Our training courses cover a wide range of topics, from
@@ -179,24 +180,31 @@ const Training: React.FunctionComponent = () => {
 
         {/* Technologies and Tools Section */}
       </div>
-      <div className="training-centered-text-section">
-        <h2 className="training-section-heading">Technologies And Tools</h2>
-        <div className="training-section-details">
-          <ul>
-            <li>
-              <strong>Learning Management Systems:</strong> Moodle, Canvas,
-              Blackboard
-            </li>
-            <li>
-              <strong>Video Conferencing Platforms:</strong> Zoom, Microsoft
-              Teams, Google Meet
-            </li>
-            <li>
-              <strong>Code Editors:</strong> Visual Studio Code, Atom, Sublime
-              Text
-            </li>
-          </ul>
-        </div>
+      <div className="training-approach-main">
+        <h1 className="training-approach-head">Technologies and Tools</h1>
+        <ul className="training-approach-list">
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaChalkboardTeacher className="icon" />
+            </div>
+            <h2>Learning Management Systems</h2>
+            <p>Moodle, Canvas, Blackboard</p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaVideo className="icon" />
+            </div>
+            <h2>Video Conferencing Platforms</h2>
+            <p>Zoom, Microsoft Teams, Google Meet</p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaLaptopCode className="icon" />
+            </div>
+            <h2>Code Editors</h2>
+            <p>Visual Studio Code, Atom, Sublime Text</p>
+          </li>
+        </ul>
       </div>
     </div>
   );
