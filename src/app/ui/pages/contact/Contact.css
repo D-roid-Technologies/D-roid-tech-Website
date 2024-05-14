@@ -14,7 +14,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* color: black; */
   padding-top: 100px;
 }
 
@@ -27,6 +26,51 @@
   font-family: "Mazzard";
 }
 
+/* SAY HELLO SECTION */
+.say-hello {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 50px;
+}
+.hello-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.4em;
+}
+.hello-details {
+  font-size: 1.6rem;
+  color: rgb(124, 124, 124);
+}
+.hello-image {
+  width: 70%;
+}
+/* CONTACT INFORMATION */
+.contact-information {
+  background-color: #292929;
+  width: fit-content;
+  border-radius: 5px;
+}
+.contact-info-details {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 140px;
+}
+.info-details-head {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.4em;
+  font-family: "Rammetto One";
+}
+.info-details-p {
+  color: white;
+  font-size: 1rem;
+  font-family: "Mazzard";
+  margin-bottom: 4em;
+}
 /* CONTACT US INPUT & MESSAGE  SECTION*/
 .message-section {
   margin-bottom: 50px;

@@ -5,6 +5,7 @@ import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../../components/textInput/AppInput";
 import contactBgImage from "../../../images/png/contactbg.jpg";
+import { LuPhoneCall } from "react-icons/lu";
 
 const Contact: React.FunctionComponent = () => {
   // Your divs are not aligned properly
@@ -30,6 +31,44 @@ const Contact: React.FunctionComponent = () => {
             </p>
           </article>
         </div>
+        {/* SAY HELLO SECTION */}
+        <section className="say-hello">
+          <article>
+            <h1 className="hello-heading">Reach out and say hello </h1>
+            <p className="hello-details">
+              {" "}
+              Get in touch through any of the channels below. We’re eager to
+              hear from you!
+            </p>
+          </article>
+          <img
+            src="https://avatars.mds.yandex.net/i?id=9b0d958a744f2468fb7ea9c46e5aa47a40142c73-9048286-images-thumbs&n=13"
+            alt="customer care img"
+            className="hello-image"
+          />
+        </section>
+        {/* CONTACT INFORMATION */}
+        <section className="contact-information">
+          <div className="contact-info-details">
+            <div>
+              <h1 className="info-details-head"> Contact Information</h1>
+              <p className="info-details-p">
+                Say something to start a live chat
+              </p>
+              <div>
+                <span className="call-contact">
+                  {" "}
+                  <LuPhoneCall />
+                </span>
+                <span>
+                  <a href="tel:+1234567890"> +1 (234) 567-890</a>
+                </span>
+              </div>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </section>
 
         {/* CONTACT US INPUT & MESSAGE  SECTION */}
         <div className="message-section">
