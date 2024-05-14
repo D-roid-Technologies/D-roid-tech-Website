@@ -87,7 +87,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             {DATA.FeaturedDroneServices.map((item, index) => (
               <li className="droneapproach-services" key={index}>
                 <figure>
-                  <video controls src={item.video} type="video/mp4" />
+                  <video controls src={item.video} />
                 </figure>
                 <div className="video-details">
                   <h2 className="video-heading">{item.title}</h2>

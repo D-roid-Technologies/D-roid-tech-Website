@@ -33,105 +33,50 @@ const CustomerFeedBack: React.FunctionComponent = () => {
   return (
     <div className="customerfeedback-main">
       <div className="customer-testimonials">
-        <div
-          style={{
-            backgroundImage: `url("${feedBackImage}")`,
-          }}
-          className="feedback-bg-image"
-        >
+        <div>
           {/* CONTENT */}
+
           <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
-          <div className="read-content">
-            <div className="read-details">
-              <p className="show">See all our testimonials</p>
-              <div className="connect-to">
-                {/* This is how to navigate to another page, always se react router navigation */}
-                <div className="see-more-btn">
-                  <Button
-                    bgColor={"aqua"}
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="See More Testimonials"
-                    color="black"
-                    fWeight={800}
-                    onClickButton={() => {
-                      store.dispatch(updateModal(true));
-                      store.dispatch(
-                        updateModalContent({
-                          appTitle: onSuccessTitle,
-                          appBody: onSuccessBody,
-                        })
-                      );
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* DISCOVER */}
-      <div className="heading-container">
-        <div className="heading">
-          <p className="discover-heading">
-            Discover The Power of D'roid Technologies International Software
-            Solutions
-          </p>
-          <div className="discover-section">
-            <p className="discover-details">
-              At D'roid Technoogies International, we understand that every
-              business has unique needs and challenges. That's why we offer a
-              wide range of software solutions designed to help you streamline
-              your operations, increase efficiency, and drive growth. From
-              custom software development to cloud-based applications, our team
-              of expertise has the expertise and experience to help you achieve
-              your goals. Explore our website to learn more about our offerings
-              and how we can help your business succed.
+          <div className="testiminial-details">
+            <p>
+              "I have had the pleasure of working with D'roid Technologies on
+              several projects, and I can confidently say that their expertise
+              and dedication are unmatched. From the initial consultation to the
+              final delivery, their team demonstrated a deep understanding of
+              our needs and provided innovative solutions that exceeded our
+              expectations. The software they developed for us is robust,
+              user-friendly, and has significantly improved our operational
+              efficiency. Their commitment to quality and customer satisfaction
+              is evident in every interaction. I highly recommend D'roid
+              Technologies to any organization looking for top-tier technology
+              solutions."
+            </p>
+            <p className="testifier">
+              — Mark Ettan, Founder, LEADPAC Foundation
             </p>
           </div>
-        </div>
-        {/* CONTACT US BUTTON */}
-        <div className="contact-us">
-          <div className="contactus-button">
-            <Button
-              bgColor={"black"}
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              mRight={0}
-              title="Contact us"
-              color="white"
-              fWeight={800}
-              onClickButton={() => {
-                navigate("/contact");
-              }}
-            />
+          <div className="contact-uss">
+            <div className="contactuss-button">
+              <Button
+                bgColor={"black"}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="See more testimonials"
+                color="white"
+                fWeight={800}
+                bRadius={5}
+                onClickButton={() => {
+                  navigate("/contact");
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
       {/* SECTION FOUR */}
       <div className="section-four">
-        {/* <div className="section-four-container">
-          <div className="coding-image">
-            <img
-              src={Assets.images.tour}
-              alt="codingImage"
-              className="image-sizes"
-            />
-          </div>
-          <div className="city-walking-tour">
-            <h2 className="walking-tour"> City Walking Tour </h2>
-            <p className="pounds"> &#163;20.00</p>
-            <p className="walking-tour-details">
-              {" "}
-              A unique walking tour of the city with time to enjoy lunch and
-              shoppinng too! <br />
-              Maximize your sightseeing with this exceptional tour.
-            </p>{" "}
-          </div>
-        </div> */}
         {/* CONTACT US SECTION */}
         <div className="cont-main">
           <h1 className="heading"> CONTACT US </h1>
@@ -150,7 +95,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                 <span className="friday"> 8am - 9pm </span>
               </p>
             </p>
-            <div className="contact-button">
+            <div className="contact-buttons">
               <div className="contactus-button-style">
                 <Button
                   bgColor={"black"}
@@ -158,11 +103,31 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  title="Get in Touch"
+                  title="Send us an Email"
                   color="white"
                   fWeight={800}
+                  bRadius={5}
                   onClickButton={() => {
-                    navigate("/contact");
+                    // trigger an email action
+                    // navigate("/contact");
+                  }}
+                />
+              </div>
+              <div className="contactus-button-style">
+                <Button
+                  bgColor={"#ffffff"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="WhatsApp Chat"
+                  color="#000000"
+                  fWeight={800}
+                  bRadius={5}
+                  bRadiusColor="#000000"
+                  onClickButton={() => {
+                    // trigger a whatsapp chat action
+                    // navigate("/contact");
                   }}
                 />
               </div>

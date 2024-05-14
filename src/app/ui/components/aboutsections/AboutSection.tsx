@@ -5,6 +5,12 @@ import Button from "../button/Button";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { GiCuckooClock } from "react-icons/gi";
+import { GiPathDistance } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
+import { FaLaptopCode } from "react-icons/fa";
+import { GiRobotGolem } from "react-icons/gi";
+import { GiTeacher } from "react-icons/gi";
 
 const Section: React.FunctionComponent = () => {
   const settings = {
@@ -16,19 +22,21 @@ const Section: React.FunctionComponent = () => {
     autoplay: true,
     autoplaySpeed: 2000,
   };
+  const navigate = useNavigate();
 
   return (
     <div className="section-main">
       {/* SECTION ONE */}
       <div className="section-one">
         <div className="coding-image">
-          <img
+          <GiCuckooClock className="image-size" />
+          {/* <img
             src={Assets.images.coding}
             alt="codingImage"
             className="image-size"
-          />
+          /> */}
         </div>
-        <div className="history">
+        <section className="history">
           <p className="our-history"> Our History</p>
           <p className="histoy-details">
             {" "}
@@ -37,26 +45,25 @@ const Section: React.FunctionComponent = () => {
             Over the years, we have grouwn into a leading software development
             company, serving clients in a wide range of industries.
           </p>{" "}
-          <a href="/aboutus">
-            <div className="history-btn">
-              <div className="readmore-btn">
-                <Button
-                  bgColor={"black"}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="Read more about us"
-                  color="white"
-                  fWeight={800}
-                  onClickButton={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                />
-              </div>
+          <div className="history-btn">
+            <div className="readmore-btn">
+              <Button
+                bgColor={"black"}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="Read more about us"
+                color="white"
+                fWeight={800}
+                bRadius={5}
+                onClickButton={() => {
+                  navigate("/aboutus");
+                }}
+              />
             </div>
-          </a>
-        </div>
+          </div>
+        </section>
       </div>
       {/* SECTION TWO */}
       <div className="section-two">
@@ -70,13 +77,27 @@ const Section: React.FunctionComponent = () => {
             use that knowledge to develope tailored solutions that meet their
             unique requirements.
           </p>{" "}
+          <div className="history-btn">
+            <div className="readmore-btn">
+              <Button
+                bgColor={"black"}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="Our Approach"
+                color="white"
+                fWeight={800}
+                bRadius={5}
+                onClickButton={() => {
+                  navigate("/aboutus");
+                }}
+              />
+            </div>
+          </div>
         </div>
         <div className="coding-image">
-          <img
-            src={Assets.images.statistics}
-            alt="codingImage"
-            className="image-size"
-          />
+          <GiPathDistance className="image-size" />
         </div>
       </div>
       {/* SECTION THREE */}
@@ -99,31 +120,34 @@ const Section: React.FunctionComponent = () => {
           <Slider {...settings}>
             <div className="imageone">
               <div>
-                <img src={Assets.images.mobiledev} alt="Image 1" />
+                <FaLaptopCode className="image-size" />
                 <span className="padded">
-                  {" "}
-                  <h2>Mobile Application Development </h2>
+                  <h2 className="carousel-heading">
+                    Software Design & Development
+                  </h2>
+                  <p className="carousel-details">
+                    We design and develop all the types of software applications
+                    for any requirement. We are flexible team who is ready to
+                    gather your requirements and develop the essential solutions
+                    according to modern trends and standard.
+                  </p>
                 </span>
               </div>
             </div>
-
+            {/* TWO */}
             <div className="imageone">
-              <img src={Assets.images.softwaredesign} alt="Image 2" />
+              <GiRobotGolem className="image-size" />
               <span className="padded">
                 {" "}
-                <h2>Software Design & Development </h2>
-                <p>
-                  We design and develop all the types of software applications
-                  for any requirement. We are flexible team who is ready to
-                  gather your requirements and develop the essential solutions
-                  according to modern trends and standard.
-                </p>
+                <h2 className="carousel-heading">Animation Creation</h2>
+                <p className="carousel-details"></p>
               </span>
             </div>
             <div className="imageone">
-              <img src={Assets.images.webdesign} alt="Image 3" />
+              <GiTeacher className="image-size" />
               <span className="padded">
-                <h2>Web Design & Development</h2>
+                <h2 className="carousel-heading">Tech Training </h2>
+                <p className="carousel-details"> </p>
               </span>
             </div>
           </Slider>
@@ -139,8 +163,9 @@ const Section: React.FunctionComponent = () => {
                   title="See all our services"
                   color="white"
                   fWeight={700}
-                  onClickButton={function (): void {
-                    throw new Error("Function not implemented.");
+                  bRadius={5}
+                  onClickButton={() => {
+                    navigate("/services");
                   }}
                 />
               </div>

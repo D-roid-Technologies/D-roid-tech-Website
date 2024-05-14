@@ -11,6 +11,7 @@ import {
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -42,37 +43,42 @@ const Home: React.FunctionComponent = () => {
         <NavBar />
 
         {/* CONTENT */}
-        <div className="home">
-          <article className="home-content">
-            <p className="business">
-              TRANSFORM YOUR <br />
-              BUSINESS TODAY
-            </p>
-          </article>
-          <p className="empower">
-            Empower your team with cutting-edge software solutions.
-          </p>
-          <div className="product-button">
-            <div className="See-our-product">
-              <Button
-                bgColor={"white"}
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                title="See our products"
-                color="black"
-                fWeight={800}
-                onClickButton={() => {
-                  store.dispatch(updateModal(true));
-                  store.dispatch(
-                    updateModalContent({
-                      appTitle: onSuccessTitle,
-                      appBody: onSuccessBody,
-                    })
-                  );
-                }}
-              />
+        <div className="home-main">
+          <div className="home">
+            <article className="home-content">
+              <p className="business">
+                WE TURN YOUR IDEAS
+                <br />
+                INTO REALITY
+              </p>
+            </article>
+            <div className="product-button">
+              <div className="See-our-product">
+                <Button
+                  bgColor={"white"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Schedule an Appointment"
+                  color="black"
+                  fWeight={800}
+                  bRadius={5}
+                  bRadiusColor="#ffffff"
+                  onClickButton={() => {
+                    // create an email call
+                  }}
+                  // onClickButton={() => {
+                  //   store.dispatch(updateModal(true));
+                  //   store.dispatch(
+                  //     updateModalContent({
+                  //       appTitle: onSuccessTitle,
+                  //       appBody: onSuccessBody,
+                  //     })
+                  //   );
+                  // }}
+                />
+              </div>
             </div>
           </div>
         </div>
