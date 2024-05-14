@@ -1,110 +1,150 @@
-import React, { useState } from "react";
-import { Link, useLocation} from "react-router-dom";
+import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Training.css";
-import { TrainingPhoto } from "../../../utils/Types";
-import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
-
-// Mock data for the photo slides
-const photos: TrainingPhoto[] = [
-  { image: Assets.images.companyBanner, text: "Learn new skills with us" },
-  { image: Assets.images.background1, text: "Expert trainers available" },
-  { image: Assets.images.background2, text: "Learn at your own pace" },
-];
-
-// The agreed padding left and padding right for the app is 100px.
-// You need to change the images to different images on the slider.
-
+import { Link, useLocation } from "react-router-dom";
 
 const Training: React.FunctionComponent = () => {
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
-  
-// Function to handle the previous button click
-  const handlePreviousPhoto = () => {
-    setCurrentPhotoIndex((prevIndex) =>
-      prevIndex === 0 ? photos.length - 1 : prevIndex - 1
-    );
-  };
-
-  // Function to handle the next button click
-  const handleNextPhoto = () => {
-    setCurrentPhotoIndex((prevIndex) =>
-      prevIndex === photos.length - 1 ? 0 : prevIndex + 1
-    );
-  };
 
   return (
-    <div className="training">
+    <div>
       <div
         style={{
-          backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
+          backgroundImage: `url("${Assets.images.background1}")`,
         }}
-        className="bg-image"
+        className="training-full-screen-background-image"
       >
         <NavBar />
-        <div className="home-content">
-          <p className="business">{photos[currentPhotoIndex].text}</p>
-        </div>
-        <div className="prev-button">
-          <Button
-            title="<"
-            bgColor="rgba(0, 0, 0, 0.5)"
-            color={Assets.colors.light}
-            onClickButton={handlePreviousPhoto}
-            mLeft={10}
-            mRight={10}
-            mTop={0}
-            mBottom={0}
-          />
-        </div>
-        <div className="next-button">
-          <Button
-            title=">"
-            bgColor="rgba(0, 0, 0, 0.5)"
-            color={Assets.colors.light}
-            onClickButton={handleNextPhoto}
-            mLeft={10}
-            mRight={10}
-            mTop={0}
-            mBottom={0}
-          />
+        <div className="training-home-section">
+          <div className="training-home-content">
+            <p className="training-large-centered-heading">
+              At D'roid Technologies, we offer comprehensive tech training
+              programs designed to empower individuals with the knowledge and
+              skills needed to excel in today's rapidly evolving tech landscape.
+            </p>
+            <p className="training-smaller-centered-heading">
+              Our training courses cover a wide range of topics, from
+              programming languages and software development methodologies to
+              emerging technologies and industry best practices.
+            </p>
+          </div>
         </div>
       </div>
-      <div className="container2">
-        <h2>Offer The Latest Tech And Solutions To Our Clients!</h2>
-        <p>
-          Kikora comes out in a new suit, with new uses. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Deserunt aliquid dolores in
-          deleniti, autem natus repudiandae nobis voluptates culpa facere libero
-          eum adipisci porro corporis, illo obcaecati minus. Animi, dolores.
-        </p>
-      </div>
-      {/* Render the container with course links */}
-      <div className="Container">
-        {DATA.courses.map((course) => (
-          <Link
-            to={`${location.pathname}/course-detail/${course.id}`}
-            className="Column"
-            key={course.id}
-          >
-            <div
-              className="Icon"
-              style={{ backgroundColor: Assets.colors.secondary }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="31"
-                height="13"
-                viewBox="0 0 31 13"
-                fill="none"
-              ></svg>
+
+      <div className="training-main-content-section">
+        {/* Approach Section */}
+        <div className="training-approach-main">
+          <h1 className="training-approach-head">Our Approach</h1>
+          <ul className="training-approach-list">
+            <li className="training-approach-item">
+              <h2>Customized Curriculum</h2>
+              <p>
+                We understand that every learner is unique, which is why we
+                tailor our training programs to meet the specific needs and
+                goals of each participant. Our experienced instructors work
+                closely with learners to develop personalized learning plans
+                that align with their interests and career aspirations.
+              </p>
+            </li>
+            <li className="training-approach-item">
+              <h2>Hands-on Learning</h2>
+              <p>
+                We believe in learning by doing, which is why our training
+                courses emphasize practical, hands-on experience. Participants
+                have the opportunity to apply their knowledge in real-world
+                projects and exercises, gaining valuable skills that are
+                immediately applicable in the workplace.
+              </p>
+            </li>
+            <li className="training-approach-item">
+              <h2>Expert Instructors</h2>
+              <p>
+                Our instructors are industry experts with years of experience in
+                their respective fields. They bring a wealth of knowledge and
+                practical insights to the classroom, providing learners with
+                valuable guidance and mentorship throughout their training
+                journey.
+              </p>
+            </li>
+            <li className="training-approach-item">
+              <h2>Flexible Learning Options</h2>
+              <p>
+                Whether you prefer in-person instruction, online classes, or
+                self-paced learning modules, we offer flexible learning options
+                to accommodate your schedule and learning preferences. Our goal
+                is to make quality tech training accessible to everyone, no
+                matter where they are located.
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        {/* Relocated image */}
+        <div className="training-rounded-image">
+          <img
+            src={Assets.images.statistics}
+            alt="training"
+            className="training-boxed-image"
+          />
+        </div>
+
+        {/* Featured Training Programs Section */}
+
+        <div className="training-approach-main">
+  <h1 className="training-approach-head">Featured Training Programs</h1>
+  <ul className="training-approach-list">
+    {DATA.courses.map((course) => (
+      <li className="training-approach-item" style={{border: "1px solid #ccc"}} key={course.id}>
+        <Link
+          to={`${location.pathname}/course-detail/${course.id}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <h3 style={{marginBottom: "1rem"}}>{course.title}</h3>
+          <h5 style={{marginBottom: "1rem"}}>{course.subtitle}</h5>
+          <p>
+            {course.description.slice(0, 100)}
+            {course.description.length > 100 && "..."}
+            {course.description.length > 100 && (
+              <span style={{ color: `${Assets.colors.secondary}`, cursor: "pointer" }}> Read More</span>
+            )}
+          </p>
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
+
+        {/* Technologies and Tools Section */}
+        <div className="training-flex-row-section reverse">
+          <div className="training-rounded-image">
+            <img
+              src={Assets.images.statistics}
+              alt="tools"
+              className="training-boxed-image"
+            />
+          </div>
+          <div className="training-centered-text-section">
+            <h2 className="training-section-heading">Technologies And Tools</h2>
+            <div className="training-section-details">
+              <ul>
+                <li>
+                  <strong>Learning Management Systems:</strong> Moodle, Canvas,
+                  Blackboard
+                </li>
+                <li>
+                  <strong>Video Conferencing Platforms:</strong> Zoom, Microsoft
+                  Teams, Google Meet
+                </li>
+                <li>
+                  <strong>Code Editors:</strong> Visual Studio Code, Atom,
+                  Sublime Text
+                </li>
+              </ul>
             </div>
-            <h4 className="Heading">{course.level}</h4>
-          </Link>
-        ))}
+          </div>
+        </div>
       </div>
     </div>
   );
