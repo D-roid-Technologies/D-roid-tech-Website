@@ -445,7 +445,7 @@ export const DATA = {
   MappingSurveying: [
     {
       // image: require("../../images/png/drone survey.png"),
-      image: require("../../images/png/dronesurveying.png"),
+      // image: require("../../images/png/dronesurveying.png"),
       title: "MAPPING & SURVEYING",
       content:
         "Generate high-resolution maps and 3D models for land surveying, construction planning, and site analysis.",

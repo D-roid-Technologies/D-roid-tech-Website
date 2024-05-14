@@ -6,6 +6,8 @@ import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../../components/textInput/AppInput";
 import contactBgImage from "../../../images/png/contactbg.jpg";
 import { LuPhoneCall } from "react-icons/lu";
+import { MdEmail } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Contact: React.FunctionComponent = () => {
   // Your divs are not aligned properly
@@ -32,7 +34,7 @@ const Contact: React.FunctionComponent = () => {
           </article>
         </div>
         {/* SAY HELLO SECTION */}
-        <section className="say-hello">
+        {/* <section className="say-hello">
           <article>
             <h1 className="hello-heading">Reach out and say hello </h1>
             <p className="hello-details">
@@ -46,7 +48,7 @@ const Contact: React.FunctionComponent = () => {
             alt="customer care img"
             className="hello-image"
           />
-        </section>
+        </section> */}
         {/* CONTACT INFORMATION */}
         <section className="contact-information">
           <div className="contact-info-details">
@@ -55,17 +57,48 @@ const Contact: React.FunctionComponent = () => {
               <p className="info-details-p">
                 Say something to start a live chat
               </p>
-              <div>
-                <span className="call-contact">
+              {/* PHONE NUMBER */}
+
+              <div className="call-contact">
+                <span>
                   {" "}
-                  <LuPhoneCall />
+                  <LuPhoneCall className="phone-icon" />
+                </span>
+                <a href="tel:+1234567890" className="phone-no">
+                  {" "}
+                  +1 (234) 567-890
+                </a>
+              </div>
+              {/* EMAIL */}
+              <div className="call-contact">
+                <span>
+                  {" "}
+                  <MdEmail className="phone-icon" />
                 </span>
                 <span>
-                  <a href="tel:+1234567890"> +1 (234) 567-890</a>
+                  <a href="mailto:example@example.com" className="phone-no">
+                    {" "}
+                    droidtechinternational@gmail.com
+                  </a>
                 </span>
               </div>
-              <span></span>
-              <span></span>
+              {/* ADDRESS */}
+              <div className="address">
+                <div className="call-contact">
+                  <span>
+                    {" "}
+                    <FaLocationDot className="phone-icon" />
+                  </span>
+                  <span>
+                    <address>
+                      <p className="phone-no">
+                        {" "}
+                        Lincoln, England, United Kingdom
+                      </p>
+                    </address>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>

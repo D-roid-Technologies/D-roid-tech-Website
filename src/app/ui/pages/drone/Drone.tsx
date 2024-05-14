@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import cropMonitoring from "../../../images/png/cropmonitoring3.png";
 import { useSelector } from "react-redux";
 import { RootState, store } from "../../../redux/Store";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import {
   updateModal,
   updateModalContent,
@@ -120,9 +121,10 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   <h2 className="mapping-heading">{item.title}</h2>
                   <p>{item.content}</p>
                 </div>
-                <picture>
-                  <img src={item.image} alt="survey Image" />
-                </picture>
+                <div>
+                  <FaMapMarkerAlt className="map" />
+                  {/* <img src={item.image} alt="survey Image" /> */}
+                </div>
               </li>
             ))}
           </ul>

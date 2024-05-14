@@ -61,15 +61,34 @@
 }
 .info-details-head {
   color: white;
-  font-size: 1.5rem;
-  margin-bottom: 0.4em;
+  font-size: 1.8rem;
+  margin-bottom: 0.6em;
   font-family: "Rammetto One";
 }
 .info-details-p {
-  color: white;
-  font-size: 1rem;
+  color: rgb(124, 124, 124);
+  font-size: 1.1rem;
   font-family: "Mazzard";
   margin-bottom: 4em;
+}
+/* phone number */
+.call-contact {
+  gap: 10px;
+  padding-bottom: 1.5em;
+  display: flex;
+  align-items: center;
+}
+.phone-icon {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 25px;
+}
+.phone-no {
+  color: rgb(124, 124, 124);
+  text-decoration: none;
+}
+.address {
+  padding-bottom: 3em;
 }
 /* CONTACT US INPUT & MESSAGE  SECTION*/
 .message-section {

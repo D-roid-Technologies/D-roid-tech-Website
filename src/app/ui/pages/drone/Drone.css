@@ -138,7 +138,7 @@
 }
 .mappping-services {
   display: flex;
-  gap: 5%;
+  gap: 20%;
 }
 .mapping-text {
   padding: 150px 0;
@@ -147,6 +147,10 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3em;
+}
+.map {
+  width: 300px;
+  height: 300px;
 }
 /* Infrastructure Inspection */
 .infrastructure {
