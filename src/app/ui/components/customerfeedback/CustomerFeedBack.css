@@ -7,6 +7,8 @@
 }
 .customer-testimonials {
   margin-bottom: 50px;
+  background-color: #282a94;
+  height: 400px;
 }
 
 .feedback-bg-image {
@@ -36,9 +38,33 @@
   background-color: rgba(0, 0, 0, 0.4);
   font-family: "Mazzard";
 }
+.testiminial-details {
+  padding: 0 50px;
+  color: #ffffff;
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+}
+.testifier {
+  margin-top: 10px;
+  color: #00ffff;
+}
+/* Button */
+.contact-uss {
+  padding-left: 50px;
+  margin-top: 50px;
+}
+
+.contactuss-button {
+  width: 18%;
+  border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.contactuss-button:hover {
+  transform: scale(1.1);
+}
 
 .show {
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   font-size: 1.2rem;
 }
@@ -200,11 +226,12 @@ select {
   color: aqua;
   font-size: 1.1rem;
 } */
-.contact-button {
+.contact-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Mazzard";
+  gap: 30px;
 }
 
 .contactus-button-style {
