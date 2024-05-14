@@ -93,22 +93,28 @@ const Training: React.FunctionComponent = () => {
         {/* Featured Training Programs Section */}
 
         <div className="training-approach-main">
-          <h1 className="training-approach-head">Featured Training Programs</h1>
-          <ul className="training-approach-list">
-            {DATA.courses.map((course) => (
-              <li className="training-approach-item" style={{border: "1px solid #ccc"}} key={course.id}>
-                <Link
-                  to={`${location.pathname}/course-detail/${course.id}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <h3 style={{marginBottom: "1rem"}}>{course.title}</h3>
-                  <h4 style={{marginBottom: "1rem"}}>{course.subtitle}</h4>
-                  <p>{course.description}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+  <h1 className="training-approach-head">Featured Training Programs</h1>
+  <ul className="training-approach-list">
+    {DATA.courses.map((course) => (
+      <li className="training-approach-item" style={{border: "1px solid #ccc"}} key={course.id}>
+        <Link
+          to={`${location.pathname}/course-detail/${course.id}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <h3 style={{marginBottom: "1rem"}}>{course.title}</h3>
+          <h5 style={{marginBottom: "1rem"}}>{course.subtitle}</h5>
+          <p>
+            {course.description.slice(0, 100)}
+            {course.description.length > 100 && "..."}
+            {course.description.length > 100 && (
+              <span style={{ color: `${Assets.colors.secondary}`, cursor: "pointer" }}> Read More</span>
+            )}
+          </p>
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
         {/* Technologies and Tools Section */}
         <div className="training-flex-row-section reverse">
