@@ -66,6 +66,7 @@
 
 .section-details {
   font-size: 1rem;
+  line-height: 1.5;
   color: rgb(124, 124, 124);
   font-family: "Mazzard";
   text-align: left;
@@ -86,17 +87,17 @@
 }
 
 /* Approach Section */
-.animation-approach-main {
+.software-approach-main {
   margin-bottom: 50px;
 }
 
-.animation-approach-head {
+.software-approach-head {
   text-align: center;
   margin-bottom: 1.5em;
   font-family: "Rammetto One";
 }
 
-.animation-approach-list {
+.software-approach-list {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,23 +105,23 @@
   gap: 2%;
 }
 
-.animation-approach-item {
+.software-approach-item {
   margin-bottom: 20px;
 }
 
-.animation-approach-item h2 {
+.software-approach-item h2 {
   margin-bottom: 20px;
   font-family: "Rammetto One";
   color: #232e35;
   transition: color 0.3s ease;
 }
 
-.animation-approach-item h2:hover {
+.software-approach-item h2:hover {
   color: #12d6d6;
   cursor: pointer;
 }
 
-.animation-approach-item p {
+.software-approach-item p {
   font-family: "Mazzard";
   font-size: 1rem;
   color: rgb(124, 124, 124);
@@ -150,12 +151,12 @@
     max-width: 400px;
   }
 
-  .animation-approach-main {
+  .software-approach-main {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .animation-approach-list {
+  .software-approach-list {
     flex-direction: column;
     align-items: flex-start;
   }

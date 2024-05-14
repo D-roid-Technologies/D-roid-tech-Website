@@ -11,7 +11,7 @@ export const DATA = {
     },
     {
       link: "Software Development",
-      path: "/programminghome",
+      path: "/software",
     },
     {
       link: "Animation Creation",
@@ -39,10 +39,10 @@ export const DATA = {
       link: "Equipment",
       path: "/offices",
     },
-    {
-      link: "Staff Login",
-      path: "/staff",
-    },
+    // {
+    //   link: "Staff Login",
+    //   path: "/staff",
+    // },
   ],
   courses: [
     {
