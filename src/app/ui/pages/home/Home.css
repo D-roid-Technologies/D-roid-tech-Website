@@ -3,6 +3,13 @@
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
 /* CONTENT */
+.home-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  /* background-color: red; */
+}
 .home-content {
   display: flex;
   justify-content: center;
@@ -51,7 +58,7 @@
 .See-our-product {
   font-family: "Mazzard";
   cursor: pointer;
-  width: 15%;
+  width: 30%;
   transition: transform 0.3s ease-in-out;
 }
 .See-our-product:hover {
