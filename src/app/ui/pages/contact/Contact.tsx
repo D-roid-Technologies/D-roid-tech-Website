@@ -4,7 +4,7 @@ import "../contact/Contact.css";
 import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../../components/textInput/AppInput";
-import contactBgImage from "../../../images/png/contactbg.jpg";
+// import contactBgImage from "../../../images/png/contactbg.jpg";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
@@ -18,7 +18,7 @@ const Contact: React.FunctionComponent = () => {
       <main>
         <div
           style={{
-            backgroundImage: `url("${contactBgImage}")`,
+            // backgroundImage: `url("${contactBgImage}")`,
           }}
           className="contact-bgimage"
         >

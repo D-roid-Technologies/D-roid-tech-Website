@@ -7,6 +7,7 @@ import { DATA } from "../../../utils/constant/Data";
 import { Link, useLocation } from "react-router-dom";
 import { TrainingPhoto } from "../../../utils/Types";
 import Button from "../../components/button/Button";
+import TrainingProgramCard from "../../components/trainingProgramCard/TrainingProgramCard";
 
 const photos: TrainingPhoto[] = [
   { image: Assets.images.staffBg, text: "Expert trainers available" },
@@ -144,42 +145,15 @@ const Training: React.FunctionComponent = () => {
 
         <div className="training-approach-main">
           <h1 className="training-approach-head">Featured Training Programs</h1>
-          <ul className="training-approach-list">
+          <ul className="training-programs-list">
             {DATA.courses.map((course) => (
-              <li
-                className="training-approach-item"
-                style={{ border: "1px solid #ccc" }}
-                key={course.id}
-              >
-                <Link
-                  to={`${location.pathname}/course-detail/${course.id}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <h3 style={{ marginBottom: "1rem" }}>{course.title}</h3>
-                  <h5 style={{ marginBottom: "1rem" }}>{course.subtitle}</h5>
-                  <p>
-                    {course.description.slice(0, 100)}
-                    {course.description.length > 100 && "..."}
-                    {course.description.length > 100 && (
-                      <span
-                        style={{
-                          color: `${Assets.colors.secondary}`,
-                          cursor: "pointer",
-                        }}
-                      >
-                        {" "}
-                        Read More
-                      </span>
-                    )}
-                  </p>
-                </Link>
-              </li>
+              <TrainingProgramCard key={course.id} program={course} />
             ))}
           </ul>
         </div>
-
-        {/* Technologies and Tools Section */}
       </div>
+
+      {/* Technologies and Tools Section */}
       <div className="training-approach-main">
         <h1 className="training-approach-head">Technologies and Tools</h1>
         <ul className="training-approach-list">

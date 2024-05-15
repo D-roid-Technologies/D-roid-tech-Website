@@ -156,10 +156,10 @@
 
 /* Featured Training Programs Section */
 .training-programs-list {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
-  /* align-items: stretch; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
   list-style: none;
   gap: 2%;
 }
