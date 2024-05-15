@@ -113,7 +113,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   }}
                 />
               </div>
-              <div className="contactus-button-style">
+              <div className="contactus-button-styles">
                 <Button
                   bgColor={"#ffffff"}
                   mTop={0}
