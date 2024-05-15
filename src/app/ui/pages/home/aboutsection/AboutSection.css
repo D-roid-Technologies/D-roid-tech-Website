@@ -389,11 +389,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2em;
+    /* margin-top: 2em; */
   }
 
   .services-btn {
-    width: 25%;
+    width: 35%;
     border-radius: none;
   }
 }
