@@ -224,6 +224,7 @@
     color: rgb(186, 184, 184) !important;
     text-align: justify;
     letter-spacing: 0;
+    font-family: "Mazzard";
   }
   /* VISION MISSION VALUE - BOX SECTIONS */
   .vision-mission-value {
@@ -351,28 +352,13 @@
     color: rgb(186, 184, 184) !important;
     text-align: justify;
     letter-spacing: 0;
+    font-family: "Mazzard";
   }
   /* VISION AND MISSION SECTION */
   .vision-marginbuttom {
     margin-bottom: 25px;
   }
 
-  /* .vision {
-    text-align: center;
-    margin-bottom: 1em;
-    line-height: 0;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #282a94;
-    font-family: "Rammetto";
-  }
-  .vision-details {
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgb(186, 184, 184) !important;
-    text-align: justify;
-    letter-spacing: 0;
-  } */
   .vision {
     text-align: center;
     margin-bottom: 1em;
@@ -382,10 +368,13 @@
     font-family: "Rammetto";
   }
   .vision-details {
-    /* padding: 0 5px; */
-    text-align: left;
-    font-family: "Mazzard";
     font-size: 15px;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    text-align: justify;
+    letter-spacing: 0;
+    font-family: "Mazzard";
+
     color: rgb(124, 124, 124);
   }
   /* VISION MISSION VALUE - BOX SECTIONS */
