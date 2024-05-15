@@ -126,6 +126,16 @@
 .contactus-button-style:hover {
   transform: scale(1.1);
 }
+.contactus-button-styles {
+  width: 12%;
+  border: none;
+  font-family: "Mazzard";
+  font-size: 1.2rem;
+  transition: transform 0.3s ease-in-out;
+}
+.contactus-button-styles:hover {
+  transform: scale(1.1);
+}
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -261,6 +271,13 @@
   }
 
   .contactus-button-style {
+    width: 22%;
+    border: none;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .contactus-button-styles {
     width: 22%;
     border: none;
     font-family: "Mazzard";
