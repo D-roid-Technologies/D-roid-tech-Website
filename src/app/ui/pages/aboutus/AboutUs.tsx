@@ -32,7 +32,7 @@ const AboutUs: React.FunctionComponent = () => {
         </div>
         {/* VISON AND MISSION SECTION */}
         <div className="vision-marginbuttom">
-          <section>
+          <section className="vision-section">
             <article>
               <h2 className="vision"> Vision & Mission </h2>
               <p className="vision-details">

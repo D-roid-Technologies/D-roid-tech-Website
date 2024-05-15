@@ -29,15 +29,18 @@
 .our-history {
   margin-bottom: 1em;
   line-height: 10px;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 35px !important;
+  font-weight: 800;
+  color: #282a94;
   font-family: "Rammetto";
 }
 .histoy-details {
   font-size: 1.2rem;
-  line-height: 25px;
-  color: rgb(124, 124, 124);
+  font-weight: 200;
+  color: rgb(186, 184, 184) !important;
   font-family: "Mazzard";
+  text-align: justify;
+  letter-spacing: 2px;
 }
 
 /* VISION AND MISSION SECTION */
@@ -46,16 +49,22 @@
 }
 .vision {
   text-align: center;
-  margin-bottom: 0.6em;
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 35px !important;
+  font-weight: 800;
+  color: #282a94;
   font-family: "Rammetto";
-  font-size: 2rem;
 }
+
 .vision-details {
-  padding: 0 80px;
-  text-align: center;
-  font-family: "Mazzard";
+  /* padding: 0 80px; */
   font-size: 1.2rem;
-  color: rgb(124, 124, 124);
+  font-weight: 200;
+  color: rgb(186, 184, 184) !important;
+  font-family: "Mazzard";
+  text-align: justify;
+  letter-spacing: 2px;
 }
 /* VISION MISSION VALUE - BOX SECTIONS */
 .vision-mission-value {
@@ -154,8 +163,8 @@
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .about-main {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
     margin-top: 2em;
   }
   /* SECTION ONE OUR HISTORY */
@@ -177,35 +186,44 @@
     padding: 35px 0px;
     text-align: left;
   }
+
   .our-history {
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
     font-size: 1.5rem;
     font-weight: 500;
+    color: #282a94;
     font-family: "Rammetto";
   }
   .histoy-details {
     font-size: 1rem;
-    line-height: 0.5cm;
-    text-align: left;
-    font-family: "Mazzard";
-    color: rgb(124, 124, 124);
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    text-align: justify;
+    letter-spacing: 0;
   }
 
   /* VISION AND MISSION SECTION */
+  .vision-marginbuttom {
+    margin-bottom: 25px;
+  }
+
   .vision {
     text-align: center;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
+    line-height: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #282a94;
     font-family: "Rammetto";
-    font-size: 2rem;
   }
   .vision-details {
-    padding: 0 40px;
-    text-align: center;
-    font-family: "Mazzard";
-    font-size: 1.2rem;
-    color: rgb(124, 124, 124);
+    font-size: 1rem;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    text-align: justify;
+    letter-spacing: 0;
   }
   /* VISION MISSION VALUE - BOX SECTIONS */
   .vision-mission-value {
@@ -215,12 +233,7 @@
     padding-top: 30px;
     gap: 30px;
   }
-  /* BOX ONE */
-  /* .vision-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+
   .vision-header {
     text-align: center;
     margin-bottom: 1rem;
@@ -304,7 +317,7 @@
 
   /* SECTION ONE */
   .aboutus-marginbutton {
-    margin-bottom: 20px;
+    margin-bottom: 35px;
   }
   .section-one {
     display: flex;
@@ -322,27 +335,54 @@
     padding: 5px 0px;
     text-align: left;
   }
+
   .our-history {
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 1.1rem;
+    font-size: 0.6rem;
     font-weight: 500;
+    color: #282a94;
+    font-family: "Rammetto";
   }
   .histoy-details {
-    /* line-height: 0.5cm; */
-    text-align: left;
     font-size: 15px;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    text-align: justify;
+    letter-spacing: 0;
   }
   /* VISION AND MISSION SECTION */
-  .vision {
+  .vision-marginbuttom {
+    margin-bottom: 25px;
+  }
+
+  /* .vision {
     text-align: center;
-    margin-bottom: 0.4em;
-    font-family: "Rammetto";
+    margin-bottom: 1em;
+    line-height: 0;
     font-size: 1.5rem;
+    font-weight: 500;
+    color: #282a94;
+    font-family: "Rammetto";
   }
   .vision-details {
-    padding: 0 5px;
+    font-size: 1rem;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    text-align: justify;
+    letter-spacing: 0;
+  } */
+  .vision {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #282a94;
+    font-family: "Rammetto";
+  }
+  .vision-details {
+    /* padding: 0 5px; */
     text-align: left;
     font-family: "Mazzard";
     font-size: 15px;
