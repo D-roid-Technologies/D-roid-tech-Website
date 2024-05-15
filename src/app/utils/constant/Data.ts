@@ -6,6 +6,9 @@ export const DATA = {
     twitter: "https://x.com/Droidtechn?t=LVFJ6SEetP5DD1BHdSK0rQ&s=09",
     linkedin:
       "https://www.linkedin.com/company/d-roid-technologies-international/",
+    instagram: "https://www.instagram.com/droidtechn?igsh=ZGUzMzM3NWJiOQ==",
+    whatsapp: "https://wa.me/c/447886386437",
+    email: "hr@droidtechinternational.com",
   },
   navLinks: [
     {

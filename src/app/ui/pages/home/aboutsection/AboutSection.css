@@ -23,10 +23,7 @@
   width: 600px;
   height: 300px;
 }
-.history {
-  /* padding: 70px 30px; */
-  /* text-align: center; */
-}
+
 .our-history {
   margin-bottom: 1em;
   line-height: 10px;
@@ -38,7 +35,7 @@
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgb(186, 184, 184);
+  color: rgb(186, 184, 184) !important;
   font-family: "Mazzard";
   text-align: justify;
   letter-spacing: 2px;
