@@ -147,7 +147,7 @@ const Section: React.FunctionComponent = () => {
               </span>
             </div>
           </Slider>
-          {/* OUR SERVICES BUTTON */}
+          {/* OUR SERVICES BUTTON SECTION */}
           <a href="">
             <div className="our-services-btn">
               <div className="services-btn">
