@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Software.css";
 import { Assets } from "../../../utils/constant/Assets";
+import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
 
 const Software: React.FunctionComponent = () => {
   return (
@@ -75,68 +76,39 @@ const Software: React.FunctionComponent = () => {
           </ul>
         </div>
 
-        {/* Featured Training Programs Section */}
-        <div className="flex-row-section reverse">
-          <div className="rounded-image">
-            <img
-              src={Assets.images.mobiledev}
-              alt="coding-image"
-              className="boxed-image"
-            />
-          </div>
-          <div className="centered-text-section">
-            <h2 className="section-heading">Featured Training Programs</h2>
-            <div className="section-details">
-              <ul>
-                <li>
-                  <strong>Full Stack Web Development:</strong> Learn the
-                  fundamentals of front-end and back-end web development,
-                  including HTML, CSS, JavaScript, React.js, Node.js, and more.
-                </li>
-                <li>
-                  <strong>Mobile App Development:</strong> Master the skills
-                  needed to design and develop mobile applications for iOS and
-                  Android platforms using React Native, Swift, and Kotlin.
-                </li>
-                <li>
-                  <strong>Data Science & Machine Learning:</strong> Dive into
-                  the exciting world of data science and machine learning,
-                  exploring topics such as data analysis, statistical modeling,
-                  and predictive analytics.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
         {/* Technologies and Tools Section */}
-        <div className="flex-row-section">
-          <div className="rounded-image">
-            <img
-              src={Assets.images.statistics}
-              alt="coding-image"
-              className="boxed-image"
-            />
-          </div>
-          <div className="centered-text-section">
-            <h2 className="section-heading">Technologies And Tools</h2>
-            <div className="section-details">
-              <ul>
-                <li>
-                  <strong>Learning Management Systems:</strong> Moodle, Canvas,
-                  Blackboard
-                </li>
-                <li>
-                  <strong>Video Conferencing Platforms:</strong> Zoom, Microsoft
-                  Teams, Google Meet
-                </li>
-                <li>
-                  <strong>Code Editors:</strong> Visual Studio Code, Atom,
-                  Sublime Text
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="training-approach-main">
+          <h1 className="training-approach-head">Technologies and Tools</h1>
+          <ul className="training-approach-list">
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaCode className="icon" />
+              </div>
+              <h2>Programming Languages</h2>
+              <p>JavaScript, TypeScript, Python, Java, C#</p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaLaptopCode className="icon" />
+              </div>
+              <h2>Frameworks & Libraries</h2>
+              <p>React.js, Angular, Vue.js, Node.js, Express.js</p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaDatabase className="icon" />
+              </div>
+              <h2>Databases</h2>
+              <p>Firebase, mySQL, Postgres, MongoDB</p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaLaptopCode className="icon" />
+              </div>
+              <h2>Tools & Platforms</h2>
+              <p>Git, GitHub, Docker, AWS, Azure, Google Cloud</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
