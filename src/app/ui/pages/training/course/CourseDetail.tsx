@@ -6,17 +6,17 @@ import { Assets } from "../../../../utils/constant/Assets";
 import Button from "../../../components/button/Button";
 import { DATA } from "../../../../utils/constant/Data";
 import { useParams } from "react-router-dom";
-import { useTimer } from '../../../../utils/countDown';
+// import { useTimer } from '../../../../utils/countDown';
 
 const CourseDetail: React.FunctionComponent = () => {
   const { courseId } = useParams();
   console.log("courseId", courseId);
   const course = DATA.courses.find((c) => c.id === parseInt(`${courseId}`, 10));
-  const timeRemaining = useTimer(course);
+  // const timeRemaining = useTimer(course);
 
   return (
     <div className="course-detail">
-      <div className="main-content">
+      {/* <div className="main-content">
         <div
           style={{
             backgroundImage: `url("${Assets.images.companyBanner}")`,
@@ -130,7 +130,7 @@ const CourseDetail: React.FunctionComponent = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
