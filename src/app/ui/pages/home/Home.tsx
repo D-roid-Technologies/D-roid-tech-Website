@@ -2,8 +2,8 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import companyBanner from "../../../images/png/droid banner.png";
 import "../home/Home.css";
-import AboutSection from "../../components/aboutsections/AboutSection";
-import CustomerFeedBack from "../../components/customerfeedback/CustomerFeedBack";
+import AboutSection from "./aboutsection/AboutSection";
+import CustomerFeedBack from "./customerfeedback/CustomerFeedBack";
 import Button from "../../components/button/Button";
 import { RootState, store } from "../../../redux/Store";
 import {
@@ -46,7 +46,7 @@ const Home: React.FunctionComponent = () => {
         <div className="home-main">
           <div className="home">
             <article className="home-content">
-              <p className="business">
+              <p className="home-heading">
                 WE TURN YOUR IDEAS
                 <br />
                 INTO REALITY
