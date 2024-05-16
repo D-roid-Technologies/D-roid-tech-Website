@@ -71,192 +71,198 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         </article>
       </div>
       {/* OUR APPROACH SECTION */}
-      <section className="drone-approach-main">
-        <h1 className="droneapproach-head">OUR APPROACH</h1>
-        <ul className="droneapproach-item">
-          {DATA.droneApproach.map((item, index) => (
-            <li className="droneapproach-list" key={index}>
-              <h2>{item.title}</h2>
-              <p>{item.content}</p>
-              <span className="list-button">{item.Button}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-      {/*  Featured Drone Service */}
-      <section className="ft-drone-service">
-        <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
-        {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
-        <section className="videography-main">
-          <ul className="droneapproach-details">
-            {DATA.FeaturedDroneServices.map((item, index) => (
-              <li className="droneapproach-services" key={index}>
-                <figure>
-                  {/* <video controls src={item.video} /> */}
-                  <MdOndemandVideo className="map" />
-                </figure>
-                <div className="video-details">
-                  <h2 className="video-heading">{item.title}</h2>
-                  <p>{item.content}</p>
-                  <div className="video-btn">
-                    <Button
-                      bgColor={"black"}
-                      mTop={0}
-                      mBottom={0}
-                      mLeft={0}
-                      mRight={0}
-                      title="Get in Touch"
-                      color="white"
-                      fWeight={800}
-                      onClickButton={() => {
-                        navigate("/contact");
-                      }}
+      <div className="bg-color">
+        <section className="drone-approach-main">
+          <h1 className="droneapproach-head">OUR APPROACH</h1>
+          <ul className="droneapproach-item">
+            {DATA.droneApproach.map((item, index) => (
+              <li className="droneapproach-list" key={index}>
+                <h2>{item.title}</h2>
+                <p>{item.content}</p>
+                <span className="list-button">{item.Button}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+        {/*  Featured Drone Service */}
+        <section className="ft-drone-service">
+          <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
+          {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
+          <section className="videography-main">
+            <ul className="droneapproach-details">
+              {DATA.FeaturedDroneServices.map((item, index) => (
+                <li className="droneapproach-services" key={index}>
+                  <figure>
+                    {/* <video controls src={item.video} /> */}
+                    <MdOndemandVideo className="map" />
+                  </figure>
+                  <div className="video-details">
+                    <h2 className="video-heading">{item.title}</h2>
+                    <p className="drone-text">{item.content}</p>
+                    <div className="video-btn">
+                      <Button
+                        bgColor={"black"}
+                        mTop={0}
+                        mBottom={0}
+                        mLeft={0}
+                        mRight={0}
+                        title="Get in Touch"
+                        color="white"
+                        fWeight={800}
+                        onClickButton={() => {
+                          navigate("/contact");
+                        }}
+                      />
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+          {/* MAPPING & SURVEYING */}
+          <section className="mapping">
+            <ul className="mapping-ul">
+              {DATA.MappingSurveying.map((item, index) => (
+                <li className="mappping-services" key={index}>
+                  <div className="mapping-text">
+                    <h2 className="mapping-heading">{item.title}</h2>
+                    <p className="drone-text">{item.content}</p>
+                  </div>
+                  <div>
+                    <FaMapMarkerAlt className="map" />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+          {/* Infrastructure Inspection */}
+          <section className="infrastructure">
+            <ul className="infrastructure-ul">
+              {DATA.InfrastructureInspection.map((item, index) => (
+                <li className="infrastructure-services" key={index}>
+                  <picture>
+                    <img
+                      src={item.image}
+                      alt="infrastructure Image"
+                      className="map"
                     />
+                  </picture>
+                  <div className="infrastructure-text">
+                    <h2 className="infrastructure-heading">{item.title}</h2>
+                    <p className="drone-text">{item.content}</p>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-        {/* MAPPING & SURVEYING */}
-        <section className="mapping">
-          <ul className="mapping-ul">
-            {DATA.MappingSurveying.map((item, index) => (
-              <li className="mappping-services" key={index}>
-                <div className="mapping-text">
-                  <h2 className="mapping-heading">{item.title}</h2>
-                  <p>{item.content}</p>
-                </div>
-                <div>
-                  <FaMapMarkerAlt className="map" />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-        {/* Infrastructure Inspection */}
-        <section className="infrastructure">
-          <ul className="infrastructure-ul">
-            {DATA.InfrastructureInspection.map((item, index) => (
-              <li className="infrastructure-services" key={index}>
-                <picture>
-                  <img
-                    src={item.image}
-                    alt="infrastructure Image"
-                    className="map"
-                  />
-                </picture>
-                <div className="infrastructure-text">
-                  <h2 className="infrastructure-heading">{item.title}</h2>
-                  <p>{item.content}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-        {/* Crop Monitoring & Agricultur */}
-        <section className="cropmonitoring">
-          <ul className="cropmonitoring-ul">
-            {DATA.CropMonitoringAgriculture.map((item, index) => (
-              <li className="cropmonitoring-services" key={index}>
-                <div className="cropmonitoring-text">
-                  <h2 className="cropmonitoring-heading">{item.title}</h2>
-                  <p>{item.content}</p>
-                </div>
-                <picture>
-                  {/* <img src={item.image} alt="survey Image" className="map" /> */}
-                  <MdAgriculture className="map" />
-                </picture>
-              </li>
-            ))}
-          </ul>
-          {/* </div> */}
+          {/* Crop Monitoring & Agricultur */}
+          <section className="cropmonitoring">
+            <ul className="cropmonitoring-ul">
+              {DATA.CropMonitoringAgriculture.map((item, index) => (
+                <li className="cropmonitoring-services" key={index}>
+                  <div className="cropmonitoring-text">
+                    <h2 className="cropmonitoring-heading">{item.title}</h2>
+                    <p className="drone-text">{item.content}</p>
+                  </div>
+                  <picture>
+                    {/* <img src={item.image} alt="survey Image" className="map" /> */}
+                    <MdAgriculture className="map" />
+                  </picture>
+                </li>
+              ))}
+            </ul>
+            {/* </div> */}
+          </section>
         </section>
-      </section>
-      {/* TECHNOLOGIES AND EQUIPMENT */}
-      <section className="techandequipment">
-        <h1 className="tech-heading">Technologies and Equipment </h1>
-        {/* drone-model */}
-        <div className="drone-camera-software">
-          <div className="tools">
-            <ul>
-              {DATA.DroneModels.map((item, index) => (
-                <li className="mappping-services" key={index}>
-                  <div className="tools-container">
-                    <GiDeliveryDrone className="image-icon" />
-                    <h2 className="title">{item.title}</h2>
-                    <p className="content">{item.content}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Camera & Sensors */}
-          <div className="tools">
-            <ul>
-              {DATA.CamerasSensors.map((item, index) => (
-                <li className="mappping-services" key={index}>
-                  <div className="tools-container">
-                    <MdPhotoCameraFront className="image-icon" />
-                    <h2 className="title">{item.title}</h2>
-                    <p className="content">{item.content}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Software Tools */}
-          <div className="tools">
-            <ul>
-              {DATA.SoftwareTools.map((item, index) => (
-                <li className="mappping-services" key={index}>
-                  <div className="tools-container">
-                    <LiaToolsSolid className="image-icon" />
-                    <h2 className="title">{item.title}</h2>
-                    <p className="content">{item.content}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className="drone-customer-testimonials">
-          <div>
-            <h2 className="drone-read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
-            <div className="drone-testimonial-details">
-              <p>
-                "D'roid Technologies' drone services helped us streamline our
-                construction projects by providing accurate aerial mapping and
-                surveying data. Their team's professionalism and attention to
-                detail were commendable, and the results exceeded our
-                expectations." - Sarah Smith, Project Manager
-              </p>
-              <p className="drone-testifier"> — Sarah Smith, Project Manager</p>
+        {/* TECHNOLOGIES AND EQUIPMENT */}
+        <section className="techandequipment">
+          <h1 className="tech-heading">Technologies and Equipment </h1>
+          {/* drone-model */}
+          <div className="drone-camera-software">
+            <div className="tools">
+              <ul>
+                {DATA.DroneModels.map((item, index) => (
+                  <li className="mappping-services" key={index}>
+                    <div className="tools-container">
+                      <GiDeliveryDrone className="image-icon" />
+                      <h2 className="title">{item.title}</h2>
+                      <p className="content">{item.content}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="drone-contact-uss">
-              <div className="drone-contactuss-button">
-                <Button
-                  bgColor={"black"}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="See more testimonials"
-                  color="white"
-                  fWeight={800}
-                  bRadius={5}
-                  onClickButton={() => {
-                    navigate("/contact");
-                  }}
-                />
+            {/* Camera & Sensors */}
+            <div className="tools">
+              <ul>
+                {DATA.CamerasSensors.map((item, index) => (
+                  <li className="mappping-services" key={index}>
+                    <div className="tools-container">
+                      <MdPhotoCameraFront className="image-icon" />
+                      <h2 className="title">{item.title}</h2>
+                      <p className="content">{item.content}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Software Tools */}
+            <div className="tools">
+              <ul>
+                {DATA.SoftwareTools.map((item, index) => (
+                  <li className="mappping-services" key={index}>
+                    <div className="tools-container">
+                      <LiaToolsSolid className="image-icon" />
+                      <h2 className="title">{item.title}</h2>
+                      <p className="content">{item.content}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="drone-customer-testimonials">
+            <div>
+              <h2 className="drone-read">
+                READ WHAT OUR CUSTOMERS HAVE TO SAY!
+              </h2>
+              <div className="drone-testimonial-details">
+                <p>
+                  "D'roid Technologies' drone services helped us streamline our
+                  construction projects by providing accurate aerial mapping and
+                  surveying data. Their team's professionalism and attention to
+                  detail were commendable, and the results exceeded our
+                  expectations." - Sarah Smith, Project Manager
+                </p>
+                <p className="drone-testifier">
+                  {" "}
+                  — Sarah Smith, Project Manager
+                </p>
+              </div>
+              <div className="drone-contact-uss">
+                <div className="drone-contactuss-button">
+                  <Button
+                    bgColor={"black"}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="See more testimonials"
+                    color="white"
+                    fWeight={800}
+                    bRadius={5}
+                    onClickButton={() => {
+                      navigate("/contact");
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* ff
+          {/* ff
         <div className="product-buttons">
           <div className="See-our-products">
             <Button
@@ -280,7 +286,8 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             />
           </div>
         </div> */}
-      </section>
+        </section>
+      </div>
     </main>
   );
 };

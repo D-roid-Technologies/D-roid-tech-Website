@@ -41,6 +41,9 @@
 }
 
 /* OUR APPROACH SECTION */
+.bg-color {
+  background-color: #f9f9f9;
+}
 .drone-approach-main {
   margin-bottom: 50px;
 }
@@ -91,6 +94,7 @@
 }
 /* FEATURED DRONE SERVICE */
 .ft-drone-service {
+  /* background-color: #f9f9f9; */
   margin-bottom: 50px;
   padding-left: 100px;
   padding-right: 100px;
@@ -104,6 +108,7 @@
 /* Arial photography and videography  */
 .videography-main {
   margin-bottom: 50px;
+  background-color: #ffffff;
 }
 .droneapproach-details {
   padding: 20px;
@@ -127,6 +132,9 @@
   font-weight: 700;
   margin-bottom: 0.3em;
 }
+.drone-text {
+  color: rgb(124, 124, 124);
+}
 .video-btn {
   margin-top: 2em;
   width: 30%;
@@ -139,6 +147,7 @@
 /* MAPPING & SURVEYING */
 .mapping {
   margin-bottom: 50px;
+  background-color: #ffffff;
 }
 .mapping-ul {
   padding: 20px;
@@ -167,6 +176,7 @@
 /* Infrastructure Inspection */
 .infrastructure {
   margin-bottom: 50px;
+  background-color: #ffffff;
 }
 .infrastructure-ul {
   padding: 20px;
@@ -195,6 +205,7 @@
 /* cropmonitoring */
 .cropmonitoring {
   margin-bottom: 50px;
+  background-color: #ffffff;
 }
 .cropmonitoring-ul {
   padding: 20px;
@@ -239,6 +250,7 @@
   border-radius: 5px;
   transition: box-shadow 0.3s ease;
   flex-basis: calc(23% - 2%);
+  background-color: #ffffff;
 }
 .tools:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
