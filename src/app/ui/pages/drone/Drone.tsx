@@ -19,6 +19,7 @@ import { MdPhotoCameraFront } from "react-icons/md";
 import { LiaToolsSolid } from "react-icons/lia";
 import { MdOndemandVideo } from "react-icons/md";
 import { MdAgriculture } from "react-icons/md";
+import { GiJapaneseBridge } from "react-icons/gi";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -140,13 +141,14 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             <ul className="infrastructure-ul">
               {DATA.InfrastructureInspection.map((item, index) => (
                 <li className="infrastructure-services" key={index}>
-                  <picture>
-                    <img
+                  <div>
+                    {/* <img
                       src={item.image}
                       alt="infrastructure Image"
                       className="map"
-                    />
-                  </picture>
+                    /> */}
+                    <GiJapaneseBridge className="map" />
+                  </div>
                   <div className="infrastructure-text">
                     <h2 className="infrastructure-heading">{item.title}</h2>
                     <p className="drone-text">{item.content}</p>
