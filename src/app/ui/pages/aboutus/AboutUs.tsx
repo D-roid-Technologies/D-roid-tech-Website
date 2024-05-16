@@ -94,7 +94,7 @@ const AboutUs: React.FunctionComponent = () => {
                     molestias pariatur et modi reprehenderit! Quidem fugiat,
                     voluptatum odio est debitis, at inventore, aut laboriosam.
                     Quidem fugiat, voluptatum odio est debitis, at inventore,
-                    aut laboriosam.
+                    aut laboriosam. aut laboriosam.
                   </p>
                 </div>
               </div>
