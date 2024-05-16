@@ -14,6 +14,11 @@ import {
   updateModal,
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
+import { GiDeliveryDrone } from "react-icons/gi";
+import { MdPhotoCameraFront } from "react-icons/md";
+import { LiaToolsSolid } from "react-icons/lia";
+import { MdOndemandVideo } from "react-icons/md";
+import { MdAgriculture } from "react-icons/md";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -80,14 +85,15 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
       </section>
       {/*  Featured Drone Service */}
       <section className="ft-drone-service">
+        <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
+        {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
         <section className="videography-main">
-          <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
-          {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
           <ul className="droneapproach-details">
             {DATA.FeaturedDroneServices.map((item, index) => (
               <li className="droneapproach-services" key={index}>
                 <figure>
-                  <video controls src={item.video} />
+                  {/* <video controls src={item.video} /> */}
+                  <MdOndemandVideo className="map" />
                 </figure>
                 <div className="video-details">
                   <h2 className="video-heading">{item.title}</h2>
@@ -123,7 +129,6 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 </div>
                 <div>
                   <FaMapMarkerAlt className="map" />
-                  {/* <img src={item.image} alt="survey Image" /> */}
                 </div>
               </li>
             ))}
@@ -131,14 +136,18 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         </section>
         {/* Infrastructure Inspection */}
         <section className="infrastructure">
-          <ul className="mapping-ul">
+          <ul className="infrastructure-ul">
             {DATA.InfrastructureInspection.map((item, index) => (
-              <li className="mappping-services" key={index}>
+              <li className="infrastructure-services" key={index}>
                 <picture>
-                  <img src={item.image} alt="survey Image" />
+                  <img
+                    src={item.image}
+                    alt="infrastructure Image"
+                    className="map"
+                  />
                 </picture>
-                <div className="mapping-text">
-                  <h2 className="mapping-heading">{item.title}</h2>
+                <div className="infrastructure-text">
+                  <h2 className="infrastructure-heading">{item.title}</h2>
                   <p>{item.content}</p>
                 </div>
               </li>
@@ -148,21 +157,16 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
 
         {/* Crop Monitoring & Agricultur */}
         <section className="cropmonitoring">
-          {/* <div
-          style={{
-            backgroundImage: `url("${cropMonitoring}")`,
-          }}
-          className="bg-image"
-        > */}
-          <ul className="mapping-ul">
+          <ul className="cropmonitoring-ul">
             {DATA.CropMonitoringAgriculture.map((item, index) => (
-              <li className="mappping-services" key={index}>
-                <div className="mapping-text">
-                  <h2 className="mapping-heading">{item.title}</h2>
+              <li className="cropmonitoring-services" key={index}>
+                <div className="cropmonitoring-text">
+                  <h2 className="cropmonitoring-heading">{item.title}</h2>
                   <p>{item.content}</p>
                 </div>
                 <picture>
-                  <img src={item.image} alt="survey Image" />
+                  {/* <img src={item.image} alt="survey Image" className="map" /> */}
+                  <MdAgriculture className="map" />
                 </picture>
               </li>
             ))}
@@ -170,17 +174,17 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
           {/* </div> */}
         </section>
       </section>
-      {/* Technologies & Equipment */}
+      {/* TECHNOLOGIES AND EQUIPMENT */}
       <section className="techandequipment">
-        <h1 className="tech-heading">TECHNOLOGIES AND EQUIPMENT </h1>
+        <h1 className="tech-heading">Technologies and Equipment </h1>
         {/* drone-model */}
         <div className="drone-camera-software">
-          <div>
+          <div className="tools">
             <ul>
               {DATA.DroneModels.map((item, index) => (
                 <li className="mappping-services" key={index}>
-                  <div className="">
-                    <img src={item.image} alt="" className="imagesize" />
+                  <div className="tools-container">
+                    <GiDeliveryDrone className="image-icon" />
                     <h2 className="title">{item.title}</h2>
                     <p className="content">{item.content}</p>
                   </div>
@@ -189,12 +193,12 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             </ul>
           </div>
           {/* Camera & Sensors */}
-          <div>
+          <div className="tools">
             <ul>
               {DATA.CamerasSensors.map((item, index) => (
                 <li className="mappping-services" key={index}>
-                  <div className="">
-                    <img src={item.image} alt="" className="imagesize" />
+                  <div className="tools-container">
+                    <MdPhotoCameraFront className="image-icon" />
                     <h2 className="title">{item.title}</h2>
                     <p className="content">{item.content}</p>
                   </div>
@@ -203,12 +207,12 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             </ul>
           </div>
           {/* Software Tools */}
-          <div>
+          <div className="tools">
             <ul>
               {DATA.SoftwareTools.map((item, index) => (
                 <li className="mappping-services" key={index}>
-                  <div>
-                    <img src={item.image} alt="" className="imagesize" />
+                  <div className="tools-container">
+                    <LiaToolsSolid className="image-icon" />
                     <h2 className="title">{item.title}</h2>
                     <p className="content">{item.content}</p>
                   </div>
@@ -219,8 +223,42 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         </div>
       </section>
       <section>
-        <div className="product-button">
-          <div className="See-our-product">
+        <div className="drone-customer-testimonials">
+          <div>
+            <h2 className="drone-read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
+            <div className="drone-testimonial-details">
+              <p>
+                "D'roid Technologies' drone services helped us streamline our
+                construction projects by providing accurate aerial mapping and
+                surveying data. Their team's professionalism and attention to
+                detail were commendable, and the results exceeded our
+                expectations." - Sarah Smith, Project Manager
+              </p>
+              <p className="drone-testifier"> — Sarah Smith, Project Manager</p>
+            </div>
+            <div className="drone-contact-uss">
+              <div className="drone-contactuss-button">
+                <Button
+                  bgColor={"black"}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="See more testimonials"
+                  color="white"
+                  fWeight={800}
+                  bRadius={5}
+                  onClickButton={() => {
+                    navigate("/contact");
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ff
+        <div className="product-buttons">
+          <div className="See-our-products">
             <Button
               bgColor={"black"}
               mTop={0}
@@ -241,7 +279,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               }}
             />
           </div>
-        </div>
+        </div> */}
       </section>
     </main>
   );

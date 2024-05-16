@@ -472,21 +472,21 @@ export const DATA = {
   ],
   DroneModels: [
     {
-      image: require("../../images/png/dronemodel.png"),
+      // image: require("../../images/png/dronemodel.png"),
       title: "Drone Models",
       content: " DJI Phantom, DJI Mavic, DJI Inspire, SenseFly eBee",
     },
   ],
   CamerasSensors: [
     {
-      image: require("../../images/png/camerasandsensors.png"),
+      // image: require("../../images/png/camerasandsensors.png"),
       title: "Cameras & Sensors",
       content: " RGB cameras, multispectral cameras, LiDAR sensors",
     },
   ],
   SoftwareTools: [
     {
-      image: require("../../images/png/softwaretools.png"),
+      // image: require("../../images/png/softwaretools.png"),
       title: "Software Tools",
       content: "Pix4D, DroneDeploy, Agisoft Metashape ",
     },
