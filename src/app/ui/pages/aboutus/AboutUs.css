@@ -16,9 +16,9 @@
 }
 .section-one {
   display: flex;
-  gap: 60px;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 1.8em;
-  /* padding-bottom: 2.2em; */
 }
 .image-sized {
   width: 600px;
@@ -33,7 +33,7 @@
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 35px !important;
-  font-weight: 800;
+  font-weight: 600;
   color: #282a94;
   font-family: "Rammetto";
 }
@@ -71,10 +71,10 @@
 /* VISION MISSION VALUE - BOX SECTIONS */
 .vision-mission-value {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding-top: 30px;
-  gap: 20px;
+  gap: 15px;
 }
 /* BOX ONE */
 .vision-header {
