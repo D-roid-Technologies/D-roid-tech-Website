@@ -16,6 +16,7 @@ const CourseDetail: React.FunctionComponent = () => {
 
   return (
     <div className="course-detail">
+      <h1>{course?.title}</h1>
       {/* <div className="main-content">
         <div
           style={{

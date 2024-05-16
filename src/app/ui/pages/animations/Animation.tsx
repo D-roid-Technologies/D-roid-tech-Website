@@ -38,7 +38,7 @@ const Animation: React.FunctionComponent = () => {
 
       <div className="main-content-section">
         {/* Approach Section */}
-        <div className="animation-approach-main">
+        {/* <div className="animation-approach-main">
           <h1 className="animation-approach-head">Our Approach</h1>
           <ul className="animation-approach-list">
             <li className="animation-approach-item">
@@ -86,7 +86,7 @@ const Animation: React.FunctionComponent = () => {
               </p>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Featured Projects Section */}
         <div className="animation-approach-main">
