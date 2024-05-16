@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
-import { FaLaptopCode, FaVideo, FaChalkboardTeacher } from "react-icons/fa";
 import "./Training.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { Link, useLocation } from "react-router-dom";
 import { TrainingPhoto } from "../../../utils/Types";
 import Button from "../../components/button/Button";
-import TrainingProgramCard from "../../components/trainingProgramCard/TrainingProgramCard";
+import Card from "../../components/card/Card";
+import TrainingApproach from "../../components/trainingApproach/TrainingApproach";
+import TechnologiesAndTools from "../../components/technologies/TechnologiesAndTools";
 
 const photos: TrainingPhoto[] = [
   { image: Assets.images.staffBg, text: "Expert trainers available" },
@@ -37,21 +38,33 @@ const Training: React.FunctionComponent = () => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: Assets.colors.light}}>
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: Assets.colors.overlay,
         }}
         className="training-full-screen-background-image"
       >
         <NavBar />
-        <div className="training-home-section">
+        <div
+          style={{ color: Assets.colors.light }}
+          className="training-home-section"
+        >
           <div className="training-home-content">
-            <p className="training-large-centered-heading">
+            <p
+              style={{
+                color: Assets.colors.light,
+                fontFamily: "Rammetto One",
+              }}
+              className="training-large-centered-heading"
+            >
               {photos[currentPhotoIndex].text}
             </p>
-            <p className="training-smaller-centered-heading">
+            <p
+              style={{ color: Assets.colors.light, fontFamily: "Mazzard" }}
+              className="training-smaller-centered-heading"
+            >
               Our training courses cover a wide range of topics, from
               programming languages and software development methodologies to
               emerging technologies and industry best practices.
@@ -60,7 +73,7 @@ const Training: React.FunctionComponent = () => {
           <div className="prev-button">
             <Button
               title="<"
-              bgColor="rgba(0, 0, 0, 0.5)"
+              bgColor={Assets.colors.overlay}
               color={Assets.colors.light}
               onClickButton={handlePreviousPhoto}
               mLeft={10}
@@ -72,7 +85,7 @@ const Training: React.FunctionComponent = () => {
           <div className="next-button">
             <Button
               title=">"
-              bgColor="rgba(0, 0, 0, 0.5)"
+              bgColor={Assets.colors.overlay}
               color={Assets.colors.light}
               onClickButton={handleNextPhoto}
               mLeft={10}
@@ -86,57 +99,20 @@ const Training: React.FunctionComponent = () => {
 
       <div className="training-main-content-section">
         {/* Approach Section */}
-        <div className="training-approach-main">
-          <h1 className="training-approach-head">Our Approach</h1>
-          <ul className="training-approach-list">
-            <li className="training-approach-item">
-              <h2>Customized Curriculum</h2>
-              <p>
-                We understand that every learner is unique, which is why we
-                tailor our training programs to meet the specific needs and
-                goals of each participant. Our experienced instructors work
-                closely with learners to develop personalized learning plans
-                that align with their interests and career aspirations.
-              </p>
-            </li>
-            <li className="training-approach-item">
-              <h2>Hands-on Learning</h2>
-              <p>
-                We believe in learning by doing, which is why our training
-                courses emphasize practical, hands-on experience. Participants
-                have the opportunity to apply their knowledge in real-world
-                projects and exercises, gaining valuable skills that are
-                immediately applicable in the workplace.
-              </p>
-            </li>
-            <li className="training-approach-item">
-              <h2>Expert Instructors</h2>
-              <p>
-                Our instructors are industry experts with years of experience in
-                their respective fields. They bring a wealth of knowledge and
-                practical insights to the classroom, providing learners with
-                valuable guidance and mentorship throughout their training
-                journey.
-              </p>
-            </li>
-            <li className="training-approach-item">
-              <h2>Flexible Learning Options</h2>
-              <p>
-                Whether you prefer in-person instruction, online classes, or
-                self-paced learning modules, we offer flexible learning options
-                to accommodate your schedule and learning preferences. Our goal
-                is to make quality tech training accessible to everyone, no
-                matter where they are located.
-              </p>
-            </li>
-          </ul>
-        </div>
+        <TrainingApproach />
 
-        {/* Relocated image */}
+        {/* image */}
         <div className="training-rounded-image">
           <img
             src={Assets.images.statistics}
             alt="training"
+            style={{
+              width: "100%",
+              height: "300px",
+              borderRadius: "10px",
+              boxShadow: `0 0.35em 0.35em 0 ${Assets.colors.overlay}`,
+              marginBottom: "1rem",
+            }}
             className="training-boxed-image"
           />
         </div>
@@ -144,42 +120,45 @@ const Training: React.FunctionComponent = () => {
         {/* Featured Training Programs Section */}
 
         <div className="training-approach-main">
-          <h1 className="training-approach-head">Featured Training Programs</h1>
+          <h1
+            style={{ color: Assets.colors.basic, fontFamily: "Rammetto One" }}
+            className="training-approach-head"
+          >
+            Featured Training Programs
+          </h1>
           <ul className="training-programs-list">
             {DATA.courses.map((course) => (
-              <TrainingProgramCard key={course.id} program={course} />
+              <Card
+                key={course.id}
+                className="training-program-item"
+                cardStyle={{
+                  flexBasis: "calc(23% - 2%)",
+                  border: `1px solid ${Assets.colors.borderColor}`,
+                  transition: "box-shadow 0.3s ease",
+                }}
+                headingStyle={{
+                  marginBottom: "10px",
+                  fontFamily: "Rammetto One",
+                  color: Assets.colors.basic,
+                }}
+                descriptionStyle={{
+                  fontFamily: "Mazzard",
+                  fontSize: "1rem",
+                  color: Assets.colors.basic,
+                  marginBottom: "1em",
+                }}
+              >
+                <Link to={`${location.pathname}/course-detail/${course.id}`}>
+                  <h3>{course.title}</h3>
+                </Link>
+              </Card>
             ))}
           </ul>
         </div>
       </div>
 
       {/* Technologies and Tools Section */}
-      <div className="training-approach-main">
-        <h1 className="training-approach-head">Technologies and Tools</h1>
-        <ul className="training-approach-list">
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaChalkboardTeacher className="icon" />
-            </div>
-            <h2>Learning Management Systems</h2>
-            <p>Moodle, Canvas, Blackboard</p>
-          </li>
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaVideo className="icon" />
-            </div>
-            <h2>Video Conferencing Platforms</h2>
-            <p>Zoom, Microsoft Teams, Google Meet</p>
-          </li>
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaLaptopCode className="icon" />
-            </div>
-            <h2>Code Editors</h2>
-            <p>Visual Studio Code, Atom, Sublime Text</p>
-          </li>
-        </ul>
-      </div>
+      <TechnologiesAndTools />
     </div>
   );
 };
