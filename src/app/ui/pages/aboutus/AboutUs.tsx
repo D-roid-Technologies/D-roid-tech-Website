@@ -18,9 +18,9 @@ const AboutUs: React.FunctionComponent = () => {
                 className="image-sized"
               />
             </div>
-            <div className="history">
-              <p className="our-history"> Our History</p>
-              <p className="histoy-details">
+            <div className="about-history">
+              <p className="history-heading"> Our History</p>
+              <p className="about-histoy-details">
                 D'roid Technologies International was founded in 2005 by a group
                 of software developers with passion for creating innovative
                 solutions. Over the years, we have grouwn into a leading
@@ -33,31 +33,36 @@ const AboutUs: React.FunctionComponent = () => {
         {/* VISON AND MISSION SECTION */}
         <div className="vision-marginbuttom">
           <section className="vision-section">
-            <article>
-              <h2 className="vision"> Vision & Mission </h2>
-              <p className="vision-details">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel
-                quis fugiat ut, non ipsum veritatis nam minima magni doloremque,
-                ratione maxime dignissimos nulla, autem nesciunt dolor tenetur
-                obcaecati minus ex. Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Perspiciatis delectus, repudiandae, quos
-                eligendi neque qui voluptas quam error eaque soluta minima
-                corporis! Cum laboriosam deserunt quia reiciendis earum
-                voluptatibus inventore.
-              </p>
-            </article>
+            {/* <article>
+                <h2 className="vision"> Vision & Mission </h2> */}
+            {/* <p className="vision-details">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel
+                  quis fugiat ut, non ipsum veritatis nam minima magni
+                  doloremque, ratione maxime dignissimos nulla, autem nesciunt
+                  dolor tenetur obcaecati minus ex. Lorem ipsum dolor sit amet
+                  consectetur, adipisicing elit. Perspiciatis delectus,
+                  repudiandae, quos eligendi neque qui voluptas quam error eaque
+                  soluta minima corporis! Cum laboriosam deserunt quia
+                  reiciendis earum voluptatibus inventore.
+                </p> */}
+            {/* </article> */}
           </section>
 
           <section>
             <div className="vision-mission-value">
+              {/* BOX ONE */}
               <div className="vision-main">
                 <h2 className="vision-header">Vision</h2>
                 <div className="vision-box">
-                  {" "}
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    molestias pariatur et modi reprehenderit! Quidem fugiat,
-                    voluptatum odio est debitis, at inventore, aut laboriosam.
+                    Our vision is to be a global leader in technological
+                    innovation, known for our exceptional service and
+                    transformative solutions. We aspire to create a future where
+                    technology seamlessly integrates with everyday life,
+                    fostering growth, creativity, and progress. By continually
+                    advancing our expertise and embracing new challenges, we aim
+                    to shape a world where technology is accessible and
+                    beneficial to all.
                   </p>
                 </div>
               </div>
@@ -65,11 +70,14 @@ const AboutUs: React.FunctionComponent = () => {
               <div className="vision-main">
                 <h2 className="vision-header">Mission</h2>
                 <div className="vision-box">
-                  {" "}
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    molestias pariatur et modi reprehenderit! Quidem fugiat,
-                    voluptatum odio est debitis, at inventore, aut laboriosam.
+                    Our mission is to empower individuals and businesses through
+                    innovative technology solutions. We strive to deliver
+                    high-quality, scalable, and user-friendly software
+                    applications, cutting-edge animation, comprehensive tech
+                    training, and advanced drone services. Our commitment is to
+                    enhance our clients' capabilities, enabling them to achieve
+                    their goals with efficiency and excellence.
                   </p>
                 </div>
               </div>
@@ -82,6 +90,11 @@ const AboutUs: React.FunctionComponent = () => {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
                     molestias pariatur et modi reprehenderit! Quidem fugiat,
                     voluptatum odio est debitis, at inventore, aut laboriosam.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                    molestias pariatur et modi reprehenderit! Quidem fugiat,
+                    voluptatum odio est debitis, at inventore, aut laboriosam.
+                    Quidem fugiat, voluptatum odio est debitis, at inventore,
+                    aut laboriosam.
                   </p>
                 </div>
               </div>

@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
+/* .aboutus-bg-color {
+  background-color: #f9f9f9;
+} */
 .about-main {
   padding-left: 100px;
   padding-right: 100px;
@@ -22,11 +25,11 @@
   height: 300px;
   object-fit: contain;
 }
-.history {
+.about-history {
   padding: 70px 30px;
   text-align: center;
 }
-.our-history {
+.history-heading {
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 35px !important;
@@ -34,20 +37,20 @@
   color: #282a94;
   font-family: "Rammetto";
 }
-.histoy-details {
+.about-histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184) !important;
   font-family: "Mazzard";
   text-align: justify;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
 }
 
 /* VISION AND MISSION SECTION */
 .vision-marginbuttom {
   margin-bottom: 50px;
 }
-.vision {
+/* .vision {
   text-align: center;
   margin-bottom: 1em;
   line-height: 10px;
@@ -58,55 +61,44 @@
 }
 
 .vision-details {
-  /* padding: 0 80px; */
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184) !important;
   font-family: "Mazzard";
-  text-align: justify;
-  letter-spacing: 2px;
-}
+  text-align: center; */
+/* letter-spacing: 2px; */
+/* } */
 /* VISION MISSION VALUE - BOX SECTIONS */
 .vision-mission-value {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 30px;
-  gap: 80px;
+  gap: 20px;
 }
 /* BOX ONE */
-/* .vision-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 .vision-header {
   text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #333;
+  margin-bottom: 2rem;
+  line-height: 10px;
+  font-size: 32px;
+  color: #282a94;
   font-family: "Rammetto";
 }
 
 .vision-box {
-  background-color: #f0f0f0;
-  border-radius: 20px;
-  padding: 40px 10px;
-  /* width: 80%; */
-  height: 100%;
-  text-align: center;
-  box-shadow: 0.35em 0.35em 1em grey;
-  transition: transform 0.3s ease-in-out;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.vision-box:hover {
-  transform: scale(1.1);
-}
+
 .vision-box p {
   font-size: 1.2rem;
-  line-height: 1.5;
-  color: #666;
+  font-weight: 200;
+  color: rgb(186, 184, 184);
   font-family: "Mazzard";
+  text-align: left;
 }
 /* OUR TEAM SECTION */
 .ourteam-marginbottom {
@@ -117,13 +109,14 @@
   margin-bottom: 0.6em;
   font-family: "Rammetto";
   font-size: 2rem;
+  color: #282a94;
 }
 .our-team-details {
   padding: 0 90px;
   text-align: center;
   font-family: "Mazzard";
   font-size: 1.2rem;
-  color: rgb(124, 124, 124);
+  color: rgb(186, 184, 184);
   margin-bottom: 1.5em;
 }
 /* OUR TEAM PROFILE IMAGES */
@@ -146,7 +139,7 @@
 }
 .profile-one p {
   font-family: "Mazzard";
-  color: rgb(124, 124, 124);
+  color: rgb(186, 184, 184);
   font-weight: 600;
 }
 /* SECTION TWO */
