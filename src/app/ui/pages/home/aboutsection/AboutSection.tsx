@@ -154,6 +154,7 @@ const Section: React.FunctionComponent = () => {
               <GiTeacher className="image-size" />
               <span className="padded">
                 <h2 className="carousel-heading">Tech Training </h2>
+                {/* waiting for tech content */}
                 <p className="carousel-details"> </p>
               </span>
             </div>
