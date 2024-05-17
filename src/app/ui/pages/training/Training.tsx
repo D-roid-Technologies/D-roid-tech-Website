@@ -9,14 +9,16 @@ import Button from "../../components/button/Button";
 import Card from "../../components/card/Card";
 import TrainingApproach from "../../components/trainingApproach/TrainingApproach";
 import TechnologiesAndTools from "../../components/technologies/TechnologiesAndTools";
+import { FaLaptop } from "react-icons/fa";
+import { courses } from "../../../utils/constant/FeaturedTraining";
 
 const photos: TrainingPhoto[] = [
   { image: Assets.images.staffBg, text: "Expert trainers available" },
   {
-    image: Assets.images.companyBanner,
+    image: Assets.images.tech,
     text: "At D'roid Technologies, we offer comprehensive tech training programs designed to empower individuals with the knowledge and skills needed to excel in today's rapidly evolving tech landscape.",
   },
-  { image: Assets.images.background2, text: "Learn at your own pace" },
+  { image: Assets.images.tech3, text: "Learn at your own pace" },
 ];
 
 const Training: React.FunctionComponent = () => {
@@ -38,7 +40,7 @@ const Training: React.FunctionComponent = () => {
   };
 
   return (
-    <div style={{backgroundColor: Assets.colors.light}}>
+    <div style={{ backgroundColor: Assets.colors.light }}>
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
@@ -102,18 +104,10 @@ const Training: React.FunctionComponent = () => {
         <TrainingApproach />
 
         {/* image */}
-        <div className="training-rounded-image">
-          <img
-            src={Assets.images.statistics}
-            alt="training"
-            style={{
-              width: "100%",
-              height: "300px",
-              borderRadius: "10px",
-              boxShadow: `0 0.35em 0.35em 0 ${Assets.colors.overlay}`,
-              marginBottom: "1rem",
-            }}
-            className="training-boxed-image"
+        <div style={{textAlign: "center"}}>
+          <FaLaptop
+            style={{ fontSize: "10rem", color: Assets.colors.secondary }}
+            className="icon"
           />
         </div>
 
@@ -127,7 +121,7 @@ const Training: React.FunctionComponent = () => {
             Featured Training Programs
           </h1>
           <ul className="training-programs-list">
-            {DATA.courses.map((course) => (
+            {courses.map((course) => (
               <Card
                 key={course.id}
                 className="training-program-item"
