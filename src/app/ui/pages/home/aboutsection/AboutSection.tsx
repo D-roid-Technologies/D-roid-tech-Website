@@ -96,6 +96,7 @@ const Section: React.FunctionComponent = () => {
           <GiPathDistance className="image-size" />
         </div>
       </div>
+
       {/* SECTION THREE */}
       <div className="our-service-main">
         <div className="section-three">
