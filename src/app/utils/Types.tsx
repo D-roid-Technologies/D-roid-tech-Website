@@ -65,32 +65,34 @@ export type TrainingPhoto = {
   text: string;
 };
 
-export type Course = {
-  id: number;
-  level: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  benefits: {
-    title: string;
-    description: string;
-  }[];
-  projects: {
-    title: string;
-    description: string;
-  }[];
-  howItWorks: {
-    title: string;
-    content: string;
-  }[];
-  courseDetails: {
-    startDate: string;
-    duration: string;
-    price: number;
-    discountedPrice: number;
-    offerExpiry: string;
-  };
-};
+// export type Course = {
+//   id: number;
+//   level?: string;
+//   title: string;
+//   subtitle?: string;
+//   description?: string;
+//   benefits?: {
+//     title: string;
+//     description: string;
+//   }[];
+//   projects?: {
+//     title: string;
+//     description: string;
+//   }[];
+//   howItWorks: {
+//     title: string;
+//     content: string;
+//   }[];
+//   courseDetails: {
+//     startDate: string;
+//     duration: string;
+//     price: number;
+//     discountedPrice: number;
+//     offerExpiry: string;
+//   };
+// };
+
+export type Course = { id: number; title: string };
 
 export type AppEntrySliceType = {
   showModal: boolean;

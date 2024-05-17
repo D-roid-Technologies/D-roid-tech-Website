@@ -11,54 +11,54 @@ export const useTimer = (course: Course | undefined) => {
     seconds: 0,
   });
 
-  useEffect(() => {
-    const calculateTimeRemaining = () => {
-      const now = new Date();
-      const [expiryHours, expiryMinutes, expirySeconds] =
-        course?.courseDetails.offerExpiry.split(" : ").map(Number) ?? [0, 0, 0];
-      const offerExpiryDate = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        expiryHours,
-        expiryMinutes,
-        expirySeconds
-      );
+  // useEffect(() => {
+  //   const calculateTimeRemaining = () => {
+  //     const now = new Date();
+  //     const [expiryHours, expiryMinutes, expirySeconds] =
+  //       course?.courseDetails.offerExpiry.split(" : ").map(Number) ?? [0, 0, 0];
+  //     const offerExpiryDate = new Date(
+  //       now.getFullYear(),
+  //       now.getMonth(),
+  //       now.getDate(),
+  //       expiryHours,
+  //       expiryMinutes,
+  //       expirySeconds
+  //     );
 
-      const difference = offerExpiryDate.getTime() - now.getTime();
+  //     const difference = offerExpiryDate.getTime() - now.getTime();
 
-      if (difference > 0) {
-        const remainingDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const remainingHours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const remainingMinutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const remainingSeconds = Math.floor((difference % (1000 * 60)) / 1000);
+  //     if (difference > 0) {
+  //       const remainingDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+  //       const remainingHours = Math.floor(
+  //         (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //       );
+  //       const remainingMinutes = Math.floor(
+  //         (difference % (1000 * 60 * 60)) / (1000 * 60)
+  //       );
+  //       const remainingSeconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        setTimeRemaining({
-          days: remainingDays,
-          hours: remainingHours,
-          minutes: remainingMinutes,
-          seconds: remainingSeconds,
-        });
-      } else {
-        // Offer has expired
-        setTimeRemaining({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
-        clearInterval(interval);
-      }
-    };
+  //       setTimeRemaining({
+  //         days: remainingDays,
+  //         hours: remainingHours,
+  //         minutes: remainingMinutes,
+  //         seconds: remainingSeconds,
+  //       });
+  //     } else {
+  //       // Offer has expired
+  //       setTimeRemaining({
+  //         days: 0,
+  //         hours: 0,
+  //         minutes: 0,
+  //         seconds: 0,
+  //       });
+  //       clearInterval(interval);
+  //     }
+  //   };
 
-    const interval = setInterval(calculateTimeRemaining, 1000);
+  //   const interval = setInterval(calculateTimeRemaining, 1000);
 
-    return () => clearInterval(interval);
-  }, [course]);
+  //   return () => clearInterval(interval);
+  // }, [course]);
 
-  return timeRemaining;
+  // return timeRemaining;
 };
