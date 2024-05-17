@@ -23,7 +23,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               </h1>
               <p
                 className="privacy-description"
-                style={{ color: Assets.colors.borderColor }}
+                style={{ color: Assets.colors.paragraph }}
               >
                 Last Updated: [Insert Date] D'roid Technologies International
                 ("we", "our", "us") is committed to protecting and respecting
@@ -54,7 +54,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               >
                 Personal Information
               </h3>
-              <p style={{ color: Assets.colors.borderColor }}>
+              <p style={{ color: Assets.colors.paragraph }}>
                 We may collect the following personal information from you: -
                 Name - Email address - Phone number - Mailing address - Payment
                 information - User account details
@@ -67,7 +67,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               >
                 Non-Personal Information
               </h3>
-              <p style={{ color: Assets.colors.borderColor }}>
+              <p style={{ color: Assets.colors.paragraph }}>
                 We may also collect non-personal information, such as: - Browser
                 type and version - Operating system - Referring website - Pages
                 visited on our site - Time and date of visit - Time spent on
@@ -88,7 +88,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               We use the information we collect for various purposes, including:
               - To provide and maintain our services - To process transactions
@@ -113,7 +113,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               We do not sell, trade, or otherwise transfer your personal
               information to third parties without your consent, except in the
@@ -140,7 +140,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               We implement a variety of security measures to maintain the safety
               of your personal information. These measures include: - Secure
@@ -165,7 +165,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               You have the following rights regarding your personal information:
               - Access: You can request access to the personal information we
@@ -179,7 +179,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               To exercise any of these rights, please contact us using the
               contact details provided below.
@@ -198,7 +198,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               Our website uses cookies and similar tracking technologies to
               enhance your browsing experience. Cookies are small files that a
@@ -209,7 +209,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               You can instruct your browser to refuse all cookies or to indicate
               when a cookie is being sent. However, if you do not accept
@@ -229,7 +229,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               Our website may contain links to third-party sites that are not
               operated by us. If you click on a third-party link, you will be
@@ -252,7 +252,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               We may update our Privacy Policy from time to time. We will notify
               you of any changes by posting the new Privacy Policy on this page.
@@ -274,7 +274,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </h2>
             <p
               className="privacy-subsection-content"
-              style={{ color: Assets.colors.borderColor }}
+              style={{ color: Assets.colors.paragraph }}
             >
               If you have any questions about this Privacy Policy, please contact us:
               - By email: [Insert Contact Email]

@@ -39,6 +39,8 @@ export const Assets = {
     tertiary: "#FF6F61",
     overlay: "rgba(0, 0, 0, 0.5)",
     borderColor: "#ccc",
+    paragraph: "rgb(186, 184, 184)",
+    backgroundColor: "#f9f9f9",
   },
 //   colors: {
 //     basic: "#fff",
