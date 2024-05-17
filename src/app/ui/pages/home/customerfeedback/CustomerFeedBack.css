@@ -142,8 +142,11 @@
   .customerfeedback-main {
     margin-bottom: 50px;
   }
+
   .customer-testimonials {
     margin-bottom: 40px;
+    background-color: #282a94;
+    height: 400px;
   }
 
   .read {
@@ -157,7 +160,7 @@
     padding-bottom: 1em;
   }
   .testiminial-details {
-    padding: 0 50px;
+    padding: 0 10px;
     color: #ffffff;
     font-family: "Mazzard";
     letter-spacing: 2px;
@@ -167,12 +170,14 @@
     margin-top: 10px;
     color: #00ffff;
   }
+
   /* Button */
   .contact-uss {
-    display: flex;
+    padding-left: 10px;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    align-items: l; */
+    /* margin-top: 20px; */
   }
 
   .contactuss-button {
@@ -293,8 +298,11 @@
   .customerfeedback-main {
     margin-bottom: 50px;
   }
+
   .customer-testimonials {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
+    background-color: #282a94;
+    height: 350px;
   }
 
   .read {
@@ -308,11 +316,11 @@
     padding-bottom: 1em;
   }
   .testiminial-details {
-    padding: 0 15px;
+    padding: 0 10px;
     color: #ffffff;
     font-family: "Mazzard";
     font-size: 13px;
-    /* letter-spacing: 2px; */
+    letter-spacing: 1px;
     text-align: left;
   }
   .testifier {
@@ -320,9 +328,10 @@
     color: #00ffff;
     font-size: 10px;
   }
+
   /* Button */
   .contact-uss {
-    padding-left: 15px;
+    padding-left: 10px;
     margin-top: 20px;
   }
 
@@ -344,7 +353,7 @@
 
   /* CONTACT US SECTION */
   .cont-main {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
   }
   .heading {
     font-size: 1.5rem;

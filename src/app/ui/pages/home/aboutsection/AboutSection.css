@@ -31,6 +31,7 @@
   font-weight: 800;
   color: #282a94;
   font-family: "Rammetto";
+  text-align: center;
 }
 .histoy-details {
   font-size: 1.2rem;
@@ -241,7 +242,7 @@
     font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   /* CONTACT US BOTTON */
   .history-btn {
@@ -287,7 +288,7 @@
     font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   /* APPROACH BOTTON */
   .our-approach-btn {
@@ -301,6 +302,7 @@
     width: 48%;
     border-radius: none;
   }
+
   /* SECTION THREE OUR SERVICES */
   .our-service-main {
     margin-bottom: 50px;
@@ -336,7 +338,7 @@
     font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   /* CAROUSEL SECTION */
@@ -367,7 +369,7 @@
     color: rgb(186, 184, 184);
     font-family: "Mazzard";
     text-align: justify;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   .slick-slide div {
@@ -416,7 +418,7 @@
     height: 200px;
   }
   .history {
-    padding: 5px 0px;
+    padding: 15px 0px;
     /* text-align: left; */
   }
 
@@ -428,7 +430,7 @@
     font-weight: 400;
     color: #282a94;
     font-family: "Rammetto";
-    padding-top: 15px;
+    padding-top: 20px;
   }
   .histoy-details {
     font-size: 15px;
@@ -437,25 +439,27 @@
     font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
+    letter-spacing: 1px;
   }
   /* CONTACT US BOTTON */
   .history-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.8em;
+    margin-top: 50px;
   }
 
   .readmore-btn {
     width: 48%;
     border-radius: none;
   }
+
   /* SECTION TWO OUR APPROACH */
   .section-two {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: 1.8em;
+    padding-top: 90px;
   }
   .image-size {
     width: 350px;
@@ -473,7 +477,7 @@
     font-weight: 400;
     color: #282a94;
     font-family: "Rammetto";
-    padding-top: 20px;
+    /* padding-top: 20px; */
   }
   .approach-details {
     font-size: 15px;
@@ -482,6 +486,7 @@
     font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
+    letter-spacing: 1px;
     /* padding-bottom: 20px; */
   }
   /* CONTACT US BOTTON */
@@ -489,8 +494,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
+    margin-top: 20px;
+    margin-bottom: 80px;
   }
 
   .approach-btn {
@@ -505,7 +510,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: 1.8em;
+    padding-top: 50px;
   }
   .image-size {
     width: 350px;
@@ -532,12 +537,13 @@
     font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
+    letter-spacing: 1px;
   }
   /* CAROUSEL SECTION */
   .carousel-container {
     width: 100%;
     margin: 0 auto;
-    margin-bottom: 2em;
+    margin-bottom: 50px;
   }
 
   .carousel-container img {
@@ -562,7 +568,8 @@
     color: rgb(186, 184, 184);
     font-family: "Mazzard";
     text-align: left;
-    /* letter-spacing: 2px; */
+    /* line-height: 0; */
+    letter-spacing: 1px;
   }
 
   .slick-slide div {

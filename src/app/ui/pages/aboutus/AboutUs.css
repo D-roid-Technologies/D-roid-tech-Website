@@ -2,9 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
-/* .aboutus-bg-color {
+.aboutus-bg-color {
   background-color: #f9f9f9;
-} */
+}
 .about-main {
   padding-left: 100px;
   padding-right: 100px;
@@ -29,8 +29,8 @@
   padding: 70px 30px;
   text-align: center;
 }
-.history-heading {
-  margin-bottom: 1em;
+.about-history-heading {
+  margin-bottom: 1.5em;
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 600;
@@ -43,14 +43,22 @@
   color: rgb(186, 184, 184) !important;
   font-family: "Mazzard";
   text-align: justify;
+  line-height: 30px;
   /* letter-spacing: 2px; */
 }
 
 /* VISION AND MISSION SECTION */
+
 .vision-marginbuttom {
+  background-color: #f0f4f9;
   margin-bottom: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease;
+  flex-basis: calc(23% - 2%);
 }
-/* .vision {
+.vision {
   text-align: center;
   margin-bottom: 1em;
   line-height: 10px;
@@ -60,7 +68,7 @@
   font-family: "Rammetto";
 }
 
-.vision-details {
+/*.vision-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184) !important;
@@ -74,7 +82,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
-  gap: 15px;
+  gap: 25px;
 }
 /* BOX ONE */
 .vision-header {
@@ -87,7 +95,7 @@
 }
 
 .vision-box {
-  background-color: #ffffff;
+  background-color: #f0f4f9;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -100,6 +108,33 @@
   font-family: "Mazzard";
   text-align: left;
 }
+/* CORE VALUES */
+.core-value-vision-main {
+  margin-bottom: 50px;
+}
+.core-value-vision-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 10px;
+  font-size: 32px;
+  color: #282a94;
+  font-family: "Rammetto";
+}
+
+.vision-box {
+  background-color: #f0f4f9;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.vision-box p {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: rgb(159, 156, 156);
+  font-family: "Mazzard";
+  text-align: left;
+}
 /* OUR TEAM SECTION */
 .ourteam-marginbottom {
   margin-bottom: 50px;
@@ -109,7 +144,8 @@
   margin-bottom: 0.6em;
   font-family: "Rammetto";
   font-size: 2rem;
-  color: #282a94;
+  /* color: #282a94; */
+  /* color: aqua; */
 }
 .our-team-details {
   padding: 0 90px;
