@@ -12,6 +12,7 @@ import {
 } from "../../../redux/slices/AppEntrySlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { DATA } from "../../../utils/constant/Data";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -66,16 +67,9 @@ const Home: React.FunctionComponent = () => {
                   bRadius={5}
                   bRadiusColor="#ffffff"
                   onClickButton={() => {
-                    // create an email call
+                    window.location.href = DATA.socialLinks.email;
                   }}
                   // onClickButton={() => {
-                  //   store.dispatch(updateModal(true));
-                  //   store.dispatch(
-                  //     updateModalContent({
-                  //       appTitle: onSuccessTitle,
-                  //       appBody: onSuccessBody,
-                  //     })
-                  //   );
                   // }}
                 />
               </div>

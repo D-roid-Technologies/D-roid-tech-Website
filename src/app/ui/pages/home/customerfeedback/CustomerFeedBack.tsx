@@ -11,6 +11,7 @@ import {
   updateModal,
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
+import { DATA } from "../../../../utils/constant/Data";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -108,8 +109,8 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   fWeight={800}
                   bRadius={5}
                   onClickButton={() => {
-                    // trigger an email action
-                    // navigate("/contact");
+                    window.location.href =
+                      "mailto:hr@droidtechinternational.com";
                   }}
                 />
               </div>
@@ -126,8 +127,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   bRadius={5}
                   bRadiusColor="#000000"
                   onClickButton={() => {
-                    // trigger a whatsapp chat action
-                    // navigate("/contact");
+                    window.location.href = DATA.socialLinks.whatsapp;
                   }}
                 />
               </div>
