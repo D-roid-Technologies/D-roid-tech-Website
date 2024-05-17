@@ -29,7 +29,7 @@ const Software: React.FunctionComponent = () => {
 
       <div className="main-content-section">
         {/* Approach Section */}
-        <div className="software-approach-main">
+        {/* <div className="software-approach-main">
           <h1 className="software-approach-head">Our Approach</h1>
           <ul className="software-approach-list">
             <li className="software-approach-item">
@@ -74,7 +74,7 @@ const Software: React.FunctionComponent = () => {
               </p>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Technologies and Tools Section */}
         <div className="training-approach-main">
