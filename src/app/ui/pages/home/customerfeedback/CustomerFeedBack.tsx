@@ -2,15 +2,15 @@ import React from "react";
 import feedBackImage from "../../../images/png/feedbackpics.png";
 import "../customerfeedback/CustomerFeedBack.css";
 import { FaFacebookF } from "react-icons/fa6";
-import Button from "../button/Button";
-import { Assets } from "../../../utils/constant/Assets";
+import Button from "../../../components/button/Button";
+import { Assets } from "../../../../utils/constant/Assets";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState, store } from "../../../redux/Store";
+import { RootState, store } from "../../../../redux/Store";
 import {
   updateModal,
   updateModalContent,
-} from "../../../redux/slices/AppEntrySlice";
+} from "../../../../redux/slices/AppEntrySlice";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -113,7 +113,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   }}
                 />
               </div>
-              <div className="contactus-button-style">
+              <div className="contactus-button-styles">
                 <Button
                   bgColor={"#ffffff"}
                   mTop={0}

@@ -16,20 +16,14 @@
   padding-bottom: 2.2em;
 }
 .coding-image {
-  /* box-shadow: 0.35em 0.35em 1em grey; */
   border-radius: 10px;
 }
 
 .image-size {
   width: 600px;
   height: 300px;
-  /* border-radius: 10px; */
-  /* box-shadow: 0.35em 0.35em 1em grey; */
 }
-.history {
-  /* padding: 70px 30px; */
-  /* text-align: center; */
-}
+
 .our-history {
   margin-bottom: 1em;
   line-height: 10px;
@@ -41,7 +35,7 @@
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgb(186, 184, 184);
+  color: rgb(186, 184, 184) !important;
   font-family: "Mazzard";
   text-align: justify;
   letter-spacing: 2px;
@@ -94,6 +88,22 @@
   text-align: justify;
   letter-spacing: 2px;
 }
+/* APPROACH BOTTON */
+.our-approach-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.approach-btn {
+  width: 30%;
+  border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.approach-btn:hover {
+  transform: scale(1.1);
+}
 
 /* SECTION THREE OUR SERVICES */
 .our-service-main {
@@ -144,9 +154,6 @@
   width: 100%;
   height: 400px;
   object-fit: cover;
-  /* max-width: 100%; */
-  /* height: auto; */
-  /* border-radius: 20px; */
 }
 
 .slick-slide div {
@@ -174,10 +181,7 @@
   text-align: justify;
   letter-spacing: 2px;
 }
-/* .padded {
-  padding-left: 20px;
-  padding-right: 20px;
-} */
+
 /* OUR SERVICES BOTTON */
 .our-services-btn {
   display: flex;
@@ -219,21 +223,25 @@
     padding: 10px 0px;
     text-align: left;
   }
+
   .our-history {
     margin-bottom: 1em;
     text-align: center;
-    line-height: 0;
-    font-size: 1.5rem;
+    line-height: 0px;
+    font-size: 24px;
     font-weight: 500;
+    color: #282a94;
     font-family: "Rammetto";
   }
 
   .histoy-details {
     font-size: 1rem;
+    font-weight: 200;
+    color: rgb(186, 184, 184);
+    font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
-    font-family: "Mazzard";
-    color: rgb(124, 124, 124);
+    letter-spacing: 2px;
   }
   /* CONTACT US BOTTON */
   .history-btn {
@@ -265,18 +273,33 @@
   .our-approach {
     margin-bottom: 1em;
     text-align: center;
-    line-height: 0;
-    font-size: 1.5rem;
+    line-height: 0px;
+    font-size: 24px;
     font-weight: 500;
+    color: #282a94;
     font-family: "Rammetto";
   }
 
   .approach-details {
     font-size: 1rem;
+    font-weight: 200;
+    color: rgb(186, 184, 184);
+    font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
-    font-family: "Mazzard";
-    color: rgb(124, 124, 124);
+    letter-spacing: 2px;
+  }
+  /* APPROACH BOTTON */
+  .our-approach-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.4em;
+  }
+
+  .approach-btn {
+    width: 48%;
+    border-radius: none;
   }
   /* SECTION THREE OUR SERVICES */
   .our-service-main {
@@ -295,21 +318,25 @@
     padding: 20px 0px;
     text-align: left;
   }
+
   .our-services {
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
     font-size: 1.5rem;
     font-weight: 500;
+    color: #282a94;
     font-family: "Rammetto";
   }
 
   .services-details {
     font-size: 1rem;
+    font-weight: 200;
+    color: rgb(186, 184, 184);
+    font-family: "Mazzard";
     line-height: 0.5cm;
     text-align: left;
-    font-family: "Mazzard";
-    color: rgb(124, 124, 124);
+    letter-spacing: 2px;
   }
 
   /* CAROUSEL SECTION */
@@ -323,9 +350,24 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
-    /* max-width: 100%; */
-    /* height: auto; */
-    /* border-radius: 20px; */
+  }
+
+  .carousel-heading {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 30px;
+    font-weight: 800;
+    /* color: #282a94; */
+    font-family: "Rammetto";
+  }
+  .carousel-details {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: rgb(186, 184, 184);
+    font-family: "Mazzard";
+    text-align: justify;
+    letter-spacing: 2px;
   }
 
   .slick-slide div {
@@ -334,22 +376,21 @@
 
   .imageone {
     border-radius: 20px;
-    /* box-shadow: 10px 10px gray; */
   }
-  .padded {
+  /* .padded {
     padding-left: 20px;
     padding-right: 20px;
-  }
+  } */
   /* OUR SERVICES BOTTON */
   .our-services-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2em;
+    /* margin-top: 2em; */
   }
 
   .services-btn {
-    width: 25%;
+    width: 35%;
     border-radius: none;
   }
 }
@@ -376,26 +417,33 @@
   }
   .history {
     padding: 5px 0px;
-    text-align: left;
+    /* text-align: left; */
   }
+
   .our-history {
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 400;
+    color: #282a94;
+    font-family: "Rammetto";
+    padding-top: 15px;
   }
   .histoy-details {
-    /* line-height: 0.5cm; */
-    text-align: left;
     font-size: 15px;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    font-family: "Mazzard";
+    line-height: 0.5cm;
+    text-align: left;
   }
   /* CONTACT US BOTTON */
   .history-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.4em;
+    margin-top: 0.8em;
   }
 
   .readmore-btn {
@@ -421,13 +469,33 @@
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 400;
+    color: #282a94;
+    font-family: "Rammetto";
+    padding-top: 20px;
   }
   .approach-details {
-    /* line-height: 0.5cm; */
-    text-align: left;
     font-size: 15px;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    font-family: "Mazzard";
+    line-height: 0.5cm;
+    text-align: left;
+    /* padding-bottom: 20px; */
+  }
+  /* CONTACT US BOTTON */
+  .our-approach-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+  }
+
+  .approach-btn {
+    width: 48%;
+    border-radius: none;
   }
   /* SECTION TREE OUR SERVICES */
   .our-service-main {
@@ -451,13 +519,19 @@
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 400;
+    color: #282a94;
+    font-family: "Rammetto";
+    padding-top: 20px;
   }
   .services-details {
-    /* line-height: 0.5cm; */
-    text-align: left;
     font-size: 15px;
+    font-weight: 200;
+    color: rgb(186, 184, 184) !important;
+    font-family: "Mazzard";
+    line-height: 0.5cm;
+    text-align: left;
   }
   /* CAROUSEL SECTION */
   .carousel-container {
@@ -470,9 +544,25 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
-    /* max-width: 100%; */
-    /* height: auto; */
-    /* border-radius: 20px; */
+  }
+
+  .carousel-heading {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 25px;
+    font-weight: 400;
+    /* color: #282a94; */
+    font-family: "Rammetto";
+  }
+
+  .carousel-details {
+    font-size: 15px;
+    font-weight: 200;
+    color: rgb(186, 184, 184);
+    font-family: "Mazzard";
+    text-align: left;
+    /* letter-spacing: 2px; */
   }
 
   .slick-slide div {
@@ -483,10 +573,10 @@
     border-radius: 20px;
     /* box-shadow: 10px 10px gray; */
   }
-  .padded {
+  /* .padded {
     padding-left: 20px;
     padding-right: 20px;
-  }
+  } */
   /* OUR SERVICES BOTTON */
   .our-services-btn {
     display: flex;

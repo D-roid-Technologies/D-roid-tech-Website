@@ -7,6 +7,8 @@ import { IoLogoYoutube } from "react-icons/io";
 import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../textInput/AppInput";
 import Button from "../button/Button";
+import { FaWhatsapp } from "react-icons/fa6";
+import { MdOutlineEmail } from "react-icons/md";
 
 const Footer: React.FunctionComponent = () => {
   return (
@@ -28,14 +30,20 @@ const Footer: React.FunctionComponent = () => {
           </a>
         </div>
         <div className="instagram-icon ">
-          <a href="" target="_blank">
+          <a href={DATA.socialLinks.instagram} target="_blank">
             <FiInstagram className="logo-size" />
           </a>
         </div>
-        <div className="youtube-icon ">
-          <a href="" target="_blank">
+        <div className="whatsapp-icon ">
+          <a href={DATA.socialLinks.whatsapp} target="_blank">
             {" "}
-            <IoLogoYoutube className="logo-size" />
+            <FaWhatsapp className="logo-size" />
+          </a>
+        </div>
+        <div className="email-icon ">
+          <a href={`mailto:${DATA.socialLinks.email}`} target="_blank">
+            {" "}
+            <MdOutlineEmail className="logo-size" />
           </a>
         </div>
       </div>

@@ -6,6 +6,9 @@ export const DATA = {
     twitter: "https://x.com/Droidtechn?t=LVFJ6SEetP5DD1BHdSK0rQ&s=09",
     linkedin:
       "https://www.linkedin.com/company/d-roid-technologies-international/",
+    instagram: "https://www.instagram.com/droidtechn?igsh=ZGUzMzM3NWJiOQ==",
+    whatsapp: "https://wa.me/c/447886386437",
+    email: "hr@droidtechinternational.com",
   },
   navLinks: [
     {
@@ -469,21 +472,21 @@ export const DATA = {
   ],
   DroneModels: [
     {
-      image: require("../../images/png/dronemodel.png"),
+      // image: require("../../images/png/dronemodel.png"),
       title: "Drone Models",
       content: " DJI Phantom, DJI Mavic, DJI Inspire, SenseFly eBee",
     },
   ],
   CamerasSensors: [
     {
-      image: require("../../images/png/camerasandsensors.png"),
+      // image: require("../../images/png/camerasandsensors.png"),
       title: "Cameras & Sensors",
       content: " RGB cameras, multispectral cameras, LiDAR sensors",
     },
   ],
   SoftwareTools: [
     {
-      image: require("../../images/png/softwaretools.png"),
+      // image: require("../../images/png/softwaretools.png"),
       title: "Software Tools",
       content: "Pix4D, DroneDeploy, Agisoft Metashape ",
     },
