@@ -136,7 +136,18 @@ const Section: React.FunctionComponent = () => {
               <span className="padded">
                 {" "}
                 <h2 className="carousel-heading">Animation Creation</h2>
-                <p className="carousel-details"></p>
+                <p className="carousel-details">
+                  Our Animation Creation services bring ideas to life through
+                  captivating visual storytelling. We specialize in creating
+                  high-quality 2D and 3D animations for various industries,
+                  including education, entertainment, advertising, and corporate
+                  training. Our talented team of animators and graphic designers
+                  use the latest software and techniques to produce animations
+                  that are engaging, informative, and visually stunning. From
+                  concept development and storyboarding to final production, we
+                  ensure that every animation project meets the highest
+                  standards of creativity and technical excellence.
+                </p>
               </span>
             </div>
             <div className="imageone">
