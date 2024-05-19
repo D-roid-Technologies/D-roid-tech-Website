@@ -10,15 +10,8 @@ const PrivacyPolicy: React.FunctionComponent = () => {
       <div className="privacy-main">
         <div className="privacy-section">
           <div className="privacy-content">
-            <div className="privacy-image">
-              <img
-                src={Assets.images.companyLogo}
-                alt="companyLogo"
-                className="image-sized"
-              />
-            </div>
             <div className="privacy-details">
-              <h1 className="privacy-heading" style={{ color: Assets.colors.primary }}>
+              <h1 className="home-heading" style={{ color: Assets.colors.primary }}>
                 Privacy Policy
               </h1>
               <p

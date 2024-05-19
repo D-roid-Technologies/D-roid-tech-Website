@@ -5,7 +5,7 @@
 }
 
 .privacy-section {
-  margin-bottom: 50px;
+  margin-bottom: 2rem;
 }
 
 .privacy-content {
@@ -39,6 +39,7 @@
   font-weight: 200;
   font-family: "Mazzard";
   text-align: justify;
+  margin-top: 1.5rem;
 }
 
 .privacy-sections {
@@ -50,10 +51,10 @@
 .privacy-subsection {
   padding: 20px;
   border-radius: 5px;
+  text-align: left;
 }
 
 .privacy-subsection-heading {
-  text-align: center;
   margin-bottom: 1.5rem;
   line-height: 10px;
   font-size: 32px;
