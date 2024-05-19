@@ -37,10 +37,25 @@ const Card: React.FC<CardProps> = ({
           ? React.cloneElement(child, {
               style: {
                 ...child.props.style,
-                ...(child.type === "h3" ? headingStyle : {}),
+                ...(child.type === "h3"
+                  ? headingStyle
+                  : {
+                      marginBottom: "10px",
+                      fontFamily: "Rammetto One",
+                      color: Assets.colors.basic,
+                    }),
                 ...(child.type === "h5" ? subheadingStyle : {}),
-                ...(child.type === "p" ? descriptionStyle : {}),
-                ...(child.type === "a" ? linkStyle : {textDecoration: 'none', color: Assets.colors.basic}),
+                ...(child.type === "p"
+                  ? descriptionStyle
+                  : {
+                      fontFamily: "Mazzard",
+                      fontSize: "1rem",
+                      color: Assets.colors.paragraph,
+                      marginBottom: "1em",
+                    }),
+                ...(child.type === "a"
+                  ? linkStyle
+                  : { textDecoration: "none", color: Assets.colors.basic }),
               },
             })
           : child
