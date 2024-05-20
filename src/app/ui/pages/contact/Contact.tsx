@@ -37,26 +37,21 @@ const Contact: React.FunctionComponent = () => {
                     Say something to start a live chat
                   </p>
                   {/* PHONE NUMBER */}
-
                   <div className="call-contact">
                     <span>
-                      {" "}
                       <LuPhoneCall className="phone-icon" />
                     </span>
                     <a href="tel:+1234567890" className="phone-no">
-                      {" "}
                       +1 (234) 567-890
                     </a>
                   </div>
                   {/* EMAIL */}
                   <div className="call-contact">
                     <span>
-                      {" "}
                       <MdEmail className="phone-icon" />
                     </span>
                     <span>
                       <a href="mailto:example@example.com" className="phone-no">
-                        {" "}
                         droidtechinternational@gmail.com
                       </a>
                     </span>
@@ -65,7 +60,6 @@ const Contact: React.FunctionComponent = () => {
                   <div className="address">
                     <div className="call-contact">
                       <span>
-                        {" "}
                         <FaLocationDot className="phone-icon" />
                       </span>
                       <span>
@@ -165,14 +159,14 @@ const Contact: React.FunctionComponent = () => {
               </section>
               <div className="textarea-btn">
                 <Button
-                  bgColor="white"
+                  bgColor="#282a94"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
                   bRadiusColor="#282a94"
                   title="Submit"
-                  color="#282a94"
+                  color="#ffffff"
                   onClickButton={() => {}}
                 />
               </div>
