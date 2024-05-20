@@ -8,6 +8,21 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Variables for heading */
+  --heading-line-height: 1.2;
+  --heading-font-size: 35px;
+  --heading-font-weight: 800;
+  --heading-font-family: "Rammetto", sans-serif;
+
+ 
+  /* Variables for paragraph */
+  --paragraph-font-size: 1.2rem;
+  --paragraph-font-weight: 200;
+  --paragraph-font-family: "Mazzard", sans-serif;
+  --paragraph-letter-spacing: 2px;
+}
+
 .main-container {
   padding-left: 100px;
   padding-right: 100px;
