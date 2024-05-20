@@ -25,6 +25,7 @@
 
 .course-detail-content h2 {
   margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .course-detail-content p {
