@@ -19,11 +19,13 @@
 }
 
 .large-centered-heading {
-  font-size: 2rem;
-  letter-spacing: 2px;
-  font-weight: 500;
-  font-family: "Rammetto One";
+  /* line-height: 10px; */
+  font-size: 35px !important;
+  font-weight: 800;
+  font-family: "Rammetto";
+  text-align: center;
 }
+
 
 .smaller-centered-heading {
   margin-top: 1em;

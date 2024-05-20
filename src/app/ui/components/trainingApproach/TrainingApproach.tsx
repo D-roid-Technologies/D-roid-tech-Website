@@ -43,7 +43,7 @@ const TrainingApproachItem: React.FC<ApproachItem> = ({ title, description }) =>
       >
         {title}
       </h2>
-      <p style={styles.description}>{description}</p>
+      <p style={styles.description} className='paragraph'>{description}</p>
     </li>
   );
 };
@@ -84,7 +84,7 @@ const styles = {
   description: {
     fontFamily: "Mazzard",
     fontSize: "1rem",
-    color: Assets.colors.basic,
+    color: Assets.colors.paragraph,
     marginBottom: "1em",
   },
 };

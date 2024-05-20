@@ -93,7 +93,9 @@ const Footer: React.FunctionComponent = () => {
           </a>
         </span>
       </div>
-      <p className="policy"> Privacy Policy</p>
+      <a href="/privacy" className="color-change">
+        <p className="policy" style={{ color: Assets.colors.basic }}> Privacy Policy</p>
+      </a>
     </div>
   );
 };

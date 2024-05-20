@@ -82,31 +82,31 @@ const Software: React.FunctionComponent = () => {
           <ul className="training-approach-list">
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaCode className="icon" />
+                <FaCode style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Programming Languages</h2>
-              <p>JavaScript, TypeScript, Python, Java, C#</p>
+              <p className="paragraph">JavaScript, TypeScript, Python, Java, C#</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaLaptopCode className="icon" />
+                <FaLaptopCode style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Frameworks & Libraries</h2>
-              <p>React.js, Angular, Vue.js, Node.js, Express.js</p>
+              <p className="paragraph">React.js, Angular, Vue.js, Node.js, Express.js</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaDatabase className="icon" />
+                <FaDatabase style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Databases</h2>
-              <p>Firebase, mySQL, Postgres, MongoDB</p>
+              <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaLaptopCode className="icon" />
+                <FaLaptopCode style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Tools & Platforms</h2>
-              <p>Git, GitHub, Docker, AWS, Azure, Google Cloud</p>
+              <p className="paragraph">Git, GitHub, Docker, AWS, Azure, Google Cloud</p>
             </li>
           </ul>
         </div>
