@@ -2,8 +2,8 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import companyBanner from "../../../images/png/droid banner.png";
 import "../home/Home.css";
-import AboutSection from "../../components/aboutsections/AboutSection";
-import CustomerFeedBack from "../../components/customerfeedback/CustomerFeedBack";
+import AboutSection from "./aboutsection/AboutSection";
+import CustomerFeedBack from "./customerfeedback/CustomerFeedBack";
 import Button from "../../components/button/Button";
 import { RootState, store } from "../../../redux/Store";
 import {
@@ -12,6 +12,7 @@ import {
 } from "../../../redux/slices/AppEntrySlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { DATA } from "../../../utils/constant/Data";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -46,7 +47,7 @@ const Home: React.FunctionComponent = () => {
         <div className="home-main">
           <div className="home">
             <article className="home-content">
-              <p className="business">
+              <p className="home-heading">
                 WE TURN YOUR IDEAS
                 <br />
                 INTO REALITY
@@ -66,16 +67,9 @@ const Home: React.FunctionComponent = () => {
                   bRadius={5}
                   bRadiusColor="#ffffff"
                   onClickButton={() => {
-                    // create an email call
+                    window.location.href = DATA.socialLinks.email;
                   }}
                   // onClickButton={() => {
-                  //   store.dispatch(updateModal(true));
-                  //   store.dispatch(
-                  //     updateModalContent({
-                  //       appTitle: onSuccessTitle,
-                  //       appBody: onSuccessBody,
-                  //     })
-                  //   );
                   // }}
                 />
               </div>

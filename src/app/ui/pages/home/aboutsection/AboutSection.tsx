@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutSection.css";
-import { Assets } from "../../../utils/constant/Assets";
-import Button from "../button/Button";
+import { Assets } from "../../../../utils/constant/Assets";
+import Button from "../../../components/button/Button";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -30,11 +30,6 @@ const Section: React.FunctionComponent = () => {
       <div className="section-one">
         <div className="coding-image">
           <GiCuckooClock className="image-size" />
-          {/* <img
-            src={Assets.images.coding}
-            alt="codingImage"
-            className="image-size"
-          /> */}
         </div>
         <section className="history">
           <p className="our-history"> Our History</p>
@@ -44,7 +39,8 @@ const Section: React.FunctionComponent = () => {
             software developers with passion for creating innovative solutions.
             Over the years, we have grouwn into a leading software development
             company, serving clients in a wide range of industries.
-          </p>{" "}
+          </p>
+          {/* CONTACT US BUTTON */}
           <div className="history-btn">
             <div className="readmore-btn">
               <Button
@@ -77,8 +73,8 @@ const Section: React.FunctionComponent = () => {
             use that knowledge to develope tailored solutions that meet their
             unique requirements.
           </p>{" "}
-          <div className="history-btn">
-            <div className="readmore-btn">
+          <div className="our-approach-btn">
+            <div className="approach-btn">
               <Button
                 bgColor={"black"}
                 mTop={0}
@@ -100,6 +96,7 @@ const Section: React.FunctionComponent = () => {
           <GiPathDistance className="image-size" />
         </div>
       </div>
+
       {/* SECTION THREE */}
       <div className="our-service-main">
         <div className="section-three">
@@ -140,17 +137,30 @@ const Section: React.FunctionComponent = () => {
               <span className="padded">
                 {" "}
                 <h2 className="carousel-heading">Animation Creation</h2>
-                <p className="carousel-details"></p>
+                <p className="carousel-details">
+                  Our Animation Creation services bring ideas to life through
+                  captivating visual storytelling. We specialize in creating
+                  high-quality 2D and 3D animations for various industries,
+                  including education, entertainment, advertising, and corporate
+                  training. Our talented team of animators and graphic designers
+                  use the latest software and techniques to produce animations
+                  that are engaging, informative, and visually stunning. From
+                  concept development and storyboarding to final production, we
+                  ensure that every animation project meets the highest
+                  standards of creativity and technical excellence.
+                </p>
               </span>
             </div>
             <div className="imageone">
               <GiTeacher className="image-size" />
               <span className="padded">
                 <h2 className="carousel-heading">Tech Training </h2>
+                {/* waiting for tech content */}
                 <p className="carousel-details"> </p>
               </span>
             </div>
           </Slider>
+          {/* OUR SERVICES BUTTON SECTION */}
           <a href="">
             <div className="our-services-btn">
               <div className="services-btn">

@@ -1,5 +1,15 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
+import {
+  FaDesktop,
+  FaPalette,
+  FaMicrophoneAlt,
+  FaCodeBranch,
+  FaRocket,
+  FaGalacticRepublic,
+  FaStarOfLife,
+  FaSpaceShuttle,
+} from "react-icons/fa";
 import "./Animation.css";
 import { Assets } from "../../../utils/constant/Assets";
 
@@ -28,7 +38,7 @@ const Animation: React.FunctionComponent = () => {
 
       <div className="main-content-section">
         {/* Approach Section */}
-        <div className="animation-approach-main">
+        {/* <div className="animation-approach-main">
           <h1 className="animation-approach-head">Our Approach</h1>
           <ul className="animation-approach-list">
             <li className="animation-approach-item">
@@ -76,62 +86,104 @@ const Animation: React.FunctionComponent = () => {
               </p>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Featured Projects Section */}
-        <div className="flex-row-section reverse">
-          <div className="rounded-image">
-            <img
-              src={Assets.images.webdesign}
-              alt="character-design-image"
-              className="boxed-image"
-            />
-          </div>
-          <div className="centered-text-section">
-            <h2 className="section-heading">Featured Projects</h2>
-            <div className="section-details">
-              <p>
-                <strong>Space Odyssey: A Journey Beyond</strong>, an exhilarating animation project that
-                takes viewers on an unforgettable voyage through the cosmos. Set
-                in a distant future where humanity explores the depths of outer
-                space, this animation combines stunning visuals with a gripping
-                narrative to inspire wonder and awe.
+        <div className="animation-approach-main">
+          <h1 className="animation-approach-head">Featured Projects</h1>
+          <ul className="animation-approach-list">
+            <li className="animation-approach-item">
+              <div className="icon-container">
+                <FaRocket style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Space Odyssey: A Journey Beyond</h2>
+              <p className="paragraph">
+                An exhilarating animation project that takes viewers on an
+                unforgettable voyage through the cosmos. Set in a distant future
+                where humanity explores the depths of outer space, this
+                animation combines stunning visuals with a gripping narrative to
+                inspire wonder and awe.
               </p>
-            </div>
-          </div>
+            </li>
+            <li className="animation-approach-item">
+              <div className="icon-container">
+                <FaGalacticRepublic style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Galactic Chronicles: Exploring Infinity</h2>
+              <p className="paragraph">
+                A captivating animation endeavor that propels audiences on a
+                mesmerizing expedition across the vast expanse of the universe.
+                Set in a distant era where humanity's curiosity knows no bounds,
+                this project melds breathtaking imagery with an enthralling
+                storyline, inviting viewers to embark on an odyssey of cosmic
+                proportions.
+              </p>
+            </li>
+            <li className="animation-approach-item">
+              <div className="icon-container">
+                <FaStarOfLife style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Starbound Odyssey: Voyage to the Unknown</h2>
+              <p className="paragraph">
+                A thrilling animation venture that invites audiences to embark
+                on an epic journey through the uncharted depths of space. Set in
+                a future where humanity's insatiable thirst for discovery
+                propels them beyond the confines of Earth, this project
+                seamlessly blends awe-inspiring visuals with a compelling
+                narrative, igniting the imagination and stirring the soul.
+              </p>
+            </li>
+            <li className="animation-approach-item">
+              <div className="icon-container">
+                <FaSpaceShuttle style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Cosmic Odyssey: Beyond the Stars</h2>
+              <p className="paragraph">
+                An electrifying animation project that catapults viewers into a
+                breathtaking journey through the boundless expanse of the
+                cosmos. Set in a distant epoch where humanity's thirst for
+                knowledge drives them to explore the furthest reaches of outer
+                space, this animation seamlessly weaves together stunning
+                visuals with an enthralling narrative, evoking a sense of wonder
+                and awe.
+              </p>
+            </li>
+          </ul>
         </div>
 
         {/* Technologies and Tools Section */}
-        <div className="flex-row-section">
-          <div className="rounded-image">
-            <img
-              src={Assets.images.statistics}
-              alt="motion-design-image"
-              className="boxed-image"
-            />
-          </div>
-          <div className="centered-text-section">
-            <h2 className="section-heading">Technologies And Tools</h2>
-            <div className="section-details">
-              <ul>
-                <li>
-                  <strong>Animation Software:</strong> Adobe After Effects,
-                  Blender, Autodesk Maya
-                </li>
-                <li>
-                  <strong>Graphic Design Tools:</strong> Adobe Illustrator,
-                  Photoshop
-                </li>
-                <li>
-                  <strong>Sound Editing Software:</strong> Adobe Audition,
-                  Audacity
-                </li>
-                <li>
-                  <strong>Version Control:</strong> Git, GitHub
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="training-approach-main">
+          <h1 className="training-approach-head">Technologies and Tools</h1>
+          <ul className="training-approach-list">
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaDesktop style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Animation Software</h2>
+              <p className="paragraph">Adobe After Effects, Blender, Autodesk Maya</p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaPalette style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Graphic Design Tools</h2>
+              <p className="paragraph">Adobe Illustrator, Photoshop</p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaMicrophoneAlt style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Sound Editing Software</h2>
+              <p className="paragraph">Adobe Audition, Audacity</p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaCodeBranch style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+              </div>
+              <h2>Version Control</h2>
+              <p className="paragraph">Git, GitHub</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
