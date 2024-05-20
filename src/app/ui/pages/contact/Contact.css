@@ -2,61 +2,51 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
-.contact-bgimage {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 70vh;
-  margin-bottom: 50px;
-}
-/* CONTENT */
-.contact-main {
-  display: flex;
+.contact-containerr {
+  padding: 0 100px;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 100px;
-}
-
-.contactheader-details {
-  margin-top: 1em;
-  font-size: 1.8rem;
-  word-spacing: 2px;
-  text-align: center;
-  color: black;
-  font-family: "Mazzard";
-}
-
-/* SAY HELLO SECTION */
-.say-hello {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 100px;
-  padding-right: 100px;
+  align-items: center; */
   margin-bottom: 50px;
 }
-.hello-heading {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.4em;
+.container-raduis {
+  display: flex;
+  padding: 20px;
+  border: 1px solid #282a94;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
 }
-.hello-details {
-  font-size: 1.6rem;
+.contact-information {
+  flex: 1 1 40%;
+}
+.message {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 80px;
+}
+
+.message h2 {
+  margin-bottom: 0.6em;
+}
+
+.message p {
   color: rgb(124, 124, 124);
-}
-.hello-image {
-  width: 70%;
+  font-family: "Mazzard";
+  font-size: 1.2em;
 }
 /* CONTACT INFORMATION */
 .contact-information {
-  background-color: #292929;
-  width: fit-content;
-  border-radius: 5px;
+  /* background-color: #292929; */
+  background-color: #282a94;
+  width: auto;
+  /* width: fit-content; */
+
+  /* border-radius: 5px; */
 }
 .contact-info-details {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
   padding-right: 140px;
 }
 .info-details-head {
@@ -72,11 +62,15 @@
   margin-bottom: 4em;
 }
 /* phone number */
+.flex-contact {
+  display: flex;
+}
 .call-contact {
   gap: 10px;
   padding-bottom: 1.5em;
   display: flex;
   align-items: center;
+  font-style: italic;
 }
 .phone-icon {
   color: white;
@@ -84,70 +78,82 @@
   margin-right: 25px;
 }
 .phone-no {
-  color: rgb(124, 124, 124);
+  color: #ffffff;
   text-decoration: none;
 }
 .address {
-  padding-bottom: 3em;
-}
-/* CONTACT US INPUT & MESSAGE  SECTION*/
-.message-section {
-  margin-bottom: 50px;
-}
-.message {
-  text-align: center;
-  margin-bottom: 25px;
 }
 
-.message h2 {
-  margin-bottom: 0.6em;
-}
-
-.message p {
-  color: rgb(124, 124, 124);
-  font-family: "Mazzard";
-  font-size: 1.2em;
-}
-/* FORM INPUT AREA  */
-.input-area {
+.icon-section {
+  margin-top: 5em;
   display: flex;
-  justify-content: center;
-  padding-left: 100px;
-  padding-right: 100px;
+  gap: 25px;
 }
+.form-icon {
+  color: #ffffff;
+}
+.form-icon:hover {
+  cursor: pointer;
+}
+
+/* MESSAGE  SECTION */
 .input-section {
-  width: auto;
-  padding: 25px 40px;
-  background-color: #282a94;
-  border-radius: 10px;
+  flex: 1 1 60%;
+  padding: 10px;
+  /* background-color: #282a94; */
 }
 
 /* INPUT SECTION ONE */
-.name-btn {
+.name-section {
   display: flex;
-  align-items: center;
-  gap: 30%;
+  /* justify-content: space-between; */
+  gap: 10px;
 }
+.input-width {
+  width: 100%;
+}
+
 .input-container {
-  width: 120%;
+  width: 80%;
 }
+
+/* INPUT SECTION TWO */
+.name-section-two {
+  display: flex;
+  /* justify-content: space-between; */
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.input-container {
+  width: 100%;
+}
+
 /* MESSAGE AREA */
 .text-area {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 20px;
+  margin-bottom: 23px;
 }
+
 textarea {
-  margin-top: 10px;
-  margin-bottom: 30px;
+  width: 100%;
+  margin: 10px 0 30px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
 }
+
 .textarea-btn {
-  width: 60%;
-  transition: transform 0.3s ease-in-out;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 40%;
+  /* transition: transform 0.3s ease-in-out; */
 }
+
 .textarea-btn:hover {
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
   background-color: #737458;
 }
 

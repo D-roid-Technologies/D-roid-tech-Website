@@ -50,7 +50,8 @@
 /* VISION AND MISSION SECTION */
 
 .vision-marginbuttom {
-  background-color: #f0f4f9;
+  /* background-color: #f0f4f9; */
+  background-color: #ffffff;
   margin-bottom: 50px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -95,10 +96,11 @@
 }
 
 .vision-box {
-  background-color: #f0f4f9;
+  /* background-color: #f0f4f9; */
+  /* background-color: #ffffff; */
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  /* border: 1px solid #ccc;
+  border-radius: 5px; */
 }
 
 .vision-box p {
@@ -122,16 +124,16 @@
 }
 
 .vision-box {
-  background-color: #f0f4f9;
+  background-color: #ffffff;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  /* border: 1px solid #ccc;
+  border-radius: 5px; */
 }
 
 .vision-box p {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgb(159, 156, 156);
+  color: rgb(186, 184, 184);
   font-family: "Mazzard";
   text-align: left;
 }
@@ -165,10 +167,10 @@
   margin-bottom: 2em;
 }
 .image-sizes {
-  width: 100%;
-  height: auto;
+  width: 250px;
+  height: 290px;
+  /* object-fit: cover; */
 }
-
 .profile-one h3 {
   font-family: "Rammetto";
   font-size: 1.2rem;
