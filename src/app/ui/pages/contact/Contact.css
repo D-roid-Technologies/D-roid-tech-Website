@@ -110,7 +110,7 @@
 }
 
 .input-container {
-  width: 100%;
+  width: 80%;
 }
 
 /* INPUT SECTION TWO */
@@ -128,6 +128,7 @@
 /* MESSAGE AREA */
 .text-area {
   margin-top: 20px;
+  margin-bottom: 23px;
 }
 
 textarea {
@@ -142,6 +143,7 @@ textarea {
 .textarea-btn {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
   width: 40%;
   color: #282a94;
   /* transition: transform 0.3s ease-in-out; */

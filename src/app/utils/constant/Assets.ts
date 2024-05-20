@@ -27,7 +27,9 @@ export const Assets = {
     malestafffour: require("../../images/png/male staff four.png"),
     malestafffive: require("../../images/png/male staff five.png"),
     software: require("../../images/png/image.png"),
-    stellaimg: require("../../images/png/stella.png"),
+    stellaimg: require("../../images/png/stellanehimg.jpeg"),
+    uzoimg: require("../../images/png/Uzoimage.png"),
+    faithimg: require("../../images/png/faithimg.png"),
   },
   colors: {
     basic: "#000",

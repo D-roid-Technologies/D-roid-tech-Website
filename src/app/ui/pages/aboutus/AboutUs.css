@@ -167,13 +167,10 @@
   margin-bottom: 2em;
 }
 .image-sizes {
-  width: 100%;
-  height: auto;
+  width: 250px;
+  height: 290px;
+  /* object-fit: cover; */
 }
-/* .image-sized {
-  width: 612px;
-  height: 408;
-} */
 .profile-one h3 {
   font-family: "Rammetto";
   font-size: 1.2rem;

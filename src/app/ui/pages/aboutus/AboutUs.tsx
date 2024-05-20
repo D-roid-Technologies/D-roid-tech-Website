@@ -140,7 +140,7 @@ const AboutUs: React.FunctionComponent = () => {
               {/* PROFILE THREE */}
               <div className="profile-one">
                 <img
-                  src={Assets.images.malestaffthree}
+                  src={Assets.images.uzoimg}
                   alt="profileImage"
                   className="image-sizes"
                 />
@@ -150,23 +150,13 @@ const AboutUs: React.FunctionComponent = () => {
               {/* PROFILE FOUR */}
               <div className="profile-one">
                 <img
-                  src={Assets.images.femalestaffthree}
+                  src={Assets.images.faithimg}
                   alt="profileImage"
                   className="image-sizes"
                 />
-                <h3> Name Unknown </h3>
-                <p> UI UX Engineer </p>
+                <h3> Chukwueze Faith </h3>
+                <p> Digital Marketer</p>
               </div>
-              {/* PROFILE FIVE */}
-              {/* <div className="profile-one">
-                <img
-                  src={Assets.images.femalestaffthree}
-                  alt="profileImage"
-                  className="image-sizes"
-                />
-                <h3> Name Unknown </h3>
-                <p>Software Engineer</p>
-              </div> */}
             </div>
             {/* PROFILE SECTION TWO */}
             <div className="profile-imagetwo">

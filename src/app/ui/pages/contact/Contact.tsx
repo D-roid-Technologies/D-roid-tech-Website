@@ -162,20 +162,20 @@ const Contact: React.FunctionComponent = () => {
                     placeholder="Write your message here"
                   />
                 </div>
-                <div className="textarea-btn">
-                  <Button
-                    bgColor="white"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    bRadiusColor="#282a94"
-                    title="Submit"
-                    color="#282a94"
-                    onClickButton={() => {}}
-                  />
-                </div>
               </section>
+              <div className="textarea-btn">
+                <Button
+                  bgColor="white"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  bRadiusColor="#282a94"
+                  title="Submit"
+                  color="#282a94"
+                  onClickButton={() => {}}
+                />
+              </div>
             </div>
           </div>
         </div>
