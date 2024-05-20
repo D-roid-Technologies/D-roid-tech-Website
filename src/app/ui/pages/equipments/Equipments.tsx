@@ -29,7 +29,7 @@ const Equipments: React.FunctionComponent<any> = () => {
             services to ensure that our clients have the tools they need to
             succeed. From hardware installation to network configuration, our
             experienced technicians handle every aspect of the setup process,
-            allowing our clients to focus on their core business activities.
+            allowing our clients to focus on their core business activities..
           </p>
         </article>
       </div>
