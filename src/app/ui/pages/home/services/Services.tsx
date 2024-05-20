@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../../components/navbar/NavBar";
 import "./Services.css";
-import { FaVideo, FaLaptopCode, FaRobot, FaPlane, FaDesktop } from "react-icons/fa";
+import {
+  FaVideo,
+  FaLaptopCode,
+  FaRobot,
+  FaPlane,
+  FaDesktop,
+} from "react-icons/fa";
 import Card from "../../../components/card/Card";
 import { Assets } from "../../../../utils/constant/Assets";
 
-const services = [
+type Service = {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  prices: string[];
+};
+
+const services: Service[] = [
   {
     title: "Software Development - Mobile and Web",
     description:
@@ -64,48 +77,108 @@ const services = [
   },
 ];
 
-const Services = () => {
+const Services: React.FunctionComponent = () => {
+  const [expandedCards, setExpandedCards] = useState<number[]>([]);
+
+  const handleReadMore = (index: number) => {
+    setExpandedCards((prevExpandedCards) => [...prevExpandedCards, index]);
+  };
+
+  const handleReadLess = (index: number) => {
+    setExpandedCards((prevExpandedCards) =>
+      prevExpandedCards.filter((i) => i !== index)
+    );
+  };
+
   return (
     <div>
       <NavBar />
       <div className="service-main">
-        <h1 style={{ color: Assets.colors.primary }}>Comprehensive Technology Solutions</h1>
-        <p style={{ color: Assets.colors.paragraph, marginBottom: "2em" }}>
-          Your one-stop solution for cutting-edge technology services. From developing robust software applications to creating engaging animations, delivering top-notch tech training, offering professional drone services, and setting up advanced equipment, we are here to cater to all your technological needs.
+        <h1 style={{ color: Assets.colors.primary }}>
+          Comprehensive Technology Solutions
+        </h1>
+        <p style={{ color: Assets.colors.paragraph, marginTop: "1.5rem" }}>
+          Your one-stop solution for cutting-edge technology services. From
+          developing robust software applications to creating engaging
+          animations, delivering top-notch tech training, offering professional
+          drone services, and setting up advanced equipment, we are here to
+          cater to all your technological needs.
         </p>
         <div className="service-card-container">
           {services.map((service, index) => (
-            <Card key={index} className="service-card" cardStyle={{ backgroundColor: Assets.colors.light, color: Assets.colors.basic }}>
+            <Card
+              key={index}
+              className="service-card"
+              cardStyle={{
+                backgroundColor: Assets.colors.light,
+                color: Assets.colors.basic,
+              }}
+            >
               <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
               <h3>{service.title}</h3>
-              <p style={{textAlign: "justify"}}>{service.description}</p>
-              <ul>
-                {service.prices.map((price, index) => (
-                  <li key={index} style={{ color: Assets.colors.paragraph }}>
-                    {price}
-                  </li>
-                ))}
-              </ul>
+              <p style={{textAlign: "justify"}}>
+                {expandedCards.includes(index)
+                  ? service.description
+                  : `${service.description.slice(0, 150)}...`}
+                {service.description.length > 150 && (
+                  <span
+                    className="read-more-link"
+                    onClick={() =>
+                      expandedCards.includes(index)
+                        ? handleReadLess(index)
+                        : handleReadMore(index)
+                    }
+                  >
+                    {expandedCards.includes(index)
+                      ? " Read Less"
+                      : " Read More"}
+                  </span>
+                )}
+              </p>
+              {expandedCards.includes(index) && (
+                <ul>
+                  {service.prices.map((price, priceIndex) => (
+                    <li
+                      key={priceIndex}
+                      style={{ color: Assets.colors.paragraph }}
+                    >
+                      {price}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </Card>
           ))}
         </div>
         <div className="benefits-section">
-          <h2 style={{ color: Assets.colors.primary }}>Benefits of Working with Us</h2>
+          <h2 style={{ color: Assets.colors.primary }}>
+            Benefits of Working with Us
+          </h2>
           <ul>
             <li style={{ color: Assets.colors.paragraph }}>
-              <strong>Expert Team:</strong> Our team comprises skilled professionals with extensive experience in their respective fields, ensuring high-quality service delivery.
+              <strong>Expert Team:</strong> Our team comprises skilled
+              professionals with extensive experience in their respective
+              fields, ensuring high-quality service delivery.
             </li>
             <li style={{ color: Assets.colors.paragraph }}>
-              <strong>Tailored Solutions:</strong> We take the time to understand your unique needs and provide customized solutions that align with your business goals.
+              <strong>Tailored Solutions:</strong> We take the time to
+              understand your unique needs and provide customized solutions that
+              align with your business goals.
             </li>
             <li style={{ color: Assets.colors.paragraph }}>
-              <strong>Latest Technology:</strong> We utilize cutting-edge technologies and industry best practices to ensure your projects are modern, efficient, and secure.
+              <strong>Latest Technology:</strong> We utilize cutting-edge
+              technologies and industry best practices to ensure your projects
+              are modern, efficient, and secure.
             </li>
             <li style={{ color: Assets.colors.paragraph }}>
-              <strong>Transparent Communication:</strong> We maintain clear and open communication throughout the project, keeping you informed and involved at every stage.
+              <strong>Transparent Communication:</strong> We maintain clear and
+              open communication throughout the project, keeping you informed
+              and involved at every stage.
             </li>
             <li style={{ color: Assets.colors.paragraph }}>
-              <strong>Customer Satisfaction:</strong> Your satisfaction is our top priority. We strive to exceed your expectations and deliver solutions that drive success.
+              <strong>Customer Satisfaction:</strong> Your satisfaction is our
+              top priority. We strive to exceed your expectations and deliver
+              solutions that drive success.
             </li>
           </ul>
         </div>

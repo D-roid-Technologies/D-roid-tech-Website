@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  margin-top: 2em;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   list-style: none;
 }
 
@@ -41,6 +41,16 @@
 
 .service-card li {
   margin-bottom: 0.5rem;
+}
+
+.read-more-link {
+  color: #282a94;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.read-more-link:hover {
+  color: #479BE8;
 }
 
 .benefits-section {
