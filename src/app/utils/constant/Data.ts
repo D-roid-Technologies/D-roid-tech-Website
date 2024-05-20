@@ -420,8 +420,8 @@ export const DATA = {
     { id: 5, title: "Web Development Training" },
     { id: 6, title: "Mobile Development Training" },
     { id: 7, title: "Design Training" },
-    { id: 8, title: "Project Management Training" }
-],
+    { id: 8, title: "Project Management Training" },
+  ],
 
   droneApproach: [
     {
@@ -501,6 +501,38 @@ export const DATA = {
       // image: require("../../images/png/softwaretools.png"),
       title: "Software Tools",
       content: "Pix4D, DroneDeploy, Agisoft Metashape ",
+    },
+  ],
+  equipmentApproach: [
+    {
+      title: "Consultation & Assessment",
+      content:
+        "We begin by conducting a thorough consultation with our clients to understand their equipment setup requirements and objectives. Our team assesses the available space, existing infrastructure, and technical specifications to develop a tailored setup plan.",
+      Button: "LEARN MORE",
+    },
+    {
+      title: "Hardware Installation",
+      content:
+        "Our technicians handle the installation of hardware components, including computers, servers, routers, switches, and other devices. We ensure that all equipment is installed correctly and configured to meet our clients' needs.",
+      Button: "LEARN MORE",
+    },
+    {
+      title: "Network Configuration",
+      content:
+        " We configure network settings, including IP addresses, DNS settings, and security protocols, to ensure seamless connectivity and data transfer within our clients' environments. Our goal is to create a stable and secure network infrastructure that supports their business operations.",
+      Button: "LEARN MORE",
+    },
+    {
+      title: "Testing & Optimization",
+      content:
+        "Once the setup is complete, we conduct thorough testing to ensure that all equipment and networks are functioning correctly. We optimize settings and configurations as needed to improve performance and reliability.",
+      Button: "LEARN MORE",
+    },
+    {
+      title: "Training & Documentation",
+      content:
+        "We provide training sessions for our clients' staff to familiarize them with the newly installed equipment and networks. Additionally, we create detailed documentation outlining setup procedures, troubleshooting steps, and best practices for future reference.",
+      Button: "LEARN MORE",
     },
   ],
 };

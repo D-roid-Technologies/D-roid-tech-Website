@@ -170,16 +170,7 @@ const AboutUs: React.FunctionComponent = () => {
                 <h3> Name Unknown </h3>
                 <p>Software Engineer</p>
               </div>
-              {/* PROFILE TWO */}
-              <div className="profile-one">
-                <img
-                  src={Assets.images.malestafffive}
-                  alt="profileImage"
-                  className="image-sizes"
-                />
-                <h3> Name Unknown </h3>
-                <p>Frontend Developer </p>
-              </div>
+
               {/* PROFILE THREE */}
               <div className="profile-one">
                 <img

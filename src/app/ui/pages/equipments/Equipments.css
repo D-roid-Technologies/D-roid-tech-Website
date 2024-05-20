@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
+/* CONTENT */
+.equipment-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding-top: 100px;
+}
+
+.e-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  /* margin-bottom: 50px; */
+}
+
+.equipment-heading {
+  font-size: 4.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 500;
+  font-family: "Rammetto One";
+}
+.equipment-heading-details {
+  margin-top: 1em;
+  font-size: 1.8rem;
+  word-spacing: 2px;
+  text-align: center;
+  color: #fff;
+  font-family: "Mazzard";
+}
+/* OUR APPROACH SECTION */
+.bg-color {
+  background-color: #f9f9f9;
+}
+.drone-approach-main {
+  margin-bottom: 50px;
+}
+
+.droneapproach-head {
+  padding-top: 50px;
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-family: "Rammetto One";
+}
+
+.droneapproach-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 2%;
+}
+
+.droneapproach-list {
+  margin-bottom: 20px;
+}
+
+.droneapproach-list h2 {
+  margin-bottom: 20px;
+  font-family: "Rammetto One";
+  color: #232e35;
+  transition: color 0.3s ease;
+}
+.droneapproach-list h2:hover {
+  color: #12d6d6;
+  cursor: pointer;
+}
+.droneapproach-list p {
+  font-family: "Mazzard";
+  font-size: 1rem;
+  color: rgb(124, 124, 124);
+  margin-bottom: 1em;
+}
+.list-button {
+  color: #12d6d6;
+  font-weight: 700;
+  font-family: "Rammetto One";
+  transition: color 0.3s ease;
+}
+.list-button:hover {
+  color: #232e35;
+  cursor: pointer;
+}
