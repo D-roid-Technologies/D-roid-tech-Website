@@ -158,7 +158,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="map-container">
                     <FaMapMarkerAlt className="map" />
                   </div>
                 </li>
@@ -170,7 +170,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             <ul className="infrastructure-ul">
               {DATA.InfrastructureInspection.map((item, index) => (
                 <li className="infrastructure-services" key={index}>
-                  <div>
+                  <div className="map-container">
                     <GiJapaneseBridge className="map" />
                   </div>
                   <div className="infrastructure-text">

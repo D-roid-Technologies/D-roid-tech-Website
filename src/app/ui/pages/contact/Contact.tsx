@@ -36,14 +36,25 @@ const Contact: React.FunctionComponent = () => {
                   <p className="info-details-p">
                     Say something to start a live chat
                   </p>
-                  {/* PHONE NUMBER */}
-                  <div className="call-contact">
-                    <span>
-                      <LuPhoneCall className="phone-icon" />
-                    </span>
-                    <a href="tel:+1234567890" className="phone-no">
-                      +1 (234) 567-890
-                    </a>
+                  <div className="flex-contact">
+                    {/* PHONE NUMBER */}
+                    <div className="call-contact">
+                      <span>
+                        <LuPhoneCall className="phone-icon" />
+                      </span>
+                      <a href="tel:+447886386437" className="phone-no">
+                        UK: +447886386437
+                      </a>
+                    </div>
+                    {/* Nigeria line */}
+                    <div className="call-contact">
+                      <span>
+                        {/* <LuPhoneCall className="phone-icon" /> */}
+                      </span>
+                      <a href="tel:+2347068815984" className="phone-no">
+                        NIG: +2347068815984
+                      </a>
+                    </div>
                   </div>
                   {/* EMAIL */}
                   <div className="call-contact">
@@ -51,8 +62,11 @@ const Contact: React.FunctionComponent = () => {
                       <MdEmail className="phone-icon" />
                     </span>
                     <span>
-                      <a href="mailto:example@example.com" className="phone-no">
-                        droidtechinternational@gmail.com
+                      <a
+                        href="mailto:hr@droidtechinternational.com"
+                        className="phone-no"
+                      >
+                        hr@droidtechinternational.com
                       </a>
                     </span>
                   </div>
@@ -65,8 +79,7 @@ const Contact: React.FunctionComponent = () => {
                       <span>
                         <address>
                           <p className="phone-no">
-                            {" "}
-                            Lincoln, England, United Kingdom
+                            Head Office: Lincoln, England, United Kingdom
                           </p>
                         </address>
                       </span>
@@ -89,28 +102,6 @@ const Contact: React.FunctionComponent = () => {
 
             {/* MESSAGE  SECTION */}
             <div className="input-section">
-              <section className="name-section">
-                {/* first name */}
-                <div className="input-width">
-                  <label style={{ color: Assets.colors.light }}>
-                    First Name
-                  </label>
-                  <br />
-                  <div className="input-container">
-                    <AppInput w="100%" h={40} pLeft={10} pHolder="First Name" />
-                  </div>
-                </div>
-                {/* last name */}
-                <div className="input-width">
-                  <label style={{ color: Assets.colors.light }}>
-                    Last Name
-                  </label>
-                  <br />
-                  <div className="input-container">
-                    <AppInput w="100%" h={40} pLeft={10} pHolder="Last Name" />
-                  </div>
-                </div>
-              </section>
               {/* INPUT SECTION TWO */}
               <section>
                 <section className="name-section-two">
@@ -124,7 +115,7 @@ const Contact: React.FunctionComponent = () => {
                         w="100%"
                         h={40}
                         pLeft={10}
-                        pHolder="mikedeo@gmail.com"
+                        pHolder="Full Name"
                       />
                     </div>
                   </div>
@@ -135,12 +126,34 @@ const Contact: React.FunctionComponent = () => {
                     </label>
                     <br />
                     <div className="input-container">
+                      <AppInput w="100%" h={40} pLeft={10} pHolder="Email" />
+                    </div>
+                  </div>
+                  {/* last name */}
+                  <div className="input-width">
+                    <label style={{ color: Assets.colors.light }}>
+                      Subject
+                    </label>
+                    <br />
+                    <div className="input-container">
                       <AppInput
                         w="100%"
                         h={40}
                         pLeft={10}
-                        pHolder="+23400000000"
+                        pHolder="Phone Number"
                       />
+                    </div>
+                  </div>
+                </section>
+                <section className="name-section">
+                  {/* Subject */}
+                  <div className="input-width">
+                    <label style={{ color: Assets.colors.light }}>
+                      Subject
+                    </label>
+                    <br />
+                    <div className="input-container">
+                      <AppInput w="100%" h={40} pLeft={10} pHolder="Subject" />
                     </div>
                   </div>
                 </section>
@@ -159,7 +172,7 @@ const Contact: React.FunctionComponent = () => {
               </section>
               <div className="textarea-btn">
                 <Button
-                  bgColor="#282a94"
+                  bgColor="#000000"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}

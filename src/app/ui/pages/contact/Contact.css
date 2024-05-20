@@ -62,11 +62,15 @@
   margin-bottom: 4em;
 }
 /* phone number */
+.flex-contact {
+  display: flex;
+}
 .call-contact {
   gap: 10px;
   padding-bottom: 1.5em;
   display: flex;
   align-items: center;
+  font-style: italic;
 }
 .phone-icon {
   color: white;
@@ -74,7 +78,7 @@
   margin-right: 25px;
 }
 .phone-no {
-  color: rgb(124, 124, 124);
+  color: #ffffff;
   text-decoration: none;
 }
 .address {

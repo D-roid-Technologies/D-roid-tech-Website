@@ -14,7 +14,7 @@ const AboutUs: React.FunctionComponent = () => {
             <div className="section-one">
               <div className="coding-image">
                 <img
-                  src={Assets.images.companyLogo}
+                  src={Assets.images.companyLogoNoBg}
                   alt="codingImage"
                   className="image-sized"
                 />
@@ -118,7 +118,7 @@ const AboutUs: React.FunctionComponent = () => {
             {/* OUR TEAM PROFILE IMAGES */}
             <div className="profile-image">
               {/* PROFILE ONE */}
-              <div className="profile-one">
+              {/* <div className="profile-one">
                 <img
                   src={Assets.images.malestaffone}
                   alt="profileImage"
@@ -126,7 +126,7 @@ const AboutUs: React.FunctionComponent = () => {
                 />
                 <h3> Ekene </h3>
                 <p>Software Engineer</p>
-              </div>
+              </div> */}
               {/* PROFILE TWO */}
               <div className="profile-one">
                 <img
@@ -156,39 +156,6 @@ const AboutUs: React.FunctionComponent = () => {
                 />
                 <h3> Chukwueze Faith </h3>
                 <p> Digital Marketer</p>
-              </div>
-            </div>
-            {/* PROFILE SECTION TWO */}
-            <div className="profile-imagetwo">
-              {/* PROFILE ONE */}
-              <div className="profile-one">
-                <img
-                  src={Assets.images.malestafffour}
-                  alt="profileImage"
-                  className="image-sizes"
-                />
-                <h3> Name Unknown </h3>
-                <p>Software Engineer</p>
-              </div>
-
-              {/* PROFILE THREE */}
-              <div className="profile-one">
-                <img
-                  src={Assets.images.malestafftwo}
-                  alt="profileImage"
-                  className="image-sizes"
-                />
-                <h3> Name Unknown </h3>
-                <p>Frontend Development</p>
-              </div>
-              <div className="profile-one">
-                <img
-                  src={Assets.images.malestaffone}
-                  alt="profileImage"
-                  className="image-sizes"
-                />
-                <h3> Name Unknown </h3>
-                <p>Frontend Developer </p>
               </div>
             </div>
           </div>

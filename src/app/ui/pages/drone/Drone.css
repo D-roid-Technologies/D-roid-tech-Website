@@ -165,13 +165,16 @@
   align-items: center;
 }
 .mapping-text {
-  /* padding: 150px 0; */
+  width: 50%;
 }
 .mapping-heading {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3em;
   color: #282a94;
+}
+.map-container {
+  width: 50%;
 }
 .map {
   width: 300px;
@@ -194,10 +197,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30%;
+  /* gap: 30%; */
+}
+.map-container {
+  width: 50%;
 }
 .infrastructure-text {
-  /* padding: 150px 0; */
+  width: 50%;
 }
 .infrastructure-heading {
   font-size: 2rem;
