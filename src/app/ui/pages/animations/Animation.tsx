@@ -94,10 +94,10 @@ const Animation: React.FunctionComponent = () => {
           <ul className="animation-approach-list">
             <li className="animation-approach-item">
               <div className="icon-container">
-                <FaRocket className="icon" />
+                <FaRocket style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Space Odyssey: A Journey Beyond</h2>
-              <p>
+              <p className="paragraph">
                 An exhilarating animation project that takes viewers on an
                 unforgettable voyage through the cosmos. Set in a distant future
                 where humanity explores the depths of outer space, this
@@ -107,10 +107,10 @@ const Animation: React.FunctionComponent = () => {
             </li>
             <li className="animation-approach-item">
               <div className="icon-container">
-                <FaGalacticRepublic className="icon" />
+                <FaGalacticRepublic style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Galactic Chronicles: Exploring Infinity</h2>
-              <p>
+              <p className="paragraph">
                 A captivating animation endeavor that propels audiences on a
                 mesmerizing expedition across the vast expanse of the universe.
                 Set in a distant era where humanity's curiosity knows no bounds,
@@ -121,10 +121,10 @@ const Animation: React.FunctionComponent = () => {
             </li>
             <li className="animation-approach-item">
               <div className="icon-container">
-                <FaStarOfLife className="icon" />
+                <FaStarOfLife style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Starbound Odyssey: Voyage to the Unknown</h2>
-              <p>
+              <p className="paragraph">
                 A thrilling animation venture that invites audiences to embark
                 on an epic journey through the uncharted depths of space. Set in
                 a future where humanity's insatiable thirst for discovery
@@ -135,10 +135,10 @@ const Animation: React.FunctionComponent = () => {
             </li>
             <li className="animation-approach-item">
               <div className="icon-container">
-                <FaSpaceShuttle className="icon" />
+                <FaSpaceShuttle style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Cosmic Odyssey: Beyond the Stars</h2>
-              <p>
+              <p className="paragraph">
                 An electrifying animation project that catapults viewers into a
                 breathtaking journey through the boundless expanse of the
                 cosmos. Set in a distant epoch where humanity's thirst for
@@ -157,31 +157,31 @@ const Animation: React.FunctionComponent = () => {
           <ul className="training-approach-list">
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaDesktop className="icon" />
+                <FaDesktop style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Animation Software</h2>
-              <p>Adobe After Effects, Blender, Autodesk Maya</p>
+              <p className="paragraph">Adobe After Effects, Blender, Autodesk Maya</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaPalette className="icon" />
+                <FaPalette style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Graphic Design Tools</h2>
-              <p>Adobe Illustrator, Photoshop</p>
+              <p className="paragraph">Adobe Illustrator, Photoshop</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaMicrophoneAlt className="icon" />
+                <FaMicrophoneAlt style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Sound Editing Software</h2>
-              <p>Adobe Audition, Audacity</p>
+              <p className="paragraph">Adobe Audition, Audacity</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaCodeBranch className="icon" />
+                <FaCodeBranch style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
               </div>
               <h2>Version Control</h2>
-              <p>Git, GitHub</p>
+              <p className="paragraph">Git, GitHub</p>
             </li>
           </ul>
         </div>

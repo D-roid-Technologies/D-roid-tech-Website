@@ -57,15 +57,14 @@ const Training: React.FunctionComponent = () => {
             <p
               style={{
                 color: Assets.colors.light,
-                fontFamily: "Rammetto One",
               }}
-              className="training-large-centered-heading"
+              className="large-centered-heading"
             >
               {photos[currentPhotoIndex].text}
             </p>
             <p
-              style={{ color: Assets.colors.light, fontFamily: "Mazzard" }}
-              className="training-smaller-centered-heading"
+              style={{ color: Assets.colors.light, marginTop: "1.5rem" }}
+              className="large-centered-heading"
             >
               Our training courses cover a wide range of topics, from
               programming languages and software development methodologies to

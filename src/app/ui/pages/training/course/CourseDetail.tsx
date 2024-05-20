@@ -17,7 +17,7 @@ const CourseDetail: React.FunctionComponent = () => {
     <div className="course-detail">
       <div
         style={{
-          backgroundImage: `url("${Assets.images.companyBanner}")`,
+          backgroundImage: `url("${Assets.images.tech}")`,
           padding: "2rem",
         }}
         className="bg-image"
@@ -34,8 +34,8 @@ const CourseDetail: React.FunctionComponent = () => {
           ([trainingTitle, description]) => (
             <div key={trainingTitle}>
               <h2>{trainingTitle}</h2>
-              <p>{description.explanation}</p>
-              <ol style={{listStyle: "none"}}>
+              <p className="paragraph">{description.explanation}</p>
+              <ol style={{listStyle: "none"}} className="paragraph">
                 {description.procedures.map((procedure, index) => (
                   <li key={index}>{procedure}</li>
                 ))}

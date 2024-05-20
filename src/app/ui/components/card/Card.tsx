@@ -41,15 +41,18 @@ const Card: React.FC<CardProps> = ({
                   ? headingStyle
                   : {
                       marginBottom: "10px",
+
                       fontFamily: "Rammetto One",
                       color: Assets.colors.basic,
                     }),
-                ...(child.type === "h5" ? subheadingStyle : {}),
+                ...(child.type === "h5"
+                  ? subheadingStyle
+                  : { color: Assets.colors.paragraph }),
                 ...(child.type === "p"
                   ? descriptionStyle
                   : {
                       fontFamily: "Mazzard",
-                      fontSize: "1rem",
+                      fontSize: "1.2rem",
                       color: Assets.colors.paragraph,
                       marginBottom: "1em",
                     }),

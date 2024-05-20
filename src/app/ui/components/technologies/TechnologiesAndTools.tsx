@@ -31,7 +31,7 @@ const ToolItem: React.FunctionComponent<ToolItem> = ({ title, description, icon 
     <li style={styles.toolItem}>
       <div className="icon-container">{icon}</div>
       <h2 style={styles.title}>{title}</h2>
-      <p style={styles.description}>{description}</p>
+      <p style={styles.description} className="paragraph">{description}</p>
     </li>
   );
 };
@@ -72,7 +72,7 @@ const styles = {
   description: {
     fontFamily: "Mazzard",
     fontSize: "1rem",
-    color: Assets.colors.basic,
+    color: Assets.colors.paragraph,
     marginBottom: "1em",
   },
 };
