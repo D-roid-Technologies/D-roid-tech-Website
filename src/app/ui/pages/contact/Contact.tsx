@@ -24,107 +24,70 @@ const Contact: React.FunctionComponent = () => {
         </div>
 
         {/* CONTACT INFORMATION */}
-        <div className="contact-container">
-          <section className="contact-information">
-            <div className="contact-info-details">
-              <div>
-                <h1 className="info-details-head"> Contact Information</h1>
-                <p className="info-details-p">
-                  Say something to start a live chat
-                </p>
-                {/* PHONE NUMBER */}
+        <div className="contact-containerr">
+          <div className="container-raduis">
+            <section className="contact-information">
+              <div className="contact-info-details">
+                <div>
+                  <h1 className="info-details-head"> Contact Information</h1>
+                  <p className="info-details-p">
+                    Say something to start a live chat
+                  </p>
+                  {/* PHONE NUMBER */}
 
-                <div className="call-contact">
-                  <span>
-                    {" "}
-                    <LuPhoneCall className="phone-icon" />
-                  </span>
-                  <a href="tel:+1234567890" className="phone-no">
-                    {" "}
-                    +1 (234) 567-890
-                  </a>
-                </div>
-                {/* EMAIL */}
-                <div className="call-contact">
-                  <span>
-                    {" "}
-                    <MdEmail className="phone-icon" />
-                  </span>
-                  <span>
-                    <a href="mailto:example@example.com" className="phone-no">
-                      {" "}
-                      droidtechinternational@gmail.com
-                    </a>
-                  </span>
-                </div>
-                {/* ADDRESS */}
-                <div className="address">
                   <div className="call-contact">
                     <span>
                       {" "}
-                      <FaLocationDot className="phone-icon" />
+                      <LuPhoneCall className="phone-icon" />
+                    </span>
+                    <a href="tel:+1234567890" className="phone-no">
+                      {" "}
+                      +1 (234) 567-890
+                    </a>
+                  </div>
+                  {/* EMAIL */}
+                  <div className="call-contact">
+                    <span>
+                      {" "}
+                      <MdEmail className="phone-icon" />
                     </span>
                     <span>
-                      <address>
-                        <p className="phone-no">
-                          {" "}
-                          Lincoln, England, United Kingdom
-                        </p>
-                      </address>
+                      <a href="mailto:example@example.com" className="phone-no">
+                        {" "}
+                        droidtechinternational@gmail.com
+                      </a>
                     </span>
+                  </div>
+                  {/* ADDRESS */}
+                  <div className="address">
+                    <div className="call-contact">
+                      <span>
+                        {" "}
+                        <FaLocationDot className="phone-icon" />
+                      </span>
+                      <span>
+                        <address>
+                          <p className="phone-no">
+                            {" "}
+                            Lincoln, England, United Kingdom
+                          </p>
+                        </address>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          {/* CONTACT US INPUT & MESSAGE  SECTION */}
-          <section>
-            <div className="input-section">
-              <section className="name-section">
-                {/* INPUT SECTION ONE */}
-                {/* first name */}
-                <div>
-                  <label style={{ color: Assets.colors.light }}>
-                    First Name
-                  </label>
-                  <br />
-                  <div className="input-container">
-                    <AppInput w="100%" h={40} pLeft={10} pHolder="First Name" />
-                  </div>
-                </div>
-                {/* last name */}
-                <div>
-                  <label style={{ color: Assets.colors.light }}>
-                    Last Name
-                  </label>
-                  <br />
-                  <div className="input-container">
-                    <AppInput w="100%" h={40} pLeft={10} pHolder="Last Name" />
-                  </div>
-                </div>
-              </section>
-              {/* INPUT SECTION TWO */}
-              <section>
-                <section className="input-section-two">
+            {/* CONTACT US INPUT & MESSAGE  SECTION */}
+            <section>
+              <div className="input-section">
+                <section className="name-section">
                   {/* INPUT SECTION ONE */}
                   {/* first name */}
                   <div>
-                    <label style={{ color: Assets.colors.light }}>Email</label>
-                    <br />
-                    <div className="input-container">
-                      <AppInput
-                        w="100%"
-                        h={40}
-                        pLeft={10}
-                        pHolder="mikedeo@gmail.com"
-                      />
-                    </div>
-                  </div>
-                  {/* last name */}
-                  <div>
                     <label style={{ color: Assets.colors.light }}>
-                      Phone Number
+                      First Name
                     </label>
                     <br />
                     <div className="input-container">
@@ -132,38 +95,91 @@ const Contact: React.FunctionComponent = () => {
                         w="100%"
                         h={40}
                         pLeft={10}
-                        pHolder="+23400000000"
+                        pHolder="First Name"
+                      />
+                    </div>
+                  </div>
+                  {/* last name */}
+                  <div>
+                    <label style={{ color: Assets.colors.light }}>
+                      Last Name
+                    </label>
+                    <br />
+                    <div className="input-container">
+                      <AppInput
+                        w="100%"
+                        h={40}
+                        pLeft={10}
+                        pHolder="Last Name"
                       />
                     </div>
                   </div>
                 </section>
-              </section>
-              {/* MESSAGE AREA */}
-              <section className="text-area">
-                <div>
-                  <label style={{ color: Assets.colors.light }}>Message</label>
-                  <br />
-                  <textarea
-                    rows={10}
-                    name="comment"
-                    placeholder="Write your message here"
-                  />
-                </div>
-                <div className="textarea-btn">
-                  <Button
-                    bgColor="white"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="Submit"
-                    color="#282a94"
-                    onClickButton={() => {}}
-                  />
-                </div>
-              </section>
-            </div>
-          </section>
+                {/* INPUT SECTION TWO */}
+                <section>
+                  <section className="input-section-two">
+                    {/* INPUT SECTION ONE */}
+                    {/* first name */}
+                    <div>
+                      <label style={{ color: Assets.colors.light }}>
+                        Email
+                      </label>
+                      <br />
+                      <div className="input-container">
+                        <AppInput
+                          w="100%"
+                          h={40}
+                          pLeft={10}
+                          pHolder="mikedeo@gmail.com"
+                        />
+                      </div>
+                    </div>
+                    {/* last name */}
+                    <div>
+                      <label style={{ color: Assets.colors.light }}>
+                        Phone Number
+                      </label>
+                      <br />
+                      <div className="input-container">
+                        <AppInput
+                          w="100%"
+                          h={40}
+                          pLeft={10}
+                          pHolder="+23400000000"
+                        />
+                      </div>
+                    </div>
+                  </section>
+                </section>
+                {/* MESSAGE AREA */}
+                <section className="text-area">
+                  <div>
+                    <label style={{ color: Assets.colors.light }}>
+                      Message
+                    </label>
+                    <br />
+                    <textarea
+                      rows={10}
+                      name="comment"
+                      placeholder="Write your message here"
+                    />
+                  </div>
+                  <div className="textarea-btn">
+                    <Button
+                      bgColor="white"
+                      mTop={0}
+                      mBottom={0}
+                      mLeft={0}
+                      mRight={0}
+                      title="Submit"
+                      color="#282a94"
+                      onClickButton={() => {}}
+                    />
+                  </div>
+                </section>
+              </div>
+            </section>
+          </div>
         </div>
       </main>
     </>

@@ -2,11 +2,18 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
-.contact-container {
+.contact-containerr {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+}
+.container-raduis {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease;
+  flex-basis: calc(23% - 2%);
 }
 
 .message {
