@@ -8,6 +8,9 @@ import AppInput from "../../components/textInput/AppInput";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
+import { RiTwitterXFill } from "react-icons/ri";
+import { FaInstagram } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa";
 
 const Contact: React.FunctionComponent = () => {
   // Your divs are not aligned properly
@@ -75,34 +78,66 @@ const Contact: React.FunctionComponent = () => {
                       </span>
                     </div>
                   </div>
+                  <section className="icon-section">
+                    <div>
+                      <RiTwitterXFill className="form-icon" />
+                    </div>
+                    <div>
+                      <FaInstagram className="form-icon" />
+                    </div>
+                    <div>
+                      <FaLinkedin className="form-icon" />
+                    </div>
+                  </section>
                 </div>
               </div>
             </section>
 
-            {/* CONTACT US INPUT & MESSAGE  SECTION */}
-            <section>
-              <div className="input-section">
-                <section className="name-section">
+            {/* MESSAGE  SECTION */}
+            <div className="input-section">
+              <section className="name-section">
+                {/* first name */}
+                <div className="input-width">
+                  <label style={{ color: Assets.colors.light }}>
+                    First Name
+                  </label>
+                  <br />
+                  <div className="input-container">
+                    <AppInput w="100%" h={40} pLeft={10} pHolder="First Name" />
+                  </div>
+                </div>
+                {/* last name */}
+                <div className="input-width">
+                  <label style={{ color: Assets.colors.light }}>
+                    Last Name
+                  </label>
+                  <br />
+                  <div className="input-container">
+                    <AppInput w="100%" h={40} pLeft={10} pHolder="Last Name" />
+                  </div>
+                </div>
+              </section>
+              {/* INPUT SECTION TWO */}
+              <section>
+                <section className="name-section-two">
                   {/* INPUT SECTION ONE */}
                   {/* first name */}
-                  <div>
-                    <label style={{ color: Assets.colors.light }}>
-                      First Name
-                    </label>
+                  <div className="input-width">
+                    <label style={{ color: Assets.colors.light }}>Email</label>
                     <br />
                     <div className="input-container">
                       <AppInput
                         w="100%"
                         h={40}
                         pLeft={10}
-                        pHolder="First Name"
+                        pHolder="mikedeo@gmail.com"
                       />
                     </div>
                   </div>
                   {/* last name */}
-                  <div>
+                  <div className="input-width">
                     <label style={{ color: Assets.colors.light }}>
-                      Last Name
+                      Phone Number
                     </label>
                     <br />
                     <div className="input-container">
@@ -110,75 +145,38 @@ const Contact: React.FunctionComponent = () => {
                         w="100%"
                         h={40}
                         pLeft={10}
-                        pHolder="Last Name"
+                        pHolder="+23400000000"
                       />
                     </div>
                   </div>
                 </section>
-                {/* INPUT SECTION TWO */}
-                <section>
-                  <section className="input-section-two">
-                    {/* INPUT SECTION ONE */}
-                    {/* first name */}
-                    <div>
-                      <label style={{ color: Assets.colors.light }}>
-                        Email
-                      </label>
-                      <br />
-                      <div className="input-container">
-                        <AppInput
-                          w="100%"
-                          h={40}
-                          pLeft={10}
-                          pHolder="mikedeo@gmail.com"
-                        />
-                      </div>
-                    </div>
-                    {/* last name */}
-                    <div>
-                      <label style={{ color: Assets.colors.light }}>
-                        Phone Number
-                      </label>
-                      <br />
-                      <div className="input-container">
-                        <AppInput
-                          w="100%"
-                          h={40}
-                          pLeft={10}
-                          pHolder="+23400000000"
-                        />
-                      </div>
-                    </div>
-                  </section>
-                </section>
-                {/* MESSAGE AREA */}
-                <section className="text-area">
-                  <div>
-                    <label style={{ color: Assets.colors.light }}>
-                      Message
-                    </label>
-                    <br />
-                    <textarea
-                      rows={10}
-                      name="comment"
-                      placeholder="Write your message here"
-                    />
-                  </div>
-                  <div className="textarea-btn">
-                    <Button
-                      bgColor="white"
-                      mTop={0}
-                      mBottom={0}
-                      mLeft={0}
-                      mRight={0}
-                      title="Submit"
-                      color="#282a94"
-                      onClickButton={() => {}}
-                    />
-                  </div>
-                </section>
-              </div>
-            </section>
+              </section>
+              {/* MESSAGE AREA */}
+              <section className="text-area">
+                <div>
+                  <label style={{ color: Assets.colors.light }}>Message</label>
+                  <br />
+                  <textarea
+                    rows={10}
+                    name="comment"
+                    placeholder="Write your message here"
+                  />
+                </div>
+                <div className="textarea-btn">
+                  <Button
+                    bgColor="white"
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    bRadiusColor="#282a94"
+                    title="Submit"
+                    color="#282a94"
+                    onClickButton={() => {}}
+                  />
+                </div>
+              </section>
+            </div>
           </div>
         </div>
       </main>
