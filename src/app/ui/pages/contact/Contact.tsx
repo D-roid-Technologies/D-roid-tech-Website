@@ -104,6 +104,40 @@ const Contact: React.FunctionComponent = () => {
                   </div>
                 </div>
               </section>
+              {/* INPUT SECTION TWO */}
+              <section>
+                <section className="input-section-two">
+                  {/* INPUT SECTION ONE */}
+                  {/* first name */}
+                  <div>
+                    <label style={{ color: Assets.colors.light }}>Email</label>
+                    <br />
+                    <div className="input-container">
+                      <AppInput
+                        w="100%"
+                        h={40}
+                        pLeft={10}
+                        pHolder="mikedeo@gmail.com"
+                      />
+                    </div>
+                  </div>
+                  {/* last name */}
+                  <div>
+                    <label style={{ color: Assets.colors.light }}>
+                      Phone Number
+                    </label>
+                    <br />
+                    <div className="input-container">
+                      <AppInput
+                        w="100%"
+                        h={40}
+                        pLeft={10}
+                        pHolder="+23400000000"
+                      />
+                    </div>
+                  </div>
+                </section>
+              </section>
               {/* MESSAGE AREA */}
               <section className="text-area">
                 <div>

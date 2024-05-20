@@ -73,10 +73,21 @@
 .input-section {
   /* width: auto; */
   padding: 40px;
-  background-color: #282a94;
+  /* background-color: #282a94; */
 }
 
 /* INPUT SECTION ONE */
+.input-section-two {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  /* gap: 20px; */
+}
+
+.input-container {
+  width: 100%;
+}
+/* INPUT SECTION TWO */
 .name-section {
   display: flex;
   justify-content: space-between;
