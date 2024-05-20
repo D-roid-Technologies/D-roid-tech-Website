@@ -49,7 +49,6 @@ const AboutUs: React.FunctionComponent = () => {
           {/* </article> */}
           {/* </section> */}
           <div className="vision-marginbuttom">
-            {/* <h2 className="vision"> Vision & Mission </h2> */}
             <section>
               <div className="vision-mission-value">
                 {/* BOX ONE */}
@@ -131,7 +130,7 @@ const AboutUs: React.FunctionComponent = () => {
               {/* PROFILE TWO */}
               <div className="profile-one">
                 <img
-                  src={Assets.images.femalestaffthree}
+                  src={Assets.images.stellaimg}
                   alt="profileImage"
                   className="image-sizes"
                 />
@@ -159,7 +158,7 @@ const AboutUs: React.FunctionComponent = () => {
                 <p> UI UX Engineer </p>
               </div>
               {/* PROFILE FIVE */}
-              <div className="profile-one">
+              {/* <div className="profile-one">
                 <img
                   src={Assets.images.femalestaffthree}
                   alt="profileImage"
@@ -167,7 +166,7 @@ const AboutUs: React.FunctionComponent = () => {
                 />
                 <h3> Name Unknown </h3>
                 <p>Software Engineer</p>
-              </div>
+              </div> */}
             </div>
             {/* PROFILE SECTION TWO */}
             <div className="profile-imagetwo">

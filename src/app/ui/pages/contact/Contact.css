@@ -2,61 +2,40 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
-.contact-bgimage {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 70vh;
-  margin-bottom: 50px;
-}
-/* CONTENT */
-.contact-main {
+.contact-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
-}
-
-.contactheader-details {
-  margin-top: 1em;
-  font-size: 1.8rem;
-  word-spacing: 2px;
-  text-align: center;
-  color: black;
-  font-family: "Mazzard";
-}
-
-/* SAY HELLO SECTION */
-.say-hello {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 100px;
-  padding-right: 100px;
   margin-bottom: 50px;
 }
-.hello-heading {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.4em;
+
+.message {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 80px;
 }
-.hello-details {
-  font-size: 1.6rem;
+
+.message h2 {
+  margin-bottom: 0.6em;
+}
+
+.message p {
   color: rgb(124, 124, 124);
-}
-.hello-image {
-  width: 70%;
+  font-family: "Mazzard";
+  font-size: 1.2em;
 }
 /* CONTACT INFORMATION */
 .contact-information {
   background-color: #292929;
-  width: fit-content;
-  border-radius: 5px;
+  width: auto;
+  /* width: fit-content; */
+
+  /* border-radius: 5px; */
 }
 .contact-info-details {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
   padding-right: 140px;
 }
 .info-details-head {
@@ -88,64 +67,47 @@
   text-decoration: none;
 }
 .address {
-  padding-bottom: 3em;
-}
-/* CONTACT US INPUT & MESSAGE  SECTION*/
-.message-section {
-  margin-bottom: 50px;
-}
-.message {
-  text-align: center;
-  margin-bottom: 25px;
 }
 
-.message h2 {
-  margin-bottom: 0.6em;
-}
-
-.message p {
-  color: rgb(124, 124, 124);
-  font-family: "Mazzard";
-  font-size: 1.2em;
-}
-/* FORM INPUT AREA  */
-.input-area {
-  display: flex;
-  justify-content: center;
-  padding-left: 100px;
-  padding-right: 100px;
-}
+/* CONTACT US INPUT & MESSAGE  SECTION */
 .input-section {
-  width: auto;
-  padding: 25px 40px;
+  /* width: auto; */
+  padding: 40px;
   background-color: #282a94;
-  border-radius: 10px;
 }
 
 /* INPUT SECTION ONE */
-.name-btn {
-  display: flex;
-  align-items: center;
-  gap: 30%;
-}
-.input-container {
-  width: 120%;
-}
-/* MESSAGE AREA */
-.text-area {
+.name-section {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* gap: 20px; */
+}
+
+.input-container {
+  width: 100%;
+}
+
+/* MESSAGE AREA */
+.text-area {
   margin-top: 20px;
 }
+
 textarea {
-  margin-top: 10px;
-  margin-bottom: 30px;
+  width: 100%;
+  margin: 10px 0 30px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
 }
+
 .textarea-btn {
-  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  width: 40%;
   transition: transform 0.3s ease-in-out;
 }
+
 .textarea-btn:hover {
   transform: scale(1.1);
   background-color: #737458;

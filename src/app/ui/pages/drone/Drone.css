@@ -123,7 +123,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* gap: 20%; */
+  gap: 10%;
 }
 .video-details {
   /* padding: 50px 0; */
@@ -132,6 +132,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3em;
+  color: #282a94;
 }
 .drone-text {
   color: rgb(124, 124, 124);
@@ -143,6 +144,7 @@
 .map {
   width: 300px;
   height: 300px;
+  color: #282a94;
 }
 
 /* MAPPING & SURVEYING */
@@ -169,10 +171,12 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3em;
+  color: #282a94;
 }
 .map {
   width: 300px;
   height: 300px;
+  color: #282a94;
 }
 /* Infrastructure Inspection */
 .infrastructure {
@@ -190,6 +194,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30%;
 }
 .infrastructure-text {
   /* padding: 150px 0; */
@@ -198,10 +203,12 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3em;
+  color: #282a94;
 }
 .map {
   width: 300px;
   height: 300px;
+  color: #282a94;
 }
 /* cropmonitoring */
 .cropmonitoring {
@@ -227,10 +234,12 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.3em;
+  color: #282a94;
 }
 .map {
   width: 300px;
   height: 300px;
+  color: #282a94;
 }
 /* TECHNOLOGIES AND EQUIPMENT  */
 .techandequipment {
@@ -273,7 +282,6 @@
   color: #12d6d6;
 }
 .title {
-  /* text-align: right; */
   font-family: "Rammetto One";
   margin-bottom: 0.5em;
 }
@@ -282,32 +290,45 @@
   color: rgb(186, 184, 184);
 }
 /* CUSTOMER TESTIMONIAL */
-.drone-customer-testimonials {
+.feedback {
   margin-bottom: 50px;
-  background-color: #282a94;
+}
+.droneBg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50vh;
+}
+.drone-customer-testimonials {
   height: 350px;
 }
 
 .drone-read {
-  color: #fff;
+  /* color: #282a94; */
+  color: #12d6d6;
   font-size: 2.5rem;
   letter-spacing: 3px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "Rammetto One";
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 1.2em;
+  padding-bottom: 1.5em;
 }
 
 .drone-testimonial-details {
   padding: 0 50px;
+  text-align: left;
+  font-size: 1.2em;
   color: #ffffff;
   font-family: "Mazzard";
   letter-spacing: 2px;
 }
 .drone-testifier {
   margin-top: 10px;
-  color: #00ffff;
+  color: #12d6d6;
+
+  /* color: #282a94; */
+  padding-left: 50px;
 }
 /* Button */
 .drone-contact-uss {
