@@ -9,7 +9,7 @@ const Software: React.FunctionComponent = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url("${Assets.images.software}")`,
+          backgroundImage: `url("${Assets.images.softDev}")`,
         }}
         className="full-screen-background-image"
       >
