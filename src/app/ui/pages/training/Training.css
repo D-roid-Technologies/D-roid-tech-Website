@@ -147,12 +147,13 @@
 
 .icon-container {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   margin-bottom: 1rem;
 }
 
 .icon {
   font-size: 3rem;
+  text-align: left;
 }
 
 .training-program-item:hover {
