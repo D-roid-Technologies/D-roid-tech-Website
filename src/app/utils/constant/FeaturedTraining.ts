@@ -1,6 +1,7 @@
 export type Course = {
   id: number;
   title: string;
+  description?: string;
   trainings: string[];
   descriptions: {
     [key: string]: {
@@ -715,6 +716,8 @@ export const courses: Course[] = [
   {
     id: 5,
     title: "Basic Web Training",
+    description:
+      "Each of these training modules provides a thorough understanding of key web development concepts, from basic HTML and CSS to advanced full-stack development. The courses are structured to build upon each other, with a focus on practical, hands-on learning and culminating in capstone projects that reinforce the skills learned.",
     trainings: [
       "HTML & CSS Fundamentals",
       "Advanced CSS Techniques",

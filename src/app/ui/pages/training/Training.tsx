@@ -129,6 +129,7 @@ const Training: React.FunctionComponent = () => {
               >
                 <Link to={`${location.pathname}/course-detail/${course.id}`}>
                   <h3>{course.title}</h3>
+                  <p>{course.description}</p>
                 </Link>
               </Card>
             ))}
