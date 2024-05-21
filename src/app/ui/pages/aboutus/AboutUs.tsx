@@ -88,7 +88,7 @@ const AboutUs: React.FunctionComponent = () => {
 
           {/* CORE VALUES BOX THREE */}
           <div className="core-value-vision-main">
-            <div className="vision-box">
+            <div className="core-value-vision-box">
               <h2 className="core-value-vision-header">Core Values</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad

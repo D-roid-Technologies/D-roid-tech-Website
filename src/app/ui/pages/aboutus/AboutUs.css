@@ -123,14 +123,14 @@
   font-family: "Rammetto";
 }
 
-.vision-box {
+.core-value-vision-box {
   background-color: #ffffff;
   padding: 20px;
-  /* border: 1px solid #ccc;
-  border-radius: 5px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.vision-box p {
+.core-value-vision-box p {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184);
@@ -204,34 +204,35 @@
   }
   .section-one {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
     padding-top: 1.8em;
-    /* padding-bottom: 2.2em; */
   }
   .image-sized {
     width: 370px;
     height: 200px;
     object-fit: contain;
   }
-  .history {
+  .about-history {
     padding: 35px 0px;
     text-align: left;
   }
 
-  .our-history {
+  .about-history-heading {
     margin-bottom: 1em;
-    text-align: center;
     line-height: 0;
     font-size: 1.5rem;
     font-weight: 500;
     color: #282a94;
     font-family: "Rammetto";
+    text-align: center;
   }
-  .histoy-details {
+  .about-histoy-details {
     font-size: 1rem;
     font-weight: 200;
     color: rgb(186, 184, 184) !important;
     text-align: justify;
+    line-height: 30px;
     letter-spacing: 0;
   }
 
