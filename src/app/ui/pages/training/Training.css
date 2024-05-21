@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  padding: 20px 100px;
 }
 
 .training-home-content {
@@ -194,6 +194,10 @@
   }
 
   .training-approach-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -207,5 +211,8 @@
   .training-approach-item,
   .training-program-item {
     flex-basis: 100%;
+  }
+  .next-button, .prev-button{
+    display: none;
   }
 }
