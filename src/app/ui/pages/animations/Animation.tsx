@@ -24,15 +24,18 @@ const Animation: React.FunctionComponent = () => {
       >
         <NavBar />
         <div className="home-section">
-          <div className="home-content">
-            <p className="large-centered-heading">
+        <div className="home-main">
+          <article className="home-content">
+            <p className="home-heading">ANIMATION</p>
+          </article>
+        </div>
+            {/* <p className="large-centered-heading">
               At D'roid Technologies, we excel in producing captivating and
               immersive animations that bring your ideas to life. Our team of
               skilled animators and designers leverage state-of-the-art tools
               and techniques to create stunning visuals that captivate audiences
               and elevate your brand.
-            </p>
-          </div>
+            </p> */}
         </div>
       </div>
 
