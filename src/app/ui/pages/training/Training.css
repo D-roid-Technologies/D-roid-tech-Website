@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  padding: 20px 100px;
 }
 
 .training-home-content {
@@ -147,12 +147,13 @@
 
 .icon-container {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   margin-bottom: 1rem;
 }
 
 .icon {
   font-size: 3rem;
+  text-align: left;
 }
 
 .training-program-item:hover {
@@ -194,6 +195,10 @@
   }
 
   .training-approach-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -207,5 +212,8 @@
   .training-approach-item,
   .training-program-item {
     flex-basis: 100%;
+  }
+  .next-button, .prev-button{
+    display: none;
   }
 }
