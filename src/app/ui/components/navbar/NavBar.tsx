@@ -3,10 +3,10 @@ import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
-import companyBanner from "../../../images/png/droid banner.png"; // this should not be sed this way
-import { IoIosSwitch } from "react-icons/io"; // Do you remember what i said about external libaries?
-import { useSelector } from "react-redux";
+import { FaSun, FaMoon } from 'react-icons/fa';
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
+import { toggleTheme } from "../../../redux/slices/ThemeSlice";
 import { HiMenu, HiX } from "react-icons/hi";
 import { CiMenuFries } from "react-icons/ci";
 
@@ -18,6 +18,8 @@ const NavBar: React.FunctionComponent = () => {
 
   // Getting stored state from redux.
   const dimension = useSelector((state: RootState) => state.dimension);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+  const dispatch = useDispatch();
   const height = dimension.height;
   const width = dimension.width;
 
@@ -120,7 +122,11 @@ const NavBar: React.FunctionComponent = () => {
             <span className="version">{Assets.text.appVersion}</span>
           </div>
           <div className="icons-right">
-            <IoIosSwitch className="dark-mode" />
+          {isDarkMode ? (
+            <FaSun className="dark-mode" onClick={() => dispatch(toggleTheme())} />
+          ) : (
+            <FaMoon className="dark-mode" onClick={() => dispatch(toggleTheme())} />
+          )}
             <CiMenuFries
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}

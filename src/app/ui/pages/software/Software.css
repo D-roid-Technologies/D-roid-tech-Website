@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  padding-top: 100px;
+  padding-top: 2rem;
   padding-bottom: 50px;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .main-content-section {
-  padding: 20px 100px;
+  padding: 1rem 2rem;
   margin-top: 2em;
 }
 
