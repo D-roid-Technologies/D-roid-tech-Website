@@ -92,12 +92,12 @@ const AboutUs: React.FunctionComponent = () => {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
                 molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam. Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Ad molestias
-                pariatur et modi reprehenderit! Quidem fugiat, voluptatum odio
-                est debitis, at inventore, aut laboriosam. Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam. aut
-                laboriosam.
+                voluptatum odio est debitis, oo at inventore, aut laboriosam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                molestias pariatur et modi reprehenderit! Quidem fugiat,
+                voluptatum odio est debitis, at inventore, aut laboriosam.
+                Quidem fugiat, voluptatum odio est debitis, at inventore, aut
+                laboriosam. aut laboriosam.
               </p>
             </div>
           </div>
