@@ -46,7 +46,8 @@
 }
 
 .training-main-content-section {
-  padding: 20px 100px;
+  /* padding: 20px 100px; */
+  padding: 1rem 2rem;
   margin-top: 2em;
 }
 
@@ -90,7 +91,7 @@
 
 .training-approach-head {
   text-align: center;
-  margin-bottom: 1.5em;
+  margin-bottom: 1rem;
   font-family: "Rammetto One";
 }
 
