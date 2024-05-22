@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Training.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { DATA } from "../../../utils/constant/Data";
 import { Link, useLocation } from "react-router-dom";
 import { TrainingPhoto } from "../../../utils/Types";
 import Button from "../../components/button/Button";
@@ -53,23 +52,10 @@ const Training: React.FunctionComponent = () => {
           style={{ color: Assets.colors.light }}
           className="training-home-section"
         >
-          <div className="training-home-content">
-            <p
-              style={{
-                color: Assets.colors.light,
-              }}
-              className="large-centered-heading"
-            >
-              {photos[currentPhotoIndex].text}
-            </p>
-            <p
-              style={{ color: Assets.colors.light, marginTop: "1.5rem" }}
-              className="large-centered-heading"
-            >
-              Our training courses cover a wide range of topics, from
-              programming languages and software development methodologies to
-              emerging technologies and industry best practices.
-            </p>
+          <div className="home-main">
+            <article className="home-content">
+              <p className="home-heading">{photos[currentPhotoIndex].text}</p>
+            </article>
           </div>
           <div className="prev-button">
             <Button
@@ -103,7 +89,7 @@ const Training: React.FunctionComponent = () => {
         <TrainingApproach />
 
         {/* image */}
-        <div style={{textAlign: "center"}}>
+        <div style={{ textAlign: "center" }}>
           <FaLaptop
             style={{ fontSize: "10rem", color: Assets.colors.secondary }}
             className="icon"
@@ -143,6 +129,7 @@ const Training: React.FunctionComponent = () => {
               >
                 <Link to={`${location.pathname}/course-detail/${course.id}`}>
                   <h3>{course.title}</h3>
+                  <p>{course.description}</p>
                 </Link>
               </Card>
             ))}

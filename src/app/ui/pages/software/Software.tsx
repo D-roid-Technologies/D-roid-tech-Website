@@ -9,21 +9,23 @@ const Software: React.FunctionComponent = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url("${Assets.images.software}")`,
+          backgroundImage: `url("${Assets.images.softDev}")`,
         }}
         className="full-screen-background-image"
       >
         <NavBar />
         <div className="home-section">
-          <div className="home-content">
-            <p className="large-centered-heading">
+          <article className="home-content">
+            <p className="home-heading">SOFTWARE DEVELOPMENT</p>
+          </article>
+
+          {/* <p className="large-centered-heading">
               At D'roid Technologies, we specialize in crafting innovative
               software solutions tailored to meet the unique needs of our
               clients. Our team of experienced developers combines cutting-edge
               technologies with industry best practices to deliver robust,
               scalable, and user-friendly software applications.
-            </p>
-          </div>
+            </p> */}
         </div>
       </div>
 
@@ -82,31 +84,49 @@ const Software: React.FunctionComponent = () => {
           <ul className="training-approach-list">
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaCode style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+                <FaCode
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
               </div>
               <h2>Programming Languages</h2>
-              <p className="paragraph">JavaScript, TypeScript, Python, Java, C#</p>
+              <p className="paragraph">
+                JavaScript, TypeScript, Python, Java, C#
+              </p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaLaptopCode style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+                <FaLaptopCode
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
               </div>
               <h2>Frameworks & Libraries</h2>
-              <p className="paragraph">React.js, Angular, Vue.js, Node.js, Express.js</p>
+              <p className="paragraph">
+                React.js, Angular, Vue.js, Node.js, Express.js
+              </p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaDatabase style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+                <FaDatabase
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
               </div>
               <h2>Databases</h2>
               <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
-                <FaLaptopCode style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
+                <FaLaptopCode
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
               </div>
               <h2>Tools & Platforms</h2>
-              <p className="paragraph">Git, GitHub, Docker, AWS, Azure, Google Cloud</p>
+              <p className="paragraph">
+                Git, GitHub, Docker, AWS, Azure, Google Cloud
+              </p>
             </li>
           </ul>
         </div>

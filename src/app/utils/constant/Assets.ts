@@ -33,6 +33,8 @@ export const Assets = {
     tech: require("../../images/png/tech.jpg"),
     tech2: require("../../images/png/tech2.webp"),
     tech3: require("../../images/png/tech3.webp"),
+    softDev: require("../../images/png/softd.jpg"),
+    softDev2: require("../../images/png/soft2.avif"),
   },
   colors: {
     basic: "#000",
