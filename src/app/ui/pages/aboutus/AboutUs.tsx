@@ -4,7 +4,6 @@ import { Assets } from "../../../utils/constant/Assets";
 import "../aboutus/AboutUs.css";
 
 const AboutUs: React.FunctionComponent = () => {
-  // Give at lest 50px marginbottom gap for all parent divs
   return (
     <>
       <div className="aboutus-bg-color">
@@ -88,17 +87,17 @@ const AboutUs: React.FunctionComponent = () => {
 
           {/* CORE VALUES BOX THREE */}
           <div className="core-value-vision-main">
-            <div className="vision-box">
+            <div className="core-value-vision-box">
               <h2 className="core-value-vision-header">Core Values</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
                 molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam. Lorem
-                ipsum dolor sit amet, consectetur adipisicing elit. Ad molestias
-                pariatur et modi reprehenderit! Quidem fugiat, voluptatum odio
-                est debitis, at inventore, aut laboriosam. Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam. aut
-                laboriosam.
+                voluptatum odio est debitis, oo at inventore, aut laboriosam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                molestias pariatur et modi reprehenderit! Quidem fugiat,
+                voluptatum odio est debitis, at inventore, aut laboriosam.
+                Quidem fugiat, voluptatum odio est debitis, at inventore, aut
+                laboriosam. aut laboriosam.
               </p>
             </div>
           </div>
