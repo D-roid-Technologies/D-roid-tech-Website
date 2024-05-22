@@ -113,38 +113,33 @@ const Services: React.FunctionComponent = () => {
         <div className="service-card-container">
           {services.map((service, index) => (
             <Card
-              key={index}
-              className="service-card"
-              cardStyle={{
-                backgroundColor: Assets.colors.light,
-                color: Assets.colors.basic,
-              }}
+            key={index}
+            className="service-card"
+            cardStyle={{
+              backgroundColor: Assets.colors.light,
+              color: Assets.colors.basic,
+            }}
+          >
+            <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
+            <h3>{service.title}</h3>
+            <p
+              style={{ textAlign: "justify", color: Assets.colors.paragraph }}
+              className="paragraph"
             >
-              <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p
-                style={{ textAlign: "justify", color: Assets.colors.paragraph }}
-                className="paragraph"
-              >
-                {expandedCards.includes(index)
-                  ? service.description
-                  : `${service.description.slice(0, 150)}...`}
-                {service.description.length > 150 && (
-                  <span
-                    className="read-more-link"
-                    onClick={() =>
-                      expandedCards.includes(index)
-                        ? handleReadLess(index)
-                        : handleReadMore(index)
-                    }
-                  >
-                    {expandedCards.includes(index)
-                      ? " Read Less"
-                      : " Read More"}
-                  </span>
-                )}
-              </p>
-              {expandedCards.includes(index) && (
+              {expandedCards.includes(index)
+                ? service.description
+                : `${service.description.slice(0, 150)}...`}
+              {service.description.length > 150 && !expandedCards.includes(index) && (
+                <span
+                  className="read-more-link"
+                  onClick={() => handleReadMore(index)}
+                >
+                  Read More
+                </span>
+              )}
+            </p>
+            {expandedCards.includes(index) && (
+              <>
                 <ul>
                   {service.prices.map((price, priceIndex) => (
                     <li
@@ -155,8 +150,15 @@ const Services: React.FunctionComponent = () => {
                     </li>
                   ))}
                 </ul>
-              )}
-            </Card>
+                <span
+                  className="read-more-link"
+                  onClick={() => handleReadLess(index)}
+                >
+                  Read Less
+                </span>
+              </>
+            )}
+          </Card>
           ))}
         </div>
         <div className="benefits-section">
