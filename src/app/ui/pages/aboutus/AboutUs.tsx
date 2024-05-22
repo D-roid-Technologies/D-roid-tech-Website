@@ -4,7 +4,6 @@ import { Assets } from "../../../utils/constant/Assets";
 import "../aboutus/AboutUs.css";
 
 const AboutUs: React.FunctionComponent = () => {
-  // Give at lest 50px marginbottom gap for all parent divs
   return (
     <>
       <div className="aboutus-bg-color">
