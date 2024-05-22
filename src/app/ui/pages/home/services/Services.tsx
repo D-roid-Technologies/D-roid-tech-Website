@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import Card from "../../../components/card/Card";
 import { Assets } from "../../../../utils/constant/Assets";
+import BenefitsSection from "./benefits/BenefitsSection";
 
 type Service = {
   title: string;
@@ -92,7 +93,19 @@ const Services: React.FunctionComponent = () => {
 
   return (
     <div>
-      <NavBar />
+      <div
+        style={{
+          backgroundImage: `url("${Assets.images.service}")`,
+        }}
+        className="full-screen-background-image"
+      >
+        <NavBar />
+        <div className="home-section">
+          <article className="home-content">
+            <p className="home-heading">OUR SERVICES</p>
+          </article>
+        </div>
+      </div>
       <div className="service-main">
         <h1
           style={{ color: Assets.colors.primary }}
@@ -113,101 +126,56 @@ const Services: React.FunctionComponent = () => {
         <div className="service-card-container">
           {services.map((service, index) => (
             <Card
-            key={index}
-            className="service-card"
-            cardStyle={{
-              backgroundColor: Assets.colors.light,
-              color: Assets.colors.basic,
-            }}
-          >
-            <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
-            <h3>{service.title}</h3>
-            <p
-              style={{ textAlign: "justify", color: Assets.colors.paragraph }}
-              className="paragraph"
+              key={index}
+              className="service-card"
+              cardStyle={{
+                backgroundColor: Assets.colors.light,
+                color: Assets.colors.basic,
+              }}
             >
-              {expandedCards.includes(index)
-                ? service.description
-                : `${service.description.slice(0, 150)}...`}
-              {service.description.length > 150 && !expandedCards.includes(index) && (
-                <span
-                  className="read-more-link"
-                  onClick={() => handleReadMore(index)}
-                >
-                  Read More
-                </span>
-              )}
-            </p>
-            {expandedCards.includes(index) && (
-              <>
-                <ul>
-                  {service.prices.map((price, priceIndex) => (
-                    <li
-                      key={priceIndex}
-                      style={{ color: Assets.colors.paragraph }}
+              <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p
+                style={{ textAlign: "justify", color: Assets.colors.paragraph }}
+                className="paragraph"
+              >
+                {expandedCards.includes(index)
+                  ? service.description
+                  : `${service.description.slice(0, 150)}...`}
+                {service.description.length > 150 &&
+                  !expandedCards.includes(index) && (
+                    <span
+                      className="read-more-link"
+                      onClick={() => handleReadMore(index)}
                     >
-                      {price}
-                    </li>
-                  ))}
-                </ul>
-                <span
-                  className="read-more-link"
-                  onClick={() => handleReadLess(index)}
-                >
-                  Read Less
-                </span>
-              </>
-            )}
-          </Card>
+                      Read More
+                    </span>
+                  )}
+              </p>
+              {expandedCards.includes(index) && (
+                <>
+                  <ul>
+                    {service.prices.map((price, priceIndex) => (
+                      <li
+                        key={priceIndex}
+                        style={{ color: Assets.colors.paragraph }}
+                      >
+                        {price}
+                      </li>
+                    ))}
+                  </ul>
+                  <span
+                    className="read-more-link"
+                    onClick={() => handleReadLess(index)}
+                  >
+                    Read Less
+                  </span>
+                </>
+              )}
+            </Card>
           ))}
         </div>
-        <div className="benefits-section">
-          <h2 style={{ color: Assets.colors.primary, marginBottom: "1.5rem" }} className="general-heading">
-            Benefits of Working with Us
-          </h2>
-          <ul>
-            <li
-              style={{ color: Assets.colors.paragraph }}
-              className="paragraph"
-            >
-              <strong>Expert Team:</strong> Our team comprises skilled
-              professionals with extensive experience in their respective
-              fields, ensuring high-quality service delivery.
-            </li>
-            <li
-              style={{ color: Assets.colors.paragraph }}
-              className="paragraph"
-            >
-              <strong>Tailored Solutions:</strong> We take the time to
-              understand your unique needs and provide customized solutions that
-              align with your business goals.
-            </li>
-            <li
-              style={{ color: Assets.colors.paragraph }}
-              className="paragraph"
-            >
-              <strong>Latest Technology:</strong> We utilize cutting-edge
-              technologies and industry best practices to ensure your projects
-              are modern, efficient, and secure.
-            </li>
-            <li
-              style={{ color: Assets.colors.paragraph }}
-              className="paragraph"
-            >
-              <strong>Transparent Communication:</strong> We maintain clear and
-              open communication throughout the project, keeping you informed
-              and involved at every stage.
-            </li>
-            <li
-              style={{ color: Assets.colors.paragraph }}
-              className="paragraph"
-            >
-              <strong>Customer Satisfaction:</strong> Your satisfaction is our
-              top priority. We strive to exceed your expectations and deliver
-              solutions that drive success.
-            </li>
-          </ul>
-        </div>
+        <BenefitsSection />
       </div>
     </div>
   );
