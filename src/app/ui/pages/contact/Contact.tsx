@@ -108,7 +108,9 @@ const Contact: React.FunctionComponent = () => {
                   {/* INPUT SECTION ONE */}
                   {/* first name */}
                   <div className="input-width">
-                    <label style={{ color: Assets.colors.light }}>Email</label>
+                    {/* <label style={{ color: Assets.colors.light }}>
+                      Fullname
+                    </label> */}
                     <br />
                     <div className="input-container">
                       <AppInput
