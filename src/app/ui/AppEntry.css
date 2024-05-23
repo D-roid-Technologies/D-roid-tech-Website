@@ -15,14 +15,14 @@
   --heading-font-weight: 800;
   --heading-font-family: "Rammetto", sans-serif;
 
- 
   /* Variables for paragraph */
   --paragraph-font-size: 1.2rem;
   --paragraph-font-weight: 200;
   --paragraph-font-family: "Mazzard", sans-serif;
   --paragraph-letter-spacing: 2px;
 }
-.general-heading{
+
+.general-heading {
   margin-bottom: 1em;
   line-height: 1.2rem;
   font-size: 1.5rem;
@@ -31,7 +31,7 @@
   text-align: center;
 }
 
-.paragraph{
+.paragraph {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184) !important;
@@ -45,14 +45,17 @@
   padding-right: 100px;
 }
 
-.modal-main {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00000080;
-  display: flex;
+  z-index: 999;
 }
 
 .modal-inner {
@@ -61,16 +64,20 @@
   height: 65%;
   padding: 20px;
   border-radius: 5px;
+  position: relative;
 }
 
 .modal-x {
-  align-self: flex-end;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
 }
 
 .modal-text {
   margin-top: 40px;
-  overflow: scroll;
+  overflow: auto;
+  max-height: calc(100% - 80px); /* Subtract the height of the header and padding */
 }
 
 .modal-header {
@@ -79,6 +86,7 @@
   font-size: 24px;
   font-family: "Rammetto One";
 }
+
 .modal-body {
   color: #000000;
   font-size: 18px;
