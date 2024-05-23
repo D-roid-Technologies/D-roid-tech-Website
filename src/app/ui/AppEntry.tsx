@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Index from "../routes/Index";
 import "../ui/AppEntry.css";
 import { AppEntryType } from "../utils/Types";
@@ -20,29 +20,42 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   const [appWidth, setAppWidth] = React.useState<number>(window.innerWidth);
   const [appHeight, setAppHeight] = React.useState<number>(window.innerHeight);
 
-  useState(() => {
+  useEffect(() => {
+    const handleResize = () => {
+      setAppWidth(window.innerWidth);
+      setAppHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     store.dispatch(addWidth(appWidth));
     store.dispatch(addHeight(appHeight));
-  });
+  }, [appWidth, appHeight]);
 
   return (
     <div>
-      {modal ? (
-        <div className="modal-main">
+      {modal && (
+        <div className="modal-overlay">
           <div className="modal-inner">
-            <div
-              className="modal-x"
-              onClick={() => store.dispatch(updateModal(false))}
-            >
+            <div className="modal-x" onClick={() => store.dispatch(updateModal(false))}>
               <HiX />
             </div>
             <div className="modal-text">
               <h2 className="modal-header">{aTitle}</h2>
-              <p className="modal-body">{aBody}</p>
+              <div
+                className="modal-body"
+                dangerouslySetInnerHTML={{ __html: aBody }}
+              />
             </div>
           </div>
         </div>
-      ) : null}
+      )}
       <Index width={appWidth} />
       <Footer />
     </div>
