@@ -36,6 +36,8 @@ export const Assets = {
     softDev: require("../../images/png/softd.jpg"),
     softDev2: require("../../images/png/soft2.avif"),
     service: require("../../images/png/service2.jpg"),
+    softwareBg: require("../../images/png/sd.png"),
+    homeBg: require("../../images/png/homepage.png"),
   },
   colors: {
     basic: "#000",
@@ -47,6 +49,7 @@ export const Assets = {
     borderColor: "#ccc",
     paragraph: "rgb(186, 184, 184)",
     backgroundColor: "#f9f9f9",
+    substitute: "#FBCC34",
 
     //dark
     darkBasic: "#fff",

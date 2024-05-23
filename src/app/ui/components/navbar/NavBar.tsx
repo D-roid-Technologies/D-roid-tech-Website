@@ -3,7 +3,7 @@ import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { toggleTheme } from "../../../redux/slices/ThemeSlice";
@@ -44,7 +44,7 @@ const NavBar: React.FunctionComponent = () => {
             style={{
               color:
                 window.location.pathname === item.path
-                  ? "aqua"
+                  ? Assets.colors.substitute
                   : Assets.colors.primary,
             }}
           >
@@ -73,7 +73,7 @@ const NavBar: React.FunctionComponent = () => {
               color:
                 window.location.pathname === item.path
                   ? Assets.colors.primary
-                  : "aqua",
+                  : Assets.colors.substitute,
             }}
           >
             {item.link}
@@ -122,11 +122,17 @@ const NavBar: React.FunctionComponent = () => {
             <span className="version">{Assets.text.appVersion}</span>
           </div>
           <div className="icons-right">
-          {isDarkMode ? (
-            <FaSun className="dark-mode" onClick={() => dispatch(toggleTheme())} />
-          ) : (
-            <FaMoon className="dark-mode" onClick={() => dispatch(toggleTheme())} />
-          )}
+            {isDarkMode ? (
+              <FaSun
+                className="dark-mode"
+                onClick={() => dispatch(toggleTheme())}
+              />
+            ) : (
+              <FaMoon
+                className="dark-mode"
+                onClick={() => dispatch(toggleTheme())}
+              />
+            )}
             <CiMenuFries
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}
