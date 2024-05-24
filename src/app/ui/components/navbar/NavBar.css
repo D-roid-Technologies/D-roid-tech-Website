@@ -38,7 +38,8 @@
 }
 .drop-down-links:hover {
   transition: 0.8s;
-  color: #00ffff !important;
+  /* color: #00ffff !important; */
+  color: #FBCC34 !important;
 }
 
 .nav-list {
@@ -51,7 +52,7 @@
 
 .nav-list:hover {
   transition: 0.8s;
-  color: aqua !important;
+  color: #FBCC34 !important;
 }
 .list-container {
   list-style: none;

@@ -3,30 +3,22 @@ import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
-import { FaSun, FaMoon } from 'react-icons/fa';
-import { useDispatch, useSelector } from "react-redux";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
-import { toggleTheme } from "../../../redux/slices/ThemeSlice";
 import { HiMenu, HiX } from "react-icons/hi";
 import { CiMenuFries } from "react-icons/ci";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const NavBar: React.FunctionComponent = () => {
-  // React states
   const [showDropDown, setShowDropDown] = React.useState<boolean>(false);
   const [showMenuBtn, setShowMenuBtn] = React.useState<boolean>(false);
   const [showMobileNav, setShowMobileNav] = React.useState<boolean>(false);
 
-  // Getting stored state from redux.
   const dimension = useSelector((state: RootState) => state.dimension);
-  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
-  const dispatch = useDispatch();
-  const height = dimension.height;
-  const width = dimension.width;
-
-  // Reuseable constants
   const navigate = useNavigate();
+  const { getColor, toggleTheme, isDarkMode } = useThemeColor();
 
-  // Function to map through main nav links
   const navMap = () => {
     return DATA.navLinks.map((item, index) => {
       return (
@@ -44,8 +36,8 @@ const NavBar: React.FunctionComponent = () => {
             style={{
               color:
                 window.location.pathname === item.path
-                  ? "aqua"
-                  : Assets.colors.primary,
+                  ? getColor('substitute')
+                  : getColor('primary'),
             }}
           >
             {item.link}
@@ -72,8 +64,8 @@ const NavBar: React.FunctionComponent = () => {
             style={{
               color:
                 window.location.pathname === item.path
-                  ? Assets.colors.primary
-                  : "aqua",
+                  ? getColor('primary')
+                  : getColor('substitute'),
             }}
           >
             {item.link}
@@ -83,7 +75,6 @@ const NavBar: React.FunctionComponent = () => {
     });
   };
 
-  // Function to map through dropdown nav links
   const dropDownLinks = () => {
     return DATA.dropDownLinks.map((i, j) => {
       return (
@@ -93,7 +84,7 @@ const NavBar: React.FunctionComponent = () => {
               navigate(i.path);
             }}
             style={{
-              color: "#00ffff",
+              color: getColor('accent'),
             }}
           >
             {i.link}
@@ -122,11 +113,11 @@ const NavBar: React.FunctionComponent = () => {
             <span className="version">{Assets.text.appVersion}</span>
           </div>
           <div className="icons-right">
-          {isDarkMode ? (
-            <FaSun className="dark-mode" onClick={() => dispatch(toggleTheme())} />
-          ) : (
-            <FaMoon className="dark-mode" onClick={() => dispatch(toggleTheme())} />
-          )}
+            {isDarkMode ? (
+              <FaSun className="dark-mode" onClick={toggleTheme} />
+            ) : (
+              <FaMoon className="dark-mode" onClick={toggleTheme} />
+            )}
             <CiMenuFries
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}

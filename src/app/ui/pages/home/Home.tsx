@@ -13,6 +13,11 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { DATA } from "../../../utils/constant/Data";
+import { Assets } from "../../../utils/constant/Assets";
+import { FaMobileRetro } from "react-icons/fa6";
+import { FaPeopleRoof } from "react-icons/fa6";
+import { PiDesktopTowerFill } from "react-icons/pi";
+import { GiSpiderWeb } from "react-icons/gi";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -37,7 +42,7 @@ const Home: React.FunctionComponent = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url("${companyBanner}")`,
+          backgroundImage: `url("${Assets.images.homeBg}")`,
         }}
         className="bg-image"
       >
@@ -46,35 +51,56 @@ const Home: React.FunctionComponent = () => {
         {/* CONTENT */}
         <div className="home-main">
           <div className="home">
-            <article className="home-content">
-              <p className="home-heading">
-                WE TURN YOUR IDEAS
-                <br />
-                INTO REALITY
-              </p>
-            </article>
-            <div className="product-button">
-              <div className="See-our-product">
-                <Button
-                  bgColor={"white"}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="Schedule an Appointment"
-                  color="black"
-                  fWeight={800}
-                  bRadius={5}
-                  bRadiusColor="#ffffff"
-                  onClickButton={() => {
-                    window.location.href = DATA.socialLinks.email;
-                  }}
-                  // onClickButton={() => {
-                  // }}
-                />
+            <div>
+              <article className="home-content">
+                <p className="home-heading">
+                  WE TURN YOUR IDEA
+                  <br />
+                  INTO REALITY
+                </p>
+              </article>
+              <div className="product-button">
+                <div className="See-our-product">
+                  <Button
+                    bgColor={Assets.colors.substitute}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="Schedule an Appointment"
+                    color="black"
+                    fWeight={800}
+                    bRadius={5}
+                    bRadiusColor="#ffffff"
+                    onClickButton={() => {
+                      window.location.href =
+                        "mailto:hr@droidtechinternational.com";
+                    }}
+                    // onClickButton={() => {
+                    // }}
+                  />
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="home-middle-banner">
+        <div className="home-middle-one">
+          <FaMobileRetro className="home-middle-one-icon" />
+          <p className="home-middle-one-p">Android / IOS App Development</p>
+        </div>
+        <div className="home-middle-one">
+          <FaPeopleRoof className="home-middle-one-icon" />
+          <p className="home-middle-one-p">Outsourcing / Consulting</p>
+        </div>
+        <div className="home-middle-one">
+          <PiDesktopTowerFill className="home-middle-one-icon" />
+          <p className="home-middle-one-p">Equpiment Set-up</p>
+        </div>
+        <div className="home-middle-one">
+          <GiSpiderWeb className="home-middle-one-icon" />
+          <p className="home-middle-one-p">Web App Development</p>
         </div>
       </div>
       <AboutSection />
