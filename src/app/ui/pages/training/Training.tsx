@@ -10,6 +10,7 @@ import TrainingApproach from "../../components/trainingApproach/TrainingApproach
 import TechnologiesAndTools from "../../components/technologies/TechnologiesAndTools";
 import { FaLaptop } from "react-icons/fa";
 import { courses } from "../../../utils/constant/FeaturedTraining";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const photos: TrainingPhoto[] = [
   { image: Assets.images.staffBg, text: "Expert trainers available" },
@@ -20,18 +21,17 @@ const photos: TrainingPhoto[] = [
   { image: Assets.images.tech3, text: "Learn at your own pace" },
 ];
 
-const Training: React.FunctionComponent = () => {
+const Training: React.FC = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
+  const { getColor } = useThemeColor();
 
-  // Function to handle the previous button click
   const handlePreviousPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
       prevIndex === 0 ? photos.length - 1 : prevIndex - 1
     );
   };
 
-  // Function to handle the next button click
   const handleNextPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
       prevIndex === photos.length - 1 ? 0 : prevIndex + 1
@@ -39,29 +39,31 @@ const Training: React.FunctionComponent = () => {
   };
 
   return (
-    <div style={{ backgroundColor: Assets.colors.light }}>
+    <div style={{ backgroundColor: getColor("light") }}>
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
-          backgroundColor: Assets.colors.overlay,
+          backgroundColor: getColor("overlay"),
         }}
         className="training-full-screen-background-image"
       >
         <NavBar />
         <div
-          style={{ color: Assets.colors.light }}
+          style={{ color: getColor("light") }}
           className="training-home-section"
         >
           <div className="home-main">
             <article className="home-content">
-              <p className="home-heading">{photos[currentPhotoIndex].text}</p>
+              <p className="home-heading" style={{ color: getColor("light") }}>
+                {photos[currentPhotoIndex].text}
+              </p>
             </article>
           </div>
           <div className="prev-button">
             <Button
               title="<"
-              bgColor={Assets.colors.overlay}
-              color={Assets.colors.light}
+              bgColor={getColor("overlay")}
+              color={getColor("light")}
               onClickButton={handlePreviousPhoto}
               mLeft={10}
               mRight={10}
@@ -72,8 +74,8 @@ const Training: React.FunctionComponent = () => {
           <div className="next-button">
             <Button
               title=">"
-              bgColor={Assets.colors.overlay}
-              color={Assets.colors.light}
+              bgColor={getColor("overlay")}
+              color={getColor("light")}
               onClickButton={handleNextPhoto}
               mLeft={10}
               mRight={10}
@@ -85,22 +87,18 @@ const Training: React.FunctionComponent = () => {
       </div>
 
       <div className="training-main-content-section">
-        {/* Approach Section */}
         <TrainingApproach />
 
-        {/* image */}
         <div style={{ textAlign: "center" }}>
           <FaLaptop
-            style={{ fontSize: "10rem", color: Assets.colors.secondary }}
+            style={{ fontSize: "10rem", color: getColor("secondary") }}
             className="icon"
           />
         </div>
 
-        {/* Featured Training Programs Section */}
-
         <div className="training-approach-main">
           <h1
-            style={{ color: Assets.colors.basic, fontFamily: "Rammetto One" }}
+            style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-head"
           >
             Featured Training Programs
@@ -112,24 +110,15 @@ const Training: React.FunctionComponent = () => {
                 className="training-program-item"
                 cardStyle={{
                   flexBasis: "calc(23% - 2%)",
-                  border: `1px solid ${Assets.colors.borderColor}`,
+                  border: `1px solid ${getColor("borderColor")}`,
                   transition: "box-shadow 0.3s ease",
-                }}
-                headingStyle={{
-                  marginBottom: "10px",
-                  fontFamily: "Rammetto One",
-                  color: Assets.colors.basic,
-                }}
-                descriptionStyle={{
-                  fontFamily: "Mazzard",
-                  fontSize: "1rem",
-                  color: Assets.colors.basic,
-                  marginBottom: "1em",
                 }}
               >
                 <Link to={`${location.pathname}/course-detail/${course.id}`}>
                   <h3>{course.title}</h3>
-                  <p>{course.description}</p>
+                  <p style={{ color: getColor("paragraph") }}>
+                    {course.description}
+                  </p>
                 </Link>
               </Card>
             ))}
@@ -137,7 +126,6 @@ const Training: React.FunctionComponent = () => {
         </div>
       </div>
 
-      {/* Technologies and Tools Section */}
       <TechnologiesAndTools />
     </div>
   );
