@@ -13,6 +13,7 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { DATA } from "../../../utils/constant/Data";
+import { Assets } from "../../../utils/constant/Assets";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -37,7 +38,7 @@ const Home: React.FunctionComponent = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url("${companyBanner}")`,
+          backgroundImage: `url("${Assets.images.homeBg}")`,
         }}
         className="bg-image"
       >
@@ -46,32 +47,35 @@ const Home: React.FunctionComponent = () => {
         {/* CONTENT */}
         <div className="home-main">
           <div className="home">
-            <article className="home-content">
-              <p className="home-heading">
-                WE TURN YOUR IDEAS
-                <br />
-                INTO REALITY
-              </p>
-            </article>
-            <div className="product-button">
-              <div className="See-our-product">
-                <Button
-                  bgColor={"white"}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="Schedule an Appointment"
-                  color="black"
-                  fWeight={800}
-                  bRadius={5}
-                  bRadiusColor="#ffffff"
-                  onClickButton={() => {
-                    window.location.href = DATA.socialLinks.email;
-                  }}
-                  // onClickButton={() => {
-                  // }}
-                />
+            <div>
+              <article className="home-content">
+                <p className="home-heading">
+                  WE TURN YOUR IDEA
+                  <br />
+                  INTO REALITY
+                </p>
+              </article>
+              <div className="product-button">
+                <div className="See-our-product">
+                  <Button
+                    bgColor={Assets.colors.substitute}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="Schedule an Appointment"
+                    color="black"
+                    fWeight={800}
+                    bRadius={5}
+                    bRadiusColor="#ffffff"
+                    onClickButton={() => {
+                      window.location.href =
+                        "mailto:hr@droidtechinternational.com";
+                    }}
+                    // onClickButton={() => {
+                    // }}
+                  />
+                </div>
               </div>
             </div>
           </div>

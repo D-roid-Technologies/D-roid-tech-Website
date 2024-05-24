@@ -35,6 +35,9 @@ export const Assets = {
     tech3: require("../../images/png/tech3.webp"),
     softDev: require("../../images/png/softd.jpg"),
     softDev2: require("../../images/png/soft2.avif"),
+    service: require("../../images/png/service2.jpg"),
+    softwareBg: require("../../images/png/sd.png"),
+    homeBg: require("../../images/png/homepage.png"),
   },
   colors: {
     basic: "#000",
@@ -46,16 +49,19 @@ export const Assets = {
     borderColor: "#ccc",
     paragraph: "rgb(186, 184, 184)",
     backgroundColor: "#f9f9f9",
+    substitute: "#FBCC34",
+
+    //dark
+    darkBasic: "#fff",
+    darkLight: "#000",
+    darkPrimary: "#fff",
+    darkSecondary: "#A6D4FA",
+    darkTertiary: "#FFAEB9",
+    darkOverlay: "rgba(255, 255, 255, 0.5)",
+    darkBorderColor: "#555",
+    darkParagraph: "#ccc",
+    darkBackgroundColor: "#000",
   },
-  //   colors: {
-  //     basic: "#fff",
-  //     light: "#000",
-  //     primary: "#fff",
-  //     secondary: "#A6D4FA",
-  //     tertiary: "#FFAEB9",
-  //     overlay: "rgba(255, 255, 255, 0.5)",
-  //     borderColor: "#555",
-  // },
   text: {
     companyName: "D'roid Technologies International",
     companyShortName: "D'roid Technologies",

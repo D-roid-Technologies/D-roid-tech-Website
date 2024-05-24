@@ -9,15 +9,15 @@ const Software: React.FunctionComponent = () => {
     <div>
       <div
         style={{
-          backgroundImage: `url("${Assets.images.softDev}")`,
+          backgroundImage: `url("${Assets.images.softwareBg}")`,
         }}
         className="full-screen-background-image"
       >
         <NavBar />
         <div className="home-section">
-          <article className="home-content">
-            <p className="home-heading">SOFTWARE DEVELOPMENT</p>
-          </article>
+          {/* <article className="home-content">
+            <p className="home-heading">INCREDIBLE SOFTWARE DEVELOPMENT</p>
+          </article> */}
 
           {/* <p className="large-centered-heading">
               At D'roid Technologies, we specialize in crafting innovative
