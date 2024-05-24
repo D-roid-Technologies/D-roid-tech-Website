@@ -1,10 +1,10 @@
 import React from 'react';
-import { Assets } from '../../../utils/constant/Assets';
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 type ApproachItem = {
   title: string;
   description: string;
-}
+};
 
 const approachItems: ApproachItem[] = [
   {
@@ -25,22 +25,30 @@ const approachItems: ApproachItem[] = [
   }
 ];
 
-const TrainingApproachItem: React.FC<ApproachItem> = ({ title, description }) => {
+type TrainingApproachItemProps = {
+  title: string;
+  description: string;
+  styles: {
+    title: React.CSSProperties;
+    description: React.CSSProperties;
+    trainingApproachItem: React.CSSProperties;
+  };
+  getColor: (colorName: string) => string;
+};
+
+const TrainingApproachItem: React.FC<TrainingApproachItemProps> = ({ title, description, styles, getColor }) => {
+
   const handleMouseEnter = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-    (e.currentTarget as HTMLHeadingElement).style.color = Assets.colors.secondary;
+    (e.currentTarget as HTMLHeadingElement).style.color = getColor('secondary');
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-    (e.currentTarget as HTMLHeadingElement).style.color = Assets.colors.basic;
+    (e.currentTarget as HTMLHeadingElement).style.color = getColor('basic');
   };
 
   return (
     <li style={styles.trainingApproachItem}>
-      <h2
-        style={styles.title}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <h2 style={styles.title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {title}
       </h2>
       <p style={styles.description} className='paragraph'>{description}</p>
@@ -49,44 +57,48 @@ const TrainingApproachItem: React.FC<ApproachItem> = ({ title, description }) =>
 };
 
 const TrainingApproach: React.FC = () => {
+  const { getColor } = useThemeColor();
+
+  const styles = {
+    heading: {
+      color: getColor("basic"),
+      fontFamily: "Rammetto One",
+    },
+    trainingApproachItem: {
+      flexBasis: "calc(23% - 2%)",
+      borderRadius: "5px",
+      transition: "box-shadow 0.3s ease",
+    },
+    title: {
+      marginBottom: "20px",
+      fontFamily: "Rammetto One",
+      color: getColor("basic"),
+      transition: "color 0.3s ease",
+    },
+    description: {
+      fontFamily: "Mazzard",
+      fontSize: "1rem",
+      color: getColor("basic"),
+      marginBottom: "1em",
+    },
+  };
+
   return (
     <div className="training-approach-main">
-      <h1 style={styles.heading} className='training-approach-head '>Our Approach</h1>
+      <h1 style={styles.heading} className='training-approach-head'>Our Approach</h1>
       <ul className="training-approach-list">
         {approachItems.map((item, index) => (
-          <TrainingApproachItem
-            key={index}
-            title={item.title}
-            description={item.description}
+          <TrainingApproachItem 
+            key={index} 
+            title={item.title} 
+            description={item.description} 
+            styles={styles}
+            getColor={getColor}
           />
         ))}
       </ul>
     </div>
   );
-};
-
-const styles = {
-  heading: {
-    color: Assets.colors.basic,
-    fontFamily: "Rammetto One",
-  },
-  trainingApproachItem: {
-    flexBasis: "calc(23% - 2%)",
-    borderRadius: "5px",
-    transition: "box-shadow 0.3s ease",
-  },
-  title: {
-    marginBottom: "20px",
-    fontFamily: "Rammetto One",
-    color: Assets.colors.basic,
-    transition: "color 0.3s ease",
-  },
-  description: {
-    fontFamily: "Mazzard",
-    fontSize: "1rem",
-    color: Assets.colors.paragraph,
-    marginBottom: "1em",
-  },
 };
 
 export default TrainingApproach;
