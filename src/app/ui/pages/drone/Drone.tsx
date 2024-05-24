@@ -100,7 +100,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             ))}
           </ul>
         </section>
-        {/*  Featured Drone Service */}
+        {/*  Featured Drone Service section*/}
         <section className="ft-drone-service">
           <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
           {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
