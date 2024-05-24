@@ -51,16 +51,17 @@ export const Assets = {
     backgroundColor: "#f9f9f9",
     substitute: "#FBCC34",
 
-    //dark
-    darkBasic: "#fff",
-    darkLight: "#000",
-    darkPrimary: "#fff",
-    darkSecondary: "#A6D4FA",
-    darkTertiary: "#FFAEB9",
-    darkOverlay: "rgba(255, 255, 255, 0.5)",
-    darkBorderColor: "#555",
-    darkParagraph: "#ccc",
-    darkBackgroundColor: "#000",
+    // dark
+    darkbasic: "#fff",
+    darklight: "#000",
+    darkprimary: "#fff",
+    darksecondary: "#A6D4FA",
+    darktertiary: "#FFAEB9",
+    darkoverlay: "rgba(255, 255, 255, 0.5)",
+    darkborderColor: "#555",
+    darkparagraph: "#ccc",
+    darkbackgroundColor: "#000",
+    darksubstitute: "#FBCC34",
   },
   text: {
     companyName: "D'roid Technologies International",
