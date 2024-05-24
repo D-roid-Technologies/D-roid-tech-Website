@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/NavBar";
 import "../equipments/Equipments.css";
 import equipmentbg from "../../../images/png/equipmentSetup.jpg";
 import { DATA } from "../../../utils/constant/Data";
+import TechnologiesAndTools from "../../components/technologies/TechnologiesAndTools";
 
 const Equipments: React.FunctionComponent<any> = () => {
   return (
@@ -34,7 +35,7 @@ const Equipments: React.FunctionComponent<any> = () => {
         </article>
       </div>
       {/* OUR APPROACH SECTION */}
-      <div className="bg-color">
+      {/* <div className="bg-color">
         <section className="drone-approach-main">
           <h1 className="droneapproach-head">OUR APPROACH</h1>
           <ul className="droneapproach-item">
@@ -43,14 +44,13 @@ const Equipments: React.FunctionComponent<any> = () => {
                 <h2>{item.title}</h2>
                 <p>{item.content}</p>
                 <span className="list-button">{item.Button}</span>
-                {/* <button onClick={() => setIsTextHidden(!isTextHidden)}>
-                  Toggle Text
-                </button> */}
               </li>
             ))}
           </ul>
         </section>
-      </div>
+      </div> */}
+      {/* TECHNOLOGIES AND EQUIPMENT */}
+      <TechnologiesAndTools />
     </main>
   );
 };

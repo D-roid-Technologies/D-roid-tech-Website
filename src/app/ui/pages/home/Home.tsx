@@ -70,7 +70,7 @@ const Home: React.FunctionComponent = () => {
                     bRadiusColor="#ffffff"
                     onClickButton={() => {
                       window.location.href =
-                        "mailto:hr@droidtechinternational.com";
+                        "https://calendly.com/droidtechint";
                     }}
                     // onClickButton={() => {
                     // }}
