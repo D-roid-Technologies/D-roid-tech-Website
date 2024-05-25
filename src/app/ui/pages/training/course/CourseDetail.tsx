@@ -30,10 +30,12 @@ const CourseDetail: React.FunctionComponent = () => {
         className="bg-image"
       >
         <NavBar />
+        <div className="home-section">
         <div className="home-main">
           <article className="home-content">
             <p className="home-heading">{course.title}</p>
           </article>
+        </div>
         </div>
       </div>
       <div className="course-detail-content">

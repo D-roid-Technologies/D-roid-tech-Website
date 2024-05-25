@@ -145,6 +145,9 @@
   transition: box-shadow 0.3s ease;
   flex-basis: calc(23% - 2%);
 }
+.training-programs-list .training-program-item a {
+  text-decoration: none;
+}
 
 .icon-container {
   display: flex;

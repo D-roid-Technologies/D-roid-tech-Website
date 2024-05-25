@@ -1,14 +1,14 @@
-import React from "react";
-import { Assets } from "../../../utils/constant/Assets";
+import React, { CSSProperties, ReactElement, ReactNode } from "react";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 type CardProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  cardStyle?: React.CSSProperties;
-  linkStyle?: React.CSSProperties;
-  headingStyle?: React.CSSProperties;
-  subheadingStyle?: React.CSSProperties;
-  descriptionStyle?: React.CSSProperties;
+  cardStyle?: CSSProperties;
+  linkStyle?: CSSProperties;
+  headingStyle?: CSSProperties;
+  subheadingStyle?: CSSProperties;
+  descriptionStyle?: CSSProperties;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -20,49 +20,56 @@ const Card: React.FC<CardProps> = ({
   subheadingStyle,
   descriptionStyle,
 }) => {
+  const { getColor } = useThemeColor();
+
+  const defaultStyles: { [key: string]: CSSProperties } = {
+    h3: {
+      marginBottom: "10px",
+      fontFamily: "Rammetto One",
+      color: getColor("basic"),
+      ...headingStyle,
+    },
+    h5: {
+      color: getColor("basic"),
+      ...subheadingStyle,
+    },
+    p: {
+      fontFamily: "Mazzard",
+      fontSize: "1.2rem",
+      color: getColor("basic"),
+      marginBottom: "1em",
+      ...descriptionStyle,
+    },
+    "a": {
+      textDecoration: "none",
+      color: getColor("paragraph"),
+      ...linkStyle,
+    },
+  };
+
   return (
     <li
       className={className}
       style={{
         marginBottom: "20px",
         padding: "20px",
-        border: `1px solid ${Assets.colors.borderColor}`,
+        border: `1px solid ${getColor("borderColor")}`,
         borderRadius: "5px",
         transition: "box-shadow 0.3s ease",
         ...cardStyle,
       }}
     >
-      {React.Children.map(children, (child) =>
-        React.isValidElement<{ style?: React.CSSProperties }>(child)
-          ? React.cloneElement(child, {
-              style: {
-                ...child.props.style,
-                ...(child.type === "h3"
-                  ? headingStyle
-                  : {
-                      marginBottom: "10px",
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          const type = (child.type as any).toString().toLowerCase();
+          const style = defaultStyles[type] || {};
 
-                      fontFamily: "Rammetto One",
-                      color: Assets.colors.basic,
-                    }),
-                ...(child.type === "h5"
-                  ? subheadingStyle
-                  : { color: Assets.colors.paragraph }),
-                ...(child.type === "p"
-                  ? descriptionStyle
-                  : {
-                      fontFamily: "Mazzard",
-                      fontSize: "1.2rem",
-                      color: Assets.colors.paragraph,
-                      marginBottom: "1em",
-                    }),
-                ...(child.type === "a"
-                  ? linkStyle
-                  : { textDecoration: "none", color: Assets.colors.basic }),
-              },
-            })
-          : child
-      )}
+          return React.cloneElement(child as React.ReactElement<any>, {
+            style: { ...child.props.style, ...style },
+          });
+        }
+        return child;
+      })}
     </li>
   );
 };
