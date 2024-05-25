@@ -50,7 +50,7 @@ const Equipments: React.FunctionComponent<any> = () => {
         </section>
       </div> */}
       {/* TECHNOLOGIES AND EQUIPMENT */}
-      <TechnologiesAndTools />
+      {/* <TechnologiesAndTools /> */}
     </main>
   );
 };
