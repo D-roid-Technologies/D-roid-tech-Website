@@ -20,7 +20,8 @@ import { MdPhotoCameraFront } from "react-icons/md";
 import { LiaToolsSolid } from "react-icons/lia";
 import { MdOndemandVideo } from "react-icons/md";
 import { MdAgriculture } from "react-icons/md";
-import { GiJapaneseBridge } from "react-icons/gi";
+import { GiArchBridge } from "react-icons/gi";
+// import { GiJapaneseBridge } from "react-icons/gi";
 import Slider from "react-slick";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
@@ -99,7 +100,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             ))}
           </ul>
         </section>
-        {/*  Featured Drone Service */}
+        {/*  Featured Drone Service section*/}
         <section className="ft-drone-service">
           <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
           {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
@@ -108,13 +109,13 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               {DATA.FeaturedDroneServices.map((item, index) => (
                 <li className="droneapproach-services" key={index}>
                   <figure>
-                    <video controls src={item.video} />
+                    <video controls src={item.video} className="video-size" />
                     {/* <MdOndemandVideo className="map" /> */}
                   </figure>
                   <div className="video-details">
                     <h2 className="video-heading">{item.title}</h2>
                     <p className="drone-text">{item.content}</p>
-                    <div className="video-btn">
+                    <div className="drone-video-btn">
                       <Button
                         bgColor={"black"}
                         mTop={0}
@@ -158,7 +159,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                       />
                     </div>
                   </div>
-                  <div className="map-container">
+                  <div className="maping-container">
                     <FaMapMarkerAlt className="map" />
                   </div>
                 </li>
@@ -171,7 +172,8 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               {DATA.InfrastructureInspection.map((item, index) => (
                 <li className="infrastructure-services" key={index}>
                   <div className="map-container">
-                    <GiJapaneseBridge className="map" />
+                    <GiArchBridge className="map" />
+                    {/* <GiJapaneseBridge className="map" /> */}
                   </div>
                   <div className="infrastructure-text">
                     <h2 className="infrastructure-heading">{item.title}</h2>
@@ -221,10 +223,9 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                       />
                     </div>
                   </div>
-                  <picture>
-                    {/* <img src={item.image} alt="survey Image" className="map" /> */}
+                  <div className="monitoring-container">
                     <MdAgriculture className="map" />
-                  </picture>
+                  </div>
                 </li>
               ))}
             </ul>
