@@ -45,7 +45,7 @@ const Training: React.FC = () => {
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
           backgroundColor: getColor("overlay"),
         }}
-        className="training-full-screen-background-image"
+        className="bg-image"
       >
         <NavBar />
         <div

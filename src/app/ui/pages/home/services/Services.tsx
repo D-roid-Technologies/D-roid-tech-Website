@@ -97,7 +97,7 @@ const Services: React.FunctionComponent = () => {
         style={{
           backgroundImage: `url("${Assets.images.service}")`,
         }}
-        className="full-screen-background-image"
+        className="bg-image"
       >
         <NavBar />
         <div className="home-section">
