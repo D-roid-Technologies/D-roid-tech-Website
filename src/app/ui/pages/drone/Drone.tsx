@@ -309,7 +309,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   </div>
                   <div className="drone-testimonial-details">
                     <p>
-                      "D'roid Technologies' drone services helped us streamline
+                      "D'roid Technologies' drone services helped us streamlinee
                       our construction projects by providing accurate aerial
                       mapping and surveying data. Their team's professionalism
                       and attention to detail were commendable, and the results
