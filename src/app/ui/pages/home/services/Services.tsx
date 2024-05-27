@@ -11,6 +11,7 @@ import {
 import Card from "../../../components/card/Card";
 import { Assets } from "../../../../utils/constant/Assets";
 import BenefitsSection from "./benefits/BenefitsSection";
+import Button from "../../../components/button/Button";
 
 type Service = {
   title: string;
@@ -127,52 +128,22 @@ const Services: React.FunctionComponent = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="service-card"
-              cardStyle={{
-                backgroundColor: Assets.colors.light,
-                color: Assets.colors.basic,
-              }}
-            >
-              <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p
-                style={{ textAlign: "justify", color: Assets.colors.paragraph }}
-                className="paragraph"
-              >
-                {expandedCards.includes(index)
-                  ? service.description
-                  : `${service.description.slice(0, 150)}...`}
-                {service.description.length > 150 &&
-                  !expandedCards.includes(index) && (
-                    <span
-                      className="read-more-link"
-                      onClick={() => handleReadMore(index)}
-                    >
-                      Read More
-                    </span>
-                  )}
-              </p>
-              {expandedCards.includes(index) && (
-                <>
-                  <ul>
-                    {service.prices.map((price, priceIndex) => (
-                      <li
-                        key={priceIndex}
-                        style={{ color: Assets.colors.paragraph }}
-                      >
-                        {price}
-                      </li>
-                    ))}
-                  </ul>
-                  <span
-                    className="read-more-link"
-                    onClick={() => handleReadLess(index)}
-                  >
-                    Read Less
-                  </span>
-                </>
-              )}
-            </Card>
+              icon={service.icon}
+              title={service.title}
+              content={service.description}
+              actions={
+                <Button
+                  title="Read More"
+                  bgColor="#007bff"
+                  color="#fff"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  onClickButton={() => console.log('Action clicked')}
+                />
+              }
+            />
           ))}
         </div>
         <BenefitsSection />

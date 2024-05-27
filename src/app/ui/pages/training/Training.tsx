@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Training.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TrainingPhoto } from "../../../utils/Types";
 import Button from "../../components/button/Button";
 import Card from "../../components/card/Card";
@@ -24,7 +24,11 @@ const photos: TrainingPhoto[] = [
 const Training: React.FC = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const { getColor } = useThemeColor();
+  const navigateToCourseDetail = (courseId: string) => {
+    navigate(`${location.pathname}/course-detail/${courseId}`);
+  };
 
   const handlePreviousPhoto = () => {
     setCurrentPhotoIndex((prevIndex) =>
@@ -103,24 +107,26 @@ const Training: React.FC = () => {
           >
             Featured Training Programs
           </h1>
-          <ul className="training-programs-list">
+          <ul className="service-card-container">
             {courses.map((course) => (
               <Card
                 key={course.id}
-                className="training-program-item"
-                cardStyle={{
-                  flexBasis: "calc(23% - 2%)",
-                  border: `1px solid ${getColor("borderColor")}`,
-                  transition: "box-shadow 0.3s ease",
-                }}
-              >
-                <Link to={`${location.pathname}/course-detail/${course.id}`}>
-                  <h3>{course.title}</h3>
-                  <p style={{ color: getColor("paragraph") }}>
-                    {course.description}
-                  </p>
-                </Link>
-              </Card>
+                title={course.title}
+                image="https://via.placeholder.com/300x200"
+                content={course.description}
+                actions={
+                  <Button
+                    title="See More Details"
+                    bgColor={getColor("secondary")}
+                    color={getColor("basic")}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    onClickButton={() => navigateToCourseDetail(`${course.id}`)}
+                  />
+                }
+              />
             ))}
           </ul>
         </div>
