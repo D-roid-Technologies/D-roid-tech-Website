@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../../components/navbar/NavBar";
 import "./Services.css";
 import {
@@ -17,6 +17,7 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import { useDispatch } from "react-redux";
+import { getUserLocation } from "../../../../utils/locationUtils";
 
 type Service = {
   title: string;
@@ -86,6 +87,18 @@ const services: Service[] = [
 
 const Services: React.FunctionComponent = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchUserLocation = async () => {
+      try {
+        const { latitude, longitude } = await getUserLocation();
+        console.log("User location:", latitude, longitude);
+      } catch (error) {
+        console.error("Error fetching user location:", error);
+      }
+    };
+
+    fetchUserLocation();
+  }, []);
 
   return (
     <div>
