@@ -12,6 +12,11 @@ import Card from "../../../components/card/Card";
 import { Assets } from "../../../../utils/constant/Assets";
 import BenefitsSection from "./benefits/BenefitsSection";
 import Button from "../../../components/button/Button";
+import {
+  updateModal,
+  updateModalContent,
+} from "../../../../redux/slices/AppEntrySlice";
+import { useDispatch } from "react-redux";
 
 type Service = {
   title: string;
@@ -80,17 +85,7 @@ const services: Service[] = [
 ];
 
 const Services: React.FunctionComponent = () => {
-  const [expandedCards, setExpandedCards] = useState<number[]>([]);
-
-  const handleReadMore = (index: number) => {
-    setExpandedCards((prevExpandedCards) => [...prevExpandedCards, index]);
-  };
-
-  const handleReadLess = (index: number) => {
-    setExpandedCards((prevExpandedCards) =>
-      prevExpandedCards.filter((i) => i !== index)
-    );
-  };
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -140,7 +135,24 @@ const Services: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  onClickButton={() => console.log('Action clicked')}
+                  onClickButton={() => {
+                    dispatch(
+                      updateModalContent({
+                        appTitle: service.title,
+                        appBody: `
+                          <div class="modal-content">
+                            <p>${service.description}</p>
+                            <ul>
+                              ${service.prices
+                                .map((price) => `<li>${price}</li>`)
+                                .join("")}
+                            </ul>
+                          </div>
+                        `,
+                      })
+                    );
+                    dispatch(updateModal(true));
+                  }}
                 />
               }
             />
