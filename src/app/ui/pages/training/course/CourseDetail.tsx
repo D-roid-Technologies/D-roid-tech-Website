@@ -31,11 +31,11 @@ const CourseDetail: React.FunctionComponent = () => {
       >
         <NavBar />
         <div className="home-section">
-        <div className="home-main">
-          <article className="home-content">
-            <p className="home-heading">{course.title}</p>
-          </article>
-        </div>
+          <div className="home-main">
+            <article className="home-content">
+              <p className="home-heading">{course.title}</p>
+            </article>
+          </div>
         </div>
       </div>
       <div className="course-detail-content">
@@ -80,20 +80,20 @@ const CourseDetail: React.FunctionComponent = () => {
                     bRadiusColor={Assets.colors.light}
                   />
                 </div>
-              <div className="get-started-btn">
-                <Button
-                  title="Apply"
-                  bgColor={Assets.colors.secondary}
-                  color={Assets.colors.light}
-                  onClickButton={() => {}}
-                  mLeft={10}
-                  mRight={10}
-                  mTop={20}
-                  mBottom={0}
-                  bRadius={10}
-                  bRadiusColor={Assets.colors.light}
-                />
-              </div>
+                <div className="get-started-btn">
+                  <Button
+                    title="Apply"
+                    bgColor={Assets.colors.secondary}
+                    color={Assets.colors.light}
+                    onClickButton={() => {}}
+                    mLeft={10}
+                    mRight={10}
+                    mTop={20}
+                    mBottom={0}
+                    bRadius={10}
+                    bRadiusColor={Assets.colors.light}
+                  />
+                </div>
               </div>
             </div>
           )
