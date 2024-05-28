@@ -20,7 +20,7 @@ const Animation: React.FunctionComponent = () => {
         style={{
           backgroundImage: `url("${Assets.images.background1}")`,
         }}
-        className="full-screen-background-image"
+        className="bg-image"
       >
         <NavBar />
         <div className="home-section">
