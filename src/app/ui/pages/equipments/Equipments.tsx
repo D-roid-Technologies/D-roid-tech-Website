@@ -20,17 +20,14 @@ const Equipments: React.FunctionComponent<any> = () => {
         <article className="equipment-main">
           <article className="equipment-content">
             <p className="equipment-heading">
-              EQUIPMENT SETUP
+              PROFESSIONAL EQUIPMENT SET-UP
               <br />
               SERVICES
             </p>
           </article>
           <p className="equipment-heading-details">
-            At D'roid Technologies, we offer comprehensive equipment setup
-            services to ensure that our clients have the tools they need to
-            succeed. From hardware installation to network configuration, our
-            experienced technicians handle every aspect of the setup process,
-            allowing our clients to focus on their core business activities..
+            Expert equipment setup services designed to ensure your technology
+            infrastructure is installed correctly and efficiently.
           </p>
         </article>
       </div>

@@ -381,8 +381,8 @@
     width: 200px;
     height: 200px;
     color: #282a94;
-  }
-  /* Arial photography and videography  */
+  } /* Arial
+photography and videography */
   .videography-main {
     margin-bottom: 50px;
     background-color: #ffffff;
@@ -394,7 +394,6 @@
     transition: box-shadow 0.3s ease;
     flex-basis: calc(23% - 2%);
   }
-
   .droneapproach-services {
     display: flex;
     justify-content: space-between;
@@ -402,7 +401,8 @@
     gap: 8%;
   }
   .video-details {
-    /* width: 50%; */
+    /* width: 50%;
+*/
   }
   .video-heading {
     font-size: 2rem;
@@ -430,7 +430,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: box-shadow 0.3s ease;
-    flex-basis: calc(23% - 2%);
+    flex-basis: calc(50% - 2%);
+    /* flex-basis: calc(23% - 2%); */
     background-color: #ffffff;
   }
   .drone-camera-software {
@@ -456,19 +457,19 @@
     justify-content: center;
     align-items: center;
     color: #fff;
-    padding-top: 100px;
+    padding-top: 10px;
   }
 
   .bg-image {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    height: 40vh;
     /* margin-bottom: 50px; */
   }
 
   .drone-heading {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     letter-spacing: 3px;
     text-align: center;
     font-weight: 500;
@@ -477,15 +478,15 @@
 
   .drone-heading-details {
     margin-top: 1em;
-    font-size: 1rem;
+    font-size: 0.7rem;
     word-spacing: 2px;
     text-align: center;
     color: #fff;
     font-family: "Mazzard";
   }
   .drone-approach-main {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   /* OUR APPROACH SECTION */
@@ -544,169 +545,65 @@
   }
   /* FEATURED DRONE SERVICE */
   .ft-drone-service {
-    /* background-color: #f9f9f9; */
-    margin-bottom: 50px;
     padding-left: 20px;
     padding-right: 20px;
   }
   .featured-head {
-    text-align: center;
-    margin-bottom: 2em;
-    font-family: "Rammetto One";
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
-  /* Arial photography and videography  */
-  .videography-main {
-    margin-bottom: 50px;
-    background-color: #ffffff;
+  .videography-main,
+  .mapping,
+  .infrastructure,
+  .cropmonitoring {
+    margin-bottom: 30px;
   }
-  .droneapproach-details {
+  .droneapproach-details,
+  .mapping-ul,
+  .infrastructure-ul,
+  .cropmonitoring-ul {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    transition: box-shadow 0.3s ease;
-    flex-basis: calc(23% - 2%);
   }
-
-  .droneapproach-services {
-    display: flex;
+  .droneapproach-services,
+  .mappping-services,
+  .infrastructure-services,
+  .cropmonitoring-services {
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    gap: 10%;
+    gap: 60px;
+  }
+  .video-details,
+  .mapping-text,
+  .infrastructure-text,
+  .cropmonitoring-text {
+    width: 100%;
+  }
+  .video-heading,
+  .mapping-heading,
+  .infrastructure-heading,
+  .cropmonitoring-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .drone-video-btn {
+    width: 50%;
+  }
+  .video-btn {
+    width: 50%;
   }
   .video-size {
     width: 100%;
   }
-  .video-heading {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.3em;
-    color: #282a94;
-    margin-top: 50px;
-  }
-  .drone-text {
-    color: rgb(124, 124, 124);
-  }
-  .drone-video-btn {
-    margin-top: 2em;
-    width: 50%;
-  }
   .map {
-    width: 300px;
-    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
     color: #282a94;
   }
 
-  /* MAPPING & SURVEYING */
-  .mapping {
-    margin-bottom: 50px;
-    background-color: #ffffff;
-  }
-  .mapping-ul {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: box-shadow 0.3s ease;
-    flex-basis: calc(23% - 2%);
-  }
-  .mappping-services {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  /* .mapping-text {
-    width: 50%;
-  } */
-  .mapping-heading {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.3em;
-    color: #282a94;
-  }
-  /* .maping-container {
-  width: 50%;
-} */
-  .map {
-    width: 150px;
-    height: 150px;
-    color: #282a94;
-  }
-  .video-btn {
-    margin-top: 2em;
-    width: 35%;
-  }
-  /* Infrastructure Inspection */
-  .infrastructure {
-    margin-bottom: 50px;
-    background-color: #ffffff;
-  }
-  .infrastructure-ul {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: box-shadow 0.3s ease;
-    flex-basis: calc(23% - 2%);
-  }
-  .infrastructure-services {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    align-items: center;
-    /* gap: 30%; */
-  }
-  /* .map-container {
-    width: 50%;
-  } */
-  /* .infrastructure-text {
-    width: 50%;
-  } */
-  .infrastructure-heading {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.3em;
-    color: #282a94;
-  }
-  .map {
-    width: 150px;
-    height: 150px;
-    color: #282a94;
-  }
-  /* cropmonitoring */
-  .cropmonitoring {
-    margin-bottom: 50px;
-    background-color: #ffffff;
-  }
-  .cropmonitoring-ul {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: box-shadow 0.3s ease;
-    flex-basis: calc(23% - 2%);
-  }
-  .cropmonitoring-services {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    align-items: center;
-  }
-  /* .cropmonitoring-text {
-    width: 50%;
-  } */
-  /* .monitoring-container {
-  width: 50%;
-} */
-  .cropmonitoring-heading {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.3em;
-    color: #282a94;
-  }
-  .map {
-    width: 150px;
-    height: 150px;
-    color: #282a94;
-  }
   /* TECHNOLOGIES AND EQUIPMENT  */
   .techandequipment {
     margin-bottom: 50px;
@@ -725,7 +622,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: box-shadow 0.3s ease;
-    flex-basis: calc(23% - 2%);
+    flex-basis: calc(100% - 2%);
+    /* flex-basis: calc(23% - 2%); */
     background-color: #ffffff;
   }
   .tools:hover {
@@ -764,7 +662,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 50vh;
+    height: 30vh;
   }
   .drone-customer-testimonials {
     height: 350px;
@@ -773,7 +671,7 @@
   .drone-read {
     /* color: #282a94; */
     color: #12d6d6;
-    font-size: 2.5rem;
+    font-size: 1.3rem;
     letter-spacing: 3px;
     text-align: center;
     font-weight: 600;
@@ -783,9 +681,9 @@
   }
 
   .drone-testimonial-details {
-    padding: 0 50px;
+    padding: 0 5px;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 0.7em;
     color: #ffffff;
     font-family: "Mazzard";
     letter-spacing: 2px;
