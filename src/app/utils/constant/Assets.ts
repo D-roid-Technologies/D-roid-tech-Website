@@ -38,6 +38,9 @@ export const Assets = {
     service: require("../../images/png/service2.jpg"),
     softwareBg: require("../../images/png/sd.png"),
     homeBg: require("../../images/png/homepage.png"),
+
+    droid_web: require("../../images/png/D'roid_Web.png"),
+    reign: require("../../images/png/reign.png"),
   },
   colors: {
     basic: "#000000",
@@ -62,8 +65,7 @@ export const Assets = {
     darkparagraph: "#CCCCCC",
     darkbackgroundColor: "#000000",
     darksubstitute: "#FBCC34",
-}
-,
+  },
   text: {
     companyName: "D'roid Technologies International",
     companyShortName: "D'roid Technologies",

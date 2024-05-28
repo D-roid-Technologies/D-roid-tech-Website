@@ -1,162 +1,124 @@
-.home-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding: 100px;
-}
+@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
-.home-content {
-  text-align: center;
-}
-
-.full-screen-background-image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100vh;
-}
-
-.large-centered-heading {
-  /* line-height: 10px; */
-  font-size: 35px !important;
-  font-weight: 800;
-  font-family: "Rammetto";
-  text-align: center;
-}
-
-
-.smaller-centered-heading {
-  margin-top: 1em;
-  font-size: 1.5rem;
-  word-spacing: 1px;
-  color: #fff;
-  font-family: "Mazzard";
-}
-
-.main-content-section {
-  padding: 20px 100px;
-  margin-top: 2em;
-}
-
-.flex-row-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 2rem;
-  padding: 1.8em 0;
-}
-
-.reverse {
-  flex-direction: row-reverse;
-}
-
-.centered-text-section {
-  flex: 1 1 400px;
-  text-align: center;
-  max-width: 600px;
-}
-
-.section-heading {
-  margin-bottom: 1em;
-  line-height: 1.5;
-  font-family: "Rammetto One";
-}
-
-.section-details {
-  font-size: 1rem;
-  color: rgb(124, 124, 124);
-  font-family: "Mazzard";
-  text-align: left;
-}
-
-.rounded-image {
-  border-radius: 10px;
-  max-width: 100%;
-  height: auto;
-}
-
-.boxed-image {
+.products-banner {
   width: 100%;
-  max-width: 600px;
+  height: 100vh;
+  padding-left: 100px;
+  padding-right: 100px;
+  display: block;
+  padding-top: 100px;
+  margin-bottom: 80px;
+}
+.products-banner-inner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  height: 500px;
+}
+.products-banner-desc {
+  width: 40%;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0.35em 0.35em 0 grey;
+}
+.product-cart {
+  width: 450px;
+  height: 450px;
+  color: #000000;
 }
 
-/* Approach Section */
-.animation-approach-main {
-  margin-bottom: 50px;
-}
-
-.animation-approach-head {
-  text-align: center;
-  margin-bottom: 1.5em;
+.products-header {
   font-family: "Rammetto One";
+  font-size: 40px;
+  color: #000000;
+  margin-bottom: 15px;
+}
+.product-p {
+  font-family: "MazzardH";
+  letter-spacing: 2px;
+  font-size: 22px;
+  color: rgb(39, 39, 39);
+}
+.product-bottom-banner {
+  background-color: #000000;
+  width: 100%;
+  height: 130px;
+  padding: 12px;
+  align-self: flex-end;
+}
+.product-bottom-banner {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
 }
 
-.animation-approach-list {
+.product-bottom-list {
+  border-right-width: 1.8px;
+  border-right-width: 1.8px;
+  border-right-color: #ffffff;
+  border-style: solid;
+  height: auto;
+  width: 150px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.product-bottom-icon {
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+}
+.product-bottom-inner {
+  width: 80%;
+}
+
+.product-bottom-title {
+  font-family: "MazzardH";
+  letter-spacing: 2px;
+  font-size: 18px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.our-catalog {
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 120px;
+}
+
+.our-catalog-map {
   display: flex;
   justify-content: center;
   align-items: center;
-  list-style: none;
-  gap: 2%;
+  gap: 30px;
 }
 
-.animation-approach-item {
-  margin-bottom: 20px;
-}
-
-.animation-approach-item h2 {
-  margin-bottom: 20px;
+.our-catalog-header {
   font-family: "Rammetto One";
-  color: #232e35;
-  transition: color 0.3s ease;
+  font-size: 40px;
+  color: #282a94;
+  margin-bottom: 15px;
+  margin-bottom: 35px;
+}
+.our-catalog-icon{
+  width: 400px;
+  height: 400px;
+}
+.our-catalog-right{
+  width: 50%;
 }
 
-.animation-approach-item h2:hover {
-  color: #12d6d6;
-  cursor: pointer;
-}
-
-.animation-approach-item p {
-  font-family: "Mazzard";
-  font-size: 1rem;
-  color: rgb(124, 124, 124);
-  margin-bottom: 1em;
+.choose-us-product {
+  padding-left: 100px;
+  padding-right: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-  .large-centered-heading {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-  }
-
-  .smaller-centered-heading {
-    font-size: 1.2rem;
-  }
-
-  .section-heading {
-    font-size: 1.2rem;
-  }
-
-  .section-details {
-    font-size: 0.9rem;
-  }
-
-  .boxed-image {
-    max-width: 400px;
-  }
-
-  .animation-approach-main {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .animation-approach-list {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
