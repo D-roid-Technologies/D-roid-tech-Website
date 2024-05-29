@@ -20,12 +20,12 @@ export const DATA = {
       path: "/software",
     },
     {
-      link: "Animation Creation",
-      path: "/animation",
-    },
-    {
       link: "Tech Training",
       path: "/training",
+    },
+    {
+      link: "Products",
+      path: "/products",
     },
     {
       link: "Contact",

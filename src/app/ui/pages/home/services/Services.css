@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  padding-top: 1rem;
   list-style: none;
 }
 
@@ -74,6 +74,7 @@
 @media (max-width: 768px) {
   .service-main {
     padding: 20px;
+    align-items: center;
   }
 
   .service-card-container {
