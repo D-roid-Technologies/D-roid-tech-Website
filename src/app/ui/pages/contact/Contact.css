@@ -152,6 +152,10 @@ textarea {
   /* transform: scale(1.1); */
   background-color: #737458;
 }
+.icon-style {
+  color: #ffffff;
+  margin-left: 10px;
+}
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

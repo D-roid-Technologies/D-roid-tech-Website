@@ -1,8 +1,15 @@
 .global-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 50px;
   outline: none;
   flex-shrink: 0;
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
+}
+
+.button-icon {
+  margin-right: 8px; /* Adjust based on your design */
 }
