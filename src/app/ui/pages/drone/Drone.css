@@ -662,7 +662,7 @@ photography and videography */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 30vh;
+    height: 45vh;
   }
   .drone-customer-testimonials {
     height: 350px;
@@ -683,7 +683,7 @@ photography and videography */
   .drone-testimonial-details {
     padding: 0 5px;
     text-align: left;
-    font-size: 0.7em;
+    font-size: 1em;
     color: #ffffff;
     font-family: "Mazzard";
     letter-spacing: 2px;

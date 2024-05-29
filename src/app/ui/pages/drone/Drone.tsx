@@ -301,7 +301,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                       our construction projects by providing accurate aerial
                       mapping and surveying data. Their team's professionalism
                       and attention to detail were commendable, and the results
-                      exceeded our expectations." - Sarah Smith, Project Manager
+                      exceeded our expectations.
                     </p>
                     <p className="drone-testifier">
                       — Sarah Smith, Project Manager
@@ -313,7 +313,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                       our construction projects by providing accurate aerial
                       mapping and surveying data. Their team's professionalism
                       and attention to detail were commendable, and the results
-                      exceeded our expectations." - Sarah Smith, Project Manager
+                      exceeded our expectations.
                     </p>
                     <p className="drone-testifier">
                       — Sarah Smith, Project Manager
