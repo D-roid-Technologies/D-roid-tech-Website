@@ -75,11 +75,10 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             </p>
           </article>
           <p className="drone-heading-details">
-            At D'roid Technologies, we offer cutting-edge drone services
-            designed to revolutionize various industries and applications. Our
-            fleet of advanced drones and experienced pilots enable us to deliver
-            high-quality aerial imaging, mapping, inspection, and surveillance
-            solutions tailored to meet the unique needs of our clients.
+            Our fleet of advanced drones and experienced pilots enable us to
+            deliver high-quality aerial imaging, mapping, inspection, and
+            surveillance solutions tailored to meet the unique needs of our
+            clients.
           </p>
         </article>
       </div>
@@ -301,7 +300,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                       our construction projects by providing accurate aerial
                       mapping and surveying data. Their team's professionalism
                       and attention to detail were commendable, and the results
-                      exceeded our expectations." - Sarah Smith, Project Manager
+                      exceeded our expectations.
                     </p>
                     <p className="drone-testifier">
                       — Sarah Smith, Project Manager
@@ -309,11 +308,11 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   </div>
                   <div className="drone-testimonial-details">
                     <p>
-                      "D'roid Technologies' drone services helped us streamline
+                      "D'roid Technologies' drone services helped us streamlinee
                       our construction projects by providing accurate aerial
                       mapping and surveying data. Their team's professionalism
                       and attention to detail were commendable, and the results
-                      exceeded our expectations." - Sarah Smith, Project Manager
+                      exceeded our expectations.
                     </p>
                     <p className="drone-testifier">
                       — Sarah Smith, Project Manager

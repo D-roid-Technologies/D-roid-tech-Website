@@ -11,11 +11,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 const Contact: React.FunctionComponent = () => {
-  // Your divs are not aligned properly
-  //Your text are too big and using the wrong format
-  // There shold be space between contact us and footer
+  const optionsList = [
+    "Subject",
+    "Inquiry on Drone Services",
+    "Inquiry on Knowledge City",
+  ];
   return (
     <>
       <main>
@@ -155,7 +158,15 @@ const Contact: React.FunctionComponent = () => {
                     </label>
                     <br />
                     <div className="input-container">
-                      <AppInput w="100%" h={40} pLeft={10} pHolder="Subject" />
+                      <AppInput
+                        w="100%"
+                        h={40}
+                        pLeft={10}
+                        pHolder="Subject"
+                        bagColor="#ffffff"
+                        isDropdown={true}
+                        options={optionsList}
+                      />
                     </div>
                   </div>
                 </section>
@@ -182,6 +193,7 @@ const Contact: React.FunctionComponent = () => {
                   bRadiusColor="#282a94"
                   title="Submit"
                   color="#ffffff"
+                  icon={<FaArrowRightToBracket className="icon-style" />}
                   onClickButton={() => {}}
                 />
               </div>
