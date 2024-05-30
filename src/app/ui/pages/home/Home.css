@@ -84,6 +84,12 @@
   margin-top: 10px;
   font-size: 16px;
 }
+.icon-styles {
+  color: #000000;
+  /* margin-left: 10px; */
+  width: 15px;
+  height: 15px;
+}
 /* home Banner css */
 
 /* TABLET On screens that are 992px or less, set the background color to blue */

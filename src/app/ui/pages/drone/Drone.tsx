@@ -75,11 +75,10 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             </p>
           </article>
           <p className="drone-heading-details">
-            At D'roid Technologies, we offer cutting-edge drone services
-            designed to revolutionize various industries and applications. Our
-            fleet of advanced drones and experienced pilots enable us to deliver
-            high-quality aerial imaging, mapping, inspection, and surveillance
-            solutions tailored to meet the unique needs of our clients.
+            Our fleet of advanced drones and experienced pilots enable us to
+            deliver high-quality aerial imaging, mapping, inspection, and
+            surveillance solutions tailored to meet the unique needs of our
+            clients.
           </p>
         </article>
       </div>

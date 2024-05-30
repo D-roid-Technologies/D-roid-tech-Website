@@ -48,6 +48,33 @@ const Equipments: React.FunctionComponent<any> = () => {
       </div> */}
       {/* TECHNOLOGIES AND EQUIPMENT */}
       {/* <TechnologiesAndTools /> */}
+      {/* OUR SERVICES SECTION */}
+      <div className="equip-main">
+        <div>
+          <h1 className="equip-header"> Our Services </h1>
+        </div>
+        <section className="equipmentss">
+          <div className="equip">
+            <ul className="equip-services">
+              {DATA.EquipmentServices.map((item, index) => (
+                <li className="equip-list" key={index}>
+                  <div className="equip-container">
+                    <img src={item.image} alt="" className="equip-image" />
+                    <p className="equip-title">{item.title}</p>
+                    <p className="equip-content">{item.content}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        {/* BENEFIT OF WORKING WITH US */}
+        <section className="equip-benefit">
+          <div>
+            <h1 className="equip-header"> Benefits of Working with Us </h1>
+          </div>
+        </section>
+      </div>
     </main>
   );
 };
