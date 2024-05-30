@@ -1,7 +1,7 @@
 .service-main {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   padding: 40px 100px;
   margin-bottom: 2rem;
   text-align: center;
@@ -11,13 +11,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  padding-top: 1rem;
+  margin-top: 3rem;
   list-style: none;
 }
 
 .service-card {
+  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
   transition: transform 0.3s ease;
 }
 
@@ -74,7 +77,6 @@
 @media (max-width: 768px) {
   .service-main {
     padding: 20px;
-    align-items: center;
   }
 
   .service-card-container {

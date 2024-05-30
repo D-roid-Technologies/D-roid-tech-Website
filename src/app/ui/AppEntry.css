@@ -60,8 +60,8 @@
 
 .modal-inner {
   background-color: #ffffff;
-  width: 65%;
-  height: 70%;
+  width: 60%;
+  height: 65%;
   padding: 20px;
   border-radius: 5px;
   position: relative;
@@ -102,10 +102,5 @@
   .main-container {
     padding-left: 15px;
     padding-right: 15px;
-  }
-
-  .modal-inner{
-    height: 80%;
-    width: 90%;
   }
 }

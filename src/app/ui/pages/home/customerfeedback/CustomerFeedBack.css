@@ -78,7 +78,7 @@
 }
 .clients {
   text-align: center;
-  color: rgb(186, 184, 184);
+  color: rgb(124, 124, 124);
   padding-bottom: 30px;
   font-family: "Mazzard";
   font-size: 1.2rem;
@@ -101,7 +101,7 @@
   text-align: center;
   font-size: 1.2rem;
   padding-bottom: 30px;
-  color: rgb(186, 184, 184);
+  color: rgb(124, 124, 124);
   font-family: "Mazzard";
 }
 .friday {
@@ -231,7 +231,7 @@
   }
   .clients {
     text-align: center;
-    color: rgb(186, 184, 184);
+    color: rgb(124, 124, 124);
     padding-bottom: 30px;
     font-family: "Mazzard";
     font-size: 1rem;
@@ -257,7 +257,6 @@
     gap: 10px;
     font-size: 1.1rem;
     padding-bottom: 30px;
-    color: rgb(186, 184, 184);
   }
   .select-time select {
     border: none;
@@ -321,7 +320,7 @@
     font-family: "Mazzard";
     font-size: 13px;
     letter-spacing: 1px;
-    text-align: justify;
+    text-align: left;
   }
   .testifier {
     margin-top: 10px;

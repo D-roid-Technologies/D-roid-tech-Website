@@ -11,14 +11,11 @@ import { FaLocationDot } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
-import { FaArrowRightToBracket } from "react-icons/fa6";
 
 const Contact: React.FunctionComponent = () => {
-  const optionsList = [
-    "Subject",
-    "Inquiry on Drone Services",
-    "Inquiry on Knowledge City",
-  ];
+  // Your divs are not aligned properly
+  //Your text are too big and using the wrong format
+  // There shold be space between contact us and footer
   return (
     <>
       <main>
@@ -111,9 +108,7 @@ const Contact: React.FunctionComponent = () => {
                   {/* INPUT SECTION ONE */}
                   {/* first name */}
                   <div className="input-width">
-                    {/* <label style={{ color: Assets.colors.light }}>
-                      Fullname
-                    </label> */}
+                    <label style={{ color: Assets.colors.light }}>Email</label>
                     <br />
                     <div className="input-container">
                       <AppInput
@@ -158,15 +153,7 @@ const Contact: React.FunctionComponent = () => {
                     </label>
                     <br />
                     <div className="input-container">
-                      <AppInput
-                        w="100%"
-                        h={40}
-                        pLeft={10}
-                        pHolder="Subject"
-                        bagColor="#ffffff"
-                        isDropdown={true}
-                        options={optionsList}
-                      />
+                      <AppInput w="100%" h={40} pLeft={10} pHolder="Subject" />
                     </div>
                   </div>
                 </section>
@@ -193,7 +180,6 @@ const Contact: React.FunctionComponent = () => {
                   bRadiusColor="#282a94"
                   title="Submit"
                   color="#ffffff"
-                  icon={<FaArrowRightToBracket className="icon-style" />}
                   onClickButton={() => {}}
                 />
               </div>

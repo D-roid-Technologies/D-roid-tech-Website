@@ -1,50 +1,76 @@
-import React from "react";
-import "./Card.css";
+import React, { CSSProperties, ReactElement, ReactNode } from "react";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 type CardProps = {
-  title?: string;
-  subtitle?: string;
-  icon?: React.ReactNode;
-  image?: string;
-  content?: React.ReactNode;
-  actions?: React.ReactNode;
-  tag?: React.ReactNode;
+  children: ReactNode;
+  className?: string;
+  cardStyle?: CSSProperties;
+  linkStyle?: CSSProperties;
+  headingStyle?: CSSProperties;
+  subheadingStyle?: CSSProperties;
+  descriptionStyle?: CSSProperties;
 };
 
-const Card: React.FunctionComponent<CardProps> = ({
-  title,
-  subtitle,
-  icon,
-  image,
-  content,
-  actions,
-  tag,
+const Card: React.FC<CardProps> = ({
+  children,
+  cardStyle,
+  linkStyle,
+  className,
+  headingStyle,
+  subheadingStyle,
+  descriptionStyle,
 }) => {
-  const truncatedContent =
-    typeof content === "string" ? content.slice(0, 150) + "..." : content;
   const { getColor } = useThemeColor();
+
+  const defaultStyles: { [key: string]: CSSProperties } = {
+    h3: {
+      marginBottom: "10px",
+      fontFamily: "Rammetto One",
+      color: getColor("basic"),
+      ...headingStyle,
+    },
+    h5: {
+      color: getColor("basic"),
+      ...subheadingStyle,
+    },
+    p: {
+      fontFamily: "Mazzard",
+      fontSize: "1.2rem",
+      color: getColor("basic"),
+      marginBottom: "1em",
+      ...descriptionStyle,
+    },
+    "a": {
+      textDecoration: "none",
+      color: getColor("paragraph"),
+      ...linkStyle,
+    },
+  };
+
   return (
-    <div className="card">
-      <div className="card__image-container">
-        {icon && <div className="card__icon">{icon}</div>}
-        {image && <img src={image} alt="Card" className="card__image" />}
-        {tag && <div className="card__tag">{tag}</div>}
-      </div>
-      <div className="card__content">
-        {title && (
-          <h2
-            style={{ color: `${getColor("basic")}` }}
-            className="general-heading"
-          >
-            {title}
-          </h2>
-        )}
-        {subtitle && <p className="card__subtitle">{subtitle}</p>}
-        {content && <div className="paragraph">{truncatedContent}</div>}
-        {actions && <div className="card__actions">{actions}</div>}
-      </div>
-    </div>
+    <li
+      className={className}
+      style={{
+        marginBottom: "20px",
+        padding: "20px",
+        border: `1px solid ${getColor("borderColor")}`,
+        borderRadius: "5px",
+        transition: "box-shadow 0.3s ease",
+        ...cardStyle,
+      }}
+    >
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          const type = (child.type as any).toString().toLowerCase();
+          const style = defaultStyles[type] || {};
+
+          return React.cloneElement(child as React.ReactElement<any>, {
+            style: { ...child.props.style, ...style },
+          });
+        }
+        return child;
+      })}
+    </li>
   );
 };
 

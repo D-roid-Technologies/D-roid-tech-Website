@@ -14,7 +14,6 @@ const Button: React.FunctionComponent<AppButtonType> = ({
   fWeight,
   bRadius,
   bRadiusColor,
-  icon,
   onClickButton,
 }) => {
   return (
@@ -32,7 +31,6 @@ const Button: React.FunctionComponent<AppButtonType> = ({
         borderColor: bRadiusColor,
       }}
     >
-      {icon && <span className="button-icon">{icon}</span>}
       <p style={{ color: color }}>{title}</p>
     </button>
   );

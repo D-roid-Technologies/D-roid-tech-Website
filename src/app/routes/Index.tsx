@@ -23,7 +23,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/products" element={<Animation />} />
+        <Route path="/animation" element={<Animation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/programminghome" element={<ProgrammingHome />} />
         <Route path="/training" element={<Training />} />

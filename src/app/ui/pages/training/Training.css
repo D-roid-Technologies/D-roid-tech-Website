@@ -182,10 +182,6 @@
     letter-spacing: 1px;
   }
 
-  .training-main-content-section {
-    padding: 20px;
-  }
-
   .training-smaller-centered-heading {
     display: none;
   }
@@ -207,6 +203,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .training-approach-list,

@@ -93,7 +93,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             <p>
               <p className="time">
                 Open Mondays - Fridays &nbsp;
-                <span className="friday"> 8am - 5pm </span>
+                <span className="friday"> 8am - 9pm </span>
               </p>
             </p>
             <div className="contact-buttons">
