@@ -7,13 +7,13 @@ import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
 const Software: React.FunctionComponent = () => {
   return (
     <div>
+      <NavBar />
       <div
         style={{
           backgroundImage: `url("${Assets.images.softwareBg}")`,
         }}
         className="bg-image"
       >
-        <NavBar />
         <div className="home-section">
           {/* <article className="home-content">
             <p className="home-heading">INCREDIBLE SOFTWARE DEVELOPMENT</p>
@@ -29,9 +29,8 @@ const Software: React.FunctionComponent = () => {
         </div>
       </div>
 
-      <div className="main-content-section">
-        {/* Approach Section */}
-        {/* <div className="software-approach-main">
+      {/* Approach Section */}
+      {/* <div className="software-approach-main">
           <h1 className="software-approach-head">Our Approach</h1>
           <ul className="software-approach-list">
             <li className="software-approach-item">
@@ -78,58 +77,57 @@ const Software: React.FunctionComponent = () => {
           </ul>
         </div> */}
 
-        {/* Technologies and Tools Section */}
-        <div className="training-approach-main">
-          <h1 className="training-approach-head">Technologies and Tools</h1>
-          <ul className="training-approach-list">
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaCode
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                  className="icon"
-                />
-              </div>
-              <h2>Programming Languages</h2>
-              <p className="paragraph">
-                JavaScript, TypeScript, Python, Java, C#
-              </p>
-            </li>
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaLaptopCode
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                  className="icon"
-                />
-              </div>
-              <h2>Frameworks & Libraries</h2>
-              <p className="paragraph">
-                React.js, Angular, Vue.js, Node.js, Express.js
-              </p>
-            </li>
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaDatabase
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                  className="icon"
-                />
-              </div>
-              <h2>Databases</h2>
-              <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
-            </li>
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaLaptopCode
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                  className="icon"
-                />
-              </div>
-              <h2>Tools & Platforms</h2>
-              <p className="paragraph">
-                Git, GitHub, Docker, AWS, Azure, Google Cloud
-              </p>
-            </li>
-          </ul>
-        </div>
+      {/* Technologies and Tools Section */}
+      <div className="technologies" style={{marginTop: "1rem"}}>
+        <h1 className="training-approach-head">Technologies and Tools</h1>
+        <ul className="training-approach-list">
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaCode
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Programming Languages</h2>
+            <p className="paragraph">
+              JavaScript, TypeScript, Python, Java, C#
+            </p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaLaptopCode
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Frameworks & Libraries</h2>
+            <p className="paragraph">
+              React.js, Angular, Vue.js, Node.js, Express.js
+            </p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaDatabase
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Databases</h2>
+            <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
+          </li>
+          <li className="training-approach-item">
+            <div className="icon-container">
+              <FaLaptopCode
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Tools & Platforms</h2>
+            <p className="paragraph">
+              Git, GitHub, Docker, AWS, Azure, Google Cloud
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
   );

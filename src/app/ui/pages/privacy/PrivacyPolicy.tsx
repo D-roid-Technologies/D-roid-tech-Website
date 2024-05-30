@@ -2,8 +2,11 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import "./PrivacyPolicy.css";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const PrivacyPolicy: React.FunctionComponent = () => {
+  const { getColor } = useThemeColor();
+
   return (
     <>
       <NavBar />
@@ -11,43 +14,46 @@ const PrivacyPolicy: React.FunctionComponent = () => {
         <div className="privacy-section">
           <div className="privacy-content">
             <div className="privacy-details">
-              <h1 className="home-heading" style={{ color: Assets.colors.primary }}>
+              <h1
+                className="home-heading"
+                style={{ color: getColor("primary") }}
+              >
                 Privacy Policy
               </h1>
               <p
                 className="paragraph"
                 style={{ color: Assets.colors.paragraph, marginTop: "1rem" }}
               >
-                Last Updated: [Insert Date] D'roid Technologies International
-                ("we", "our", "us") is committed to protecting and respecting
-                your privacy. This Privacy Policy outlines the types of
-                information we collect from you, how we use it, and the measures
-                we take to protect it. By using our services, you agree to the
-                collection and use of information in accordance with this policy.
+                D'roid Technologies International ("we", "our", "us") is
+                committed to protecting and respecting your privacy. This
+                Privacy Policy outlines the types of information we collect from
+                you, how we use it, and the measures we take to protect it. By
+                using our services, you agree to the collection and use of
+                information in accordance with this policy.
               </p>
             </div>
           </div>
         </div>
 
         <div className="privacy-sections">
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Information We Collect
             </h2>
             <div className="privacy-subsection-content">
               <h3
                 className="privacy-subsection-subheading"
-                style={{ color: Assets.colors.primary }}
+                style={{ color: getColor("primary") }}
               >
                 Personal Information
               </h3>
-              <p style={{ color: Assets.colors.paragraph }} className="paragraph">
+              <p
+                style={{ color: Assets.colors.paragraph }}
+                className="paragraph"
+              >
                 We may collect the following personal information from you: -
                 Name - Email address - Phone number - Mailing address - Payment
                 information - User account details
@@ -56,11 +62,14 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             <div className="privacy-subsection-content">
               <h3
                 className="privacy-subsection-subheading"
-                style={{ color: Assets.colors.primary }}
+                style={{ color: getColor("primary") }}
               >
                 Non-Personal Information
               </h3>
-              <p style={{ color: Assets.colors.paragraph }} className="paragraph">
+              <p
+                style={{ color: Assets.colors.paragraph }}
+                className="paragraph"
+              >
                 We may also collect non-personal information, such as: - Browser
                 type and version - Operating system - Referring website - Pages
                 visited on our site - Time and date of visit - Time spent on
@@ -69,13 +78,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </div>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               How We Use Your Information
             </h2>
@@ -94,13 +100,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Sharing Your Information
             </h2>
@@ -121,13 +124,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Data Security
             </h2>
@@ -146,13 +146,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Your Rights
             </h2>
@@ -179,13 +176,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Cookies and Tracking Technologies
             </h2>
@@ -210,13 +204,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Third-Party Links
             </h2>
@@ -233,13 +224,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Changes to This Privacy Policy
             </h2>
@@ -250,18 +238,15 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               We may update our Privacy Policy from time to time. We will notify
               you of any changes by posting the new Privacy Policy on this page.
               You are advised to review this Privacy Policy periodically for any
-              changes. Changes to this Privacy Policy are effective when they are
-              posted on this page.
+              changes. Changes to this Privacy Policy are effective when they
+              are posted on this page.
             </p>
           </div>
 
-          <div
-            className="privacy-subsection"
-            style={{ backgroundColor: Assets.colors.light }}
-          >
+          <div className="privacy-subsection">
             <h2
               className="privacy-subsection-heading"
-              style={{ color: Assets.colors.primary }}
+              style={{ color: getColor("primary") }}
             >
               Contact Us
             </h2>
@@ -269,10 +254,9 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               className="privacy-subsection-content paragraph"
               style={{ color: Assets.colors.paragraph }}
             >
-              If you have any questions about this Privacy Policy, please contact us:
-              - By email: [Insert Contact Email]
-              - By phone: [Insert Contact Phone Number]
-              - By whatsApp: [Insert Contact Address]
+              If you have any questions about this Privacy Policy, please
+              contact us: - By email: [Insert Contact Email] - By phone: [Insert
+              Contact Phone Number] - By whatsApp: [Insert Contact Address]
             </p>
           </div>
         </div>

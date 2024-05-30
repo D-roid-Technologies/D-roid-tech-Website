@@ -2,12 +2,15 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import "../aboutus/AboutUs.css";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const AboutUs: React.FunctionComponent = () => {
+  const { getColor } = useThemeColor();
+
   return (
     <>
-      <div className="aboutus-bg-color">
-        <NavBar />
+      <NavBar />
+      <div style={{ backgroundColor: getColor("backgroundColor") }}>
         <div className="about-main">
           <div className="aboutus-marginbutton">
             <div className="section-one">
@@ -47,7 +50,10 @@ const AboutUs: React.FunctionComponent = () => {
                 </p> */}
           {/* </article> */}
           {/* </section> */}
-          <div className="vision-marginbuttom">
+          <div
+            className="vision-marginbuttom"
+            style={{ backgroundColor: getColor("backgroundColor") }}
+          >
             <section>
               <div className="vision-mission-value">
                 {/* BOX ONE */}
@@ -87,7 +93,10 @@ const AboutUs: React.FunctionComponent = () => {
 
           {/* CORE VALUES BOX THREE */}
           <div className="core-value-vision-main">
-            <div className="core-value-vision-box">
+            <div
+              className="core-value-vision-box"
+              style={{ backgroundColor: getColor("backgroundColor") }}
+            >
               <h2 className="core-value-vision-header">Core Values</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad

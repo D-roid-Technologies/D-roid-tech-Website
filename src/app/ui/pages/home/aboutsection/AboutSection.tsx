@@ -11,8 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { FaLaptopCode } from "react-icons/fa";
 import { GiRobotGolem } from "react-icons/gi";
 import { GiTeacher } from "react-icons/gi";
+import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 
 const Section: React.FunctionComponent = () => {
+  const { getColor } = useThemeColor();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -29,7 +32,7 @@ const Section: React.FunctionComponent = () => {
       {/* SECTION ONE */}
       <div className="section-one">
         <div className="coding-image">
-          <GiCuckooClock className="image-size" />
+          <GiCuckooClock className="image-size" style={{ color: getColor("basic") }}/>
         </div>
         <section className="history">
           <p className="our-history"> Our History</p>
@@ -43,13 +46,13 @@ const Section: React.FunctionComponent = () => {
           <div className="history-btn">
             <div className="readmore-btn">
               <Button
-                bgColor={"black"}
+                bgColor={getColor("basic")}
                 mTop={0}
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
                 title="Read more about us"
-                color="white"
+                color={getColor("light")}
                 fWeight={800}
                 bRadius={5}
                 onClickButton={() => {
@@ -75,13 +78,13 @@ const Section: React.FunctionComponent = () => {
           <div className="our-approach-btn">
             <div className="approach-btn">
               <Button
-                bgColor={"black"}
+                bgColor={getColor("basic")}
                 mTop={0}
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
                 title="Our Approach"
-                color="white"
+                color={getColor("light")}
                 fWeight={800}
                 bRadius={5}
                 onClickButton={() => {
@@ -92,7 +95,7 @@ const Section: React.FunctionComponent = () => {
           </div>
         </div>
         <div className="coding-image">
-          <GiPathDistance className="image-size" />
+          <GiPathDistance className="image-size" style={{ color: getColor("basic") }}/>
         </div>
       </div>
 
@@ -116,7 +119,7 @@ const Section: React.FunctionComponent = () => {
           <Slider {...settings}>
             <div className="imageone">
               <div>
-                <FaLaptopCode className="image-size" />
+                <FaLaptopCode className="image-size" style={{ color: getColor("basic") }}/>
                 <span className="padded">
                   <h2 className="carousel-heading">
                     Software Design & Development
@@ -132,7 +135,7 @@ const Section: React.FunctionComponent = () => {
             </div>
             {/* TWO */}
             <div className="imageone">
-              <GiRobotGolem className="image-size" />
+              <GiRobotGolem className="image-size" style={{ color: getColor("basic") }}/>
               <span className="padded">
                 {" "}
                 <h2 className="carousel-heading">Animation Creation</h2>
@@ -146,7 +149,7 @@ const Section: React.FunctionComponent = () => {
               </span>
             </div>
             <div className="imageone">
-              <GiTeacher className="image-size" />
+              <GiTeacher className="image-size" style={{ color: getColor("basic") }}/>
               <span className="padded">
                 <h2 className="carousel-heading">Tech Training </h2>
                 {/* waiting for tech content */}
@@ -165,13 +168,13 @@ const Section: React.FunctionComponent = () => {
             <div className="our-services-btn">
               <div className="services-btn">
                 <Button
-                  bgColor={"black"}
+                  bgColor={getColor("basic")}
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
                   title="See all our services"
-                  color="white"
+                  color={getColor("light")}
                   fWeight={700}
                   bRadius={5}
                   onClickButton={() => {

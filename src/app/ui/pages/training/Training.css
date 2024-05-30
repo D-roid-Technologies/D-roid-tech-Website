@@ -204,22 +204,29 @@
 
   .training-approach-main {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: stretch;
+    align-items: flex-start;
     flex-direction: column;
   }
 
   .training-approach-list,
   .training-programs-list {
     flex-direction: column;
-    align-items: flex-start;
+    width: auto;
   }
 
   .training-approach-item,
   .training-program-item {
     flex-basis: 100%;
   }
-  .next-button, .prev-button{
+  .next-button,
+  .prev-button {
     display: none;
+  }
+
+  .technologies {
+    margin-bottom: 50px;
+    margin-top: 2rem;
+    padding: 0 20px;
   }
 }

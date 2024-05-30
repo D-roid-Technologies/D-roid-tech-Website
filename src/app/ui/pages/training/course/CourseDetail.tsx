@@ -10,11 +10,13 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import { useDispatch } from "react-redux";
+import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 
 const CourseDetail: React.FunctionComponent = () => {
   const { courseId } = useParams();
   const course = courses.find((c) => c.id === parseInt(courseId || "", 10));
   const dispatch = useDispatch();
+  const { getColor } = useThemeColor();
 
   if (!course) {
     return <div>Course not found</div>;
@@ -41,8 +43,8 @@ const CourseDetail: React.FunctionComponent = () => {
       <div className="course-detail-content">
         {Object.entries(course.descriptions).map(
           ([trainingTitle, description]) => (
-            <div key={trainingTitle}>
-              <h2>{trainingTitle}</h2>
+            <div key={trainingTitle} style={{border: "1px solid" + getColor("borderColor")}}>
+              <h2 style={{color: getColor("basic")}}>{trainingTitle}</h2>
               <p className="paragraph">
                 {description.explanation.length > 150
                   ? `${description.explanation.slice(0, 150)}...`

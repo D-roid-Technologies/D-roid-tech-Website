@@ -18,6 +18,7 @@ import {
 } from "../../../../redux/slices/AppEntrySlice";
 import { useDispatch } from "react-redux";
 import { getUserLocation } from "../../../../utils/locationUtils";
+import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 
 type Service = {
   title: string;
@@ -87,6 +88,8 @@ const services: Service[] = [
 
 const Services: React.FunctionComponent = () => {
   const dispatch = useDispatch();
+  const { getColor } = useThemeColor();
+
   useEffect(() => {
     const fetchUserLocation = async () => {
       try {
@@ -102,16 +105,16 @@ const Services: React.FunctionComponent = () => {
 
   return (
     <div>
+      <NavBar />
       <div
         style={{
           backgroundImage: `url("${Assets.images.service}")`,
         }}
         className="bg-image"
       >
-        <NavBar />
         <div className="home-section">
           <article className="home-content">
-            <p className="home-heading">OUR SERVICES</p>
+            <p className="home-heading" style={{color: getColor("light")}}>OUR SERVICES</p>
           </article>
         </div>
       </div>

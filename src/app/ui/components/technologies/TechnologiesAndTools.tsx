@@ -75,7 +75,7 @@ const TechnologiesAndTools: React.FC = () => {
   };
 
   return (
-    <div className="training-approach-main">
+    <div className="technologies">
       <h1 style={styles.heading} className="training-approach-head">
         Technologies and Tools
       </h1>
