@@ -36,8 +36,8 @@ const NavBar: React.FunctionComponent = () => {
             style={{
               color:
                 window.location.pathname === item.path
-                  ? getColor('substitute')
-                  : getColor('primary'),
+                  ? Assets.colors.substitute
+                  : Assets.colors.primary,
             }}
           >
             {item.link}
@@ -64,8 +64,8 @@ const NavBar: React.FunctionComponent = () => {
             style={{
               color:
                 window.location.pathname === item.path
-                  ? getColor('primary')
-                  : getColor('substitute'),
+                  ? Assets.colors.primary
+                  : Assets.colors.substitute,
             }}
           >
             {item.link}
@@ -84,7 +84,7 @@ const NavBar: React.FunctionComponent = () => {
               navigate(i.path);
             }}
             style={{
-              color: getColor('accent'),
+              color: Assets.colors.basic,
             }}
           >
             {i.link}

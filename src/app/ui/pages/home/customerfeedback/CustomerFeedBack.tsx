@@ -12,10 +12,12 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import { DATA } from "../../../../utils/constant/Data";
+import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const appEntry = useSelector((state: RootState) => state.appEntry);
+  const { getColor } = useThemeColor();
 
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
@@ -59,13 +61,13 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           <div className="contact-uss">
             <div className="contactuss-button">
               <Button
-                bgColor={"black"}
+                bgColor={getColor("basic")}
                 mTop={0}
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
                 title="See more testimonials"
-                color="white"
+                color={getColor("light")}
                 fWeight={800}
                 bRadius={5}
                 onClickButton={() => {

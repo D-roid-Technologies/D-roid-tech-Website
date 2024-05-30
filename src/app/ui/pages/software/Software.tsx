@@ -7,13 +7,13 @@ import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
 const Software: React.FunctionComponent = () => {
   return (
     <div>
+      <NavBar />
       <div
         style={{
           backgroundImage: `url("${Assets.images.softwareBg}")`,
         }}
         className="bg-image"
       >
-        <NavBar />
         <div className="home-section">
           {/* <article className="home-content">
             <p className="home-heading">INCREDIBLE SOFTWARE DEVELOPMENT</p>

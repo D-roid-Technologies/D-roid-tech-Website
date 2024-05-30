@@ -25,8 +25,11 @@ import { BiSolidBusSchool } from "react-icons/bi";
 import { IoMdCart } from "react-icons/io";
 import Button from "../../components/button/Button";
 import { FcCustomerSupport } from "react-icons/fc";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const Animation: React.FunctionComponent = () => {
+  const { getColor } = useThemeColor();
+
   // Icon Data
   const icon_data = [
     {
@@ -99,14 +102,14 @@ const Animation: React.FunctionComponent = () => {
           title={item.title}
           actions={
             <Button
-              bgColor={"#000000"}
+              bgColor={getColor("basic")}
               mTop={0}
               mBottom={0}
               mLeft={0}
               mRight={0}
               onClickButton={() => {}}
               title="View Product"
-              color="#ffffff"
+              color={getColor("light")}
             />
           }
           content={item.desc}

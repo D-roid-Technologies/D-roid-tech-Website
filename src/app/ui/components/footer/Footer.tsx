@@ -9,10 +9,19 @@ import AppInput from "../textInput/AppInput";
 import Button from "../button/Button";
 import { FaWhatsapp } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const Footer: React.FunctionComponent = () => {
+  const { getColor } = useThemeColor();
+
   return (
-    <div className="footer-main">
+    <div
+      className="footer-main"
+      style={{
+        backgroundColor: getColor("backgroundColor"),
+        border: "1px solid transparent",
+      }}
+    >
       <div className="">
         <h1 className="heading"> SOCIAL </h1>
         <hr className="rule" />
@@ -63,12 +72,12 @@ const Footer: React.FunctionComponent = () => {
         <div className="signup-btn">
           <Button
             title="Sign up"
-            bgColor="black"
+            bgColor={getColor("basic")}
             mTop={0}
             mBottom={0}
             mLeft={0}
             mRight={0}
-            color="white"
+            color={getColor("light")}
             fWeight={600}
             onClickButton={() => {}}
           />
@@ -86,7 +95,7 @@ const Footer: React.FunctionComponent = () => {
         <span className="powered">
           Powered by
           <a href="/" className="color-change">
-            <span style={{ color: Assets.colors.primary }}>
+            <span style={{ color: getColor("primary") }}>
               {" "}
               D'roid Technolgies International
             </span>
@@ -94,7 +103,10 @@ const Footer: React.FunctionComponent = () => {
         </span>
       </div>
       <a href="/privacy" className="color-change">
-        <p className="policy" style={{ color: Assets.colors.basic }}> Privacy Policy</p>
+        <p className="policy" style={{ color: getColor("primary") }}>
+          {" "}
+          Privacy Policy
+        </p>
       </a>
     </div>
   );

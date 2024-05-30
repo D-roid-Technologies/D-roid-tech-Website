@@ -8,9 +8,11 @@ import { RootState, store } from "../redux/Store";
 import { addHeight, addWidth } from "../redux/slices/Dimension";
 import { useSelector } from "react-redux";
 import { updateModal } from "../redux/slices/AppEntrySlice";
+import { useThemeColor } from "../utils/hooks/useThemeColor";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
+  const { getColor } = useThemeColor();
 
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
@@ -38,7 +40,7 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   }, [appWidth, appHeight]);
 
   return (
-    <div>
+    <div style={{ backgroundColor: getColor("backgroundColor")}}>
       {modal && (
         <div className="modal-overlay">
           <div className="modal-inner">
