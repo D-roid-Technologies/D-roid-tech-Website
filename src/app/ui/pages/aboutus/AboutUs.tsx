@@ -103,7 +103,7 @@ const AboutUs: React.FunctionComponent = () => {
           </div>
 
           {/* OUR TEAM SECTION */}
-          {/* <div className="ourteam-marginbottom">
+          <div className="ourteam-marginbottom">
             <section>
               <article>
                 <h2 className="our-team"> Our Team </h2>
@@ -113,10 +113,51 @@ const AboutUs: React.FunctionComponent = () => {
                   designers who is passionate about their feild of study.
                 </p>
               </article>
-            </section> */}
-          {/* OUR TEAM PROFILE IMAGES */}
-          {/* </div> */}
-          {/* END OF OUR TEAM */}
+            </section>
+            {/* OUR TEAM PROFILE IMAGES */}
+            <div className="profile-image">
+              {/* PROFILE ONE */}
+              {/* <div className="profile-one">
+                <img
+                  src={Assets.images.malestaffone}
+                  alt="profileImage"
+                  className="image-sizes"
+                />
+                <h3> Ekene </h3>
+                <p>Software Engineer</p>
+              </div> */}
+              {/* PROFILE TWO */}
+              <div className="profile-one">
+                <img
+                  src={Assets.images.stellaimg}
+                  alt="profileImage"
+                  className="image-sizes"
+                />
+                <h3> Stella </h3>
+                <p>Frontend Developer </p>
+              </div>
+              {/* PROFILE THREE */}
+              <div className="profile-one">
+                <img
+                  src={Assets.images.uzoimg}
+                  alt="profileImage"
+                  className="image-sizes"
+                />
+                <h3> Uzochukwu </h3>
+                <p>Frontend Development</p>
+              </div>
+              {/* PROFILE FOUR */}
+              <div className="profile-one">
+                <img
+                  src={Assets.images.faithimg}
+                  alt="profileImage"
+                  className="image-sizes"
+                />
+                <h3> Chukwueze Faith </h3>
+                <p> Digital Marketer</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

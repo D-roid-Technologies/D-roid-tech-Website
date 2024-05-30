@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavBar from "../../../components/navbar/NavBar";
 import "./Services.css";
 import {
@@ -11,13 +11,6 @@ import {
 import Card from "../../../components/card/Card";
 import { Assets } from "../../../../utils/constant/Assets";
 import BenefitsSection from "./benefits/BenefitsSection";
-import Button from "../../../components/button/Button";
-import {
-  updateModal,
-  updateModalContent,
-} from "../../../../redux/slices/AppEntrySlice";
-import { useDispatch } from "react-redux";
-import { getUserLocation } from "../../../../utils/locationUtils";
 
 type Service = {
   title: string;
@@ -86,19 +79,17 @@ const services: Service[] = [
 ];
 
 const Services: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const fetchUserLocation = async () => {
-      try {
-        const { latitude, longitude } = await getUserLocation();
-        console.log("User location:", latitude, longitude);
-      } catch (error) {
-        console.error("Error fetching user location:", error);
-      }
-    };
+  const [expandedCards, setExpandedCards] = useState<number[]>([]);
 
-    fetchUserLocation();
-  }, []);
+  const handleReadMore = (index: number) => {
+    setExpandedCards((prevExpandedCards) => [...prevExpandedCards, index]);
+  };
+
+  const handleReadLess = (index: number) => {
+    setExpandedCards((prevExpandedCards) =>
+      prevExpandedCards.filter((i) => i !== index)
+    );
+  };
 
   return (
     <div>
@@ -106,7 +97,7 @@ const Services: React.FunctionComponent = () => {
         style={{
           backgroundImage: `url("${Assets.images.service}")`,
         }}
-        className="bg-image"
+        className="full-screen-background-image"
       >
         <NavBar />
         <div className="home-section">
@@ -136,39 +127,52 @@ const Services: React.FunctionComponent = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              icon={service.icon}
-              title={service.title}
-              content={service.description}
-              actions={
-                <Button
-                  title="Read More"
-                  bgColor="#007bff"
-                  color="#fff"
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  onClickButton={() => {
-                    dispatch(
-                      updateModalContent({
-                        appTitle: service.title,
-                        appBody: `
-                          <div class="modal-content">
-                            <p>${service.description}</p>
-                            <ul>
-                              ${service.prices
-                                .map((price) => `<li>${price}</li>`)
-                                .join("")}
-                            </ul>
-                          </div>
-                        `,
-                      })
-                    );
-                    dispatch(updateModal(true));
-                  }}
-                />
-              }
-            />
+              className="service-card"
+              cardStyle={{
+                backgroundColor: Assets.colors.light,
+                color: Assets.colors.basic,
+              }}
+            >
+              <div style={{ marginBottom: "1rem" }}>{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p
+                style={{ textAlign: "justify", color: Assets.colors.paragraph }}
+                className="paragraph"
+              >
+                {expandedCards.includes(index)
+                  ? service.description
+                  : `${service.description.slice(0, 150)}...`}
+                {service.description.length > 150 &&
+                  !expandedCards.includes(index) && (
+                    <span
+                      className="read-more-link"
+                      onClick={() => handleReadMore(index)}
+                    >
+                      Read More
+                    </span>
+                  )}
+              </p>
+              {expandedCards.includes(index) && (
+                <>
+                  <ul>
+                    {service.prices.map((price, priceIndex) => (
+                      <li
+                        key={priceIndex}
+                        style={{ color: Assets.colors.paragraph }}
+                      >
+                        {price}
+                      </li>
+                    ))}
+                  </ul>
+                  <span
+                    className="read-more-link"
+                    onClick={() => handleReadLess(index)}
+                  >
+                    Read Less
+                  </span>
+                </>
+              )}
+            </Card>
           ))}
         </div>
         <BenefitsSection />

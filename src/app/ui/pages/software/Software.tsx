@@ -11,7 +11,7 @@ const Software: React.FunctionComponent = () => {
         style={{
           backgroundImage: `url("${Assets.images.softwareBg}")`,
         }}
-        className="bg-image"
+        className="full-screen-background-image"
       >
         <NavBar />
         <div className="home-section">

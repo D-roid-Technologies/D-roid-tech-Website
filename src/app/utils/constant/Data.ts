@@ -20,12 +20,12 @@ export const DATA = {
       path: "/software",
     },
     {
-      link: "Tech Training",
-      path: "/training",
+      link: "Animation Creation",
+      path: "/animation",
     },
     {
-      link: "Products",
-      path: "/products",
+      link: "Tech Training",
+      path: "/training",
     },
     {
       link: "Contact",
@@ -451,7 +451,7 @@ export const DATA = {
   ],
   FeaturedDroneServices: [
     {
-      video: require("../../images/videos/dronevideo.mp4"),
+      video: require("../../videos/dronevideo.mp4"),
       title: "AERIAL PHOTOGRAPHY AND VIDEOGRAPHY",
       content:
         "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
@@ -533,44 +533,6 @@ export const DATA = {
       content:
         "We provide training sessions for our clients' staff to familiarize them with the newly installed equipment and networks. Additionally, we create detailed documentation outlining setup procedures, troubleshooting steps, and best practices for future reference.",
       Button: "LEARN MORE",
-    },
-  ],
-  EquipmentServices: [
-    {
-      image: require("../../images/png/imagePlaceHolder.png"),
-      title: "Computer and Workstation Set-Up",
-      content:
-        "We set up desktops, laptops, and workstations, ensuring that all hardware and software components are correctly installed and configured. This includes operating system installation, software setup, and peripheral connection.",
-    },
-    {
-      image: require("../../images/png/imagePlaceHolder.png"),
-      title: "Network Configuration",
-      content:
-        "Our network setup services ensure your internet and local network are configured for maximum speed, security, and reliability. We handle everything from router installation to network security configurations.",
-    },
-    {
-      image: require("../../images/png/imagePlaceHolder.png"),
-      title: "Server Installation and Configuration",
-      content:
-        "We provide comprehensive server setup services, including installation, configuration, and ongoing management. Our services cover a wide range of server types, including web servers, file servers, and application servers.",
-    },
-    {
-      image: require("../../images/png/imagePlaceHolder.png"),
-      title: "Peripheral and Accessory Set-Up",
-      content:
-        "We handle the setup of all your peripherals and accessories, ensuring they are correctly installed and integrated with your main systems. This includes printers, scanners, external drives, and more.",
-    },
-    {
-      image: require("../../images/png/imagePlaceHolder.png"),
-      title: "Home Office and Remote Work Set-Up",
-      content:
-        "With more people working remotely, we offer specialised services to set up home offices that are fully equipped and optimised for productivity. We ensure that your home office setup meets your work requirements and integrates smoothly with your company's network.",
-    },
-    {
-      image: require("../../images/png/imagePlaceHolder.png"),
-      title: "Audio-Visual Equipment Set-Up",
-      content:
-        "We set up audio-visual equipment for both personal and professional use, including home theatres, conference rooms, and multimedia setups. Our services ensure that all components are correctly installed and optimised for the best performance.",
     },
   ],
 };

@@ -34,10 +34,11 @@ const Section: React.FunctionComponent = () => {
         <section className="history">
           <p className="our-history"> Our History</p>
           <p className="histoy-details">
-            D'roid Technologies was founded in 2015 by an inquisitive mind with
-            passion for creating innovative solutions. Over the years, he pulled
-            the company gradully into a leading Tech company, serving clients in
-            a wide range of industries...
+            {" "}
+            D'roid Technologies International was founded in 2005 by a group of
+            software developers with passion for creating innovative solutions.
+            Over the years, we have grouwn into a leading software development
+            company, serving clients in a wide range of industries.
           </p>
           {/* CONTACT US BUTTON */}
           <div className="history-btn">
@@ -141,7 +142,12 @@ const Section: React.FunctionComponent = () => {
                   captivating visual storytelling. We specialize in creating
                   high-quality 2D and 3D animations for various industries,
                   including education, entertainment, advertising, and corporate
-                  training.
+                  training. Our talented team of animators and graphic designers
+                  use the latest software and techniques to produce animations
+                  that are engaging, informative, and visually stunning. From
+                  concept development and storyboarding to final production, we
+                  ensure that every animation project meets the highest
+                  standards of creativity and technical excellence.
                 </p>
               </span>
             </div>
@@ -150,13 +156,7 @@ const Section: React.FunctionComponent = () => {
               <span className="padded">
                 <h2 className="carousel-heading">Tech Training </h2>
                 {/* waiting for tech content */}
-                <p className="carousel-details">
-                  we offer comprehensive tech training programs designed to
-                  equip you and your team with the skills needed to excel in
-                  today's fast-paced technological landscape. Our expert-led
-                  training sessions cover a wide range of topics, from software
-                  development and cybersecurity to data analytics and more.
-                </p>
+                <p className="carousel-details"> </p>
               </span>
             </div>
           </Slider>
