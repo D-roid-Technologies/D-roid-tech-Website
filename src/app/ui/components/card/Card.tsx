@@ -27,7 +27,7 @@ const Card: React.FunctionComponent<CardProps> = ({
   return (
     <div className="card">
       <div className="card__image-container">
-        {icon && <div className="card__icon">{icon}</div>}
+        {icon && <div className="card__icon" style={{marginTop: "0.5rem"}}>{icon}</div>}
         {image && <img src={image} alt="Card" className="card__image" />}
         {tag && <div className="card__tag">{tag}</div>}
       </div>

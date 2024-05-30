@@ -123,6 +123,7 @@ const Training: React.FC = () => {
                     mBottom={0}
                     mLeft={0}
                     mRight={0}
+                    bRadiusColor={getColor("light")}
                     onClickButton={() => navigateToCourseDetail(`${course.id}`)}
                   />
                 }
