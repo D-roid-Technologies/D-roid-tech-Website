@@ -12,181 +12,168 @@ import {
 } from "react-icons/fa";
 import "./Animation.css";
 import { Assets } from "../../../utils/constant/Assets";
+import { ImCart } from "react-icons/im";
+import { FaGrinStars } from "react-icons/fa";
+import Card from "../../components/card/Card";
+import { FaFingerprint } from "react-icons/fa";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { MdOutlineSocialDistance } from "react-icons/md";
+import { FaRocketchat } from "react-icons/fa";
+import { FaBitcoin } from "react-icons/fa";
+import { IoSchoolSharp } from "react-icons/io5";
+import { BiSolidBusSchool } from "react-icons/bi";
+import { IoMdCart } from "react-icons/io";
+import Button from "../../components/button/Button";
+import { FcCustomerSupport } from "react-icons/fc";
 
 const Animation: React.FunctionComponent = () => {
+  // Icon Data
+  const icon_data = [
+    {
+      icon: <FaFingerprint className="product-bottom-icon" />,
+      title: "2 Factor Apps",
+    },
+    {
+      icon: <GiTakeMyMoney className="product-bottom-icon" />,
+      title: "Fintech Apps",
+    },
+    {
+      icon: <MdOutlineSocialDistance className="product-bottom-icon" />,
+      title: "Social Apps",
+    },
+    {
+      icon: <FaRocketchat className="product-bottom-icon" />,
+      title: "Chat Apps",
+    },
+    {
+      icon: <FaBitcoin className="product-bottom-icon" />,
+      title: "Crypto Apps",
+    },
+    {
+      icon: <IoSchoolSharp className="product-bottom-icon" />,
+      title: "E-Learning Apps",
+    },
+    {
+      icon: <BiSolidBusSchool className="product-bottom-icon" />,
+      title: "Transport Apps",
+    },
+    {
+      icon: <IoMdCart className="product-bottom-icon" />,
+      title: "E - Commerce Apps",
+    },
+  ];
+
+  const catalog_data = [
+    {
+      image: Assets.images.droid_web,
+      title: "D'roid Technologies",
+      desc: "DTI Software Solutions is a leading provider of innovative software solutions tailored to meet the evolving needs of businesses across diverse industries.",
+    },
+    {
+      image: Assets.images.reign,
+      title: "Reign Enterprise",
+      desc: "At Reign Collections, we have all the basic things you need for your house hold. From bathroom equpients, kitchen tools, lounge set-up and more.",
+    },
+  ];
+
+  //Mapping through icon data
+  const mapThroughIconData = () => {
+    return icon_data.map((i, j: number) => {
+      return (
+        <div className="product-bottom-list" key={j}>
+          <div className="product-bottom-inner">
+            {i.icon}
+            <p className="product-bottom-title bounce">{i.title}</p>
+          </div>
+        </div>
+      );
+    });
+  };
+
+  const mapThroughCatalogData = () => {
+    return catalog_data.map((item, index: number) => {
+      return (
+        <Card
+          key={index}
+          image={item.image}
+          title={item.title}
+          actions={
+            <Button
+              bgColor={"#000000"}
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              mRight={0}
+              onClickButton={() => {}}
+              title="View Product"
+              color="#ffffff"
+            />
+          }
+          content={item.desc}
+        />
+      );
+    });
+  };
   return (
     <div>
+      <NavBar />
       <div
-        style={{
-          backgroundImage: `url("${Assets.images.background1}")`,
-        }}
-        className="full-screen-background-image"
+        className="products-banner"
+        style={{ backgroundColor: Assets.colors.substitute }}
       >
-        <NavBar />
-        <div className="home-section">
-        <div className="home-main">
-          <article className="home-content">
-            <p className="home-heading">ANIMATION</p>
-          </article>
+        <div className="products-banner-inner">
+          <div className="products-banner-desc">
+            <h1 className="products-header">AWESOME PRODUCTS / TEMPLATES</h1>
+            <p className="product-p">
+              Explore a curated selection of top-notch products and customizable
+              templates designed to elevate your projects and streamline your
+              workflow.
+            </p>
+          </div>
+          <div>
+            <FaGrinStars className="product-cart" />
+          </div>
         </div>
-            {/* <p className="large-centered-heading">
-              At D'roid Technologies, we excel in producing captivating and
-              immersive animations that bring your ideas to life. Our team of
-              skilled animators and designers leverage state-of-the-art tools
-              and techniques to create stunning visuals that captivate audiences
-              and elevate your brand.
-            </p> */}
-        </div>
+        <div className="product-bottom-banner">{mapThroughIconData()}</div>
       </div>
-
-      <div className="main-content-section">
-        {/* Approach Section */}
-        {/* <div className="animation-approach-main">
-          <h1 className="animation-approach-head">Our Approach</h1>
-          <ul className="animation-approach-list">
-            <li className="animation-approach-item">
-              <h2>Conceptualization & Storyboarding</h2>
-              <p>
-                We work closely with you to understand your vision and
-                objectives. Our team then creates detailed storyboards to
-                outline the flow and narrative of the animation.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <h2>Design & Art Direction</h2>
-              <p>
-                Our talented designers craft visually striking characters,
-                environments, and assets that resonate with your target
-                audience. We prioritize creativity, originality, and attention
-                to detail in our design process.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <h2>Animation & Motion Graphics</h2>
-              <p>
-                Using industry-leading animation software, we breathe life into
-                our designs, incorporating smooth transitions, dynamic
-                movements, and engaging effects to enhance the storytelling
-                experience.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <h2>Sound Design & Voiceover</h2>
-              <p>
-                To further enhance the immersive experience, we collaborate with
-                experienced sound designers and voiceover artists to create
-                compelling audio elements that complement the visuals and evoke
-                emotion.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <h2>Review & Feedback</h2>
-              <p>
-                We value your input throughout the production process and
-                encourage open communication. We provide regular updates and
-                seek your feedback to ensure that the final product meets your
-                expectations.
-              </p>
-            </li>
-          </ul>
-        </div> */}
-
-        {/* Featured Projects Section */}
-        <div className="animation-approach-main">
-          <h1 className="animation-approach-head">Featured Projects</h1>
-          <ul className="animation-approach-list">
-            <li className="animation-approach-item">
-              <div className="icon-container">
-                <FaRocket style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Space Odyssey: A Journey Beyond</h2>
-              <p className="paragraph">
-                An exhilarating animation project that takes viewers on an
-                unforgettable voyage through the cosmos. Set in a distant future
-                where humanity explores the depths of outer space, this
-                animation combines stunning visuals with a gripping narrative to
-                inspire wonder and awe.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <div className="icon-container">
-                <FaGalacticRepublic style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Galactic Chronicles: Exploring Infinity</h2>
-              <p className="paragraph">
-                A captivating animation endeavor that propels audiences on a
-                mesmerizing expedition across the vast expanse of the universe.
-                Set in a distant era where humanity's curiosity knows no bounds,
-                this project melds breathtaking imagery with an enthralling
-                storyline, inviting viewers to embark on an odyssey of cosmic
-                proportions.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <div className="icon-container">
-                <FaStarOfLife style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Starbound Odyssey: Voyage to the Unknown</h2>
-              <p className="paragraph">
-                A thrilling animation venture that invites audiences to embark
-                on an epic journey through the uncharted depths of space. Set in
-                a future where humanity's insatiable thirst for discovery
-                propels them beyond the confines of Earth, this project
-                seamlessly blends awe-inspiring visuals with a compelling
-                narrative, igniting the imagination and stirring the soul.
-              </p>
-            </li>
-            <li className="animation-approach-item">
-              <div className="icon-container">
-                <FaSpaceShuttle style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Cosmic Odyssey: Beyond the Stars</h2>
-              <p className="paragraph">
-                An electrifying animation project that catapults viewers into a
-                breathtaking journey through the boundless expanse of the
-                cosmos. Set in a distant epoch where humanity's thirst for
-                knowledge drives them to explore the furthest reaches of outer
-                space, this animation seamlessly weaves together stunning
-                visuals with an enthralling narrative, evoking a sense of wonder
-                and awe.
-              </p>
-            </li>
-          </ul>
+      <div className="our-catalog">
+        <h1 className="our-catalog-header">Our Catalog</h1>
+        <div className="our-catalog-map">{mapThroughCatalogData()}</div>
+      </div>
+      <div className="choose-us-product">
+        <div>
+          <FcCustomerSupport className="our-catalog-icon" />
         </div>
-
-        {/* Technologies and Tools Section */}
-        <div className="training-approach-main">
-          <h1 className="training-approach-head">Technologies and Tools</h1>
-          <ul className="training-approach-list">
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaDesktop style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Animation Software</h2>
-              <p className="paragraph">Adobe After Effects, Blender, Autodesk Maya</p>
+        <div className="our-catalog-right">
+          <h1 className="our-catalog-header">Why our Clients choose us?</h1>
+          <ol>
+            <li className="product-p">
+              Expertise: Our team of skilled professionals brings years of
+              experience and expertise to every project we undertake, ensuring
+              high-quality results that exceed expectations.
             </li>
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaPalette style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Graphic Design Tools</h2>
-              <p className="paragraph">Adobe Illustrator, Photoshop</p>
+            <li className="product-p">
+              Innovation: We are committed to staying at the forefront of
+              technological innovation, constantly exploring new ideas and
+              solutions to meet the evolving needs of our clients.
             </li>
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaMicrophoneAlt style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Sound Editing Software</h2>
-              <p className="paragraph">Adobe Audition, Audacity</p>
+            <li className="product-p">
+              Collaboration: We believe in the power of collaboration and work
+              closely with our clients to understand their unique goals and
+              challenges, delivering customized solutions that drive tangible
+              results.
             </li>
-            <li className="training-approach-item">
-              <div className="icon-container">
-                <FaCodeBranch style={{ fontSize: "3rem", color: Assets.colors.secondary }} className="icon" />
-              </div>
-              <h2>Version Control</h2>
-              <p className="paragraph">Git, GitHub</p>
+            <li className="product-p">
+              Customer Satisfaction: Your satisfaction is our top priority. We
+              go above and beyond to ensure that our clients are happy with the
+              solutions we deliver, providing ongoing support and assistance
+              every step of the way.
             </li>
-          </ul>
+            <li className="product-p">
+              Value: We offer competitive pricing and transparent communication,
+              ensuring that you get the best possible value for your investment.
+            </li>
+          </ol>
         </div>
       </div>
     </div>

@@ -42,6 +42,10 @@ export type AppInputType = React.DetailedHTMLProps<
   bColor?: string;
   bWidth?: number;
   pHolder: string;
+  bagColor?: string;
+  // added dropdown
+  isDropdown?: boolean;
+  options?: string[];
 };
 
 export type AppButtonType = React.DetailedHTMLProps<
@@ -56,6 +60,7 @@ export type AppButtonType = React.DetailedHTMLProps<
   fWeight?: number;
   bRadius?: number;
   bRadiusColor?: string;
+  icon?: React.ReactNode; // Added icon
   onClickButton: () => void;
   // color: string;
 };
