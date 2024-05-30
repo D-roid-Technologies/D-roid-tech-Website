@@ -71,7 +71,7 @@ const Equipments: React.FunctionComponent<any> = () => {
         {/* BENEFIT OF WORKING WITH US */}
         <section className="equip-benefit">
           <div>
-            <h1 className="equip-header"> Benefits of Working with Us </h1>
+            <h1 className="equip-header"> Benefits of Working with Usfff </h1>
           </div>
         </section>
       </div>
