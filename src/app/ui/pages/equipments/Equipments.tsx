@@ -72,6 +72,9 @@ const Equipments: React.FunctionComponent<any> = () => {
         <section className="equip-benefit">
           <div>
             <h1 className="equip-header"> Benefits of Working with Usfff </h1>
+            <p>
+              hhghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhghgh
+            </p>
           </div>
         </section>
       </div>
