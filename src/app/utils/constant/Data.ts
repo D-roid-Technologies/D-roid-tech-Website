@@ -573,4 +573,17 @@ export const DATA = {
         "We set up audio-visual equipment for both personal and professional use, including home theatres, conference rooms, and multimedia setups. Our services ensure that all components are correctly installed and optimised for the best performance.",
     },
   ],
+
+  testimonials: [
+    {
+      quote:
+        "I have had the pleasure of working with D'roid Technologies on several projects, and I can confidently say that their expertise and dedication are unmatched. From the initial consultation to the final delivery, their team demonstrated a deep understanding of our needs and provided innovative solutions that exceeded our expectations. The software they developed for us is robust, user-friendly, and has significantly improved our operational efficiency. Their commitment to quality and customer satisfaction is evident in every interaction. I highly recommend D'roid Technologies to any organization looking for top-tier technology solutions.",
+      author: "— Mark Ettan, Founder, LEADPAC Foundation",
+    },
+    {
+      quote:
+        "I have had the pleasure of working with D'roid Technologies on several projects, and I can confidently say that their expertise and dedication are unmatched. From the initial consultation to the final delivery, their team demonstrated a deep understanding of our needs and provided innovative solutions that exceeded our expectations. The software they developed for us is robust, user-friendly, and has significantly improved our operational efficiency. Their commitment to quality and customer satisfaction is evident in every interaction. I highly recommend D'roid Technologies to any organization looking for top-tier technology solutions.",
+      author: "— Mark Ettan, Founder, LEADPAC Foundation",
+    },
+  ],
 };

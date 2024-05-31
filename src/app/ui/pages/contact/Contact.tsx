@@ -12,6 +12,9 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import Testimonials from "../../components/testimonials/Testimonials";
+import { DATA } from "../../../utils/constant/Data";
+import testimonialbackgroundImage from "../../../images/png/customerfeedback2.jpg";
 
 const Contact: React.FunctionComponent = () => {
   const optionsList = [
@@ -200,6 +203,11 @@ const Contact: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
+        {/* TESTIMONIALS */}
+        <Testimonials
+          testbackgroundImage={testimonialbackgroundImage}
+          testimonials={DATA.testimonials}
+        />
       </main>
     </>
   );

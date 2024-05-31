@@ -320,50 +320,8 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   </div>
                 </Slider>
                 {/* End of carousel section */}
-                {/* <div className="drone-contact-uss">
-                  <div className="drone-contactuss-button">
-                    <Button
-                      bgColor={"black"}
-                      mTop={0}
-                      mBottom={0}
-                      mLeft={0}
-                      mRight={0}
-                      title="See more testimonials"
-                      color="white"
-                      fWeight={800}
-                      bRadius={5}
-                      onClickButton={() => {
-                        navigate("/contact");
-                      }}
-                    />
-                  </div>
-                </div> */}
               </div>
             </div>
-            {/* ff
-        <div className="product-buttons">
-          <div className="See-our-products">
-            <Button
-              bgColor={"black"}
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              mRight={0}
-              title="See our Testimonials"
-              color="white"
-              fWeight={800}
-              onClickButton={() => {
-                store.dispatch(updateModal(true));
-                store.dispatch(
-                  updateModalContent({
-                    appTitle: onSuccessTitle,
-                    appBody: onSuccessBody,
-                  })
-                );
-              }}
-            />
-          </div>
-        </div> */}
           </div>
         </section>
       </div>
