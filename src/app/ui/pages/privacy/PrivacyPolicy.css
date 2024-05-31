@@ -15,14 +15,7 @@
   padding-top: 1.8em;
 }
 
-.image-sized {
-  width: 600px;
-  height: 300px;
-  object-fit: contain;
-}
-
 .privacy-details {
-  padding: 70px 30px;
   text-align: center;
 }
 
@@ -49,7 +42,7 @@
 }
 
 .privacy-subsection {
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 5px;
   text-align: left;
 }
@@ -80,8 +73,8 @@
 /* Tablet */
 @media screen and (max-width: 992px) {
   .privacy-main {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .privacy-section {
@@ -94,17 +87,12 @@
     padding-top: 1em;
   }
 
-  .image-sized {
-    width: 400px;
-    height: 200px;
-  }
-
   .privacy-details {
     padding: 30px 0;
     text-align: center;
   }
 
-  .privacy-heading {
+  /* .privacy-heading {
     font-size: 28px;
   }
 
@@ -113,7 +101,7 @@
   }
 
   .privacy-subsection-heading {
-    font-size: 24px;
+    font-size: 1;
   }
 
   .privacy-subsection-subheading {
@@ -122,7 +110,7 @@
 
   .privacy-subsection-content {
     font-size: 1rem;
-  }
+  } */
 }
 
 /* Mobile */

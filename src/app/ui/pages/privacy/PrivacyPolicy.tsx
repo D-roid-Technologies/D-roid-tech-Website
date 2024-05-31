@@ -3,9 +3,12 @@ import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import "./PrivacyPolicy.css";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const PrivacyPolicy: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -15,7 +18,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
           <div className="privacy-content">
             <div className="privacy-details">
               <h1
-                className="home-heading"
+                className="privacy-subsection-heading"
                 style={{ color: getColor("primary") }}
               >
                 Privacy Policy
@@ -243,7 +246,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div className="privacy-subsection">
+          <div className="privacy-subsection" style={{ marginBottom: "1.5rem" }}>
             <h2
               className="privacy-subsection-heading"
               style={{ color: getColor("primary") }}
@@ -258,6 +261,20 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               contact us: - By email: [Insert Contact Email] - By phone: [Insert
               Contact Phone Number] - By whatsApp: [Insert Contact Address]
             </p>
+            <div style={{ width: "25%" }}>
+              <Button
+                title="Contact Us"
+                bgColor={Assets.colors.secondary}
+                color={Assets.colors.light}
+                onClickButton={() => navigate("/contact")}
+                mLeft={10}
+                mRight={10}
+                mTop={20}
+                mBottom={0}
+                bRadius={10}
+                bRadiusColor={Assets.colors.light}
+              />
+            </div>
           </div>
         </div>
       </div>

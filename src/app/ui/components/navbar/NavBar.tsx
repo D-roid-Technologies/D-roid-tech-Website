@@ -98,7 +98,7 @@ const NavBar: React.FunctionComponent = () => {
     <div>
       <div className="nav-main">
         <div className="logo-image">
-          <a href="/">
+          <a onClick={() => {navigate("/")}}>
             <img
               src={Assets.images.companyLogoNoBg}
               alt="company logo"
