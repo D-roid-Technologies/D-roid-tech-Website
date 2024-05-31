@@ -11,6 +11,7 @@ import {
 } from "../../../../redux/slices/AppEntrySlice";
 import { useDispatch } from "react-redux";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
+import Card from "../../../components/card/Card";
 
 const CourseDetail: React.FunctionComponent = () => {
   const { courseId } = useParams();
@@ -40,18 +41,15 @@ const CourseDetail: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <div className="course-detail-content">
-        {Object.entries(course.descriptions).map(
-          ([trainingTitle, description]) => (
-            <div key={trainingTitle} style={{border: "1px solid" + getColor("borderColor")}}>
-              <h2 style={{color: getColor("basic")}}>{trainingTitle}</h2>
-              <p className="paragraph">
-                {description.explanation.length > 150
-                  ? `${description.explanation.slice(0, 150)}...`
-                  : description.explanation}
-              </p>
-              <div className="buttons-container">
-                <div className="get-started-btn">
+      <div className="service-main">
+        <ul className="service-card-container">
+          {Object.entries(course.descriptions).map(
+            ([trainingTitle, description]) => (
+              <Card
+                key={trainingTitle}
+                title={trainingTitle}
+                content={description.explanation}
+                actions={
                   <Button
                     title="Learn More"
                     bgColor={Assets.colors.secondary}
@@ -61,15 +59,15 @@ const CourseDetail: React.FunctionComponent = () => {
                         updateModalContent({
                           appTitle: `${trainingTitle}`,
                           appBody: `<div class="modal-content">
-                        <p>${description.explanation}</p>
-                        <ol>
-                          ${description.procedures
-                            .map((procedure) => `<li>${procedure}</li>`)
-                            .join("")}
-                        </ol>
-                        <button>Apply</button>
-                        </div>
-                      `,
+                  <p>${description.explanation}</p>
+                  <ol>
+                    ${description.procedures
+                      .map((procedure) => `<li>${procedure}</li>`)
+                      .join("")}
+                  </ol>
+                  <button>Apply</button>
+                  </div>
+                `,
                         })
                       );
                       dispatch(updateModal(true));
@@ -81,8 +79,8 @@ const CourseDetail: React.FunctionComponent = () => {
                     bRadius={10}
                     bRadiusColor={Assets.colors.light}
                   />
-                </div>
-                <div className="get-started-btn">
+                }
+                actions2={
                   <Button
                     title="Apply"
                     bgColor={Assets.colors.secondary}
@@ -95,11 +93,11 @@ const CourseDetail: React.FunctionComponent = () => {
                     bRadius={10}
                     bRadiusColor={Assets.colors.light}
                   />
-                </div>
-              </div>
-            </div>
-          )
-        )}
+                }
+              />
+            )
+          )}
+        </ul>
       </div>
     </div>
   );
