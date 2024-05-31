@@ -9,6 +9,7 @@ type CardProps = {
   image?: string;
   content?: React.ReactNode;
   actions?: React.ReactNode;
+  actions2?: React.ReactNode;
   tag?: React.ReactNode;
 };
 
@@ -19,6 +20,7 @@ const Card: React.FunctionComponent<CardProps> = ({
   image,
   content,
   actions,
+  actions2,
   tag,
 }) => {
   const truncatedContent =
@@ -43,6 +45,7 @@ const Card: React.FunctionComponent<CardProps> = ({
         {subtitle && <p className="card__subtitle">{subtitle}</p>}
         {content && <div className="paragraph">{truncatedContent}</div>}
         {actions && <div className="card__actions">{actions}</div>}
+        {actions2 && <div className="card__actions">{actions2}</div>}
       </div>
     </div>
   );
