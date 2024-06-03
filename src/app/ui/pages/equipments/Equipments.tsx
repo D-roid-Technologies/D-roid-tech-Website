@@ -9,7 +9,13 @@ import Button from "../../components/button/Button";
 import { courses } from "../../../utils/constant/EquipmentServices";
 import { useNavigate } from "react-router-dom";
 import { FcCustomerSupport } from "react-icons/fc";
-import { FaCheckCircle, FaHandshake, FaThumbsUp } from "react-icons/fa";
+import {
+  FaBookReader,
+  FaCheckCircle,
+  FaHandshake,
+  FaThumbsUp,
+} from "react-icons/fa";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 const Equipments: React.FunctionComponent<any> = () => {
   const navigate = useNavigate();
@@ -120,6 +126,25 @@ const Equipments: React.FunctionComponent<any> = () => {
               today to schedule an appointment or to learn more about how we can
               assist you.
             </p>
+          </div>
+          <div className="equipment-btn">
+            <div className="equipment-btn-details">
+              <Button
+                bgColor="#000000"
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="Contact us"
+                color="#ffffff"
+                fWeight={800}
+                bRadius={5}
+                icon={<FaArrowRightToBracket className="style-home-icon" />}
+                onClickButton={() => {
+                  navigate("/contact");
+                }}
+              />
+            </div>
           </div>
         </section>
       </div>

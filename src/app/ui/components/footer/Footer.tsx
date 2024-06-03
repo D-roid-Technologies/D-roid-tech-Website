@@ -71,7 +71,7 @@ const Footer: React.FunctionComponent = () => {
         </div>
         <div className="signup-btn">
           <Button
-            title="Sign up"
+            title="Subscribe"
             bgColor={getColor("basic")}
             mTop={0}
             mBottom={0}

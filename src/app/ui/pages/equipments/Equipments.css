@@ -59,16 +59,32 @@
   margin-bottom: 30px;
   font-size: 32px;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
   color: #282a94;
   font-family: "Rammetto";
 }
 .equip-contact-details {
-  text-align: center;
-  /* color: #fff; */
+  text-align: left;
+  font-family: "MazzardH";
+  letter-spacing: 2px;
+  font-size: 22px;
+  color: rgb(39, 39, 39);
+  margin-bottom: 20px;
 }
 
 /* BENEFIT OF WORKING WITH US */
+.equipment-btn {
+  /* padding-left: 10px; */
+}
+
+.equipment-btn-details {
+  width: 20%;
+  border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.equipment-btn-details:hover {
+  transform: scale(1.1);
+}
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

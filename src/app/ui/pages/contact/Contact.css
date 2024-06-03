@@ -124,6 +124,9 @@
 .input-container {
   width: 100%;
 }
+.subject-feild {
+  font-family: "Mazzard";
+}
 
 /* MESSAGE AREA */
 .text-area {
@@ -137,6 +140,7 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-family: "Mazzard";
   resize: none;
 }
 
