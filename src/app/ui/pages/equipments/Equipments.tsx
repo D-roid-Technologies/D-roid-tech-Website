@@ -38,23 +38,7 @@ const Equipments: React.FunctionComponent<any> = () => {
           </p>
         </article>
       </div>
-      {/* OUR APPROACH SECTION */}
-      {/* <div className="bg-color">
-        <section className="drone-approach-main">
-          <h1 className="droneapproach-head">OUR APPROACH</h1>
-          <ul className="droneapproach-item">
-            {DATA.equipmentApproach.map((item, index) => (
-              <li className="droneapproach-list" key={index}>
-                <h2>{item.title}</h2>
-                <p>{item.content}</p>
-                <span className="list-button">{item.Button}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div> */}
-      {/* TECHNOLOGIES AND EQUIPMENT */}
-      {/* <TechnologiesAndTools /> */}
+
       {/* OUR SERVICES SECTION */}
       <div className="equip-main">
         <div>

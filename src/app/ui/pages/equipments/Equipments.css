@@ -77,10 +77,40 @@
     padding-top: 50px;
   }
 }
-/*Tablet:  On screens that are 992px or less, set the background color to blue */
-@media screen and (max-width: 992px) {
+/*mobile:  On screens that are 600px) or less, set the background color to blue */
+@media screen and (max-width: 600px) {
   .equip-main {
     padding: 0 20px;
     padding-top: 50px;
+  }
+  .e-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60vh;
+    /* margin-bottom: 50px; */
+  }
+  .equipment-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-top: 120px;
+  }
+
+  .equipment-heading {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Rammetto One";
+  }
+  .equipment-heading-details {
+    margin-top: 1em;
+    font-size: 1rem;
+    word-spacing: 2px;
+    text-align: center;
+    color: #fff;
+    font-family: "Mazzard";
   }
 }
