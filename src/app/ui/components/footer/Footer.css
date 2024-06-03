@@ -134,7 +134,7 @@
   font-weight: 500;
   font-size: medium;
   color: rgb(124, 124, 124);
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Mazzard";
 }
 
 .color-change {
@@ -144,9 +144,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 1em; */
   font-weight: 600;
   margin-bottom: 3em;
+  font-family: "Mazzard";
 }
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */

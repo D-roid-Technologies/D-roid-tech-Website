@@ -1,0 +1,60 @@
+.feedback-section {
+  margin-bottom: 50px;
+}
+
+.testBg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50vh;
+}
+
+.test-testimonials {
+  height: 350px;
+}
+
+.test-read {
+  color: #12d6d6;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 600;
+  font-family: "Rammetto One";
+  padding-top: 1.2em;
+  padding-bottom: 1.5em;
+}
+
+.test-testimonial-details {
+  padding: 0 50px;
+  text-align: left;
+  font-size: 1.2em;
+  color: #ffffff;
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+}
+.Slider {
+  color: #ffffff;
+}
+.test-quote {
+  text-align: left;
+}
+
+.author {
+  margin-top: 10px;
+  color: #12d6d6;
+  padding-left: 50px;
+}
+
+.drone-contact-uss {
+  padding-left: 50px;
+  margin-top: 50px;
+}
+
+.drone-contactuss-button {
+  width: 18%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.drone-contactuss-button:hover {
+  transform: scale(1.1);
+}

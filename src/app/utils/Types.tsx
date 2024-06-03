@@ -105,3 +105,10 @@ export type AppEntrySliceType = {
   appTitle: string;
   appBody: any;
 };
+
+export type Testimonailstype = {
+  quote: string;
+  author: string;
+  backgroundImage: string;
+  testimonials: string[];
+};

@@ -2,6 +2,9 @@ import React from "react";
 import feedBackImage from "../../../images/png/feedbackpics.png";
 import "../customerfeedback/CustomerFeedBack.css";
 import { FaFacebookF } from "react-icons/fa6";
+import { FaBookReader } from "react-icons/fa";
+import { IoMailUnread } from "react-icons/io5";
+import { IoLogoWhatsapp } from "react-icons/io";
 import Button from "../../../components/button/Button";
 import { Assets } from "../../../../utils/constant/Assets";
 import { useNavigate } from "react-router-dom";
@@ -58,7 +61,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               — Mark Ettan, Founder, LEADPAC Foundation
             </p>
           </div>
-          <div className="contact-uss">
+          <div className="contact-us">
             <div className="contactuss-button">
               <Button
                 bgColor={getColor("basic")}
@@ -70,6 +73,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                 color={getColor("light")}
                 fWeight={800}
                 bRadius={5}
+                icon={<FaBookReader className="style-home-icon" />}
                 onClickButton={() => {
                   navigate("/contact");
                 }}
@@ -110,6 +114,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   color="white"
                   fWeight={800}
                   bRadius={5}
+                  icon={<IoMailUnread className="style-home-icon" />}
                   onClickButton={() => {
                     window.location.href =
                       "mailto:hr@droidtechinternational.com";
@@ -128,6 +133,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   fWeight={800}
                   bRadius={5}
                   bRadiusColor="#000000"
+                  icon={<IoLogoWhatsapp className="icon-styles" />}
                   onClickButton={() => {
                     window.location.href = DATA.socialLinks.whatsapp;
                   }}

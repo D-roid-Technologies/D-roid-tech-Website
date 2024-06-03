@@ -42,6 +42,12 @@
   letter-spacing: 2px;
 }
 /* CONTACT US BOTTON */
+.style-home-icon {
+  color: #ffffff;
+  /* margin-left: 10px; */
+  width: 15px;
+  height: 15px;
+}
 .history-btn {
   display: flex;
   justify-content: center;
@@ -192,7 +198,7 @@
 }
 
 .services-btn {
-  width: 15%;
+  width: 18%;
   border-radius: none;
   transition: transform 0.3s ease-in-out;
 }
