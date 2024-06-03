@@ -11,6 +11,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  place-items: center;
   padding-top: 1rem;
   list-style: none;
 }
