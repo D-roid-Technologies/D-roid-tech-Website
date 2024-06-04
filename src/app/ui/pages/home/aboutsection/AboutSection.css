@@ -456,7 +456,7 @@
   }
 
   .readmore-btn {
-    width: 48%;
+    width: 65%;
     border-radius: none;
   }
 
@@ -505,7 +505,7 @@
   }
 
   .approach-btn {
-    width: 48%;
+    width: 65%;
     border-radius: none;
   }
   /* SECTION TREE OUR SERVICES */
@@ -599,7 +599,7 @@
   }
 
   .services-btn {
-    width: 55%;
+    width: 65%;
     border-radius: none;
   }
 }

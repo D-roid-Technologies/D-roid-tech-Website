@@ -6,7 +6,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 50vh;
+  /* height: 50vh; */
+  height: auto;
 }
 
 .test-testimonials {
@@ -57,4 +58,38 @@
 
 .drone-contactuss-button:hover {
   transform: scale(1.1);
+}
+
+/*Tablet:  On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+}
+
+/*mobile:  On screens that are 600px) or less, set the background color to blue */
+@media screen and (max-width: 600px) {
+  .testBg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65vh;
+    /* height: auto; */
+  }
+  .test-read {
+    color: #12d6d6;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    text-align: center;
+    font-weight: 600;
+    font-family: "Rammetto One";
+    padding-top: 1.2em;
+    padding-bottom: 1em;
+  }
+
+  .test-testimonial-details {
+    padding: 0 5px;
+    text-align: left;
+    font-size: 0.9em;
+    color: #ffffff;
+    font-family: "Mazzard";
+    letter-spacing: 2px;
+  }
 }

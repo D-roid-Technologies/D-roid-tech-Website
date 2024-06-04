@@ -117,6 +117,9 @@
 }
 
 .contactus-button-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 14%;
   border: none;
   font-family: "Mazzard";
@@ -127,6 +130,9 @@
   transform: scale(1.1);
 }
 .contactus-button-styles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 14%;
   border: none;
   font-family: "Mazzard";
@@ -278,6 +284,9 @@
   }
 
   .contactus-button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 22%;
     border: none;
     font-family: "Mazzard";
@@ -285,6 +294,9 @@
     font-weight: 600;
   }
   .contactus-button-styles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 22%;
     border: none;
     font-family: "Mazzard";
@@ -336,7 +348,7 @@
   }
 
   .contactuss-button {
-    width: 50%;
+    width: 55%;
     border-radius: none;
     transition: transform 0.3s ease-in-out;
   }
@@ -421,14 +433,14 @@
   }
 
   .contactus-button-style {
-    width: 42%;
+    width: 48%;
     border: none;
     font-family: "Mazzard";
     font-size: 1.2rem;
     font-weight: 600;
   }
   .contactus-button-styles {
-    width: 42%;
+    width: 48%;
     border: none;
     font-family: "Mazzard";
     font-size: 1.2rem;

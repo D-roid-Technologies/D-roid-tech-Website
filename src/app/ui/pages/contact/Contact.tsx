@@ -15,13 +15,37 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
 import testimonialbackgroundImage from "../../../images/png/customerfeedback2.jpg";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
+import { updateModal } from "../../../redux/slices/AppEntrySlice";
 
 const Contact: React.FunctionComponent = () => {
+  // const dispatch = useDispatch();
+  const appEntry = useSelector((state: RootState) => state.appEntry);
+  const modal = appEntry.showModal;
+  const aTitle = appEntry.appTitle;
+  const aBody = appEntry.appBody;
+
+  const onSuccessTitle = "Our Products";
+  const onFailedTitle = "Failed";
+  const onSuccessBody = (
+    <>
+      <p> Name </p>
+      <p> Email</p>
+      <p> Testimony </p>
+    </>
+  );
+  const onFailedBody =
+    "Your login was unsuccessful, kindly try again or contact your Admin!";
   const optionsList = [
     "Subject",
     "Inquiry on Drone Services",
     "Inquiry on Knowledge City",
   ];
+  function dispatch(arg0: any) {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <>
       <main>
@@ -205,10 +229,30 @@ const Contact: React.FunctionComponent = () => {
           </div>
         </div>
         {/* TESTIMONIALS */}
-        <Testimonials
-          testbackgroundImage={testimonialbackgroundImage}
-          testimonials={DATA.testimonials}
-        />
+        <section className="equip-margin-bt">
+          <Testimonials
+            testbackgroundImage={testimonialbackgroundImage}
+            testimonials={DATA.testimonials}
+          />
+        </section>
+        <div className="contact-testimonial">
+          <div className="contact-testimonial-btn">
+            <Button
+              bgColor="#000000"
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              mRight={0}
+              bRadiusColor="#282a94"
+              title="Send Testimonials"
+              color="#ffffff"
+              icon={<FaArrowRightToBracket className="icon-style" />}
+              onClickButton={() => {
+                dispatch(updateModal(true));
+              }}
+            />
+          </div>
+        </div>
       </main>
     </>
   );
