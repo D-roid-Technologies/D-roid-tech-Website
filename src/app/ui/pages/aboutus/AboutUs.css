@@ -109,6 +109,15 @@
   font-family: "Rammetto";
 }
 
+.core-value-vision-header-small {
+  margin-bottom: 1.2em;
+  line-height: 10px;
+  font-size: 22px;
+  color: #16173a;
+  font-family: "Rammetto";
+  margin-top: 10px;
+}
+
 .core-value-vision-box {
   background-color: #ffffff;
   padding: 25px 10px;
@@ -163,6 +172,18 @@
   font-family: "Mazzard";
   color: rgb(186, 184, 184);
   font-weight: 600;
+}
+.about-history-details-div{
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.core-values{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
 }
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */

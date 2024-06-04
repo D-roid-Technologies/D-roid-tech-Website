@@ -43,10 +43,11 @@ const Section: React.FunctionComponent = () => {
         <section className="history">
           <p className="our-history"> Our History</p>
           <p className="histoy-details">
-            D'roid Technologies was founded in 2015 by an inquisitive mind with
-            passion for creating innovative solutions. Over the years, he pulled
-            the company gradully into a leading Tech company, serving clients in
-            a wide range of industries...
+            D'roid Technologies traces its roots back to 2015, when visionary
+            entrepreneur Ekenedilichukwu Okoli embarked on a mission to redefine
+            the digital landscape. Inspired by a passion for innovation
+            and a desire to make a difference, our company was born in a small
+            office space with just a handful of dedicated individuals.
           </p>
           {/* CONTACT US BUTTON */}
           <div className="history-btn">

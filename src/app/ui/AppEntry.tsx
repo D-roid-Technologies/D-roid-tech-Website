@@ -9,6 +9,7 @@ import { addHeight, addWidth } from "../redux/slices/Dimension";
 import { useSelector } from "react-redux";
 import { updateModal } from "../redux/slices/AppEntrySlice";
 import { useThemeColor } from "../utils/hooks/useThemeColor";
+import { Assets } from "../utils/constant/Assets";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -57,8 +58,12 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
           </div>
         </div>
       )}
+      
       <Index width={appWidth} />
       <Footer />
+      <div className="chat-with-ogo" style={{backgroundColor: Assets.colors.substitute}}>
+        <p className="chat-with-ogo-p">Chat with Ogo</p>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,9 @@ import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import "../aboutus/AboutUs.css";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { RiCustomerService2Fill } from "react-icons/ri";
+import { FaGears } from "react-icons/fa6";
+import { GiRosaShield } from "react-icons/gi";
 
 const AboutUs: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -24,32 +27,37 @@ const AboutUs: React.FunctionComponent = () => {
               <div className="about-history">
                 <p className="about-history-heading"> Our History</p>
                 <p className="about-histoy-details">
-                  D'roid Technologies International was founded in 2005 by a
-                  group of software developers with passion for creating
-                  innovative solutions. Over the years, we have grouwn into a
-                  leading software development company, serving clients in a
-                  wide range of industries.
+                  D'roid Technologies traces its roots back to 2015, when
+                  visionary entrepreneur Ekenedilichukwu Okoli embarked on a
+                  mission to redefine the digital landscape. Inspired by a
+                  passion for innovation and a desire to make a difference, our
+                  company was born in a small office space with just a handful
+                  of dedicated individuals.
                 </p>
               </div>
             </div>
           </div>
-          {/* VISON AND MISSION SECTION */}
-
-          {/* <section className="vision-section"> */}
-          {/* <article>
-                <h2 className="vision"> Vision & Mission </h2> */}
-          {/* <p className="vision-details">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel
-                  quis fugiat ut, non ipsum veritatis nam minima magni
-                  doloremque, ratione maxime dignissimos nulla, autem nesciunt
-                  dolor tenetur obcaecati minus ex. Lorem ipsum dolor sit amet
-                  consectetur, adipisicing elit. Perspiciatis delectus,
-                  repudiandae, quos eligendi neque qui voluptas quam error eaque
-                  soluta minima corporis! Cum laboriosam deserunt quia
-                  reiciendis earum voluptatibus inventore.
-                </p> */}
-          {/* </article> */}
-          {/* </section> */}
+          <div className="about-history-details-div">
+            <p className="about-histoy-details">
+              In the early days, we faced numerous challenges and obstacles, but
+              our unwavering determination and commitment to excellence
+              propelled us forward. With each hurdle we overcame, we gained
+              valuable insights and experience that shaped our journey. As the
+              years passed, D'roid Technologies continued to grow and evolve,
+              expanding our team and refining our capabilities. We established
+              ourselves as pioneers in the software industry, known for our
+              innovative solutions and cutting-edge technologies. <br />
+              <br /> Throughout our journey, we've remained true to our core
+              values of integrity, innovation, and customer focus. We've forged
+              strong partnerships with clients and collaborators, earning their
+              trust and loyalty through our unwavering commitment to quality and
+              excellence. Today, as we reflect on our history, we're proud of
+              the milestones we've achieved and the obstacles we've overcome.
+              But our journey is far from over. As we look to the future, we're
+              excited to continue pushing the boundaries of possibility and
+              shaping the digital landscape for years to come."
+            </p>
+          </div>
           <div
             className="vision-marginbuttom"
             style={{ backgroundColor: getColor("backgroundColor") }}
@@ -98,34 +106,42 @@ const AboutUs: React.FunctionComponent = () => {
               style={{ backgroundColor: getColor("backgroundColor") }}
             >
               <h2 className="core-value-vision-header">Core Values</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, oo at inventore, aut laboriosam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                molestias pariatur et modi reprehenderit! Quidem fugiat,
-                voluptatum odio est debitis, at inventore, aut laboriosam.
-                Quidem fugiat, voluptatum odio est debitis, at inventore, aut
-                laboriosam. aut laboriosam.
-              </p>
+              <div className="core-values">
+                <div>
+                  <GiRosaShield />
+                  <h2 className="core-value-vision-header-small">Integtity</h2>
+                  <p className="about-histoy-details">
+                    At D'roid Technologies, integrity is the cornerstone of our
+                    operations. We are committed to conducting our business with
+                    the highest ethical standards, ensuring transparency,
+                    honesty, and accountability in all our interactions.
+                  </p>
+                </div>
+                <div>
+                  <FaGears />
+                  <h2 className="core-value-vision-header-small">Innovation</h2>
+                  <p className="about-histoy-details">
+                    At D'roid Technologies, innovation is at the heart of
+                    everything we do. We are committed to pushing the boundaries
+                    of technology to deliver groundbreaking solutions that drive
+                    progress and create new opportunities.
+                  </p>
+                </div>
+                <div>
+                  <RiCustomerService2Fill />
+                  <h2 className="core-value-vision-header-small">
+                    Customer Focus
+                  </h2>
+                  <p className="about-histoy-details">
+                    At D'roid Technologies, our customers are at the heart of
+                    everything we do. We are dedicated to understanding and
+                    anticipating your needs, delivering tailored solutions that
+                    drive success and satisfaction.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* OUR TEAM SECTION */}
-          {/* <div className="ourteam-marginbottom">
-            <section>
-              <article>
-                <h2 className="our-team"> Our Team </h2>
-                <p className="our-team-details">
-                  {" "}
-                  We are a team with young & enthusiastic developers and
-                  designers who is passionate about their feild of study.
-                </p>
-              </article>
-            </section> */}
-          {/* OUR TEAM PROFILE IMAGES */}
-          {/* </div> */}
-          {/* END OF OUR TEAM */}
         </div>
       </div>
     </>
