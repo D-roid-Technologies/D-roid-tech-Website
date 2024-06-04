@@ -30,9 +30,9 @@ const Contact: React.FunctionComponent = () => {
   const onFailedTitle = "Failed";
   const onSuccessBody = (
     <>
-      <p> D'roid Website </p>
-      <p> Drone Services</p>
-      <p> Equipment </p>
+      <p> Name </p>
+      <p> Email</p>
+      <p> Testimony </p>
     </>
   );
   const onFailedBody =
