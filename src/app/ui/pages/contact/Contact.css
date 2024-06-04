@@ -160,6 +160,32 @@ textarea {
   color: #ffffff;
   margin-left: 10px;
 }
+/* TESTIMONIAL SECTION */
+.equip-margin-bt {
+  margin-bottom: 10px;
+}
+.contact-testimonial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.contact-testimonial-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 20%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact-testimonial-btn:hover {
+  transform: scale(1.1);
+  background-color: #737458;
+}
+.icon-style {
+  color: #ffffff;
+  margin-left: 10px;
+}
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

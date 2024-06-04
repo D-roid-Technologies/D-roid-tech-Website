@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import cropMonitoring from "../../../images/png/cropmonitoring3.png";
 import { useSelector } from "react-redux";
 import { RootState, store } from "../../../redux/Store";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaSeedling } from "react-icons/fa";
 import {
   updateModal,
   updateModalContent,
@@ -21,8 +21,13 @@ import { LiaToolsSolid } from "react-icons/lia";
 import { MdOndemandVideo } from "react-icons/md";
 import { MdAgriculture } from "react-icons/md";
 import { GiArchBridge } from "react-icons/gi";
+import { FaPhotoVideo } from "react-icons/fa";
+import { FcSurvey } from "react-icons/fc";
+import { VscInspect } from "react-icons/vsc";
 // import { GiJapaneseBridge } from "react-icons/gi";
 import Slider from "react-slick";
+import { RiSurveyLine } from "react-icons/ri";
+import { LuInspect } from "react-icons/lu";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   const [isTextHidden, setIsTextHidden] = useState(false);
@@ -124,6 +129,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         title="Learn more"
                         color="white"
                         fWeight={800}
+                        icon={<FaPhotoVideo className="style-home-icon" />}
                         onClickButton={() => {
                           navigate("/contact");
                         }}
@@ -152,6 +158,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         title="Learn more"
                         color="white"
                         fWeight={800}
+                        icon={<RiSurveyLine className="style-home-icon" />}
                         onClickButton={() => {
                           navigate("/contact");
                         }}
@@ -187,6 +194,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         title="Learn more"
                         color="white"
                         fWeight={800}
+                        icon={<LuInspect className="style-home-icon" />}
                         onClickButton={() => {
                           navigate("/contact");
                         }}
@@ -216,6 +224,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         title="Learn more"
                         color="white"
                         fWeight={800}
+                        icon={<FaSeedling className="style-home-icon" />}
                         onClickButton={() => {
                           navigate("/contact");
                         }}

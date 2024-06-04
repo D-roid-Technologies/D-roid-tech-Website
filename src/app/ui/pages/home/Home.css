@@ -178,8 +178,7 @@
     font-family: "Courier New", Courier, monospace !important;
     width: 100%;
     transition: transform 0.3s ease-in-out;
-    /* margin-top: -100px; */
-    width: 100%;
+    /* width: 100%; */
   }
   .See-our-product:hover {
     transform: scale(1.1);
