@@ -61,7 +61,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               — Mark Ettan, Founder, LEADPAC Foundation
             </p>
           </div>
-          <div className="contact-us">
+          <div className="contact-uss">
             <div className="contactuss-button">
               <Button
                 bgColor={getColor("basic")}

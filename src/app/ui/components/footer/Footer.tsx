@@ -9,6 +9,7 @@ import AppInput from "../textInput/AppInput";
 import Button from "../button/Button";
 import { FaWhatsapp } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
+import { FaBell } from "react-icons/fa";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 
 const Footer: React.FunctionComponent = () => {
@@ -79,6 +80,7 @@ const Footer: React.FunctionComponent = () => {
             mRight={0}
             color={getColor("light")}
             fWeight={600}
+            icon={<FaBell className="style-home-icon" />}
             onClickButton={() => {}}
           />
         </div>
