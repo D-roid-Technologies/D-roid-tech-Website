@@ -24,12 +24,18 @@ import { GiArchBridge } from "react-icons/gi";
 import { FaPhotoVideo } from "react-icons/fa";
 import { FcSurvey } from "react-icons/fc";
 import { VscInspect } from "react-icons/vsc";
-// import { GiJapaneseBridge } from "react-icons/gi";
 import Slider from "react-slick";
 import { RiSurveyLine } from "react-icons/ri";
 import { LuInspect } from "react-icons/lu";
+import { RiPlantLine } from "react-icons/ri";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
+  //hidden text
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const toggleContent = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+  //End of hidden text
   const [isTextHidden, setIsTextHidden] = useState(false);
   const appEntry = useSelector((state: RootState) => state.appEntry);
   // console.log(companyBanner);
@@ -92,18 +98,43 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         <section className="drone-approach-main">
           <h1 className="droneapproach-head">OUR APPROACH</h1>
           <ul className="droneapproach-item">
-            {DATA.droneApproach.map((item, index) => (
-              <li className="droneapproach-list" key={index}>
+            {DATA.droneApproach.map((item, index) => {
+              const isExpanded = expandedIndex === index;
+              const content = isExpanded
+                ? item.content
+                : item.content.substring(0, 100) + "...";
+              return (
+                <li className="droneapproach-list" key={index}>
+                  <h2>{item.title}</h2>
+                  <p>{content}</p>
+                  <button
+                    className="list-button"
+                    onClick={() => toggleContent(index)}
+                  >
+                    {isExpanded ? "Show less" : "Learn more"}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+        {/* <section className="drone-approach-main">
+          <h1 className="droneapproach-head">OUR APPROACH</h1>
+          <ul className="droneapproach-item">
+            {DATA.droneApproach.map((item, index) => {
+              const isExpanded = expandedIndex === index;
+          const content = isExpanded ? item.content : item.content.substring(0, 100) + '...';
+           return (
+             <li className="droneapproach-list" key={index}>
                 <h2>{item.title}</h2>
                 <p>{item.content}</p>
-                <span className="list-button">{item.Button}</span>
-                {/* <button onClick={() => setIsTextHidden(!isTextHidden)}>
-                  Toggle Text
-                </button> */}
+                <button className="list-button" onClick={() => toggleContent(index)}>
+                {isExpanded ? 'SHOW LESS' : 'LEARN MORE'}
+              </button>
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
         {/*  Featured Drone Service section*/}
         <section className="ft-drone-service">
           <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
@@ -232,7 +263,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                     </div>
                   </div>
                   <div className="monitoring-container">
-                    <MdAgriculture className="map" />
+                    <RiPlantLine className="map" />
                   </div>
                 </li>
               ))}
