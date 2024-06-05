@@ -19,6 +19,8 @@ import { FaPeopleRoof } from "react-icons/fa6";
 import { PiDesktopTowerFill } from "react-icons/pi";
 import { GiSpiderWeb } from "react-icons/gi";
 import { MdAddCall } from "react-icons/md";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -53,14 +55,26 @@ const Home: React.FunctionComponent = () => {
         <div className="home-main">
           <div className="home">
             <div>
-              <article className="home-content">
+              <motion.article
+                variants={fadeIn("up", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.7 }}
+                className="home-content"
+              >
                 <p className="home-heading">
                   WE TURN YOUR IDEA
                   <br />
                   INTO REALITY
                 </p>
-              </article>
-              <div className="product-button">
+              </motion.article>
+              <motion.div
+                variants={fadeIn("left", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.3 }}
+                className="product-button"
+              >
                 <div className="See-our-product">
                   <Button
                     bgColor={Assets.colors.substitute}
@@ -82,12 +96,18 @@ const Home: React.FunctionComponent = () => {
                     // }}
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
-      <div className="home-middle-banner">
+      <motion.div
+        variants={fadeIn("right", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }}
+        className="home-middle-banner"
+      >
         <div className="home-middle-one">
           <FaMobileRetro className="home-middle-one-icon" />
           <p className="home-middle-one-p">Android / IOS App Development</p>
@@ -104,7 +124,7 @@ const Home: React.FunctionComponent = () => {
           <GiSpiderWeb className="home-middle-one-icon" />
           <p className="home-middle-one-p">Web App Development</p>
         </div>
-      </div>
+      </motion.div>
       <AboutSection />
       <CustomerFeedBack />
     </div>

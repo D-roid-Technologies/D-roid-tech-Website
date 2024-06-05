@@ -16,6 +16,8 @@ import {
 } from "../../../../redux/slices/AppEntrySlice";
 import { DATA } from "../../../../utils/constant/Data";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../../utils/constant/Variants";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -39,7 +41,12 @@ const CustomerFeedBack: React.FunctionComponent = () => {
   return (
     <div className="customerfeedback-main">
       <div className="customer-testimonials">
-        <div>
+        <motion.div
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+        >
           {/* CONTENT */}
 
           <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
@@ -80,10 +87,16 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       {/* SECTION FOUR */}
-      <div className="section-four">
+      <motion.div
+        variants={fadeIn("right", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.3 }}
+        className="section-four"
+      >
         {/* CONTACT US SECTION */}
         <div className="cont-main">
           <h1 className="heading"> CONTACT US </h1>
@@ -142,7 +155,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             </div>
           </article>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
