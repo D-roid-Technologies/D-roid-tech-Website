@@ -140,6 +140,7 @@
   color: rgb(124, 124, 124);
 }
 .drone-video-btn {
+  font-family: "Mazzard";
   margin-top: 2em;
   width: 40%;
   transition: transform 0.3s ease-in-out;

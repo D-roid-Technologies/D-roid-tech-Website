@@ -26,6 +26,8 @@ import { IoMdCart } from "react-icons/io";
 import Button from "../../components/button/Button";
 import { FcCustomerSupport } from "react-icons/fc";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const Animation: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -83,12 +85,19 @@ const Animation: React.FunctionComponent = () => {
   const mapThroughIconData = () => {
     return icon_data.map((i, j: number) => {
       return (
-        <div className="product-bottom-list" key={j}>
+        <motion.div
+          variants={fadeIn("left", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="product-bottom-list"
+          key={j}
+        >
           <div className="product-bottom-inner">
             {i.icon}
             <p className="product-bottom-title bounce">{i.title}</p>
           </div>
-        </div>
+        </motion.div>
       );
     });
   };
@@ -125,14 +134,20 @@ const Animation: React.FunctionComponent = () => {
         style={{ backgroundColor: Assets.colors.substitute }}
       >
         <div className="products-banner-inner">
-          <div className="products-banner-desc">
+          <motion.div
+            variants={fadeIn("up", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="products-banner-desc"
+          >
             <h1 className="products-header">AWESOME PRODUCTS / TEMPLATES</h1>
             <p className="product-p">
               Explore a curated selection of top-notch products and customizable
               templates designed to elevate your projects and streamline your
               workflow.
             </p>
-          </div>
+          </motion.div>
           <div>
             <FaGrinStars className="product-cart" />
           </div>
@@ -140,14 +155,41 @@ const Animation: React.FunctionComponent = () => {
         <div className="product-bottom-banner">{mapThroughIconData()}</div>
       </div>
       <div className="our-catalog">
-        <h1 className="our-catalog-header">Our Catalog</h1>
-        <div className="our-catalog-map">{mapThroughCatalogData()}</div>
+        <motion.h1
+          variants={fadeIn("right", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="our-catalog-header"
+        >
+          Our Catalog
+        </motion.h1>
+        <motion.div
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="our-catalog-map"
+        >
+          {mapThroughCatalogData()}
+        </motion.div>
       </div>
       <div className="choose-us-product">
-        <div>
+        <motion.div
+          variants={fadeIn("right", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+        >
           <FcCustomerSupport className="our-catalog-icon" />
-        </div>
-        <div className="our-catalog-right">
+        </motion.div>
+        <motion.div
+          variants={fadeIn("left", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="our-catalog-right"
+        >
           <h1 className="our-catalog-header">Why our Clients choose us?</h1>
           <ol>
             <li className="product-p">
@@ -177,7 +219,7 @@ const Animation: React.FunctionComponent = () => {
               ensuring that you get the best possible value for your investment.
             </li>
           </ol>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
