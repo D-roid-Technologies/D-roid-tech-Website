@@ -116,14 +116,23 @@ const Contact: React.FunctionComponent = () => {
                     </div>
                   </div>
                   <section className="icon-section">
+                    {/* <a href={DATA.socialLinks.twitter} target="_blank">
+            <FaXTwitter className="logo-size " />
+          </a> */}
                     <div>
-                      <RiTwitterXFill className="form-icon" />
+                      <a href={DATA.socialLinks.twitter} target="_blank">
+                        <RiTwitterXFill className="form-icon" />
+                      </a>
                     </div>
                     <div>
-                      <FaInstagram className="form-icon" />
+                      <a href={DATA.socialLinks.instagram} target="_blank">
+                        <FaInstagram className="form-icon" />
+                      </a>
                     </div>
                     <div>
-                      <FaLinkedin className="form-icon" />
+                      <a href={DATA.socialLinks.linkedin} target="_blank">
+                        <FaLinkedin className="form-icon" />
+                      </a>
                     </div>
                   </section>
                 </div>
