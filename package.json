@@ -12,6 +12,8 @@
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
     "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "firebase": "^10.12.1",
     "framer-motion": "^11.2.10",
     "postcss-cli": "^11.0.0",
