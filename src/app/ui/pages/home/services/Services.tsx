@@ -140,6 +140,7 @@ const Services: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
+                  bRadiusColor={getColor('light')}
                   onClickButton={async () => {
                     const convertedPrices = await Promise.all(
                       service.prices.map(async (price) => {
