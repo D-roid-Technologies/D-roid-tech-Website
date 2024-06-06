@@ -56,7 +56,7 @@ const Home: React.FunctionComponent = () => {
           <div className="home">
             <div>
               <motion.article
-                variants={fadeIn("up", 0.2)}
+                variants={fadeIn("up", 0.3)}
                 initial="hidden"
                 whileInView={"show"}
                 viewport={{ once: false, amount: 0.7 }}
@@ -69,10 +69,10 @@ const Home: React.FunctionComponent = () => {
                 </p>
               </motion.article>
               <motion.div
-                variants={fadeIn("left", 0.2)}
+                variants={fadeIn("up", 0.2)}
                 initial="hidden"
                 whileInView={"show"}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.7 }}
                 className="product-button"
               >
                 <div className="See-our-product">
@@ -105,7 +105,7 @@ const Home: React.FunctionComponent = () => {
         variants={fadeIn("right", 0.2)}
         initial="hidden"
         whileInView={"show"}
-        viewport={{ once: false, amount: 0.7 }}
+        viewport={{ once: false, amount: 0.3 }}
         className="home-middle-banner"
       >
         <div className="home-middle-one">

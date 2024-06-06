@@ -42,7 +42,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
     <div className="customerfeedback-main">
       <div className="customer-testimonials">
         <motion.div
-          variants={fadeIn("up", 0.2)}
+          variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.7 }}
@@ -91,7 +91,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
       </div>
       {/* SECTION FOUR */}
       <motion.div
-        variants={fadeIn("right", 0.2)}
+        variants={fadeIn("up", 0.2)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.3 }}

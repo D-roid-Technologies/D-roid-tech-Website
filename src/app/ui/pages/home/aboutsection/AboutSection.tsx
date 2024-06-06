@@ -129,7 +129,7 @@ const Section: React.FunctionComponent = () => {
       <div className="our-service-main">
         <div className="section-three">
           <motion.div
-            variants={fadeIn("up", 0.2)}
+            variants={fadeIn("left", 0.2)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.7 }}
