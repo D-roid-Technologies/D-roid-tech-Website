@@ -3,6 +3,8 @@ import NavBar from "../../components/navbar/NavBar";
 import "./Software.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const Software: React.FunctionComponent = () => {
   return (
@@ -78,10 +80,16 @@ const Software: React.FunctionComponent = () => {
         </div> */}
 
       {/* Technologies and Tools Section */}
-      <div className="technologies" style={{marginTop: "1rem"}}>
+      <div className="technologies" style={{ marginTop: "1rem" }}>
         <h1 className="training-approach-head">Technologies and Tools</h1>
         <ul className="training-approach-list">
-          <li className="training-approach-item">
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
             <div className="icon-container">
               <FaCode
                 style={{ fontSize: "3rem", color: Assets.colors.secondary }}
@@ -92,8 +100,14 @@ const Software: React.FunctionComponent = () => {
             <p className="paragraph">
               JavaScript, TypeScript, Python, Java, C#
             </p>
-          </li>
-          <li className="training-approach-item">
+          </motion.li>
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
             <div className="icon-container">
               <FaLaptopCode
                 style={{ fontSize: "3rem", color: Assets.colors.secondary }}
@@ -104,8 +118,14 @@ const Software: React.FunctionComponent = () => {
             <p className="paragraph">
               React.js, Angular, Vue.js, Node.js, Express.js
             </p>
-          </li>
-          <li className="training-approach-item">
+          </motion.li>
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
             <div className="icon-container">
               <FaDatabase
                 style={{ fontSize: "3rem", color: Assets.colors.secondary }}
@@ -114,8 +134,14 @@ const Software: React.FunctionComponent = () => {
             </div>
             <h2>Databases</h2>
             <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
-          </li>
-          <li className="training-approach-item">
+          </motion.li>
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
             <div className="icon-container">
               <FaLaptopCode
                 style={{ fontSize: "3rem", color: Assets.colors.secondary }}
@@ -126,7 +152,7 @@ const Software: React.FunctionComponent = () => {
             <p className="paragraph">
               Git, GitHub, Docker, AWS, Azure, Google Cloud
             </p>
-          </li>
+          </motion.li>
         </ul>
       </div>
     </div>
