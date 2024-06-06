@@ -11,6 +11,8 @@ import TechnologiesAndTools from "../../components/technologies/TechnologiesAndT
 import { FaLaptop } from "react-icons/fa";
 import { courses } from "../../../utils/constant/FeaturedTraining";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const photos: TrainingPhoto[] = [
   { image: Assets.images.staffBg, text: "Expert trainers available" },
@@ -107,7 +109,13 @@ const Training: React.FC = () => {
           >
             Featured Training Programs
           </h1>
-          <ul className="service-card-container">
+          <motion.ul
+            variants={fadeIn("up", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="service-card-container"
+          >
             {courses.map((course) => (
               <Card
                 key={course.id}
@@ -129,7 +137,7 @@ const Training: React.FC = () => {
                 }
               />
             ))}
-          </ul>
+          </motion.ul>
         </div>
       </div>
 

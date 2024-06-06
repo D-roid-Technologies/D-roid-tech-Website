@@ -1,6 +1,8 @@
 import React from "react";
 import { FaChalkboardTeacher, FaVideo, FaLaptopCode } from "react-icons/fa";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 type ToolItemProps = {
   title: string;
@@ -75,7 +77,13 @@ const TechnologiesAndTools: React.FC = () => {
   };
 
   return (
-    <div className="technologies">
+    <motion.div
+      variants={fadeIn("down", 0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.7 }}
+      className="technologies"
+    >
       <h1 style={styles.heading} className="training-approach-head">
         Technologies and Tools
       </h1>
@@ -89,7 +97,7 @@ const TechnologiesAndTools: React.FC = () => {
           />
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 
