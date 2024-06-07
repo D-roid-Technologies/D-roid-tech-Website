@@ -57,6 +57,7 @@
 .list-container {
   list-style: none;
   margin-bottom: 15px;
+  color: whitesmoke;
 }
 
 .list-container:hover {
