@@ -16,6 +16,8 @@ import {
   FaThumbsUp,
 } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const Equipments: React.FunctionComponent<any> = () => {
   const navigate = useNavigate();
@@ -47,10 +49,21 @@ const Equipments: React.FunctionComponent<any> = () => {
 
       {/* OUR SERVICES SECTION */}
       <div className="equip-main">
-        <div>
+        <motion.div
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+        >
           <h1 className="equip-header"> Our Services </h1>
-        </div>
-        <section className="margin-btm">
+        </motion.div>
+        <motion.section
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="margin-btm"
+        >
           <ul className="service-card-container">
             {courses.map((course) => (
               <Card
@@ -76,18 +89,29 @@ const Equipments: React.FunctionComponent<any> = () => {
               />
             ))}
           </ul>
-        </section>
+        </motion.section>
 
         {/* BENEFIT OF WORKING WITH US */}
         <section className="margin-btm">
           <div className="choose-us-product">
-            <div>
+            <motion.div
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.7 }}
+            >
               <FaHandshake
                 className="our-catalog-icon equip-icon"
                 // id="equip-icon"
               />
-            </div>
-            <div className="our-catalog-right">
+            </motion.div>
+            <motion.div
+              variants={fadeIn("left", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.7 }}
+              className="our-catalog-right"
+            >
               <h1 className="our-catalog-header">
                 Benefits of Working with Us
               </h1>
@@ -114,10 +138,16 @@ const Equipments: React.FunctionComponent<any> = () => {
                   you get the best value for your investment.
                 </li>
               </ol>
-            </div>
+            </motion.div>
           </div>
         </section>
-        <section className="margin-btm">
+        <motion.section
+          variants={fadeIn("right", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="margin-btm"
+        >
           <div>
             <h1 className="contact-header"> Contact Us</h1>
             <p className="equip-contact-details">
@@ -145,7 +175,7 @@ const Equipments: React.FunctionComponent<any> = () => {
               />
             </div>
           </div>
-        </section>
+        </motion.section>
       </div>
     </main>
   );

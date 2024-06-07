@@ -28,6 +28,8 @@ import Slider from "react-slick";
 import { RiSurveyLine } from "react-icons/ri";
 import { LuInspect } from "react-icons/lu";
 import { RiPlantLine } from "react-icons/ri";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   //hidden text
@@ -95,7 +97,13 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
       </div>
       {/* OUR APPROACH SECTION */}
       <div className="bg-color">
-        <section className="drone-approach-main">
+        <motion.section
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="drone-approach-main"
+        >
           <h1 className="droneapproach-head">OUR APPROACH</h1>
           <ul className="droneapproach-item">
             {DATA.droneApproach.map((item, index) => {
@@ -117,7 +125,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               );
             })}
           </ul>
-        </section>
+        </motion.section>
         {/* <section className="drone-approach-main">
           <h1 className="droneapproach-head">OUR APPROACH</h1>
           <ul className="droneapproach-item">
@@ -137,17 +145,36 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         </section> */}
         {/*  Featured Drone Service section*/}
         <section className="ft-drone-service">
-          <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
+          <motion.h1
+            variants={fadeIn("down", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="featured-head"
+          >
+            FEATURED DRONE SERVICES
+          </motion.h1>
           {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
           <section className="videography-main">
             <ul className="droneapproach-details">
               {DATA.FeaturedDroneServices.map((item, index) => (
                 <li className="droneapproach-services" key={index}>
-                  <figure>
+                  <motion.figure
+                    variants={fadeIn("right", 0.2)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                  >
                     <video controls src={item.video} className="video-size" />
                     {/* <MdOndemandVideo className="map" /> */}
-                  </figure>
-                  <div className="video-details">
+                  </motion.figure>
+                  <motion.div
+                    variants={fadeIn("left", 0.2)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                    className="video-details"
+                  >
                     <h2 className="video-heading">{item.title}</h2>
                     <p className="drone-text">{item.content}</p>
                     <div className="drone-video-btn">
@@ -166,7 +193,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         }}
                       />
                     </div>
-                  </div>
+                  </motion.div>
                 </li>
               ))}
             </ul>
@@ -176,7 +203,13 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             <ul className="mapping-ul">
               {DATA.MappingSurveying.map((item, index) => (
                 <li className="mappping-services" key={index}>
-                  <div className="mapping-text">
+                  <motion.div
+                    variants={fadeIn("right", 0.2)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                    className="mapping-text"
+                  >
                     <h2 className="mapping-heading">{item.title}</h2>
                     <p className="drone-text">{item.content}</p>
                     <div className="video-btn">
@@ -195,16 +228,28 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         }}
                       />
                     </div>
-                  </div>
-                  <div className="maping-container">
+                  </motion.div>
+                  <motion.div
+                    variants={fadeIn("left", 0.2)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                    className="maping-container"
+                  >
                     <FaMapMarkerAlt className="map" />
-                  </div>
+                  </motion.div>
                 </li>
               ))}
             </ul>
           </section>
           {/* Infrastructure Inspection */}
-          <section className="infrastructure">
+          <motion.section
+            variants={fadeIn("up", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="infrastructure"
+          >
             <ul className="infrastructure-ul">
               {DATA.InfrastructureInspection.map((item, index) => (
                 <li className="infrastructure-services" key={index}>
@@ -235,10 +280,16 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 </li>
               ))}
             </ul>
-          </section>
+          </motion.section>
 
           {/* Crop Monitoring & Agricultur */}
-          <section className="cropmonitoring">
+          <motion.section
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="cropmonitoring"
+          >
             <ul className="cropmonitoring-ul">
               {DATA.CropMonitoringAgriculture.map((item, index) => (
                 <li className="cropmonitoring-services" key={index}>
@@ -269,14 +320,20 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               ))}
             </ul>
             {/* </div> */}
-          </section>
+          </motion.section>
         </section>
         {/* TECHNOLOGIES AND EQUIPMENT */}
         <section className="techandequipment">
           <h1 className="tech-heading">Technologies and Equipment </h1>
           {/* drone-model */}
           <div className="drone-camera-software">
-            <div className="tools">
+            <motion.div
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.7 }}
+              className="tools"
+            >
               <ul>
                 {DATA.DroneModels.map((item, index) => (
                   <li className="mappping-services" key={index}>
@@ -288,9 +345,15 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
             {/* Camera & Sensors */}
-            <div className="tools">
+            <motion.div
+              variants={fadeIn("down", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.7 }}
+              className="tools"
+            >
               <ul>
                 {DATA.CamerasSensors.map((item, index) => (
                   <li className="mappping-services" key={index}>
@@ -302,9 +365,15 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
             {/* Software Tools */}
-            <div className="tools">
+            <motion.div
+              variants={fadeIn("left", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.7 }}
+              className="tools"
+            >
               <ul>
                 {DATA.SoftwareTools.map((item, index) => (
                   <li className="mappping-services" key={index}>
@@ -316,7 +385,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
         </section>
         {/* CUSTOMER FEED BACK */}
