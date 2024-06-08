@@ -77,7 +77,7 @@ const CourseDetail: React.FunctionComponent = () => {
                     mTop={10}
                     mBottom={0}
                     bRadius={10}
-                    bRadiusColor={Assets.colors.light}
+                    bRadiusColor={getColor('light')}
                   />
                 }
                 actions2={
@@ -91,7 +91,7 @@ const CourseDetail: React.FunctionComponent = () => {
                     mTop={20}
                     mBottom={0}
                     bRadius={10}
-                    bRadiusColor={Assets.colors.light}
+                    bRadiusColor={getColor('light')}
                   />
                 }
               />
