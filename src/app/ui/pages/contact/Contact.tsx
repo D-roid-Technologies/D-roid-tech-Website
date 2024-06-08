@@ -15,12 +15,12 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
 import testimonialbackgroundImage from "../../../images/png/customerfeedback2.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
-import { updateModal } from "../../../redux/slices/AppEntrySlice";
+import { updateModal, updateModalContent } from "../../../redux/slices/AppEntrySlice";
 
 const Contact: React.FunctionComponent = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const appEntry = useSelector((state: RootState) => state.appEntry);
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
@@ -42,9 +42,6 @@ const Contact: React.FunctionComponent = () => {
     "Inquiry on Drone Services",
     "Inquiry on Knowledge City",
   ];
-  function dispatch(arg0: any) {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <>
@@ -231,7 +228,7 @@ const Contact: React.FunctionComponent = () => {
                   title="Submit"
                   color="#ffffff"
                   icon={<FaArrowRightToBracket className="icon-style" />}
-                  onClickButton={() => {}}
+                  onClickButton={() => { }}
                 />
               </div>
             </div>
@@ -257,6 +254,12 @@ const Contact: React.FunctionComponent = () => {
               color="#ffffff"
               icon={<FaArrowRightToBracket className="icon-style" />}
               onClickButton={() => {
+                dispatch(
+                  updateModalContent({
+                    appTitle: "Send Testimonials",
+                    appBody: "<h1>Now working</h1>"
+                  })
+                )
                 dispatch(updateModal(true));
               }}
             />
