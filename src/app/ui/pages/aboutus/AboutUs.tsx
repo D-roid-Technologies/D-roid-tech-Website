@@ -6,6 +6,8 @@ import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { FaGears } from "react-icons/fa6";
 import { GiRosaShield } from "react-icons/gi";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const AboutUs: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -17,14 +19,26 @@ const AboutUs: React.FunctionComponent = () => {
         <div className="about-main">
           <div className="aboutus-marginbutton">
             <div className="section-one">
-              <div className="coding-image">
+              <motion.div
+                variants={fadeIn("right", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.7 }}
+                className="coding-image"
+              >
                 <img
                   src={Assets.images.companyLogoNoBg}
                   alt="codingImage"
                   className="image-sized"
                 />
-              </div>
-              <div className="about-history">
+              </motion.div>
+              <motion.div
+                variants={fadeIn("left", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.7 }}
+                className="about-history"
+              >
                 <p className="about-history-heading"> Our History</p>
                 <p className="about-histoy-details">
                   D'roid Technologies traces its roots back to 2015, when
@@ -34,10 +48,16 @@ const AboutUs: React.FunctionComponent = () => {
                   company was born in a small office space with just a handful
                   of dedicated individuals.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
-          <div className="about-history-details-div">
+          <motion.div
+            variants={fadeIn("up", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="about-history-details-div"
+          >
             <p className="about-histoy-details">
               In the early days, we faced numerous challenges and obstacles, but
               our unwavering determination and commitment to excellence
@@ -57,13 +77,19 @@ const AboutUs: React.FunctionComponent = () => {
               excited to continue pushing the boundaries of possibility and
               shaping the digital landscape for years to come."
             </p>
-          </div>
+          </motion.div>
           <div
             className="vision-marginbuttom"
             style={{ backgroundColor: getColor("backgroundColor") }}
           >
             <section>
-              <div className="vision-mission-value">
+              <motion.div
+                variants={fadeIn("left", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.7 }}
+                className="vision-mission-value"
+              >
                 {/* BOX ONE */}
                 <div className="vision-main">
                   <div className="vision-box">
@@ -95,7 +121,7 @@ const AboutUs: React.FunctionComponent = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </section>
           </div>
 
@@ -107,7 +133,12 @@ const AboutUs: React.FunctionComponent = () => {
             >
               <h2 className="core-value-vision-header">Core Values</h2>
               <div className="core-values">
-                <div>
+                <motion.div
+                  variants={fadeIn("right", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.7 }}
+                >
                   <GiRosaShield />
                   <h2 className="core-value-vision-header-small">Integtity</h2>
                   <p className="about-histoy-details">
@@ -116,8 +147,13 @@ const AboutUs: React.FunctionComponent = () => {
                     the highest ethical standards, ensuring transparency,
                     honesty, and accountability in all our interactions. This is new.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                  variants={fadeIn("down", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.7 }}
+                >
                   <FaGears />
                   <h2 className="core-value-vision-header-small">Innovation</h2>
                   <p className="about-histoy-details">
@@ -126,8 +162,13 @@ const AboutUs: React.FunctionComponent = () => {
                     of technology to deliver groundbreaking solutions that drive
                     progress and create new opportunities.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                  variants={fadeIn("left", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.7 }}
+                >
                   <RiCustomerService2Fill />
                   <h2 className="core-value-vision-header-small">
                     Customer Focus
@@ -138,7 +179,7 @@ const AboutUs: React.FunctionComponent = () => {
                     anticipating your needs, delivering tailored solutions that
                     drive success and satisfaction.
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>

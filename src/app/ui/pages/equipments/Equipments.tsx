@@ -56,7 +56,6 @@ const Equipments: React.FunctionComponent<any> = () => {
               <Card
                 key={course.id}
                 title={course.title}
-                // trainings={course.trainings}
                 image="https://via.placeholder.com/300x200"
                 content={course.trainings}
                 actions={

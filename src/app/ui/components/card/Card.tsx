@@ -44,7 +44,7 @@ const Card: React.FunctionComponent<CardProps> = ({
         )}
         {subtitle && <p className="card__subtitle">{subtitle}</p>}
         {content && <div className="paragraph">{truncatedContent}</div>}
-        {actions && <div className="card__actions">{actions}</div>}
+        {actions && <div className="card__actions" style={{marginTop: "1rem"}}>{actions}</div>}
         {actions2 && <div className="card__actions">{actions2}</div>}
       </div>
     </div>

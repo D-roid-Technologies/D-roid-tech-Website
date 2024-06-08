@@ -84,13 +84,15 @@
   margin-bottom: 1em;
 }
 .list-button {
+  background-color: transparent;
+  border: none;
   color: #12d6d6;
   font-weight: 700;
   font-family: "Rammetto One";
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease-in-out;
 }
 .list-button:hover {
-  color: #232e35;
+  transform: scale(1.1);
   cursor: pointer;
 }
 /* FEATURED DRONE SERVICE */
@@ -138,8 +140,13 @@
   color: rgb(124, 124, 124);
 }
 .drone-video-btn {
+  font-family: "Mazzard";
   margin-top: 2em;
   width: 40%;
+  transition: transform 0.3s ease-in-out;
+}
+.drone-video-btn:hover {
+  transform: scale(1.1);
 }
 .map {
   width: 300px;
@@ -181,10 +188,16 @@
   height: 300px;
   color: #282a94;
 }
+
 .video-btn {
   margin-top: 2em;
   width: 35%;
+  transition: transform 0.3s ease-in-out;
 }
+.video-btn:hover {
+  transform: scale(1.1);
+}
+
 /* Infrastructure Inspection */
 .infrastructure {
   margin-bottom: 50px;

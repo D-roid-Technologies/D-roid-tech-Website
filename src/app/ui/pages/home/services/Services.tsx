@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NavBar from "../../../components/navbar/NavBar";
 import "./Services.css";
 import {
@@ -17,14 +17,14 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import { useDispatch } from "react-redux";
-import { getUserLocation } from "../../../../utils/locationUtils";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
+import { convertToCurrency } from "../../../../utils/currencyUtils";
 
 type Service = {
   title: string;
   description: string;
   icon: React.ReactNode;
-  prices: string[];
+  prices: { name: string; price: number }[];
 };
 
 const services: Service[] = [
@@ -34,10 +34,10 @@ const services: Service[] = [
       "Our software development services cover both mobile and web applications. We specialize in creating responsive, high-performance applications using modern technologies such as React Native, React.js, HTML, CSS, TypeScript, and JavaScript. Whether you need a custom web application or a cross-platform mobile app, we deliver solutions that meet your business requirements.",
     icon: <FaLaptopCode size={48} color={Assets.colors.primary} />,
     prices: [
-      "Basic Web Application: £1,000 - £5,000",
-      "Complex Web Application: £5,000 - £25,000",
-      "Simple Mobile App: £3,000 - £10,000",
-      "Advanced Mobile App: £15,000 - £50,000",
+      { name: "Basic Web Application", price: 1000 },
+      { name: "Complex Web Application", price: 5000 },
+      { name: "Simple Mobile App", price: 3000 },
+      { name: "Advanced Mobile App", price: 15000 },
     ],
   },
   {
@@ -46,9 +46,9 @@ const services: Service[] = [
       "Our animation creation services bring your ideas to life with stunning visuals. We produce high-quality animations for various purposes, including marketing, educational content, and entertainment. Our team works closely with you to understand your vision and deliver animations that captivate your audience.",
     icon: <FaVideo size={48} color={Assets.colors.primary} />,
     prices: [
-      "Short Animation (up to 1 minute): £1,000 - £3,000",
-      "Medium Animation (1-3 minutes): £3,000 - £7,000",
-      "Long Animation (over 3 minutes): £7,000 - £15,000",
+      { name: "Short Animation (up to 1 minute)", price: 1000 },
+      { name: "Medium Animation (1-3 minutes)", price: 3000 },
+      { name: "Long Animation (over 3 minutes)", price: 7000 },
     ],
   },
   {
@@ -57,9 +57,9 @@ const services: Service[] = [
       "We offer comprehensive tech training programs designed to enhance your team's skills and keep them up-to-date with the latest technologies. Our training sessions cover various topics such as software development, cybersecurity, data analytics, and more, delivered by industry experts.",
     icon: <FaRobot size={48} color={Assets.colors.primary} />,
     prices: [
-      "One-Day Workshop: £500 - £1,500",
-      "Week-Long Course: £2,000 - £5,000",
-      "Customized Training Program: £5,000 - £15,000",
+      { name: "One-Day Workshop", price: 500 },
+      { name: "Week-Long Course", price: 2000 },
+      { name: "Customized Training Program", price: 5000 },
     ],
   },
   {
@@ -68,9 +68,9 @@ const services: Service[] = [
       "Our professional drone services include aerial photography, videography, surveying, and inspection. We use state-of-the-art drones and technology to capture high-resolution images and videos, providing valuable insights for various industries such as real estate, construction, and agriculture.",
     icon: <FaPlane size={48} color={Assets.colors.primary} />,
     prices: [
-      "Aerial Photography Session: £500 - £2,000",
-      "Aerial Videography Session: £1,000 - £3,000",
-      "Surveying and Inspection: £2,000 - £5,000",
+      { name: "Aerial Photography Session", price: 500 },
+      { name: "Aerial Videography Session", price: 1000 },
+      { name: "Surveying and Inspection", price: 2000 },
     ],
   },
   {
@@ -79,9 +79,9 @@ const services: Service[] = [
       "We provide expert equipment setup services, ensuring your technology infrastructure is installed correctly and efficiently. Our services include setting up computers, networks, servers, and other IT equipment, tailored to meet the specific needs of your business.",
     icon: <FaDesktop size={48} color={Assets.colors.primary} />,
     prices: [
-      "Basic Equipment Setup: £500 - £1,500",
-      "Advanced Equipment Setup: £2,000 - £5,000",
-      "Full Office Setup: £5,000 - £15,000",
+      { name: "Basic Equipment Setup", price: 500 },
+      { name: "Advanced Equipment Setup", price: 2000 },
+      { name: "Full Office Setup", price: 5000 },
     ],
   },
 ];
@@ -89,19 +89,6 @@ const services: Service[] = [
 const Services: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const { getColor } = useThemeColor();
-
-  useEffect(() => {
-    const fetchUserLocation = async () => {
-      try {
-        const { latitude, longitude } = await getUserLocation();
-        console.log("User location:", latitude, longitude);
-      } catch (error) {
-        console.error("Error fetching user location:", error);
-      }
-    };
-
-    fetchUserLocation();
-  }, []);
 
   return (
     <div>
@@ -114,7 +101,9 @@ const Services: React.FunctionComponent = () => {
       >
         <div className="home-section">
           <article className="home-content">
-            <p className="home-heading" style={{color: getColor("light")}}>OUR SERVICES</p>
+            <p className="home-heading" style={{ color: getColor("light") }}>
+              OUR SERVICES
+            </p>
           </article>
         </div>
       </div>
@@ -151,15 +140,25 @@ const Services: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  onClickButton={() => {
+                  bRadiusColor={getColor('light')}
+                  onClickButton={async () => {
+                    const convertedPrices = await Promise.all(
+                      service.prices.map(async (price) => {
+                        const convertedAmount = await convertToCurrency(
+                          price.price
+                        );
+                        return `${price.name}: ${convertedAmount}`;
+                      })
+                    );
+
                     dispatch(
                       updateModalContent({
                         appTitle: service.title,
                         appBody: `
                           <div class="modal-content">
                             <p>${service.description}</p>
-                            <ul>
-                              ${service.prices
+                            <ul style="list-style: none;">
+                              ${convertedPrices
                                 .map((price) => `<li>${price}</li>`)
                                 .join("")}
                             </ul>
