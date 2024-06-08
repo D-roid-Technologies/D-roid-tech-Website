@@ -74,13 +74,13 @@ const Equipments: React.FunctionComponent<any> = () => {
                 actions={
                   <Button
                     title="See More Details"
-                    bgColor="#000000"
+                    bgColor="#282a94"
                     color="#ffffff"
                     mTop={0}
                     mBottom={0}
                     mLeft={0}
                     mRight={0}
-                    bRadiusColor="#FFFFFF"
+                    bRadiusColor="#000000"
                     onClickButton={() => {
                       navigate("/contact");
                     }}
