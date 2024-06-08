@@ -1,5 +1,7 @@
-import React from 'react';
+import React from "react";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 type ApproachItem = {
   title: string;
@@ -9,20 +11,24 @@ type ApproachItem = {
 const approachItems: ApproachItem[] = [
   {
     title: "Customized Curriculum",
-    description: "We understand that every learner is unique, which is why we tailor our training programs to meet the specific needs and goals of each participant. Our experienced instructors work closely with learners to develop personalized learning plans that align with their interests and career aspirations."
+    description:
+      "We understand that every learner is unique, which is why we tailor our training programs to meet the specific needs and goals of each participant. Our experienced instructors work closely with learners to develop personalized learning plans that align with their interests and career aspirations.",
   },
   {
     title: "Hands-on Learning",
-    description: "We believe in learning by doing, which is why our training courses emphasize practical, hands-on experience. Participants have the opportunity to apply their knowledge in real-world projects and exercises, gaining valuable skills that are immediately applicable in the workplace."
+    description:
+      "We believe in learning by doing, which is why our training courses emphasize practical, hands-on experience. Participants have the opportunity to apply their knowledge in real-world projects and exercises, gaining valuable skills that are immediately applicable in the workplace.",
   },
   {
     title: "Expert Instructors",
-    description: "Our instructors are industry experts with years of experience in their respective fields. They bring a wealth of knowledge and practical insights to the classroom, providing learners with valuable guidance and mentorship throughout their training journey."
+    description:
+      "Our instructors are industry experts with years of experience in their respective fields. They bring a wealth of knowledge and practical insights to the classroom, providing learners with valuable guidance and mentorship throughout their training journey.",
   },
   {
     title: "Flexible Learning Options",
-    description: "Whether you prefer in-person instruction, online classes, or self-paced learning modules, we offer flexible learning options to accommodate your schedule and learning preferences. Our goal is to make quality tech training accessible to everyone, no matter where they are located."
-  }
+    description:
+      "Whether you prefer in-person instruction, online classes, or self-paced learning modules, we offer flexible learning options to accommodate your schedule and learning preferences. Our goal is to make quality tech training accessible to everyone, no matter where they are located.",
+  },
 ];
 
 type TrainingApproachItemProps = {
@@ -36,22 +42,36 @@ type TrainingApproachItemProps = {
   getColor: (colorName: string) => string;
 };
 
-const TrainingApproachItem: React.FC<TrainingApproachItemProps> = ({ title, description, styles, getColor }) => {
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-    (e.currentTarget as HTMLHeadingElement).style.color = getColor('secondary');
+const TrainingApproachItem: React.FC<TrainingApproachItemProps> = ({
+  title,
+  description,
+  styles,
+  getColor,
+}) => {
+  const handleMouseEnter = (
+    e: React.MouseEvent<HTMLHeadingElement, MouseEvent>
+  ) => {
+    (e.currentTarget as HTMLHeadingElement).style.color = getColor("secondary");
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-    (e.currentTarget as HTMLHeadingElement).style.color = getColor('basic');
+  const handleMouseLeave = (
+    e: React.MouseEvent<HTMLHeadingElement, MouseEvent>
+  ) => {
+    (e.currentTarget as HTMLHeadingElement).style.color = getColor("basic");
   };
 
   return (
     <li style={styles.trainingApproachItem}>
-      <h2 style={styles.title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <h2
+        style={styles.title}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {title}
       </h2>
-      <p style={styles.description} className='paragraph'>{description}</p>
+      <p style={styles.description} className="paragraph">
+        {description}
+      </p>
     </li>
   );
 };
@@ -84,20 +104,28 @@ const TrainingApproach: React.FC = () => {
   };
 
   return (
-    <div className="training-approach-main">
-      <h1 style={styles.heading} className='training-approach-head'>Our Approach</h1>
+    <motion.div
+      variants={fadeIn("left", 0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.7 }}
+      className="training-approach-main"
+    >
+      <h1 style={styles.heading} className="training-approach-head">
+        Our Approach
+      </h1>
       <ul className="training-approach-list">
         {approachItems.map((item, index) => (
-          <TrainingApproachItem 
-            key={index} 
-            title={item.title} 
-            description={item.description} 
+          <TrainingApproachItem
+            key={index}
+            title={item.title}
+            description={item.description}
             styles={styles}
             getColor={getColor}
           />
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

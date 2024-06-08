@@ -62,10 +62,7 @@ const NavBar: React.FunctionComponent = () => {
             }}
             className="nav-list"
             style={{
-              color:
-                window.location.pathname === item.path
-                  ? Assets.colors.primary
-                  : Assets.colors.substitute,
+              color: Assets.colors.substitute,
             }}
           >
             {item.link}
@@ -84,7 +81,10 @@ const NavBar: React.FunctionComponent = () => {
               navigate(i.path);
             }}
             style={{
-              color: Assets.colors.basic,
+              color:
+                window.location.pathname === i.path
+                  ? Assets.colors.primary
+                  : Assets.colors.substitute,
             }}
           >
             {i.link}
@@ -98,7 +98,7 @@ const NavBar: React.FunctionComponent = () => {
     <div>
       <div className="nav-main">
         <div className="logo-image">
-          <a onClick={() => {navigate("/")}}>
+          <a onClick={() => { navigate("/") }}>
             <img
               src={Assets.images.companyLogoNoBg}
               alt="company logo"

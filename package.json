@@ -1,6 +1,6 @@
 {
   "name": "droid-tech-int",
-  "version": "0.1.0",
+  "version": "3.5.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
@@ -12,7 +12,10 @@
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
     "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "firebase": "^10.12.1",
+    "framer-motion": "^11.2.10",
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

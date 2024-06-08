@@ -11,12 +11,18 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../utils/constant/Variants";
 
 const Footer: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
 
   return (
-    <div
+    <motion.div
+      variants={fadeIn("up", 0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.7 }}
       className="footer-main"
       style={{
         backgroundColor: getColor("backgroundColor"),
@@ -110,7 +116,7 @@ const Footer: React.FunctionComponent = () => {
           Privacy Policy
         </p>
       </a>
-    </div>
+    </motion.div>
   );
 };
 

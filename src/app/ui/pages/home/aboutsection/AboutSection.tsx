@@ -15,6 +15,8 @@ import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 import { FaBookReader } from "react-icons/fa";
 import { SiNintendogamecube } from "react-icons/si";
 import { MdHomeRepairService } from "react-icons/md";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../../utils/constant/Variants";
 
 const Section: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -33,7 +35,13 @@ const Section: React.FunctionComponent = () => {
   return (
     <div className="section-main">
       {/* SECTION ONE */}
-      <div className="section-one">
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }}
+        className="section-one"
+      >
         <div className="coding-image">
           <GiCuckooClock
             className="image-size"
@@ -43,10 +51,11 @@ const Section: React.FunctionComponent = () => {
         <section className="history">
           <p className="our-history"> Our History</p>
           <p className="histoy-details">
-            D'roid Technologies was founded in 2015 by an inquisitive mind with
-            passion for creating innovative solutions. Over the years, he pulled
-            the company gradully into a leading Tech company, serving clients in
-            a wide range of industries...
+            D'roid Technologies traces its roots back to 2015, when visionary
+            entrepreneur Ekenedilichukwu Okoli embarked on a mission to redefine
+            the digital landscape. Inspired by a passion for innovation and a
+            desire to make a difference, our company was born in a small office
+            space with just a handful of dedicated individuals.
           </p>
           {/* CONTACT US BUTTON */}
           <div className="history-btn">
@@ -69,9 +78,15 @@ const Section: React.FunctionComponent = () => {
             </div>
           </div>
         </section>
-      </div>
+      </motion.div>
       {/* SECTION TWO */}
-      <div className="section-two">
+      <motion.div
+        variants={fadeIn("right", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }}
+        className="section-two"
+      >
         <div className="approach">
           <p className="our-approach"> Our Approach</p>
           <p className="approach-details">
@@ -108,12 +123,18 @@ const Section: React.FunctionComponent = () => {
             style={{ color: getColor("basic") }}
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* SECTION THREE */}
       <div className="our-service-main">
         <div className="section-three">
-          <div className="services">
+          <motion.div
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="services"
+          >
             <p className="our-services"> Our Services</p>
             <p className="services-details">
               {" "}
@@ -123,7 +144,7 @@ const Section: React.FunctionComponent = () => {
               that our clients recieve cutting- edge solutions that drive their
               business forward.
             </p>{" "}
-          </div>
+          </motion.div>
         </div>
         {/* CAROUSEL SECTION */}
         <div className="carousel-container">
