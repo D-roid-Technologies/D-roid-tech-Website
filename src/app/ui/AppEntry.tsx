@@ -41,11 +41,14 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   }, [appWidth, appHeight]);
 
   return (
-    <div style={{ backgroundColor: getColor("backgroundColor")}}>
+    <div style={{ backgroundColor: getColor("backgroundColor") }}>
       {modal && (
         <div className="modal-overlay">
           <div className="modal-inner">
-            <div className="modal-x" onClick={() => store.dispatch(updateModal(false))}>
+            <div
+              className="modal-x"
+              onClick={() => store.dispatch(updateModal(false))}
+            >
               <HiX />
             </div>
             <div className="modal-text">
@@ -58,12 +61,15 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
           </div>
         </div>
       )}
-      
+
       <Index width={appWidth} />
       <Footer />
-      <div className="chat-with-ogo" style={{backgroundColor: Assets.colors.substitute}}>
+      {/* <div
+        className="chat-with-ogo"
+        style={{ backgroundColor: Assets.colors.substitute }}
+      >
         <p className="chat-with-ogo-p">Chat with Ogo</p>
-      </div>
+      </div> */}
     </div>
   );
 };

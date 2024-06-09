@@ -18,7 +18,7 @@ import { FaMobileRetro } from "react-icons/fa6";
 import { FaPeopleRoof } from "react-icons/fa6";
 import { PiDesktopTowerFill } from "react-icons/pi";
 import { GiSpiderWeb } from "react-icons/gi";
-import { MdAddCall } from "react-icons/md";
+import { FaRegCalendarPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 
@@ -87,7 +87,7 @@ const Home: React.FunctionComponent = () => {
                     fWeight={800}
                     bRadius={5}
                     bRadiusColor="#ffffff"
-                    icon={<MdAddCall className="icon-styles" />}
+                    icon={<FaRegCalendarPlus className="icon-styles" />}
                     onClickButton={() => {
                       window.location.href =
                         "https://calendly.com/droidtechint";
