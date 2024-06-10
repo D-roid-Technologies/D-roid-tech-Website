@@ -46,6 +46,8 @@ export type AppInputType = React.DetailedHTMLProps<
   // added dropdown
   isDropdown?: boolean;
   options?: string[];
+  onchangeText?: (e: any) => void;
+  inputType?: string
 };
 
 export type AppButtonType = React.DetailedHTMLProps<

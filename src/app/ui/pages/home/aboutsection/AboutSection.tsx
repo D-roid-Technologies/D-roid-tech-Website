@@ -52,7 +52,7 @@ const Section: React.FunctionComponent = () => {
           <p className="our-history"> Our History</p>
           <p className="histoy-details">
             D'roid Technologies traces its roots back to 2015, when visionary
-            entrepreneur Ekenedilichukwu Okoli embarked on a mission to redefine
+            Entrepreneur Ekenedilichukwu Okoli embarked on a mission to redefine
             the digital landscape. Inspired by a passion for innovation and a
             desire to make a difference, our company was born in a small office
             space with just a handful of dedicated individuals.
@@ -90,7 +90,6 @@ const Section: React.FunctionComponent = () => {
         <div className="approach">
           <p className="our-approach"> Our Approach</p>
           <p className="approach-details">
-            {" "}
             At D'roid Technologies International, we take a collaborative
             approach to software development. We work closely with our clients
             to gain a deep understanding of the business needs and goals, and we
@@ -160,7 +159,7 @@ const Section: React.FunctionComponent = () => {
                     Software Design & Development
                   </h2>
                   <p className="carousel-details">
-                    We design and develop all the types of software applications
+                    We design and develop all the types of Software Applications
                     for any requirement. We are flexible team who is ready to
                     gather your requirements and develop the essential solutions
                     according to modern trends and standard.
@@ -195,10 +194,10 @@ const Section: React.FunctionComponent = () => {
                 <h2 className="carousel-heading">Tech Training </h2>
                 {/* waiting for tech content */}
                 <p className="carousel-details">
-                  we offer comprehensive tech training programs designed to
-                  equip you and your team with the skills needed to excel in
-                  today's fast-paced technological landscape. Our expert-led
-                  training sessions cover a wide range of topics, from software
+                  Our Tech training programs are designed to equip you and/or
+                  your team with the skills needed to excel in today's
+                  fast-paced technological landscape. Our expert-led training
+                  sessions cover a wide range of topics, from software
                   development and cybersecurity to data analytics and more.
                 </p>
               </span>

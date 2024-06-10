@@ -25,33 +25,15 @@ const AppInput: React.FunctionComponent<AppInputType> = ({
   bagColor,
   isDropdown,
   options,
+  onchangeText,
+  inputType,
 }) => {
-  const [sixDigitCode, setSixDigitCode] = React.useState<string>("");
-  const [mLength, setMLength] = React.useState<number>(0);
-  const windowPath: string = window.location.pathname;
-
-  useEffect(() => {
-    if (windowPath === "/staff") {
-      setMLength(6);
-      store.dispatch(addSixDigitCodeFromUser(sixDigitCode));
-    } else if (windowPath === "/contact") {
-      setMLength(30);
-      // store.dispatch(addContactInfo())
-    }
-  }, [windowPath, sixDigitCode]);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setSixDigitCode(e.target.value);
-  };
-
   return (
     <label style={{ fontFamily: fFamily, fontWeight: fWeight }}>
       {isDropdown ? (
         <select
-          onChange={handleChange}
           className="input"
+          onChange={onchangeText}
           style={{
             width: w,
             height: h,
@@ -72,8 +54,8 @@ const AppInput: React.FunctionComponent<AppInputType> = ({
         </select>
       ) : (
         <input
-          onChange={handleChange}
-          maxLength={mLength}
+          type={inputType}
+          onChange={onchangeText}
           placeholder={pHolder}
           className="input"
           style={{
