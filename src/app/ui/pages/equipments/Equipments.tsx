@@ -18,9 +18,21 @@ import {
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
+import {
+  updateModal,
+  updateModalContent,
+} from "../../../redux/slices/AppEntrySlice";
 
 const Equipments: React.FunctionComponent<any> = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const appEntry = useSelector((state: RootState) => state.appEntry);
+  const modal = appEntry.showModal;
+  const aTitle = appEntry.appTitle;
+  const aBody = appEntry.appBody;
+
   return (
     <main>
       <div
@@ -82,7 +94,14 @@ const Equipments: React.FunctionComponent<any> = () => {
                     mRight={0}
                     bRadiusColor="#000000"
                     onClickButton={() => {
-                      navigate("/contact");
+                      dispatch(
+                        updateModalContent({
+                          appTitle: "See more",
+                        })
+                      );
+                      dispatch(updateModal(true));
+                      // onClickButton={() => {
+                      //   navigate("/contact");
                     }}
                   />
                 }

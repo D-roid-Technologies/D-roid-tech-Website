@@ -127,9 +127,7 @@
   align-items: center;
   gap: 10%;
 }
-.video-details {
-  /* width: 50%; */
-}
+
 .video-heading {
   font-size: 2rem;
   font-weight: 700;
@@ -413,10 +411,7 @@ photography and videography */
     align-items: center;
     gap: 8%;
   }
-  .video-details {
-    /* width: 50%;
-*/
-  }
+
   .video-heading {
     font-size: 2rem;
     font-weight: 700;
