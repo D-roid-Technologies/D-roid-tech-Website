@@ -5,9 +5,9 @@ import { Assets } from "../../../utils/constant/Assets";
 import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
-import Button from "../../components/button/Button";
 import { GiSpiderWeb } from "react-icons/gi";
 import { MdOutlinePhoneIphone } from "react-icons/md";
+import Button from "../../components/button/Button";
 
 const Software: React.FunctionComponent = () => {
   const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
