@@ -166,6 +166,10 @@
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
+  .home-to-software{
+    padding: 0 20px;
+  }
+  
   .large-centered-heading {
     font-size: 1.5rem;
     letter-spacing: 1px;
