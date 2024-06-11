@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { GiCuckooClock } from "react-icons/gi";
 import { GiPathDistance } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
-import { FaLaptopCode } from "react-icons/fa";
+import { FaLaptopCode, FaRegCalendarPlus } from "react-icons/fa";
 import { GiRobotGolem } from "react-icons/gi";
 import { GiTeacher } from "react-icons/gi";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
@@ -17,6 +17,10 @@ import { SiNintendogamecube } from "react-icons/si";
 import { MdHomeRepairService } from "react-icons/md";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../../utils/constant/Variants";
+import { TbWriting } from "react-icons/tb";
+import { FaUserGraduate } from "react-icons/fa";
+import { HiOutlineTemplate } from "react-icons/hi";
+import { FcTemplate } from "react-icons/fc";
 
 const Section: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -95,7 +99,7 @@ const Section: React.FunctionComponent = () => {
             to gain a deep understanding of the business needs and goals, and we
             use that knowledge to develope tailored solutions that meet their
             unique requirements.
-          </p>{" "}
+          </p>
           <div className="our-approach-btn">
             <div className="approach-btn">
               <Button
@@ -124,6 +128,97 @@ const Section: React.FunctionComponent = () => {
         </div>
       </motion.div>
 
+      <div
+        className="join-us"
+        style={{ backgroundColor: Assets.colors.primary }}
+      >
+        <div>
+          <FaUserGraduate
+            className="icon-test"
+            style={{ color: Assets.colors.substitute }}
+          />
+          <p
+            className="our-approach-blue-bg"
+            style={{ color: Assets.colors.substitute }}
+          >
+            Want to Join our Tech Team?
+          </p>
+          <p className="approach-details">
+            Are you passionate about Technology and Innovation? Join us now on a
+            6 Months Sofware Development Training and become a full time Staff
+            with D'roid Technologies. Work on exciting projects, grow your
+            career, and be part of a team that values creativity, excellence,
+            and customer focus.
+            <br />
+            <br />
+            The Fastest way to become a Techie - Only by D'roid Technologies.
+          </p>
+          <div className="div-button">
+            <Button
+              bgColor={Assets.colors.substitute}
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              mRight={0}
+              title="Take our Test"
+              color="black"
+              fWeight={800}
+              bRadius={5}
+              bRadiusColor={Assets.colors.substitute}
+              icon={<TbWriting className="icon-styles" />}
+              onClickButton={() => {
+                navigate("/taketest");
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <motion.div
+        variants={fadeIn("right", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }}
+        className="section-two"
+      >
+        <div className="approach">
+          <p className="our-approach"> Get a Website in Minutes?</p>
+          <p className="approach-details">
+            We pride ourselves as a Software Development company that{" "}
+            <b>builds from scratch</b>, paying attention to the most minute
+            details expressed by our clients. Every Line of code is careflly
+            written, tested and deployed with care but we also understand that
+            you may need to have your website up and live as fast as possible.
+            <br />
+            <br />
+            Then...
+            <div className="div-button-second">
+              <Button
+                bgColor={getColor("basic")}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="Use our Template Service"
+                color={getColor("light")}
+                fWeight={800}
+                bRadius={5}
+                icon={<HiOutlineTemplate className="style-home-icon" />}
+                onClickButton={() => {
+                  navigate("/software");
+                }}
+              />
+            </div>
+          </p>
+        </div>
+        <div className="coding-image">
+          <FcTemplate
+            className="image-size"
+            style={{ color: getColor("basic") }}
+          />
+        </div>
+      </motion.div>
+
       {/* SECTION THREE */}
       <div className="our-service-main">
         <div className="section-three">
@@ -134,9 +229,8 @@ const Section: React.FunctionComponent = () => {
             viewport={{ once: false, amount: 0.7 }}
             className="services"
           >
-            <p className="our-services"> Our Services</p>
+            <p className="our-services"> Why We Are Known</p>
             <p className="services-details">
-              {" "}
               We offer a wide range of software development services, including
               web development, mobile app development, and custom software
               development. we use the latest technologies and tools to ensure
@@ -174,7 +268,6 @@ const Section: React.FunctionComponent = () => {
                 style={{ color: getColor("basic") }}
               />
               <span className="padded">
-                {" "}
                 <h2 className="carousel-heading">Animation Creation</h2>
                 <p className="carousel-details">
                   Our Animation Creation services bring ideas to life through

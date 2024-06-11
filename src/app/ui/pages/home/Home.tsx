@@ -63,7 +63,7 @@ const Home: React.FunctionComponent = () => {
                 className="home-content"
               >
                 <p className="home-heading">
-                  WE TURN YOUR IDEA
+                  WE TURN YOUR IDEAS
                   <br />
                   INTO REALITY
                 </p>
