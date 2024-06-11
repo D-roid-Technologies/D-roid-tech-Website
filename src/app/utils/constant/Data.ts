@@ -1,5 +1,7 @@
 import { title } from "process";
 import Button from "../../ui/components/button/Button";
+import { SoftWareDev } from "../Types";
+import { Assets } from "./Assets";
 
 export const DATA = {
   socialLinks: {
@@ -188,3 +190,255 @@ export const DATA = {
     },
   ],
 };
+
+export const softwareDev: SoftWareDev[] = [
+  {
+    title: "One-On-One Training",
+    description:
+      "Unlock your full potential with personalized, one-on-one tech training at D'roid Technologies. Our expert trainers provide customized sessions tailored to your unique learning style and goals, ensuring you gain the skills and confidence to excel in today's fast-paced tech landscape. Whether you're looking to master programming languages, delve into web development, or explore the latest tech tools, our individualized approach guarantees focused attention and hands-on learning. Elevate your tech expertise with our dedicated, immersive training experience.",
+    trainingType: [
+      {
+        category: "Web Development",
+        desc: "",
+      },
+      {
+        category: "Mobile Development",
+        desc: "",
+      },
+      {
+        category: "Animation Developement",
+        desc: "",
+      },
+      {
+        category: "BackEnd Developement",
+        desc: "",
+      },
+      {
+        category: "UI / UX Designer",
+        desc: "",
+      },
+    ],
+    image: Assets.images.one_one,
+    content: "",
+    trainingProcedure: {
+      stepOne: "",
+      stepTwo: "",
+      stepThree: "",
+    },
+    priceNG: [
+      {
+        category: "Web Development",
+        price: "",
+      },
+      {
+        category: "Mobile Development",
+        price: "",
+      },
+      {
+        category: "Animation Developement",
+        price: "",
+      },
+      {
+        category: "BackEnd Developement",
+        price: "",
+      },
+      {
+        category: "UI / UX Designer",
+        price: "",
+      },
+    ],
+    priceUK: [
+      {
+        category: "Web Development",
+        price: "",
+      },
+      {
+        category: "Mobile Development",
+        price: "",
+      },
+      {
+        category: "Animation Developement",
+        price: "",
+      },
+      {
+        category: "BackEnd Developement",
+        price: "",
+      },
+      {
+        category: "UI / UX Designer",
+        price: "",
+      },
+    ],
+    applicationProcedure: {
+      stepOne: "",
+      stepTwo: "",
+      stepThree: "",
+    },
+  },
+  {
+    title: "Students Tech Training",
+    description:
+      "Unlock your potential with our comprehensive Students Tech Training program. Designed for aspiring tech enthusiasts, our training courses provide the skills and knowledge needed to excel in today's digital world. From coding basics to advanced programming languages, web development, and cybersecurity, our expert-led sessions cover a wide range of topics. Gain hands-on experience through interactive projects and real-world applications, preparing you for a successful career in technology.",
+    trainingType: [
+      {
+        category: "Web Development",
+        desc: "",
+      },
+      {
+        category: "Mobile Development",
+        desc: "",
+      },
+      {
+        category: "Animation Developement",
+        desc: "",
+      },
+      {
+        category: "BackEnd Developement",
+        desc: "",
+      },
+      {
+        category: "UI / UX Designer",
+        desc: "",
+      },
+    ],
+    image: Assets.images.highSchool,
+    content: "",
+    trainingProcedure: {
+      stepOne: "",
+      stepTwo: "",
+      stepThree: "",
+    },
+    priceNG: [
+      {
+        category: "Web Development",
+        price: "",
+      },
+      {
+        category: "Mobile Development",
+        price: "",
+      },
+      {
+        category: "Animation Developement",
+        price: "",
+      },
+      {
+        category: "BackEnd Developement",
+        price: "",
+      },
+      {
+        category: "UI / UX Designer",
+        price: "",
+      },
+    ],
+    priceUK: [
+      {
+        category: "Web Development",
+        price: "",
+      },
+      {
+        category: "Mobile Development",
+        price: "",
+      },
+      {
+        category: "Animation Developement",
+        price: "",
+      },
+      {
+        category: "BackEnd Developement",
+        price: "",
+      },
+      {
+        category: "UI / UX Designer",
+        price: "",
+      },
+    ],
+    applicationProcedure: {
+      stepOne: "",
+      stepTwo: "",
+      stepThree: "",
+    },
+  },
+  {
+    title: "University Tech Training",
+    description:
+      "Our University Tech Training program, designed to equip students with the essential skills and knowledge needed to excel in today's rapidly evolving tech landscape. Our comprehensive training courses cover a wide range of topics, including software development, cybersecurity, data analytics, artificial intelligence, and more.",
+    trainingType: [
+      {
+        category: "Web Development",
+        desc: "",
+      },
+      {
+        category: "Mobile Development",
+        desc: "",
+      },
+      {
+        category: "Animation Developement",
+        desc: "",
+      },
+      {
+        category: "BackEnd Developement",
+        desc: "",
+      },
+      {
+        category: "UI / UX Designer",
+        desc: "",
+      },
+    ],
+    image: Assets.images.uni,
+    content: "",
+    trainingProcedure: {
+      stepOne: "",
+      stepTwo: "",
+      stepThree: "",
+    },
+    priceNG: [
+      {
+        category: "Web Development",
+        price: "",
+      },
+      {
+        category: "Mobile Development",
+        price: "",
+      },
+      {
+        category: "Animation Developement",
+        price: "",
+      },
+      {
+        category: "BackEnd Developement",
+        price: "",
+      },
+      {
+        category: "UI / UX Designer",
+        price: "",
+      },
+    ],
+    priceUK: [
+      {
+        category: "Web Development",
+        price: "",
+      },
+      {
+        category: "Mobile Development",
+        price: "",
+      },
+      {
+        category: "Animation Developement",
+        price: "",
+      },
+      {
+        category: "BackEnd Developement",
+        price: "",
+      },
+      {
+        category: "UI / UX Designer",
+        price: "",
+      },
+    ],
+    applicationProcedure: {
+      stepOne: "",
+      stepTwo: "",
+      stepThree: "",
+    },
+  },
+];

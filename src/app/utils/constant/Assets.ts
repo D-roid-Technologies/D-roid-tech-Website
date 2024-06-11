@@ -33,6 +33,9 @@ export const Assets = {
 
     droid_web: require("../../images/png/D'roid_Web.png"),
     reign: require("../../images/png/reign.png"),
+    one_one: require("../../images/png/one-on-one.png"),
+    uni: require("../../images/png/university.png"),
+    highSchool: require("../../images/png/highschool.png"),
   },
   colors: {
     basic: "#000000",

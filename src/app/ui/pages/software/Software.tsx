@@ -8,8 +8,14 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import Button from "../../components/button/Button";
 import { GiSpiderWeb } from "react-icons/gi";
 import { MdOutlinePhoneIphone } from "react-icons/md";
+import { courses } from "../../../utils/constant/FeaturedTraining";
+import Card from "../../components/card/Card";
+import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { softwareDev } from "../../../utils/constant/Data";
 
 const Software: React.FunctionComponent = () => {
+
+  const { getColor } = useThemeColor();
   const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
   const [notActive, setNotActivev] = useState<string>("#7C7C7C");
 
@@ -64,31 +70,42 @@ const Software: React.FunctionComponent = () => {
           services are designed to meet your unique needs.
         </p>
 
-        <div className="show-list">
-          <div
-            className="show-list-left"
-            style={{
-              backgroundColor: bgColor,
-            }}
-            // onClick={() => {
-            //   setActive();
-            // }}
+        <div className="training-approach-main">
+          <h1
+            style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
+            className="training-approach-head"
           >
-            <GiSpiderWeb className="" />
-            <p className="">Web Development</p>
-          </div>
-          <div
-            className="show-list-left"
-            style={{
-              backgroundColor: notActive,
-            }}
-            // onClick={() => {
-            //   setActive();
-            // }}
+            Featured Training Programs
+          </h1>
+          <motion.ul
+            variants={fadeIn("up", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="service-card-container"
           >
-            <MdOutlinePhoneIphone className="" />
-            <p className="">Mobile Development</p>
-          </div>
+            {softwareDev.map((item, index) => (
+              <Card
+                key={index}
+                title={item.title}
+                image={item.image}
+                content={item.description}
+                actions={
+                  <Button
+                    title="See More Details"
+                    bgColor={getColor("secondary")}
+                    color={getColor("basic")}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    bRadiusColor={getColor("light")}
+                    onClickButton={() => {}}
+                  />
+                }
+              />
+            ))}
+          </motion.ul>
         </div>
       </div>
 
