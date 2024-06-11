@@ -1,0 +1,45 @@
+.course-detail {
+  margin-bottom: 2rem;
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  text-align: center;
+}
+
+.modal-content {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.modal-content ol {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.modal-content li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: #333;
+  font-weight: bold;
+}
