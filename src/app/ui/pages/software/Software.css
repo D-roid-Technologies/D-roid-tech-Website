@@ -89,6 +89,9 @@
 /* Approach Section */
 .software-approach-main {
   margin-bottom: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 100px;
 }
 
 .software-approach-head {
@@ -122,14 +125,51 @@
 }
 
 .software-approach-item p {
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: rgb(134, 131, 131) !important;
+  font-family: "Mazzard";
+  text-align: justify;
+  letter-spacing: 2px;
+}
+
+.home-to-software{
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 100px;
+}
+
+.home-to-software-p{
   font-family: "Mazzard";
   font-size: 1rem;
   color: rgb(124, 124, 124);
   margin-bottom: 1em;
 }
+.show-list{
+  margin-top: 80px;
+  background-color: rgb(124, 124, 124);
+  display: flex;
+  height: 40px;
+  align-items: center;
+  border-radius: 15px;
+}
+.show-list-left{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 15px;
+}
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
+  .home-to-software{
+    padding: 0 20px;
+  }
+  
   .large-centered-heading {
     font-size: 1.5rem;
     letter-spacing: 1px;

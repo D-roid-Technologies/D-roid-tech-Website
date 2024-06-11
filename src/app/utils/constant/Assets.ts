@@ -33,6 +33,9 @@ export const Assets = {
 
     droid_web: require("../../images/png/D'roid_Web.png"),
     reign: require("../../images/png/reign.png"),
+    one_one: require("../../images/png/one-on-one.png"),
+    uni: require("../../images/png/university.png"),
+    highSchool: require("../../images/png/highschool.png"),
   },
   colors: {
     basic: "#000000",
@@ -64,6 +67,6 @@ export const Assets = {
     companyInitials: "DTI",
     modalTitle: "This is the Modal Heading.",
     modalBody: "This is the Body.",
-    appVersion: "v3.4",
+    appVersion: "v3.5",
   },
 };

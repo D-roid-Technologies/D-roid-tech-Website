@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../footer/Footer.css";
 import { DATA } from "../../../utils/constant/Data";
 import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { FiInstagram } from "react-icons/fi";
-import { IoLogoYoutube } from "react-icons/io";
-import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../textInput/AppInput";
 import Button from "../button/Button";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -13,9 +11,34 @@ import { FaBell } from "react-icons/fa";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import { useSelector } from "react-redux";
+import { RootState, store } from "../../../redux/Store";
+import { addUserEmail } from "../../../redux/slices/User";
 
 const Footer: React.FunctionComponent = () => {
+  const [emailSubscription, setEmailSubscription] = React.useState<string>("");
+  const userState = useSelector((state: RootState) => state.user);
+  const userEmail = userState.userEmail;
+
+  console.log(userEmail);
+
   const { getColor } = useThemeColor();
+
+  const sendEmailToReduxStore = () => {
+    store.dispatch(addUserEmail(emailSubscription));
+  };
+
+  const sendEmailToBackEnd = () => {
+    // Use user email to send email to firebase for storage.
+  };
+
+  const fetchEmailFromBackEnd = () => {
+    // For fetching email from firebase for storage.
+  };
+
+  const handleUserEmail = () => {
+    sendEmailToReduxStore();
+  };
 
   return (
     <motion.div
@@ -74,7 +97,17 @@ const Footer: React.FunctionComponent = () => {
       {/* FORM SECTION */}
       <div className="footer-form">
         <div className="form-input">
-          <AppInput w="100%" h={40} pLeft={10} pHolder="Email" />
+          <AppInput
+            w="100%"
+            h={40}
+            pLeft={10}
+            pHolder="Email"
+            onchangeText={(e: any) => {
+              setEmailSubscription(e.target.value);
+            }}
+            bRadius={5}
+            type="email"
+          />
         </div>
         <div className="signup-btn">
           <Button
@@ -87,7 +120,9 @@ const Footer: React.FunctionComponent = () => {
             color={getColor("light")}
             fWeight={600}
             icon={<FaBell className="style-home-icon" />}
-            onClickButton={() => {}}
+            onClickButton={() => {
+              handleUserEmail();
+            }}
           />
         </div>
       </div>

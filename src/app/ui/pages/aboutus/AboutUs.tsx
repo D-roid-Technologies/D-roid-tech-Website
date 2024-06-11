@@ -145,7 +145,7 @@ const AboutUs: React.FunctionComponent = () => {
                     At D'roid Technologies, integrity is the cornerstone of our
                     operations. We are committed to conducting our business with
                     the highest ethical standards, ensuring transparency,
-                    honesty, and accountability in all our interactions. This is new.
+                    honesty, and accountability in all our interactions.
                   </p>
                 </motion.div>
                 <motion.div

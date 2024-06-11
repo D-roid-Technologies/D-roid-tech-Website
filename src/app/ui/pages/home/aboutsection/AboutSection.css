@@ -206,6 +206,36 @@
   transform: scale(1.1);
 }
 
+.join-us {
+  width: 100%;
+  height: auto;
+  padding: 40px;
+  color: rgb(223, 219, 219);
+  display: flex;
+  justify-content: center;
+}
+.our-approach-blue-bg{
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 35px !important;
+  font-weight: 800;
+  font-family: "Rammetto";
+}
+.div-button{
+  width: 30%;
+  margin-top: 30px;
+}
+.div-button-second{
+  width: 60%;
+  margin-top: 30px;
+}
+
+.icon-test{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   /* SECTIONS */
