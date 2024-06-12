@@ -16,6 +16,7 @@ import Services from "../ui/pages/home/services/Services";
 import NotFound from "../ui/pages/notfound/NotFound";
 import Software from "../ui/pages/software/Software";
 import PrivacyPolicy from "../ui/pages/privacy/PrivacyPolicy";
+import TakeTest from "../ui/pages/taketest/TakeTest";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -39,6 +40,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         />
         <Route path="/services" element={<Services />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/taketest" element={<TakeTest />} />
       </Routes>
     </BrowserRouter>
   );

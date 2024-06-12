@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Index from "../routes/Index";
 import "../ui/AppEntry.css";
 import { AppEntryType } from "../utils/Types";
 import Footer from "./components/footer/Footer";
@@ -10,6 +9,7 @@ import { useSelector } from "react-redux";
 import { updateModal } from "../redux/slices/AppEntrySlice";
 import { useThemeColor } from "../utils/hooks/useThemeColor";
 import { Assets } from "../utils/constant/Assets";
+import Index from "../routes/Index";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   const appEntry = useSelector((state: RootState) => state.appEntry);

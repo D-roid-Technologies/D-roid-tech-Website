@@ -47,7 +47,7 @@ export type AppInputType = React.DetailedHTMLProps<
   isDropdown?: boolean;
   options?: string[];
   onchangeText?: (e: any) => void;
-  inputType?: string
+  inputType?: string;
 };
 
 export type AppButtonType = React.DetailedHTMLProps<
@@ -113,4 +113,24 @@ export type Testimonailstype = {
   author: string;
   backgroundImage: string;
   testimonials: string[];
+};
+
+export type SoftWareDev = {
+  title: string;
+  description?: string;
+  trainingType?: object[];
+  image?: any;
+  content?: string;
+  trainingProcedure?: {
+    stepOne?: string;
+    stepTwo?: string;
+    stepThree?: string;
+  };
+  priceNG?: object[];
+  priceUK?: object[];
+  applicationProcedure?: {
+    stepOne?: string;
+    stepTwo?: string;
+    stepThree?: string;
+  };
 };
