@@ -104,7 +104,7 @@
 }
 
 .approach-btn {
-  width: 30%;
+  width: 35%;
   border-radius: none;
   transition: transform 0.3s ease-in-out;
 }
@@ -214,23 +214,39 @@
   display: flex;
   justify-content: center;
 }
-.our-approach-blue-bg{
+.our-approach-two {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 35px !important;
+  font-weight: 800;
+  color: #282a94;
+  font-family: "Rammetto";
+}
+.our-approach-blue-bg {
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 800;
   font-family: "Rammetto";
 }
-.div-button{
+.div-button {
   width: 30%;
   margin-top: 30px;
+  transition: transform 0.3s ease-in-out;
 }
-.div-button-second{
+.div-button:hover {
+  transform: scale(1.1);
+}
+.div-button-second {
   width: 60%;
   margin-top: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+.div-button-second:hover {
+  transform: scale(1.1);
 }
 
-.icon-test{
+.icon-test {
   width: 100px;
   height: 100px;
   margin-bottom: 15px;
@@ -560,8 +576,8 @@
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 700;
     color: #282a94;
     font-family: "Rammetto";
     padding-top: 20px;
@@ -631,5 +647,37 @@
   .services-btn {
     width: 65%;
     border-radius: none;
+  }
+
+  /* Join section */
+  .our-approach-blue-bg {
+    margin-bottom: 1em;
+    line-height: 0;
+    font-size: 21px !important;
+    font-weight: 700;
+    font-family: "Rammetto";
+  }
+  .div-button {
+    width: 60%;
+    margin-top: 30px;
+  }
+  .use-our-template {
+    display: flex;
+    justify-content: center;
+  }
+  .div-button-second {
+    width: 80%;
+    margin-top: 30px;
+  }
+
+  /* section two */
+  .our-approach-two {
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 0;
+    font-size: 25px !important;
+    font-weight: 600;
+    color: #282a94;
+    font-family: "Rammetto";
   }
 }

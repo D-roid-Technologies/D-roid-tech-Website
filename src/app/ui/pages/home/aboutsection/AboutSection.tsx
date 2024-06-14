@@ -128,7 +128,11 @@ const Section: React.FunctionComponent = () => {
         </div>
       </motion.div>
 
-      <div
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }}
         className="join-us"
         style={{ backgroundColor: Assets.colors.primary }}
       >
@@ -172,7 +176,7 @@ const Section: React.FunctionComponent = () => {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
         variants={fadeIn("right", 0.2)}
@@ -182,7 +186,7 @@ const Section: React.FunctionComponent = () => {
         className="section-two"
       >
         <div className="approach">
-          <p className="our-approach"> Get a Website in Minutes?</p>
+          <p className="our-approach-two"> Get a Website in Minutes?</p>
           <p className="approach-details">
             We pride ourselves as a Software Development company that{" "}
             <b>builds from scratch</b>, paying attention to the most minute
@@ -192,22 +196,24 @@ const Section: React.FunctionComponent = () => {
             <br />
             <br />
             Then...
-            <div className="div-button-second">
-              <Button
-                bgColor={getColor("basic")}
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                title="Use our Template Service"
-                color={getColor("light")}
-                fWeight={800}
-                bRadius={5}
-                icon={<HiOutlineTemplate className="style-home-icon" />}
-                onClickButton={() => {
-                  navigate("/software");
-                }}
-              />
+            <div className="use-our-template">
+              <div className="div-button-second">
+                <Button
+                  bgColor={getColor("basic")}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Use our Template Service"
+                  color={getColor("light")}
+                  fWeight={800}
+                  bRadius={5}
+                  icon={<HiOutlineTemplate className="style-home-icon" />}
+                  onClickButton={() => {
+                    navigate("/software");
+                  }}
+                />
+              </div>
             </div>
           </p>
         </div>
