@@ -130,7 +130,7 @@
   .See-our-product {
     font-family: "Mazzard";
     cursor: pointer;
-    width: 40%;
+    width: 60%;
   }
 }
 
@@ -181,7 +181,7 @@
   .See-our-product {
     font-size: 0.7rem;
     font-family: "Courier New", Courier, monospace !important;
-    width: 100%;
+    width: 150%;
     transition: transform 0.3s ease-in-out;
     /* width: 100%; */
   }

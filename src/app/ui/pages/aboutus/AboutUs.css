@@ -173,12 +173,12 @@
   color: rgb(186, 184, 184);
   font-weight: 600;
 }
-.about-history-details-div{
+.about-history-details-div {
   width: 100%;
   margin-bottom: 50px;
 }
 
-.core-values{
+.core-values {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -440,6 +440,14 @@
     line-height: 1.5;
   }
   /* CORE VALUE */
+  .core-values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+  }
   .core-value-vision-main {
     margin-bottom: 50px;
   }
