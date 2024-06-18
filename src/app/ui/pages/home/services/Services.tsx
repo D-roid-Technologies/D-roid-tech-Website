@@ -95,17 +95,17 @@ const Services: React.FunctionComponent = () => {
       <NavBar />
       <div
         style={{
-          backgroundImage: `url("${Assets.images.service}")`,
+          backgroundImage: `url("${Assets.images.servicesMain}")`,
         }}
         className="bg-image"
       >
-        <div className="home-section">
+        {/* <div className="home-section">
           <article className="home-content">
             <p className="home-heading" style={{ color: getColor("light") }}>
               OUR SERVICES
             </p>
           </article>
-        </div>
+        </div> */}
       </div>
       <div className="service-main">
         <h1

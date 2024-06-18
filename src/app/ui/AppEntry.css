@@ -21,6 +21,7 @@
   --paragraph-font-family: "Mazzard", sans-serif;
   --paragraph-letter-spacing: 2px;
 }
+/* Why is a style for a service heading on the app entry css? */
 
 .general-heading {
   margin-bottom: 1em;

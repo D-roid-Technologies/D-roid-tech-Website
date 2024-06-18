@@ -115,7 +115,7 @@ export type Testimonailstype = {
   testimonials: string[];
 };
 
-export type SoftWareDev = {
+export type TechTrainingType = {
   title: string;
   description?: string;
   trainingType?: object[];
@@ -133,4 +133,16 @@ export type SoftWareDev = {
     stepTwo?: string;
     stepThree?: string;
   };
+};
+
+export type SoftwareDevelopmentType = {
+  title?: string;
+  image?: any;
+  desc?: string;
+  category?: string[];
+  tools?: string[];
+  price?: number[];
+  currency?: string[];
+  procedure?: string[];
+  classId?: string;
 };
