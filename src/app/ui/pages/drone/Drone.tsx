@@ -204,7 +204,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               {DATA.MappingSurveying.map((item, index) => (
                 <li className="mappping-services" key={index}>
                   <motion.div
-                    variants={fadeIn("right", 0.2)}
+                    variants={fadeIn("down", 0.2)}
                     initial="hidden"
                     whileInView={"show"}
                     viewport={{ once: false, amount: 0.7 }}
@@ -230,7 +230,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                     </div>
                   </motion.div>
                   <motion.div
-                    variants={fadeIn("left", 0.2)}
+                    variants={fadeIn("down", 0.2)}
                     initial="hidden"
                     whileInView={"show"}
                     viewport={{ once: false, amount: 0.7 }}
@@ -244,7 +244,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
           </section>
           {/* Infrastructure Inspection */}
           <motion.section
-            variants={fadeIn("up", 0.2)}
+            variants={fadeIn("down", 0.2)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.7 }}
@@ -284,7 +284,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
 
           {/* Crop Monitoring & Agricultur */}
           <motion.section
-            variants={fadeIn("up", 0.2)}
+            variants={fadeIn("down", 0.2)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.7 }}
