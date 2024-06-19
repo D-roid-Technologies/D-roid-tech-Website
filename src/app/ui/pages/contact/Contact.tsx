@@ -34,6 +34,9 @@ const Contact: React.FunctionComponent = () => {
     "Inquiry on Drone Services",
     "Inquiry on Knowledge City",
   ];
+  const closeModal = () => {
+    dispatch(updateModal(false));
+  };
 
   return (
     <>

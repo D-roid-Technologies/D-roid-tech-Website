@@ -186,7 +186,7 @@ const Section: React.FunctionComponent = () => {
         className="section-two"
       >
         <div className="approach">
-          <p className="our-approach-two"> Get a Website in Minutes?</p>
+          <p className="our-approach"> Get a Website in Minutes?</p>
           <p className="approach-details">
             We pride ourselves as a Software Development company that{" "}
             <b>builds from scratch</b>, paying attention to the most minute
@@ -303,27 +303,27 @@ const Section: React.FunctionComponent = () => {
             </div>
           </Slider>
           {/* OUR SERVICES BUTTON SECTION */}
-          <a href="">
-            <div className="our-services-btn">
-              <div className="services-btn">
-                <Button
-                  bgColor={getColor("basic")}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="See all our services"
-                  color={getColor("light")}
-                  fWeight={700}
-                  bRadius={5}
-                  icon={<MdHomeRepairService className="style-home-icon" />}
-                  onClickButton={() => {
-                    navigate("/services");
-                  }}
-                />
-              </div>
+          {/* <a href=""> */}
+          <div className="our-services-btn">
+            <div className="services-btn">
+              <Button
+                bgColor={getColor("basic")}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="See all our services"
+                color={getColor("light")}
+                fWeight={700}
+                bRadius={5}
+                icon={<MdHomeRepairService className="style-home-icon" />}
+                onClickButton={() => {
+                  navigate("/services");
+                }}
+              />
             </div>
-          </a>
+          </div>
+          {/* </a> */}
         </div>
       </div>
     </div>

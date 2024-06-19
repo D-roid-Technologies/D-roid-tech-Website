@@ -195,9 +195,11 @@
   justify-content: center;
   align-items: center;
   margin-top: 2em;
+  text-decoration: none;
 }
 
 .services-btn {
+  text-decoration: none;
   width: 18%;
   border-radius: none;
   transition: transform 0.3s ease-in-out;
@@ -525,11 +527,10 @@
     margin-bottom: 1em;
     text-align: center;
     line-height: 0;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 22px !important;
+    font-weight: 600;
     color: #282a94;
     font-family: "Rammetto";
-    /* padding-top: 20px; */
   }
   .approach-details {
     font-size: 15px;
