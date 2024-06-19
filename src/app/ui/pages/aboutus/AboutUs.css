@@ -185,6 +185,66 @@
   gap: 50px;
   padding: 20px;
 }
+/* Droid staff */
+.team-heading {
+  text-align: center;
+  margin-bottom: 0.6em;
+  font-family: "Rammetto";
+  font-size: 2rem;
+  color: #282a94;
+}
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 50px;
+}
+
+.team {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  /* width: 250px; */
+  text-align: center;
+}
+
+.team-image {
+  width: 250px;
+  height: 300px;
+}
+
+.team-details {
+  margin-top: 10px;
+}
+
+.team-name {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.team-designation {
+  font-size: 1em;
+  color: #777;
+}
+
+.team-socials {
+  margin-top: 10px;
+}
+
+.social-link {
+  margin: 0 5px;
+}
+.twitter {
+  color: #000000;
+}
+
+.social-link {
+  width: 24px;
+  height: 24px;
+}
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -518,5 +578,68 @@
     color: rgb(186, 184, 184);
     font-weight: 600;
     font-size: 1.2rem;
+  }
+  /* Droid staff */
+  .team-heading {
+    text-align: center;
+    margin-bottom: 0.6em;
+    font-family: "Rammetto";
+    font-size: 2rem;
+    color: #282a94;
+  }
+  .team-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+
+  .team {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    /* width: 250px; */
+    text-align: center;
+  }
+
+  .team-image {
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    object-fit: contain;
+  }
+
+  .team-details {
+    margin-top: 10px;
+  }
+
+  .team-name {
+    font-size: 1.5em;
+    margin: 10px 0;
+  }
+
+  .team-designation {
+    font-size: 1em;
+    color: #777;
+  }
+
+  .team-socials {
+    margin-top: 10px;
+  }
+
+  .social-link {
+    margin: 0 5px;
+  }
+  .twitter {
+    color: #000000;
+  }
+
+  .social-link {
+    width: 24px;
+    height: 24px;
   }
 }

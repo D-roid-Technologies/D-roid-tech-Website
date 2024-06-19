@@ -242,7 +242,7 @@ const Contact: React.FunctionComponent = () => {
               mLeft={0}
               mRight={0}
               bRadiusColor="#282a94"
-              title="Send Testimonials"
+              title="Add Testimonials"
               color="#ffffff"
               icon={<FaArrowRightToBracket className="icon-style" />}
               onClickButton={() => {

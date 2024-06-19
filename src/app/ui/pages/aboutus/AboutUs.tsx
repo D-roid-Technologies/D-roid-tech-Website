@@ -4,10 +4,13 @@ import { Assets } from "../../../utils/constant/Assets";
 import "../aboutus/AboutUs.css";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { RiCustomerService2Fill } from "react-icons/ri";
-import { FaGears } from "react-icons/fa6";
+import { FaGears, FaLinkedin } from "react-icons/fa6";
 import { GiRosaShield } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import { DATA } from "../../../utils/constant/Data";
+import { FaXTwitter } from "react-icons/fa6";
+import { IoLogoLinkedin } from "react-icons/io";
 
 const AboutUs: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -183,6 +186,43 @@ const AboutUs: React.FunctionComponent = () => {
               </div>
             </div>
           </div>
+          {/* OUT TEAM */}
+          <section>
+            <p className="team-heading"> Our Team </p>
+            <ul className="team-container">
+              {DATA.droidStaff.map((item, index) => (
+                <li className="team" key={index}>
+                  <div>
+                    <img src={item.image} alt="" className="team-image" />
+                  </div>
+                  <div className="team-details">
+                    <h2 className="team-name">{item.name}</h2>
+                    <p className="team-designation">{item.designation}</p>
+                    <div className="team-socials">
+                      {item.socials?.linkedin && (
+                        <a
+                          href={item.socials.linkedin}
+                          className="social-link twitter"
+                          target="blank"
+                        >
+                          <FaXTwitter />
+                        </a>
+                      )}
+                      {item.socials?.twitter && (
+                        <a
+                          href={item.socials.twitter}
+                          className="social-link"
+                          target="blank"
+                        >
+                          <FaLinkedin />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </div>
     </>
