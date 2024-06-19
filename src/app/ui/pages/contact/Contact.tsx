@@ -25,9 +25,6 @@ import {
 const Contact: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const appEntry = useSelector((state: RootState) => state.appEntry);
-  const modal = appEntry.showModal;
-  const aTitle = appEntry.appTitle;
-  const aBody = appEntry.appBody;
 
   const optionsList = [
     "Subject",
@@ -252,49 +249,8 @@ const Contact: React.FunctionComponent = () => {
                 dispatch(
                   updateModalContent({
                     appTitle: "Send Testimonials",
-                    appBody: (
-                      <form className="testimonial-form">
-                        <div className="form-group">
-                          <AppInput
-                            w="100%"
-                            h={40}
-                            pLeft={10}
-                            pHolder="Full Name"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <AppInput
-                            w="100%"
-                            h={40}
-                            pLeft={10}
-                            pHolder="Address"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <textarea
-                            rows={10}
-                            name="comment"
-                            placeholder="Write your message here"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <Button
-                            bgColor="#000000"
-                            mTop={0}
-                            mBottom={0}
-                            mLeft={0}
-                            mRight={0}
-                            bRadiusColor="#282a94"
-                            title="Submit"
-                            color="#ffffff"
-                            icon={
-                              <FaArrowRightToBracket className="icon-style" />
-                            }
-                            onClickButton={() => {}}
-                          />
-                        </div>
-                      </form>
-                    ),
+                    appBody: `<div> 
+                      </div>`,
                   })
                 );
                 dispatch(updateModal(true));
@@ -308,3 +264,31 @@ const Contact: React.FunctionComponent = () => {
 };
 
 export default Contact;
+
+{
+  /* <form className="testimonial-form">
+  <div className="form-group">
+    <AppInput w="100%" h={40} pLeft={10} pHolder="Full Name" />
+  </div>
+  <div className="form-group">
+    <AppInput w="100%" h={40} pLeft={10} pHolder="Address" />
+  </div>
+  <div className="form-group">
+    <textarea rows={10} name="comment" placeholder="Write your message here" />
+  </div>
+  <div className="form-group">
+    <Button
+      bgColor="#000000"
+      mTop={0}
+      mBottom={0}
+      mLeft={0}
+      mRight={0}
+      bRadiusColor="#282a94"
+      title="Submit"
+      color="#ffffff"
+      icon={<FaArrowRightToBracket className="icon-style" />}
+      onClickButton={() => {}}
+    />
+  </div>
+</form>; */
+}
