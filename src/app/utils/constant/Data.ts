@@ -189,6 +189,36 @@ export const DATA = {
       author: "— Mark Ettan, Founder, LEADPAC Foundation",
     },
   ],
+
+  droidStaff: [
+    {
+      image: require("../../images/png/stellaportfolio.png"),
+      name: "Stella Eneh",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/stella-eneh/",
+        twitter: "https://twitter.com/StellaEneh_",
+      },
+    },
+    {
+      image: require("../../images/png/Uzoportfolio.png"),
+      name: "Uzochukwu Felix",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
+        twitter: "https://twitter.com/uzochukwufelix",
+      },
+    },
+    {
+      image: require("../../images/png/faithchukwukezieportfolio.png"),
+      name: "Faith Chukwueze",
+      designation: "Digital marketer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/faith-chukwueze",
+        twitter: "https://twitter.com/faithchukwueze",
+      },
+    },
+  ],
 };
 
 export const TechTraining: TechTrainingType[] = [

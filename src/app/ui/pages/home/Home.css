@@ -86,7 +86,6 @@
 }
 .icon-styles {
   color: #000000;
-  /* margin-left: 10px; */
   width: 15px;
   height: 15px;
 }
@@ -131,7 +130,7 @@
   .See-our-product {
     font-family: "Mazzard";
     cursor: pointer;
-    width: 40%;
+    width: 60%;
   }
 }
 
@@ -168,15 +167,21 @@
   }
 
   .product-button {
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 1em;
     transition: transform 0.3s ease-in-out;
   }
-
+  .icon-styles {
+    color: #000000;
+    width: 15px;
+    height: 15px;
+  }
   .See-our-product {
+    font-size: 0.7rem;
     font-family: "Courier New", Courier, monospace !important;
-    width: 100%;
+    width: 150%;
     transition: transform 0.3s ease-in-out;
     /* width: 100%; */
   }
@@ -190,7 +195,7 @@
     padding-left: 20px;
     padding-right: 20px;
     display: flex;
-    height: 120px;
+    height: 80px;
     justify-content: space-between;
     align-items: center;
   }
