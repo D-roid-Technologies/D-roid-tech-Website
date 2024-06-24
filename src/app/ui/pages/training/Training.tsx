@@ -133,7 +133,10 @@ const Training: React.FC = () => {
                     mLeft={0}
                     mRight={0}
                     bRadiusColor={getColor("light")}
-                    onClickButton={() => {}}
+                    // onClickButton={() => {}}
+                    onClickButton={() => {
+                      navigate("/trainingprograms");
+                    }}
                   />
                 }
               />
