@@ -12,8 +12,10 @@ import { courses } from "../../../utils/constant/FeaturedTraining";
 import Card from "../../components/card/Card";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { softwareDevMain } from "../../../utils/constant/Data";
+import { useNavigate } from "react-router-dom";
 
 const Software: React.FunctionComponent = () => {
+  const navigate = useNavigate();
   const { getColor } = useThemeColor();
   const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
   const [notActive, setNotActivev] = useState<string>("#7C7C7C");
@@ -99,7 +101,10 @@ const Software: React.FunctionComponent = () => {
                     mLeft={0}
                     mRight={0}
                     bRadiusColor={getColor("light")}
-                    onClickButton={() => {}}
+                    // onClickButton={() => {}}
+                    onClickButton={() => {
+                      navigate("/ourservices");
+                    }}
                   />
                 }
               />
