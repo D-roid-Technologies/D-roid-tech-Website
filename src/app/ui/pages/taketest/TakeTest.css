@@ -4,8 +4,13 @@
 }
 
 .test-image-container {
-  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 550px;
+  object-fit: contain;
+  /* width: 100%;
+  height: 550px; */
 }
 .test-top-con {
   height: 60px;
@@ -20,8 +25,8 @@
   height: 30px;
 }
 
-.test-text-area{
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 60px;
+.test-text-area {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 60px;
 }

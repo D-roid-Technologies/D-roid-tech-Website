@@ -26,12 +26,18 @@ const TakeTest: React.FunctionComponent = () => {
           }}
         />
       </div>
-      <div className="test-image-container">
-        <img
+      <div>
+        {/* <img
           src={Assets.images.testImage}
           alt="Test-Image"
           className="test-image"
-        />
+        /> */}
+        <div
+          style={{
+            backgroundImage: `url("${Assets.images.testImage}")`,
+          }}
+          className="test-image-container"
+        ></div>
         <div className="test-text-area">
           <h2>Ready to test your skills?</h2>
           <p>
@@ -39,7 +45,7 @@ const TakeTest: React.FunctionComponent = () => {
             your programming career.
             <br />
             <br />
-            It comprise of different quuestion realted to Programming, Computer
+            It comprise of different quuestion related to Programming, Computer
             Science and Critical Thinking.
           </p>
         </div>
