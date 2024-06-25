@@ -103,7 +103,7 @@ const Software: React.FunctionComponent = () => {
                     bRadiusColor={getColor("light")}
                     // onClickButton={() => {}}
                     onClickButton={() => {
-                      navigate("/ourservices");
+                      navigate("/details");
                     }}
                   />
                 }

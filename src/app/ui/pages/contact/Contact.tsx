@@ -248,9 +248,15 @@ const Contact: React.FunctionComponent = () => {
               onClickButton={() => {
                 dispatch(
                   updateModalContent({
-                    appTitle: "Send Testimonials",
-                    appBody: `<div> 
-                      </div>`,
+                    appTitle: "Create New Testimonial",
+                    appBody: (
+                      <AppInput
+                        w="100%"
+                        h={40}
+                        pLeft={10}
+                        pHolder="Full Name"
+                      />
+                    ),
                   })
                 );
                 dispatch(updateModal(true));
