@@ -12,7 +12,7 @@ const TrainingPrograms: React.FunctionComponent = () => {
           // backgroundImage: `url("${Assets.images.companyBanner}")`,
           backgroundImage: `url("${Assets.images.staffBg}")`,
         }}
-        className="bg-image"
+        className="details-bg-image"
       >
         <section className="tprogramservice-main">
           <p className="page-header">Our Programs</p>

@@ -13,7 +13,7 @@ const OurServices: React.FunctionComponent = () => {
           backgroundImage: `url("${Assets.images.companyBanner}")`,
           // backgroundImage: `url("${Assets.images.softwareBg}")`,
         }}
-        className="bg-image"
+        className="details-bg-image"
       >
         <section className="softservice-main">
           <p className="page-head">Our services</p>
