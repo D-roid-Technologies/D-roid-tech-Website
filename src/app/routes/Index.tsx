@@ -17,9 +17,8 @@ import NotFound from "../ui/pages/notfound/NotFound";
 import Software from "../ui/pages/software/Software";
 import PrivacyPolicy from "../ui/pages/privacy/PrivacyPolicy";
 import TakeTest from "../ui/pages/taketest/TakeTest";
-import OurServices from "../ui/pages/software/ourservices/OurServices";
-import TrainingServices from "../ui/pages/training/trainingprograms/TrainingPrograms";
 import TrainingPrograms from "../ui/pages/training/trainingprograms/TrainingPrograms";
+import Details from "../ui/pages/details/Details";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -37,7 +36,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/allstaffs" element={<AllStaffs />} />
         <Route path="/software" element={<Software />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/ourservices" element={<OurServices />} />
+        <Route path="/details" element={<Details />} />
         <Route path="/trainingprograms" element={<TrainingPrograms />} />
         <Route
           path="/training/course-detail/:courseId"

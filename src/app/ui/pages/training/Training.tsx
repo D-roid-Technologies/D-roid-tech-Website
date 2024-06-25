@@ -94,8 +94,6 @@ const Training: React.FC = () => {
       </div>
 
       <div className="training-main-content-section">
-        <TrainingApproach />
-
         <div style={{ textAlign: "center" }}>
           <FaLaptop
             style={{ fontSize: "10rem", color: getColor("secondary") }}
@@ -103,20 +101,20 @@ const Training: React.FC = () => {
           />
         </div>
 
-        <div className="training-approach-main">
+        <motion.div
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="training-approach-main"
+        >
           <h1
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-head"
           >
             Training Programs
           </h1>
-          <motion.ul
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="service-card-container"
-          >
+          <ul className="service-card-container">
             {TechTraining.map((item, index) => (
               <Card
                 key={index}
@@ -141,8 +139,9 @@ const Training: React.FC = () => {
                 }
               />
             ))}
-          </motion.ul>
-        </div>
+          </ul>
+        </motion.div>
+        <TrainingApproach />
       </div>
 
       <TechnologiesAndTools />
