@@ -228,10 +228,7 @@ const Contact: React.FunctionComponent = () => {
         </div>
         {/* TESTIMONIALS */}
         <section className="equip-margin-bt">
-          <Testimonials
-            testbackgroundImage={testimonialbackgroundImage}
-            testimonials={DATA.testimonials}
-          />
+          <Testimonials />
         </section>
         <div className="contact-testimonial">
           <div className="contact-testimonial-btn">

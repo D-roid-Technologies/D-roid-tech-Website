@@ -18,6 +18,7 @@ import { DATA } from "../../../../utils/constant/Data";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../../utils/constant/Variants";
+import { TESTIMONIALS } from "../../../../utils/constant/Testimonial";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -38,6 +39,10 @@ const CustomerFeedBack: React.FunctionComponent = () => {
   const onFailedBody =
     "Your login was unsuccessful, kindly try again or contact your Admin!";
 
+  const firstIndexOfTestimonial = TESTIMONIALS[0];
+
+  // console.log(firstIndexOfTestimonial);
+
   return (
     <div className="customerfeedback-main">
       <div className="customer-testimonials">
@@ -47,27 +52,16 @@ const CustomerFeedBack: React.FunctionComponent = () => {
           whileInView={"show"}
           viewport={{ once: false, amount: 0.7 }}
         >
-          {/* CONTENT */}
-
           <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
-          <div className="testiminial-details">
-            <p>
-              "I have had the pleasure of working with D'roid Technologies on
-              several projects, and I can confidently say that their expertise
-              and dedication are unmatched. From the initial consultation to the
-              final delivery, their team demonstrated a deep understanding of
-              our needs and provided innovative solutions that exceeded our
-              expectations. The software they developed for us is robust,
-              user-friendly, and has significantly improved our operational
-              efficiency. Their commitment to quality and customer satisfaction
-              is evident in every interaction. I highly recommend D'roid
-              Technologies to any organization looking for top-tier technology
-              solutions."
-            </p>
-            <p className="testifier">
-              — Mark Ettan, Founder, LEADPAC Foundation
-            </p>
+          <div>
+            <div className="testiminial-details">
+              <p>{firstIndexOfTestimonial.body}</p>
+              <p className="testifier">
+                {`- ${firstIndexOfTestimonial.author}, ${firstIndexOfTestimonial.position}, ${firstIndexOfTestimonial.company}`}
+              </p>
+            </div>
           </div>
+
           <div className="contact-uss">
             <div className="contactuss-button">
               <Button

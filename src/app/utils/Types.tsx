@@ -146,3 +146,12 @@ export type SoftwareDevelopmentType = {
   procedure?: string[];
   classId?: string;
 };
+
+export type TestimonialTypes = {
+  body: string;
+  author: string;
+  service: string;
+  company: string;
+  position: string;
+  type: string[];
+};
