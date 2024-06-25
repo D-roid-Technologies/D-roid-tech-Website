@@ -34,7 +34,7 @@
   color: #fff;
   font-family: "Mazzard";
 }
-/* OUR APPROACH SECTION */
+
 /* OUR SERVICES SECTION*/
 .equip-main {
   padding: 0 100px;
@@ -73,9 +73,6 @@
 }
 
 /* BENEFIT OF WORKING WITH US */
-.equipment-btn {
-  /* padding-left: 10px; */
-}
 
 .equipment-btn-details {
   width: 20%;

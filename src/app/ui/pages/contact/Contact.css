@@ -77,8 +77,6 @@
   color: #ffffff;
   text-decoration: none;
 }
-.address {
-}
 
 .icon-section {
   margin-top: 5em;
@@ -265,8 +263,6 @@ textarea {
     color: #ffffff;
     text-decoration: none;
   }
-  .address {
-  }
 
   .icon-section {
     margin-top: 5em;
@@ -422,8 +418,6 @@ textarea {
     color: #ffffff;
     text-decoration: none;
   }
-  .address {
-  }
 
   .icon-section {
     margin-top: 5em;
@@ -499,5 +493,12 @@ textarea {
   .textarea-btn:hover {
     /* transform: scale(1.1); */
     background-color: #737458;
+  }
+  .contact-testimonial-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 60%;
+    transition: transform 0.3s ease-in-out;
   }
 }

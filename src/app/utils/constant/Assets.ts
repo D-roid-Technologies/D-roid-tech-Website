@@ -36,6 +36,11 @@ export const Assets = {
     one_one: require("../../images/png/one-on-one.png"),
     uni: require("../../images/png/university.png"),
     highSchool: require("../../images/png/highschool.png"),
+
+    servicesMain: require("../../images/png/what.png"),
+    techT: require("../../images/png/techtraining.png"),
+
+    testImage: require("../../images/png/testimage.png"),
   },
   colors: {
     basic: "#000000",

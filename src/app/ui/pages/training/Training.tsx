@@ -13,6 +13,7 @@ import { courses } from "../../../utils/constant/FeaturedTraining";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import { TechTraining } from "../../../utils/constant/Data";
 
 const photos: TrainingPhoto[] = [
   { image: Assets.images.staffBg, text: "Expert trainers available" },
@@ -93,8 +94,6 @@ const Training: React.FC = () => {
       </div>
 
       <div className="training-main-content-section">
-        <TrainingApproach />
-
         <div style={{ textAlign: "center" }}>
           <FaLaptop
             style={{ fontSize: "10rem", color: getColor("secondary") }}
@@ -102,26 +101,26 @@ const Training: React.FC = () => {
           />
         </div>
 
-        <div className="training-approach-main">
+        <motion.div
+          variants={fadeIn("down", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
+          className="training-approach-main"
+        >
           <h1
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-head"
           >
-            Featured Training Programs
+            Training Programs
           </h1>
-          <motion.ul
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="service-card-container"
-          >
-            {courses.map((course) => (
+          <ul className="service-card-container">
+            {TechTraining.map((item, index) => (
               <Card
-                key={course.id}
-                title={course.title}
-                image="https://via.placeholder.com/300x200"
-                content={course.description}
+                key={index}
+                title={item.title}
+                image={item.image}
+                content={item.description}
                 actions={
                   <Button
                     title="See More Details"
@@ -132,13 +131,17 @@ const Training: React.FC = () => {
                     mLeft={0}
                     mRight={0}
                     bRadiusColor={getColor("light")}
-                    onClickButton={() => navigateToCourseDetail(`${course.id}`)}
+                    // onClickButton={() => {}}
+                    onClickButton={() => {
+                      navigate("/trainingprograms");
+                    }}
                   />
                 }
               />
             ))}
-          </motion.ul>
-        </div>
+          </ul>
+        </motion.div>
+        <TrainingApproach />
       </div>
 
       <TechnologiesAndTools />

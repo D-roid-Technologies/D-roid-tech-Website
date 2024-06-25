@@ -127,9 +127,7 @@
   align-items: center;
   gap: 10%;
 }
-.video-details {
-  /* width: 50%; */
-}
+
 .video-heading {
   font-size: 2rem;
   font-weight: 700;
@@ -413,10 +411,7 @@ photography and videography */
     align-items: center;
     gap: 8%;
   }
-  .video-details {
-    /* width: 50%;
-*/
-  }
+
   .video-heading {
     font-size: 2rem;
     font-weight: 700;
@@ -642,13 +637,14 @@ photography and videography */
   .tools:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
+
   .drone-camera-software {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 100px;
-    gap: 40px;
+    padding: 0 20px;
+    gap: 5px;
   }
 
   .image-icon {

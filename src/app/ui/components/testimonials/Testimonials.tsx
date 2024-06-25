@@ -4,22 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../testimonials/Testimonials.css";
 // import { Testimonailstype } from "../../../utils/Types";
-// import testbackgroundImage from "../../../images/png/customerfeedback2.jpg";
+import testbackgroundImage from "../../../images/png/customerfeedback2.jpg";
+import { TESTIMONIALS } from "../../../utils/constant/Testimonial";
 
-interface Testimonial {
-  quote: string;
-  author: string;
-}
-
-interface CustomerFeedbackProps {
-  testbackgroundImage: string;
-  testimonials: Testimonial[];
-}
-
-const Testimonials: React.FunctionComponent<CustomerFeedbackProps> = ({
-  testbackgroundImage,
-  testimonials,
-}) => {
+const Testimonials: React.FunctionComponent<any> = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -40,10 +28,12 @@ const Testimonials: React.FunctionComponent<CustomerFeedbackProps> = ({
           <div>
             <h2 className="test-read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
             <Slider {...settings}>
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="test-testimonial-details">
-                  <p className="test-quote">{testimonial.quote}</p>
-                  <p className="author"> {testimonial.author}</p>
+              {TESTIMONIALS.map((i, j) => (
+                <div key={j} className="test-testimonial-details">
+                  <p className="test-quote">{`${j + 1}.  "${i.body}"`}</p>
+                  <p className="author">
+                    {`- ${i.author}, ${i.position}, ${i.company} `}
+                  </p>
                 </div>
               ))}
             </Slider>

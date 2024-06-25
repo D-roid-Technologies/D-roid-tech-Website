@@ -11,10 +11,11 @@ import { MdOutlinePhoneIphone } from "react-icons/md";
 import { courses } from "../../../utils/constant/FeaturedTraining";
 import Card from "../../components/card/Card";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { softwareDev } from "../../../utils/constant/Data";
+import { softwareDevMain } from "../../../utils/constant/Data";
+import { useNavigate } from "react-router-dom";
 
 const Software: React.FunctionComponent = () => {
-
+  const navigate = useNavigate();
   const { getColor } = useThemeColor();
   const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
   const [notActive, setNotActivev] = useState<string>("#7C7C7C");
@@ -75,7 +76,7 @@ const Software: React.FunctionComponent = () => {
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-head"
           >
-            Featured Training Programs
+            Our Software Services
           </h1>
           <motion.ul
             variants={fadeIn("up", 0.2)}
@@ -84,23 +85,26 @@ const Software: React.FunctionComponent = () => {
             viewport={{ once: false, amount: 0.7 }}
             className="service-card-container"
           >
-            {softwareDev.map((item, index) => (
+            {softwareDevMain.map((item, index) => (
               <Card
                 key={index}
                 title={item.title}
                 image={item.image}
-                content={item.description}
+                content={item.desc}
                 actions={
                   <Button
-                    title="See More Details"
-                    bgColor={getColor("secondary")}
-                    color={getColor("basic")}
+                    title="Let's Begin"
+                    bgColor={getColor("basic")}
+                    color={getColor("secondary")}
                     mTop={0}
                     mBottom={0}
                     mLeft={0}
                     mRight={0}
                     bRadiusColor={getColor("light")}
-                    onClickButton={() => {}}
+                    // onClickButton={() => {}}
+                    onClickButton={() => {
+                      navigate("/details");
+                    }}
                   />
                 }
               />

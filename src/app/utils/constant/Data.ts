@@ -1,6 +1,6 @@
 import { title } from "process";
 import Button from "../../ui/components/button/Button";
-import { SoftWareDev } from "../Types";
+import { SoftwareDevelopmentType, TechTrainingType } from "../Types";
 import { Assets } from "./Assets";
 
 export const DATA = {
@@ -189,9 +189,39 @@ export const DATA = {
       author: "— Mark Ettan, Founder, LEADPAC Foundation",
     },
   ],
+
+  droidStaff: [
+    {
+      image: require("../../images/png/stellaportfolio.png"),
+      name: "Stella Eneh",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/stella-eneh/",
+        twitter: "https://twitter.com/StellaEneh_",
+      },
+    },
+    {
+      image: require("../../images/png/Uzoportfolio.png"),
+      name: "Uzochukwu Felix",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
+        twitter: "https://twitter.com/uzochukwufelix",
+      },
+    },
+    {
+      image: require("../../images/png/faithchukwukezieportfolio.png"),
+      name: "Faith Chukwueze",
+      designation: "Digital marketer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/faith-chukwueze",
+        twitter: "https://twitter.com/faithchukwueze",
+      },
+    },
+  ],
 };
 
-export const softwareDev: SoftWareDev[] = [
+export const TechTraining: TechTrainingType[] = [
   {
     title: "One-On-One Training",
     description:
@@ -440,5 +470,47 @@ export const softwareDev: SoftWareDev[] = [
       stepTwo: "",
       stepThree: "",
     },
+  },
+];
+
+export const softwareDevMain: SoftwareDevelopmentType[] = [
+  {
+    title: "Web Development",
+    image: Assets.images.webdesign,
+    desc: "",
+    price: [864.99, 785.99, 792.99],
+    category: ["FinTech", "E-Commerce", "E-Learning,"],
+    tools: ["React Js", "Next Js", "HTML", "Css", "Javascript", "Typescript"],
+    currency: ["$", "N", "e"],
+  },
+  {
+    title: "Mobile Development",
+    image: Assets.images.mobiledev,
+    desc: "",
+    price: [864.99, 785.99, 792.99],
+    category: ["FinTech", "E-Commerce", "E-Learning,"],
+    tools: ["React Native", "Flutter", "Javascript", "Typescript"],
+    currency: ["$", "N", "e"],
+    procedure: ["Step One", "Step Two", "Step Three"],
+  },
+  {
+    title: "Back End Development",
+    image: Assets.images.manLearning,
+    desc: "",
+    price: [864.99, 785.99, 792.99],
+    category: ["FinTech", "E-Commerce", "E-Learning,"],
+    tools: ["React Native", "Flutter", "Javascript", "Typescript"],
+    currency: ["$", "N", "e"],
+    procedure: ["Step One", "Step Two", "Step Three"],
+  },
+  {
+    title: "Template Service",
+    image: Assets.images.mobiledev,
+    desc: "",
+    price: [864.99, 785.99, 792.99],
+    category: ["FinTech", "E-Commerce", "E-Learning,"],
+    tools: ["React Native", "Flutter", "Javascript", "Typescript"],
+    currency: ["$", "N", "e"],
+    procedure: ["Step One", "Step Two", "Step Three"],
   },
 ];
