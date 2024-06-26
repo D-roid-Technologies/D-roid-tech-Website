@@ -30,3 +30,23 @@
   padding-right: 100px;
   padding-top: 60px;
 }
+.map-test{
+    margin-top: 80px;
+}
+.map-test-inner{
+    margin-top: 20px;
+}
+.map-test-list{
+    text-decoration: none;
+    list-style: none;
+}
+.map-test-ul{
+    margin-top: 12px;
+    display: flex;
+    gap: 20px;
+    padding-left: 30px;
+}
+.btn-parent{
+    margin-top: 20px;
+    width: 30%;
+}

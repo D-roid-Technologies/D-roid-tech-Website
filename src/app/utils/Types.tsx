@@ -145,6 +145,7 @@ export type SoftwareDevelopmentType = {
   currency?: string[];
   procedure?: string[];
   classId?: string;
+  path?: string;
 };
 
 export type TestimonialTypes = {
@@ -154,4 +155,10 @@ export type TestimonialTypes = {
   company: string;
   position: string;
   type: string[];
+};
+
+export type TestType = {
+  question: string;
+  options: string[];
+  correct: string;
 };

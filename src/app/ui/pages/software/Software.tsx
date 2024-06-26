@@ -17,16 +17,9 @@ import { useNavigate } from "react-router-dom";
 const Software: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { getColor } = useThemeColor();
-  const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
-  const [notActive, setNotActivev] = useState<string>("#7C7C7C");
+  // const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
+  // const [notActive, setNotActivev] = useState<string>("#7C7C7C");
 
-  // const setActive = () => {
-  //   if (bgColor === notActive) {
-  //     setBgColor(bgColor);
-  //   } else {
-  //     setBgColor(notActive);
-  //   }
-  // };
   return (
     <div>
       <NavBar />
@@ -54,7 +47,7 @@ const Software: React.FunctionComponent = () => {
         <p className="paragraph">
           <strong>
             Over 47 Software Application built in the last 12 months.
-          </strong>{" "}
+          </strong>
           We are the right choice to your Software solution.
           <br />
           <br />
@@ -93,7 +86,7 @@ const Software: React.FunctionComponent = () => {
                 content={item.desc}
                 actions={
                   <Button
-                    title="Let's Begin"
+                    title="Apply Now"
                     bgColor={getColor("basic")}
                     color={getColor("secondary")}
                     mTop={0}
@@ -111,6 +104,83 @@ const Software: React.FunctionComponent = () => {
             ))}
           </motion.ul>
         </div>
+      </div>
+
+      {/* Technologies and Tools Section */}
+      <div className="technologies" style={{ marginTop: "1rem" }}>
+        <h1 className="training-approach-head">Technologies and Tools</h1>
+        <ul className="training-approach-list">
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
+            <div className="icon-container">
+              <FaCode
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Programming Languages</h2>
+            <p className="paragraph">
+              JavaScript, TypeScript, Python, Java, C#
+            </p>
+          </motion.li>
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
+            <div className="icon-container">
+              <FaLaptopCode
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Frameworks & Libraries</h2>
+            <p className="paragraph">
+              React.js, Angular, Vue.js, Node.js, Express.js
+            </p>
+          </motion.li>
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
+            <div className="icon-container">
+              <FaDatabase
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Databases</h2>
+            <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
+          </motion.li>
+          <motion.li
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="training-approach-item"
+          >
+            <div className="icon-container">
+              <FaLaptopCode
+                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                className="icon"
+              />
+            </div>
+            <h2>Tools & Platforms</h2>
+            <p className="paragraph">
+              Git, GitHub, Docker, AWS, Azure, Google Cloud
+            </p>
+          </motion.li>
+        </ul>
       </div>
 
       {/* Approach Section */}
@@ -190,83 +260,6 @@ const Software: React.FunctionComponent = () => {
           title="Want to Know more? Contact Us"
           onClickButton={() => {}}
         />
-      </div>
-
-      {/* Technologies and Tools Section */}
-      <div className="technologies" style={{ marginTop: "1rem" }}>
-        <h1 className="training-approach-head">Technologies and Tools</h1>
-        <ul className="training-approach-list">
-          <motion.li
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="training-approach-item"
-          >
-            <div className="icon-container">
-              <FaCode
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Programming Languages</h2>
-            <p className="paragraph">
-              JavaScript, TypeScript, Python, Java, C#
-            </p>
-          </motion.li>
-          <motion.li
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="training-approach-item"
-          >
-            <div className="icon-container">
-              <FaLaptopCode
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Frameworks & Libraries</h2>
-            <p className="paragraph">
-              React.js, Angular, Vue.js, Node.js, Express.js
-            </p>
-          </motion.li>
-          <motion.li
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="training-approach-item"
-          >
-            <div className="icon-container">
-              <FaDatabase
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Databases</h2>
-            <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
-          </motion.li>
-          <motion.li
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="training-approach-item"
-          >
-            <div className="icon-container">
-              <FaLaptopCode
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Tools & Platforms</h2>
-            <p className="paragraph">
-              Git, GitHub, Docker, AWS, Azure, Google Cloud
-            </p>
-          </motion.li>
-        </ul>
       </div>
     </div>
   );

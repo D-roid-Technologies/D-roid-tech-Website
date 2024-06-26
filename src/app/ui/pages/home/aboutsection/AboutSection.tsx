@@ -178,7 +178,7 @@ const Section: React.FunctionComponent = () => {
         </div>
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         variants={fadeIn("right", 0.2)}
         initial="hidden"
         whileInView={"show"}
@@ -223,7 +223,7 @@ const Section: React.FunctionComponent = () => {
             style={{ color: getColor("basic") }}
           />
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* SECTION THREE */}
       <div className="our-service-main">
