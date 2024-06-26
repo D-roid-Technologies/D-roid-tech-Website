@@ -5,9 +5,29 @@ import { Assets } from "../../../utils/constant/Assets";
 import { TiArrowBack } from "react-icons/ti";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import { Test } from "../../../utils/constant/Test";
+import { IoCheckmarkSharp } from "react-icons/io5";
 
 const TakeTest: React.FunctionComponent = () => {
   const navigate = useNavigate();
+
+  const mapTest = () => {
+    return Test.map((i, j) => {
+      return (
+        <div key={j} className="map-test-inner">
+          <h3>{j + 1 + "." + " " + i.question}</h3>
+          {i.options.map((i, j) => {
+            return (
+              <ul className="map-test-ul">
+                <input type="radio" />
+                <li className="map-test-list">{i}</li>
+              </ul>
+            );
+          })}
+        </div>
+      );
+    });
+  };
   return (
     <div>
       <div className="test-top-con">
@@ -45,9 +65,27 @@ const TakeTest: React.FunctionComponent = () => {
             your programming career.
             <br />
             <br />
-            It comprise of different quuestion related to Programming, Computer
+            It comprise of different question related to Programming, Computer
             Science and Critical Thinking.
           </p>
+          <div className="map-test">{mapTest()}</div>
+          <div className="btn-parent">
+            <Button
+              bgColor={Assets.colors.primary}
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              bRadius={10}
+              mRight={0}
+              bRadiusColor={Assets.colors.primary}
+              title="Submit Test"
+              color="#ffffff"
+              icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
+              onClickButton={() => {
+                // navigate("/");
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

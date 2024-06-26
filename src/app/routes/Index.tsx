@@ -4,7 +4,6 @@ import Home from "../ui/pages/home/Home";
 import AboutUs from "../ui/pages/aboutus/AboutUs";
 import Animation from "../ui/pages/animations/Animation";
 import Contact from "../ui/pages/contact/Contact";
-import ProgrammingHome from "../ui/pages/programming/ProgrammingHome";
 import Training from "../ui/pages/training/Training";
 import { RouterType } from "../utils/Types";
 import Equipments from "../ui/pages/equipments/Equipments";
@@ -28,7 +27,6 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/products" element={<Animation />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/programminghome" element={<ProgrammingHome />} />
         <Route path="/training" element={<Training />} />
         <Route path="/drone" element={<Drone />} />
         <Route path="/offices" element={<Equipments />} />

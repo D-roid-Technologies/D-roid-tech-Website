@@ -19,12 +19,14 @@ import {
 import { useDispatch } from "react-redux";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 import { convertToCurrency } from "../../../../utils/currencyUtils";
+import { useNavigate } from "react-router-dom";
 
 type Service = {
   title: string;
   description: string;
   icon: React.ReactNode;
   prices: { name: string; price: number }[];
+  path: string;
 };
 
 const services: Service[] = [
@@ -39,6 +41,7 @@ const services: Service[] = [
       { name: "Simple Mobile App", price: 3000 },
       { name: "Advanced Mobile App", price: 15000 },
     ],
+    path: "/software",
   },
   {
     title: "Animation Creation",
@@ -50,6 +53,7 @@ const services: Service[] = [
       { name: "Medium Animation (1-3 minutes)", price: 3000 },
       { name: "Long Animation (over 3 minutes)", price: 7000 },
     ],
+    path: "",
   },
   {
     title: "Tech Trainings",
@@ -61,6 +65,7 @@ const services: Service[] = [
       { name: "Week-Long Course", price: 2000 },
       { name: "Customized Training Program", price: 5000 },
     ],
+    path: "/training",
   },
   {
     title: "Drone Services",
@@ -72,6 +77,7 @@ const services: Service[] = [
       { name: "Aerial Videography Session", price: 1000 },
       { name: "Surveying and Inspection", price: 2000 },
     ],
+    path: "/drone",
   },
   {
     title: "Equipment Set-up",
@@ -83,12 +89,14 @@ const services: Service[] = [
       { name: "Advanced Equipment Setup", price: 2000 },
       { name: "Full Office Setup", price: 5000 },
     ],
+    path: "/offices",
   },
 ];
 
 const Services: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const { getColor } = useThemeColor();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -140,34 +148,37 @@ const Services: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  bRadiusColor={getColor('light')}
-                  onClickButton={async () => {
-                    const convertedPrices = await Promise.all(
-                      service.prices.map(async (price) => {
-                        const convertedAmount = await convertToCurrency(
-                          price.price
-                        );
-                        return `${price.name}: ${convertedAmount}`;
-                      })
-                    );
-
-                    dispatch(
-                      updateModalContent({
-                        appTitle: service.title,
-                        appBody: `
-                          <div class="modal-content">
-                            <p>${service.description}</p>
-                            <ul style="list-style: none;">
-                              ${convertedPrices
-                                .map((price) => `<li>${price}</li>`)
-                                .join("")}
-                            </ul>
-                          </div>
-                        `,
-                      })
-                    );
-                    dispatch(updateModal(true));
+                  bRadiusColor={getColor("light")}
+                  onClickButton={() => {
+                    navigate(service.path);
                   }}
+                  // onClickButton={async () => {
+                  //   const convertedPrices = await Promise.all(
+                  //     service.prices.map(async (price) => {
+                  //       const convertedAmount = await convertToCurrency(
+                  //         price.price
+                  //       );
+                  //       return `${price.name}: ${convertedAmount}`;
+                  //     })
+                  //   );
+
+                  //   dispatch(
+                  //     updateModalContent({
+                  //       appTitle: service.title,
+                  //       appBody: `
+                  //         <div class="modal-content">
+                  //           <p>${service.description}</p>
+                  //           <ul style="list-style: none;">
+                  //             ${convertedPrices
+                  //               .map((price) => `<li>${price}</li>`)
+                  //               .join("")}
+                  //           </ul>
+                  //         </div>
+                  //       `,
+                  //     })
+                  //   );
+                  //   dispatch(updateModal(true));
+                  // }}
                 />
               }
             />
