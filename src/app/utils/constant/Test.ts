@@ -86,24 +86,28 @@ export const Test: TestType[] = [
     correct: "concat()",
   },
   {
+    question: "What will console.log([] + []); output?",
+    options: [`[]`, `""`, `undefined`, `null`],
+    correct: `""`,
+  },
+  {
     question: "",
     options: [""],
     correct: "",
   },
+  {
+    question:
+      "Which of the following is the correct way to write an array in JavaScript?",
+    options: [
+      `var colors = "red", "green", "blue";`,
+      `var colors = ["red", "green", "blue"];`,
+      `var colors = (1:"red", 2:"green", 3:"blue");`,
+      `var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue");`,
+    ],
+    correct: `var colors = ["red", "green", "blue"]; `,
+  },
 ];
 
-// What will console.log([] + []); output?
-
-// a) []
-// b) "" (Correct)
-// c) undefined
-// d) null
-// Which of the following is the correct way to write an array in JavaScript?
-
-// a) var colors = "red", "green", "blue";
-// b) var colors = ["red", "green", "blue"]; (Correct)
-// c) var colors = (1:"red", 2:"green", 3:"blue");
-// d) var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue");
 // What does the typeof operator return for the value null?
 
 // a) null
