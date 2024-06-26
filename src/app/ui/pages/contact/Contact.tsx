@@ -15,12 +15,12 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
 import testimonialbackgroundImage from "../../../images/png/customerfeedback2.jpg";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
 import {
   updateModal,
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
 
 const Contact: React.FunctionComponent = () => {
   const dispatch = useDispatch();
