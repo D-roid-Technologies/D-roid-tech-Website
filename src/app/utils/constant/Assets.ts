@@ -46,6 +46,11 @@ export const Assets = {
     tService: require("../../images/png/tservice.png"),
     backEndDev: require("../../images/png/bedev.png"),
     cReviews: require("../../images/png/creview.png"),
+    appAi: require("../../images/png/ogoo-Ai.png"),
+
+    trainingOne: require("../../images/png/train1.png"),
+    trainingTwo: require("../../images/png/train2.png"),
+    trainingThree: require("../../images/png/train3.png"),
   },
   colors: {
     basic: "#000000",

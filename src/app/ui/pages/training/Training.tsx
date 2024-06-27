@@ -16,12 +16,12 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { TechTraining } from "../../../utils/constant/Data";
 
 const photos: TrainingPhoto[] = [
-  { image: Assets.images.staffBg, text: "Expert trainers available" },
+  { image: Assets.images.trainingOne, text: "" },
   {
-    image: Assets.images.tech,
-    text: "At D'roid Technologies, we offer comprehensive tech training programs designed to empower individuals with the knowledge and skills needed to excel in today's rapidly evolving tech landscape.",
+    image: Assets.images.trainingTwo,
+    text: "",
   },
-  { image: Assets.images.tech3, text: "Learn at your own pace" },
+  { image: Assets.images.trainingThree, text: "" },
 ];
 
 const Training: React.FC = () => {
@@ -133,7 +133,16 @@ const Training: React.FC = () => {
                     bRadiusColor={getColor("light")}
                     // onClickButton={() => {}}
                     onClickButton={() => {
-                      navigate("/trainingprograms");
+                      navigate("/details", {
+                        state: {
+                          title: item.title,
+                          image: item.image,
+                          content: item.content,
+                          desc: item.description,
+                          procedure: item.applicationProcedure,
+                          path: "/training"
+                        },
+                      });
                     }}
                   />
                 }
