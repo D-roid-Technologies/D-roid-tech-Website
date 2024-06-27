@@ -7,7 +7,7 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "LEADPAC Foundation",
     position: "Founder",
-    type: ["Web Development", "Consultation", "Outsourcing"]
+    type: ["Web Development", "Consultation", "Outsourcing"],
   },
   {
     body: "The web development team at D'roid Technologies exceeded our expectations. Their attention to detail and innovative approach helped us create a user-friendly and visually appealing website. Highly recommend!",
@@ -15,7 +15,7 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "Tech Innovators",
     position: "CTO",
-    type: ["Web Development"]
+    type: ["Web Development"],
   },
   {
     body: "Working with D'roid Technologies on our web development project was a game-changer. They delivered a modern, responsive site that has significantly boosted our online presence.",
@@ -23,7 +23,7 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "Creative Solutions",
     position: "Marketing Manager",
-    type: ["Web Development"]
+    type: ["Web Development"],
   },
   {
     body: "D'roid Technologies transformed our outdated website into a sleek, professional platform that reflects our brand perfectly. Their expertise in web development is unmatched.",
@@ -31,7 +31,7 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "Start-Up Ventures",
     position: "Founder",
-    type: ["Web Development"]
+    type: ["Web Development"],
   },
   {
     body: "The new website developed by D'roid Technologies has been instrumental in driving our business growth. The team’s creativity and technical skills are truly impressive.",
@@ -39,7 +39,7 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "Media Hub",
     position: "Digital Marketing Specialist",
-    type: ["Web Development"]
+    type: ["Web Development"],
   },
   {
     body: "Our experience with D'roid Technologies for web development was outstanding. They delivered a high-quality website on time and within budget. We couldn't be happier with the results.",
@@ -47,7 +47,7 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "E-commerce Corp",
     position: "Project Manager",
-    type: ["Web Development"]
+    type: ["Web Development"],
   },
   {
     body: "The mobile app developed by D'roid Technologies has significantly improved our user engagement. Their team was professional, responsive, and delivered an exceptional product.",
@@ -55,85 +55,211 @@ export const TESTIMONIALS: TestimonialTypes[] = [
     service: "D'roid Technologies",
     company: "AppWorks",
     position: "Product Manager",
-    type: ["Mobile Development", "Consultation"]
+    type: ["Mobile Development", "Consultation"],
+  },
+  //new objects
+  {
+    body: "D'roid Technologies’ mobile development services are top-notch. They created a seamless, user-friendly app that our customers love. I highly recommend them!",
+    author: "James Anderson",
+    service: "D'roid Technologies",
+    company: "",
+    position: " CEO at Mobile Innovations",
+    type: ["Mobile Development"],
+  },
+  {
+    body: "Our mobile app project with D'roid Technologies was a huge success. They were attentive to our needs and provided creative solutions that exceeded our expectations.",
+    author: "Sophia Thompson",
+    service: "D'roid Technologies",
+    company: "",
+    position: " Operations Manager at Retail Solutions",
+    type: ["Mobile Development"],
+  },
+  {
+    body: "D'roid Technologies delivered a robust and intuitive mobile app that has enhanced our service offering. Their expertise in mobile development is evident in the quality of their work.",
+    author: "Liam Taylor",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Director of Technology at Fitness Pro",
+    type: ["Mobile Development"],
+  },
+  {
+    body: "Working with D'roid Technologies on our mobile app was an incredible experience. Their team is knowledgeable, dedicated, and delivered an app that has transformed our business.",
+    author: "Isabella Lee",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Co-Founder of HealthTech Start-Up",
+    type: ["Mobile Development"],
+  },
+  //drone services
+  {
+    body: "D'roid Technologies’ drone services have revolutionized our agricultural monitoring. The high-quality data and imagery they provided are invaluable to our operations.",
+    author: "Benjamin Clark",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Director of Operations at AgroTech",
+    type: ["Drone Services"],
+  },
+  {
+    body: "The drone services from D'roid Technologies have significantly improved our site inspections. Their detailed aerial imagery and accurate data are game-changers for our projects.",
+    author: "Ava Martinez",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Construction Manager at BuildSmart",
+    type: ["Drone Services"],
+  },
+  {
+    body: "D'roid Technologies’ drone services have been essential in our environmental assessments. The precision and quality of the data they provide are exceptional.",
+    author: "William Hernandez",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Environmental Scientist at Eco Solutions",
+    type: ["Drone Services"],
+  },
+  {
+    body: "The drone footage captured by D'roid Technologies for our event was stunning. Their professional approach and eye for detail made a huge difference in our promotional materials.",
+    author: "Mia Johnson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Marketing Director at Event Planners Inc.",
+    type: ["Drone Services"],
+  },
+  {
+    body: "D'roid Technologies’ drone services have provided us with invaluable aerial views of our properties. Their expertise and high-quality output have greatly enhanced our marketing efforts.",
+    author: "Lucas Miller",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Real Estate Developer at Prime Properties",
+    type: ["Drone Services"],
+  },
+  //tech training
+  {
+    body: "The tech training programs offered by D'roid Technologies are outstanding. Our team has gained valuable skills and knowledge that have greatly enhanced our productivity.",
+    author: "Charlotte Wilson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "HR Manager at TechWorld",
+    type: ["Tech Training"],
+  },
+  {
+    body: "D'roid Technologies’ tech training has been instrumental in upskilling our workforce. The courses are comprehensive, engaging, and led by experts in the field.",
+    author: "Henry Smith",
+    service: "D'roid Technologies",
+    company: "",
+    position: "IT Director at Global Enterprises",
+    type: ["Tech Training"],
+  },
+  {
+    body: "Our employees have benefited immensely from the tech training provided by D'roid Technologies. The hands-on approach and real-world applications make the learning experience invaluable.",
+    author: "Amelia Johnson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Learning & Development Manager at Innovate Corp",
+    type: ["Tech Training"],
+  },
+  {
+    body: "D'roid Technologies’ tech training programs have equipped our team with the latest skills and knowledge. Their commitment to quality education is evident in every session.",
+    author: "Noah Martinez",
+    service: "D'roid Technologies",
+    company: "",
+    position: "CEO at Start-Up Labs",
+    type: ["Tech Training"],
+  },
+  {
+    body: "The tech training from D'roid Technologies has been a game-changer for our organization. Our staff is now more confident and proficient in using advanced technologies.",
+    author: "Evelyn Lee",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Training Coordinator at HealthTech Innovations",
+    type: ["Tech Training"],
+  },
+  //animation creation
+  {
+    body: "The animation creation team at D'roid Technologies brought our vision to life with stunning visuals and captivating storytelling. Their creativity and technical skills are unmatched.",
+    author: "Aiden Thompson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Creative Director at Media Magic",
+    type: ["Animation Creation"],
+  },
+  {
+    body: "The animations created by D'roid Technologies have significantly enhanced our marketing campaigns. Their attention to detail and artistic flair are truly impressive.",
+    author: "Lily Hernandez",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Marketing Manager at Brand Builders",
+    type: ["Animation Creation"],
+  },
+  {
+    body: "D'roid Technologies’ animation creation services have transformed our educational content. The engaging animations have made learning fun and interactive for our students.",
+    author: "Jackson Clark",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Founder of EdTech Innovators",
+    type: ["Animation Creation"],
+  },
+  {
+    body: "Working with D'roid Technologies on our animation project was a fantastic experience. They delivered high-quality animations that perfectly captured our brand message.",
+    author: "Grace Wilson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Production Manager at AdVision",
+    type: ["Animation Creation"],
+  },
+  {
+    body: "The 2D and 3D animations created by D'roid Technologies have taken our game design to the next level. Their expertise and creativity are evident in every frame.",
+    author: "Elijah Martinez",
+    service: "D'roid Technologies",
+    company: "",
+    position: "CEO at Game Creators Inc.",
+    type: ["Animation Creation"],
+  },
+  // backend development
+  {
+    body: "D'roid Technologies’ backend development team delivered a robust and scalable system that has greatly improved our operational efficiency. Their technical expertise is outstanding.",
+    author: "Mason Johnson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "CTO at Data Solutions",
+    type: ["Backend Development"],
+  },
+  {
+    body: "The backend development services provided by D'roid Technologies have been instrumental in the success of our platform. Their attention to detail and commitment to quality are exceptional.",
+    author: "Sophia Brown",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Product Manager at FinTech Innovations",
+    type: ["Backend Development"],
+  },
+  {
+    body: "D'roid Technologies’ backend development has transformed our website’s performance. The team’s expertise and dedication have resulted in a seamless and efficient system.",
+    author: "James Lee",
+    service: "D'roid Technologies",
+    company: "",
+    position: "IT Manager at E-commerce Experts",
+    type: ["Backend Development"],
+  },
+  {
+    body: "The backend system developed by D'roid Technologies has significantly improved our data management and operational workflows. Their technical skills and professionalism are top-notch.",
+    author: "Emily Martinez",
+    service: "D'roid Technologies",
+    company: "",
+    position: "Operations Director at Health Services Inc.",
+    type: ["Backend Development"],
+  },
+  {
+    body: "D'roid Technologies’ backend development services have been crucial in building a reliable and secure system for our smart home products. Their expertise and commitment to excellence are unparalleled.",
+    author: "Michael Thompson",
+    service: "D'roid Technologies",
+    company: "",
+    position: "CEO at Smart Home Technologies",
+    type: ["Backend Development"],
+  },
+  {
+    body: "",
+    author: "",
+    service: "D'roid Technologies",
+    company: "",
+    position: "",
+    type: ["Backend Development"],
   },
 ];
-
-
-// Mobile Development
-
-// James Anderson, CEO at Mobile Innovations
-// "D'roid Technologies’ mobile development services are top-notch. They created a seamless, user-friendly app that our customers love. I highly recommend them!"
-
-// Sophia Thompson, Operations Manager at Retail Solutions
-// "Our mobile app project with D'roid Technologies was a huge success. They were attentive to our needs and provided creative solutions that exceeded our expectations."
-
-// Liam Taylor, Director of Technology at Fitness Pro
-// "D'roid Technologies delivered a robust and intuitive mobile app that has enhanced our service offering. Their expertise in mobile development is evident in the quality of their work."
-
-// Isabella Lee, Co-Founder of HealthTech Start-Up
-// "Working with D'roid Technologies on our mobile app was an incredible experience. Their team is knowledgeable, dedicated, and delivered an app that has transformed our business."
-
-// Drone Services
-// Benjamin Clark, Director of Operations at AgroTech
-// "D'roid Technologies’ drone services have revolutionized our agricultural monitoring. The high-quality data and imagery they provided are invaluable to our operations."
-
-// Ava Martinez, Construction Manager at BuildSmart
-// "The drone services from D'roid Technologies have significantly improved our site inspections. Their detailed aerial imagery and accurate data are game-changers for our projects."
-
-// William Hernandez, Environmental Scientist at Eco Solutions
-// "D'roid Technologies’ drone services have been essential in our environmental assessments. The precision and quality of the data they provide are exceptional."
-
-// Mia Johnson, Marketing Director at Event Planners Inc.
-// "The drone footage captured by D'roid Technologies for our event was stunning. Their professional approach and eye for detail made a huge difference in our promotional materials."
-
-// Lucas Miller, Real Estate Developer at Prime Properties
-// "D'roid Technologies’ drone services have provided us with invaluable aerial views of our properties. Their expertise and high-quality output have greatly enhanced our marketing efforts."
-
-// Tech Training
-// Charlotte Wilson, HR Manager at TechWorld
-// "The tech training programs offered by D'roid Technologies are outstanding. Our team has gained valuable skills and knowledge that have greatly enhanced our productivity."
-
-// Henry Smith, IT Director at Global Enterprises
-// "D'roid Technologies’ tech training has been instrumental in upskilling our workforce. The courses are comprehensive, engaging, and led by experts in the field."
-
-// Amelia Johnson, Learning & Development Manager at Innovate Corp
-// "Our employees have benefited immensely from the tech training provided by D'roid Technologies. The hands-on approach and real-world applications make the learning experience invaluable."
-
-// Noah Martinez, CEO at Start-Up Labs
-// "D'roid Technologies’ tech training programs have equipped our team with the latest skills and knowledge. Their commitment to quality education is evident in every session."
-
-// Evelyn Lee, Training Coordinator at HealthTech Innovations
-// "The tech training from D'roid Technologies has been a game-changer for our organization. Our staff is now more confident and proficient in using advanced technologies."
-
-// Animation Creation
-// Aiden Thompson, Creative Director at Media Magic
-// "The animation creation team at D'roid Technologies brought our vision to life with stunning visuals and captivating storytelling. Their creativity and technical skills are unmatched."
-
-// Lily Hernandez, Marketing Manager at Brand Builders
-// "The animations created by D'roid Technologies have significantly enhanced our marketing campaigns. Their attention to detail and artistic flair are truly impressive."
-
-// Jackson Clark, Founder of EdTech Innovators
-// "D'roid Technologies’ animation creation services have transformed our educational content. The engaging animations have made learning fun and interactive for our students."
-
-// Grace Wilson, Production Manager at AdVision
-// "Working with D'roid Technologies on our animation project was a fantastic experience. They delivered high-quality animations that perfectly captured our brand message."
-
-// Elijah Martinez, CEO at Game Creators Inc.
-// "The 2D and 3D animations created by D'roid Technologies have taken our game design to the next level. Their expertise and creativity are evident in every frame."
-
-// Backend Development
-// Mason Johnson, CTO at Data Solutions
-// "D'roid Technologies’ backend development team delivered a robust and scalable system that has greatly improved our operational efficiency. Their technical expertise is outstanding."
-
-// Sophia Brown, Product Manager at FinTech Innovations
-// "The backend development services provided by D'roid Technologies have been instrumental in the success of our platform. Their attention to detail and commitment to quality are exceptional."
-
-// James Lee, IT Manager at E-commerce Experts
-// "D'roid Technologies’ backend development has transformed our website’s performance. The team’s expertise and dedication have resulted in a seamless and efficient system."
-
-// Emily Martinez, Operations Director at Health Services Inc.
-// "The backend system developed by D'roid Technologies has significantly improved our data management and operational workflows. Their technical skills and professionalism are top-notch."
-
-// Michael Thompson, CEO at Smart Home Technologies
-// "D'roid Technologies’ backend development services have been crucial in building a reliable and secure system for our smart home products. Their expertise and commitment to excellence are unparalleled."

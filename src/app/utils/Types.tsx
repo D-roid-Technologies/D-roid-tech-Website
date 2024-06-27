@@ -18,6 +18,13 @@ export type UserType = {
   message: string;
   userEmail: string;
 };
+export type ContactType = {
+  userFullName: string;
+  userEmail: string;
+  userPhoneNumber: string;
+  subject: string;
+  message: string;
+};
 export type EmailType = {
   emailFromUser: string;
 };
