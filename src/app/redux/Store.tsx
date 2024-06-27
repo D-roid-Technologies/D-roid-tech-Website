@@ -3,12 +3,14 @@ import { DimensionSlice } from "./slices/Dimension";
 import { UserSlice } from "./slices/User";
 import { AppEntrySlice } from "./slices/AppEntrySlice";
 import themeReducer from "./slices/ThemeSlice";
+import { ContactSlice } from "./slices/ContactSlice";
 
 export const store = configureStore({
   reducer: {
     dimension: DimensionSlice.reducer,
     user: UserSlice.reducer,
     appEntry: AppEntrySlice.reducer,
+    contact: ContactSlice.reducer,
     theme: themeReducer,
   },
 });

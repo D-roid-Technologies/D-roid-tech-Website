@@ -5,8 +5,8 @@ const initialState: ContactType = {
   userFullName: "",
   userEmail: "",
   userPhoneNumber: "",
-  subject: "",
-  message: "",
+  userSubject: "",
+  userMessage: "",
 };
 
 export const ContactSlice = createSlice({
@@ -14,19 +14,40 @@ export const ContactSlice = createSlice({
   initialState,
   reducers: {
     addUserFullName: (state, action) => {
+      const userFullName = action.payload;
       state.userFullName = action.payload;
+      console.log("getting user full name from contact slice", userFullName);
     },
-    addUserEmail: (state, action) => {
+    addUserContactEmail: (state, action) => {
+      const userEmail = action.payload;
       state.userEmail = action.payload;
+      console.log("getting user email from contact slice", userEmail);
     },
     addUserPhoneNumber: (state, action) => {
+      const userPhoneNumber = action.payload;
       state.userPhoneNumber = action.payload;
+      console.log(
+        "getting user phone number from Contact slice",
+        userPhoneNumber
+      );
     },
-    addSubject: (state, action) => {
-      state.subject = action.payload;
+    addUserSubject: (state, action) => {
+      const userSubject = action.payload;
+      state.userSubject = action.payload;
+      console.log("getting user subject from Contact slice", userSubject);
     },
-    addMessage: (state, action) => {
-      state.message = action.payload;
+    addUserMessage: (state, action) => {
+      const userMessage = action.payload;
+      state.userMessage = action.payload;
+      console.log("getting user message from Contact slice", userMessage);
     },
   },
 });
+export default ContactSlice.reducer;
+export const {
+  addUserFullName,
+  addUserMessage,
+  addUserPhoneNumber,
+  addUserSubject,
+  addUserContactEmail,
+} = ContactSlice.actions;
