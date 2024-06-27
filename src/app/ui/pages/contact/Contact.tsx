@@ -20,11 +20,58 @@ import {
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { RootState, store } from "../../../redux/Store";
+import {
+  addUserFullName,
+  addUserPhoneNumber,
+  addUserSubject,
+  addUserMessage,
+  addUserContactEmail,
+} from "../../../redux/slices/ContactSlice";
 
 const Contact: React.FunctionComponent = () => {
+  // const [emailSubscription, setEmailSubscription] = React.useState<string>("");
+  const [fullNameData, setFullNameData] = React.useState<string>("");
+  const [emailData, setEmailData] = React.useState<string>("");
+  const [phoneNumberData, setPhoneNumberData] = React.useState<string>("");
+  const [subjectData, setSubjectData] = React.useState<string>("");
+  const [messageData, setMessageData] = React.useState<string>("");
+
+  const contactDetails = useSelector((state: RootState) => state.contact);
+  // const userEmail = userState.userEmail;
+  const userFullName = contactDetails.userFullName;
+  const userEmail = contactDetails.userEmail;
+  const userPhoneNumber = contactDetails.userPhoneNumber;
+  const userSubject = contactDetails.userSubject;
+  const userMessage = contactDetails.userMessage;
+
+  console.log(
+    "full name",
+    fullNameData,
+    "Email",
+    emailData,
+    "Phone number",
+    phoneNumberData,
+    "Subject",
+    subjectData,
+    "message",
+    messageData
+  );
   const dispatch = useDispatch();
-  const appEntry = useSelector((state: RootState) => state.appEntry);
+
+  const sendContactDataToReduxStore = () => {
+    store.dispatch(addUserFullName(fullNameData));
+    store.dispatch(addUserPhoneNumber(phoneNumberData));
+    store.dispatch(addUserSubject(subjectData));
+    store.dispatch(addUserMessage(messageData));
+    store.dispatch(addUserContactEmail(emailData));
+  };
+
+  const handleUserEmail = () => {
+    sendContactDataToReduxStore();
+  };
+
+  // const appEntry = useSelector((state: RootState) => state.appEntry);
 
   const optionsList = [
     "Subject",
@@ -130,15 +177,10 @@ const Contact: React.FunctionComponent = () => {
 
             {/* MESSAGE  SECTION */}
             <div className="input-section">
-              {/* INPUT SECTION TWO */}
               <section>
                 <section className="name-section-two">
-                  {/* INPUT SECTION ONE */}
-                  {/* first name */}
+                  {/* FULL NAME */}
                   <div className="input-width">
-                    {/* <label style={{ color: Assets.colors.light }}>
-                      Fullname
-                    </label> */}
                     <br />
                     <div className="input-container">
                       <AppInput
@@ -146,24 +188,29 @@ const Contact: React.FunctionComponent = () => {
                         h={40}
                         pLeft={10}
                         pHolder="Full Name"
+                        onchangeText={(e: any) => {
+                          setFullNameData(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
-                  {/* last name */}
+                  {/* EMAIL */}
                   <div className="input-width">
-                    <label style={{ color: Assets.colors.light }}>
-                      Phone Number
-                    </label>
                     <br />
                     <div className="input-container">
-                      <AppInput w="100%" h={40} pLeft={10} pHolder="Email" />
+                      <AppInput
+                        w="100%"
+                        h={40}
+                        pLeft={10}
+                        pHolder="Email"
+                        onchangeText={(e: any) => {
+                          setEmailData(e.target.value);
+                        }}
+                      />
                     </div>
                   </div>
-                  {/* last name */}
+                  {/* PHONE NUMBER */}
                   <div className="input-width">
-                    <label style={{ color: Assets.colors.light }}>
-                      Subject
-                    </label>
                     <br />
                     <div className="input-container">
                       <AppInput
@@ -171,16 +218,16 @@ const Contact: React.FunctionComponent = () => {
                         h={40}
                         pLeft={10}
                         pHolder="Phone Number"
+                        onchangeText={(e: any) => {
+                          setPhoneNumberData(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
                 </section>
                 <section className="name-section">
-                  {/* Subject */}
+                  {/* SUBJECT */}
                   <div className="input-width">
-                    <label style={{ color: Assets.colors.light }}>
-                      Subject
-                    </label>
                     <br />
                     <div className="input-container">
                       <AppInput
@@ -192,6 +239,9 @@ const Contact: React.FunctionComponent = () => {
                         isDropdown={true}
                         options={optionsList}
                         className="subject-feild"
+                        onchangeText={(e: any) => {
+                          setSubjectData(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -206,9 +256,13 @@ const Contact: React.FunctionComponent = () => {
                     rows={10}
                     name="comment"
                     placeholder="Write your message here"
+                    onChange={(e: any) => {
+                      setMessageData(e.target.value);
+                    }}
                   />
                 </div>
               </section>
+              {/* SUBMIT BUTTON */}
               <div className="textarea-btn">
                 <Button
                   bgColor="#000000"
@@ -220,7 +274,9 @@ const Contact: React.FunctionComponent = () => {
                   title="Submit"
                   color="#ffffff"
                   icon={<FaArrowRightToBracket className="icon-style" />}
-                  onClickButton={() => {}}
+                  onClickButton={() => {
+                    handleUserEmail();
+                  }}
                 />
               </div>
             </div>

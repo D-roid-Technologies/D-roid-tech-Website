@@ -20,7 +20,8 @@ const Footer: React.FunctionComponent = () => {
   const userState = useSelector((state: RootState) => state.user);
   const userEmail = userState.userEmail;
 
-  console.log(userEmail, emailSubscription);
+  console.log("email from user input", emailSubscription);
+  console.log("email from email state", userEmail);
 
   const { getColor } = useThemeColor();
 

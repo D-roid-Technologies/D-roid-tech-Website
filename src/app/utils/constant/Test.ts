@@ -59,11 +59,11 @@ export const Test: TestType[] = [
     options: ["let a = 2;", "const b;", "var c = 3;", "const d = 4;"],
     correct: "const b;",
   },
-  // {
-  //   question: "What is the output of the following code? console.log(2 + "2");",
-  //   options: ["4", "22", "NaN", "undefined",],
-  //   correct: "22",
-  // },
+  {
+    question: `What is the output of the following code? console.log(2 + "2");`,
+    options: ["4", "22", "NaN", "undefined"],
+    correct: "22",
+  },
   {
     question: "How do you create a function in JavaScript?",
     options: [
@@ -74,11 +74,11 @@ export const Test: TestType[] = [
     ],
     correct: "function myFunction() {}",
   },
-  // {
-  //   question: "What will console.log("5" - 3); output?",
-  //   options: ["2", "8", "NaN", "undefined",],
-  //   correct: "2",
-  // },
+  {
+    question: `What will console.log("5" - 3); output?`,
+    options: ["2", "8", "NaN", "undefined"],
+    correct: "2",
+  },
   {
     question:
       "Which built-in method combines the text of two strings and returns a new string?",
@@ -91,11 +91,6 @@ export const Test: TestType[] = [
     correct: `""`,
   },
   {
-    question: "",
-    options: [""],
-    correct: "",
-  },
-  {
     question:
       "Which of the following is the correct way to write an array in JavaScript?",
     options: [
@@ -106,11 +101,9 @@ export const Test: TestType[] = [
     ],
     correct: `var colors = ["red", "green", "blue"]; `,
   },
+  {
+    question: "What does the typeof operator return for the value null?",
+    options: ["null", "object", "undefined", "number"],
+    correct: "object",
+  },
 ];
-
-// What does the typeof operator return for the value null?
-
-// a) null
-// b) object (Correct)
-// c) undefined
-// d) number
