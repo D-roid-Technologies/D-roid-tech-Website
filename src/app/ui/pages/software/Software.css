@@ -85,7 +85,9 @@
   border-radius: 10px;
   box-shadow: 0 0.35em 0.35em 0 grey;
 }
-
+.training-approach-main {
+  margin-bottom: 200px;
+}
 /* Approach Section */
 .software-approach-main {
   margin-bottom: 50px;
@@ -133,19 +135,19 @@
   letter-spacing: 2px;
 }
 
-.home-to-software{
+.home-to-software {
   padding-left: 100px;
   padding-right: 100px;
   margin-top: 100px;
 }
 
-.home-to-software-p{
+.home-to-software-p {
   font-family: "Mazzard";
   font-size: 1rem;
   color: rgb(124, 124, 124);
   margin-bottom: 1em;
 }
-.show-list{
+.show-list {
   margin-top: 80px;
   background-color: rgb(124, 124, 124);
   display: flex;
@@ -153,7 +155,7 @@
   align-items: center;
   border-radius: 15px;
 }
-.show-list-left{
+.show-list-left {
   width: 50%;
   display: flex;
   justify-content: center;
@@ -163,13 +165,22 @@
   cursor: pointer;
   border-radius: 15px;
 }
+.wantto-know {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.wantto-know-btn {
+  width: 25%;
+}
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-  .home-to-software{
+  .home-to-software {
     padding: 0 20px;
   }
-  
+
   .large-centered-heading {
     font-size: 1.5rem;
     letter-spacing: 1px;

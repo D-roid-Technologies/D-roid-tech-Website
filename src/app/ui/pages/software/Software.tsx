@@ -262,16 +262,20 @@ const Software: React.FunctionComponent = () => {
             </p>
           </li>
         </ul>
-        <Button
-          bgColor={"#000000"}
-          mTop={0}
-          mBottom={0}
-          mLeft={0}
-          mRight={0}
-          color="#ffffff"
-          title="Want to Know more? Contact Us"
-          onClickButton={() => {}}
-        />
+        <div className="wantto-know">
+          <div className="wantto-know-btn">
+            <Button
+              bgColor={"#000000"}
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              mRight={0}
+              color="#ffffff"
+              title="Want to Know more? Contact Us"
+              onClickButton={() => {}}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../contact/Contact.css";
 import Button from "../../components/button/Button";
@@ -36,6 +36,13 @@ const Contact: React.FunctionComponent = () => {
   const [phoneNumberData, setPhoneNumberData] = React.useState<string>("");
   const [subjectData, setSubjectData] = React.useState<string>("");
   const [messageData, setMessageData] = React.useState<string>("");
+
+  //TESIMONIAL FORM SECTION
+  const [showForm, setShowForm] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowForm(!showForm);
+  };
 
   const contactDetails = useSelector((state: RootState) => state.contact);
   // const userEmail = userState.userEmail;
@@ -78,6 +85,13 @@ const Contact: React.FunctionComponent = () => {
     "Inquiry on Drone Services",
     "Inquiry on Knowledge City",
   ];
+  const serviceList = [
+    "Software Development",
+    "Animation Creation",
+    "Tech training",
+    "Drone Services",
+    "Equipment set up",
+  ];
   const closeModal = () => {
     dispatch(updateModal(false));
   };
@@ -86,12 +100,10 @@ const Contact: React.FunctionComponent = () => {
     <>
       <main>
         <NavBar />
-
         <div className="message">
           <h2>Contact Us</h2>
           <p>Any Question or remark? Just write us a message!</p>
         </div>
-
         {/* CONTACT INFORMATION */}
         <div className="contact-containerr">
           <div className="container-raduis">
@@ -299,55 +311,59 @@ const Contact: React.FunctionComponent = () => {
               color="#ffffff"
               icon={<FaArrowRightToBracket className="icon-style" />}
               onClickButton={() => {
-                dispatch(
-                  updateModalContent({
-                    appTitle: "Create New Testimonial",
-                    appBody: (
-                      <AppInput
-                        w="100%"
-                        h={40}
-                        pLeft={10}
-                        pHolder="Full Name"
-                      />
-                    ),
-                  })
-                );
-                dispatch(updateModal(true));
+                handleButtonClick();
               }}
             />
           </div>
         </div>
+        {/* new testimonial form */}
+        {showForm && (
+          <form className="testimonial-form">
+            <div className="form-group">
+              <AppInput w="100%" h={40} pLeft={10} pHolder="Full Name" />
+            </div>
+            <div className="form-group">
+              <AppInput w="100%" h={40} pLeft={10} pHolder="Comapny Name" />
+            </div>
+            <div className="form-group">
+              <AppInput w="100%" h={40} pLeft={10} pHolder="Position" />
+            </div>
+            <div className="form-group">
+              <AppInput
+                w="100%"
+                h={40}
+                pLeft={10}
+                pHolder="Service Type"
+                isDropdown={true}
+                options={serviceList}
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                rows={10}
+                name="comment"
+                placeholder="Write your testimonial here"
+              />
+            </div>
+            <div className="form-group">
+              <Button
+                bgColor="#000000"
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                bRadiusColor="#282a94"
+                title="Submit"
+                color="#ffffff"
+                icon={<FaArrowRightToBracket className="icon-style" />}
+                onClickButton={() => {}}
+              />
+            </div>
+          </form>
+        )}
       </main>
     </>
   );
 };
 
 export default Contact;
-
-{
-  /* <form className="testimonial-form">
-  <div className="form-group">
-    <AppInput w="100%" h={40} pLeft={10} pHolder="Full Name" />
-  </div>
-  <div className="form-group">
-    <AppInput w="100%" h={40} pLeft={10} pHolder="Address" />
-  </div>
-  <div className="form-group">
-    <textarea rows={10} name="comment" placeholder="Write your message here" />
-  </div>
-  <div className="form-group">
-    <Button
-      bgColor="#000000"
-      mTop={0}
-      mBottom={0}
-      mLeft={0}
-      mRight={0}
-      bRadiusColor="#282a94"
-      title="Submit"
-      color="#ffffff"
-      icon={<FaArrowRightToBracket className="icon-style" />}
-      onClickButton={() => {}}
-    />
-  </div>
-</form>; */
-}
