@@ -38,6 +38,18 @@ const Details: React.FunctionComponent = () => {
           <p>{data.desc}</p>
         </div>
       </div>
+      <section>
+        <div className="info-con">
+          <div className="category">
+            <h3>Categories</h3>
+            <p>{data.category}</p>
+          </div>
+          <div className="tools">
+            <h3>Tools</h3>
+            <p>{data.tools}</p>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
