@@ -32,15 +32,63 @@
   font-size: 1.2rem;
   font-weight: 500;
 }
-.top-data-container{
+.top-data-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 50px;
+  padding: 0 100px;
 }
-.img-banner{
+.img-banner {
   width: 100%;
-  height: 600px
+  height: 600px;
 }
-.img-con{
-  width: 46%
+.img-con {
+  width: 46%;
+}
+/* software details section two */
+/* Details.css */
+.test-top-con {
+  /* existing styles */
+}
+.text-con {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info-con {
+  padding: 0 100px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.info-con h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.info-con p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.category,
+.tools {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.category h3,
+.tools h3 {
+  margin-bottom: 5px;
+  font-size: 1.3em;
+  color: #444;
+}
+
+.category p,
+.tools p {
+  gap: 20px;
+  font-size: 1.1em;
+  color: #555;
 }
