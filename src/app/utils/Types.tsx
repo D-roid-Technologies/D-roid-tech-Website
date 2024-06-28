@@ -154,6 +154,9 @@ export type SoftwareDevelopmentType = {
   procedure?: string[];
   classId?: string;
   path?: string;
+  // added
+  content?: string;
+  description?: string;
 };
 
 export type TestimonialTypes = {

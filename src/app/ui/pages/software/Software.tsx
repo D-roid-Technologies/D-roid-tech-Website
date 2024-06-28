@@ -95,8 +95,20 @@ const Software: React.FunctionComponent = () => {
                     mRight={0}
                     bRadiusColor={getColor("light")}
                     // onClickButton={() => {}}
+                    // onClickButton={() => {
+                    //   navigate("/details");
+                    // }}
                     onClickButton={() => {
-                      navigate("/details");
+                      navigate("/details", {
+                        state: {
+                          title: item.title,
+                          image: item.image,
+                          // content: item.content,
+                          desc: item.desc,
+                          procedure: item.procedure,
+                          path: "/software",
+                        },
+                      });
                     }}
                   />
                 }
