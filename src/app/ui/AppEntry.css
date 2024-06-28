@@ -108,9 +108,34 @@
   border-radius: 50%;
   padding: 20px;
 }
-.chat-with-ogo-p{
+.toast {
+  position: fixed;
+  right: 20px;
+  top: 60px;
+  width: 30%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.Ogo-AI-toast {
+  width: 40px;
+  height: 40px;
+}
+.chat-with-ogo-p {
   font-family: "Rammetto One";
   font-weight: 800;
+  color: #ffffff;
+}
+.Ogo-AI {
+  width: 60px;
+  height: 60px;
+}
+.inner-AI {
+  display: flex;
+  justify-content: center;
 }
 
 /* On screens that are 992px or less, set the background color to blue */
