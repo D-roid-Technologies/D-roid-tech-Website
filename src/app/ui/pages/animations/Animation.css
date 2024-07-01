@@ -114,6 +114,10 @@
 .our-catalog-right {
   width: 50%;
 }
+.product-p {
+  font-size: 20px;
+  line-height: 30px;
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
