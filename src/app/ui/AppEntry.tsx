@@ -12,6 +12,9 @@ import { Assets } from "../utils/constant/Assets";
 import Index from "../routes/Index";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
+  const [toast, setToast] = React.useState<boolean>(true);
+  const [toastMessage, setToastMessage] =
+    React.useState<string>("This is the toast");
   const appEntry = useSelector((state: RootState) => state.appEntry);
   const { getColor } = useThemeColor();
 
@@ -61,14 +64,34 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
           </div>
         </div>
       )}
+      {/* {toast ? (
+        <div
+          className="toast"
+          style={{ backgroundColor: Assets.colors.primary }}
+        >
+          <img
+            src={Assets.images.appAi}
+            alt="Ogo-AI-toast"
+            className="Ogo-AI-toast"
+          />
+          <p>{toastMessage}</p>
+        </div>
+      ) : null} */}
 
       <Index width={appWidth} />
       <Footer />
-      {/* <div
-        className="chat-with-ogo"
-        style={{ backgroundColor: Assets.colors.substitute }}
-      >
-        <p className="chat-with-ogo-p">Chat with Ogo</p>
+      {/* <div className="chat-with-ogo">
+        <div>
+          <div className="inner-AI">
+            <img src={Assets.images.appAi} alt="Ogo AI" className="Ogo-AI" />
+          </div>
+          <p
+            className="chat-with-ogo-p"
+            style={{ color: Assets.colors.primary }}
+          >
+            Chat with Ogoo
+          </p>
+        </div>
       </div> */}
     </div>
   );
