@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Software.css";
 import { Assets } from "../../../utils/constant/Assets";
@@ -6,9 +6,6 @@ import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import Button from "../../components/button/Button";
-import { GiSpiderWeb } from "react-icons/gi";
-import { MdOutlinePhoneIphone } from "react-icons/md";
-import { courses } from "../../../utils/constant/FeaturedTraining";
 import Card from "../../components/card/Card";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { softwareDevMain } from "../../../utils/constant/Data";

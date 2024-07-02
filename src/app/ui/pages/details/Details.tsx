@@ -36,6 +36,9 @@ const Details: React.FunctionComponent = () => {
         <div className="img-con">
           <h3>{data.title}</h3>
           <p>{data.desc}</p>
+          <p>
+            {data.procedure[0]}, {data.procedure[1]}
+          </p>
         </div>
       </div>
       <section>
@@ -46,7 +49,9 @@ const Details: React.FunctionComponent = () => {
           </div>
           <div className="tools">
             <h3>Tools</h3>
-            <p>{data.tools}</p>
+            <p>
+              {data.tools[0]}, {data.tools[1]}, {data.tools[2]}
+            </p>
           </div>
         </div>
       </section>

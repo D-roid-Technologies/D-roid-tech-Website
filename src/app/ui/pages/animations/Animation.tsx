@@ -1,18 +1,7 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
-import {
-  FaDesktop,
-  FaPalette,
-  FaMicrophoneAlt,
-  FaCodeBranch,
-  FaRocket,
-  FaGalacticRepublic,
-  FaStarOfLife,
-  FaSpaceShuttle,
-} from "react-icons/fa";
 import "./Animation.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { ImCart } from "react-icons/im";
 import { FaGrinStars } from "react-icons/fa";
 import Card from "../../components/card/Card";
 import { FaFingerprint } from "react-icons/fa";
