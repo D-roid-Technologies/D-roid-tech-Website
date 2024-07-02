@@ -40,9 +40,13 @@ const Contact: React.FunctionComponent = () => {
 
   //TESIMONIAL FORM SECTION
   const [showForm, setShowForm] = useState(false);
+  const [showTestimonial, setShowTestimonial] = useState(false);
 
   const handleButtonClick = () => {
     setShowForm(!showForm);
+  };
+  const handletestimonialClick = () => {
+    setShowTestimonial(!showTestimonial);
   };
 
   const contactDetails = useSelector((state: RootState) => state.contact);
@@ -296,34 +300,38 @@ const Contact: React.FunctionComponent = () => {
           </div>
         </div>
         {/* TESTIMONIALS */}
-        <section className="equip-margin-bt">
-          <Testimonials />
-        </section>
-        <div className="contact-testimonial">
-          <div className="contact-testimonial-btn">
-            <Button
-              bgColor="#000000"
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              mRight={0}
-              bRadiusColor="#282a94"
-              title="Add Testimonials"
-              color="#ffffff"
-              icon={<FaArrowRightToBracket className="icon-style" />}
-              onClickButton={() => {
-                handleButtonClick();
-              }}
-            />
-          </div>
-        </div>
-        <div>
-          {" "}
-          <p className="add-testimonial">Write a New Testimonial</p>
-        </div>
+        {!showForm && (
+          <>
+            <section className="equip-margin-bt">
+              <Testimonials />
+            </section>
+            <div className="contact-testimonial">
+              <div className="contact-testimonial-btn">
+                <Button
+                  bgColor="#000000"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  bRadiusColor="#282a94"
+                  title="Add Testimonials"
+                  color="#ffffff"
+                  icon={<FaArrowRightToBracket className="icon-style" />}
+                  onClickButton={() => {
+                    handleButtonClick();
+                  }}
+                />
+              </div>
+            </div>
+            <div>
+              <p className="add-testimonial">Write a New Testimonial</p>
+            </div>
+          </>
+        )}
         {/* new testimonial form */}
         {showForm && (
           <form className="testimonial-form">
+            <p className="add-testimonial">Write a New Testimonial</p>
             <div className="form-group">
               <AppInput w="100%" h={40} pLeft={10} pHolder="Full Name" />
             </div>
