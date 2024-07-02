@@ -46,7 +46,7 @@ const Details: React.FunctionComponent = () => {
           </div>
           <div className="tools">
             <h3>Tools</h3>
-            <p>{data.tools}</p>
+            <p>{`${data.tools}, ${"&nbsp"} `}</p>
           </div>
         </div>
       </section>

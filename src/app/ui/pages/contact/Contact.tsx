@@ -11,6 +11,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
@@ -316,6 +317,10 @@ const Contact: React.FunctionComponent = () => {
             />
           </div>
         </div>
+        <div>
+          {" "}
+          <p className="add-testimonial">Write a New Testimonial</p>
+        </div>
         {/* new testimonial form */}
         {showForm && (
           <form className="testimonial-form">
@@ -353,9 +358,9 @@ const Contact: React.FunctionComponent = () => {
                 mLeft={0}
                 mRight={0}
                 bRadiusColor="#282a94"
-                title="Submit"
+                title="Add new testimoial"
                 color="#ffffff"
-                icon={<FaArrowRightToBracket className="icon-style" />}
+                icon={<FaPlus className="icon-style" />}
                 onClickButton={() => {}}
               />
             </div>
