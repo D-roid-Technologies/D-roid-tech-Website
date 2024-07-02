@@ -12,6 +12,16 @@
   /* width: 100%;
   height: 550px; */
 }
+.test-text-area h2 {
+  font-size: 2.5rem;
+  font-family: "Rammetto One";
+  margin-bottom: 1em;
+}
+.test-text-area p {
+  font-size: 1.2rem;
+  font-family: "Mazzard";
+  color: rgb(186, 184, 184);
+}
 .test-top-con {
   height: 60px;
   background-color: #ffffff;
@@ -24,29 +34,43 @@
   width: 30px;
   height: 30px;
 }
+.test-icon {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+}
+.take-test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.take-test-btn {
+  margin-top: 25px;
+  width: 20%;
+}
 
 .test-text-area {
   padding-left: 100px;
   padding-right: 100px;
   padding-top: 60px;
 }
-.map-test{
-    margin-top: 80px;
+.map-test {
+  margin-top: 80px;
 }
-.map-test-inner{
-    margin-top: 20px;
+.map-test-inner {
+  margin-top: 20px;
 }
-.map-test-list{
-    text-decoration: none;
-    list-style: none;
+.map-test-list {
+  text-decoration: none;
+  list-style: none;
 }
-.map-test-ul{
-    margin-top: 12px;
-    display: flex;
-    gap: 20px;
-    padding-left: 30px;
+.map-test-ul {
+  margin-top: 12px;
+  display: flex;
+  gap: 20px;
+  padding-left: 30px;
 }
-.btn-parent{
-    margin-top: 20px;
-    width: 30%;
+.btn-parent {
+  margin-top: 20px;
+  width: 30%;
 }

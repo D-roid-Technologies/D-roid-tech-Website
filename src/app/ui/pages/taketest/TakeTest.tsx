@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { Test } from "../../../utils/constant/Test";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { FaPenAlt } from "react-icons/fa";
 
 const TakeTest: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -68,6 +69,26 @@ const TakeTest: React.FunctionComponent = () => {
             It comprise of different question related to Programming, Computer
             Science and Critical Thinking.
           </p>
+          <div className="take-test">
+            <div className="take-test-btn">
+              <Button
+                bgColor={"#da2a34"}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                bRadius={10}
+                mRight={0}
+                bRadiusColor={"#da2a34"}
+                title="Take test now"
+                color="#ffffff"
+                icon={<FaPenAlt className="test-icon" />}
+                onClickButton={() => {
+                  // navigate("/");
+                }}
+              />
+            </div>
+          </div>
+
           <div className="map-test">{mapTest()}</div>
           <div className="btn-parent">
             <Button
