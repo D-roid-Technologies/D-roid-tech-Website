@@ -54,13 +54,9 @@ const Contact: React.FunctionComponent = () => {
 
   //TESIMONIAL FORM SECTION
   const [showForm, setShowForm] = useState(false);
-  const [showTestimonial, setShowTestimonial] = useState(false);
 
   const handleButtonClick = () => {
     setShowForm(!showForm);
-  };
-  const handletestimonialClick = () => {
-    setShowTestimonial(!showTestimonial);
   };
 
   //CONTACT FOARM

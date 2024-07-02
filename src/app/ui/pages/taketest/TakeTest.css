@@ -45,7 +45,7 @@
   align-items: center;
 }
 .take-test-btn {
-  margin-top: 25px;
+  margin-top: 60px;
   width: 20%;
 }
 
@@ -54,6 +54,11 @@
   padding-right: 100px;
   padding-top: 60px;
 }
+/* TEST MAP */
+.padding-map {
+  padding: 0 100px;
+}
+
 .map-test {
   margin-top: 80px;
 }
