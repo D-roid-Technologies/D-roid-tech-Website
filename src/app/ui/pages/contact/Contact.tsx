@@ -11,6 +11,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
@@ -28,14 +29,28 @@ import {
   addUserMessage,
   addUserContactEmail,
 } from "../../../redux/slices/ContactSlice";
+import {
+  addName,
+  addComapanyName,
+  addPosition,
+  addServiceType,
+  addMessage,
+} from "../../../redux/slices/TestimonialSlice";
 
 const Contact: React.FunctionComponent = () => {
-  // const [emailSubscription, setEmailSubscription] = React.useState<string>("");
+  //CONTACT FOARM
   const [fullNameData, setFullNameData] = React.useState<string>("");
   const [emailData, setEmailData] = React.useState<string>("");
   const [phoneNumberData, setPhoneNumberData] = React.useState<string>("");
   const [subjectData, setSubjectData] = React.useState<string>("");
   const [messageData, setMessageData] = React.useState<string>("");
+
+  // NEW TESTIMONIAL
+  const [nameCon, setNameCon] = React.useState<string>("");
+  const [companyCon, setCompanyCon] = React.useState<string>("");
+  const [positionCon, setPositionCon] = React.useState<string>("");
+  const [serviceCon, setServiceCon] = React.useState<string>("");
+  const [messageCon, setMessageCon] = React.useState<string>("");
 
   //TESIMONIAL FORM SECTION
   const [showForm, setShowForm] = useState(false);
@@ -44,8 +59,8 @@ const Contact: React.FunctionComponent = () => {
     setShowForm(!showForm);
   };
 
+  //CONTACT FOARM
   const contactDetails = useSelector((state: RootState) => state.contact);
-  // const userEmail = userState.userEmail;
   const userFullName = contactDetails.userFullName;
   const userEmail = contactDetails.userEmail;
   const userPhoneNumber = contactDetails.userPhoneNumber;
@@ -66,6 +81,29 @@ const Contact: React.FunctionComponent = () => {
   );
   const dispatch = useDispatch();
 
+  // NEW TESTIMONIAL
+  const testimonialDetails = useSelector(
+    (state: RootState) => state.testimonial
+  );
+  const Name = testimonialDetails.name;
+  const Company = testimonialDetails.comapanyName;
+  const position = testimonialDetails.position;
+  const serviceType = testimonialDetails.serviceType;
+  const message = testimonialDetails.message;
+  console.log(
+    "Name",
+    nameCon,
+    "Company Name",
+    companyCon,
+    "Position",
+    positionCon,
+    "Service Type",
+    serviceCon,
+    "Message",
+    messageCon
+  );
+
+  //CONTACT FOARM
   const sendContactDataToReduxStore = () => {
     store.dispatch(addUserFullName(fullNameData));
     store.dispatch(addUserPhoneNumber(phoneNumberData));
@@ -73,12 +111,21 @@ const Contact: React.FunctionComponent = () => {
     store.dispatch(addUserMessage(messageData));
     store.dispatch(addUserContactEmail(emailData));
   };
-
   const handleUserEmail = () => {
     sendContactDataToReduxStore();
   };
 
-  // const appEntry = useSelector((state: RootState) => state.appEntry);
+  // NEW TESTIMONIAL
+  const sendTestimonialConToReduxStore = () => {
+    store.dispatch(addName(nameCon));
+    store.dispatch(addComapanyName(companyCon));
+    store.dispatch(addPosition(positionCon));
+    store.dispatch(addServiceType(serviceType));
+    store.dispatch(addMessage(messageCon));
+  };
+  const handleNewTestimonial = () => {
+    sendTestimonialConToReduxStore();
+  };
 
   const optionsList = [
     "Subject",
@@ -86,6 +133,7 @@ const Contact: React.FunctionComponent = () => {
     "Inquiry on Knowledge City",
   ];
   const serviceList = [
+    "Service Type",
     "Software Development",
     "Animation Creation",
     "Tech training",
@@ -295,38 +343,67 @@ const Contact: React.FunctionComponent = () => {
           </div>
         </div>
         {/* TESTIMONIALS */}
-        <section className="equip-margin-bt">
-          <Testimonials />
-        </section>
-        <div className="contact-testimonial">
-          <div className="contact-testimonial-btn">
-            <Button
-              bgColor="#000000"
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              mRight={0}
-              bRadiusColor="#282a94"
-              title="Add Testimonials"
-              color="#ffffff"
-              icon={<FaArrowRightToBracket className="icon-style" />}
-              onClickButton={() => {
-                handleButtonClick();
-              }}
-            />
-          </div>
-        </div>
+        {!showForm && (
+          <>
+            <section className="equip-margin-bt">
+              <Testimonials />
+            </section>
+            <div className="contact-testimonial">
+              <div className="contact-testimonial-btn">
+                <Button
+                  bgColor="#000000"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  bRadiusColor="#282a94"
+                  title="Add Testimonials"
+                  color="#ffffff"
+                  icon={<FaArrowRightToBracket className="icon-style" />}
+                  onClickButton={() => {
+                    handleButtonClick();
+                  }}
+                />
+              </div>
+            </div>
+          </>
+        )}
         {/* new testimonial form */}
         {showForm && (
           <form className="testimonial-form">
+            <p className="add-testimonial">Write a New Testimonial</p>
             <div className="form-group">
-              <AppInput w="100%" h={40} pLeft={10} pHolder="Full Name" />
+              <AppInput
+                w="100%"
+                h={40}
+                pLeft={10}
+                pHolder="Name"
+                onchangeText={(e: any) => {
+                  setNameCon(e.target.value);
+                }}
+              />
             </div>
             <div className="form-group">
-              <AppInput w="100%" h={40} pLeft={10} pHolder="Comapny Name" />
+              <AppInput
+                w="100%"
+                h={40}
+                pLeft={10}
+                pHolder="Comapny Name"
+                onchangeText={(e: any) => {
+                  setCompanyCon(e.target.value);
+                }}
+              />
             </div>
             <div className="form-group">
-              <AppInput w="100%" h={40} pLeft={10} pHolder="Position" />
+              <AppInput
+                w="100%"
+                h={40}
+                pLeft={10}
+                pHolder="Position"
+                onchangeText={(e: any) => {
+                  setPositionCon(e.target.value);
+                }}
+              />
             </div>
             <div className="form-group">
               <AppInput
@@ -336,6 +413,9 @@ const Contact: React.FunctionComponent = () => {
                 pHolder="Service Type"
                 isDropdown={true}
                 options={serviceList}
+                onchangeText={(e: any) => {
+                  setServiceCon(e.target.value);
+                }}
               />
             </div>
             <div className="form-group">
@@ -343,6 +423,9 @@ const Contact: React.FunctionComponent = () => {
                 rows={10}
                 name="comment"
                 placeholder="Write your testimonial here"
+                onChange={(e: any) => {
+                  setMessageCon(e.target.value);
+                }}
               />
             </div>
             <div className="form-group">
@@ -353,10 +436,12 @@ const Contact: React.FunctionComponent = () => {
                 mLeft={0}
                 mRight={0}
                 bRadiusColor="#282a94"
-                title="Submit"
+                title="Add new testimoial"
                 color="#ffffff"
-                icon={<FaArrowRightToBracket className="icon-style" />}
-                onClickButton={() => {}}
+                icon={<FaPlus className="icon-style" />}
+                onClickButton={() => {
+                  handleNewTestimonial();
+                }}
               />
             </div>
           </form>

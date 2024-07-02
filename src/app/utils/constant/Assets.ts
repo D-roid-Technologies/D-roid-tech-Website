@@ -51,6 +51,10 @@ export const Assets = {
     trainingOne: require("../../images/png/train1.png"),
     trainingTwo: require("../../images/png/train2.png"),
     trainingThree: require("../../images/png/train3.png"),
+
+    maximuspage: require("../../images/png/Maximuspage.jpg"),
+    drizzle: require("../../images/png/drizzlepage.jpg"),
+    cashBasket: require("../../images/png/cashBasketpage.jpg"),
   },
   colors: {
     basic: "#000000",

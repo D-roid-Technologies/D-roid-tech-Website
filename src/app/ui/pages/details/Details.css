@@ -91,4 +91,26 @@
   gap: 20px;
   font-size: 1.1em;
   color: #555;
+  margin-right: 30px;
+}
+.tool-item {
+  margin-right: 30px;
+}
+/* button section */
+.details-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+.phone-call-btn {
+  width: 20%;
+}
+.contact-email-btn {
+  width: 20%;
+}
+.detail-style {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
 }

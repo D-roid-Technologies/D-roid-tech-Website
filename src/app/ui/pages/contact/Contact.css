@@ -233,7 +233,12 @@ textarea {
 .icon-style {
   margin-left: 10px;
 }
-
+.add-testimonial {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .contact-containerr {
