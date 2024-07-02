@@ -158,7 +158,7 @@ export type SoftwareDevelopmentType = {
   tools?: string[];
   price?: number[];
   currency?: string[];
-  procedure?: string[];
+  procedure?: object[];
   classId?: string;
   path?: string;
   // added

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../details/Details.css";
 import Button from "../../components/button/Button";
 import { TiArrowBack } from "react-icons/ti";
@@ -6,15 +6,21 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Details: React.FunctionComponent = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const data = location.state;
 
-  const navigate = useNavigate();
-  let toolsArray = [];
-  if (typeof data.tools === "string") {
-    toolsArray = data.tools.split(",");
-  } else if (Array.isArray(data.tools)) {
-    toolsArray = data.tools;
-  }
+  const [toolsArray, setToolsArray] = useState([]);
+
+  const mapThroughTools = () => {
+    if (typeof data.tools === "string") {
+      setToolsArray(data.tools.split(","));
+    } else if (Array.isArray(data.tools)) {
+      setToolsArray(data.tools);
+    }
+  };
+  useEffect(() => {
+    mapThroughTools();
+  });
   return (
     <>
       <div className="test-top-con">
@@ -40,9 +46,9 @@ const Details: React.FunctionComponent = () => {
         <div className="img-con">
           <h3>{data.title}</h3>
           <p>{data.desc}</p>
-          <p>
-            {data.procedure[0]}, {data.procedure[1]}
-          </p>
+          {/* {data.procedure.map((i: any, j: number) => (
+              <p key={j}>{i.trim()}</p>
+            ))} */}
         </div>
       </div>
       <section>
@@ -53,15 +59,11 @@ const Details: React.FunctionComponent = () => {
           </div>
           <div className="tools">
             <h3>Tools</h3>
-            {/* <p>{`${data.tools}, ${"&nbsp"} `}</p> */}
-            {/* <p>{data.tools}</p> */}
-            <p>
-              {toolsArray.map((tool: any, index: any) => (
-                <span key={index} className="tool-item">
-                  {tool.trim()}
-                </span>
-              ))}
-              </p>
+            {toolsArray.map((tool: any, index: any) => (
+              <span key={index} className="tool-item">
+                {tool.trim()}
+              </span>
+            ))}
           </div>
         </div>
       </section>
