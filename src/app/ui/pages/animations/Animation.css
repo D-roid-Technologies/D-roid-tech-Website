@@ -17,11 +17,19 @@
   margin-bottom: 15px;
 }
 
-.product-p {
+.product-pp {
   font-family: "MazzardH", sans-serif;
   letter-spacing: 2px;
   font-size: 22px;
   color: rgb(39, 39, 39);
+}
+.product-p {
+  font-size: 1.2rem;
+  color: rgb(124, 124, 124);
+  line-height: 30px;
+  letter-spacing: 2px;
+  font-family: "Mazzard";
+  text-align: justify;
 }
 
 /* Products Banner */
@@ -94,6 +102,7 @@
 /* Our Catalog */
 .our-catalog-map {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -113,6 +122,9 @@
 
 .our-catalog-right {
   width: 50%;
+}
+.our-catalog-header {
+  font-family: "Rammetto One";
 }
 
 /* Responsive Styles */
@@ -161,6 +173,15 @@
 }
 
 @media (max-width: 600px) {
+  .banner-icon {
+    display: none;
+  }
+  .product-pp {
+    margin-bottom: 20px;
+  }
+  .search {
+    width: 410%;
+  }
   .choose-us-product {
     flex-direction: column;
   }

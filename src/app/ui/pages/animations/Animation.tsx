@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Animation.css";
 import { Assets } from "../../../utils/constant/Assets";
@@ -17,8 +17,26 @@ import { FcCustomerSupport } from "react-icons/fc";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import { title } from "process";
+import AppInput from "../../components/textInput/AppInput";
 
 const Animation: React.FunctionComponent = () => {
+  const [searchItem, setSearchItem] = useState("");
+  const items: string[] = [
+    "Droi'd technologies",
+    "Reign Enterprise",
+    "Maximus",
+    "Drizzle Ogos place",
+    "Cash basket",
+  ];
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchItem(event.target.value);
+  };
+
+  const filteredItems = items.filter((item) =>
+    item.toLowerCase().includes(searchItem.toLowerCase())
+  );
   const { getColor } = useThemeColor();
 
   // Icon Data
@@ -68,6 +86,26 @@ const Animation: React.FunctionComponent = () => {
       title: "Reign Enterprise",
       desc: "At Reign Collections, we have all the basic things you need for your house hold. From bathroom equpients, kitchen tools, lounge set-up and more.",
     },
+    {
+      image: Assets.images.maximuspage,
+      title: "Maximus",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+    },
+    {
+      image: Assets.images.drizzle,
+      title: "Drizzle Ogos Place",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+    },
+    {
+      image: Assets.images.cashBasket,
+      title: "Cash Basket",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+    },
+    // {
+    //   image: "",
+    //   title: "",
+    //   desc: "",
+    // },
   ];
 
   //Mapping through icon data
@@ -131,13 +169,13 @@ const Animation: React.FunctionComponent = () => {
             className="products-banner-desc"
           >
             <h1 className="products-header">AWESOME PRODUCTS / TEMPLATES</h1>
-            <p className="product-p">
+            <p className="product-pp">
               Explore a curated selection of top-notch products and customizable
               templates designed to elevate your projects and streamline your
               workflow.
             </p>
           </motion.div>
-          <div>
+          <div className="banner-icon">
             <FaGrinStars className="product-cart" />
           </div>
         </div>
@@ -153,6 +191,28 @@ const Animation: React.FunctionComponent = () => {
         >
           Our Catalog
         </motion.h1>
+        {/* filter */}
+        <div className="App">
+          <div className="search">
+            <AppInput
+              w="24%"
+              h={40}
+              pLeft={10}
+              pHolder="Search..."
+              // icon={<FaArrowRightToBracket className="icon-style" />}
+              value={searchItem}
+            />
+          </div>
+
+          {searchItem && (
+            <ul>
+              {filteredItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+        {/* end of filter */}
         <motion.div
           variants={fadeIn("up", 0.2)}
           initial="hidden"

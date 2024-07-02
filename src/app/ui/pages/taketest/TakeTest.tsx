@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../taketest/TakeTest.css";
 import { Assets } from "../../../utils/constant/Assets";
@@ -7,8 +7,14 @@ import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { Test } from "../../../utils/constant/Test";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { FaPenAlt } from "react-icons/fa";
 
 const TakeTest: React.FunctionComponent = () => {
+  const [takeTest, setTakeTest] = useState(false);
+
+  const handletestClick = () => {
+    setTakeTest(!takeTest);
+  };
   const navigate = useNavigate();
 
   const mapTest = () => {
@@ -58,35 +64,68 @@ const TakeTest: React.FunctionComponent = () => {
           }}
           className="test-image-container"
         ></div>
-        <div className="test-text-area">
-          <h2>Ready to test your skills?</h2>
-          <p>
-            You are about to take a 15 questions test that might likely change
-            your programming career.
-            <br />
-            <br />
-            It comprise of different question related to Programming, Computer
-            Science and Critical Thinking.
-          </p>
-          <div className="map-test">{mapTest()}</div>
-          <div className="btn-parent">
-            <Button
-              bgColor={Assets.colors.primary}
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              bRadius={10}
-              mRight={0}
-              bRadiusColor={Assets.colors.primary}
-              title="Submit Test"
-              color="#ffffff"
-              icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
-              onClickButton={() => {
-                // navigate("/");
-              }}
-            />
-          </div>
-        </div>
+        {!takeTest && (
+          <>
+            <div className="test-text-area">
+              <h2>Ready to test your skills?</h2>
+              <p>
+                You are about to take a 15 questions test that might likely
+                change your programming career.
+                <br />
+                <br />
+                It comprise of different question related to Programming,
+                Computer Science and Critical Thinking.
+              </p>
+              {/* TAKE TEST */}
+
+              <div className="take-test">
+                <div className="take-test-btn">
+                  <Button
+                    bgColor={"#da2a34"}
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    bRadius={10}
+                    mRight={0}
+                    bRadiusColor={"#da2a34"}
+                    title="Take test now"
+                    color="#ffffff"
+                    icon={<FaPenAlt className="test-icon" />}
+                    onClickButton={() => {
+                      handletestClick();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* TEST MAP */}
+        {takeTest && (
+          <>
+            <div className="padding-map">
+              <div className="map-test">{mapTest()}</div>
+              <div className="btn-parent">
+                <Button
+                  bgColor={Assets.colors.primary}
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  bRadius={10}
+                  mRight={0}
+                  bRadiusColor={Assets.colors.primary}
+                  title="Submit Test"
+                  color="#ffffff"
+                  icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
+                  onClickButton={() => {
+                    // navigate("/");
+                  }}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

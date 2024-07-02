@@ -1,6 +1,4 @@
 import React from "react";
-import NavBar from "../../components/navbar/NavBar";
-import { Assets } from "../../../utils/constant/Assets";
 import "../details/Details.css";
 import Button from "../../components/button/Button";
 import { TiArrowBack } from "react-icons/ti";
@@ -11,6 +9,12 @@ const Details: React.FunctionComponent = () => {
   const data = location.state;
 
   const navigate = useNavigate();
+  let toolsArray = [];
+  if (typeof data.tools === "string") {
+    toolsArray = data.tools.split(",");
+  } else if (Array.isArray(data.tools)) {
+    toolsArray = data.tools;
+  }
   return (
     <>
       <div className="test-top-con">
@@ -49,9 +53,15 @@ const Details: React.FunctionComponent = () => {
           </div>
           <div className="tools">
             <h3>Tools</h3>
+            {/* <p>{`${data.tools}, ${"&nbsp"} `}</p> */}
+            {/* <p>{data.tools}</p> */}
             <p>
-              {data.tools[0]}, {data.tools[1]}, {data.tools[2]}
-            </p>
+              {toolsArray.map((tool: any, index: any) => (
+                <span key={index} className="tool-item">
+                  {tool.trim()}
+                </span>
+              ))}
+              </p>
           </div>
         </div>
       </section>
