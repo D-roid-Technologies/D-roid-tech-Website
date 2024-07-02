@@ -25,6 +25,13 @@ export type ContactType = {
   userSubject: string;
   userMessage: string;
 };
+export type TestimonialType = {
+  name: string;
+  comapanyName: string;
+  position: string;
+  serviceType: string;
+  message: string;
+};
 
 export type EmailType = {
   emailFromUser: string;
