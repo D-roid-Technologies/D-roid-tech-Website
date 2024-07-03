@@ -22,21 +22,14 @@ import AppInput from "../../components/textInput/AppInput";
 
 const Animation: React.FunctionComponent = () => {
   const [searchItem, setSearchItem] = useState("");
-  const items: string[] = [
-    "Droi'd technologies",
-    "Reign Enterprise",
-    "Maximus",
-    "Drizzle Ogos place",
-    "Cash basket",
-  ];
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchItem(event.target.value);
-  };
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setSearchItem(event.target.value);
+  // };
 
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(searchItem.toLowerCase())
-  );
+  // const filteredItems = items.filter((item) =>
+  //   item.toLowerCase().includes(searchItem.toLowerCase())
+  // );
   const { getColor } = useThemeColor();
 
   // Icon Data
@@ -101,11 +94,55 @@ const Animation: React.FunctionComponent = () => {
       title: "Cash Basket",
       desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
     },
+    {
+      image: Assets.images.knowledgecity,
+      title: "Knowledge City",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+    },
     // {
-    //   image: "",
+    //   image: ,
     //   title: "",
     //   desc: "",
     // },
+    // {
+    //   image: ,
+    //   title: "",
+    //   desc: "",
+    // },
+  ];
+  // const items: string[] = [
+  //   "Droi'd technologies",
+  //   "Reign Enterprise",
+  //   "Maximus",
+  //   "Drizzle Ogos place",
+  //   "Cash basket",
+  // ];
+
+  const productSearch = [
+    {
+      title: "D'roid Technologies",
+      link: "https://www.droidtechinternational.com/",
+    },
+    {
+      title: "Reign Enterprise",
+      link: "",
+    },
+    {
+      title: "Maximus",
+      link: "",
+    },
+    {
+      title: "Drizzle Ogos place",
+      link: "",
+    },
+    {
+      title: "Cash basket",
+      link: "",
+    },
+    {
+      title: "Knowledge City",
+      link: "",
+    },
   ];
 
   //Mapping through icon data
@@ -192,25 +229,27 @@ const Animation: React.FunctionComponent = () => {
           Our Catalog
         </motion.h1>
         {/* filter */}
-        <div className="App">
+        <div className="product-search">
           <div className="search">
             <AppInput
               w="24%"
               h={40}
               pLeft={10}
-              pHolder="Search..."
-              // icon={<FaArrowRightToBracket className="icon-style" />}
+              pHolder="Enter Product Name..."
               value={searchItem}
             />
           </div>
 
-          {searchItem && (
-            <ul>
-              {filteredItems.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          )}
+          {/* {searchItem && ( */}
+          <ul>
+            {productSearch.map((item, index) => {
+              return (
+                <a className="link" href={item.link} target="_blank">
+                  <p className="link-title">{item.title}</p>
+                </a>
+              );
+            })}
+          </ul>
         </div>
         {/* end of filter */}
         <motion.div

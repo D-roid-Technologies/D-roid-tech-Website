@@ -118,9 +118,7 @@ const TakeTest: React.FunctionComponent = () => {
                   title="Submit Test"
                   color="#ffffff"
                   icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
-                  onClickButton={() => {
-                    // navigate("/");
-                  }}
+                  onClickButton={() => {}}
                 />
               </div>
             </div>

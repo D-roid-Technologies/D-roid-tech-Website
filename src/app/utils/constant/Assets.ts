@@ -56,6 +56,7 @@ export const Assets = {
     maximuspage: require("../../images/png/Maximuspage.jpg"),
     drizzle: require("../../images/png/drizzlepage.jpg"),
     cashBasket: require("../../images/png/cashBasketpage.jpg"),
+    knowledgecity: require("../../images/png/knowledgecitypage.png"),
   },
   colors: {
     basic: "#000000",

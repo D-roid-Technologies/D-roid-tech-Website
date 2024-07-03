@@ -126,6 +126,54 @@
 .our-catalog-header {
   font-family: "Rammetto One";
 }
+/* PRODUCT FILTER */
+.product-search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+  margin-bottom: 10px;
+}
+
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  margin: 5px 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #000000;
+  /* color: #007bff; */
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: gray;
+}
+
+.link-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.link-title:hover {
+  padding: 10px 0;
+  margin: 5px 0;
+  border-radius: 4px;
+  background-color: #ffffff;
+  /* transition: background-color 0.3s ease; */
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
