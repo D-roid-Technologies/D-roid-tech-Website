@@ -11,6 +11,7 @@ import { FaRocketchat } from "react-icons/fa";
 import { FaBitcoin } from "react-icons/fa";
 import { IoSchoolSharp } from "react-icons/io5";
 import { BiSolidBusSchool } from "react-icons/bi";
+import { IoIosSearch } from "react-icons/io";
 import { IoMdCart } from "react-icons/io";
 import Button from "../../components/button/Button";
 import { FcCustomerSupport } from "react-icons/fc";
@@ -20,23 +21,48 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { title } from "process";
 import AppInput from "../../components/textInput/AppInput";
 
-const Animation: React.FunctionComponent = () => {
-  const [searchItem, setSearchItem] = useState("");
-  const items: string[] = [
-    "Droi'd technologies",
-    "Reign Enterprise",
-    "Maximus",
-    "Drizzle Ogos place",
-    "Cash basket",
-  ];
+interface product {
+  title: string;
+  link: string;
+}
+const productList: product[] = [
+  {
+    title: "D'roid Technologies",
+    link: "https://www.droidtechinternational.com/",
+  },
+  {
+    title: "Reign Enterprise",
+    link: "",
+  },
+  {
+    title: "Maximus",
+    link: "",
+  },
+  {
+    title: "Drizzle Ogos place",
+    link: "",
+  },
+  {
+    title: "Cash basket",
+    link: "",
+  },
+  {
+    title: "Knowledge City",
+    link: "",
+  },
+];
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchItem(event.target.value);
+const Animation: React.FunctionComponent = () => {
+  const [filterData, setFilterData] = useState<product[]>([]);
+
+  const handleFilter = (event: ChangeEvent<HTMLInputElement>) => {
+    const searchProduct = event.target.value;
+    const newFilter = productList.filter((value) => {
+      return value.title.toLowerCase().includes(searchProduct.toLowerCase());
+    });
+    setFilterData(searchProduct === "" ? [] : newFilter);
   };
 
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(searchItem.toLowerCase())
-  );
   const { getColor } = useThemeColor();
 
   // Icon Data
@@ -101,8 +127,13 @@ const Animation: React.FunctionComponent = () => {
       title: "Cash Basket",
       desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
     },
+    {
+      image: Assets.images.knowledgecity,
+      title: "Knowledge City",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+    },
     // {
-    //   image: "",
+    //   image: ,
     //   title: "",
     //   desc: "",
     // },
@@ -192,32 +223,41 @@ const Animation: React.FunctionComponent = () => {
           Our Catalog
         </motion.h1>
         {/* filter */}
-        <div className="App">
+        <div className="product-search">
           <div className="search">
             <AppInput
-              w="24%"
+              w="100%"
               h={40}
               pLeft={10}
-              pHolder="Search..."
-              // icon={<FaArrowRightToBracket className="icon-style" />}
-              value={searchItem}
+              pHolder="Enter Product Name..."
+              onChange={handleFilter}
             />
           </div>
 
-          {searchItem && (
-            <ul>
-              {filteredItems.map((item, index) => (
-                <li key={index}>{item}</li>
+          {filterData.length != 0 && (
+            <div>
+              {filterData.map((value, key) => (
+                <a
+                  className="link"
+                  href={value.link}
+                  target="_blank"
+                  key={key}
+                  rel="noopener noreferrer"
+                >
+                  <p className="link-title">{value.title}</p>
+                </a>
               ))}
-            </ul>
+              {/* );
+               })} */}
+            </div>
           )}
         </div>
         {/* end of filter */}
         <motion.div
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
+          // variants={fadeIn("up", 0.2)}
+          // initial="hidden"
+          // whileInView={"show"}
+          // viewport={{ once: false, amount: 0.7 }}
           className="our-catalog-map"
         >
           {mapThroughCatalogData()}

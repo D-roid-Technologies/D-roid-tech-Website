@@ -5,7 +5,7 @@ export const Test: TestType[] = [
     question:
       "Which of the following is a most correct way to declare a JavaScript variable?",
     options: ["variable name", "var name", "v name", "name"],
-    correct: "var name",
+    correctAnswer: "var name",
   },
   {
     question:
@@ -16,7 +16,7 @@ export const Test: TestType[] = [
       "JSON.convert()",
       "JSON.decode()",
     ],
-    correct: "JSON.stringify()",
+    correctAnswer: "JSON.stringify()",
   },
   {
     question: `How do you write "Hello World" in an alert box?`,
@@ -26,23 +26,23 @@ export const Test: TestType[] = [
       `alert("Hello World")`,
       `msgBox("Hello World")`,
     ],
-    correct: `alert("Hello World")`,
+    correctAnswer: `alert("Hello World")`,
   },
   {
     question: "What will the following code output? console.log(typeof NaN)",
     options: ["undefined", "number", "NaN", "object"],
-    correct: "number",
+    correctAnswer: "number",
   },
   {
     question: "Which of the following is not a reserved word in JavaScript?",
     options: ["interface", "throws", "program", "short"],
-    correct: "program",
+    correctAnswer: "program",
   },
   {
     question:
       "Which JavaScript method is used to find the largest number in an array?",
     options: ["Math.ceil()", "Math.floor()", "Math.max()", "Math.highest()"],
-    correct: "Math.max()",
+    correctAnswer: "Math.max()",
   },
   {
     question: "What is the correct syntax for a for loop in JavaScript?",
@@ -52,17 +52,17 @@ export const Test: TestType[] = [
       "for i = 1 to 5",
       "for (i = 0; i <= 5)",
     ],
-    correct: "for (i = 0; i <= 5; i++)",
+    correctAnswer: "for (i = 0; i <= 5; i++)",
   },
   {
     question: "Which of the following statements will throw an error?",
     options: ["let a = 2;", "const b;", "var c = 3;", "const d = 4;"],
-    correct: "const b;",
+    correctAnswer: "const b;",
   },
   {
     question: `What is the output of the following code? console.log(2 + "2");`,
     options: ["4", "22", "NaN", "undefined"],
-    correct: "22",
+    correctAnswer: "22",
   },
   {
     question: "How do you create a function in JavaScript?",
@@ -72,23 +72,23 @@ export const Test: TestType[] = [
       "create myFunction()",
       "def myFunction()",
     ],
-    correct: "function myFunction() {}",
+    correctAnswer: "function myFunction() {}",
   },
   {
     question: `What will console.log("5" - 3); output?`,
     options: ["2", "8", "NaN", "undefined"],
-    correct: "2",
+    correctAnswer: "2",
   },
   {
     question:
       "Which built-in method combines the text of two strings and returns a new string?",
     options: ["append()", "concat()", "attach()", "merge()"],
-    correct: "concat()",
+    correctAnswer: "concat()",
   },
   {
     question: "What will console.log([] + []); output?",
     options: [`[]`, `""`, `undefined`, `null`],
-    correct: `""`,
+    correctAnswer: `""`,
   },
   {
     question:
@@ -99,11 +99,11 @@ export const Test: TestType[] = [
       `var colors = (1:"red", 2:"green", 3:"blue");`,
       `var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue");`,
     ],
-    correct: `var colors = ["red", "green", "blue"]; `,
+    correctAnswer: `var colors = ["red", "green", "blue"]; `,
   },
   {
     question: "What does the typeof operator return for the value null?",
     options: ["null", "object", "undefined", "number"],
-    correct: "object",
+    correctAnswer: "object",
   },
 ];

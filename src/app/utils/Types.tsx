@@ -63,6 +63,7 @@ export type AppInputType = React.DetailedHTMLProps<
   options?: string[];
   onchangeText?: (e: any) => void;
   inputType?: string;
+  icon?: React.ReactNode; // Add icon prop
 };
 
 export type AppButtonType = React.DetailedHTMLProps<
@@ -178,5 +179,5 @@ export type TestimonialTypes = {
 export type TestType = {
   question: string;
   options: string[];
-  correct: string;
+  correctAnswer: string;
 };
