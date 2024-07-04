@@ -5,6 +5,16 @@
   border: 2px solid #479be8;
   outline: none !important;
 }
+/* .input-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+} */
 
 @media only screen and (max-width: 600px) {
   .inputContact {

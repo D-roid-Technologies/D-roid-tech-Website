@@ -11,6 +11,7 @@ import { FaRocketchat } from "react-icons/fa";
 import { FaBitcoin } from "react-icons/fa";
 import { IoSchoolSharp } from "react-icons/io5";
 import { BiSolidBusSchool } from "react-icons/bi";
+import { IoIosSearch } from "react-icons/io";
 import { IoMdCart } from "react-icons/io";
 import Button from "../../components/button/Button";
 import { FcCustomerSupport } from "react-icons/fc";
@@ -20,16 +21,48 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { title } from "process";
 import AppInput from "../../components/textInput/AppInput";
 
+interface product {
+  title: string;
+  link: string;
+}
+const productList: product[] = [
+  {
+    title: "D'roid Technologies",
+    link: "https://www.droidtechinternational.com/",
+  },
+  {
+    title: "Reign Enterprise",
+    link: "",
+  },
+  {
+    title: "Maximus",
+    link: "",
+  },
+  {
+    title: "Drizzle Ogos place",
+    link: "",
+  },
+  {
+    title: "Cash basket",
+    link: "",
+  },
+  {
+    title: "Knowledge City",
+    link: "",
+  },
+];
+
 const Animation: React.FunctionComponent = () => {
-  const [searchItem, setSearchItem] = useState("");
+  const [filterData, setFilterData] = useState<product[]>([]);
 
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setSearchItem(event.target.value);
-  // };
+  const handleFilter = (event: ChangeEvent<HTMLInputElement>) => {
+    const searchProduct = event.target.value;
+    const newFilter = productList.filter((value) => {
+      return value.title.toLowerCase().includes(searchProduct.toLowerCase());
+    });
+    setFilterData(searchProduct === "" ? [] : newFilter);
+  };
 
-  // const filteredItems = items.filter((item) =>
-  //   item.toLowerCase().includes(searchItem.toLowerCase())
-  // );
   const { getColor } = useThemeColor();
 
   // Icon Data
@@ -104,45 +137,6 @@ const Animation: React.FunctionComponent = () => {
     //   title: "",
     //   desc: "",
     // },
-    // {
-    //   image: ,
-    //   title: "",
-    //   desc: "",
-    // },
-  ];
-  // const items: string[] = [
-  //   "Droi'd technologies",
-  //   "Reign Enterprise",
-  //   "Maximus",
-  //   "Drizzle Ogos place",
-  //   "Cash basket",
-  // ];
-
-  const productSearch = [
-    {
-      title: "D'roid Technologies",
-      link: "https://www.droidtechinternational.com/",
-    },
-    {
-      title: "Reign Enterprise",
-      link: "",
-    },
-    {
-      title: "Maximus",
-      link: "",
-    },
-    {
-      title: "Drizzle Ogos place",
-      link: "",
-    },
-    {
-      title: "Cash basket",
-      link: "",
-    },
-    {
-      title: "Knowledge City",
-      link: "",
-    },
   ];
 
   //Mapping through icon data
@@ -232,31 +226,42 @@ const Animation: React.FunctionComponent = () => {
         <div className="product-search">
           <div className="search">
             <AppInput
-              w="24%"
+              w="100%"
               h={40}
               pLeft={10}
               pHolder="Enter Product Name..."
-              value={searchItem}
+              icon={<IoIosSearch />}
+              onChange={handleFilter}
             />
           </div>
+          {/* <div>
+           
+          </div> */}
 
-          {/* {searchItem && ( */}
-          <ul>
-            {productSearch.map((item, index) => {
-              return (
-                <a className="link" href={item.link} target="_blank">
-                  <p className="link-title">{item.title}</p>
+          {filterData.length != 0 && (
+            <div>
+              {filterData.map((value, key) => (
+                <a
+                  className="link"
+                  href={value.link}
+                  target="_blank"
+                  key={key}
+                  rel="noopener noreferrer"
+                >
+                  <p className="link-title">{value.title}</p>
                 </a>
-              );
-            })}
-          </ul>
+              ))}
+              {/* );
+               })} */}
+            </div>
+          )}
         </div>
         {/* end of filter */}
         <motion.div
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
+          // variants={fadeIn("up", 0.2)}
+          // initial="hidden"
+          // whileInView={"show"}
+          // viewport={{ once: false, amount: 0.7 }}
           className="our-catalog-map"
         >
           {mapThroughCatalogData()}
