@@ -230,13 +230,9 @@ const Animation: React.FunctionComponent = () => {
               h={40}
               pLeft={10}
               pHolder="Enter Product Name..."
-              icon={<IoIosSearch />}
               onChange={handleFilter}
             />
           </div>
-          {/* <div>
-           
-          </div> */}
 
           {filterData.length != 0 && (
             <div>

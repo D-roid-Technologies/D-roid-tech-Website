@@ -179,5 +179,5 @@ export type TestimonialTypes = {
 export type TestType = {
   question: string;
   options: string[];
-  correct: string;
+  correctAnswer: string;
 };
