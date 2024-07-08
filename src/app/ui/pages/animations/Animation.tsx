@@ -224,14 +224,16 @@ const Animation: React.FunctionComponent = () => {
         </motion.h1>
         {/* filter */}
         <div className="product-search">
-          <div className="search">
-            <AppInput
-              w="100%"
-              h={40}
-              pLeft={10}
-              pHolder="Enter Product Name..."
-              onChange={handleFilter}
-            />
+          <div className="search-input">
+            <div className="search">
+              <AppInput
+                w="100%"
+                h={40}
+                pLeft={10}
+                pHolder="Enter Product Name..."
+                onChange={handleFilter}
+              />
+            </div>
           </div>
 
           {filterData.length != 0 && (
@@ -254,10 +256,10 @@ const Animation: React.FunctionComponent = () => {
         </div>
         {/* end of filter */}
         <motion.div
-          // variants={fadeIn("up", 0.2)}
-          // initial="hidden"
-          // whileInView={"show"}
-          // viewport={{ once: false, amount: 0.7 }}
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.7 }}
           className="our-catalog-map"
         >
           {mapThroughCatalogData()}
