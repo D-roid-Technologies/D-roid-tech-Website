@@ -68,38 +68,44 @@ const Details: React.FunctionComponent = () => {
       </section>
       <section className="procedure">
         <div className="procedure-section">
-          <h3 className="procedure-title">Procedures</h3>
+          {/* <h3 className="procedure-title">Procedures</h3> */}
           {data.procedure &&
             data.procedure.map((proc: any, procIndex: number) => (
               <div key={procIndex} className="procedure-content">
-                <h4>{proc.title}</h4>
-                <div>
-                  <h5 className="procedure-subtitle">{proc.subTitleOne}</h5>
+                <h3 className="procedure-title">{proc.title}</h3>
+                <div className="benefits">
+                  <div>
+                    <h4 className="procedure-subtitle">{proc.subTitleOne}</h4>
+                  </div>
                   {proc.subTitleOneContent &&
                     proc.subTitleOneContent.map(
                       (content: any, contentIndex: number) => (
                         <div key={contentIndex} className="procedure-item">
-                          <h6 className="procedure-item-title">
+                          <h4 className="procedure-item-title">
                             {content.title}
-                          </h6>
+                          </h4>
                           <p className="procedure-item-desc">{content.desc}</p>
                         </div>
                       )
                     )}
                 </div>
-                <div>
-                  <h5 className="procedure-subtitle">{proc.subTitleTwo}</h5>
-                  {proc.subTitleTwoContent &&
-                    proc.subTitleTwoContent.map(
-                      (content: any, contentIndex: number) => (
-                        <div key={contentIndex} className="procedure-item">
-                          <h6 className="procedure-item-title">
-                            {content.title}
-                          </h6>
-                          <p className="procedure-item-desc">{content.desc}</p>
-                        </div>
-                      )
-                    )}
+                <div className="benefits">
+                  <div>
+                    <h3 className="procedure-subtitle">{proc.subTitleTwo}</h3>
+                    {proc.subTitleTwoContent &&
+                      proc.subTitleTwoContent.map(
+                        (content: any, contentIndex: number) => (
+                          <div key={contentIndex} className="procedure-item">
+                            <h6 className="procedure-item-title">
+                              {content.title}
+                            </h6>
+                            <p className="procedure-item-desc">
+                              {content.desc}
+                            </p>
+                          </div>
+                        )
+                      )}
+                  </div>
                 </div>
               </div>
             ))}

@@ -102,22 +102,31 @@
 }
 .procedure-section {
   margin: 20px 0;
-  padding: 20px;
+  padding: 40px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  /* background-color: #ffffff; */
+  text-align: center;
+}
+.benefits {
+  padding: 40px 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #ffffff;
-  text-align: center;
+  margin-bottom: 20px;
 }
 
 .procedure-title {
+  font-family: "Rammetto One";
   font-size: 1.5em;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .procedure-subtitle {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   margin-top: 15px;
   margin-bottom: 10px;
+  font-family: "Rammetto One";
 }
 
 .procedure-content {
@@ -130,8 +139,14 @@
 
 .procedure-item-title {
   font-weight: bold;
+  font-family: "Rammetto One";
+  font-size: 1rem;
 }
 
 .procedure-item-desc {
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
   margin-left: 10px;
+  font-size: 1.2rem;
 }
