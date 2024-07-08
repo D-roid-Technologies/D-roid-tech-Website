@@ -102,9 +102,9 @@
 }
 .procedure-section {
   margin: 20px 0;
-  padding: 40px 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  /* padding: 40px; */
+  /* border: 1px solid #ddd;
+  border-radius: 5px; */
   /* background-color: #ffffff; */
   text-align: center;
 }
@@ -130,6 +130,7 @@
 }
 
 .procedure-content {
+  /* display: flex; */
   margin-bottom: 20px;
 }
 
