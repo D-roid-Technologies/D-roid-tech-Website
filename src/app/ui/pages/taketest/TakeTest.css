@@ -12,16 +12,19 @@
   /* width: 100%;
   height: 550px; */
 }
+
 .test-text-area h2 {
   font-size: 2.5rem;
   font-family: "Rammetto One";
   margin-bottom: 1em;
 }
+
 .test-text-area p {
   font-size: 1.2rem;
   font-family: "Mazzard";
   color: rgb(186, 184, 184);
 }
+
 .test-top-con {
   height: 60px;
   background-color: #ffffff;
@@ -30,20 +33,24 @@
   padding-left: 100px;
   width: 30px;
 }
+
 .test-top-back-arrow {
   width: 30px;
   height: 30px;
 }
+
 .test-icon {
   width: 20px;
   height: 20px;
   color: #ffffff;
 }
+
 .take-test {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .take-test-btn {
   margin-top: 60px;
   width: 20%;
@@ -54,6 +61,7 @@
   padding-right: 100px;
   padding-top: 60px;
 }
+
 /* TEST MAP */
 .padding-map {
   padding: 0 100px;
@@ -62,20 +70,124 @@
 .map-test {
   margin-top: 80px;
 }
+
 .map-test-inner {
   margin-top: 20px;
 }
+
 .map-test-list {
   text-decoration: none;
   list-style: none;
 }
+
 .map-test-ul {
   margin-top: 12px;
   display: flex;
   gap: 20px;
   padding-left: 30px;
 }
+
 .btn-parent {
   margin-top: 20px;
   width: 30%;
+}
+
+/* RESULTS */
+.results-container {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  padding: 20px 50px;
+  background-color: #0366c3;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.result {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-family: "Rammetto One";
+  color: #333;
+}
+
+.results-container h3 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  color: #25d366;
+}
+hr {
+  border: 0;
+  height: 1px;
+  background: rgb(186, 184, 184);
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 992px) {
+  .test-text-area {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .padding-map {
+    padding: 0 50px;
+  }
+
+  .btn-parent {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .test-text-area h2 {
+    font-size: 2rem;
+  }
+
+  .test-text-area p {
+    font-size: 1rem;
+  }
+
+  .test-top-con {
+    padding-left: 20px;
+    width: auto;
+  }
+
+  .take-test-btn {
+    width: 80%;
+  }
+
+  .test-text-area {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .padding-map {
+    padding: 0 20px;
+  }
+
+  .btn-parent {
+    width: 100%;
+  }
+
+  .map-test-ul {
+    padding-left: 10px;
+  }
+
+  .results-container {
+    padding: 0 20px;
+  }
+
+  .result {
+    font-size: 1.5rem;
+  }
+
+  .results-container h3 {
+    font-size: 1.2rem;
+  }
 }
