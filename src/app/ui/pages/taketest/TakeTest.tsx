@@ -48,7 +48,7 @@ const TakeTest: React.FunctionComponent = () => {
     return (
       <div className="submit-section">
         <div className="results-container">
-          <h2 className="result">Test Results</h2>
+          <h2 className="result">Test Result</h2>
           <hr />
           <h3 className="score">
             You scored: {totalCorrectAnswers} out of {Test.length}

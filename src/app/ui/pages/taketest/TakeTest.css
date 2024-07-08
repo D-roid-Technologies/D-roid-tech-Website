@@ -97,7 +97,7 @@
   margin-top: 40px;
   margin-bottom: 50px;
   padding: 20px 50px;
-  background-color: #0366c3;
+  background-color: #103791;
   border: 1px solid #ddd;
   border-radius: 8px;
   text-align: center;
@@ -114,7 +114,8 @@
   margin-bottom: 20px;
   font-size: 2rem;
   font-family: "Rammetto One";
-  color: #333;
+  /* color: #333; */
+  color: #ffffff;
 }
 
 .results-container h3 {
@@ -125,7 +126,8 @@
 hr {
   border: 0;
   height: 1px;
-  background: rgb(186, 184, 184);
+  /* background: rgb(186, 184, 184); */
+  background: #25d366;
   margin: 20px 0;
 }
 

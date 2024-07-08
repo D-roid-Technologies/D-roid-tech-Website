@@ -18,9 +18,11 @@ const Details: React.FunctionComponent = () => {
       setToolsArray(data.tools);
     }
   };
+
   useEffect(() => {
     mapThroughTools();
-  });
+  }, [data.tools]);
+
   return (
     <>
       <div className="test-top-con">
@@ -46,16 +48,13 @@ const Details: React.FunctionComponent = () => {
         <div className="img-con">
           <h3>{data.title}</h3>
           <p>{data.desc}</p>
-          {/* {data.procedure.map((i: any, j: number) => (
-              <p key={j}>{i.trim()}</p>
-            ))} */}
         </div>
       </div>
       <section>
         <div className="info-con">
           <div className="category">
             <h3>Categories</h3>
-            <p>{data.category}</p>
+            <p>{data.category.join(", ")}</p>
           </div>
           <div className="tools">
             <h3>Tools</h3>
@@ -65,6 +64,45 @@ const Details: React.FunctionComponent = () => {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+      <section className="procedure">
+        <div className="procedure-section">
+          <h3 className="procedure-title">Procedures</h3>
+          {data.procedure &&
+            data.procedure.map((proc: any, procIndex: number) => (
+              <div key={procIndex} className="procedure-content">
+                <h4>{proc.title}</h4>
+                <div>
+                  <h5 className="procedure-subtitle">{proc.subTitleOne}</h5>
+                  {proc.subTitleOneContent &&
+                    proc.subTitleOneContent.map(
+                      (content: any, contentIndex: number) => (
+                        <div key={contentIndex} className="procedure-item">
+                          <h6 className="procedure-item-title">
+                            {content.title}
+                          </h6>
+                          <p className="procedure-item-desc">{content.desc}</p>
+                        </div>
+                      )
+                    )}
+                </div>
+                <div>
+                  <h5 className="procedure-subtitle">{proc.subTitleTwo}</h5>
+                  {proc.subTitleTwoContent &&
+                    proc.subTitleTwoContent.map(
+                      (content: any, contentIndex: number) => (
+                        <div key={contentIndex} className="procedure-item">
+                          <h6 className="procedure-item-title">
+                            {content.title}
+                          </h6>
+                          <p className="procedure-item-desc">{content.desc}</p>
+                        </div>
+                      )
+                    )}
+                </div>
+              </div>
+            ))}
         </div>
       </section>
     </>

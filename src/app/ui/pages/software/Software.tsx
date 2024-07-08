@@ -100,7 +100,6 @@ const Software: React.FunctionComponent = () => {
                         state: {
                           title: item.title,
                           image: item.image,
-                          // content: item.content,
                           desc: item.desc,
                           procedure: item.procedure,
                           category: item.category,

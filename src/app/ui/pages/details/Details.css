@@ -96,21 +96,42 @@
 .tool-item {
   margin-right: 30px;
 }
-/* button section */
-.details-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+/* Procedure Section Styles */
+.procedure {
+  padding: 0 100px;
 }
-.phone-call-btn {
-  width: 20%;
+.procedure-section {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  text-align: center;
 }
-.contact-email-btn {
-  width: 20%;
+
+.procedure-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
 }
-.detail-style {
-  width: 20px;
-  height: 20px;
-  color: #ffffff;
+
+.procedure-subtitle {
+  font-size: 1.2em;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.procedure-content {
+  margin-bottom: 20px;
+}
+
+.procedure-item {
+  margin-bottom: 10px;
+}
+
+.procedure-item-title {
+  font-weight: bold;
+}
+
+.procedure-item-desc {
+  margin-left: 10px;
 }
