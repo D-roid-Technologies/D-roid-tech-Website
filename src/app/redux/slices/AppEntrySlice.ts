@@ -6,6 +6,7 @@ const initialState: AppEntrySliceType = {
   showToast: false,
   appTitle: "",
   appBody: "",
+  toastTitle: "",
 };
 export const AppEntrySlice = createSlice({
   name: "appEntry",
@@ -18,8 +19,8 @@ export const AppEntrySlice = createSlice({
     },
     updateToast: (state, action) => {
       const showToast = action.payload;
-      state.showModal = showToast;
-      console.log("getting toast from App entry slice", showToast);
+      state.showToast = showToast;
+      console.log("getting toast state from App entry slice", showToast);
     },
     updateModalContent: (state, action) => {
       const { appTitle, appBody } = action.payload;
@@ -31,9 +32,18 @@ export const AppEntrySlice = createSlice({
         appBody
       );
     },
+    updateToastTitle: (state, action) => {
+      const toastTitle = action.payload;
+      state.toastTitle = toastTitle;
+      console.log("getting toast title from App entry slice", toastTitle);
+    },
   },
 });
 
 export default AppEntrySlice.reducer;
-export const { updateModal, updateToast, updateModalContent } =
-  AppEntrySlice.actions;
+export const {
+  updateModal,
+  updateToast,
+  updateModalContent,
+  updateToastTitle,
+} = AppEntrySlice.actions;
