@@ -111,6 +111,13 @@ const Details: React.FunctionComponent = () => {
             ))}
         </div>
       </section>
+      <section className="fees-section">
+        <div className="fees">
+          <h3>FEES</h3>
+          <h4>{data.currency}</h4>
+          <p>{data.price}</p>
+        </div>
+      </section>
     </>
   );
 };

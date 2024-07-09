@@ -104,6 +104,8 @@ const Software: React.FunctionComponent = () => {
                           procedure: item.procedure,
                           category: item.category,
                           tools: item.tools,
+                          price: item.price,
+                          currency: item.currency,
                           path: "/software",
                         },
                       });
