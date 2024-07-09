@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { FaPenAlt } from "react-icons/fa";
-import NavBar from "../../components/navbar/NavBar";
 import Button from "../../components/button/Button";
 import "../taketest/TakeTest.css";
 import { Assets } from "../../../utils/constant/Assets";
@@ -17,17 +16,12 @@ interface Question {
 
 const TakeTest: React.FunctionComponent = () => {
   const [takeTest, setTakeTest] = useState(false);
-  const [index, setIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [answers, setAnswers] = useState<(string | null)[]>(
     Array(Test.length).fill(null)
   );
+  const [showResults, setShowResults] = useState(false);
 
   const navigate = useNavigate();
-
-  const checkAnswer = (selected: string, correct: string) => {
-    return selected === correct ? "correct" : "wrong";
-  };
 
   const handleOptionChange = (questionIndex: number, option: string) => {
     const newAnswers = [...answers];
@@ -39,37 +33,52 @@ const TakeTest: React.FunctionComponent = () => {
     setTakeTest(!takeTest);
   };
 
-  const mapTest = () => {
-    return Test.map((questionItem: Question, questionIndex: number) => {
-      return (
-        <div key={questionIndex} className="map-test-inner">
-          <h3>{questionIndex + 1 + ". " + questionItem.question}</h3>
-          {questionItem.options.map((option: string, optionIndex: number) => {
-            const isChecked = answers[questionIndex] === option;
-            return (
-              <ul key={optionIndex} className="map-test-ul">
-                <li className="map-test-list">
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => handleOptionChange(questionIndex, option)}
-                  />
-                  <span
-                    className={
-                      isChecked
-                        ? checkAnswer(option, questionItem.correctAnswer)
-                        : ""
-                    }
-                  >
-                    {option}
-                  </span>
-                </li>
-              </ul>
-            );
-          })}
+  const handleSubmit = () => {
+    setShowResults(true);
+  };
+
+  const calculateTotalCorrectAnswers = () => {
+    return answers.reduce((total, answer, index) => {
+      return answer === Test[index].correctAnswer ? total + 1 : total;
+    }, 0);
+  };
+
+  const renderTotalResult = () => {
+    const totalCorrectAnswers = calculateTotalCorrectAnswers();
+    return (
+      <div className="submit-section">
+        <div className="results-container">
+          <h2 className="result">Test Result</h2>
+          <hr />
+          <h3 className="score">
+            You scored: {totalCorrectAnswers} out of {Test.length}
+          </h3>
         </div>
-      );
-    });
+      </div>
+    );
+  };
+
+  const mapTest = () => {
+    return Test.map((questionItem: Question, questionIndex: number) => (
+      <div key={questionIndex} className="map-test-inner">
+        <h3>{questionIndex + 1 + ". " + questionItem.question}</h3>
+        {questionItem.options.map((option: string, optionIndex: number) => {
+          const isChecked = answers[questionIndex] === option;
+          return (
+            <ul key={optionIndex} className="map-test-ul">
+              <li className="map-test-list">
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => handleOptionChange(questionIndex, option)}
+                />
+                <span>{option}</span>
+              </li>
+            </ul>
+          );
+        })}
+      </div>
+    ));
   };
 
   return (
@@ -97,7 +106,7 @@ const TakeTest: React.FunctionComponent = () => {
           }}
           className="test-image-container"
         ></div>
-        {!takeTest && (
+        {!takeTest && !showResults && (
           <div className="test-text-area">
             <h2>Ready to test your skills?</h2>
             <p>
@@ -128,7 +137,7 @@ const TakeTest: React.FunctionComponent = () => {
           </div>
         )}
 
-        {takeTest && (
+        {takeTest && !showResults && (
           <div className="padding-map">
             <div className="map-test">{mapTest()}</div>
             <div className="btn-parent">
@@ -143,13 +152,13 @@ const TakeTest: React.FunctionComponent = () => {
                 title="Submit Test"
                 color="#ffffff"
                 icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
-                onClickButton={() => {
-                  // Submit test logic here
-                }}
+                onClickButton={handleSubmit}
               />
             </div>
           </div>
         )}
+
+        {showResults && renderTotalResult()}
       </div>
     </div>
   );

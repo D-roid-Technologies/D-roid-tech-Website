@@ -65,10 +65,11 @@
 }
 .equip-contact-details {
   text-align: left;
-  font-family: "MazzardH";
+  font-family: "Mazzard";
   letter-spacing: 2px;
-  font-size: 22px;
-  color: rgb(39, 39, 39);
+  font-size: 1.2rem;
+  /* color: rgb(39, 39, 39); */
+  color: rgb(124, 124, 124);
   margin-bottom: 20px;
 }
 

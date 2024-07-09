@@ -160,15 +160,17 @@
 }
 
 .link-title {
+  display: block;
+  color: #000000;
   margin: 0;
   font-size: 16px;
   font-weight: 400;
   overflow: hidden;
   overflow-y: auto;
 }
-.link-title::-webkit-scrollbar {
+/* .link-title::-webkit-scrollbar {
   display: none;
-}
+} */
 .link-title:hover {
   color: gray;
   padding: 10px 0;
@@ -251,4 +253,16 @@
     width: 100%;
     padding: 20px;
   }
+}
+
+/* PRODUCT FILTER */
+.product-search {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

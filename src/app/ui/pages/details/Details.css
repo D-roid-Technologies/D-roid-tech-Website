@@ -46,11 +46,19 @@
 .img-con {
   width: 46%;
 }
-/* software details section two */
-/* Details.css */
-.test-top-con {
-  /* existing styles */
+.img-con h3 {
+  font-family: "Rammetto One";
+  margin-bottom: 10px;
+  font-size: 2rem;
 }
+.img-con p {
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+  font-size: 1.1rem;
+  line-height: 30px;
+}
+/* software details section two */
 .text-con {
   margin-bottom: 20px;
   text-align: center;
@@ -82,35 +90,93 @@
 .category h3,
 .tools h3 {
   margin-bottom: 5px;
-  font-size: 1.3em;
+  font-size: 1.5rem;
   color: #444;
+  font-family: "Rammetto One";
 }
 
 .category p,
 .tools p {
   gap: 20px;
   font-size: 1.1em;
-  color: #555;
-  margin-right: 30px;
+  margin-right: 60px;
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+  font-size: 1.1rem;
 }
 .tool-item {
   margin-right: 30px;
+  font-size: 1.1em;
+  margin-right: 30px;
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+  font-size: 1.1rem;
 }
-/* button section */
-.details-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+/* Procedure Section Styles */
+.procedure {
+  padding: 0 100px;
+  margin-bottom: 50px;
 }
-.phone-call-btn {
-  width: 20%;
+.procedure-section {
+  margin: 20px 0;
+  /* padding: 40px; */
+  /* border: 1px solid #ddd;
+  border-radius: 5px; */
+  /* background-color: #ffffff; */
+  text-align: center;
 }
-.contact-email-btn {
-  width: 20%;
+.benefits {
+  padding: 40px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
 }
-.detail-style {
-  width: 20px;
-  height: 20px;
-  color: #ffffff;
+
+.procedure-title {
+  font-family: "Rammetto One";
+  font-size: 1.5em;
+  margin-bottom: 25px;
+}
+
+.procedure-subtitle {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-family: "Rammetto One";
+}
+
+.procedure-content {
+  /* display: flex; */
+  margin-bottom: 20px;
+}
+
+.procedure-item {
+  margin-bottom: 10px;
+}
+
+.procedure-item-title {
+  font-weight: bold;
+  font-family: "Rammetto One";
+  font-size: 1rem;
+}
+
+.procedure-item-desc {
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+/* FEES SECTION */
+.fees-section {
+  padding: 0 100px;
+  margin-bottom: 50px;
+}
+.fees h3 {
+  text-align: center;
+  font-family: "Rammetto One";
 }
