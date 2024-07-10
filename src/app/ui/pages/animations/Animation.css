@@ -210,7 +210,7 @@
 
   .product-bottom-banner {
     height: auto;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
   }
 
   .product-bottom-list {
@@ -253,6 +253,29 @@
     width: 100%;
     padding: 20px;
   }
+}
+/* BANNER ICON */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.product-bottom-banner {
+  display: flex;
+  flex-direction: row;
+  /* overflow: hidden; */
+  white-space: nowrap;
+  gap: 10px;
+}
+
+.product-bottom-list {
+  display: inline-block;
+  margin-right: 20px;
+  animation: scroll 15s linear infinite;
 }
 
 /* PRODUCT FILTER */
