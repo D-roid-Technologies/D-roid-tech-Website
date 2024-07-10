@@ -7,6 +7,7 @@ const initialState: TestimonialType = {
   position: "",
   serviceType: "",
   message: "",
+  testimonials: [], // Adding testimonials array to hold all testimonials
 };
 
 export const TestimonialSlice = createSlice({
@@ -38,6 +39,11 @@ export const TestimonialSlice = createSlice({
       state.message = action.payload;
       console.log("getting user message from testimonial slice", message);
     },
+    addTestimonial: (state, action) => {
+      const newTestimonial = action.payload;
+      state.testimonials.push(newTestimonial);
+      console.log("adding new testimonial", newTestimonial);
+    },
   },
 });
 export default TestimonialSlice.reducer;
@@ -47,4 +53,5 @@ export const {
   addComapanyName,
   addPosition,
   addServiceType,
+  addTestimonial, // Export addTestimonial action
 } = TestimonialSlice.actions;

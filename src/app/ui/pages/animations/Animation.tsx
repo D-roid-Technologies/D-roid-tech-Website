@@ -143,11 +143,11 @@ const Animation: React.FunctionComponent = () => {
   const mapThroughIconData = () => {
     return icon_data.map((i, j: number) => {
       return (
-        <motion.div
-          variants={fadeIn("left", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
+        <div
+          // variants={fadeIn("left", 0.2)}
+          // initial="hidden"
+          // whileInView={"show"}
+          // viewport={{ once: false, amount: 0.7 }}
           className="product-bottom-list"
           key={j}
         >
@@ -155,7 +155,7 @@ const Animation: React.FunctionComponent = () => {
             {i.icon}
             <p className="product-bottom-title bounce">{i.title}</p>
           </div>
-        </motion.div>
+        </div>
       );
     });
   };

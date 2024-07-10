@@ -19,6 +19,8 @@ import testimonialbackgroundImage from "../../../images/png/customerfeedback2.jp
 import {
   updateModal,
   updateModalContent,
+  updateToast,
+  updateToastTitle,
 } from "../../../redux/slices/AppEntrySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, store } from "../../../redux/Store";
@@ -35,7 +37,9 @@ import {
   addPosition,
   addServiceType,
   addMessage,
+  addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
+import Toast from "../../components/toast/Toast";
 
 const Contact: React.FunctionComponent = () => {
   //CONTACT FOARM
@@ -105,28 +109,64 @@ const Contact: React.FunctionComponent = () => {
 
   //CONTACT FOARM
   const sendContactDataToReduxStore = () => {
-    store.dispatch(addUserFullName(fullNameData));
-    store.dispatch(addUserPhoneNumber(phoneNumberData));
-    store.dispatch(addUserSubject(subjectData));
-    store.dispatch(addUserMessage(messageData));
-    store.dispatch(addUserContactEmail(emailData));
+    // store.dispatch(addUserFullName(fullNameData));
+    // store.dispatch(addUserPhoneNumber(phoneNumberData));
+    // store.dispatch(addUserSubject(subjectData));
+    // store.dispatch(addUserMessage(messageData));
+    // store.dispatch(addUserContactEmail(emailData));
+    // Clear input fields after submission
+    setFullNameData("");
+    setEmailData("");
+    setPhoneNumberData("");
+    setSubjectData("");
+    setMessageData("");
   };
   const handleUserEmail = () => {
     sendContactDataToReduxStore();
+    showToast("Your message has been sent!");
   };
 
   // NEW TESTIMONIAL
+  // const sendTestimonialConToReduxStore = () => {
+  //   store.dispatch(addName(nameCon));
+  //   store.dispatch(addComapanyName(companyCon));
+  //   store.dispatch(addPosition(positionCon));
+  //   store.dispatch(addServiceType(serviceType));
+  //   store.dispatch(addMessage(messageCon));
+  // };
+  // const handleNewTestimonial = () => {
+  //   sendTestimonialConToReduxStore();
+  //   showToast("Your testimonial has been added!");
+  // };
   const sendTestimonialConToReduxStore = () => {
-    store.dispatch(addName(nameCon));
-    store.dispatch(addComapanyName(companyCon));
-    store.dispatch(addPosition(positionCon));
-    store.dispatch(addServiceType(serviceType));
-    store.dispatch(addMessage(messageCon));
-  };
-  const handleNewTestimonial = () => {
-    sendTestimonialConToReduxStore();
+    const newTestimonial = {
+      name: nameCon,
+      comapanyName: companyCon,
+      position: positionCon,
+      serviceType: serviceCon,
+      message: messageCon,
+    };
+    dispatch(addTestimonial(newTestimonial));
+    showToast("Your testimonial has been added!");
   };
 
+  const handleNewTestimonial = () => {
+    sendTestimonialConToReduxStore();
+    setNameCon("");
+    setCompanyCon("");
+    setPositionCon("");
+    setServiceCon("");
+    setMessageCon("");
+  };
+
+  // TOAST SECTION
+  const showToast = (message: string) => {
+    dispatch(updateToastTitle(message));
+    dispatch(updateToast(true));
+    setTimeout(() => {
+      dispatch(updateToast(false));
+    }, 5000);
+  };
   const optionsList = [
     "Subject",
     "Inquiry on Drone Services",
