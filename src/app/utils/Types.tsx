@@ -31,6 +31,13 @@ export type TestimonialType = {
   position: string;
   serviceType: string;
   message: string;
+  testimonials: Array<{
+    name: string;
+    comapanyName: string;
+    position: string;
+    serviceType: string;
+    message: string;
+  }>;
 };
 
 export type EmailType = {
