@@ -137,6 +137,12 @@
   display: flex;
   justify-content: center;
 }
+.toast-title{
+  font-size: 18px;
+  font-weight: 800;
+  font-family: "Rammetto One";
+  color: #ffffff;
+}
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

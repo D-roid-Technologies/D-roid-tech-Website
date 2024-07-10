@@ -122,6 +122,12 @@ export type AppEntrySliceType = {
   showToast: boolean;
   appTitle: string;
   appBody: any;
+  toastTitle: string;
+};
+
+export type ToastSliceType = {
+  showToast: boolean;
+  toastTitle: string;
 };
 
 export type Testimonailstype = {
