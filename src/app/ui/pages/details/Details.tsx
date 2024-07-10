@@ -54,7 +54,12 @@ const Details: React.FunctionComponent = () => {
         <div className="info-con">
           <div className="category">
             <h3>Categories</h3>
-            <p>{data.category.join(", ")}</p>
+            {/* <p>{data.category.join(", ")}</p> */}
+            <p>
+              {Array.isArray(data.category)
+                ? data.category.join(", ")
+                : "No categories available"}
+            </p>
           </div>
           <div className="tools">
             <h3>Tools</h3>
@@ -66,9 +71,8 @@ const Details: React.FunctionComponent = () => {
           </div>
         </div>
       </section>
-      <section className="procedure">
+      {/* <section className="procedure">
         <div className="procedure-section">
-          {/* <h3 className="procedure-title">Procedures</h3> */}
           {data.procedure &&
             data.procedure.map((proc: any, procIndex: number) => (
               <div key={procIndex} className="procedure-content">
@@ -109,6 +113,53 @@ const Details: React.FunctionComponent = () => {
                 </div>
               </div>
             ))}
+        </div>
+      </section> */}
+      <section className="procedure">
+        <div className="procedure-section">
+          {Array.isArray(data.procedure) ? (
+            data.procedure.map((proc: any, procIndex: number) => (
+              <div key={procIndex} className="procedure-content">
+                <h3 className="procedure-title">{proc.title}</h3>
+                <div className="benefits">
+                  <div>
+                    <h4 className="procedure-subtitle">{proc.subTitleOne}</h4>
+                  </div>
+                  {proc.subTitleOneContent &&
+                    proc.subTitleOneContent.map(
+                      (content: any, contentIndex: number) => (
+                        <div key={contentIndex} className="procedure-item">
+                          <h4 className="procedure-item-title">
+                            {content.title}
+                          </h4>
+                          <p className="procedure-item-desc">{content.desc}</p>
+                        </div>
+                      )
+                    )}
+                </div>
+                <div className="benefits">
+                  <div>
+                    <h3 className="procedure-subtitle">{proc.subTitleTwo}</h3>
+                    {proc.subTitleTwoContent &&
+                      proc.subTitleTwoContent.map(
+                        (content: any, contentIndex: number) => (
+                          <div key={contentIndex} className="procedure-item">
+                            <h6 className="procedure-item-title">
+                              {content.title}
+                            </h6>
+                            <p className="procedure-item-desc">
+                              {content.desc}
+                            </p>
+                          </div>
+                        )
+                      )}
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No procedures available</p>
+          )}
         </div>
       </section>
       <section className="fees-section">
