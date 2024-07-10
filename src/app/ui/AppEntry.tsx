@@ -14,16 +14,14 @@ import {
 import { useThemeColor } from "../utils/hooks/useThemeColor";
 import { Assets } from "../utils/constant/Assets";
 import Index from "../routes/Index";
-import { useNavigate } from "react-router-dom";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
-  // const [toast, setToast] = React.useState<boolean>(true);
-  const [toastMessage, setToastMessage] =
-    React.useState<string>("Hi There, I'm still being developed!");
+  const [toastMessage, setToastMessage] = React.useState<string>(
+    "Hi There, I'm still being developed!"
+  );
   const appEntry = useSelector((state: RootState) => state.appEntry);
   const [nToast, setNToast] = React.useState<boolean>(false);
   const { getColor } = useThemeColor();
-  // const navigate = useNavigate();
 
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
@@ -97,7 +95,6 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
 
       <Index width={appWidth} />
       <Footer />
-      {/* <a href="/ai"> */}
       <div
         onClick={() => {
           showToast();
@@ -116,7 +113,6 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
           </p>
         </div>
       </div>
-      {/* </a> */}
     </div>
   );
 };
