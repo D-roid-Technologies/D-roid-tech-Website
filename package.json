@@ -1,6 +1,6 @@
 {
   "name": "droid-tech-int",
-  "version": "3.5.5",
+  "version": "3.5.7",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
