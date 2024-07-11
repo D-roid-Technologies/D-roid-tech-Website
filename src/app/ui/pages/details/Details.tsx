@@ -3,6 +3,7 @@ import "../details/Details.css";
 import Button from "../../components/button/Button";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate, useLocation } from "react-router-dom";
+import Card from "../../components/card/Card";
 
 const Details: React.FunctionComponent = () => {
   const location = useLocation();

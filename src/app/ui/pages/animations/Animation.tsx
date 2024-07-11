@@ -223,36 +223,38 @@ const Animation: React.FunctionComponent = () => {
           Our Catalog
         </motion.h1>
         {/* filter */}
-        <div className="product-search">
-          <div className="search-input">
-            <div className="search">
-              <AppInput
-                w="100%"
-                h={40}
-                pLeft={10}
-                pHolder="Enter Product Name..."
-                onChange={handleFilter}
-              />
+        <div className="product-search-container">
+          <div className="product-search">
+            <div className="search-input">
+              <div className="search">
+                <AppInput
+                  w="100%"
+                  h={40}
+                  pLeft={10}
+                  pHolder="Enter Product Name..."
+                  onChange={handleFilter}
+                />
+              </div>
             </div>
-          </div>
 
-          {filterData.length != 0 && (
-            <div>
-              {filterData.map((value, key) => (
-                <a
-                  className="link"
-                  href={value.link}
-                  target="_blank"
-                  key={key}
-                  rel="noopener noreferrer"
-                >
-                  <p className="link-title">{value.title}</p>
-                </a>
-              ))}
-              {/* );
+            {filterData.length != 0 && (
+              <div>
+                {filterData.map((value, key) => (
+                  <a
+                    className="link"
+                    href={value.link}
+                    target="_blank"
+                    key={key}
+                    rel="noopener noreferrer"
+                  >
+                    <p className="link-title">{value.title}</p>
+                  </a>
+                ))}
+                {/* );
                })} */}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
         {/* end of filter */}
         <motion.div
