@@ -39,7 +39,6 @@ import {
   addMessage,
   addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
-import Toast from "../../components/toast/Toast";
 
 const Contact: React.FunctionComponent = () => {
   //CONTACT FOARM
