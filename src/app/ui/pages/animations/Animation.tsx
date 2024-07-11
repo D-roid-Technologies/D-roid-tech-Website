@@ -174,7 +174,7 @@ const Animation: React.FunctionComponent = () => {
               mBottom={0}
               mLeft={0}
               mRight={0}
-              onClickButton={() => {}}
+              onClickButton={() => { }}
               title="View Product"
               color={getColor("light")}
             />
@@ -227,33 +227,20 @@ const Animation: React.FunctionComponent = () => {
           <div className="product-search">
             <div className="search-input">
               <div className="search">
-                <AppInput
+                {/* <AppInput
                   w="100%"
                   h={40}
                   pLeft={10}
                   pHolder="Enter Product Name..."
+                  onchangeText={handleFilter}
+                /> */}
+                <input
+                  type="text"
+                  placeholder="Enter Product Name..."
                   onChange={handleFilter}
                 />
               </div>
             </div>
-
-            {filterData.length != 0 && (
-              <div>
-                {filterData.map((value, key) => (
-                  <a
-                    className="link"
-                    href={value.link}
-                    target="_blank"
-                    key={key}
-                    rel="noopener noreferrer"
-                  >
-                    <p className="link-title">{value.title}</p>
-                  </a>
-                ))}
-                {/* );
-               })} */}
-              </div>
-            )}
           </div>
         </div>
         {/* end of filter */}
@@ -264,7 +251,30 @@ const Animation: React.FunctionComponent = () => {
           viewport={{ once: false, amount: 0.7 }}
           className="our-catalog-map"
         >
-          {mapThroughCatalogData()}
+            {filterData.length > 0 ? (
+              filterData.map((product, index) => (
+                <Card
+                  key={index}
+                  image={catalog_data.find(item => item.title === product.title)?.image}
+                  title={product.title}
+                  actions={
+                    <Button
+                      bgColor={getColor("basic")}
+                      mTop={0}
+                      mBottom={0}
+                      mLeft={0}
+                      mRight={0}
+                      onClickButton={() => { }}
+                      title="View Product"
+                      color={getColor("light")}
+                    />
+                  }
+                  content={catalog_data.find(item => item.title === product.title)?.desc || ""}
+                />
+              ))
+            ) : (
+              mapThroughCatalogData()
+            )}
         </motion.div>
       </div>
       <div className="choose-us-product">
