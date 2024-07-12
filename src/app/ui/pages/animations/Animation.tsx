@@ -143,14 +143,7 @@ const Animation: React.FunctionComponent = () => {
   const mapThroughIconData = () => {
     return icon_data.map((i, j: number) => {
       return (
-        <div
-          // variants={fadeIn("left", 0.2)}
-          // initial="hidden"
-          // whileInView={"show"}
-          // viewport={{ once: false, amount: 0.7 }}
-          className="product-bottom-list"
-          key={j}
-        >
+        <div className="product-bottom-list" key={j}>
           <div className="product-bottom-inner">
             {i.icon}
             <p className="product-bottom-title bounce">{i.title}</p>
@@ -174,7 +167,7 @@ const Animation: React.FunctionComponent = () => {
               mBottom={0}
               mLeft={0}
               mRight={0}
-              onClickButton={() => { }}
+              onClickButton={() => {}}
               title="View Product"
               color={getColor("light")}
             />
@@ -210,8 +203,9 @@ const Animation: React.FunctionComponent = () => {
             <FaGrinStars className="product-cart" />
           </div>
         </div>
-        <div className="product-bottom-banner">{mapThroughIconData()}</div>
+        {/* <div className="product-bottom-banner">{mapThroughIconData()}</div> */}
       </div>
+      <div className="product-bottom-banner">{mapThroughIconData()}</div>
       <div className="our-catalog">
         <motion.h1
           variants={fadeIn("right", 0.2)}
@@ -238,6 +232,7 @@ const Animation: React.FunctionComponent = () => {
                   type="text"
                   placeholder="Enter Product Name..."
                   onChange={handleFilter}
+                  className="product-name"
                 />
               </div>
             </div>
@@ -251,11 +246,14 @@ const Animation: React.FunctionComponent = () => {
           viewport={{ once: false, amount: 0.7 }}
           className="our-catalog-map"
         >
-            {filterData.length > 0 ? (
-              filterData.map((product, index) => (
+          {filterData.length > 0
+            ? filterData.map((product, index) => (
                 <Card
                   key={index}
-                  image={catalog_data.find(item => item.title === product.title)?.image}
+                  image={
+                    catalog_data.find((item) => item.title === product.title)
+                      ?.image
+                  }
                   title={product.title}
                   actions={
                     <Button
@@ -264,17 +262,18 @@ const Animation: React.FunctionComponent = () => {
                       mBottom={0}
                       mLeft={0}
                       mRight={0}
-                      onClickButton={() => { }}
+                      onClickButton={() => {}}
                       title="View Product"
                       color={getColor("light")}
                     />
                   }
-                  content={catalog_data.find(item => item.title === product.title)?.desc || ""}
+                  content={
+                    catalog_data.find((item) => item.title === product.title)
+                      ?.desc || ""
+                  }
                 />
               ))
-            ) : (
-              mapThroughCatalogData()
-            )}
+            : mapThroughCatalogData()}
         </motion.div>
       </div>
       <div className="choose-us-product">
