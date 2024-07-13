@@ -8,7 +8,7 @@ import { DATA } from "../../../utils/constant/Data";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import cropMonitoring from "../../../images/png/cropmonitoring3.png";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState, store } from "../../../redux/Store";
 import { FaMapMarkerAlt, FaSeedling } from "react-icons/fa";
 import {
@@ -44,6 +44,8 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
   const aBody = appEntry.appBody;
+
+  const dispatch = useDispatch();
 
   const onSuccessTitle = "Our Testimonies";
   const onFailedTitle = "Failed";
@@ -189,7 +191,12 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         fWeight={800}
                         icon={<FaPhotoVideo className="style-home-icon" />}
                         onClickButton={() => {
-                          navigate("/contact");
+                          dispatch(
+                            updateModalContent({
+                              appTitle: "See more",
+                            })
+                          );
+                          dispatch(updateModal(true));
                         }}
                       />
                     </div>
@@ -224,7 +231,12 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         fWeight={800}
                         icon={<RiSurveyLine className="style-home-icon" />}
                         onClickButton={() => {
-                          navigate("/contact");
+                          dispatch(
+                            updateModalContent({
+                              appTitle: "See more",
+                            })
+                          );
+                          dispatch(updateModal(true));
                         }}
                       />
                     </div>
@@ -272,7 +284,12 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         fWeight={800}
                         icon={<LuInspect className="style-home-icon" />}
                         onClickButton={() => {
-                          navigate("/contact");
+                          dispatch(
+                            updateModalContent({
+                              appTitle: "See more",
+                            })
+                          );
+                          dispatch(updateModal(true));
                         }}
                       />
                     </div>
@@ -308,7 +325,12 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         fWeight={800}
                         icon={<FaSeedling className="style-home-icon" />}
                         onClickButton={() => {
-                          navigate("/contact");
+                          dispatch(
+                            updateModalContent({
+                              appTitle: "See more",
+                            })
+                          );
+                          dispatch(updateModal(true));
                         }}
                       />
                     </div>

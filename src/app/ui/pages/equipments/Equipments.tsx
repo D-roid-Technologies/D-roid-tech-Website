@@ -100,8 +100,6 @@ const Equipments: React.FunctionComponent<any> = () => {
                         })
                       );
                       dispatch(updateModal(true));
-                      // onClickButton={() => {
-                      //   navigate("/contact");
                     }}
                   />
                 }
