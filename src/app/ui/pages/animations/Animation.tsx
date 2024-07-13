@@ -20,6 +20,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import { title } from "process";
 import AppInput from "../../components/textInput/AppInput";
+import { useNavigate } from "react-router-dom";
 
 interface product {
   title: string;
@@ -64,6 +65,7 @@ const Animation: React.FunctionComponent = () => {
   };
 
   const { getColor } = useThemeColor();
+  const navigate = useNavigate();
 
   // Icon Data
   const icon_data = [
@@ -106,32 +108,39 @@ const Animation: React.FunctionComponent = () => {
       image: Assets.images.droid_web,
       title: "D'roid Technologies",
       desc: "DTI Software Solutions is a leading provider of innovative software solutions tailored to meet the evolving needs of businesses across diverse industries.",
+      link: "https://www.droidtechinternational.com/",
     },
     {
       image: Assets.images.reign,
       title: "Reign Enterprise",
       desc: "At Reign Collections, we have all the basic things you need for your house hold. From bathroom equpients, kitchen tools, lounge set-up and more.",
-    },
-    {
-      image: Assets.images.maximuspage,
-      title: "Maximus",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
-    },
-    {
-      image: Assets.images.drizzle,
-      title: "Drizzle Ogos Place",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
-    },
-    {
-      image: Assets.images.cashBasket,
-      title: "Cash Basket",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
     },
     {
       image: Assets.images.knowledgecity,
       title: "Knowledge City",
       desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
     },
+    {
+      image: Assets.images.maximuspage,
+      title: "Maximus",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
+    {
+      image: Assets.images.drizzle,
+      title: "Drizzle Ogos Place",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
+    {
+      image: Assets.images.cashBasket,
+      title: "Cash Basket",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
+
     // {
     //   image: ,
     //   title: "",
@@ -167,7 +176,14 @@ const Animation: React.FunctionComponent = () => {
               mBottom={0}
               mLeft={0}
               mRight={0}
-              onClickButton={() => {}}
+              onClickButton={() => {
+                if (item.link) {
+                  window.open(item.link, "_blank");
+                }
+              }}
+              // onClickButton={() => {
+              //   navigate(item.link);
+              // }}
               title="View Product"
               color={getColor("light")}
             />
@@ -219,23 +235,23 @@ const Animation: React.FunctionComponent = () => {
         {/* filter */}
         <div className="product-search-container">
           <div className="product-search">
-            <div className="search-input">
-              <div className="search">
-                {/* <AppInput
+            {/* <div className="search-input"> */}
+            <div className="search">
+              {/* <AppInput
                   w="100%"
                   h={40}
                   pLeft={10}
                   pHolder="Enter Product Name..."
                   onchangeText={handleFilter}
                 /> */}
-                <input
-                  type="text"
-                  placeholder="Enter Product Name..."
-                  onChange={handleFilter}
-                  className="product-name"
-                />
-              </div>
+              <input
+                type="text"
+                placeholder="Enter Product Name..."
+                onChange={handleFilter}
+                className="product-name"
+              />
             </div>
+            {/* </div> */}
           </div>
         </div>
         {/* end of filter */}

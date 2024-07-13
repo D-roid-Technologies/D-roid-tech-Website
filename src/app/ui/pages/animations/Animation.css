@@ -108,6 +108,10 @@
   align-items: center;
   gap: 30px;
 }
+.card {
+  margin: 10px;
+  flex: 1 1 300px; /* Adjust based on your card width */
+}
 
 /* Choose Us */
 .choose-us-product {
@@ -132,7 +136,7 @@
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  width: 25% !important;
+  width: 35% !important;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
