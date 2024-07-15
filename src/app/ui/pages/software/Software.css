@@ -212,3 +212,38 @@
     align-items: flex-start;
   }
 }
+
+@media (max-width: 600px) {
+  /* .training-approach-head {
+    text-align: center;
+  }
+  .wantto-know {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .wantto-know-btn {
+    width: 100%;
+  } */
+  .wantto-know-btn {
+    width: 75%;
+  }
+
+  .home-to-software {
+    padding: 0 10px;
+  }
+
+  .software-approach-main {
+    padding: 0 10px;
+  }
+
+  .wantto-know-btn {
+    width: 90%;
+  }
+
+  .service-card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

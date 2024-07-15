@@ -9,7 +9,8 @@ import { convertToCurrency } from "../../../utils/currencyUtils";
 const Details: React.FunctionComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const data = location.state;
+  // const data = location.state;
+  const data = location.state || {}; // Use an empty object as a fallback
 
   const [toolsArray, setToolsArray] = useState([]);
   const [basicPrice, setBasicPrice] = useState<string>("");
