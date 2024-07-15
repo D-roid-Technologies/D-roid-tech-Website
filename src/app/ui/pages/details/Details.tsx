@@ -4,6 +4,7 @@ import Button from "../../components/button/Button";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate, useLocation } from "react-router-dom";
 import Card from "../../components/card/Card";
+import { convertToCurrency } from "../../../utils/currencyUtils";
 
 const Details: React.FunctionComponent = () => {
   const location = useLocation();
@@ -11,6 +12,11 @@ const Details: React.FunctionComponent = () => {
   const data = location.state;
 
   const [toolsArray, setToolsArray] = useState([]);
+  const [basicPrice, setBasicPrice] = useState<string>("");
+  const [proPrice, setProPrice] = useState<string>("");
+  const [advancedPrice, setAdvancedPrice] = useState<string>("");
+
+  // const [convertedPrice, setConvertedPrice] = useState<string>("");
 
   const mapThroughTools = () => {
     if (typeof data.tools === "string") {
@@ -23,6 +29,42 @@ const Details: React.FunctionComponent = () => {
   useEffect(() => {
     mapThroughTools();
   }, [data.tools]);
+  useEffect(() => {
+    const convertPrices = async () => {
+      try {
+        const priceInNumber = parseFloat(data.price);
+        if (!isNaN(priceInNumber)) {
+          const basicConverted = await convertToCurrency(priceInNumber);
+          const proConverted = await convertToCurrency(priceInNumber * 1.5); // example multiplier for pro
+          const advancedConverted = await convertToCurrency(priceInNumber * 2); // example multiplier for advanced
+
+          setBasicPrice(basicConverted);
+          setProPrice(proConverted);
+          setAdvancedPrice(advancedConverted);
+        }
+      } catch (error) {
+        console.error("Error converting prices:", error);
+      }
+    };
+
+    convertPrices();
+  }, [data.price]);
+
+  // useEffect(() => {
+  //   const convertPrice = async () => {
+  //     try {
+  //       const priceInNumber = parseFloat(data.price);
+  //       if (!isNaN(priceInNumber)) {
+  //         const converted = await convertToCurrency(priceInNumber);
+  //         setConvertedPrice(converted);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error converting price:", error);
+  //     }
+  //   };
+
+  //   convertPrice();
+  // }, [data.price]);
 
   return (
     <>
@@ -72,50 +114,7 @@ const Details: React.FunctionComponent = () => {
           </div>
         </div>
       </section>
-      {/* <section className="procedure">
-        <div className="procedure-section">
-          {data.procedure &&
-            data.procedure.map((proc: any, procIndex: number) => (
-              <div key={procIndex} className="procedure-content">
-                <h3 className="procedure-title">{proc.title}</h3>
-                <div className="benefits">
-                  <div>
-                    <h4 className="procedure-subtitle">{proc.subTitleOne}</h4>
-                  </div>
-                  {proc.subTitleOneContent &&
-                    proc.subTitleOneContent.map(
-                      (content: any, contentIndex: number) => (
-                        <div key={contentIndex} className="procedure-item">
-                          <h4 className="procedure-item-title">
-                            {content.title}
-                          </h4>
-                          <p className="procedure-item-desc">{content.desc}</p>
-                        </div>
-                      )
-                    )}
-                </div>
-                <div className="benefits">
-                  <div>
-                    <h3 className="procedure-subtitle">{proc.subTitleTwo}</h3>
-                    {proc.subTitleTwoContent &&
-                      proc.subTitleTwoContent.map(
-                        (content: any, contentIndex: number) => (
-                          <div key={contentIndex} className="procedure-item">
-                            <h6 className="procedure-item-title">
-                              {content.title}
-                            </h6>
-                            <p className="procedure-item-desc">
-                              {content.desc}
-                            </p>
-                          </div>
-                        )
-                      )}
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
-      </section> */}
+
       <section className="procedure">
         <div className="procedure-section">
           {Array.isArray(data.procedure) ? (
@@ -163,11 +162,34 @@ const Details: React.FunctionComponent = () => {
           )}
         </div>
       </section>
-      <section className="fees-section">
-        <div className="fees">
+      {/* <section className="fees-section"> */}
+      {/* <div className="fees">
+          <h3>FEES</h3>
+          {basicPrice && <p>Basic Price: {basicPrice}</p>}
+          {proPrice && <p>Pro Price: {proPrice}</p>}
+          {advancedPrice && <p>Advanced Price: {advancedPrice}</p>}
+        </div> */}
+      {/* <div className="fees">
           <h3>FEES</h3>
           <h4>{data.currency}</h4>
           <p>{data.price}</p>
+        </div> */}
+      {/* </section> */}
+      <h3 className="fees-container">FEES</h3>
+      <section className="fees-section">
+        <div className="fees">
+          <div className="fees-card">
+            <h4>Basic </h4>
+            {basicPrice && <p>{basicPrice}</p>}
+          </div>
+          <div className="fees-card">
+            <h4>Pro </h4>
+            {proPrice && <p>{proPrice}</p>}
+          </div>
+          <div className="fees-card">
+            <h4>Advanced</h4>
+            {advancedPrice && <p>{advancedPrice}</p>}
+          </div>
         </div>
       </section>
     </>
