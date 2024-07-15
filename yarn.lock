@@ -8635,6 +8635,11 @@ react-error-overlay@^6.0.11:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
 
+react-geolocated@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/react-geolocated/-/react-geolocated-4.1.2.tgz#2a00d3295bdfcd6d215f3fe2b960f8003cee85d0"
+  integrity sha512-/Ec26Wb1h06bB/axHYclBxrG0Yqob0T0W9awRi87cyedC3rMnpOR+Aqb7Q26FAEF+dNWXIpVDGNw1YZtlPUAEw==
+
 react-icons@^5.0.1:
   version "5.1.0"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-5.1.0.tgz"

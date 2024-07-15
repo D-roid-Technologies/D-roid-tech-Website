@@ -20,6 +20,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import { title } from "process";
 import AppInput from "../../components/textInput/AppInput";
+import { useNavigate } from "react-router-dom";
 
 interface product {
   title: string;
@@ -64,6 +65,7 @@ const Animation: React.FunctionComponent = () => {
   };
 
   const { getColor } = useThemeColor();
+  const navigate = useNavigate();
 
   // Icon Data
   const icon_data = [
@@ -106,32 +108,39 @@ const Animation: React.FunctionComponent = () => {
       image: Assets.images.droid_web,
       title: "D'roid Technologies",
       desc: "DTI Software Solutions is a leading provider of innovative software solutions tailored to meet the evolving needs of businesses across diverse industries.",
+      link: "https://www.droidtechinternational.com/",
     },
     {
       image: Assets.images.reign,
       title: "Reign Enterprise",
       desc: "At Reign Collections, we have all the basic things you need for your house hold. From bathroom equpients, kitchen tools, lounge set-up and more.",
-    },
-    {
-      image: Assets.images.maximuspage,
-      title: "Maximus",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
-    },
-    {
-      image: Assets.images.drizzle,
-      title: "Drizzle Ogos Place",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
-    },
-    {
-      image: Assets.images.cashBasket,
-      title: "Cash Basket",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
     },
     {
       image: Assets.images.knowledgecity,
       title: "Knowledge City",
       desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
     },
+    {
+      image: Assets.images.maximuspage,
+      title: "Maximus",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
+    {
+      image: Assets.images.drizzle,
+      title: "Drizzle Ogos Place",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
+    {
+      image: Assets.images.cashBasket,
+      title: "Cash Basket",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
+
     // {
     //   image: ,
     //   title: "",
@@ -143,14 +152,7 @@ const Animation: React.FunctionComponent = () => {
   const mapThroughIconData = () => {
     return icon_data.map((i, j: number) => {
       return (
-        <div
-          // variants={fadeIn("left", 0.2)}
-          // initial="hidden"
-          // whileInView={"show"}
-          // viewport={{ once: false, amount: 0.7 }}
-          className="product-bottom-list"
-          key={j}
-        >
+        <div className="product-bottom-list" key={j}>
           <div className="product-bottom-inner">
             {i.icon}
             <p className="product-bottom-title bounce">{i.title}</p>
@@ -174,7 +176,14 @@ const Animation: React.FunctionComponent = () => {
               mBottom={0}
               mLeft={0}
               mRight={0}
-              onClickButton={() => {}}
+              onClickButton={() => {
+                if (item.link) {
+                  window.open(item.link, "_blank");
+                }
+              }}
+              // onClickButton={() => {
+              //   navigate(item.link);
+              // }}
               title="View Product"
               color={getColor("light")}
             />
@@ -210,8 +219,9 @@ const Animation: React.FunctionComponent = () => {
             <FaGrinStars className="product-cart" />
           </div>
         </div>
-        <div className="product-bottom-banner">{mapThroughIconData()}</div>
+        {/* <div className="product-bottom-banner">{mapThroughIconData()}</div> */}
       </div>
+      <div className="product-bottom-banner">{mapThroughIconData()}</div>
       <div className="our-catalog">
         <motion.h1
           variants={fadeIn("right", 0.2)}
@@ -223,36 +233,26 @@ const Animation: React.FunctionComponent = () => {
           Our Catalog
         </motion.h1>
         {/* filter */}
-        <div className="product-search">
-          <div className="search-input">
+        <div className="product-search-container">
+          <div className="product-search">
+            {/* <div className="search-input"> */}
             <div className="search">
-              <AppInput
-                w="100%"
-                h={40}
-                pLeft={10}
-                pHolder="Enter Product Name..."
+              {/* <AppInput
+                  w="100%"
+                  h={40}
+                  pLeft={10}
+                  pHolder="Enter Product Name..."
+                  onchangeText={handleFilter}
+                /> */}
+              <input
+                type="text"
+                placeholder="Enter Product Name..."
                 onChange={handleFilter}
+                className="product-name"
               />
             </div>
+            {/* </div> */}
           </div>
-
-          {filterData.length != 0 && (
-            <div>
-              {filterData.map((value, key) => (
-                <a
-                  className="link"
-                  href={value.link}
-                  target="_blank"
-                  key={key}
-                  rel="noopener noreferrer"
-                >
-                  <p className="link-title">{value.title}</p>
-                </a>
-              ))}
-              {/* );
-               })} */}
-            </div>
-          )}
         </div>
         {/* end of filter */}
         <motion.div
@@ -262,7 +262,34 @@ const Animation: React.FunctionComponent = () => {
           viewport={{ once: false, amount: 0.7 }}
           className="our-catalog-map"
         >
-          {mapThroughCatalogData()}
+          {filterData.length > 0
+            ? filterData.map((product, index) => (
+                <Card
+                  key={index}
+                  image={
+                    catalog_data.find((item) => item.title === product.title)
+                      ?.image
+                  }
+                  title={product.title}
+                  actions={
+                    <Button
+                      bgColor={getColor("basic")}
+                      mTop={0}
+                      mBottom={0}
+                      mLeft={0}
+                      mRight={0}
+                      onClickButton={() => {}}
+                      title="View Product"
+                      color={getColor("light")}
+                    />
+                  }
+                  content={
+                    catalog_data.find((item) => item.title === product.title)
+                      ?.desc || ""
+                  }
+                />
+              ))
+            : mapThroughCatalogData()}
         </motion.div>
       </div>
       <div className="choose-us-product">

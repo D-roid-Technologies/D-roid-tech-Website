@@ -39,7 +39,6 @@ import {
   addMessage,
   addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
-import Toast from "../../components/toast/Toast";
 
 const Contact: React.FunctionComponent = () => {
   //CONTACT FOARM
@@ -94,18 +93,6 @@ const Contact: React.FunctionComponent = () => {
   const position = testimonialDetails.position;
   const serviceType = testimonialDetails.serviceType;
   const message = testimonialDetails.message;
-  console.log(
-    "Name",
-    nameCon,
-    "Company Name",
-    companyCon,
-    "Position",
-    positionCon,
-    "Service Type",
-    serviceCon,
-    "Message",
-    messageCon
-  );
 
   //CONTACT FOARM
   const sendContactDataToReduxStore = () => {
@@ -149,9 +136,22 @@ const Contact: React.FunctionComponent = () => {
     dispatch(addTestimonial(newTestimonial));
     showToast("Your testimonial has been added!");
   };
+  console.log(
+    "Name",
+    nameCon,
+    "Company Name",
+    companyCon,
+    "Position",
+    positionCon,
+    "Service Type",
+    serviceCon,
+    "Message",
+    messageCon
+  );
 
   const handleNewTestimonial = () => {
     sendTestimonialConToReduxStore();
+
     setNameCon("");
     setCompanyCon("");
     setPositionCon("");

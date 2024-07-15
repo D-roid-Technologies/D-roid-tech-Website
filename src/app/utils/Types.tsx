@@ -194,3 +194,12 @@ export type TestType = {
   options: string[];
   correctAnswer: string;
 };
+export type GeolocatedProps = {
+  isGeolocationAvailable: boolean;
+  isGeolocationEnabled: boolean;
+  coords: {
+    latitude: number;
+    longitude: number;
+  } | null;
+  // positionError: PositionError | null;
+};

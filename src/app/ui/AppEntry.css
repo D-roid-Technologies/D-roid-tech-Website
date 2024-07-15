@@ -95,6 +95,7 @@
   font-size: 18px;
   font-family: "MazzardH";
 }
+/* AI Section */
 .chat-with-ogo {
   position: fixed;
   bottom: 50px;
@@ -137,7 +138,7 @@
   display: flex;
   justify-content: center;
 }
-.toast-title{
+.toast-title {
   font-size: 18px;
   font-weight: 800;
   font-family: "Rammetto One";
@@ -158,5 +159,44 @@
   .modal-inner {
     height: 80%;
     width: 90%;
+  }
+  /* AI section */
+  .toast {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .Ogo-AI-toast {
+    width: 30px;
+    height: 30px;
+  }
+  .chat-with-ogo {
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 20px;
+  }
+  .inner-AI {
+    display: flex;
+    justify-content: center;
+  }
+  .Ogo-AI {
+    width: 40px;
+    height: 40px;
   }
 }

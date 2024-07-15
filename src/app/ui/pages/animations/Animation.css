@@ -37,7 +37,7 @@
   width: 100%;
   height: 100vh;
   display: block;
-  margin-bottom: 80px;
+  /* margin-bottom: 80px; */
 }
 
 .products-banner-inner {
@@ -69,16 +69,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .product-bottom-list {
   border-right: 1.8px solid #ffffff;
   height: auto;
-  width: 150px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: scroll 15s linear infinite;
 }
 
 .product-bottom-icon {
@@ -107,6 +108,10 @@
   align-items: center;
   gap: 30px;
 }
+.card {
+  margin: 10px;
+  flex: 1 1 300px; /* Adjust based on your card width */
+}
 
 /* Choose Us */
 .choose-us-product {
@@ -131,7 +136,7 @@
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 35% !important;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -141,6 +146,24 @@
 .search {
   margin-bottom: 10px;
 }
+/* INPUT SECTION */
+.product-name {
+  width: 100%;
+  padding: 10px 15px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.product-name:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+/* END OF INPUT */
 
 .search-results {
   list-style-type: none;
@@ -178,6 +201,14 @@
   border-radius: 4px;
   background-color: #ffffff;
   /* transition: background-color 0.3s ease; */
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* Responsive Styles */
@@ -233,7 +264,8 @@
     margin-bottom: 20px;
   }
   .search {
-    width: 410%;
+    width: 100%;
+    margin-bottom: 0;
   }
   .choose-us-product {
     flex-direction: column;
@@ -267,7 +299,7 @@
 .product-bottom-banner {
   display: flex;
   flex-direction: row;
-  /* overflow: hidden; */
+  overflow: hidden;
   white-space: nowrap;
   gap: 10px;
 }
@@ -283,9 +315,12 @@
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  width: 35%;
+  width: 94%;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* background-color: #f9f9f9; */
+  border-radius: 0;
+  box-shadow: 0;
+}
+.product-search-container {
+  padding: 0 20px;
 }
