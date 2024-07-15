@@ -482,7 +482,57 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Js", "Next Js", "HTML", "Css", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
-    procedure: ["Step One", "Step Two", "Step Three"],
+    procedure: [
+      {
+        title: "Why Choose Our Web Development Service",
+        subTitleOne: "Benefits of Working with Us:",
+        subTitleOneContent: [
+          {
+            title: "Expertise and Experience:",
+            desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
+          },
+          {
+            title: "Tailored Solutions:",
+            desc: "We provide bespoke web development solutions that cater to your specific business needs.",
+          },
+          {
+            title: "Cutting-edge Technologies:",
+            desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+          },
+          {
+            title: "Comprehensive Support:",
+            desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
+          },
+          {
+            title: "Proven Track Record:",
+            desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
+          },
+        ],
+        subTitleTwo: "Values and Incentives:",
+        subTitleTwoContent: [
+          {
+            title: "Client-Centric Approach:",
+            desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
+          },
+          {
+            title: "Transparent Communication:",
+            desc: "Stay informed with regular updates and open communication throughout the development process.",
+          },
+          {
+            title: "Innovative Solutions:",
+            desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
+          },
+          {
+            title: "Competitive Pricing:",
+            desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
+          },
+          {
+            title: "Timely Delivery:",
+            desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
+          },
+        ],
+      },
+    ],
     path: "/software",
   },
   {
@@ -493,7 +543,57 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
-    procedure: ["Step One", "Step Two", "Step Three"],
+    procedure: [
+      {
+        title: "Why Choose Our Web Development Service",
+        subTitleOne: "Benefits of Working with Us:",
+        subTitleOneContent: [
+          {
+            title: "Expertise and Experience:",
+            desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
+          },
+          {
+            title: "Tailored Solutions:",
+            desc: "We provide bespoke web development solutions that cater to your specific business needs.",
+          },
+          {
+            title: "Cutting-edge Technologies:",
+            desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+          },
+          {
+            title: "Comprehensive Support:",
+            desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
+          },
+          {
+            title: "Proven Track Record:",
+            desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
+          },
+        ],
+        subTitleTwo: "Values and Incentives:",
+        subTitleTwoContent: [
+          {
+            title: "Client-Centric Approach:",
+            desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
+          },
+          {
+            title: "Transparent Communication:",
+            desc: "Stay informed with regular updates and open communication throughout the development process.",
+          },
+          {
+            title: "Innovative Solutions:",
+            desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
+          },
+          {
+            title: "Competitive Pricing:",
+            desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
+          },
+          {
+            title: "Timely Delivery:",
+            desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
+          },
+        ],
+      },
+    ],
     path: "/software",
   },
   {
@@ -504,7 +604,57 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
-    procedure: ["Step One", "Step Two", "Step Three"],
+    procedure: [
+      {
+        title: "Why Choose Our Web Development Service",
+        subTitleOne: "Benefits of Working with Us:",
+        subTitleOneContent: [
+          {
+            title: "Expertise and Experience:",
+            desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
+          },
+          {
+            title: "Tailored Solutions:",
+            desc: "We provide bespoke web development solutions that cater to your specific business needs.",
+          },
+          {
+            title: "Cutting-edge Technologies:",
+            desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+          },
+          {
+            title: "Comprehensive Support:",
+            desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
+          },
+          {
+            title: "Proven Track Record:",
+            desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
+          },
+        ],
+        subTitleTwo: "Values and Incentives:",
+        subTitleTwoContent: [
+          {
+            title: "Client-Centric Approach:",
+            desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
+          },
+          {
+            title: "Transparent Communication:",
+            desc: "Stay informed with regular updates and open communication throughout the development process.",
+          },
+          {
+            title: "Innovative Solutions:",
+            desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
+          },
+          {
+            title: "Competitive Pricing:",
+            desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
+          },
+          {
+            title: "Timely Delivery:",
+            desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
+          },
+        ],
+      },
+    ],
     path: "/software",
   },
   {
@@ -515,7 +665,57 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
-    procedure: ["Step One", "Step Two", "Step Three"],
+    procedure: [
+      {
+        title: "Why Choose Our Web Development Service",
+        subTitleOne: "Benefits of Working with Us:",
+        subTitleOneContent: [
+          {
+            title: "Expertise and Experience:",
+            desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
+          },
+          {
+            title: "Tailored Solutions:",
+            desc: "We provide bespoke web development solutions that cater to your specific business needs.",
+          },
+          {
+            title: "Cutting-edge Technologies:",
+            desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+          },
+          {
+            title: "Comprehensive Support:",
+            desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
+          },
+          {
+            title: "Proven Track Record:",
+            desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
+          },
+        ],
+        subTitleTwo: "Values and Incentives:",
+        subTitleTwoContent: [
+          {
+            title: "Client-Centric Approach:",
+            desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
+          },
+          {
+            title: "Transparent Communication:",
+            desc: "Stay informed with regular updates and open communication throughout the development process.",
+          },
+          {
+            title: "Innovative Solutions:",
+            desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
+          },
+          {
+            title: "Competitive Pricing:",
+            desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
+          },
+          {
+            title: "Timely Delivery:",
+            desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
+          },
+        ],
+      },
+    ],
     path: "/software",
   },
   {
@@ -526,7 +726,115 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
-    procedure: ["Step One", "Step Two", "Step Three"],
+    procedure: [
+      {
+        title: "Why Choose Our Web Development Service",
+        subTitleOne: "Benefits of Working with Us:",
+        subTitleOneContent: [
+          {
+            title: "Expertise and Experience:",
+            desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
+          },
+          {
+            title: "Tailored Solutions:",
+            desc: "We provide bespoke web development solutions that cater to your specific business needs.",
+          },
+          {
+            title: "Cutting-edge Technologies:",
+            desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+          },
+          {
+            title: "Comprehensive Support:",
+            desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
+          },
+          {
+            title: "Proven Track Record:",
+            desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
+          },
+        ],
+        subTitleTwo: "Values and Incentives:",
+        subTitleTwoContent: [
+          {
+            title: "Client-Centric Approach:",
+            desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
+          },
+          {
+            title: "Transparent Communication:",
+            desc: "Stay informed with regular updates and open communication throughout the development process.",
+          },
+          {
+            title: "Innovative Solutions:",
+            desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
+          },
+          {
+            title: "Competitive Pricing:",
+            desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
+          },
+          {
+            title: "Timely Delivery:",
+            desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
+          },
+        ],
+      },
+    ],
     path: "/software",
   },
 ];
+// 2.
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// Part 2: Preparing to Apply
+// 3. How to Apply via Email:
+
+// Step-by-Step Instructions:
+// Gather Requirements:
+// Outline your project requirements, including your business objectives, target audience, and desired features.
+// Prepare Documentation:
+// Compile any relevant documents, such as project briefs, wireframes, or design mockups.
+// Write an Email:
+// Send an email to our dedicated team at [contact email address]. Make sure to include:
+// Your name and contact information.
+// A brief introduction about your business.
+// Detailed project requirements and expectations.
+// Any questions or concerns you might have.
+// Attachments:
+// Attach any relevant documents or files that will help us understand your project better.
+// 4. Important Steps Before Applying:
+
+// Review Our Portfolio:
+// Take a look at our previous projects to ensure our style and capabilities match your vision.
+// Define Your Goals:
+// Clearly define what you want to achieve with your new website, including specific functionalities and design preferences.
+// Budget Considerations:
+// Have a clear understanding of your budget and discuss it openly with us to ensure we can meet your expectations within the given constraints.
+// Timeline Expectations:
+// Determine your desired timeline for the project and communicate this to us to align our schedules.
+// Research Competitors:
+// Look at competitors’ websites to gather ideas and insights into what you like and don’t like.
+// Initial Consultation:
+// Schedule an initial consultation call with us to discuss your project in detail and get to know our team better.
+// Part 3: Final Steps Before Applying
+// 5. Before Clicking "Apply Now":
+
+// Double-Check Requirements:
+// Ensure you have all the necessary information and documents ready before sending your application email.
+// Read Our FAQs:
+// Review our Frequently Asked Questions (FAQ) section to address any common queries you might have.
+// Prepare for Consultation:
+// Be ready for a follow-up consultation call or meeting where we can further discuss your project and clarify any details.
+// Subscribe to Our Newsletter:
+// Stay updated with our latest services, offers, and industry insights by subscribing to our newsletter.
+// Follow Us on Social Media:
+// Connect with us on social media to see our latest work, client testimonials, and updates.
+// Apply Now Button:
+// Once you have completed all the necessary steps and feel prepared, click the "Apply Now" button to submit your application and start your journey with us.

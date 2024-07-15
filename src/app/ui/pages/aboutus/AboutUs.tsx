@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import { DATA } from "../../../utils/constant/Data";
 import { FaXTwitter } from "react-icons/fa6";
-import { IoLogoLinkedin } from "react-icons/io";
 
 const AboutUs: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -44,12 +43,12 @@ const AboutUs: React.FunctionComponent = () => {
               >
                 <p className="about-history-heading"> Our History</p>
                 <p className="about-histoy-details">
-                  D'roid Technologies traces its roots back to 2015, when
-                  visionary entrepreneur Ekenedilichukwu Okoli embarked on a
-                  mission to redefine the digital landscape. Inspired by a
-                  passion for innovation and a desire to make a difference, our
-                  company was born in a small office space with just a handful
-                  of dedicated individuals.
+                  D'roid Technologies traces its roots back to 2018, when
+                  visionary entrepreneur <a href="#">Ekenedilichukwu Okoli</a> {" "}
+                  embarked on a mission to redefine the digital landscape.
+                  Inspired by a passion for innovation and a desire to make a
+                  difference, our company was born in a small office space with
+                  just a handful of dedicated individuals.
                 </p>
               </motion.div>
             </div>

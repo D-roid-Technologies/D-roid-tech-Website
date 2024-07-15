@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Software.css";
 import { Assets } from "../../../utils/constant/Assets";
@@ -6,17 +6,18 @@ import { FaCode, FaLaptopCode, FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import Button from "../../components/button/Button";
-import { GiSpiderWeb } from "react-icons/gi";
-import { MdOutlinePhoneIphone } from "react-icons/md";
-import { courses } from "../../../utils/constant/FeaturedTraining";
 import Card from "../../components/card/Card";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { softwareDevMain } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
+import { store } from "../../../redux/Store";
+import { updateToast } from "../../../redux/slices/AppEntrySlice";
 
 const Software: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { getColor } = useThemeColor();
+
+  // store.dispatch(updateToast(true))
   // const [bgColor, setBgColor] = useState<string>(Assets.colors.primary);
   // const [notActive, setNotActivev] = useState<string>("#7C7C7C");
 
@@ -95,8 +96,23 @@ const Software: React.FunctionComponent = () => {
                     mRight={0}
                     bRadiusColor={getColor("light")}
                     // onClickButton={() => {}}
+                    // onClickButton={() => {
+                    //   navigate("/details");
+                    // }}
                     onClickButton={() => {
-                      navigate("/details");
+                      navigate("/details", {
+                        state: {
+                          title: item.title,
+                          image: item.image,
+                          desc: item.desc,
+                          procedure: item.procedure,
+                          category: item.category,
+                          tools: item.tools,
+                          price: item.price,
+                          currency: item.currency,
+                          path: "/software",
+                        },
+                      });
                     }}
                   />
                 }
@@ -250,16 +266,20 @@ const Software: React.FunctionComponent = () => {
             </p>
           </li>
         </ul>
-        <Button
-          bgColor={"#000000"}
-          mTop={0}
-          mBottom={0}
-          mLeft={0}
-          mRight={0}
-          color="#ffffff"
-          title="Want to Know more? Contact Us"
-          onClickButton={() => {}}
-        />
+        <div className="wantto-know">
+          <div className="wantto-know-btn">
+            <Button
+              bgColor={"#000000"}
+              mTop={0}
+              mBottom={0}
+              mLeft={0}
+              mRight={0}
+              color="#ffffff"
+              title="Want to Know more? Contact Us"
+              onClickButton={() => {}}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

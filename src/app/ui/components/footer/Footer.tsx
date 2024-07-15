@@ -14,13 +14,18 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { useSelector } from "react-redux";
 import { RootState, store } from "../../../redux/Store";
 import { addUserEmail } from "../../../redux/slices/User";
+import {
+  updateToast,
+  updateToastTitle,
+} from "../../../redux/slices/AppEntrySlice";
 
 const Footer: React.FunctionComponent = () => {
   const [emailSubscription, setEmailSubscription] = React.useState<string>("");
   const userState = useSelector((state: RootState) => state.user);
   const userEmail = userState.userEmail;
 
-  console.log(userEmail, emailSubscription);
+  console.log("email from user input", emailSubscription);
+  console.log("email from email state", userEmail);
 
   const { getColor } = useThemeColor();
 
@@ -38,6 +43,11 @@ const Footer: React.FunctionComponent = () => {
 
   const handleUserEmail = () => {
     sendEmailToReduxStore();
+    store.dispatch(updateToastTitle("Thank you for your Subscription!"));
+    store.dispatch(updateToast(true));
+    setTimeout(() => {
+      store.dispatch(updateToast(false));
+    }, 5000);
   };
 
   return (
@@ -139,7 +149,6 @@ const Footer: React.FunctionComponent = () => {
           Powered by
           <a href="/" className="color-change">
             <span style={{ color: getColor("primary") }}>
-              {" "}
               D'roid Technolgies International
             </span>
           </a>
@@ -147,7 +156,6 @@ const Footer: React.FunctionComponent = () => {
       </div>
       <a href="/privacy" className="color-change">
         <p className="policy" style={{ color: getColor("primary") }}>
-          {" "}
           Privacy Policy
         </p>
       </a>

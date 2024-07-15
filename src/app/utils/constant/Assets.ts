@@ -46,6 +46,17 @@ export const Assets = {
     tService: require("../../images/png/tservice.png"),
     backEndDev: require("../../images/png/bedev.png"),
     cReviews: require("../../images/png/creview.png"),
+    appAi: require("../../images/png/ogoo-Ai.png"),
+
+    trainingOne: require("../../images/png/train1.png"),
+    trainingTwo: require("../../images/png/train2.png"),
+    trainingThree: require("../../images/png/train3.png"),
+    noChat: require("../../images/png/no-chat.png"),
+
+    maximuspage: require("../../images/png/Maximuspage.jpg"),
+    drizzle: require("../../images/png/drizzlepage.jpg"),
+    cashBasket: require("../../images/png/cashBasketpage.jpg"),
+    knowledgecity: require("../../images/png/knowledgecityscreenshot.png"),
   },
   colors: {
     basic: "#000000",

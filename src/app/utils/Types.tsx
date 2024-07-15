@@ -18,6 +18,28 @@ export type UserType = {
   message: string;
   userEmail: string;
 };
+export type ContactType = {
+  userFullName: string;
+  userEmail: string;
+  userPhoneNumber: string;
+  userSubject: string;
+  userMessage: string;
+};
+export type TestimonialType = {
+  name: string;
+  comapanyName: string;
+  position: string;
+  serviceType: string;
+  message: string;
+  testimonials: Array<{
+    name: string;
+    comapanyName: string;
+    position: string;
+    serviceType: string;
+    message: string;
+  }>;
+};
+
 export type EmailType = {
   emailFromUser: string;
 };
@@ -48,6 +70,7 @@ export type AppInputType = React.DetailedHTMLProps<
   options?: string[];
   onchangeText?: (e: any) => void;
   inputType?: string;
+  icon?: React.ReactNode; // Add icon prop
 };
 
 export type AppButtonType = React.DetailedHTMLProps<
@@ -106,6 +129,12 @@ export type AppEntrySliceType = {
   showToast: boolean;
   appTitle: string;
   appBody: any;
+  toastTitle: string;
+};
+
+export type ToastSliceType = {
+  showToast: boolean;
+  toastTitle: string;
 };
 
 export type Testimonailstype = {
@@ -143,9 +172,12 @@ export type SoftwareDevelopmentType = {
   tools?: string[];
   price?: number[];
   currency?: string[];
-  procedure?: string[];
+  procedure?: object[];
   classId?: string;
   path?: string;
+  // added
+  content?: string;
+  description?: string;
 };
 
 export type TestimonialTypes = {
@@ -160,5 +192,14 @@ export type TestimonialTypes = {
 export type TestType = {
   question: string;
   options: string[];
-  correct: string;
+  correctAnswer: string;
+};
+export type GeolocatedProps = {
+  isGeolocationAvailable: boolean;
+  isGeolocationEnabled: boolean;
+  coords: {
+    latitude: number;
+    longitude: number;
+  } | null;
+  // positionError: PositionError | null;
 };

@@ -70,7 +70,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 65vh;
+    height: 70vh;
     /* height: auto; */
   }
   .test-read {
@@ -82,10 +82,12 @@
     font-family: "Rammetto One";
     padding-top: 1.2em;
     padding-bottom: 1em;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .test-testimonial-details {
-    padding: 0 5px;
+    padding: 0 15px;
     text-align: left;
     font-size: 0.9em;
     color: #ffffff;

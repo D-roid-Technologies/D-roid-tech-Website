@@ -101,11 +101,11 @@ const Home: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <motion.div
-        variants={fadeIn("right", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.3 }}
+      <div
+        // variants={fadeIn("right", 0.2)}
+        // initial="hidden"
+        // whileInView={"show"}
+        // viewport={{ once: false, amount: 0.3 }}
         className="home-middle-banner"
       >
         <div className="home-middle-one">
@@ -124,7 +124,7 @@ const Home: React.FunctionComponent = () => {
           <GiSpiderWeb className="home-middle-one-icon" />
           <p className="home-middle-one-p">Web App Development</p>
         </div>
-      </motion.div>
+      </div>
       <AboutSection />
       <CustomerFeedBack />
     </div>

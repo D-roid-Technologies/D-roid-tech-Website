@@ -27,9 +27,12 @@ const AppInput: React.FunctionComponent<AppInputType> = ({
   options,
   onchangeText,
   inputType,
+  icon,
 }) => {
   return (
     <label style={{ fontFamily: fFamily, fontWeight: fWeight }}>
+      {/* <div className="input-container"> */}
+      {icon && <span className="icon">{icon}</span>}
       {isDropdown ? (
         <select
           className="input"
@@ -71,6 +74,7 @@ const AppInput: React.FunctionComponent<AppInputType> = ({
           }}
         />
       )}
+      {/* </div> */}
     </label>
   );
 };

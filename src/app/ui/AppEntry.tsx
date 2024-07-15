@@ -6,18 +6,28 @@ import { HiX } from "react-icons/hi";
 import { RootState, store } from "../redux/Store";
 import { addHeight, addWidth } from "../redux/slices/Dimension";
 import { useSelector } from "react-redux";
-import { updateModal } from "../redux/slices/AppEntrySlice";
+import {
+  updateModal,
+  updateToast,
+  updateToastTitle,
+} from "../redux/slices/AppEntrySlice";
 import { useThemeColor } from "../utils/hooks/useThemeColor";
 import { Assets } from "../utils/constant/Assets";
 import Index from "../routes/Index";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
+  const [toastMessage, setToastMessage] = React.useState<string>(
+    "Hi There, I'm still being developed!"
+  );
   const appEntry = useSelector((state: RootState) => state.appEntry);
+  const [nToast, setNToast] = React.useState<boolean>(false);
   const { getColor } = useThemeColor();
 
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
   const aBody = appEntry.appBody;
+  const toast = appEntry.showToast;
+  const toastTitle = appEntry.toastTitle;
 
   const [appWidth, setAppWidth] = React.useState<number>(window.innerWidth);
   const [appHeight, setAppHeight] = React.useState<number>(window.innerHeight);
@@ -40,6 +50,14 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
     store.dispatch(addHeight(appHeight));
   }, [appWidth, appHeight]);
 
+  function showToast() {
+    store.dispatch(updateToastTitle(toastMessage));
+    store.dispatch(updateToast(true));
+    setTimeout(() => {
+      store.dispatch(updateToast(false));
+    }, 5000);
+  }
+
   return (
     <div style={{ backgroundColor: getColor("backgroundColor") }}>
       {modal && (
@@ -61,15 +79,40 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
           </div>
         </div>
       )}
+      {toast ? (
+        <div
+          className="toast"
+          style={{ backgroundColor: Assets.colors.primary }}
+        >
+          <img
+            src={Assets.images.appAi}
+            alt="Ogo-AI-toast"
+            className="Ogo-AI-toast"
+          />
+          <p className="toast-title">{toastTitle}</p>
+        </div>
+      ) : null}
 
       <Index width={appWidth} />
       <Footer />
-      {/* <div
+      <div
+        onClick={() => {
+          showToast();
+        }}
         className="chat-with-ogo"
-        style={{ backgroundColor: Assets.colors.substitute }}
       >
-        <p className="chat-with-ogo-p">Chat with Ogo</p>
-      </div> */}
+        <div>
+          <div className="inner-AI">
+            <img src={Assets.images.appAi} alt="Ogo AI" className="Ogo-AI" />
+          </div>
+          <p
+            className="chat-with-ogo-p"
+            style={{ color: Assets.colors.primary }}
+          >
+            Chat with Ogoo
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
