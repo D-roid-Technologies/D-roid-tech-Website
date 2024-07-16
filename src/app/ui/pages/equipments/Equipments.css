@@ -83,6 +83,9 @@
 .equipment-btn-details:hover {
   transform: scale(1.1);
 }
+.margin-btm {
+  padding: 0 100px;
+}
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -126,5 +129,17 @@
     text-align: center;
     color: #fff;
     font-family: "Mazzard";
+  }
+  .equipment-btn-details {
+    width: 100%;
+    border-radius: none;
+    transition: transform 0.3s ease-in-out;
+  }
+  .our-catalog-right {
+    width: 100%;
+    padding: 20px;
+  }
+  .margin-btm {
+    padding: 0 20px;
   }
 }
