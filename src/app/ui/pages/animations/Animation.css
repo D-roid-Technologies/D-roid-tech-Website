@@ -30,6 +30,7 @@
   letter-spacing: 2px;
   font-family: "Mazzard";
   text-align: justify;
+  margin-bottom: 20px;
 }
 
 /* Products Banner */
@@ -130,25 +131,21 @@
 }
 .our-catalog-header {
   font-family: "Rammetto One";
+  margin-top: 50px;
 }
 /* PRODUCT FILTER */
-.product-search {
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  width: 35% !important;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .search {
-  margin-bottom: 10px;
+  /* margin-bottom: 0;
+  display: flex;
+  flex-direction: column; */
+  width: 35%;
+  /* padding: 20px;s */
+  /* background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
-/* INPUT SECTION */
 .product-name {
-  width: 100%;
+  width: 35%;
   padding: 10px 15px;
   margin: 10px 0;
   box-sizing: border-box;
@@ -202,6 +199,7 @@
   background-color: #ffffff;
   /* transition: background-color 0.3s ease; */
 }
+
 @keyframes scroll {
   0% {
     transform: translateX(100%);
@@ -257,15 +255,16 @@
 }
 
 @media (max-width: 600px) {
+  .products-banner,
+  .our-catalog,
+  .choose-us-product {
+    padding: 20px;
+  }
   .banner-icon {
     display: none;
   }
-  .product-pp {
+  .product-p {
     margin-bottom: 20px;
-  }
-  .search {
-    width: 100%;
-    margin-bottom: 0;
   }
   .choose-us-product {
     flex-direction: column;
@@ -282,7 +281,7 @@
   }
 
   .our-catalog-right {
-    width: 100%;
+    /* width: 100%; */
     padding: 20px;
   }
 }
@@ -309,18 +308,33 @@
   margin-right: 20px;
   animation: scroll 15s linear infinite;
 }
+.margin-btm {
+  padding: 0 20px;
+}
 
 /* PRODUCT FILTER */
-.product-search {
-  margin-bottom: 50px;
+.search {
+  /* margin-bottom: 0;
   display: flex;
-  flex-direction: column;
-  width: 94%;
-  padding: 20px;
-  /* background-color: #f9f9f9; */
-  border-radius: 0;
-  box-shadow: 0;
+  flex-direction: column; */
+  width: 100%;
+  /* padding: 20px;s */
+  /* background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
-.product-search-container {
-  padding: 0 20px;
+
+/* .product-search {
+  margin-bottom: 10px;
+} */
+/* INPUT SECTION */
+.product-name {
+  width: 100%;
+  padding: 15px 15px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  /* border-radius: 4px; */
+  font-size: 16px;
+  /* transition: border-color 0.3s ease-in-out; */
 }

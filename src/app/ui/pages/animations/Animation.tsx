@@ -223,36 +223,19 @@ const Animation: React.FunctionComponent = () => {
       </div>
       <div className="product-bottom-banner">{mapThroughIconData()}</div>
       <div className="our-catalog">
-        <motion.h1
-          variants={fadeIn("right", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-          className="our-catalog-header"
-        >
-          Our Catalog
-        </motion.h1>
+        <h1 className="our-catalog-header">Our Catalog</h1>
         {/* filter */}
-        <div className="product-search-container">
-          <div className="product-search">
-            {/* <div className="search-input"> */}
-            <div className="search">
-              {/* <AppInput
-                  w="100%"
-                  h={40}
-                  pLeft={10}
-                  pHolder="Enter Product Name..."
-                  onchangeText={handleFilter}
-                /> */}
-              <input
-                type="text"
-                placeholder="Enter Product Name..."
-                onChange={handleFilter}
-                className="product-name"
-              />
-            </div>
-            {/* </div> */}
+        {/* <div className="product-search-container"> */}
+        <div className="product-search">
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Enter Product Name..."
+              onChange={handleFilter}
+              className="product-name"
+            />
           </div>
+          {/* </div> */}
         </div>
         {/* end of filter */}
         <motion.div
@@ -293,21 +276,10 @@ const Animation: React.FunctionComponent = () => {
         </motion.div>
       </div>
       <div className="choose-us-product">
-        <motion.div
-          variants={fadeIn("right", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-        >
+        <div>
           <FcCustomerSupport className="our-catalog-icon" />
-        </motion.div>
-        <motion.div
-          variants={fadeIn("left", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-          className="our-catalog-right"
-        >
+        </div>
+        <div className="our-catalog-right">
           <h1 className="our-catalog-header">Why our Clients choose us?</h1>
           <ol>
             <li className="product-p">
@@ -337,7 +309,7 @@ const Animation: React.FunctionComponent = () => {
               ensuring that you get the best possible value for your investment.
             </li>
           </ol>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

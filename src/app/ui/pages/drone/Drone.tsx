@@ -99,13 +99,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
       </div>
       {/* OUR APPROACH SECTION */}
       <div className="bg-color">
-        <motion.section
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-          className="drone-approach-main"
-        >
+        <section className="drone-approach-main">
           <h1 className="droneapproach-head">OUR APPROACH</h1>
           <ul className="droneapproach-item">
             {DATA.droneApproach.map((item, index) => {
@@ -127,7 +121,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               );
             })}
           </ul>
-        </motion.section>
+        </section>
         {/* <section className="drone-approach-main">
           <h1 className="droneapproach-head">OUR APPROACH</h1>
           <ul className="droneapproach-item">
@@ -147,36 +141,16 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         </section> */}
         {/*  Featured Drone Service section*/}
         <section className="ft-drone-service">
-          <motion.h1
-            variants={fadeIn("down", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="featured-head"
-          >
-            FEATURED DRONE SERVICES
-          </motion.h1>
+          <h1 className="featured-head">FEATURED DRONE SERVICES</h1>
           {/* AERIAL PHOTOGRAPHY AND VIDEOGRAPHY */}
           <section className="videography-main">
             <ul className="droneapproach-details">
               {DATA.FeaturedDroneServices.map((item, index) => (
                 <li className="droneapproach-services" key={index}>
-                  <motion.figure
-                    variants={fadeIn("right", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
-                  >
+                  <figure>
                     <video controls src={item.video} className="video-size" />
-                    {/* <MdOndemandVideo className="map" /> */}
-                  </motion.figure>
-                  <motion.div
-                    variants={fadeIn("left", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
-                    className="video-details"
-                  >
+                  </figure>
+                  <div className="video-details">
                     <h2 className="video-heading">{item.title}</h2>
                     <p className="drone-text">{item.content}</p>
                     <div className="drone-video-btn">
@@ -200,7 +174,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         }}
                       />
                     </div>
-                  </motion.div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -210,13 +184,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
             <ul className="mapping-ul">
               {DATA.MappingSurveying.map((item, index) => (
                 <li className="mappping-services" key={index}>
-                  <motion.div
-                    variants={fadeIn("down", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
-                    className="mapping-text"
-                  >
+                  <div className="mapping-text">
                     <h2 className="mapping-heading">{item.title}</h2>
                     <p className="drone-text">{item.content}</p>
                     <div className="video-btn">
@@ -240,28 +208,16 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                         }}
                       />
                     </div>
-                  </motion.div>
-                  <motion.div
-                    variants={fadeIn("down", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
-                    className="maping-container"
-                  >
+                  </div>
+                  <div className="maping-container">
                     <FaMapMarkerAlt className="map" />
-                  </motion.div>
+                  </div>
                 </li>
               ))}
             </ul>
           </section>
           {/* Infrastructure Inspection */}
-          <motion.section
-            variants={fadeIn("down", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="infrastructure"
-          >
+          <section className="infrastructure">
             <ul className="infrastructure-ul">
               {DATA.InfrastructureInspection.map((item, index) => (
                 <li className="infrastructure-services" key={index}>
@@ -297,16 +253,10 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
                 </li>
               ))}
             </ul>
-          </motion.section>
+          </section>
 
           {/* Crop Monitoring & Agricultur */}
-          <motion.section
-            variants={fadeIn("down", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="cropmonitoring"
-          >
+          <section className="cropmonitoring">
             <ul className="cropmonitoring-ul">
               {DATA.CropMonitoringAgriculture.map((item, index) => (
                 <li className="cropmonitoring-services" key={index}>
@@ -342,7 +292,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               ))}
             </ul>
             {/* </div> */}
-          </motion.section>
+          </section>
         </section>
         {/* TECHNOLOGIES AND EQUIPMENT */}
         <section className="techandequipment">

@@ -44,7 +44,7 @@ const AboutUs: React.FunctionComponent = () => {
                 <p className="about-history-heading"> Our History</p>
                 <p className="about-histoy-details">
                   D'roid Technologies traces its roots back to 2018, when
-                  visionary entrepreneur <a href="#">Ekenedilichukwu Okoli</a> {" "}
+                  visionary entrepreneur <a href="#">Ekenedilichukwu Okoli</a>{" "}
                   embarked on a mission to redefine the digital landscape.
                   Inspired by a passion for innovation and a desire to make a
                   difference, our company was born in a small office space with
@@ -53,13 +53,7 @@ const AboutUs: React.FunctionComponent = () => {
               </motion.div>
             </div>
           </div>
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="about-history-details-div"
-          >
+          <div className="about-history-details-div">
             <p className="about-histoy-details">
               In the early days, we faced numerous challenges and obstacles, but
               our unwavering determination and commitment to excellence
@@ -79,19 +73,13 @@ const AboutUs: React.FunctionComponent = () => {
               excited to continue pushing the boundaries of possibility and
               shaping the digital landscape for years to come."
             </p>
-          </motion.div>
+          </div>
           <div
             className="vision-marginbuttom"
             style={{ backgroundColor: getColor("backgroundColor") }}
           >
             <section>
-              <motion.div
-                variants={fadeIn("left", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.7 }}
-                className="vision-mission-value"
-              >
+              <div className="vision-mission-value">
                 {/* BOX ONE */}
                 <div className="vision-main">
                   <div className="vision-box">
@@ -123,7 +111,7 @@ const AboutUs: React.FunctionComponent = () => {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </section>
           </div>
 

@@ -46,12 +46,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
   return (
     <div className="customerfeedback-main">
       <div className="customer-testimonials">
-        <motion.div
-          variants={fadeIn("right", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-        >
+        <div>
           <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
           <div>
             <div className="testiminial-details">
@@ -81,16 +76,10 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
       {/* SECTION FOUR */}
-      <motion.div
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.3 }}
-        className="section-four"
-      >
+      <div className="section-four">
         {/* CONTACT US SECTION */}
         <div className="cont-main">
           <h1 className="heading"> CONTACT US </h1>
@@ -149,7 +138,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             </div>
           </article>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

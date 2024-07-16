@@ -47,6 +47,7 @@ const Training: React.FC = () => {
 
   return (
     <div style={{ backgroundColor: getColor("light") }}>
+      <NavBar />
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
@@ -54,7 +55,6 @@ const Training: React.FC = () => {
         }}
         className="bg-image"
       >
-        <NavBar />
         <div
           style={{ color: getColor("light") }}
           className="training-home-section"
@@ -101,13 +101,7 @@ const Training: React.FC = () => {
           />
         </div>
 
-        <motion.div
-          variants={fadeIn("down", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-          className="training-approach-main"
-        >
+        <div className="training-approach-main">
           <h1
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-head"
@@ -140,7 +134,7 @@ const Training: React.FC = () => {
                           content: item.content,
                           desc: item.description,
                           procedure: item.applicationProcedure,
-                          path: "/training"
+                          path: "/training",
                         },
                       });
                     }}
@@ -149,7 +143,7 @@ const Training: React.FC = () => {
               />
             ))}
           </ul>
-        </motion.div>
+        </div>
         <TrainingApproach />
       </div>
 

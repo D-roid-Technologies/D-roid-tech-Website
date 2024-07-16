@@ -51,11 +51,7 @@ const Footer: React.FunctionComponent = () => {
   };
 
   return (
-    <motion.div
-      variants={fadeIn("up", 0.2)}
-      initial="hidden"
-      whileInView={"show"}
-      viewport={{ once: false, amount: 0.7 }}
+    <div
       className="footer-main"
       style={{
         backgroundColor: getColor("backgroundColor"),
@@ -159,7 +155,7 @@ const Footer: React.FunctionComponent = () => {
           Privacy Policy
         </p>
       </a>
-    </motion.div>
+    </div>
   );
 };
 
