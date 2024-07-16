@@ -39,13 +39,7 @@ const Section: React.FunctionComponent = () => {
   return (
     <div className="section-main">
       {/* SECTION ONE */}
-      <motion.div
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.7 }}
-        className="section-one"
-      >
+      <div className="section-one">
         <div className="coding-image">
           <GiCuckooClock
             className="image-size"
@@ -82,15 +76,9 @@ const Section: React.FunctionComponent = () => {
             </div>
           </div>
         </section>
-      </motion.div>
+      </div>
       {/* SECTION TWO */}
-      <motion.div
-        variants={fadeIn("right", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.7 }}
-        className="section-two"
-      >
+      <div className="section-two">
         <div className="approach">
           <p className="our-approach"> Our Approach</p>
           <p className="approach-details">
@@ -126,13 +114,9 @@ const Section: React.FunctionComponent = () => {
             style={{ color: getColor("basic") }}
           />
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.7 }}
+      <div
         className="join-us"
         style={{ backgroundColor: Assets.colors.primary }}
       >
@@ -176,7 +160,7 @@ const Section: React.FunctionComponent = () => {
             />
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* <motion.div
         variants={fadeIn("right", 0.2)}
@@ -228,13 +212,7 @@ const Section: React.FunctionComponent = () => {
       {/* SECTION THREE */}
       <div className="our-service-main">
         <div className="section-three">
-          <motion.div
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="services"
-          >
+          <div className="services">
             <p className="our-services"> Why We Are Known</p>
             <p className="services-details">
               We offer a wide range of software development services, including
@@ -243,7 +221,7 @@ const Section: React.FunctionComponent = () => {
               that our clients recieve cutting- edge solutions that drive their
               business forward.
             </p>{" "}
-          </motion.div>
+          </div>
         </div>
         {/* CAROUSEL SECTION */}
         <div className="carousel-container">

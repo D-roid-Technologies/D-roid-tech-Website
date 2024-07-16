@@ -99,7 +99,8 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
         onClick={() => {
           showToast();
         }}
-        className="chat-with-ogo"
+        className="chat-with-ogo  shaking"
+        // className={`chat-with-ogo ${toast ? "shaking" : "shaking"}`}
       >
         <div>
           <div className="inner-AI">

@@ -174,6 +174,11 @@
   font-size: 1rem;
   margin-bottom: 1em;
 }
+.technologies {
+  margin-bottom: 50px;
+  /* margin-top: 2rem; */
+  padding: 0 20px;
+}
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
@@ -228,5 +233,24 @@
     margin-bottom: 50px;
     margin-top: 2rem;
     padding: 0 20px;
+  }
+}
+@media (max-width: 600px) {
+  .technologies {
+    margin-bottom: 50px;
+    margin-top: 0;
+    padding: 0 20px;
+  }
+  .training-approach-list,
+  .training-programs-list {
+    flex-direction: column;
+    width: auto;
+    margin-bottom: 0;
+  }
+  .training-approach-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }

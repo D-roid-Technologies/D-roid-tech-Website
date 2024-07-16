@@ -104,13 +104,7 @@ const TrainingApproach: React.FC = () => {
   };
 
   return (
-    <motion.div
-      variants={fadeIn("left", 0.2)}
-      initial="hidden"
-      whileInView={"show"}
-      viewport={{ once: false, amount: 0.7 }}
-      className="training-approach-main"
-    >
+    <div className="training-approach-main">
       <h1 style={styles.heading} className="training-approach-head">
         Our Approach
       </h1>
@@ -125,7 +119,7 @@ const TrainingApproach: React.FC = () => {
           />
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 };
 

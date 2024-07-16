@@ -9,6 +9,7 @@
   height: 400px;
   object-fit: contain;
 }
+
 .softservice-main {
   padding-left: 180px;
   padding-right: 180px;
@@ -22,13 +23,292 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 4.5rem;
-  /* color: #ffffff; */
+  font-weight: 700;
+}
+
+.page-head-details {
+  text-align: center;
+  font-family: "Mazzard";
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.top-data-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  padding: 0 100px;
+  gap: 50px;
+}
+
+.img-banner {
+  width: 100%;
+  height: auto;
+}
+
+.img-con {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.img-con h3 {
+  font-family: "Rammetto One";
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.img-con p {
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+  font-size: 1.1rem;
+  line-height: 30px;
+}
+
+.text-con {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info-con {
+  padding: 0 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.info-con h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.info-con p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.category,
+.tools {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.category h3,
+.tools h3 {
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  color: #444;
+  font-family: "Rammetto One";
+}
+
+.category p,
+.tools p {
+  font-size: 1.1em;
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+}
+
+.tool-item {
+  margin-right: 10px;
+  font-size: 1.1em;
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+}
+
+.procedure {
+  padding: 0 20px;
+  margin-bottom: 50px;
+}
+
+.procedure-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.benefits {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.procedure-title {
+  font-family: "Rammetto One";
+  font-size: 1.5em;
+  margin-bottom: 25px;
+}
+
+.procedure-subtitle {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-family: "Rammetto One";
+}
+
+.procedure-content {
+  margin-bottom: 20px;
+}
+
+.procedure-item {
+  margin-bottom: 10px;
+}
+
+.procedure-item-title {
+  font-weight: bold;
+  font-family: "Rammetto One";
+  font-size: 1rem;
+}
+
+.procedure-item-desc {
+  font-family: "Mazzard";
+  letter-spacing: 2px;
+  color: rgb(124, 124, 124);
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.fees-container {
+  text-align: center;
+  font-family: "Rammetto One";
+}
+
+.fees-section {
+  background-color: #262a97;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fees {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fees-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.fees-card h4 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: #333;
+  font-family: "Rammetto One";
+}
+
+.fees-card p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .softservice-main {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .page-head {
+    font-size: 3rem;
+  }
+
+  .top-data-container {
+    padding: 0 20px;
+  }
+
+  .info-con {
+    padding: 0 20px;
+  }
+
+  .procedure {
+    padding: 0 20px;
+  }
+
+  .fees-section {
+    padding: 10px;
+  }
+
+  .fees-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-head {
+    font-size: 2.5rem;
+  }
+
+  .top-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+    gap: 50px;
+  }
+
+  .info-con {
+    padding: 0 10px;
+  }
+
+  .procedure {
+    padding: 0 10px;
+  }
+
+  .fees-section {
+    padding: 10px;
+  }
+
+  .fees-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* @import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+
+.details-bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 400px;
+  object-fit: contain;
+}
+.softservice-main {
+  padding-left: 180px;
+  padding-right: 180px;
+  color: #ffffff;
+}
+
+.page-head {
+  font-family: "Rammetto One";
+  margin: 0;
+  padding-top: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 4.5rem;
+
   font-weight: 700;
 }
 .page-head-details {
   text-align: center;
   font-family: "Mazzard";
-  /* color: #ffffff; */
+
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -58,7 +338,7 @@
   font-size: 1.1rem;
   line-height: 30px;
 }
-/* software details section two */
+
 .text-con {
   margin-bottom: 20px;
   text-align: center;
@@ -114,17 +394,14 @@
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
 }
-/* Procedure Section Styles */
+
 .procedure {
   padding: 0 100px;
   margin-bottom: 50px;
 }
 .procedure-section {
   margin: 20px 0;
-  /* padding: 40px; */
-  /* border: 1px solid #ddd;
-  border-radius: 5px; */
-  /* background-color: #ffffff; */
+
   text-align: center;
 }
 .benefits {
@@ -149,7 +426,6 @@
 }
 
 .procedure-content {
-  /* display: flex; */
   margin-bottom: 20px;
 }
 
@@ -171,28 +447,14 @@
   font-size: 1.2rem;
 }
 
-/* FEES SECTION */
-/* .fees-section {
-  padding: 0 100px;
-  margin-bottom: 50px;
-}
-.fees h3 {
-  text-align: center;
-  font-family: "Rammetto One";
-}
-.fees h4 p {
-  text-align: center;
-} */
-/* Styles for the fees section */
 .fees-container {
   text-align: center;
   font-family: "Rammetto One";
 }
 .fees-section {
-  /* background-color: #f9f9f9; */
   background-color: #262a97;
   padding: 20px;
-  /* border-radius: 10px; */
+
   margin: 20px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -209,7 +471,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* margin: 10px; */
+
   width: 200px;
   text-align: center;
 }
@@ -225,3 +487,7 @@
   font-size: 1.2em;
   color: #555;
 }
+@media (max-width: 768px) {
+}
+@media (max-width: 600px) {
+} */

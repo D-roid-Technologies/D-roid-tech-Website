@@ -77,13 +77,7 @@ const TechnologiesAndTools: React.FC = () => {
   };
 
   return (
-    <motion.div
-      variants={fadeIn("down", 0.2)}
-      initial="hidden"
-      whileInView={"show"}
-      viewport={{ once: false, amount: 0.7 }}
-      className="technologies"
-    >
+    <div className="technologies">
       <h1 style={styles.heading} className="training-approach-head">
         Technologies and Tools
       </h1>
@@ -97,7 +91,7 @@ const TechnologiesAndTools: React.FC = () => {
           />
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 };
 
