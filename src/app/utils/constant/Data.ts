@@ -206,7 +206,7 @@ export const DATA = {
       designation: "Frontend Developer",
       socials: {
         linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
-        twitter: "https://twitter.com/uzochukwufelix",
+        twitter: "",
       },
     },
     {
@@ -214,8 +214,9 @@ export const DATA = {
       name: "Faith Chukwueze",
       designation: "Digital marketer",
       socials: {
-        linkedin: "https://www.linkedin.com/in/faith-chukwueze",
-        twitter: "https://twitter.com/faithchukwueze",
+        linkedin:
+          "https://www.linkedin.com/in/chukwueze-faith-direct-response-copywriter?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: " https://x.com/BChukwueze?t=wua6N7DGKdm028cVhfX2Ag&s=09",
       },
     },
   ],

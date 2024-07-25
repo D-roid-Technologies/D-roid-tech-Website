@@ -33,7 +33,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
   const onFailedTitle = "Failed";
   const onSuccessBody = (
     <>
-      <p> Welcome to on board </p>
+      <p> Welcome on board </p>
     </>
   );
   const onFailedBody =

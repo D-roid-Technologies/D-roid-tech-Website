@@ -145,7 +145,7 @@
   color: #ffffff;
 }
 /* Add these keyframes for the shaking animation */
-@keyframes shake {
+/* @keyframes shake {
   0% {
     transform: translate(1px, 1px) rotate(0deg);
   }
@@ -179,12 +179,31 @@
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+} */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
 }
 
 /* Add a shaking class to trigger the animation */
 .shaking {
   animation: shake 0.9s; /* Adjust the duration as needed */
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
 }
 
 /* On screens that are 992px or less, set the background color to blue */
@@ -232,6 +251,12 @@
     cursor: pointer;
     border-radius: 50%;
     padding: 20px;
+  }
+  .chat-with-ogo-p {
+    font-family: "Rammetto One";
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 10px;
   }
   .inner-AI {
     display: flex;

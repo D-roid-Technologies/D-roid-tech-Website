@@ -43,13 +43,14 @@ const Home: React.FunctionComponent = () => {
 
   return (
     <div>
+      <NavBar />
       <div
         style={{
           backgroundImage: `url("${Assets.images.homeBg}")`,
         }}
         className="bg-image"
       >
-        <NavBar />
+        {/* <NavBar /> */}
 
         {/* CONTENT */}
         <div className="home-main">

@@ -62,7 +62,7 @@
   font-size: 1.5rem;
   color: #333;
   font-weight: 500;
-  padding-bottom: 0.8em;
+  padding-bottom: 0.2px;
   font-family: "Rammetto";
 }
 .rule {
@@ -314,7 +314,7 @@
   .customer-testimonials {
     margin-bottom: 60px;
     background-color: #282a94;
-    height: 350px;
+    height: 400px;
   }
 
   .read {
