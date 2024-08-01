@@ -192,7 +192,7 @@ export const DATA = {
 
   droidStaff: [
     {
-      image: require("../../images/png/stellaportfolio.png"),
+      image: require("../../images/png/stellaImage.jpeg"),
       name: "Stella Eneh",
       designation: "Frontend Developer",
       socials: {
