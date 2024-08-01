@@ -19,9 +19,11 @@ export const Assets = {
     contactarealogo: require("../../images/png/i-removebg-preview.png"),
     ccare: require("../../images/png/ccare.png"),
     software: require("../../images/png/image.png"),
-    stellaimg: require("../../images/png/stella.png"),
+
+    stellaimg: require("../../images/png/stellaImage.jpeg"),
     uzoimg: require("../../images/png/Uzoimage.png"),
     faithimg: require("../../images/png/faithimg.png"),
+
     tech: require("../../images/png/tech.jpg"),
     tech2: require("../../images/png/tech2.webp"),
     tech3: require("../../images/png/tech3.webp"),

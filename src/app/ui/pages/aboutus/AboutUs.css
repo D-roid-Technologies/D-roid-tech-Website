@@ -192,6 +192,7 @@
   font-family: "Rammetto";
   font-size: 2rem;
   color: #282a94;
+  font-weight: 700;
 }
 .team-container {
   display: flex;
@@ -206,7 +207,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 10px;
-  padding: 20px;
+  /* padding: 20px; */
   /* width: 250px; */
   text-align: center;
 }
