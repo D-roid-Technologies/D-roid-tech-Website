@@ -145,7 +145,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 .product-name {
-  width: 50%;
+  width: 35% !important;
   padding: 10px 15px;
   margin: 10px 0;
   box-sizing: border-box;
