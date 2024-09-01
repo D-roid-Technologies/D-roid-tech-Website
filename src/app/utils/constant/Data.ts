@@ -40,17 +40,13 @@ export const DATA = {
   ],
   dropDownLinks: [
     {
-      link: "Drone Services",
-      path: "/drone",
+      link: "Developer Tools",
+      path: "/devtools",
     },
     {
-      link: "Equipment",
-      path: "/offices",
+      link: "D'roid Icons",
+      path: "/droidicons",
     },
-    // {
-    //   link: "Staff Login",
-    //   path: "/staff",
-    // },
   ],
 
   courses: [

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
@@ -9,11 +9,18 @@ import { RootState } from "../../../redux/Store";
 import { HiMenu, HiX } from "react-icons/hi";
 import { CiMenuFries } from "react-icons/ci";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
+import { storage } from "../../../../firebase";
+import { listAll, ref, getDownloadURL } from "firebase/storage";
+import { url } from "inspector";
 
 const NavBar: React.FunctionComponent = () => {
   const [showDropDown, setShowDropDown] = React.useState<boolean>(false);
   const [showMenuBtn, setShowMenuBtn] = React.useState<boolean>(false);
   const [showMobileNav, setShowMobileNav] = React.useState<boolean>(false);
+
+  const [companyLogo, setCompanyLogo] = React.useState<string[]>([])
+
+  const imageListRef = ref(storage, "droidlogo/");
 
   const dimension = useSelector((state: RootState) => state.dimension);
   const navigate = useNavigate();
@@ -94,14 +101,24 @@ const NavBar: React.FunctionComponent = () => {
     });
   };
 
+  useEffect(() => {
+    listAll(imageListRef).then((response) => {
+      response.items.forEach((items) => {
+        getDownloadURL(items).then((url) => {
+          setCompanyLogo((prev) => [...prev, url])
+        })
+      })
+    })
+  }, [])
+
   return (
     <div>
       <div className="nav-main">
         <div className="logo-image">
           <a onClick={() => { navigate("/") }}>
             <img
-              src={Assets.images.companyLogoNoBg}
-              alt="company logo"
+              src={companyLogo[0]}
+              alt="D'roid Logo"
               width={40}
               height={40}
             />
