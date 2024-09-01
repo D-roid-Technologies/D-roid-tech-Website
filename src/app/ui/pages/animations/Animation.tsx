@@ -140,6 +140,12 @@ const Animation: React.FunctionComponent = () => {
       desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
       link: "",
     },
+    {
+      image: Assets.images.dome,
+      title: "Dome",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "",
+    },
 
     // {
     //   image: ,
@@ -226,17 +232,17 @@ const Animation: React.FunctionComponent = () => {
         <h1 className="our-catalog-header">Our Catalog</h1>
         {/* filter */}
         {/* <div className="product-search-container"> */}
-        <div className="product-search">
-          <div className="search">
-            <input
-              type="text"
-              placeholder="Enter Product Name..."
-              onChange={handleFilter}
-              className="product-name"
-            />
-          </div>
-          {/* </div> */}
+        {/* <div className="product-search"> */}
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Enter Product Name..."
+            onChange={handleFilter}
+            className="product-name"
+          />
         </div>
+        {/* </div> */}
+        {/* </div> */}
         {/* end of filter */}
         <motion.div
           variants={fadeIn("up", 0.2)}
