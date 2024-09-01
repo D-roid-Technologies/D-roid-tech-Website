@@ -192,7 +192,7 @@ const AboutUs: React.FunctionComponent = () => {
                           className="social-link twitter"
                           target="blank"
                         >
-                          <FaXTwitter />
+                          <FaLinkedin />
                         </a>
                       )}
                       {item.socials?.twitter && (
@@ -201,7 +201,7 @@ const AboutUs: React.FunctionComponent = () => {
                           className="social-link"
                           target="blank"
                         >
-                          <FaLinkedin />
+                          <FaXTwitter />
                         </a>
                       )}
                     </div>

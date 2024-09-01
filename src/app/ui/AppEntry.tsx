@@ -14,14 +14,17 @@ import {
 import { useThemeColor } from "../utils/hooks/useThemeColor";
 import { Assets } from "../utils/constant/Assets";
 import Index from "../routes/Index";
+import { useLocation } from "react-router-dom"; // Import useLocation
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
+  const [shake, setShake] = useState(false);
   const [toastMessage, setToastMessage] = React.useState<string>(
     "Hi There, I'm still being developed!"
   );
   const appEntry = useSelector((state: RootState) => state.appEntry);
   const [nToast, setNToast] = React.useState<boolean>(false);
   const { getColor } = useThemeColor();
+  // const location = useLocation(); // Use useLocation to detect route changes
 
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
@@ -57,6 +60,16 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
       store.dispatch(updateToast(false));
     }, 5000);
   }
+  useEffect(() => {
+    setShake(true);
+    const timer = setTimeout(() => setShake(false), 900); // Duration of the shake animation
+    return () => clearTimeout(timer);
+  }, []);
+  // useEffect(() => {
+  //   setShake(true);
+  //   const timer = setTimeout(() => setShake(false), 900); // Duration of the shake animation
+  //   return () => clearTimeout(timer);
+  // }, [location.pathname]); // Add location.pathname as a dependency to trigger on route change
 
   return (
     <div style={{ backgroundColor: getColor("backgroundColor") }}>
@@ -99,8 +112,9 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
         onClick={() => {
           showToast();
         }}
-        className="chat-with-ogo  shaking"
+        // className="chat-with-ogo  shaking"
         // className={`chat-with-ogo ${toast ? "shaking" : "shaking"}`}
+        className={`chat-with-ogo ${shake ? "shaking" : ""}`}
       >
         <div>
           <div className="inner-AI">

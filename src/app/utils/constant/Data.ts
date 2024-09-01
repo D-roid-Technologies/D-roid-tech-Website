@@ -40,17 +40,13 @@ export const DATA = {
   ],
   dropDownLinks: [
     {
-      link: "Drone Services",
-      path: "/drone",
+      link: "Developer Tools",
+      path: "/devtools",
     },
     {
-      link: "Equipment",
-      path: "/offices",
+      link: "D'roid Icons",
+      path: "/droidicons",
     },
-    // {
-    //   link: "Staff Login",
-    //   path: "/staff",
-    // },
   ],
 
   courses: [
@@ -192,7 +188,7 @@ export const DATA = {
 
   droidStaff: [
     {
-      image: require("../../images/png/stellaportfolio.png"),
+      image: require("../../images/png/stellaImage.jpeg"),
       name: "Stella Eneh",
       designation: "Frontend Developer",
       socials: {
@@ -206,7 +202,7 @@ export const DATA = {
       designation: "Frontend Developer",
       socials: {
         linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
-        twitter: "https://twitter.com/uzochukwufelix",
+        twitter: "",
       },
     },
     {
@@ -214,8 +210,9 @@ export const DATA = {
       name: "Faith Chukwueze",
       designation: "Digital marketer",
       socials: {
-        linkedin: "https://www.linkedin.com/in/faith-chukwueze",
-        twitter: "https://twitter.com/faithchukwueze",
+        linkedin:
+          "https://www.linkedin.com/in/chukwueze-faith-direct-response-copywriter?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: " https://x.com/BChukwueze?t=wua6N7DGKdm028cVhfX2Ag&s=09",
       },
     },
   ],
