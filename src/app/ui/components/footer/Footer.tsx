@@ -55,7 +55,7 @@ const Footer: React.FunctionComponent = () => {
       <section className="footer-inner">
         <section className="social-container">
           <div>
-            <h1 className=" social-heading"> SOCIAL </h1>
+            <h1 className=" social-heading"> SOCIALS </h1>
 
             <div className="footer-logo-container">
               <div className="twitter-icon">
@@ -131,15 +131,12 @@ const Footer: React.FunctionComponent = () => {
         {/* LAST FOOTER SECTION */}
         <div className=" footer-buttom">
           <p className="text-center md:text-left ">
-            Copyright &copy; 2024 D'roid Technologies International - All Right
-            Reserved
+            Copyright &copy; 2024 D'roid Technologies Ltd - All Right Reserved
           </p>
           <span className="powered">
             <a href="/" className="color-change">
               Powered by &nbsp;
-              <span className="company-link">
-                D'roid Technolgies International
-              </span>
+              <span className="company-link">D'roid Technologies Ltd</span>
             </a>
           </span>
         </div>

@@ -2,6 +2,14 @@ export const Assets = {
   images: {
     companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),
+    homeBannerone: require("../../images/png/home-banner-one.png"),
+    homeBannertwo: require("../../images/png/home-banner-two.png"),
+    aboutImage: require("../../images/png/about-image.png"),
+
+    joinImageOne: require("../../images/png/join-image-one.png"),
+    joinImageTwo: require("../../images/png/join-image-two.png"),
+    serviceImage: require("../../images/png/servic-image.png"),
+
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
     coding: require("../../images/png/coding.png"),
