@@ -45,9 +45,9 @@ const CustomerFeedBack: React.FunctionComponent = () => {
 
   return (
     <div className="customerfeedback-main">
+      <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
       <div className="customer-testimonials">
         <div>
-          <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
           <div>
             <div className="testiminial-details">
               <p>{firstIndexOfTestimonial.body}</p>
@@ -56,28 +56,34 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               </p>
             </div>
           </div>
-
-          <div className="contact-uss">
-            <div className="contactuss-button">
-              <Button
-                bgColor={getColor("basic")}
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                title="See more testimonials"
-                color={getColor("light")}
-                fWeight={800}
-                bRadius={5}
-                icon={<FaBookReader className="style-home-icon" />}
-                onClickButton={() => {
-                  navigate("/contact");
-                }}
-              />
-            </div>
-          </div>
         </div>
       </div>
+      <div className="contact-uss">
+        <div className="contactuss-button">
+          <Button
+            bgColor="#071D6A"
+            mTop={0}
+            mBottom={0}
+            mLeft={0}
+            mRight={0}
+            title="See more testimonials"
+            color="#fbcc34"
+            fWeight={800}
+            bRadius={5}
+            bRadiusColor="#071D6A"
+            icon={
+              <FaBookReader
+                style={{ color: "#fbcc34" }}
+                className="style-home-icon"
+              />
+            }
+            onClickButton={() => {
+              navigate("/contact");
+            }}
+          />
+        </div>
+      </div>
+
       {/* SECTION FOUR */}
       <div className="section-four">
         {/* CONTACT US SECTION */}
@@ -92,7 +98,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             </p>
             <h2 className="droid"> D'roid Technologies International</h2>
             <p className="hours"> Hours</p>
-            <p>
+            <p className="time-container">
               <p className="time">
                 Open Mondays - Fridays &nbsp;
                 <span className="friday"> 8am - 5pm </span>
@@ -101,16 +107,22 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             <div className="contact-buttons">
               <div className="contactus-button-style">
                 <Button
-                  bgColor={"black"}
+                  bgColor="#071D6A"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
                   title="Send us an Email"
-                  color="white"
+                  color="#fbcc34"
                   fWeight={800}
                   bRadius={5}
-                  icon={<IoMailUnread className="style-home-icon" />}
+                  bRadiusColor="#071D6A"
+                  icon={
+                    <IoMailUnread
+                      style={{ color: "#fbcc34" }}
+                      className="style-home-icon"
+                    />
+                  }
                   onClickButton={() => {
                     window.location.href =
                       "mailto:hr@droidtechinternational.com";
@@ -119,17 +131,22 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               </div>
               <div className="contactus-button-styles">
                 <Button
-                  bgColor={"#ffffff"}
+                  bgColor="#071D6A"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
                   title="WhatsApp Chat"
-                  color="#000000"
+                  color="#fbcc34"
                   fWeight={800}
                   bRadius={5}
-                  bRadiusColor="#000000"
-                  icon={<IoLogoWhatsapp className="icon-styles" />}
+                  bRadiusColor="#071D6A"
+                  icon={
+                    <IoLogoWhatsapp
+                      style={{ color: "#fbcc34" }}
+                      className="icon-styles"
+                    />
+                  }
                   onClickButton={() => {
                     window.location.href = DATA.socialLinks.whatsapp;
                   }}

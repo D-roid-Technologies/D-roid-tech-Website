@@ -99,7 +99,7 @@ const Footer: React.FunctionComponent = () => {
                   w="100%"
                   h={40}
                   pLeft={30}
-                  pHolder="Email"
+                  pHolder="Enter email"
                   onchangeText={(e: any) => {
                     setEmailSubscription(e.target.value);
                   }}

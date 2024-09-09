@@ -9,6 +9,9 @@ export const Assets = {
     joinImageOne: require("../../images/png/join-image-one.png"),
     joinImageTwo: require("../../images/png/join-image-two.png"),
     serviceImage: require("../../images/png/servic-image.png"),
+    serviceImageTwo: require("../../images/png/service-image-two.png"),
+    serviceImageThree: require("../../images/png/service-image-three.png"),
+    websiteImage: require("../../images/png/website-image.png"),
 
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),

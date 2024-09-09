@@ -241,24 +241,24 @@ const Section: React.FunctionComponent = () => {
         <div className="section-three">
           <div className="services">
             <p className="our-services-s"> Why We Are Known</p>
-            <p className="services-details">
+            <p className="services-detailss">
               We offer a wide range of software development services, including
               web development, mobile app development, and custom software
               development. we use the latest technologies and tools to ensure
               that our clients recieve cutting- edge solutions that drive their
               business forward.
-            </p>{" "}
+            </p>
           </div>
         </div>
         {/* CAROUSEL SECTION */}
         <div className="carousel-container">
           <Slider {...settings}>
             <div className="imageone">
-              <div>
+              <div className="content-wrapper">
                 <img
                   src={Assets.images.serviceImage}
                   alt=""
-                  className="image-sizess"
+                  className="image-sizessd"
                   style={{ color: getColor("basic") }}
                 />
 
@@ -277,49 +277,47 @@ const Section: React.FunctionComponent = () => {
             </div>
             {/* TWO */}
             <div className="imageone">
-              <img
-                src={Assets.images.serviceImage}
-                alt=""
-                className="image-sizess"
-                style={{ color: getColor("basic") }}
-              />
-              {/* <GiRobotGolem
-                className="image-size"
-                style={{ color: getColor("basic") }}
-              /> */}
-              <span className="padded">
-                <h2 className="carousel-heading">Animation Creation</h2>
-                <p className="carousel-details">
-                  Our Animation Creation services bring ideas to life through
-                  captivating visual storytelling. We specialize in creating
-                  high-quality 2D and 3D animations for various industries,
-                  including education, entertainment, advertising, and corporate
-                  training.
-                </p>
-              </span>
+              <div className="content-wrapper">
+                <img
+                  src={Assets.images.serviceImageTwo}
+                  alt=""
+                  className="image-sizessd"
+                  style={{ color: getColor("basic") }}
+                />
+
+                <span className="padded">
+                  <h2 className="carousel-heading">Animation Creation</h2>
+                  <p className="carousel-details">
+                    Our Animation Creation services bring ideas to life through
+                    captivating visual storytelling. We specialize in creating
+                    high-quality 2D and 3D animations for various industries,
+                    including education, entertainment, advertising, and
+                    corporate training.
+                  </p>
+                </span>
+              </div>
             </div>
             <div className="imageone">
-              <img
-                src={Assets.images.serviceImage}
-                alt=""
-                className="image-sizess"
-                style={{ color: getColor("basic") }}
-              />
-              {/* <GiTeacher
-                className="image-size"
-                style={{ color: getColor("basic") }}
-              /> */}
-              <span className="padded">
-                <h2 className="carousel-heading">Tech Training </h2>
-                {/* waiting for tech content */}
-                <p className="carousel-details">
-                  Our Tech training programs are designed to equip you and/or
-                  your team with the skills needed to excel in today's
-                  fast-paced technological landscape. Our expert-led training
-                  sessions cover a wide range of topics, from software
-                  development and cybersecurity to data analytics and more.
-                </p>
-              </span>
+              <div className="content-wrapper">
+                <img
+                  src={Assets.images.serviceImageThree}
+                  alt=""
+                  className="image-sizessd"
+                  style={{ color: getColor("basic") }}
+                />
+
+                <span className="padded">
+                  <h2 className="carousel-heading">Tech Training </h2>
+                  {/* waiting for tech content */}
+                  <p className="carousel-details">
+                    Our Tech training programs are designed to equip you and/or
+                    your team with the skills needed to excel in today's
+                    fast-paced technological landscape. Our expert-led training
+                    sessions cover a wide range of topics, from software
+                    development and cybersecurity to data analytics and more.
+                  </p>
+                </span>
+              </div>
             </div>
           </Slider>
           {/* OUR SERVICES BUTTON SECTION */}
@@ -345,6 +343,47 @@ const Section: React.FunctionComponent = () => {
             </div>
           </div>
           {/* </a> */}
+        </div>
+        {/* Create website section */}
+        <div className="web-container">
+          <div>
+            <img src={Assets.images.websiteImage} alt="" />
+          </div>
+          <div>
+            <p className="website-header">Create a website in 5mins</p>
+            <p className="website-details">
+              In today’s digital world, creating a website is faster and easier
+              than ever before. Gone are the days when you needed deep technical
+              knowledge to build one. With the right tools and platforms you can
+              set up a website in just five minutes. Begin a step-by-step guide
+              to help you create your website in a flash.
+            </p>
+            <div className="our-servicess-btns">
+              <div className="servicess-btns">
+                <Button
+                  bgColor="#071d6a"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Start now"
+                  color="#fbcc34"
+                  fWeight={700}
+                  bRadius={5}
+                  bRadiusColor="#071d6a"
+                  icon={
+                    <MdHomeRepairService
+                      style={{ color: "#fbcc34" }}
+                      className="style-home-icons"
+                    />
+                  }
+                  onClickButton={() => {
+                    navigate("");
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
