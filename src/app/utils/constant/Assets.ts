@@ -13,6 +13,9 @@ export const Assets = {
     serviceImageThree: require("../../images/png/service-image-three.png"),
     websiteImage: require("../../images/png/website-image.png"),
 
+    // software page
+    softwareBannerImage: require("../../images/png/sotware-banner-image.png"),
+
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
     coding: require("../../images/png/coding.png"),

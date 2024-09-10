@@ -24,46 +24,38 @@ const Software: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div
-        style={{
-          backgroundImage: `url("${Assets.images.softwareBg}")`,
-        }}
-        className="bg-image"
-      >
-        <div className="home-section">
-          {/* <p className="large-centered-heading">
-              At D'roid Technologies, we specialize in crafting innovative
-              software solutions tailored to meet the unique needs of our
-              clients. Our team of experienced developers combines cutting-edge
-              technologies with industry best practices to deliver robust,
-              scalable, and user-friendly software applications.
-            </p> */}
-        </div>
-      </div>
 
+      {/* Home to software section */}
       <div className="home-to-software">
-        <h1 className="software-approach-head">
-          We are Home to Software Development
-        </h1>
-        <p className="paragraph">
-          <strong>
-            Over 47 Software Application built in the last 12 months.
-          </strong>
-          We are the right choice to your Software solution.
-          <br />
-          <br />
-          This is the hub of innovative Software Development. At D'roid
-          Technologies, we specialize in crafting high-quality software
-          solutions that drive business growth and efficiency. Our team of
-          expert developers harnesses the power of the latest technologies and
-          an IQ rate of over 130 to deliver robust, scalable, and user-friendly
-          applications.
-          <br />
-          <br />
-          Whether you're looking to build a custom mobile app, a dynamic web
-          platform, or enterprise-grade software, our comprehensive development
-          services are designed to meet your unique needs.
-        </p>
+        <div className="software-banner">
+          <section className="soft-banner">
+            <h1 className="software-approach-head">
+              We are Home to Software Development
+            </h1>
+            <span className="over">
+              Over 47 Software Application built in the last 12 months. We are
+              the right choice to your Software solution.
+            </span>
+            <p className="paragraph">
+              <br />
+              <br />
+              This is the hub of innovative Software Development. At D'roid
+              Technologies, we specialize in crafting high-quality software
+              solutions that drive business growth and efficiency. Our team of
+              expert developers harnesses the power of the latest technologies
+              and an IQ rate of over 130 to deliver robust, scalable, and
+              user-friendly applications.
+              <br />
+              <br />
+              Whether you're looking to build a custom mobile app, a dynamic web
+              platform, or enterprise-grade software, our comprehensive
+              development services are designed to meet your unique needs.
+            </p>
+          </section>
+        </div>
+        <div className="banner-image">
+          <img src={Assets.images.softwareBannerImage} alt="" />
+        </div>
 
         <div className="training-approach-main">
           <h1

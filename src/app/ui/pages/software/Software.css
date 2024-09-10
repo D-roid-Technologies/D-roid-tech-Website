@@ -1,10 +1,7 @@
 .home-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 50px;
+  background-color: red;
 }
 
 .home-content {
@@ -96,12 +93,6 @@
   margin-top: 100px;
 }
 
-.software-approach-head {
-  text-align: center;
-  margin-bottom: 1.5em;
-  font-family: "Rammetto One";
-}
-
 .software-approach-list {
   display: flex;
   justify-content: center;
@@ -135,17 +126,50 @@
   letter-spacing: 2px;
 }
 
+/* Home to software section */
 .home-to-software {
   padding-left: 100px;
   padding-right: 100px;
-  margin-top: 100px;
+}
+.software-banner {
+  border-radius: 10px;
+  background: #071d6a;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.soft-banner {
+  padding: 0 4em;
+  padding-top: 5em;
+  padding-bottom: 33em;
+}
+
+.software-approach-head {
+  text-align: center;
+  margin-bottom: 1em;
+  font-family: "Rammetto One";
+
+  color: #ffb100;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.over {
+  color: #f0f0f0;
+  font-weight: 600;
+}
+.paragraph {
+  color: rgba(240, 240, 240, 0.8);
 }
 
 .home-to-software-p {
   font-family: "Mazzard";
   font-size: 1rem;
-  color: rgb(124, 124, 124);
+  color: rgba(240, 240, 240, 0.8);
   margin-bottom: 1em;
+}
+.banner-image {
+  position: relative;
+  bottom: 30rem;
 }
 .show-list {
   margin-top: 80px;
