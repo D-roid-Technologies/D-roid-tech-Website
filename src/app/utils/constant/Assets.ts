@@ -49,9 +49,9 @@ export const Assets = {
 
     droid_web: require("../../images/png/D'roid_Web.png"),
     reign: require("../../images/png/reign.png"),
-    one_one: require("../../images/png/one-on-one.png"),
-    uni: require("../../images/png/university.png"),
-    highSchool: require("../../images/png/highschool.png"),
+    one_one: require("../../images/png/training-image-one.png"),
+    uni: require("../../images/png/training-image-three.png"),
+    highSchool: require("../../images/png/training-image-two.png"),
 
     servicesMain: require("../../images/png/what.png"),
     techT: require("../../images/png/techtraining.png"),

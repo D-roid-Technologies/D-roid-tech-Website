@@ -13,8 +13,10 @@
 .our-catalog-header {
   font-family: "Rammetto One", sans-serif;
   font-size: 40px;
-  color: #000000;
-  margin-bottom: 15px;
+  /* color: #000000; */
+  margin-bottom: 30px;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
 
 .product-pp {
@@ -25,9 +27,9 @@
 }
 .product-p {
   font-size: 1.2rem;
-  color: rgb(124, 124, 124);
-  line-height: 30px;
-  letter-spacing: 2px;
+  line-height: 20px;
+  color: #333;
+  font-weight: 400;
   font-family: "Mazzard";
   text-align: justify;
   margin-bottom: 20px;

@@ -128,7 +128,7 @@ const Software: React.FunctionComponent = () => {
                 />
               </div>
               <h2>Programming Languages</h2>
-              <p className="paragraph">
+              <p className="tools-paragraph">
                 JavaScript, TypeScript, Python, Java, C#
               </p>
             </li>
@@ -140,7 +140,7 @@ const Software: React.FunctionComponent = () => {
                 />
               </div>
               <h2>Frameworks & Libraries</h2>
-              <p className="paragraph">
+              <p className="tools-paragraph">
                 React.js, Angular, Vue.js, Node.js, Express.js
               </p>
             </li>
@@ -152,7 +152,9 @@ const Software: React.FunctionComponent = () => {
                 />
               </div>
               <h2>Databases</h2>
-              <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
+              <p className="tools-paragraph">
+                Firebase, mySQL, Postgres, MongoDB
+              </p>
             </li>
             <li className="training-approach-item">
               <div className="icon-container">
@@ -162,7 +164,7 @@ const Software: React.FunctionComponent = () => {
                 />
               </div>
               <h2>Tools & Platforms</h2>
-              <p className="paragraph">
+              <p className="tools-paragraph">
                 Git, GitHub, Docker, AWS, Azure, Google Cloud
               </p>
             </li>

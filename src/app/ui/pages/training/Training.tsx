@@ -14,9 +14,10 @@ import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import { TechTraining } from "../../../utils/constant/Data";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 
 const photos: TrainingPhoto[] = [
-  { image: Assets.images.trainingOne, text: "" },
+  // { image: Assets.images.trainingOne, text: "" },
   {
     image: Assets.images.trainingTwo,
     text: "",
@@ -92,11 +93,12 @@ const Training: React.FC = () => {
           </div>
         </div>
       </div>
+      {/* Approach Section */}
 
       <div className="training-main-content-section">
         <div style={{ textAlign: "center" }}>
-          <FaLaptop
-            style={{ fontSize: "10rem", color: getColor("secondary") }}
+          <LiaChalkboardTeacherSolid
+            style={{ fontSize: "15rem", color: "#071D6A" }}
             className="icon"
           />
         </div>
@@ -104,11 +106,11 @@ const Training: React.FC = () => {
         <div className="training-approach-main">
           <h1
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
-            className="training-approach-head"
+            className="training-approach-heads"
           >
             Training Programs
           </h1>
-          <ul className="service-card-container">
+          <ul className="service-card-containers">
             {TechTraining.map((item, index) => (
               <Card
                 key={index}
@@ -118,14 +120,14 @@ const Training: React.FC = () => {
                 actions={
                   <Button
                     title="See More Details"
-                    bgColor={getColor("secondary")}
-                    color={getColor("basic")}
+                    bgColor={"#fbcc34"}
+                    color={"#071d6a"}
                     mTop={0}
                     mBottom={0}
                     mLeft={0}
                     mRight={0}
-                    bRadiusColor={getColor("light")}
-                    // onClickButton={() => {}}
+                    fWeight={700}
+                    bRadiusColor={"#fbcc34"}
                     onClickButton={() => {
                       navigate("/details", {
                         state: {
