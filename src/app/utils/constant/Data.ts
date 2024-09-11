@@ -215,6 +215,16 @@ export const DATA = {
         twitter: " https://x.com/BChukwueze?t=wua6N7DGKdm028cVhfX2Ag&s=09",
       },
     },
+    {
+      image: require("../../images/png/faithchukwukezieportfolio.png"),
+      name: "Faith Chukwueze",
+      designation: "Digital marketer",
+      socials: {
+        linkedin:
+          "https://www.linkedin.com/in/chukwueze-faith-direct-response-copywriter?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: " https://x.com/BChukwueze?t=wua6N7DGKdm028cVhfX2Ag&s=09",
+      },
+    },
   ],
 };
 

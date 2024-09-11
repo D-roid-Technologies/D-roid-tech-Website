@@ -57,11 +57,11 @@ export const Assets = {
     techT: require("../../images/png/techtraining.png"),
 
     testImage: require("../../images/png/testimage.png"),
-    wDev: require("../../images/png/wdev.png"),
-    mDev: require("../../images/png/mdev.png"),
-    tService: require("../../images/png/tservice.png"),
-    backEndDev: require("../../images/png/bedev.png"),
-    cReviews: require("../../images/png/creview.png"),
+    wDev: require("../../images/png/web dev 1.png"),
+    mDev: require("../../images/png/mobile web 1.png"),
+    tService: require("../../images/png/template service 1.png"),
+    backEndDev: require("../../images/png/backend dev 1.png"),
+    cReviews: require("../../images/png/code reviews 1.png"),
     appAi: require("../../images/png/ogoo-Ai.png"),
 
     trainingOne: require("../../images/png/train1.png"),

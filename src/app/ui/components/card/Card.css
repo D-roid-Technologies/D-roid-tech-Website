@@ -32,6 +32,9 @@
 
 .card__content {
   padding: 16px;
+  /* color: red; */
+}
+.title-card {
 }
 
 .card__title {
