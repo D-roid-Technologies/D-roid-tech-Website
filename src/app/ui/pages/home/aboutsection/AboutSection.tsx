@@ -37,89 +37,97 @@ const Section: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="section-main">
-      {/* SECTION ONE */}
-      <div className="section-one">
-        <div className="coding-image">
+    <>
+      <div className="section-main">
+        {/* SECTION ONE */}
+        {/* <div className="section-one"> */}
+        {/* <div className="coding-image">
           <GiCuckooClock
             className="image-size"
             style={{ color: getColor("basic") }}
           />
-        </div>
-        <section className="history">
-          <p className="our-history"> Our History</p>
-          <p className="histoy-details">
-            D'roid Technologies traces its roots back to 2015, when visionary
-            Entrepreneur Ekenedilichukwu Okoli embarked on a mission to redefine
-            the digital landscape. Inspired by a passion for innovation and a
-            desire to make a difference, our company was born in a small office
-            space with just a handful of dedicated individuals.
-          </p>
-          {/* CONTACT US BUTTON */}
-          <div className="history-btn">
-            <div className="readmore-btn">
-              <Button
-                bgColor={getColor("basic")}
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                title="Read more about us"
-                color={getColor("light")}
-                fWeight={800}
-                bRadius={5}
-                icon={<FaBookReader className="style-home-icon" />}
-                onClickButton={() => {
-                  navigate("/aboutus");
-                }}
-              />
-            </div>
+        </div> */}
+        <div className="hero-container">
+          <div>
+            <img src={Assets.images.aboutImage} alt="" className="hero-image" />
           </div>
-        </section>
-      </div>
-      {/* SECTION TWO */}
-      <div className="section-two">
-        <div className="approach">
-          <p className="our-approach"> Our Approach</p>
-          <p className="approach-details">
-            At D'roid Technologies International, we take a collaborative
-            approach to software development. We work closely with our clients
-            to gain a deep understanding of the business needs and goals, and we
-            use that knowledge to develope tailored solutions that meet their
-            unique requirements.
-          </p>
-          <div className="our-approach-btn">
-            <div className="approach-btn">
-              <Button
-                bgColor={getColor("basic")}
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                title="Our Approach"
-                color={getColor("light")}
-                fWeight={800}
-                bRadius={5}
-                icon={<SiNintendogamecube className="style-home-icon" />}
-                onClickButton={() => {
-                  navigate("/aboutus");
-                }}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="coding-image">
+          <div className="about-container-one">
+            <section className="history">
+              <p className="our-history"> Our History</p>
+              <p className="histoy-details">
+                D'roid Technologies traces its roots back to 2015, when
+                visionary Entrepreneur Ekenedilichukwu Okoli embarked on a
+                mission to redefine the digital landscape. Inspired by a passion
+                for innovation and a desire to make a difference, our company
+                was born in a small office space with just a handful of
+                dedicated individuals.
+              </p>
+              {/* CONTACT US BUTTON */}
+              <div className="history-btn">
+                <div className="readmore-btn">
+                  <Button
+                    bgColor="#091d6a"
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="Read more about us"
+                    color="#fff"
+                    fWeight={800}
+                    bRadius={5}
+                    bRadiusColor="#091d6a"
+                    icon={<FaBookReader className="style-home-icon" />}
+                    onClickButton={() => {
+                      navigate("/aboutus");
+                    }}
+                  />
+                </div>
+              </div>
+            </section>
+            {/* </div> */}
+            {/* SECTION TWO */}
+            {/* <div className="section-two"> */}
+            <div className="approach">
+              <p className="our-approach"> Our Approach</p>
+              <p className="approach-details">
+                At D'roid Technologies International, we take a collaborative
+                approach to software development. We work closely with our
+                clients to gain a deep understanding of the business needs and
+                goals, and we use that knowledge to develope tailored solutions
+                that meet their unique requirements.
+              </p>
+              {/* <div className="our-approach-btn">
+                <div className="approach-btn">
+                  <Button
+                    bgColor="#091d6a"
+                    mTop={0}
+                    mBottom={0}
+                    mLeft={0}
+                    mRight={0}
+                    title="Our Approach"
+                    color={getColor("light")}
+                    fWeight={800}
+                    bRadius={5}
+                    icon={<SiNintendogamecube className="style-home-icon" />}
+                    onClickButton={() => {
+                      navigate("/aboutus");
+                    }}
+                  />
+                </div>
+              </div> */}
+              {/* </div> */}
+              {/* <div className="coding-image">
           <GiPathDistance
             className="image-size"
             style={{ color: getColor("basic") }}
           />
+        </div> */}
+            </div>
+          </div>
         </div>
       </div>
-
-      <div
-        className="join-us"
-        style={{ backgroundColor: Assets.colors.primary }}
-      >
+      <div className="join-us" style={{ backgroundColor: "#091d6a" }}>
+        {/* <section className="join-container"> */}
         <div>
           <FaUserGraduate
             className="icon-test"
@@ -131,7 +139,7 @@ const Section: React.FunctionComponent = () => {
           >
             Want to Join our Tech Team?
           </p>
-          <p className="approach-details">
+          <p className="join-approach-details">
             Are you passionate about Technology and Innovation? Join us now on a
             6 Months Sofware Development Training and become a full time Staff
             with D'roid Technologies. Work on exciting projects, grow your
@@ -160,6 +168,26 @@ const Section: React.FunctionComponent = () => {
             />
           </div>
         </div>
+        <div className="join-images">
+          <span>
+            <img
+              src={Assets.images.joinImageOne}
+              alt=""
+              height="450"
+              width="270"
+            />
+          </span>
+          <span>
+            <img
+              src={Assets.images.joinImageTwo}
+              alt=""
+              height="400"
+              width="270"
+              className="join-images-two"
+            />
+          </span>
+        </div>
+        {/* </section> */}
       </div>
 
       {/* <motion.div
@@ -208,30 +236,32 @@ const Section: React.FunctionComponent = () => {
           />
         </div>
       </motion.div> */}
-
       {/* SECTION THREE */}
-      <div className="our-service-main">
+      <div className="our-service-main-two">
         <div className="section-three">
           <div className="services">
-            <p className="our-services"> Why We Are Known</p>
-            <p className="services-details">
+            <p className="our-services-s"> Why We Are Known</p>
+            <p className="services-detailss">
               We offer a wide range of software development services, including
               web development, mobile app development, and custom software
               development. we use the latest technologies and tools to ensure
               that our clients recieve cutting- edge solutions that drive their
               business forward.
-            </p>{" "}
+            </p>
           </div>
         </div>
         {/* CAROUSEL SECTION */}
         <div className="carousel-container">
           <Slider {...settings}>
             <div className="imageone">
-              <div>
-                <FaLaptopCode
-                  className="image-size"
+              <div className="content-wrapper">
+                <img
+                  src={Assets.images.serviceImage}
+                  alt=""
+                  className="image-sizessd"
                   style={{ color: getColor("basic") }}
                 />
+
                 <span className="padded">
                   <h2 className="carousel-heading">
                     Software Design & Development
@@ -247,37 +277,47 @@ const Section: React.FunctionComponent = () => {
             </div>
             {/* TWO */}
             <div className="imageone">
-              <GiRobotGolem
-                className="image-size"
-                style={{ color: getColor("basic") }}
-              />
-              <span className="padded">
-                <h2 className="carousel-heading">Animation Creation</h2>
-                <p className="carousel-details">
-                  Our Animation Creation services bring ideas to life through
-                  captivating visual storytelling. We specialize in creating
-                  high-quality 2D and 3D animations for various industries,
-                  including education, entertainment, advertising, and corporate
-                  training.
-                </p>
-              </span>
+              <div className="content-wrapper">
+                <img
+                  src={Assets.images.serviceImageTwo}
+                  alt=""
+                  className="image-sizessd"
+                  style={{ color: getColor("basic") }}
+                />
+
+                <span className="padded">
+                  <h2 className="carousel-heading">Animation Creation</h2>
+                  <p className="carousel-details">
+                    Our Animation Creation services bring ideas to life through
+                    captivating visual storytelling. We specialize in creating
+                    high-quality 2D and 3D animations for various industries,
+                    including education, entertainment, advertising, and
+                    corporate training.
+                  </p>
+                </span>
+              </div>
             </div>
             <div className="imageone">
-              <GiTeacher
-                className="image-size"
-                style={{ color: getColor("basic") }}
-              />
-              <span className="padded">
-                <h2 className="carousel-heading">Tech Training </h2>
-                {/* waiting for tech content */}
-                <p className="carousel-details">
-                  Our Tech training programs are designed to equip you and/or
-                  your team with the skills needed to excel in today's
-                  fast-paced technological landscape. Our expert-led training
-                  sessions cover a wide range of topics, from software
-                  development and cybersecurity to data analytics and more.
-                </p>
-              </span>
+              <div className="content-wrapper">
+                <img
+                  src={Assets.images.serviceImageThree}
+                  alt=""
+                  className="image-sizessd"
+                  style={{ color: getColor("basic") }}
+                />
+
+                <span className="padded">
+                  <h2 className="carousel-heading">Tech Training </h2>
+                  {/* waiting for tech content */}
+                  <p className="carousel-details">
+                    Our Tech training programs are designed to equip you and/or
+                    your team with the skills needed to excel in today's
+                    fast-paced technological landscape. Our expert-led training
+                    sessions cover a wide range of topics, from software
+                    development and cybersecurity to data analytics and more.
+                  </p>
+                </span>
+              </div>
             </div>
           </Slider>
           {/* OUR SERVICES BUTTON SECTION */}
@@ -285,16 +325,17 @@ const Section: React.FunctionComponent = () => {
           <div className="our-services-btn">
             <div className="services-btn">
               <Button
-                bgColor={getColor("basic")}
+                bgColor="#fbcc34"
                 mTop={0}
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
                 title="See all our services"
-                color={getColor("light")}
+                color="#000"
                 fWeight={700}
                 bRadius={5}
-                icon={<MdHomeRepairService className="style-home-icon" />}
+                bRadiusColor="#fbcc34"
+                icon={<MdHomeRepairService className="style-home-icons" />}
                 onClickButton={() => {
                   navigate("/services");
                 }}
@@ -303,8 +344,49 @@ const Section: React.FunctionComponent = () => {
           </div>
           {/* </a> */}
         </div>
+        {/* Create website section */}
+        <div className="web-container">
+          <div>
+            <img src={Assets.images.websiteImage} alt="" />
+          </div>
+          <div>
+            <p className="website-header">Create a website in 5mins</p>
+            <p className="website-details">
+              In today’s digital world, creating a website is faster and easier
+              than ever before. Gone are the days when you needed deep technical
+              knowledge to build one. With the right tools and platforms you can
+              set up a website in just five minutes. Begin a step-by-step guide
+              to help you create your website in a flash.
+            </p>
+            <div className="our-servicess-btns">
+              <div className="servicess-btns">
+                <Button
+                  bgColor="#071d6a"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Start now"
+                  color="#fbcc34"
+                  fWeight={700}
+                  bRadius={5}
+                  bRadiusColor="#071d6a"
+                  icon={
+                    <MdHomeRepairService
+                      style={{ color: "#fbcc34" }}
+                      className="style-home-icons"
+                    />
+                  }
+                  onClickButton={() => {
+                    navigate("");
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

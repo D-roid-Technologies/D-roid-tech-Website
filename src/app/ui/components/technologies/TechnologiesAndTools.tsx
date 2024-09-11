@@ -81,7 +81,7 @@ const TechnologiesAndTools: React.FC = () => {
       <h1 style={styles.heading} className="training-approach-head">
         Technologies and Tools
       </h1>
-      <ul className="training-approach-list">
+      <ul className="training-approach-listss">
         {toolItems.map((item, index) => (
           <ToolItem
             key={index}

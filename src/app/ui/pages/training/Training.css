@@ -46,9 +46,8 @@
 }
 
 .training-main-content-section {
-  /* padding: 20px 100px; */
   padding: 1rem 2rem;
-  margin-top: 2em;
+  /* margin-top: 2em; */
 }
 
 .training-centered-text-section {
@@ -73,7 +72,7 @@
 .training-rounded-image {
   border-radius: 10px;
   max-width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .training-boxed-image {
@@ -85,23 +84,51 @@
 
 /* Approach Section */
 .training-approach-main {
-  margin-bottom: 50px;
-  margin-top: 2rem;
+  /* margin-bottom: 50px; */
+  /* margin-top: 2rem; */
 }
 
 .training-approach-head {
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
   font-family: "Rammetto One";
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
-
+.training-approach-heads {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2em;
+  font-family: "Rammetto One";
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+}
+.service-card-containers {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 .training-approach-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
   list-style: none;
-  gap: 2%;
+  gap: 3%;
+}
+
+.training-approach-listss {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  list-style: none;
+  gap: 5%;
+  padding: 70px 0;
+  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .training-approach-item {
@@ -110,6 +137,7 @@
   border-radius: 5px;
   transition: box-shadow 0.3s ease;
   flex-basis: calc(23% - 2%);
+  color: #333;
 }
 
 .training-approach-item:hover {
@@ -158,6 +186,7 @@
 .icon {
   font-size: 3rem;
   text-align: left;
+  color: #071d69;
 }
 
 .training-program-item:hover {
@@ -176,7 +205,6 @@
 }
 .technologies {
   margin-bottom: 50px;
-  /* margin-top: 2rem; */
   padding: 0 20px;
 }
 

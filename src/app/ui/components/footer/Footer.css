@@ -3,14 +3,24 @@
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
 
 .footer-main {
-  padding: 0 100px;
+  background-color: #071d6a;
 }
-.heading {
+
+.footer-inner {
+  padding: 25px 100px;
+}
+
+.social-container {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.social-heading {
   font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
-  padding-bottom: 0.8em;
+  font-weight: 600;
+  color: #fff;
   font-family: "Rammetto One";
+  letter-spacing: 0.1em;
 }
 
 .rule {
@@ -19,64 +29,52 @@
 /* LOGO */
 .footer-logo-container {
   display: flex;
-  justify-content: center;
-  gap: 90px;
-  padding-top: 3em;
-  padding-bottom: 4em;
+  gap: 20px;
+  padding-top: 2em;
 }
 
 .logo-size {
   color: #fff;
-  width: 23px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
 }
 
-.twitter-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: black;
-  width: 45px;
-  height: 45px;
-}
-
-.linkedin-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #5764ef;
-  width: 45px;
-  height: 45px;
-}
-
-.instagram-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #ef4444;
-  width: 45px;
-  height: 45px;
-}
-.whatsapp-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: #25d366;
-  width: 45px;
-  height: 45px;
-}
+.twitter-icon,
+.linkedin-icon,
+.instagram-icon,
+.whatsapp-icon,
 .email-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  padding: 5px;
+  width: 28px;
+  height: 28px;
+}
+
+.twitter-icon {
+  border-radius: 10%;
+  background-color: #000;
+}
+
+.linkedin-icon {
+  border-radius: 10%;
+  background-color: #5764ef;
+}
+
+.instagram-icon {
+  border-radius: 10%;
+  background-color: #ef4444;
+}
+
+.whatsapp-icon {
+  border-radius: 10%;
+  background-color: #25d366;
+}
+
+.email-icon {
+  border-radius: 10%;
   background-color: #ea4335;
-  width: 45px;
-  height: 45px;
 }
 /* END OF LOGO */
 
@@ -86,37 +84,34 @@
   align-items: center;
   font-weight: 600;
   letter-spacing: 0.1em;
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: "Rammetto One";
   margin-bottom: 0.5em;
-  font-size: 2.3rem;
-  line-height: 1.8;
 }
 .connect-subscribe {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(124, 124, 124);
+  color: #ffb100;
   font-weight: 500;
-  font-size: 1.2rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 0.9rem;
 }
 
 /* FORM SECTION */
 .footer-form {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 20px;
   margin-bottom: 1.5em;
   gap: 25px;
 }
 
 .form-input {
-  width: 40%;
-  margin-top: 50px;
+  width: 150%;
 }
 .signup-btn {
-  width: 10%;
-  margin-top: 50px;
-  background-color: black;
+  width: 60%;
+  background-color: #fff;
   transition: transform 0.3s ease-in-out;
 }
 .signup-btn:hover {
@@ -126,281 +121,106 @@
 /* END OF FORM */
 
 /* LAST FOOTER SECTION */
+.ruled {
+  background-color: #2145c8;
+}
 .footer-buttom {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.5em;
+  /* margin-top: 1.5em; */
   margin-bottom: 1.5em;
   font-weight: 500;
   font-size: medium;
-  color: rgb(124, 124, 124);
+  color: #7f8fc9;
   font-family: "Mazzard";
+  /* border-top: 2px solid burlywood; */
+}
+
+.company-link {
 }
 
 .color-change {
   text-decoration: none;
+  color: #7f8fc9;
 }
 .policy {
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  margin-bottom: 3em;
   font-family: "Mazzard";
+  color: #fff;
 }
 
-/* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
-  .footer-main {
-    padding: 0 50px;
+  .footer-inner {
+    padding: 20px 50px;
   }
-  .heading {
-    font-size: 1.3rem;
-    color: #333;
-    font-weight: 500;
-    padding-bottom: 0.8em;
-    font-family: Georgia, "Times New Roman", Times, serif;
+
+  .social-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .footer-logo-container {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    padding-top: 3em;
-    padding-bottom: 4em;
-  }
-
-  .logo-size {
-    color: #fff;
-    width: 27px;
-    height: 27px;
-  }
-
-  .twitter-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: black;
-    width: 50px;
-    height: 50px;
-  }
-
-  .linkedin-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #5764ef;
-    width: 50px;
-    height: 50px;
-  }
-
-  .instagram-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #ef4444;
-    width: 50px;
-    height: 50px;
-  }
-  .whatsapp-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #25d366;
-    width: 50px;
-    height: 50px;
-  }
-  .email-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #000;
-    width: 50px;
-    height: 50px;
-  }
-  .subscribe {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5em;
-    font-size: 2.3rem;
-    line-height: 1.8;
-  }
-  .connect-subscribe {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(124, 124, 124);
-    margin-bottom: 0;
-    font-weight: 500;
-    font-size: large;
-    font-family: "Mazzard";
-  }
-  /* FORM SECTION */
-  .footer-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5em;
-    gap: 25px;
-  }
-  /* .signup-btn {
-  width: 10%;
-  margin-top: 50px;
-  background-color: black;
-  transition: transform 0.3s ease-in-out;
-}
-.signup-btn:hover {
-  transform: scale(1.1);
-} */
-
-  .form-input {
-    width: 60%;
-    margin-top: 50px;
-  }
-  .signup-btn {
-    width: 15%;
-    margin-top: 50px;
-    background-color: black;
-    transition: transform 0.3s ease-in-out;
-  }
-  .signup-btn:hover {
-    /* transition: 0.8s; */
-    transform: scale(1.1);
+    gap: 15px;
+    padding-top: 1.5em;
   }
 
   .footer-buttom {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    font-weight: 500;
-    font-size: 19px;
-  }
-  .policy {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    margin-bottom: 3em;
   }
 }
 
-/*Mobile:  On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
-  .footer-main {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .heading {
-    font-size: 1rem;
+  .footer-inner {
+    padding: 15px 20px;
   }
 
-  /* SOCIAL LOGO */
-  .footer-logo-container {
-    gap: 30px;
-    padding-top: 2em;
-    padding-bottom: 3em;
-  }
-  .logo-size {
-    width: 19px;
-    height: 19px;
-  }
-  .twitter-icon {
-    width: 40px;
-    height: 40px;
-  }
-  .linkedin-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .instagram-icon {
-    width: 40px;
-    height: 40px;
-  }
-  .whatsapp-icon {
-    width: 40px;
-    height: 40px;
-    background-color: #25d366;
-  }
-  .email-icon {
-    width: 40px;
-    height: 40px;
-    background-color: #000;
-  }
-  /* END OF SOCIAL LOGO */
-  .subscribe {
-    display: flex;
-    justify-content: center;
+  .social-container {
+    flex-direction: column;
     align-items: center;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    /* margin-bottom: 0.5em; */
-    font-size: 1.8rem;
-    line-height: 1.5;
+    text-align: center;
+  }
+
+  .footer-logo-container {
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 1em;
+  }
+
+  .subscribe {
+    font-size: 1.2rem;
+    margin-top: 30px;
   }
 
   .connect-subscribe {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(124, 124, 124);
-    margin-bottom: 1.2em;
-    font-weight: 500;
-    font-size: 0.9rem;
-    font-family: "Mazzard";
+    font-size: 0.8rem;
   }
 
-  /* FORM SECTION */
   .footer-form {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
+    gap: 15px;
   }
 
   .form-input {
     width: 100%;
-    margin-top: 20px;
-  }
-  .signup-btn {
-    width: 100%;
-    margin-top: 18px;
-    background-color: black;
-    transition: transform 0.3s ease-in-out;
-  }
-  .signup-btn:hover {
-    transform: scale(1.1);
   }
 
-  /* FOOTER LAST SECTION */
+  .signup-btn {
+    width: 100%;
+  }
+
   .footer-buttom {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    font-weight: 500;
-    font-size: small;
-    padding-top: 15px;
   }
+
   .policy {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    margin-bottom: 2em;
+    font-size: 0.8rem;
   }
 }

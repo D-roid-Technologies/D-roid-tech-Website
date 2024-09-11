@@ -1,6 +1,6 @@
 import React from "react";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 
 type ApproachItem = {
@@ -83,6 +83,7 @@ const TrainingApproach: React.FC = () => {
     heading: {
       color: getColor("basic"),
       fontFamily: "Rammetto One",
+      marginBottom: "1.5em",
     },
     trainingApproachItem: {
       flexBasis: "calc(23% - 2%)",
@@ -90,15 +91,15 @@ const TrainingApproach: React.FC = () => {
       transition: "box-shadow 0.3s ease",
     },
     title: {
-      marginBottom: "20px",
+      marginBottom: "1rem",
       fontFamily: "Rammetto One",
-      color: getColor("basic"),
+      color: "#071d6a",
       transition: "color 0.3s ease",
     },
     description: {
       fontFamily: "Mazzard",
       fontSize: "1rem",
-      color: getColor("basic"),
+      color: "#333",
       marginBottom: "1em",
     },
   };

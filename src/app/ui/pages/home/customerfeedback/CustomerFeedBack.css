@@ -7,34 +7,45 @@
 }
 .customer-testimonials {
   margin-bottom: 50px;
-  background-color: #282a94;
-  height: 400px;
+  background-color: rgba(7, 29, 106, 0.1);
+  height: 250px;
+  padding: 30px 100px;
 }
 
 .read {
-  color: #fff;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-size: 2.5rem;
   letter-spacing: 3px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-family: "Rammetto One";
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .testiminial-details {
-  padding: 0 50px;
-  color: #ffffff;
   font-family: "Mazzard";
   letter-spacing: 2px;
+  color: rgba(7, 29, 106, 0.6);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .testifier {
   margin-top: 10px;
-  color: #00ffff;
+  color: #071d6a;
+  font-family: "Mazzard";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 20px;
 }
 /* Button */
 .contact-uss {
-  padding-left: 50px;
+  padding-left: 100px;
   margin-top: 50px;
 }
 
@@ -59,11 +70,16 @@
   margin-bottom: 50px;
 }
 .heading {
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 700;
   padding-bottom: 0.2px;
   font-family: "Rammetto";
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  /* font-size: 40px; */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 .rule {
   border-top: 2px solid rgb(218, 214, 214);
@@ -71,14 +87,19 @@
 
 .questions {
   text-align: center;
-  padding: 30px 0;
+  padding: 20px 0;
   font-family: "Rammetto";
-  font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 2rem;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 .clients {
   text-align: center;
-  color: rgb(186, 184, 184);
+  color: rgba(7, 29, 106, 0.7);
   padding-bottom: 30px;
   font-family: "Mazzard";
   font-size: 1.2rem;
@@ -86,26 +107,43 @@
 .droid {
   font-family: "Rammetto";
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.8rem;
   padding-bottom: 30px;
+  color: #071d6a;
 }
 .hours {
   font-family: "Rammetto";
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.6rem;
   padding-bottom: 27px;
+  color: #071d6a;
+}
+.time-container {
+  padding: 0 470px !important;
 }
 .time {
   text-align: center;
   font-size: 1.2rem;
   padding-bottom: 30px;
-  color: rgb(186, 184, 184);
+  padding: 12px 0;
   font-family: "Mazzard";
+  color: #071d6a;
+  font-weight: 600;
+
+  border-radius: 8px;
+  background: rgba(7, 29, 106, 0.1);
+  box-shadow: 49.467px -49.467px 49.467px 0px rgba(5, 22, 81, 0.1) inset,
+    -49.467px 49.467px 49.467px 0px rgba(255, 255, 255, 0.1) inset;
+  backdrop-filter: blur(49.46666717529297px);
 }
 .friday {
-  color: aqua;
+  color: #071d6a;
+  background-color: #fbcc34;
+  padding: 12px 15px;
+  border-radius: 10px;
+  /* border-top-left-radius: 15px; */
 }
 
 .contact-buttons {
@@ -114,6 +152,7 @@
   align-items: center;
   font-family: "Mazzard";
   gap: 30px;
+  margin-top: 2rem;
 }
 
 .contactus-button-style {

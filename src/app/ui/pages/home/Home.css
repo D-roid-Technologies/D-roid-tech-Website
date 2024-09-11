@@ -5,27 +5,49 @@
 /* CONTENT */
 .home-main {
   display: flex;
-}
-.home {
-  width: 50%;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 600px;
-}
-.home-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 100px;
-  margin-top: 160px;
+  padding: 0 80px;
+  height: 80vh;
 }
 
-.bg-image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100vh;
+/* .home-left {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .home-right {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; 
+} */
+
+.banner-size {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  background-color: #fff9e9;
+  border-radius: 50%;
+}
+.banner-one {
+  position: relative;
+  left: -5rem;
+  bottom: -4rem;
+}
+.banner-two {
+  position: relative;
+  left: -22rem;
+  top: -3rem;
+}
+
+.home-content {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .home-heading {
@@ -33,23 +55,24 @@
   letter-spacing: 3px;
   text-align: center;
   font-weight: 500;
-  font-family: "Rammetto One";
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Verdana Pro";
 }
 
 .product-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4em;
-  transition: transform 0.3s ease-in-out;
 }
 
 .See-our-product {
   font-family: "Mazzard";
   cursor: pointer;
-  width: 50%;
+  width: 60%;
+  margin-top: 20px;
   transition: transform 0.3s ease-in-out;
 }
+
 .See-our-product:hover {
   transform: scale(1.1);
 }

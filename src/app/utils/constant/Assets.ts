@@ -2,6 +2,20 @@ export const Assets = {
   images: {
     companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),
+    homeBannerone: require("../../images/png/home-banner-one.png"),
+    homeBannertwo: require("../../images/png/home-banner-two.png"),
+    aboutImage: require("../../images/png/about-image.png"),
+
+    joinImageOne: require("../../images/png/join-image-one.png"),
+    joinImageTwo: require("../../images/png/join-image-two.png"),
+    serviceImage: require("../../images/png/servic-image.png"),
+    serviceImageTwo: require("../../images/png/service-image-two.png"),
+    serviceImageThree: require("../../images/png/service-image-three.png"),
+    websiteImage: require("../../images/png/website-image.png"),
+
+    // software page
+    softwareBannerImage: require("../../images/png/sotware-banner-image.png"),
+
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
     coding: require("../../images/png/coding.png"),
@@ -35,19 +49,19 @@ export const Assets = {
 
     droid_web: require("../../images/png/D'roid_Web.png"),
     reign: require("../../images/png/reign.png"),
-    one_one: require("../../images/png/one-on-one.png"),
-    uni: require("../../images/png/university.png"),
-    highSchool: require("../../images/png/highschool.png"),
+    one_one: require("../../images/png/training-image-one.png"),
+    uni: require("../../images/png/training-image-three.png"),
+    highSchool: require("../../images/png/training-image-two.png"),
 
     servicesMain: require("../../images/png/what.png"),
     techT: require("../../images/png/techtraining.png"),
 
     testImage: require("../../images/png/testimage.png"),
-    wDev: require("../../images/png/wdev.png"),
-    mDev: require("../../images/png/mdev.png"),
-    tService: require("../../images/png/tservice.png"),
-    backEndDev: require("../../images/png/bedev.png"),
-    cReviews: require("../../images/png/creview.png"),
+    wDev: require("../../images/png/web dev 1.png"),
+    mDev: require("../../images/png/mobile web 1.png"),
+    tService: require("../../images/png/template service 1.png"),
+    backEndDev: require("../../images/png/backend dev 1.png"),
+    cReviews: require("../../images/png/code reviews 1.png"),
     appAi: require("../../images/png/ogoo-Ai.png"),
 
     trainingOne: require("../../images/png/train1.png"),

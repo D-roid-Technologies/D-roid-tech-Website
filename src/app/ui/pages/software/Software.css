@@ -1,10 +1,7 @@
 .home-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 50px;
+  background-color: red;
 }
 
 .home-content {
@@ -86,7 +83,8 @@
   box-shadow: 0 0.35em 0.35em 0 grey;
 }
 .training-approach-main {
-  margin-bottom: 200px;
+  margin-bottom: 50px;
+  margin-top: 18rem;
 }
 /* Approach Section */
 .software-approach-main {
@@ -95,57 +93,113 @@
   padding-right: 100px;
   margin-top: 100px;
 }
-
-.software-approach-head {
+.software-approach-heads {
   text-align: center;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   font-family: "Rammetto One";
+
+  color: #ffb100;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .software-approach-list {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   list-style: none;
   gap: 2%;
 }
 
 .software-approach-item {
   margin-bottom: 20px;
+  color: #071d6a !important;
 }
 
 .software-approach-item h2 {
   margin-bottom: 20px;
   font-family: "Rammetto One";
-  color: #232e35;
+  color: #071d6a;
   transition: color 0.3s ease;
 }
 
 .software-approach-item h2:hover {
-  color: #12d6d6;
+  color: #fbcc34;
   cursor: pointer;
 }
 
 .software-approach-item p {
-  font-size: 0.8rem;
-  font-weight: 200;
-  color: rgb(134, 131, 131) !important;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #333 !important;
   font-family: "Mazzard";
-  text-align: justify;
-  letter-spacing: 2px;
+  /* text-align: justify; */
+  /* letter-spacing: 2px; */
 }
 
+/* Home to software section */
 .home-to-software {
   padding-left: 100px;
   padding-right: 100px;
-  margin-top: 100px;
+}
+.software-banner {
+  border-radius: 10px;
+  background: #071d6a;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.soft-banner {
+  padding: 0 4em;
+  padding-top: 5em;
+  padding-bottom: 33em;
+}
+
+.software-approach-head {
+  text-align: center;
+  margin-bottom: 1em;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Rammetto One";
+
+  /* color: #ffb100; */
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.over {
+  color: #f0f0f0;
+  font-weight: 600;
+}
+.soft-paragraph {
+  color: rgba(240, 240, 240, 0.8);
 }
 
 .home-to-software-p {
   font-family: "Mazzard";
   font-size: 1rem;
-  color: rgb(124, 124, 124);
+  color: rgba(240, 240, 240, 0.8);
   margin-bottom: 1em;
+}
+.banner-image {
+  position: absolute;
+  top: 30rem;
+  /* position: relative; */
+  /* bottom: 30rem; */
+}
+/* Technologies and Tools Section */
+.technologiess {
+  padding: 0 100px;
+}
+.training-approach-head {
+  margin-bottom: 1rem;
+}
+.tech-contain {
+  padding: 40px 20px;
+  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.5);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .show-list {
   margin-top: 80px;
@@ -170,6 +224,10 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+.wantto-know:hover {
+  transform: scale(1.1);
 }
 .wantto-know-btn {
   width: 25%;

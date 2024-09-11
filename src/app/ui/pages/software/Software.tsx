@@ -24,50 +24,44 @@ const Software: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div
-        style={{
-          backgroundImage: `url("${Assets.images.softwareBg}")`,
-        }}
-        className="bg-image"
-      >
-        <div className="home-section">
-          {/* <p className="large-centered-heading">
-              At D'roid Technologies, we specialize in crafting innovative
-              software solutions tailored to meet the unique needs of our
-              clients. Our team of experienced developers combines cutting-edge
-              technologies with industry best practices to deliver robust,
-              scalable, and user-friendly software applications.
-            </p> */}
-        </div>
-      </div>
 
+      {/* Home to software section */}
       <div className="home-to-software">
-        <h1 className="software-approach-head">
-          We are Home to Software Development
-        </h1>
-        <p className="paragraph">
-          <strong>
-            Over 47 Software Application built in the last 12 months.
-          </strong>
-          We are the right choice to your Software solution.
-          <br />
-          <br />
-          This is the hub of innovative Software Development. At D'roid
-          Technologies, we specialize in crafting high-quality software
-          solutions that drive business growth and efficiency. Our team of
-          expert developers harnesses the power of the latest technologies and
-          an IQ rate of over 130 to deliver robust, scalable, and user-friendly
-          applications.
-          <br />
-          <br />
-          Whether you're looking to build a custom mobile app, a dynamic web
-          platform, or enterprise-grade software, our comprehensive development
-          services are designed to meet your unique needs.
-        </p>
+        <div className="software-banner">
+          <section className="soft-banner">
+            <h1 className="software-approach-heads">
+              We are Home to Software Development
+            </h1>
+            <p className="over">
+              Over 47 Software Application built in the last 12 months. We are
+              the right choice to your Software solution.
+            </p>
+            <br />
+            <p className="soft-paragraph">
+              This is the hub of innovative Software Development. At D'roid
+              Technologies, we specialize in crafting high-quality software
+              solutions that drive business growth and efficiency. Our team of
+              expert developers harnesses the power of the latest technologies
+              and an IQ rate of over 130 to deliver robust, scalable, and
+              user-friendly applications.
+              <br /> <br />
+              Whether you're looking to build a custom mobile app, a dynamic web
+              platform, or enterprise-grade software, our comprehensive
+              development services are designed to meet your unique needs.
+            </p>
+          </section>
+        </div>
+        <div className="banner-image">
+          <img src={Assets.images.softwareBannerImage} alt="" />
+        </div>
 
         <div className="training-approach-main">
           <h1
-            style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
+            style={{
+              fontFamily: "Rammetto One",
+              color: "#071D6A",
+              textShadow: "0px 4px 4px rgba(255, 177, 0, 0.25)",
+            }}
             className="training-approach-head"
           >
             Our Software Services
@@ -88,17 +82,14 @@ const Software: React.FunctionComponent = () => {
                 actions={
                   <Button
                     title="Apply Now"
-                    bgColor={getColor("basic")}
-                    color={getColor("secondary")}
+                    bgColor="#fbcc34"
+                    color="#071d6a"
                     mTop={0}
                     mBottom={0}
                     mLeft={0}
                     mRight={0}
-                    bRadiusColor={getColor("light")}
-                    // onClickButton={() => {}}
-                    // onClickButton={() => {
-                    //   navigate("/details");
-                    // }}
+                    fWeight={600}
+                    bRadiusColor="#fbcc34"
                     onClickButton={() => {
                       navigate("/details", {
                         state: {
@@ -123,56 +114,62 @@ const Software: React.FunctionComponent = () => {
       </div>
 
       {/* Technologies and Tools Section */}
-      <div className="technologies" style={{ marginTop: "1rem" }}>
-        <h1 className="training-approach-head">Technologies and Tools</h1>
-        <ul className="training-approach-list">
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaCode
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Programming Languages</h2>
-            <p className="paragraph">
-              JavaScript, TypeScript, Python, Java, C#
-            </p>
-          </li>
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaLaptopCode
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Frameworks & Libraries</h2>
-            <p className="paragraph">
-              React.js, Angular, Vue.js, Node.js, Express.js
-            </p>
-          </li>
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaDatabase
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Databases</h2>
-            <p className="paragraph">Firebase, mySQL, Postgres, MongoDB</p>
-          </li>
-          <li className="training-approach-item">
-            <div className="icon-container">
-              <FaLaptopCode
-                style={{ fontSize: "3rem", color: Assets.colors.secondary }}
-                className="icon"
-              />
-            </div>
-            <h2>Tools & Platforms</h2>
-            <p className="paragraph">
-              Git, GitHub, Docker, AWS, Azure, Google Cloud
-            </p>
-          </li>
-        </ul>
+      <div className="technologiess" style={{ marginTop: "1rem" }}>
+        <h1 className="training-approach-head" style={{ marginTop: "2em" }}>
+          Technologies and Tools
+        </h1>
+        <div className="tech-contain">
+          <ul className="training-approach-list">
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaCode
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
+              </div>
+              <h2>Programming Languages</h2>
+              <p className="tools-paragraph">
+                JavaScript, TypeScript, Python, Java, C#
+              </p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaLaptopCode
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
+              </div>
+              <h2>Frameworks & Libraries</h2>
+              <p className="tools-paragraph">
+                React.js, Angular, Vue.js, Node.js, Express.js
+              </p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaDatabase
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
+              </div>
+              <h2>Databases</h2>
+              <p className="tools-paragraph">
+                Firebase, mySQL, Postgres, MongoDB
+              </p>
+            </li>
+            <li className="training-approach-item">
+              <div className="icon-container">
+                <FaLaptopCode
+                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  className="icon"
+                />
+              </div>
+              <h2>Tools & Platforms</h2>
+              <p className="tools-paragraph">
+                Git, GitHub, Docker, AWS, Azure, Google Cloud
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
 
       {/* Approach Section */}
@@ -245,13 +242,15 @@ const Software: React.FunctionComponent = () => {
         <div className="wantto-know">
           <div className="wantto-know-btn">
             <Button
-              bgColor={"#000000"}
+              bgColor={"#ffb100"}
               mTop={0}
               mBottom={0}
               mLeft={0}
               mRight={0}
-              color="#ffffff"
-              title="Want to Know more? Contact Us"
+              fWeight={700}
+              color="#071d6a"
+              bRadiusColor="#ffb100"
+              title="Want to Know more? Click to Contact Us"
               onClickButton={() => {}}
             />
           </div>

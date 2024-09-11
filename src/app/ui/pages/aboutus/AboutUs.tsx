@@ -129,7 +129,7 @@ const AboutUs: React.FunctionComponent = () => {
                   whileInView={"show"}
                   viewport={{ once: false, amount: 0.7 }}
                 >
-                  <GiRosaShield />
+                  <GiRosaShield className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Integtity</h2>
                   <p className="about-histoy-details">
                     At D'roid Technologies, integrity is the cornerstone of our
@@ -144,7 +144,7 @@ const AboutUs: React.FunctionComponent = () => {
                   whileInView={"show"}
                   viewport={{ once: false, amount: 0.7 }}
                 >
-                  <FaGears />
+                  <FaGears className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Innovation</h2>
                   <p className="about-histoy-details">
                     At D'roid Technologies, innovation is at the heart of
@@ -159,7 +159,7 @@ const AboutUs: React.FunctionComponent = () => {
                   whileInView={"show"}
                   viewport={{ once: false, amount: 0.7 }}
                 >
-                  <RiCustomerService2Fill />
+                  <RiCustomerService2Fill className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">
                     Customer Focus
                   </h2>
@@ -192,7 +192,7 @@ const AboutUs: React.FunctionComponent = () => {
                           className="social-link twitter"
                           target="blank"
                         >
-                          <FaLinkedin />
+                          <FaLinkedin style={{ color: "blue" }} />
                         </a>
                       )}
                       {item.socials?.twitter && (
@@ -201,7 +201,7 @@ const AboutUs: React.FunctionComponent = () => {
                           className="social-link"
                           target="blank"
                         >
-                          <FaXTwitter />
+                          <FaXTwitter style={{ color: "black" }} />
                         </a>
                       )}
                     </div>

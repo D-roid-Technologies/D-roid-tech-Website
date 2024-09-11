@@ -177,11 +177,13 @@ const Animation: React.FunctionComponent = () => {
           title={item.title}
           actions={
             <Button
-              bgColor={getColor("basic")}
+              bgColor={"#071d69"}
               mTop={0}
               mBottom={0}
               mLeft={0}
               mRight={0}
+              fWeight={700}
+              bRadiusColor="#071d69"
               onClickButton={() => {
                 if (item.link) {
                   window.open(item.link, "_blank");
@@ -191,7 +193,7 @@ const Animation: React.FunctionComponent = () => {
               //   navigate(item.link);
               // }}
               title="View Product"
-              color={getColor("light")}
+              color={"#fbcc34"}
             />
           }
           content={item.desc}
