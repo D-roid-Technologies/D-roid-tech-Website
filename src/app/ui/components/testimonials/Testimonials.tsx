@@ -8,12 +8,75 @@ import testbackgroundImage from "../../../images/png/customerfeedback2.jpg";
 import { TESTIMONIALS } from "../../../utils/constant/Testimonial";
 
 const Testimonials: React.FunctionComponent<any> = () => {
+  const NextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          // background: "#12d6d6",
+          right: "-15px",
+          zIndex: 10,
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const PrevArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          // background: "#12d6d6",
+          left: "-1px",
+          zIndex: 10,
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (

@@ -294,8 +294,8 @@ textarea {
 }
 
 .faq-answer.open {
-  max-height: 150px; /* Adjust as per content */
-  padding: 10px;
+  max-height: 150px;
+  padding: 15px;
 }
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */

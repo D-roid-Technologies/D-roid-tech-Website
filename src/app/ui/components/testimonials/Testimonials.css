@@ -33,9 +33,31 @@
   font-family: "Mazzard";
   letter-spacing: 2px;
 }
-.Slider {
+/* .Slider {
   color: #ffffff;
+} */
+.slick-prev,
+.slick-next {
+  width: 60px;
+  height: 60px;
+  /* background-color: #12d6d6; */
+  z-index: 10;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: #ffffff; /* Arrow color */
+  font-size: 40px; /* Arrow size */
+}
+
+.slick-prev {
+  left: -40px; /* Adjust left arrow position */
+}
+
+.slick-next {
+  right: -40px; /* Adjust right arrow position */
+}
+
 .test-quote {
   text-align: left;
 }

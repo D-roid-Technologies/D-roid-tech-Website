@@ -39,6 +39,8 @@ import {
   addMessage,
   addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
+import { IoBagAdd } from "react-icons/io5";
+import { ImBoxAdd } from "react-icons/im";
 
 interface FAQItem {
   question: string;
@@ -451,10 +453,11 @@ const Contact: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
+                  fWeight={700}
                   bRadiusColor="#282a94"
                   title="Add Testimonials"
                   color="#ffffff"
-                  icon={<FaArrowRightToBracket className="icon-style" />}
+                  icon={<ImBoxAdd className="icon-style" />}
                   onClickButton={() => {
                     handleButtonClick();
                   }}
@@ -530,10 +533,11 @@ const Contact: React.FunctionComponent = () => {
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
+                fWeight={700}
                 bRadiusColor="#282a94"
                 title="Add new testimoial"
                 color="#ffffff"
-                icon={<FaPlus className="icon-style" />}
+                icon={<IoBagAdd className="icon-style" />}
                 onClickButton={() => {
                   handleNewTestimonial();
                 }}
