@@ -8,40 +8,43 @@
 }
 .container-raduis {
   display: flex;
-  padding: 20px;
-  border: 1px solid #282a94;
   border-radius: 5px;
+  padding: 30px 30px;
+  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.5);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .contact-information {
   flex: 1 1 40%;
 }
 .message {
   text-align: center;
-  margin-bottom: 50px;
-  margin-top: 80px;
+  margin-bottom: 10px;
+  margin-top: 30px;
 }
 
 .message h2 {
   margin-bottom: 0.6em;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #071d69;
 }
 
 .message p {
-  color: rgb(124, 124, 124);
+  color: #333;
   font-family: "Mazzard";
   font-size: 1.2em;
+  margin-bottom: 4em;
 }
 /* CONTACT INFORMATION */
 .contact-information {
-  /* background-color: #292929; */
-  background-color: #282a94;
+  background-color: #071d69;
   width: auto;
-  /* width: fit-content; */
-
-  /* border-radius: 5px; */
 }
 .contact-info-details {
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 5px;
   padding-left: 40px;
   padding-right: 140px;
 }
@@ -52,10 +55,10 @@
   font-family: "Rammetto One";
 }
 .info-details-p {
-  color: rgb(124, 124, 124);
+  color: #fbcc34;
   font-size: 1.1rem;
   font-family: "Mazzard";
-  margin-bottom: 4em;
+  margin-bottom: 2.5em;
 }
 /* phone number */
 .flex-contact {
@@ -79,7 +82,7 @@
 }
 
 .icon-section {
-  margin-top: 5em;
+  margin-top: 3em;
   display: flex;
   gap: 25px;
 }
@@ -93,7 +96,7 @@
 /* MESSAGE  SECTION */
 .input-section {
   flex: 1 1 60%;
-  padding: 10px;
+  padding: 0 10px;
   /* background-color: #282a94; */
 }
 
@@ -114,8 +117,10 @@
 /* INPUT SECTION TWO */
 .name-section-two {
   display: flex;
+  position: relative;
+  bottom: 1.2rem;
   /* justify-content: space-between; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
   gap: 10px;
 }
 
@@ -129,7 +134,7 @@
 /* MESSAGE AREA */
 .text-area {
   margin-top: 20px;
-  margin-bottom: 23px;
+  margin-bottom: 68px;
 }
 
 textarea {

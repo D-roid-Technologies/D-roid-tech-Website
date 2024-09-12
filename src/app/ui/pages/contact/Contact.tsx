@@ -253,8 +253,7 @@ const Contact: React.FunctionComponent = () => {
                   </div>
                   <section className="icon-section">
                     {/* <a href={DATA.socialLinks.twitter} target="_blank">
-            <FaXTwitter className="logo-size " />
-          </a> */}
+               </a> */}
                     <div>
                       <a href={DATA.socialLinks.twitter} target="_blank">
                         <RiTwitterXFill className="form-icon" />
@@ -350,10 +349,10 @@ const Contact: React.FunctionComponent = () => {
               {/* MESSAGE AREA */}
               <section className="text-area">
                 <div>
-                  <label style={{ color: Assets.colors.light }}>Message</label>
+                  <label style={{ color: Assets.colors.light }}></label>
                   <br />
                   <textarea
-                    rows={10}
+                    rows={13}
                     name="comment"
                     placeholder="Write your message here"
                     onChange={(e: any) => {
@@ -365,12 +364,12 @@ const Contact: React.FunctionComponent = () => {
               {/* SUBMIT BUTTON */}
               <div className="textarea-btn">
                 <Button
-                  bgColor="#000000"
+                  bgColor="#071d69"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  bRadiusColor="#282a94"
+                  bRadiusColor="#071d69"
                   title="Submit"
                   color="#ffffff"
                   icon={<FaArrowRightToBracket className="icon-style" />}
