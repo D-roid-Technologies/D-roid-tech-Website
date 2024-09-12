@@ -40,6 +40,54 @@ import {
   addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqData: FAQItem[] = [
+  {
+    question: "How do I request for a service on this platform?",
+    answer: "You can request a service by...",
+  },
+  {
+    question: "What is D’roid technologies, and what does it do?",
+    answer: "D'roid Technologies is a...",
+  },
+  {
+    question: "What are your hours of operation?",
+    answer: "Our operation hours are from...",
+  },
+  {
+    question: "What services do you offer?",
+    answer: "We offer a variety of services including...",
+  },
+  {
+    question: "How can I book for a special appointment?",
+    answer: "To book a special appointment...",
+  },
+  {
+    question: "Can I develop my business website?",
+    answer: "Yes, we offer custom website development...",
+  },
+  {
+    question: "How long does it take for my request to be delivered?",
+    answer: "The delivery time depends on...",
+  },
+  {
+    question: "How can I be updated on your services?",
+    answer: "You can stay updated by subscribing to...",
+  },
+  {
+    question: "Am I totally guaranteed for the best of your services?",
+    answer: "Yes, we guarantee the best quality services...",
+  },
+  {
+    question: "How do I access my website after being created?",
+    answer: "Once your website is created, you will receive...",
+  },
+];
+
 const Contact: React.FunctionComponent = () => {
   //CONTACT FOARM
   const [fullNameData, setFullNameData] = React.useState<string>("");
@@ -61,6 +109,14 @@ const Contact: React.FunctionComponent = () => {
   const handleButtonClick = () => {
     setShowForm(!showForm);
   };
+
+  // START OF FAQ
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+  // END OF FAQ
 
   //CONTACT FOARM
   const contactDetails = useSelector((state: RootState) => state.contact);
@@ -485,6 +541,28 @@ const Contact: React.FunctionComponent = () => {
             </div>
           </form>
         )}
+        <div className="faq-container">
+          <h1>FAQs</h1>
+          <ul className="faq-list">
+            {faqData.map((faq, index) => (
+              <li key={index} className="faq-item">
+                <button
+                  className="faq-question"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  {index + 1}. {faq.question}
+                </button>
+                <div
+                  className={`faq-answer ${
+                    activeIndex === index ? "open" : ""
+                  }`}
+                >
+                  {faq.answer}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </main>
     </>
   );
