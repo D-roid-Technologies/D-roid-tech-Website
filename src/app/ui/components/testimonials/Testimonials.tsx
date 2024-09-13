@@ -4,8 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../testimonials/Testimonials.css";
 // import { Testimonailstype } from "../../../utils/Types";
-import testbackgroundImage from "../../../images/png/customerfeedback2.jpg";
-// import testbackgroundImage from "../../../images/png/custoomer-review-bg-image.png";
+// import testbackgroundImage from "../../../images/png/customerfeedback2.jpg";
+import testbackgroundImage from "../../../images/png/custoomer-review-bg-image.png";
 import { TESTIMONIALS } from "../../../utils/constant/Testimonial";
 
 const Testimonials: React.FunctionComponent<any> = () => {

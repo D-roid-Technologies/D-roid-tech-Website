@@ -17,12 +17,12 @@ import { TechTraining } from "../../../utils/constant/Data";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 
 const photos: TrainingPhoto[] = [
-  // { image: Assets.images.trainingOne, text: "" },
+  { image: Assets.images.trainingBannerOne, text: "" },
   {
-    image: Assets.images.trainingTwo,
+    image: Assets.images.trainingBannerTwo,
     text: "",
   },
-  { image: Assets.images.trainingThree, text: "" },
+  { image: Assets.images.tarinigBannerThree, text: "" },
 ];
 
 const Training: React.FC = () => {
@@ -52,9 +52,9 @@ const Training: React.FC = () => {
       <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
-          backgroundColor: getColor("overlay"),
+          // backgroundColor: getColor("overlay"),
         }}
-        className="bg-image"
+        className="training-bg-image"
       >
         <div
           style={{ color: getColor("light") }}

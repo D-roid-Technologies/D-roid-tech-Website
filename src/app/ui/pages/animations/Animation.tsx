@@ -182,7 +182,7 @@ const Animation: React.FunctionComponent = () => {
               mBottom={0}
               mLeft={0}
               mRight={0}
-              fWeight={700}
+              fWeight={800}
               bRadiusColor="#fbcc34"
               onClickButton={() => {
                 if (item.link) {
@@ -256,7 +256,8 @@ const Animation: React.FunctionComponent = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.7 }}
-          className="our-catalog-map"
+          // className="our-catalog-map"
+          className="service-card-container"
         >
           {filterData.length > 0
             ? filterData.map((product, index) => (

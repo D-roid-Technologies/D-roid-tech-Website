@@ -53,6 +53,10 @@ export const Assets = {
     uni: require("../../images/png/training-image-three.png"),
     highSchool: require("../../images/png/training-image-two.png"),
     productPageBanner: require("../../images/png/product-page-banner-removebg-preview.png"),
+    trainingBannerOne: require("../../images/png/Training-banner-one-removebg-preview.png"),
+    trainingBannerTwo: require("../../images/png/Training-banner-two.png"),
+    tarinigBannerThree: require("../../images/png/Training-banner-three.png"),
+
     productCustomerReview: require("../../images/png/product-client-removebg-preview.png"),
 
     servicesMain: require("../../images/png/what.png"),

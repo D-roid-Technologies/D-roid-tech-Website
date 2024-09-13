@@ -15,7 +15,9 @@
 }
 
 .test-read {
-  color: #12d6d6;
+  /* color: #12d6d6; */
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-size: 2.5rem;
   letter-spacing: 3px;
   text-align: center;
@@ -29,7 +31,7 @@
   padding: 0 50px;
   text-align: left;
   font-size: 1.2em;
-  color: #ffffff;
+  color: #333;
   font-family: "Mazzard";
   letter-spacing: 2px;
 }
@@ -47,7 +49,7 @@
 .slick-prev:before,
 .slick-next:before {
   /* color: #ffffff; Arrow color */
-  color: #12d6d6;
+  color: #071d6a;
   font-size: 40px; /* Arrow size */
 }
 
@@ -65,7 +67,7 @@
 
 .author {
   margin-top: 10px;
-  color: #12d6d6;
+  color: #071d6a;
   padding-left: 50px;
 }
 
