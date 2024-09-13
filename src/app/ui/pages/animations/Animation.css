@@ -18,12 +18,15 @@
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
+.products-header {
+  color: #ffb100;
+}
 
 .product-pp {
   font-family: "MazzardH", sans-serif;
   letter-spacing: 2px;
   font-size: 22px;
-  color: rgb(39, 39, 39);
+  color: #071d6a;
 }
 .product-p {
   font-size: 1.2rem;
@@ -40,31 +43,38 @@
   width: 100%;
   height: 100vh;
   display: block;
+
+  background: rgba(255, 177, 0, 0.1);
+  box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.25),
+    74.467px -74.467px 74.467px 0px rgba(194, 135, 0, 0.1) inset,
+    -74.467px 74.467px 74.467px 0px rgba(255, 255, 255, 0.1) inset;
+  backdrop-filter: blur(74.46666717529297px);
   /* margin-bottom: 80px; */
 }
 
 .products-banner-inner {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20%;
+  /* gap: 20%; */
   height: 500px;
 }
 
 .products-banner-desc {
-  width: 40%;
+  /* width: 40%; */
   height: auto;
+  position: relative;
+  bottom: 10rem;
 }
 
 .product-cart {
-  width: 450px;
-  height: 450px;
-  color: #000000;
+  width: 580px;
+  height: 480px;
 }
 
 .product-bottom-banner {
-  background-color: #000000;
+  background-color: #071d6a;
   width: 100%;
   height: 130px;
   padding: 12px;
@@ -111,6 +121,7 @@
   align-items: center;
   gap: 30px;
 }
+
 .card {
   margin: 10px;
   flex: 1 1 300px; /* Adjust based on your card width */
@@ -124,7 +135,7 @@
 }
 
 .our-catalog-icon {
-  width: 400px;
+  width: 580px;
   height: 400px;
 }
 

@@ -52,6 +52,8 @@ export const Assets = {
     one_one: require("../../images/png/training-image-one.png"),
     uni: require("../../images/png/training-image-three.png"),
     highSchool: require("../../images/png/training-image-two.png"),
+    productPageBanner: require("../../images/png/product-page-banner-removebg-preview.png"),
+    productCustomerReview: require("../../images/png/product-client-removebg-preview.png"),
 
     servicesMain: require("../../images/png/what.png"),
     techT: require("../../images/png/techtraining.png"),
