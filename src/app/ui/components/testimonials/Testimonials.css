@@ -30,7 +30,7 @@
 .test-testimonial-details {
   padding: 0 50px;
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   color: #333;
   font-family: "Mazzard";
   letter-spacing: 2px;
@@ -95,28 +95,60 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 70vh;
+    height: 54vh;
     /* height: auto; */
   }
+
   .test-read {
-    color: #12d6d6;
-    font-size: 1.6rem;
-    letter-spacing: 3px;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
     text-align: center;
     font-weight: 600;
     font-family: "Rammetto One";
-    padding-top: 1.2em;
-    padding-bottom: 1em;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 1.2em 1em;
   }
 
   .test-testimonial-details {
-    padding: 0 15px;
-    text-align: left;
-    font-size: 0.9em;
-    color: #ffffff;
-    font-family: "Mazzard";
-    letter-spacing: 2px;
+    padding: 0 40px;
+    text-align: justify;
+    font-size: 1rem;
+    /* letter-spacing: 2px; */
+  }
+
+  .test-quote {
+    text-align: justify;
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+
+  .author {
+    margin-top: 10px;
+    color: #071d6a;
+    padding-left: 50px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 55px;
+    height: 60px;
+    z-index: 10;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: #071d6a;
+    font-size: 30px; /* Arrow size */
+  }
+
+  .slick-prev {
+    left: -40px; /* Adjust left arrow position */
+  }
+
+  .slick-next {
+    right: -40px; /* Adjust right arrow position */
   }
 }

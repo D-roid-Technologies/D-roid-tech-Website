@@ -615,4 +615,20 @@ textarea {
     width: 60%;
     transition: transform 0.3s ease-in-out;
   }
+  /* FAQ */
+  .faq-container h1 {
+    font-size: 1.5rem;
+  }
+  .faq-question {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  .faq-answer {
+    font-size: 0.8rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 10px;
+  }
 }

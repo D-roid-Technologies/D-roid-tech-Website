@@ -460,13 +460,13 @@
     align-items: center;
   }
   .image-sized {
-    width: 450px;
-    height: 200px;
-    object-fit: none;
+    width: 600px;
+    height: 300px;
+    object-fit: contain;
   }
 
   .about-history {
-    padding: 0 0;
+    padding: 15px 15px;
     padding-top: 40px;
     text-align: left;
   }
@@ -483,11 +483,17 @@
   .about-histoy-details {
     font-size: 15px;
     font-weight: 200;
-    color: rgb(186, 184, 184) !important;
+    color: #333 !important;
     text-align: justify;
     letter-spacing: 0;
     line-height: 20px;
     font-family: "Mazzard";
+  }
+  .about-history-details-div {
+    padding: 30px 15px;
+    border-radius: 10px;
+    background: rgba(240, 240, 240, 0.5);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
   /* VISION AND MISSION SECTION */
   .vision-marginbuttom {
@@ -507,8 +513,15 @@
     justify-content: center;
     align-items: center;
     padding-top: 0;
-    gap: 40px;
+    gap: 30px;
   }
+  .vision-main {
+    padding: 0;
+    border-radius: 10px;
+    background: rgba(240, 240, 240, 0.5);
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  }
+
   /* BOX ONE */
   .vision-header {
     padding-top: 20px;
@@ -521,8 +534,7 @@
     font-family: "Rammetto";
   }
 
-  .vision-box {
-    /* background-color: #f0f0f0; */
+  /* .vision-box {
     padding: 25px 10px;
     box-shadow: none;
     border-radius: 5px;
@@ -535,6 +547,18 @@
     color: rgb(186, 184, 184);
     font-family: "Mazzard";
     text-align: left;
+    line-height: 1.5;
+  } */
+  .vision-box {
+    padding: 20px 15px;
+  }
+
+  .vision-box p {
+    font-size: 15px;
+    font-weight: 200;
+    color: #333;
+    font-family: "Mazzard";
+    text-align: justify;
     line-height: 1.5;
   }
   /* CORE VALUE */

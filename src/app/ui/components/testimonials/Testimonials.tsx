@@ -34,7 +34,6 @@ const Testimonials: React.FunctionComponent<any> = () => {
         style={{
           ...style,
           display: "block",
-          // background: "#12d6d6",
           left: "-1px",
           zIndex: 10,
         }}
