@@ -58,8 +58,7 @@
 }
 
 .training-main-content-section {
-  padding: 1rem 2rem;
-  /* margin-top: 2em; */
+  padding: 3rem 2rem;
 }
 
 .training-centered-text-section {
@@ -95,9 +94,9 @@
 }
 
 /* Approach Section */
-.training-approach-main {
+.training-approach-main-one {
   /* margin-bottom: 50px; */
-  /* margin-top: 2rem; */
+  margin-top: 2rem;
 }
 
 .training-approach-head {

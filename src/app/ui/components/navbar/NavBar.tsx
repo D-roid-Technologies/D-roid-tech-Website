@@ -18,7 +18,7 @@ const NavBar: React.FunctionComponent = () => {
   const [showMenuBtn, setShowMenuBtn] = React.useState<boolean>(false);
   const [showMobileNav, setShowMobileNav] = React.useState<boolean>(false);
 
-  const [companyLogo, setCompanyLogo] = React.useState<string[]>([])
+  const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
 
   const imageListRef = ref(storage, "droidlogo/");
 
@@ -105,17 +105,21 @@ const NavBar: React.FunctionComponent = () => {
     listAll(imageListRef).then((response) => {
       response.items.forEach((items) => {
         getDownloadURL(items).then((url) => {
-          setCompanyLogo((prev) => [...prev, url])
-        })
-      })
-    })
-  }, [])
+          setCompanyLogo((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
 
   return (
     <div>
       <div className="nav-main">
         <div className="logo-image">
-          <a onClick={() => { navigate("/") }}>
+          <a
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <img
               src={companyLogo[0]}
               alt="D'roid Logo"

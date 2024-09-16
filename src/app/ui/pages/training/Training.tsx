@@ -103,7 +103,7 @@ const Training: React.FC = () => {
           />
         </div>
 
-        <div className="training-approach-main">
+        <div className="training-approach-main-one">
           <h1
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-heads"
