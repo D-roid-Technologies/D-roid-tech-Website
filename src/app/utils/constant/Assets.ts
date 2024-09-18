@@ -84,7 +84,7 @@ export const Assets = {
   colors: {
     basic: "#000000",
     light: "#FFFFFF",
-    primary: "#282A94",
+    primary: "#071D6A",
     secondary: "#479BE8",
     tertiary: "#FF6F61",
     overlay: "#00000080",

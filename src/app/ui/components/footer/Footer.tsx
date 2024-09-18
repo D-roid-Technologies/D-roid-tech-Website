@@ -117,7 +117,9 @@ const Footer: React.FunctionComponent = () => {
                   mRight={0}
                   color="#000"
                   fWeight={500}
-                  icon={<FaBell className="style-home-icon" />}
+                  bRadius={5}
+                  bRadiusColor="#7f8fc9"
+                  // icon={<FaBell className="style-home-icon" />}
                   onClickButton={() => {
                     handleUserEmail();
                   }}

@@ -67,13 +67,13 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             mLeft={0}
             mRight={0}
             title="See more testimonials"
-            color="#fbcc34"
+            color="#ffffff"
             fWeight={800}
             bRadius={5}
             bRadiusColor="#071D6A"
             icon={
               <FaBookReader
-                style={{ color: "#fbcc34" }}
+                style={{ color: "#ffffff" }}
                 className="style-home-icon"
               />
             }
@@ -100,8 +100,8 @@ const CustomerFeedBack: React.FunctionComponent = () => {
             <p className="hours"> Hours</p>
             <p className="time-container">
               <p className="time">
-                Open Mondays - Fridays &nbsp;
-                <span className="friday"> 8am - 5pm </span>
+                <span className="friday"> Open &nbsp; 8am - 5pm </span>
+                &nbsp; &nbsp; Mondays - Fridays
               </p>
             </p>
             <div className="contact-buttons">
@@ -113,13 +113,13 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   mLeft={0}
                   mRight={0}
                   title="Send us an Email"
-                  color="#fbcc34"
+                  color="#ffffff"
                   fWeight={800}
                   bRadius={5}
                   bRadiusColor="#071D6A"
                   icon={
                     <IoMailUnread
-                      style={{ color: "#fbcc34" }}
+                      style={{ color: "#ffffff" }}
                       className="style-home-icon"
                     />
                   }
@@ -137,13 +137,13 @@ const CustomerFeedBack: React.FunctionComponent = () => {
                   mLeft={0}
                   mRight={0}
                   title="WhatsApp Chat"
-                  color="#fbcc34"
+                  color="#ffffff"
                   fWeight={800}
                   bRadius={5}
                   bRadiusColor="#071D6A"
                   icon={
                     <IoLogoWhatsapp
-                      style={{ color: "#fbcc34" }}
+                      style={{ color: "#ffffff" }}
                       className="icon-styles"
                     />
                   }

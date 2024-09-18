@@ -11,6 +11,7 @@
 /* SECTION ONE OUR HISTORY */
 .hero-container {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 200px;
   margin-top: 100px;
@@ -41,14 +42,14 @@
   font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Verdana Pro";
   text-align: center;
 }
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: #333 !important;
-  font-family: "Mazzard";
+  font-family: "Verdana Pro";
   text-align: left;
   letter-spacing: 2px;
 }
@@ -70,6 +71,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
 .readmore-btn {

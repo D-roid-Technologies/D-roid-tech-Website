@@ -45,7 +45,9 @@
 }
 /* Button */
 .contact-uss {
-  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  /* padding-left: 100px; */
   margin-top: 50px;
 }
 

@@ -367,13 +367,13 @@ const Section: React.FunctionComponent = () => {
                   mLeft={0}
                   mRight={0}
                   title="Start now"
-                  color="#fbcc34"
+                  color="#ffffff"
                   fWeight={700}
                   bRadius={5}
                   bRadiusColor="#071d6a"
                   icon={
                     <MdHomeRepairService
-                      style={{ color: "#fbcc34" }}
+                      style={{ color: "#ffffff" }}
                       className="style-home-icons"
                     />
                   }
