@@ -41,6 +41,7 @@ import {
 } from "../../../redux/slices/TestimonialSlice";
 import { IoBagAdd } from "react-icons/io5";
 import { ImBoxAdd } from "react-icons/im";
+import Captcha from "../../components/captcha/Captcha";
 
 interface FAQItem {
   question: string;
@@ -367,7 +368,7 @@ const Contact: React.FunctionComponent = () => {
                     </div>
                   </div>
                   {/* PHONE NUMBER */}
-                  <div className="input-width">
+                  {/* <div className="input-width">
                     <br />
                     <div className="input-container">
                       <AppInput
@@ -380,8 +381,23 @@ const Contact: React.FunctionComponent = () => {
                         }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </section>
+                {/* Phone number */}
+                <div className="input-width">
+                  <br />
+                  <div className="input-container">
+                    <AppInput
+                      w="100%"
+                      h={40}
+                      pLeft={10}
+                      pHolder="Phone Number"
+                      onchangeText={(e: any) => {
+                        setPhoneNumberData(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
                 <section className="name-section">
                   {/* SUBJECT */}
                   <div className="input-width">
@@ -422,19 +438,27 @@ const Contact: React.FunctionComponent = () => {
               {/* SUBMIT BUTTON */}
               <div className="textarea-btn">
                 <Button
-                  bgColor="#071d69"
+                  bgColor="#FFB100"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  bRadiusColor="#071d69"
+                  bRadiusColor="#FFB100"
                   title="Submit"
-                  color="#ffffff"
-                  icon={<FaArrowRightToBracket className="icon-style" />}
+                  color="#071d69"
+                  icon={
+                    <FaArrowRightToBracket
+                      style={{ color: "#071d69" }}
+                      className="icon-style"
+                    />
+                  }
                   onClickButton={() => {
                     handleUserEmail();
                   }}
                 />
+              </div>
+              <div>
+                <Captcha />
               </div>
             </div>
           </div>

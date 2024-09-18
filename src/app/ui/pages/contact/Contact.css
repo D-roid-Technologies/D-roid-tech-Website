@@ -4,12 +4,12 @@
 
 .contact-containerr {
   padding: 0 100px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 }
 .container-raduis {
   display: flex;
   border-radius: 5px;
-  padding: 30px 30px;
+  padding: 80px 30px;
   border-radius: 10px;
   background: rgba(240, 240, 240, 0.5);
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -44,9 +44,9 @@
 }
 .contact-info-details {
   padding-top: 40px;
-  padding-bottom: 5px;
   padding-left: 40px;
-  padding-right: 140px;
+  padding-right: 40px;
+  padding-bottom: 0;
 }
 .info-details-head {
   color: white;
@@ -151,7 +151,8 @@ textarea {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 40%;
+  width: 30%;
+  margin-bottom: 20px;
   /* transition: transform 0.3s ease-in-out; */
 }
 
