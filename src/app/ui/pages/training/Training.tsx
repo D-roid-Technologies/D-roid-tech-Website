@@ -97,8 +97,10 @@ const Training: React.FC = () => {
 
       <div className="training-main-content-section">
         <div style={{ textAlign: "center" }}>
-          <LiaChalkboardTeacherSolid
-            style={{ fontSize: "15rem", color: "#071D6A" }}
+          <img
+            src={Assets.images.trainingIconImage}
+            alt=""
+            style={{ fontSize: "15rem" }}
             className="icon"
           />
         </div>

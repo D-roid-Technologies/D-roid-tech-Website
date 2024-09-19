@@ -123,7 +123,7 @@ const Software: React.FunctionComponent = () => {
             <li className="training-approach-item">
               <div className="icon-container">
                 <FaCode
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  style={{ fontSize: "2rem", color: "#071d6a" }}
                   className="icon"
                 />
               </div>
@@ -135,7 +135,7 @@ const Software: React.FunctionComponent = () => {
             <li className="training-approach-item">
               <div className="icon-container">
                 <FaLaptopCode
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  style={{ fontSize: "2rem", color: "#071d6a" }}
                   className="icon"
                 />
               </div>
@@ -147,7 +147,7 @@ const Software: React.FunctionComponent = () => {
             <li className="training-approach-item">
               <div className="icon-container">
                 <FaDatabase
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  style={{ fontSize: "2rem", color: "#071d6a" }}
                   className="icon"
                 />
               </div>
@@ -159,7 +159,7 @@ const Software: React.FunctionComponent = () => {
             <li className="training-approach-item">
               <div className="icon-container">
                 <FaLaptopCode
-                  style={{ fontSize: "3rem", color: Assets.colors.secondary }}
+                  style={{ fontSize: "2rem", color: "#071d6a" }}
                   className="icon"
                 />
               </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { color, motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import "../../components/trainingApproach/TrainingApproach.css";
 
 type ApproachItem = {
   title: string;
@@ -109,7 +110,7 @@ const TrainingApproach: React.FC = () => {
       <h1 style={styles.heading} className="training-approach-head">
         Our Approach
       </h1>
-      <ul className="training-approach-list">
+      <ul className="training-approach-listtt">
         {approachItems.map((item, index) => (
           <TrainingApproachItem
             key={index}
