@@ -89,15 +89,14 @@
 /* Approach Section */
 .software-approach-main {
   margin-bottom: 50px;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
   margin-top: 100px;
 }
 .software-approach-heads {
   text-align: center;
   margin-bottom: 1em;
   font-family: "Rammetto One";
-
   color: #ffb100;
   font-size: 48px;
   font-style: normal;
@@ -116,6 +115,12 @@
 .software-approach-item {
   margin-bottom: 20px;
   color: #071d6a !important;
+  border-radius: 10px;
+  padding: 20px 20px;
+  background: rgba(7, 29, 106, 0.1);
+  box-shadow: 49.467px -49.467px 49.467px 0px rgba(5, 22, 81, 0.1) inset,
+    -49.467px 49.467px 49.467px 0px rgba(255, 255, 255, 0.1) inset;
+  backdrop-filter: blur(49.46666717529297px);
 }
 
 .software-approach-item h2 {
@@ -131,7 +136,7 @@
 }
 
 .software-approach-item p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #333 !important;
   font-family: "Mazzard";

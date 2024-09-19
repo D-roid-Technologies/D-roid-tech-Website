@@ -14,7 +14,7 @@ export const Assets = {
     websiteImage: require("../../images/png/website-image.png"),
 
     // software page
-    softwareBannerImage: require("../../images/png/sotware-banner-image.png"),
+    softwareBannerImage: require("../../images/png/sotware dev 1.png"),
 
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
@@ -65,7 +65,7 @@ export const Assets = {
     testImage: require("../../images/png/testimage.png"),
     wDev: require("../../images/png/web dev 1.png"),
     mDev: require("../../images/png/mobile web 1.png"),
-    tService: require("../../images/png/template service 1.png"),
+    tService: require("../../images/png/tservice-two.png"),
     backEndDev: require("../../images/png/backend dev 1.png"),
     cReviews: require("../../images/png/code reviews 1.png"),
     appAi: require("../../images/png/ogoo-Ai.png"),
