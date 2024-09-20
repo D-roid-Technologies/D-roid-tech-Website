@@ -15,14 +15,21 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import { TechTraining } from "../../../utils/constant/Data";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import TrainingHero from "../../components/traininghero/TrainingHero";
 
 const photos: TrainingPhoto[] = [
-  { image: Assets.images.trainingBannerOne, text: "" },
+  {
+    image: Assets.images.trainingBannerOne,
+    text: "Explore the advent of our resounding Tech training",
+  },
   {
     image: Assets.images.trainingBannerTwo,
-    text: "",
+    text: "Explore the advent of our resounding Tech training",
   },
-  { image: Assets.images.tarinigBannerThree, text: "" },
+  {
+    image: Assets.images.tarinigBannerThree,
+    text: "Explore the advent of our resounding Tech training",
+  },
 ];
 
 const Training: React.FC = () => {
@@ -49,10 +56,10 @@ const Training: React.FC = () => {
   return (
     <div style={{ backgroundColor: getColor("light") }}>
       <NavBar />
-      <div
+      <TrainingHero />
+      {/* <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
-          // backgroundColor: getColor("overlay"),
         }}
         className="training-bg-image"
       >
@@ -92,7 +99,7 @@ const Training: React.FC = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Approach Section */}
 
       <div className="training-main-content-section">

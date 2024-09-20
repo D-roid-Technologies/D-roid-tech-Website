@@ -351,52 +351,59 @@
   .customerfeedback-main {
     margin-bottom: 50px;
   }
-
   .customer-testimonials {
-    margin-bottom: 60px;
-    background-color: #282a94;
-    height: 400px;
+    margin-bottom: 50px;
+    background-color: rgba(7, 29, 106, 0.1);
+    height: auto;
+    padding: 30px 10px;
   }
 
   .read {
-    color: #fff;
-    font-size: 0.9rem;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-size: 1.4rem;
     letter-spacing: 1px;
     text-align: center;
-    font-weight: 500;
-    font-family: "Rammetto One";
-    padding-top: 1.8em;
-    padding-bottom: 1em;
+    font-weight: 700;
+    font-family: "Verdana Pro";
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
+
   .testiminial-details {
-    padding: 0 20px;
-    color: #ffffff;
-    font-family: "Mazzard";
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-align: justify;
+    font-family: "Verdana Pro";
+    letter-spacing: 0;
+    color: rgba(7, 29, 106, 0.6);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   .testifier {
     margin-top: 10px;
-    color: #00ffff;
-    font-size: 10px;
+    color: #071d6a;
+    font-family: "Mazzard";
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
   }
-
   /* Button */
   .contact-uss {
-    padding-left: 20px;
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
   }
 
   .contactuss-button {
-    width: 55%;
+    width: 70%;
     border-radius: none;
     transition: transform 0.3s ease-in-out;
   }
   .contactuss-button:hover {
     transform: scale(1.1);
   }
-
   /* SECTION FOUR */
   .section-four {
     padding-left: 15px;
