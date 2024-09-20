@@ -28,8 +28,8 @@
 } */
 
 .banner-size {
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   background-color: #fff9e9;
   border-radius: 50%;
@@ -37,12 +37,12 @@
 .banner-one {
   position: relative;
   left: -5rem;
-  bottom: -4rem;
+  bottom: -7rem;
 }
 .banner-two {
   position: relative;
   left: -22rem;
-  top: -3rem;
+  top: -2.5rem;
 }
 
 .home-content {
@@ -54,8 +54,9 @@
   font-size: 3.8rem;
   letter-spacing: 3px;
   text-align: center;
-  font-weight: 500;
-  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-weight: 700;
+  color: #071d6a;
+  /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
   font-family: "Verdana Pro";
 }
 
@@ -125,127 +126,77 @@
 
 /* TABLET On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
-  .home-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 600px;
-  }
-  .home-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    /* padding-top: 80px; */
-  }
-  .bg-image {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50vh;
-  }
-
-  .home-heading {
-    font-size: 3.5rem;
-    letter-spacing: 2px;
-    text-align: center;
-    font-weight: 500;
-  }
-
-  .product-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4em;
-  }
-
-  .See-our-product {
-    font-family: "Mazzard";
-    cursor: pointer;
-    width: 60%;
-  }
 }
 
 /*MOBILE On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
   .home-main {
-    display: block !important;
-    height: 100%;
+    align-self: center;
+    padding: 0 20px;
+    height: 50vh;
   }
-  .home {
-    width: 50%;
-    height: 100%;
-  }
-  .home-content {
-    justify-content: center;
-    align-items: center;
-    margin-top: 0px !important;
-  }
-
-  .bg-image {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 40vh !important;
-  }
+  /* .home-main {
+    padding: 0 20px;
+    text-align: center;
+  } */
 
   .home-heading {
-    font-size: 0.8rem !important;
-    letter-spacing: 1.8px;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
     text-align: center;
-    font-weight: 900;
-    font-family: "Rammetto One";
-    color: #000000 !important;
   }
-
-  .product-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    transition: transform 0.3s ease-in-out;
+  .home-left {
+    align-self: center;
   }
-  .icon-styles {
-    color: #000000;
-    width: 15px;
-    height: 15px;
+  .home-right {
+    display: none;
   }
   .See-our-product {
-    font-size: 0.7rem;
-    font-family: "Courier New", Courier, monospace !important;
-    width: 150%;
+    font-family: "Mazzard";
+    cursor: pointer;
+    width: 90%;
+    margin-top: 20px;
     transition: transform 0.3s ease-in-out;
-    /* width: 100%; */
   }
+
   .See-our-product:hover {
     transform: scale(1.1);
   }
-
   .home-middle-banner {
     background-color: #fbcc34;
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
     display: flex;
-    height: 80px;
+    height: 70px;
     justify-content: space-between;
     align-items: center;
+    gap: 25px;
   }
 
   .home-middle-one-icon {
-    width: 40px;
-    height: 40px;
-    display: block;
+    width: 30px;
+    height: 30px;
+    display: flex;
     align-items: center;
   }
 
   .home-middle-one {
-    display: block;
-    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
     gap: 10px;
+    animation: scroll 15s linear infinite;
   }
 
   .home-middle-one-p {
-    display: none;
+    font-family: "Courier New", Courier, monospace;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  .icon-styles {
+    color: #000000;
+    width: 15px;
+    height: 15px;
   }
 }

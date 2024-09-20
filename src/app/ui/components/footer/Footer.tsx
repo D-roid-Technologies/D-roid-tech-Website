@@ -89,7 +89,7 @@ const Footer: React.FunctionComponent = () => {
           <div>
             <h1 className="subscribe"> SUBSCRIBE </h1>
             <p className="connect-subscribe">
-              Sign up to hear from us about specials, sales, and events.{" "}
+              Sign up to hear from us about specials, sales, and events.
             </p>
 
             {/* FORM SECTION */}
@@ -98,8 +98,11 @@ const Footer: React.FunctionComponent = () => {
                 <AppInput
                   w="100%"
                   h={40}
-                  pLeft={30}
+                  pLeft={20}
                   pHolder="Enter email"
+                  bagColor="#071d69"
+                  bColor="#071d69"
+                  color="#fff"
                   onchangeText={(e: any) => {
                     setEmailSubscription(e.target.value);
                   }}
@@ -110,14 +113,21 @@ const Footer: React.FunctionComponent = () => {
               <div className="signup-btn">
                 <Button
                   title="Subscribe"
-                  bgColor="#7f8fc9"
+                  bgColor="#ffffff"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
                   color="#000"
-                  fWeight={500}
-                  icon={<FaBell className="style-home-icon" />}
+                  fWeight={700}
+                  // bRadius={10}
+                  bRadiusColor="#ffffff"
+                  icon={
+                    <FaBell
+                      style={{ color: "#000 " }}
+                      className="style-home-icon"
+                    />
+                  }
                   onClickButton={() => {
                     handleUserEmail();
                   }}

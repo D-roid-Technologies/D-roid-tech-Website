@@ -39,6 +39,57 @@ import {
   addMessage,
   addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
+import { IoBagAdd } from "react-icons/io5";
+import { ImBoxAdd } from "react-icons/im";
+import Captcha from "../../components/captcha/Captcha";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqData: FAQItem[] = [
+  {
+    question: "How do I request for a service on this platform?",
+    answer: "You can request a service by...",
+  },
+  {
+    question: "What is D’roid technologies, and what does it do?",
+    answer: "D'roid Technologies is a...",
+  },
+  {
+    question: "What are your hours of operation?",
+    answer: "Our operation hours are from...",
+  },
+  {
+    question: "What services do you offer?",
+    answer: "We offer a variety of services including...",
+  },
+  {
+    question: "How can I book for a special appointment?",
+    answer: "To book a special appointment...",
+  },
+  {
+    question: "Can I develop my business website?",
+    answer: "Yes, we offer custom website development...",
+  },
+  {
+    question: "How long does it take for my request to be delivered?",
+    answer: "The delivery time depends on...",
+  },
+  {
+    question: "How can I be updated on your services?",
+    answer: "You can stay updated by subscribing to...",
+  },
+  {
+    question: "Am I totally guaranteed for the best of your services?",
+    answer: "Yes, we guarantee the best quality services...",
+  },
+  {
+    question: "How do I access my website after being created?",
+    answer: "Once your website is created, you will receive...",
+  },
+];
 
 const Contact: React.FunctionComponent = () => {
   //CONTACT FOARM
@@ -61,6 +112,14 @@ const Contact: React.FunctionComponent = () => {
   const handleButtonClick = () => {
     setShowForm(!showForm);
   };
+
+  // START OF FAQ
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+  // END OF FAQ
 
   //CONTACT FOARM
   const contactDetails = useSelector((state: RootState) => state.contact);
@@ -253,8 +312,7 @@ const Contact: React.FunctionComponent = () => {
                   </div>
                   <section className="icon-section">
                     {/* <a href={DATA.socialLinks.twitter} target="_blank">
-            <FaXTwitter className="logo-size " />
-          </a> */}
+               </a> */}
                     <div>
                       <a href={DATA.socialLinks.twitter} target="_blank">
                         <RiTwitterXFill className="form-icon" />
@@ -310,7 +368,7 @@ const Contact: React.FunctionComponent = () => {
                     </div>
                   </div>
                   {/* PHONE NUMBER */}
-                  <div className="input-width">
+                  {/* <div className="input-width">
                     <br />
                     <div className="input-container">
                       <AppInput
@@ -323,8 +381,23 @@ const Contact: React.FunctionComponent = () => {
                         }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </section>
+                {/* Phone number */}
+                <div className="input-width">
+                  <br />
+                  <div className="input-container">
+                    <AppInput
+                      w="100%"
+                      h={40}
+                      pLeft={10}
+                      pHolder="Phone Number"
+                      onchangeText={(e: any) => {
+                        setPhoneNumberData(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
                 <section className="name-section">
                   {/* SUBJECT */}
                   <div className="input-width">
@@ -350,10 +423,10 @@ const Contact: React.FunctionComponent = () => {
               {/* MESSAGE AREA */}
               <section className="text-area">
                 <div>
-                  <label style={{ color: Assets.colors.light }}>Message</label>
+                  <label style={{ color: Assets.colors.light }}></label>
                   <br />
                   <textarea
-                    rows={10}
+                    rows={13}
                     name="comment"
                     placeholder="Write your message here"
                     onChange={(e: any) => {
@@ -365,19 +438,27 @@ const Contact: React.FunctionComponent = () => {
               {/* SUBMIT BUTTON */}
               <div className="textarea-btn">
                 <Button
-                  bgColor="#000000"
+                  bgColor="#FFB100"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  bRadiusColor="#282a94"
+                  bRadiusColor="#FFB100"
                   title="Submit"
-                  color="#ffffff"
-                  icon={<FaArrowRightToBracket className="icon-style" />}
+                  color="#071d69"
+                  icon={
+                    <FaArrowRightToBracket
+                      style={{ color: "#071d69" }}
+                      className="icon-style"
+                    />
+                  }
                   onClickButton={() => {
                     handleUserEmail();
                   }}
                 />
+              </div>
+              <div>
+                <Captcha />
               </div>
             </div>
           </div>
@@ -396,10 +477,11 @@ const Contact: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
+                  fWeight={700}
                   bRadiusColor="#282a94"
                   title="Add Testimonials"
                   color="#ffffff"
-                  icon={<FaArrowRightToBracket className="icon-style" />}
+                  icon={<ImBoxAdd className="icon-style" />}
                   onClickButton={() => {
                     handleButtonClick();
                   }}
@@ -475,10 +557,11 @@ const Contact: React.FunctionComponent = () => {
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
+                fWeight={700}
                 bRadiusColor="#282a94"
                 title="Add new testimoial"
                 color="#ffffff"
-                icon={<FaPlus className="icon-style" />}
+                icon={<IoBagAdd className="icon-style" />}
                 onClickButton={() => {
                   handleNewTestimonial();
                 }}
@@ -486,6 +569,28 @@ const Contact: React.FunctionComponent = () => {
             </div>
           </form>
         )}
+        <div className="faq-container">
+          <h1>FAQs</h1>
+          <ul className="faq-list">
+            {faqData.map((faq, index) => (
+              <li key={index} className="faq-item">
+                <button
+                  className="faq-question"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  {index + 1}. {faq.question}
+                </button>
+                <div
+                  className={`faq-answer ${
+                    activeIndex === index ? "open" : ""
+                  }`}
+                >
+                  {faq.answer}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </main>
     </>
   );

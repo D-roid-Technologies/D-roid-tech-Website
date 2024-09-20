@@ -14,7 +14,7 @@ export const Assets = {
     websiteImage: require("../../images/png/website-image.png"),
 
     // software page
-    softwareBannerImage: require("../../images/png/sotware-banner-image.png"),
+    softwareBannerImage: require("../../images/png/sotware dev 1.png"),
 
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
@@ -52,6 +52,13 @@ export const Assets = {
     one_one: require("../../images/png/training-image-one.png"),
     uni: require("../../images/png/training-image-three.png"),
     highSchool: require("../../images/png/training-image-two.png"),
+    productPageBanner: require("../../images/png/product-page-banner-removebg-preview.png"),
+    trainingBannerOne: require("../../images/png/Training-banner-one.png"),
+    trainingBannerTwo: require("../../images/png/Training-banner-two.png"),
+    tarinigBannerThree: require("../../images/png/Training-banner-three.png"),
+    trainingIconImage: require("../../images/png/training-icon-image.png"),
+
+    productCustomerReview: require("../../images/png/product-client-removebg-preview.png"),
 
     servicesMain: require("../../images/png/what.png"),
     techT: require("../../images/png/techtraining.png"),
@@ -59,7 +66,7 @@ export const Assets = {
     testImage: require("../../images/png/testimage.png"),
     wDev: require("../../images/png/web dev 1.png"),
     mDev: require("../../images/png/mobile web 1.png"),
-    tService: require("../../images/png/template service 1.png"),
+    tService: require("../../images/png/tservice-two.png"),
     backEndDev: require("../../images/png/backend dev 1.png"),
     cReviews: require("../../images/png/code reviews 1.png"),
     appAi: require("../../images/png/ogoo-Ai.png"),
@@ -78,7 +85,7 @@ export const Assets = {
   colors: {
     basic: "#000000",
     light: "#FFFFFF",
-    primary: "#282A94",
+    primary: "#071D6A",
     secondary: "#479BE8",
     tertiary: "#FF6F61",
     overlay: "#00000080",

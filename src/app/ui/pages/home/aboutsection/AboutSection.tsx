@@ -24,6 +24,38 @@ import { FcTemplate } from "react-icons/fc";
 
 const Section: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
+  const NextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          // background: "#12d6d6",
+          right: "-15px",
+          zIndex: 10,
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const PrevArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          left: "-1px",
+          zIndex: 10,
+        }}
+        onClick={onClick}
+      />
+    );
+  };
 
   const settings = {
     dots: true,
@@ -33,20 +65,15 @@ const Section: React.FunctionComponent = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    arrows: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
   const navigate = useNavigate();
 
   return (
     <>
       <div className="section-main">
-        {/* SECTION ONE */}
-        {/* <div className="section-one"> */}
-        {/* <div className="coding-image">
-          <GiCuckooClock
-            className="image-size"
-            style={{ color: getColor("basic") }}
-          />
-        </div> */}
         <div className="hero-container">
           <div>
             <img src={Assets.images.aboutImage} alt="" className="hero-image" />
@@ -96,43 +123,18 @@ const Section: React.FunctionComponent = () => {
                 goals, and we use that knowledge to develope tailored solutions
                 that meet their unique requirements.
               </p>
-              {/* <div className="our-approach-btn">
-                <div className="approach-btn">
-                  <Button
-                    bgColor="#091d6a"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="Our Approach"
-                    color={getColor("light")}
-                    fWeight={800}
-                    bRadius={5}
-                    icon={<SiNintendogamecube className="style-home-icon" />}
-                    onClickButton={() => {
-                      navigate("/aboutus");
-                    }}
-                  />
-                </div>
-              </div> */}
-              {/* </div> */}
-              {/* <div className="coding-image">
-          <GiPathDistance
-            className="image-size"
-            style={{ color: getColor("basic") }}
-          />
-        </div> */}
             </div>
           </div>
         </div>
       </div>
+      {/* JOIN TECH TEAM  */}
       <div className="join-us" style={{ backgroundColor: "#091d6a" }}>
         {/* <section className="join-container"> */}
         <div>
-          <FaUserGraduate
+          {/* <FaUserGraduate
             className="icon-test"
             style={{ color: Assets.colors.substitute }}
-          />
+          /> */}
           <p
             className="our-approach-blue-bg"
             style={{ color: Assets.colors.substitute }}
@@ -190,53 +192,7 @@ const Section: React.FunctionComponent = () => {
         {/* </section> */}
       </div>
 
-      {/* <motion.div
-        variants={fadeIn("right", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.7 }}
-        className="section-two"
-      >
-        <div className="approach">
-          <p className="our-approach"> Get a Website in Minutes?</p>
-          <p className="approach-details">
-            We pride ourselves as a Software Development company that{" "}
-            <b>builds from scratch</b>, paying attention to the most minute
-            details expressed by our clients. Every Line of code is careflly
-            written, tested and deployed with care but we also understand that
-            you may need to have your website up and live as fast as possible.
-            <br />
-            <br />
-            Then...
-            <div className="use-our-template">
-              <div className="div-button-second">
-                <Button
-                  bgColor={getColor("basic")}
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="Use our Template Service"
-                  color={getColor("light")}
-                  fWeight={800}
-                  bRadius={5}
-                  icon={<HiOutlineTemplate className="style-home-icon" />}
-                  onClickButton={() => {
-                    navigate("/software");
-                  }}
-                />
-              </div>
-            </div>
-          </p>
-        </div>
-        <div className="coding-image">
-          <FcTemplate
-            className="image-size"
-            style={{ color: getColor("basic") }}
-          />
-        </div>
-      </motion.div> */}
-      {/* SECTION THREE */}
+      {/* OUR SECTION */}
       <div className="our-service-main-two">
         <div className="section-three">
           <div className="services">
@@ -347,7 +303,11 @@ const Section: React.FunctionComponent = () => {
         {/* Create website section */}
         <div className="web-container">
           <div>
-            <img src={Assets.images.websiteImage} alt="" />
+            <img
+              src={Assets.images.websiteImage}
+              alt=""
+              className="home-web-image"
+            />
           </div>
           <div>
             <p className="website-header">Create a website in 5mins</p>
@@ -367,13 +327,13 @@ const Section: React.FunctionComponent = () => {
                   mLeft={0}
                   mRight={0}
                   title="Start now"
-                  color="#fbcc34"
+                  color="#ffffff"
                   fWeight={700}
                   bRadius={5}
                   bRadiusColor="#071d6a"
                   icon={
                     <MdHomeRepairService
-                      style={{ color: "#fbcc34" }}
+                      style={{ color: "#ffffff" }}
                       className="style-home-icons"
                     />
                   }

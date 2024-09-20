@@ -35,8 +35,8 @@
 
 .logo-size {
   color: #fff;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .twitter-icon,
@@ -47,34 +47,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
-  width: 28px;
-  height: 28px;
+  /* padding: 5px;
+  width: 30px;
+  height: 30px; */
 }
 
 .twitter-icon {
   border-radius: 10%;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .linkedin-icon {
   border-radius: 10%;
-  background-color: #5764ef;
+  /* background-color: #5764ef; */
 }
 
 .instagram-icon {
   border-radius: 10%;
-  background-color: #ef4444;
+  /* background-color: #ef4444; */
 }
 
 .whatsapp-icon {
   border-radius: 10%;
-  background-color: #25d366;
+  /* background-color: #25d366; */
 }
 
 .email-icon {
   border-radius: 10%;
-  background-color: #ea4335;
+  /* background-color: #ea4335; */
 }
 /* END OF LOGO */
 
@@ -108,9 +108,10 @@
 
 .form-input {
   width: 150%;
+  color: #fff !important;
 }
 .signup-btn {
-  width: 60%;
+  width: 90% !important;
   background-color: #fff;
   transition: transform 0.3s ease-in-out;
 }

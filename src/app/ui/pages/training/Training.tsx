@@ -15,14 +15,21 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import { TechTraining } from "../../../utils/constant/Data";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import TrainingHero from "../../components/traininghero/TrainingHero";
 
 const photos: TrainingPhoto[] = [
-  // { image: Assets.images.trainingOne, text: "" },
   {
-    image: Assets.images.trainingTwo,
-    text: "",
+    image: Assets.images.trainingBannerOne,
+    text: "Explore the advent of our resounding Tech training",
   },
-  { image: Assets.images.trainingThree, text: "" },
+  {
+    image: Assets.images.trainingBannerTwo,
+    text: "Explore the advent of our resounding Tech training",
+  },
+  {
+    image: Assets.images.tarinigBannerThree,
+    text: "Explore the advent of our resounding Tech training",
+  },
 ];
 
 const Training: React.FC = () => {
@@ -49,12 +56,12 @@ const Training: React.FC = () => {
   return (
     <div style={{ backgroundColor: getColor("light") }}>
       <NavBar />
-      <div
+      <TrainingHero />
+      {/* <div
         style={{
           backgroundImage: `url("${photos[currentPhotoIndex].image}")`,
-          backgroundColor: getColor("overlay"),
         }}
-        className="bg-image"
+        className="training-bg-image"
       >
         <div
           style={{ color: getColor("light") }}
@@ -92,18 +99,20 @@ const Training: React.FC = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Approach Section */}
 
       <div className="training-main-content-section">
         <div style={{ textAlign: "center" }}>
-          <LiaChalkboardTeacherSolid
-            style={{ fontSize: "15rem", color: "#071D6A" }}
+          <img
+            src={Assets.images.trainingIconImage}
+            alt=""
+            style={{ fontSize: "15rem" }}
             className="icon"
           />
         </div>
 
-        <div className="training-approach-main">
+        <div className="training-approach-main-one">
           <h1
             style={{ color: getColor("basic"), fontFamily: "Rammetto One" }}
             className="training-approach-heads"

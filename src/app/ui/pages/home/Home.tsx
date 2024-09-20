@@ -68,17 +68,22 @@ const Home: React.FunctionComponent = () => {
           >
             <div className="See-our-product">
               <Button
-                bgColor={Assets.colors.substitute}
+                bgColor={"#071d6a"}
                 mTop={0}
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
                 title="Schedule an Appointment"
-                color="black"
+                color="#ffffff"
                 fWeight={800}
                 bRadius={5}
-                bRadiusColor="#ffffff"
-                icon={<FaRegCalendarPlus className="icon-styles" />}
+                bRadiusColor="#071d6a"
+                icon={
+                  <FaRegCalendarPlus
+                    style={{ color: "#ffffff" }}
+                    className="icon-styles"
+                  />
+                }
                 onClickButton={() => {
                   window.location.href = "https://calendly.com/droidtechint";
                 }}
@@ -91,14 +96,14 @@ const Home: React.FunctionComponent = () => {
             <img
               src={Assets.images.homeBannerone}
               alt="banner"
-              className="banner-size banner-one"
+              className="banner-size     banner-one"
             />
           </div>
           <div>
             <img
               src={Assets.images.homeBannertwo}
               alt="banner"
-              className="banner-size banner-two"
+              className="banner-size       banner-two"
             />
           </div>
         </div>

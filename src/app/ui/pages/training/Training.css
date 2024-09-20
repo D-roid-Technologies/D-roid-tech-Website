@@ -18,6 +18,14 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.training-bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80vh;
+  margin-bottom: 3em;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
 .training-home-section {
   display: flex;
@@ -46,8 +54,7 @@
 }
 
 .training-main-content-section {
-  padding: 1rem 2rem;
-  /* margin-top: 2em; */
+  padding: 3rem 2rem;
 }
 
 .training-centered-text-section {
@@ -83,9 +90,9 @@
 }
 
 /* Approach Section */
-.training-approach-main {
+.training-approach-main-one {
   /* margin-bottom: 50px; */
-  /* margin-top: 2rem; */
+  margin-top: 2rem;
 }
 
 .training-approach-head {
@@ -109,6 +116,7 @@
   justify-content: center;
   gap: 20px;
 }
+/* technologies and tools */
 .training-approach-list {
   display: flex;
   flex-wrap: wrap;
@@ -134,6 +142,7 @@
 .training-approach-item {
   margin-bottom: 20px;
   padding: 20px;
+  font-size: 1rem;
   border-radius: 5px;
   transition: box-shadow 0.3s ease;
   flex-basis: calc(23% - 2%);
@@ -179,8 +188,9 @@
 
 .icon-container {
   display: flex;
+  margin-top: 2em;
   /* justify-content: center; */
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .icon {
@@ -264,16 +274,50 @@
   }
 }
 @media (max-width: 600px) {
+  .service-card-containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
   .technologies {
     margin-bottom: 50px;
     margin-top: 0;
-    padding: 0 20px;
+    padding: 0 20px !important;
   }
-  .training-approach-list,
-  .training-programs-list {
+  .training-approach-list {
+    display: flex;
     flex-direction: column;
-    width: auto;
-    margin-bottom: 0;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    list-style: none;
+    gap: 3%;
+  }
+  .training-approach-item {
+    margin-bottom: 20px;
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
+    flex-basis: calc(23% - 2%);
+    color: #333;
+  }
+  .training-approach-listss {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 5%;
+    padding: 20px 20;
+    border-radius: 10px;
+    background: rgba(240, 240, 240, 0.5);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  .tools-paragraph {
+    font-size: 1rem;
   }
   .training-approach-main {
     display: flex;
@@ -281,4 +325,11 @@
     align-items: center;
     flex-direction: column;
   }
+  .training-main-content-section {
+    padding: 3rem 20px;
+  }
+  .training-approach-main-one {
+    margin-top: 0;
+  }
+  /* technologies and tools */
 }

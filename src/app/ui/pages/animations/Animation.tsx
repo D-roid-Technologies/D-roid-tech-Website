@@ -177,13 +177,13 @@ const Animation: React.FunctionComponent = () => {
           title={item.title}
           actions={
             <Button
-              bgColor={"#071d69"}
+              bgColor={"#fbcc34"}
               mTop={0}
               mBottom={0}
               mLeft={0}
               mRight={0}
-              fWeight={700}
-              bRadiusColor="#071d69"
+              fWeight={800}
+              bRadiusColor="#fbcc34"
               onClickButton={() => {
                 if (item.link) {
                   window.open(item.link, "_blank");
@@ -193,7 +193,7 @@ const Animation: React.FunctionComponent = () => {
               //   navigate(item.link);
               // }}
               title="View Product"
-              color={"#fbcc34"}
+              color={"#071d69"}
             />
           }
           content={item.desc}
@@ -206,7 +206,7 @@ const Animation: React.FunctionComponent = () => {
       <NavBar />
       <div
         className="products-banner"
-        style={{ backgroundColor: Assets.colors.substitute }}
+        // style={{ backgroundColor: Assets.colors.substitute }}
       >
         <div className="products-banner-inner">
           <motion.div
@@ -224,7 +224,12 @@ const Animation: React.FunctionComponent = () => {
             </p>
           </motion.div>
           <div className="banner-icon">
-            <FaGrinStars className="product-cart" />
+            {/* <FaGrinStars className="product-cart" /> */}
+            <img
+              src={Assets.images.productPageBanner}
+              alt=""
+              className="product-cart"
+            />
           </div>
         </div>
         {/* <div className="product-bottom-banner">{mapThroughIconData()}</div> */}
@@ -251,7 +256,8 @@ const Animation: React.FunctionComponent = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.7 }}
-          className="our-catalog-map"
+          // className="our-catalog-map"
+          className="service-card-container"
         >
           {filterData.length > 0
             ? filterData.map((product, index) => (
@@ -285,7 +291,12 @@ const Animation: React.FunctionComponent = () => {
       </div>
       <div className="choose-us-product">
         <div>
-          <FcCustomerSupport className="our-catalog-icon" />
+          {/* <FcCustomerSupport className="our-catalog-icon" /> */}
+          <img
+            src={Assets.images.productCustomerReview}
+            alt=""
+            className="our-catalog-icon"
+          />
         </div>
         <div className="our-catalog-right">
           <h1 className="our-catalog-header">Why our Clients choose us?</h1>

@@ -45,7 +45,9 @@
 }
 /* Button */
 .contact-uss {
-  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  /* padding-left: 100px; */
   margin-top: 50px;
 }
 
@@ -349,52 +351,59 @@
   .customerfeedback-main {
     margin-bottom: 50px;
   }
-
   .customer-testimonials {
-    margin-bottom: 60px;
-    background-color: #282a94;
-    height: 400px;
+    margin-bottom: 50px;
+    background-color: rgba(7, 29, 106, 0.1);
+    height: auto;
+    padding: 30px 10px;
   }
 
   .read {
-    color: #fff;
-    font-size: 0.9rem;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-size: 1.4rem;
     letter-spacing: 1px;
     text-align: center;
-    font-weight: 500;
-    font-family: "Rammetto One";
-    padding-top: 1.8em;
-    padding-bottom: 1em;
+    font-weight: 700;
+    font-family: "Verdana Pro";
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
+
   .testiminial-details {
-    padding: 0 20px;
-    color: #ffffff;
-    font-family: "Mazzard";
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-align: justify;
+    font-family: "Verdana Pro";
+    letter-spacing: 0;
+    color: rgba(7, 29, 106, 0.6);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   .testifier {
     margin-top: 10px;
-    color: #00ffff;
-    font-size: 10px;
+    color: #071d6a;
+    font-family: "Mazzard";
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
   }
-
   /* Button */
   .contact-uss {
-    padding-left: 20px;
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
   }
 
   .contactuss-button {
-    width: 55%;
+    width: 70%;
     border-radius: none;
     transition: transform 0.3s ease-in-out;
   }
   .contactuss-button:hover {
     transform: scale(1.1);
   }
-
   /* SECTION FOUR */
   .section-four {
     padding-left: 15px;
@@ -410,7 +419,7 @@
     font-size: 1.5rem;
     color: #333;
     font-weight: 500;
-    padding-bottom: 0.8em;
+    padding-bottom: 0;
     font-family: "Rammetto";
   }
   .rule {
@@ -423,6 +432,8 @@
     font-family: "Rammetto";
     font-weight: 500;
     font-size: 1.4rem;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   }
   .clients {
     text-align: center;
@@ -434,18 +445,20 @@
   .droid {
     font-family: "Rammetto";
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.5rem;
     padding-bottom: 20px;
+    color: #071d6a;
   }
   .hours {
     font-family: "Rammetto";
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.4rem;
     padding-bottom: 27px;
+    color: #071d6a;
   }
-  .time {
+  /* .time {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -462,7 +475,6 @@
     border: none;
     outline: none;
     color: aqua;
-    /* font-size: 0.6rem; */
   }
   .contact-button {
     display: flex;
@@ -484,5 +496,65 @@
     font-family: "Mazzard";
     font-size: 1.2rem;
     font-weight: 600;
+  } */
+  .time-container {
+    padding: 0 10px !important;
+  }
+  .time {
+    text-align: center;
+    font-size: 1rem;
+    padding-bottom: 30px;
+    padding: 5px 0;
+    font-family: "Mazzard";
+    color: #071d6a;
+    font-weight: 600;
+    border-radius: 8px;
+    background: rgba(7, 29, 106, 0.1);
+    box-shadow: 49.467px -49.467px 49.467px 0px rgba(5, 22, 81, 0.1) inset,
+      -49.467px 49.467px 49.467px 0px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(49.46666717529297px);
+  }
+  .friday {
+    color: #071d6a;
+    background-color: #fbcc34;
+    padding: 12px 15px;
+    border-radius: 10px;
+    /* border-top-left-radius: 15px; */
+  }
+
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Mazzard";
+    gap: 30px;
+    margin-top: 2rem;
+  }
+
+  .contactus-button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46%;
+    border: none;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  .contactus-button-style:hover {
+    transform: scale(1.1);
+  }
+  .contactus-button-styles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46%;
+    border: none;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  .contactus-button-styles:hover {
+    transform: scale(1.1);
   }
 }

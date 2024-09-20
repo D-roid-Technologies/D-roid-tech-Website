@@ -11,6 +11,7 @@
 /* SECTION ONE OUR HISTORY */
 .hero-container {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 200px;
   margin-top: 100px;
@@ -41,14 +42,14 @@
   font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Verdana Pro";
   text-align: center;
 }
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: #333 !important;
-  font-family: "Mazzard";
+  font-family: "Verdana Pro";
   text-align: left;
   letter-spacing: 2px;
 }
@@ -70,6 +71,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
 .readmore-btn {
@@ -82,16 +84,6 @@
 }
 
 /* SECTION TWO OUR APPROACH */
-.section-two {
-  /* display: flex;
-  gap: 60px;
-  padding-top: 1.8em;
-  padding-bottom: 2.2em; */
-}
-.image-size {
-  width: 600px;
-  height: 300px;
-}
 .approach {
   padding: 50px 0;
   text-align: left;
@@ -113,24 +105,75 @@
   text-align: left;
   letter-spacing: 2px;
 }
-/* APPROACH BOTTON */
-.our-approach-btn {
+/* JOIN TECH TEAM */
+.join-us {
+  height: auto;
+  padding: 40px 100px;
+  color: rgb(223, 219, 219);
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 1em;
+  gap: 70px;
 }
-
-.approach-btn {
+.join-container {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* gap: 300px; */
+}
+.join-images {
+  display: flex;
+  gap: 20px;
+}
+.join-images-two {
+  position: relative;
+  top: 2.8rem;
+}
+.our-approach-two {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 35px !important;
+  font-weight: 800;
+  color: #282a94;
+  font-family: "Rammetto";
+}
+.our-approach-blue-bg {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 35px !important;
+  font-weight: 800;
+  font-family: "Rammetto";
+}
+.join-approach-details {
+  color: rgba(240, 240, 240, 0.7);
+  font-size: 1.2rem;
+  font-weight: 200;
+  font-family: "Mazzard";
+  text-align: left;
+  letter-spacing: 2px;
+}
+.div-button {
   width: 30%;
-  border-radius: none;
+  margin-top: 30px;
   transition: transform 0.3s ease-in-out;
 }
-.approach-btn:hover {
+.div-button:hover {
+  transform: scale(1.1);
+}
+.div-button-second {
+  width: 60%;
+  margin-top: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+.div-button-second:hover {
   transform: scale(1.1);
 }
 
-/* SECTION THREE OUR SERVICES */
+.icon-test {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+/*  OUR SERVICES */
 .our-service-main {
   margin-bottom: 50px;
 }
@@ -260,75 +303,7 @@
 .services-btn:hover {
   transform: scale(1.1);
 }
-/* JOIN US SECTION */
-.join-us {
-  /* width: 100%; */
-  height: auto;
-  padding: 40px 100px;
-  color: rgb(223, 219, 219);
-  display: flex;
-  gap: 70px;
-  /* display: flex;
-  justify-content: center; */
-}
-.join-container {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* gap: 300px; */
-}
-.join-images {
-  display: flex;
-  gap: 20px;
-}
-.join-images-two {
-  position: relative;
-  top: 2.8rem;
-}
-.our-approach-two {
-  margin-bottom: 1em;
-  line-height: 10px;
-  font-size: 35px !important;
-  font-weight: 800;
-  color: #282a94;
-  font-family: "Rammetto";
-}
-.our-approach-blue-bg {
-  margin-bottom: 1em;
-  line-height: 10px;
-  font-size: 35px !important;
-  font-weight: 800;
-  font-family: "Rammetto";
-}
-.join-approach-details {
-  color: rgba(240, 240, 240, 0.7);
-  font-size: 1.2rem;
-  font-weight: 200;
-  font-family: "Mazzard";
-  text-align: left;
-  letter-spacing: 2px;
-}
-.div-button {
-  width: 30%;
-  margin-top: 30px;
-  transition: transform 0.3s ease-in-out;
-}
-.div-button:hover {
-  transform: scale(1.1);
-}
-.div-button-second {
-  width: 60%;
-  margin-top: 30px;
-  transition: transform 0.3s ease-in-out;
-}
-.div-button-second:hover {
-  transform: scale(1.1);
-}
 
-.icon-test {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 15px;
-}
 /* our services */
 .our-service-main-two {
   margin-bottom: 50px;
@@ -387,4 +362,279 @@
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .section-main {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 0;
+  }
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  .hero-image {
+    width: 360px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .our-history {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .histoy-details {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #333 !important;
+    font-family: "Verdana Pro";
+    text-align: justify;
+    letter-spacing: 0;
+  }
+  .history-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+  }
+
+  .readmore-btn {
+    width: 100%;
+    border-radius: none;
+    transition: transform 0.2s ease-in-out;
+  }
+  /* SECTION TWO OUR APPROACH */
+  .approach {
+    padding: 50px 0;
+    text-align: left;
+  }
+  .our-approach {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .approach-details {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #333 !important;
+    font-family: "Verdana Pro";
+    text-align: justify;
+    letter-spacing: 0;
+  }
+  /* JOIN TECH TEAM */
+  .join-us {
+    height: auto;
+    padding: 40px 20px;
+    color: rgb(223, 219, 219);
+    display: flex;
+    gap: 70px;
+  }
+  .icon-test {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+  .our-approach-blue-bg {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    font-family: "Rammetto";
+    text-align: center;
+  }
+  .join-approach-details {
+    color: rgba(240, 240, 240, 0.7);
+    font-size: 1rem;
+    font-weight: 200;
+    font-family: "Mazzard";
+    text-align: justify;
+    letter-spacing: 0;
+  }
+  .div-button {
+    width: 60%;
+    margin-top: 30px;
+    transition: transform 0.3s ease-in-out;
+  }
+  .div-button:hover {
+    transform: scale(1.1);
+  }
+
+  .join-images {
+    display: none;
+    /* gap: 20px; */
+  }
+  /*  OUR SERVICES */
+  .our-service-main-two {
+    margin-bottom: 50px;
+    padding: 0 0;
+  }
+  .section-three {
+    gap: 0;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    align-self: center;
+  }
+  .services {
+    padding-top: 0;
+    padding-bottom: 30px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+  .our-services {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 35px !important;
+    font-weight: 800;
+    color: #282a94;
+    font-family: "Verdana Pro";
+  }
+  .our-services-s {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 30px !important;
+    font-weight: 600;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-family: "Verdana Pro";
+  }
+
+  .services-detailss {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #333;
+    font-family: "Verdana Pro";
+    text-align: justify;
+    letter-spacing: 0;
+    padding: 0 20px;
+  }
+  /* .image-size {
+    width: 600px;
+    height: 300px;
+  } */
+
+  /* CAROUSEL SECTION */
+  .carousel-container {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    border-bottom: 2px solid rgb(223, 219, 219);
+  }
+  .image-sizessd {
+    width: 350px !important;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .carousel-container img {
+    object-fit: cover;
+  }
+
+  .slick-slide div {
+    text-align: center;
+  }
+  .carousel-heading {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Rammetto";
+  }
+  .carousel-details {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #333;
+    font-family: "Mazzard";
+    text-align: justify;
+    letter-spacing: 0;
+  }
+
+  .imageone {
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 10px 10px gray; */
+  }
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* OUR SERVICES BOTTON */
+  .our-services-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    text-decoration: none;
+    margin-bottom: 50px;
+  }
+  .services-btn {
+    text-decoration: none;
+    width: 65%;
+    border-radius: none;
+    transition: transform 0.3s ease-in-out;
+  }
+  .services-btn:hover {
+    transform: scale(1.1);
+  }
+  /* Create website section */
+  .web-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 30px 20px;
+    border-bottom: 2px solid rgb(223, 219, 219);
+  }
+  .home-web-image {
+    width: 350px;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 3em;
+  }
+  .website-header {
+    font-size: 1.9rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 0.5em;
+  }
+  .website-details {
+    color: #333;
+    font-family: "Mazzard";
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .our-servicess-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    text-decoration: none;
+    margin-bottom: 50px;
+  }
+
+  .servicess-btns {
+    text-decoration: none;
+    width: 45%;
+    border-radius: none;
+    transition: transform 0.3s ease-in-out;
+  }
+  .servicess-btns:hover {
+    transform: scale(1.1);
+  }
 }

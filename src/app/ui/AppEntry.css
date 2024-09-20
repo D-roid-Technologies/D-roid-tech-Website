@@ -33,12 +33,13 @@
 }
 
 .paragraph {
-  font-size: 1.2rem;
+  font-size: 1rem !important;
   font-weight: 200;
-  color: rgb(134, 131, 131) !important;
+  color: #333 !important;
   font-family: "Mazzard";
   text-align: justify;
-  letter-spacing: 2px;
+  text-align: left;
+  /* letter-spacing: 2px; */
 }
 
 .main-container {

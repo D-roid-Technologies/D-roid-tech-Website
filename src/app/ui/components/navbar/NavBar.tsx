@@ -18,7 +18,7 @@ const NavBar: React.FunctionComponent = () => {
   const [showMenuBtn, setShowMenuBtn] = React.useState<boolean>(false);
   const [showMobileNav, setShowMobileNav] = React.useState<boolean>(false);
 
-  const [companyLogo, setCompanyLogo] = React.useState<string[]>([])
+  const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
 
   const imageListRef = ref(storage, "droidlogo/");
 
@@ -105,22 +105,26 @@ const NavBar: React.FunctionComponent = () => {
     listAll(imageListRef).then((response) => {
       response.items.forEach((items) => {
         getDownloadURL(items).then((url) => {
-          setCompanyLogo((prev) => [...prev, url])
-        })
-      })
-    })
-  }, [])
+          setCompanyLogo((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
 
   return (
     <div>
       <div className="nav-main">
         <div className="logo-image">
-          <a onClick={() => { navigate("/") }}>
+          <a
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <img
               src={companyLogo[0]}
               alt="D'roid Logo"
-              width={40}
-              height={40}
+              width={60}
+              height={60}
             />
           </a>
         </div>
@@ -146,7 +150,7 @@ const NavBar: React.FunctionComponent = () => {
             <ul>{dropDownLinks()}</ul>
           </div>
         ) : null}
-        {showMenuBtn ? (
+        {/* {showMenuBtn ? (
           <>
             <div className="mobile-nav">
               <div style={{ display: "flex", justifyContent: "right" }}>
@@ -159,6 +163,13 @@ const NavBar: React.FunctionComponent = () => {
               {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
             </div>
           </>
+        ) : null} */}
+        {showMenuBtn ? (
+          <div className={`mobile-nav ${showMenuBtn ? "active" : ""}`}>
+            <HiX className="mobile-x" onClick={() => setShowMenuBtn(false)} />
+            <ul>{navMapMobile()}</ul>
+            {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
+          </div>
         ) : null}
       </div>
     </div>
