@@ -274,16 +274,38 @@
   }
 }
 @media (max-width: 600px) {
+  .service-card-containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
   .technologies {
     margin-bottom: 50px;
     margin-top: 0;
-    padding: 0 20px;
+    padding: 0 20px !important;
   }
-  .training-approach-list,
-  .training-programs-list {
+  .training-approach-list {
+    display: flex;
     flex-direction: column;
-    width: auto;
-    margin-bottom: 0;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    list-style: none;
+    gap: 3%;
+  }
+  .training-approach-listss {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 5%;
+    padding: 20px 20;
+    border-radius: 10px;
+    background: rgba(240, 240, 240, 0.5);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
   .training-approach-main {
     display: flex;
@@ -291,4 +313,11 @@
     align-items: center;
     flex-direction: column;
   }
+  .training-main-content-section {
+    padding: 3rem 20px;
+  }
+  .training-approach-main-one {
+    margin-top: 0;
+  }
+  /* technologies and tools */
 }

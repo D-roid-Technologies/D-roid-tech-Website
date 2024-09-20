@@ -52,7 +52,11 @@ const Software: React.FunctionComponent = () => {
           </section>
         </div>
         <div className="banner-image">
-          <img src={Assets.images.softwareBannerImage} alt="" />
+          <img
+            src={Assets.images.softwareBannerImage}
+            className="soft-hero-image"
+            alt=""
+          />
         </div>
 
         <div className="training-approach-main">
@@ -66,13 +70,7 @@ const Software: React.FunctionComponent = () => {
           >
             Our Software Services
           </h1>
-          <motion.ul
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="service-card-container"
-          >
+          <ul className="service-card-container">
             {softwareDevMain.map((item, index) => (
               <Card
                 key={index}
@@ -109,7 +107,7 @@ const Software: React.FunctionComponent = () => {
                 }
               />
             ))}
-          </motion.ul>
+          </ul>
         </div>
       </div>
 

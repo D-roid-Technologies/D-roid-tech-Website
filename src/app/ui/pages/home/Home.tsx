@@ -96,14 +96,14 @@ const Home: React.FunctionComponent = () => {
             <img
               src={Assets.images.homeBannerone}
               alt="banner"
-              className="banner-size banner-one"
+              className="banner-size     banner-one"
             />
           </div>
           <div>
             <img
               src={Assets.images.homeBannertwo}
               alt="banner"
-              className="banner-size banner-two"
+              className="banner-size       banner-two"
             />
           </div>
         </div>

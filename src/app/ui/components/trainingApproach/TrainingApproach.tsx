@@ -106,7 +106,7 @@ const TrainingApproach: React.FC = () => {
   };
 
   return (
-    <div className="training-approach-main">
+    <div className="training-approach-mains">
       <h1 style={styles.heading} className="training-approach-head">
         Our Approach
       </h1>
