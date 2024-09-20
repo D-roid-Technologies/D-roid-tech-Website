@@ -198,7 +198,7 @@
   padding: 0 100px;
 }
 .training-approach-head {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5em;
 }
 .tech-contain {
   padding: 40px 20px;
@@ -351,5 +351,13 @@
   .training-approach-main {
     margin-bottom: 50px;
     margin-top: 17rem;
+  }
+  /* tools and technology */
+  .technologiess {
+    padding: 0 20px;
+  }
+  .training-approach-head {
+    margin-bottom: 1.5em;
+    text-align: center;
   }
 }
