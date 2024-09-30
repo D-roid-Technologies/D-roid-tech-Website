@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import "../taketest/TakeTest.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { Test } from "../../../utils/constant/Test";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 interface Question {
   question: string;
@@ -84,29 +85,31 @@ const TakeTest: React.FunctionComponent = () => {
   return (
     <div>
       <div className="test-top-con">
-        <Button
-          bgColor="green"
+        <button onClick={() => navigate("/")} className="test-btn-hero">
+          <IoChevronBackOutline className="back-btn-icon" />
+        </button>
+        {/* <Button
+          bgColor="#000"
           mTop={0}
           mBottom={0}
           mLeft={0}
           mRight={0}
+          bRadius={50}
           bRadiusColor="#ffffff"
           title="Back"
           color="#000000"
-          icon={<TiArrowBack className="test-top-back-arrow" />}
+          icon={<IoChevronBackOutline className="test-top-back-arrow" />}
           onClickButton={() => {
             navigate("/");
           }}
-        />
+        /> */}
       </div>
       <div>
-        <div
-          style={{
-            backgroundImage: `url("${Assets.images.testImage}")`,
-          }}
-          className="test-image-container"
-        ></div>
-        {!takeTest && !showResults && (
+        <section className="test-hero-section">
+          <div>
+            <img src={Assets.images.testImage} height={650} alt="" />
+          </div>
+          {/* <div> */}
           <div className="test-text-area">
             <h2>Ready to test your skills?</h2>
             <p>
@@ -117,19 +120,29 @@ const TakeTest: React.FunctionComponent = () => {
               It comprises different questions related to Programming, Computer
               Science, and Critical Thinking.
             </p>
+          </div>
+          {/* </div> */}
+        </section>
+        {!takeTest && !showResults && (
+          <div className="test-text-area">
             <div className="take-test">
               <div className="take-test-btn">
                 <Button
-                  bgColor={"#da2a34"}
+                  bgColor={"#FFB100"}
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   bRadius={10}
                   mRight={0}
-                  bRadiusColor={"#da2a34"}
+                  bRadiusColor={"#FFB100"}
                   title="Take test now"
-                  color="#ffffff"
-                  icon={<FaPenAlt className="test-icon" />}
+                  color="#000000"
+                  icon={
+                    <FaPenAlt
+                      style={{ color: "#000000" }}
+                      className="test-icon"
+                    />
+                  }
                   onClickButton={handletestClick}
                 />
               </div>

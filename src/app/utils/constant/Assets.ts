@@ -64,7 +64,8 @@ export const Assets = {
     servicesMain: require("../../images/png/what.png"),
     techT: require("../../images/png/techtraining.png"),
 
-    testImage: require("../../images/png/testimage.png"),
+    // testImage: require("../../images/png/testimage.png"),
+    testImage: require("../../images/png/text-image.png"),
     wDev: require("../../images/png/web dev 1.png"),
     mDev: require("../../images/png/mobile web 1.png"),
     tService: require("../../images/png/tservice-two.png"),
