@@ -88,21 +88,6 @@ const TakeTest: React.FunctionComponent = () => {
         <button onClick={() => navigate("/")} className="test-btn-hero">
           <IoChevronBackOutline className="back-btn-icon" />
         </button>
-        {/* <Button
-          bgColor="#000"
-          mTop={0}
-          mBottom={0}
-          mLeft={0}
-          mRight={0}
-          bRadius={50}
-          bRadiusColor="#ffffff"
-          title="Back"
-          color="#000000"
-          icon={<IoChevronBackOutline className="test-top-back-arrow" />}
-          onClickButton={() => {
-            navigate("/");
-          }}
-        /> */}
       </div>
       <div>
         <section className="test-hero-section">
