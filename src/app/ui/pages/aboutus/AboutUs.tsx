@@ -11,8 +11,6 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { DATA } from "../../../utils/constant/Data";
 import { FaXTwitter } from "react-icons/fa6";
 import Button from "../../components/button/Button";
-import { IoLogoGooglePlaystore } from "react-icons/io5";
-import { FaApple } from "react-icons/fa";
 
 const AboutUs: React.FunctionComponent = () => {
   const { getColor } = useThemeColor();
@@ -117,7 +115,6 @@ const AboutUs: React.FunctionComponent = () => {
               </div>
             </section>
           </div>
-
           {/* CORE VALUES BOX THREE */}
           <div className="core-value-vision-main">
             <div
@@ -212,65 +209,6 @@ const AboutUs: React.FunctionComponent = () => {
                 </li>
               ))}
             </ul>
-          </section>
-          <section className="app-section">
-            <div>
-              <p className="download ">
-                Download Our CashBasket <br />
-                Mobile App & Experience the <br />
-                best of our Services.
-              </p>
-              <div className="app-btn-container">
-                <span className="Apple-store">
-                  <Button
-                    bgColor={"#ffffff"}
-                    title="Apple Store"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    fWeight={700}
-                    color="#071d69"
-                    bRadius={5}
-                    bRadiusColor="#071d69"
-                    icon={
-                      <FaApple
-                        style={{ color: "#071d69" }}
-                        className="icon-styles"
-                      />
-                    }
-                    onClickButton={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                </span>
-                <span className="google-play">
-                  <Button
-                    className="google-play"
-                    bgColor={"#ffffff"}
-                    title="Google play"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    bRadius={5}
-                    fWeight={700}
-                    color="#071d69"
-                    bRadiusColor="#071d69"
-                    icon={
-                      <IoLogoGooglePlaystore
-                        style={{ color: "#071d69" }}
-                        className="icon-styles"
-                      />
-                    }
-                    onClickButton={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
-                  />
-                </span>
-              </div>
-            </div>
-            <div></div>
           </section>
         </div>
       </div>

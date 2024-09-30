@@ -355,6 +355,30 @@
 .servicess-btns:hover {
   transform: scale(1.1);
 }
+/* APP DOWNLOAD */
+.app-section {
+  margin-top: 50px;
+}
+.download {
+  color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  font-family: "Verdana Pro";
+  font-size: 3.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 4px;
+}
+.app-btn-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 3rem;
+}
+.Apple-store {
+  width: 10%;
+}
+.google-play {
+  width: 10%;
+}
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
