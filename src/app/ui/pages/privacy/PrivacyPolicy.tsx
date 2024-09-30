@@ -25,7 +25,12 @@ const PrivacyPolicy: React.FunctionComponent = () => {
               </h1>
               <p
                 className="paragraph"
-                style={{ color: Assets.colors.paragraph, marginTop: "1rem" }}
+                style={{
+                  color: Assets.colors.paragraph,
+                  marginTop: "1rem",
+                  fontSize: "1.4rem",
+                  lineHeight: "25px",
+                }}
               >
                 D'roid Technologies International ("we", "our", "us") is
                 committed to protecting and respecting your privacy. This
@@ -39,7 +44,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
         </div>
 
         <div className="privacy-sections">
-          <div className="privacy-subsection">
+          <div className="privacy-subsection-one">
             <h2
               className="privacy-subsection-heading"
               style={{ color: getColor("primary") }}
@@ -246,7 +251,10 @@ const PrivacyPolicy: React.FunctionComponent = () => {
             </p>
           </div>
 
-          <div className="privacy-subsection" style={{ marginBottom: "1.5rem" }}>
+          <div
+            className="privacy-subsection"
+            style={{ marginBottom: "1.5rem" }}
+          >
             <h2
               className="privacy-subsection-heading"
               style={{ color: getColor("primary") }}

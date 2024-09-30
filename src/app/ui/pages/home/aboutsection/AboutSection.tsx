@@ -410,7 +410,13 @@ const Section: React.FunctionComponent = () => {
               </span>
             </div>
           </div>
-          <div></div>
+          <div>
+            <img
+              src={Assets.images.knowledgeCityMobileApp}
+              alt="knowledge city img"
+              className="m-app-image"
+            />
+          </div>
         </section>
       </div>
     </>
