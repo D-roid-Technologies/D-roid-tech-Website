@@ -3,14 +3,6 @@
   height: 100%;
 }
 
-/* .test-image-container {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 550px;
-  object-fit: contain;
-  padding: 0 100px;
-} */
 .test-hero-section {
   background-color: #f0f0f0;
   display: flex;
@@ -98,6 +90,18 @@
 .map-test-list {
   text-decoration: none;
   list-style: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  font-family: "Verdana Pro";
+}
+.custom-checkbox {
+  margin-right: 10px;
+  width: 15px; /* Increase the width of the checkbox */
+  height: 15px; /* Increase the height of the checkbox */
+  transform: scale(
+    1.5
+  ); /* Alternatively, you can use scale to make it bigger */
 }
 
 .map-test-ul {
@@ -108,8 +112,9 @@
 }
 
 .btn-parent {
-  margin-top: 20px;
-  width: 30%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 15%;
 }
 
 /* RESULTS */
@@ -167,7 +172,43 @@ hr {
 }
 
 @media screen and (max-width: 600px) {
+  .test-top-con {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    width: 30px;
+  }
+  .back-btn-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+  }
+  .test-btn-hero {
+    padding: 5px;
+    border: none;
+    border-radius: 50px;
+  }
+  .test-hero-section {
+    flex-direction: column; /* Stack elements vertically */
+    padding: 30px 15px; /* Further reduce padding */
+    gap: 1px; /* Narrow the gap between elements */
+  }
+
+  .test-hero-section img {
+    width: 100%; /* Ensure the image takes up full width */
+    height: auto; /* Maintain aspect ratio */
+  }
+
   .test-text-area h2 {
+    font-size: 1.8rem; /* Reduce heading size further */
+  }
+
+  .test-text-area p {
+    font-size: 1.1rem; /* Reduce paragraph font size for smaller screens */
+    letter-spacing: 0.8px; /* Adjust letter spacing */
+  }
+  /* .test-text-area h2 {
     font-size: 2rem;
   }
 
@@ -182,7 +223,7 @@ hr {
 
   .take-test-btn {
     width: 80%;
-  }
+  } */
 
   .test-text-area {
     padding-left: 20px;
@@ -211,5 +252,18 @@ hr {
 
   .results-container h3 {
     font-size: 1.2rem;
+  }
+  .take-test-btn {
+    margin-top: 60px;
+    width: 100%;
+  }
+  .results-container {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding: 30px 50px;
+    background-color: #103791;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
   }
 }

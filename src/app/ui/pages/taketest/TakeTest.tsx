@@ -69,6 +69,7 @@ const TakeTest: React.FunctionComponent = () => {
             <ul key={optionIndex} className="map-test-ul">
               <li className="map-test-list">
                 <input
+                  className="custom-checkbox"
                   type="checkbox"
                   checked={isChecked}
                   onChange={() => handleOptionChange(questionIndex, option)}
@@ -120,11 +121,12 @@ const TakeTest: React.FunctionComponent = () => {
                   bRadius={10}
                   mRight={0}
                   bRadiusColor={"#FFB100"}
+                  fWeight={900}
                   title="Take test now"
                   color="#000000"
                   icon={
                     <FaPenAlt
-                      style={{ color: "#000000" }}
+                      style={{ color: "#000000", fontWeight: "900" }}
                       className="test-icon"
                     />
                   }
@@ -146,10 +148,16 @@ const TakeTest: React.FunctionComponent = () => {
                 mLeft={0}
                 bRadius={10}
                 mRight={0}
+                fWeight={900}
                 bRadiusColor={Assets.colors.primary}
                 title="Submit Test"
                 color="#ffffff"
-                icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
+                icon={
+                  <IoCheckmarkSharp
+                    style={{ color: "#ffffff", fontWeight: "900" }}
+                    className="test-top-back-arrow"
+                  />
+                }
                 onClickButton={handleSubmit}
               />
             </div>
