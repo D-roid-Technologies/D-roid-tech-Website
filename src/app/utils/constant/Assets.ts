@@ -13,6 +13,13 @@ export const Assets = {
     serviceImageThree: require("../../images/png/service-image-three.png"),
     websiteImage: require("../../images/png/website-image.png"),
 
+    // what we do images
+    softwareWhatWeDo: require("../../images/png/software-what-we-do.png"),
+    animationWhatWeDo: require("../../images/png/animation-what-we-do.png"),
+    techTrainingWhatWeDo: require("../../images/png/tech-training-what-we-do.png"),
+    droneWhatwedo: require("../../images/png/drone service-what-we-do.png"),
+    equipmentwhatwedo: require("../../images/png/equipment-setup-what-we-do.png"),
+
     // software page
     softwareBannerImage: require("../../images/png/sotware dev 1.png"),
 

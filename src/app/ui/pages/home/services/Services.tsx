@@ -34,7 +34,7 @@ const services: Service[] = [
     title: "Software Development - Mobile and Web",
     description:
       "Our software development services cover both mobile and web applications. We specialize in creating responsive, high-performance applications using modern technologies such as React Native, React.js, HTML, CSS, TypeScript, and JavaScript. Whether you need a custom web application or a cross-platform mobile app, we deliver solutions that meet your business requirements.",
-    icon: <FaLaptopCode size={48} color={Assets.colors.primary} />,
+    icon: require("Assets."),
     prices: [
       { name: "Basic Web Application", price: 1000 },
       { name: "Complex Web Application", price: 5000 },
@@ -142,13 +142,14 @@ const Services: React.FunctionComponent = () => {
               actions={
                 <Button
                   title="Read More"
-                  bgColor="#007bff"
-                  color="#fff"
+                  bgColor="#fbcc34"
+                  color="#000"
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  bRadiusColor={getColor("light")}
+                  fWeight={700}
+                  bRadiusColor={"#fbcc34"}
                   onClickButton={() => {
                     navigate(service.path);
                   }}
