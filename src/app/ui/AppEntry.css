@@ -33,7 +33,9 @@
 }
 
 .paragraph {
-  font-size: 1rem !important;
+  color: #333;
+  font-size: 1rem;
+  font-family: "Verdana Pro";
   font-weight: 200;
   color: #333 !important;
   font-family: "Mazzard";

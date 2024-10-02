@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 type Service = {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: string;
   prices: { name: string; price: number }[];
   path: string;
 };
@@ -34,7 +34,7 @@ const services: Service[] = [
     title: "Software Development - Mobile and Web",
     description:
       "Our software development services cover both mobile and web applications. We specialize in creating responsive, high-performance applications using modern technologies such as React Native, React.js, HTML, CSS, TypeScript, and JavaScript. Whether you need a custom web application or a cross-platform mobile app, we deliver solutions that meet your business requirements.",
-    icon: require("Assets."),
+    icon: Assets.images.softwareWhatWeDo,
     prices: [
       { name: "Basic Web Application", price: 1000 },
       { name: "Complex Web Application", price: 5000 },
@@ -47,7 +47,7 @@ const services: Service[] = [
     title: "Animation Creation",
     description:
       "Our animation creation services bring your ideas to life with stunning visuals. We produce high-quality animations for various purposes, including marketing, educational content, and entertainment. Our team works closely with you to understand your vision and deliver animations that captivate your audience.",
-    icon: <FaVideo size={48} color={Assets.colors.primary} />,
+    icon: Assets.images.animationWhatWeDo,
     prices: [
       { name: "Short Animation (up to 1 minute)", price: 1000 },
       { name: "Medium Animation (1-3 minutes)", price: 3000 },
@@ -59,7 +59,7 @@ const services: Service[] = [
     title: "Tech Trainings",
     description:
       "We offer comprehensive tech training programs designed to enhance your team's skills and keep them up-to-date with the latest technologies. Our training sessions cover various topics such as software development, cybersecurity, data analytics, and more, delivered by industry experts.",
-    icon: <FaRobot size={48} color={Assets.colors.primary} />,
+    icon: Assets.images.techTrainingWhatWeDo,
     prices: [
       { name: "One-Day Workshop", price: 500 },
       { name: "Week-Long Course", price: 2000 },
@@ -71,7 +71,7 @@ const services: Service[] = [
     title: "Drone Services",
     description:
       "Our professional drone services include aerial photography, videography, surveying, and inspection. We use state-of-the-art drones and technology to capture high-resolution images and videos, providing valuable insights for various industries such as real estate, construction, and agriculture.",
-    icon: <FaPlane size={48} color={Assets.colors.primary} />,
+    icon: Assets.images.droneWhatwedo,
     prices: [
       { name: "Aerial Photography Session", price: 500 },
       { name: "Aerial Videography Session", price: 1000 },
@@ -83,7 +83,7 @@ const services: Service[] = [
     title: "Equipment Set-up",
     description:
       "We provide expert equipment setup services, ensuring your technology infrastructure is installed correctly and efficiently. Our services include setting up computers, networks, servers, and other IT equipment, tailored to meet the specific needs of your business.",
-    icon: <FaDesktop size={48} color={Assets.colors.primary} />,
+    icon: Assets.images.equipmentwhatwedo,
     prices: [
       { name: "Basic Equipment Setup", price: 500 },
       { name: "Advanced Equipment Setup", price: 2000 },
@@ -136,7 +136,18 @@ const Services: React.FunctionComponent = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              icon={service.icon}
+              icon={
+                <img
+                  src={service.icon}
+                  alt={service.title}
+                  style={{
+                    width: "300px",
+                    height: "160px",
+                    objectFit: "cover",
+                  }}
+                />
+              }
+              // icon={service.icon}
               title={service.title}
               content={service.description}
               actions={
