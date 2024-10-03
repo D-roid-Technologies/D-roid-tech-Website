@@ -122,6 +122,15 @@
     padding: 30px 15px; /* Further reduce padding */
     gap: 1px; /* Narrow the gap between elements */
   }
+  .general-heading-two {
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-family: "Rubik One";
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 
   .service-hero-section img {
     margin-bottom: 1.5em;

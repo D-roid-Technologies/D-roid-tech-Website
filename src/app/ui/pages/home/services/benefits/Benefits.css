@@ -13,3 +13,6 @@
 .training-approach-main-benefits {
   padding: 100px 0;
 }
+
+@media screen and (max-width: 600px) {
+}
