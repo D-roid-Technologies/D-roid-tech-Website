@@ -6,6 +6,27 @@
   margin-bottom: 2rem;
   text-align: center;
 }
+/* hero section */
+.service-hero-section {
+  background-color: #f0f0f0;
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 2px;
+  align-items: center;
+  padding: 0 100px;
+  margin-bottom: 50px;
+}
+
+.service-text-area h2 {
+  font-size: 5.7rem;
+  font-weight: 600;
+  font-family: "Rubik One";
+  margin-bottom: 1em;
+  text-align: center;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Verdana Pro";
+}
 
 .service-card-container {
   display: grid;
@@ -49,13 +70,12 @@
 }
 
 .read-more-link:hover {
-  color: #479BE8;
+  color: #479be8;
 }
 
 .benefits-section {
   margin-top: 3rem;
   max-width: 800px;
-
 }
 
 .benefits-section h2 {
@@ -80,5 +100,24 @@
 
   .service-card-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .service-hero-section {
+    margin-bottom: 50px;
+    flex-direction: column; /* Stack elements vertically */
+    padding: 30px 15px; /* Further reduce padding */
+    gap: 1px; /* Narrow the gap between elements */
+  }
+
+  .service-hero-section img {
+    margin-bottom: 1.5em;
+    width: 100%; /* Ensure the image takes up full width */
+    height: 30%; /* Maintain aspect ratio */
+  }
+
+  .service-text-area h2 {
+    font-size: 1.8rem; /* Reduce heading size further */
   }
 }

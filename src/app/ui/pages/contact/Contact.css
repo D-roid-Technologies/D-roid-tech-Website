@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 .contact-containerr {
   padding: 0 100px;
@@ -33,7 +33,7 @@
 
 .message p {
   color: #333;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2em;
   margin-bottom: 4em;
 }
@@ -55,12 +55,12 @@
   color: white;
   font-size: 1.8rem;
   margin-bottom: 0.6em;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 .info-details-p {
   color: #fbcc34;
   font-size: 1.1rem;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   margin-bottom: 2.5em;
 }
 /* phone number */
@@ -132,7 +132,7 @@
   width: 100%;
 }
 .subject-feild {
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 /* MESSAGE AREA */
@@ -147,7 +147,7 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   resize: none;
 }
 
@@ -332,7 +332,7 @@ textarea {
 
   .message p {
     color: rgb(124, 124, 124);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2em;
   }
   /* CONTACT INFORMATION */
@@ -354,12 +354,12 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
     font-size: 1.1rem;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     margin-bottom: 4em;
   }
   /* phone number */
@@ -486,7 +486,7 @@ textarea {
 
   .message p {
     color: rgb(124, 124, 124);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1em;
     text-align: center;
   }
@@ -509,12 +509,12 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
     font-size: 1.1rem;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     margin-bottom: 4em;
   }
   /* phone number */

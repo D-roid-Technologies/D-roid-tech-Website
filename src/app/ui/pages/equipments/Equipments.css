@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 /* CONTENT */
 .equipment-content {
@@ -24,7 +24,7 @@
   letter-spacing: 3px;
   text-align: center;
   font-weight: 500;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 .equipment-heading-details {
   margin-top: 1em;
@@ -32,7 +32,7 @@
   word-spacing: 2px;
   text-align: center;
   color: #fff;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 /* OUR SERVICES SECTION*/
@@ -46,7 +46,7 @@
   font-weight: 600;
   text-align: center;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .margin-btm {
   margin-bottom: 50px;
@@ -61,11 +61,11 @@
   font-weight: 600;
   text-align: left;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .equip-contact-details {
   text-align: left;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   font-size: 1.2rem;
   /* color: rgb(39, 39, 39); */
@@ -120,7 +120,7 @@
     letter-spacing: 3px;
     text-align: center;
     font-weight: 500;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
   }
   .equipment-heading-details {
     margin-top: 1em;
@@ -128,7 +128,7 @@
     word-spacing: 2px;
     text-align: center;
     color: #fff;
-    font-family: "Mazzard";
+    font-family: "Rubik";
   }
   .equipment-btn-details {
     width: 100%;

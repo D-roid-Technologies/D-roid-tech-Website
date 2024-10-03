@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 /* CONTENT */
 .drone-content {
@@ -24,7 +24,7 @@
   letter-spacing: 3px;
   text-align: center;
   font-weight: 500;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .drone-heading-details {
@@ -33,7 +33,7 @@
   word-spacing: 2px;
   text-align: center;
   color: #fff;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 .drone-approach-main {
   padding-left: 100px;
@@ -52,7 +52,7 @@
   padding-top: 50px;
   text-align: center;
   margin-bottom: 1.5em;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .droneapproach-item {
@@ -69,7 +69,7 @@
 
 .droneapproach-list h2 {
   margin-bottom: 20px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   color: #232e35;
   transition: color 0.3s ease;
 }
@@ -78,7 +78,7 @@
   cursor: pointer;
 }
 .droneapproach-list p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1rem;
   color: rgb(124, 124, 124);
   margin-bottom: 1em;
@@ -88,7 +88,7 @@
   border: none;
   color: #12d6d6;
   font-weight: 700;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   transition: transform 0.3s ease-in-out;
 }
 .list-button:hover {
@@ -105,7 +105,7 @@
 .featured-head {
   text-align: center;
   margin-bottom: 2em;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   font-size: 1.5rem;
 }
 /* Arial photography and videography  */
@@ -138,7 +138,7 @@
   color: rgb(124, 124, 124);
 }
 .drone-video-btn {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   margin-top: 2em;
   width: 40%;
   transition: transform 0.3s ease-in-out;
@@ -274,7 +274,7 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 40px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-bottom: 2em;
 }
 .tools {
@@ -306,11 +306,11 @@
   color: #12d6d6;
 }
 .title {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-bottom: 0.5em;
 }
 .content {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   color: rgb(186, 184, 184);
 }
 /* CUSTOMER TESTIMONIAL */
@@ -334,7 +334,7 @@
   letter-spacing: 3px;
   text-align: center;
   font-weight: 600;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   padding-top: 1.2em;
   padding-bottom: 1.5em;
 }
@@ -344,7 +344,7 @@
   text-align: left;
   font-size: 1.2em;
   color: #ffffff;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
 }
 .drone-testifier {
@@ -481,7 +481,7 @@ photography and videography */
     letter-spacing: 3px;
     text-align: center;
     font-weight: 500;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
   }
 
   .drone-heading-details {
@@ -490,7 +490,7 @@ photography and videography */
     word-spacing: 2px;
     text-align: center;
     color: #fff;
-    font-family: "Mazzard";
+    font-family: "Rubik";
   }
   .drone-approach-main {
     padding-left: 20px;
@@ -509,7 +509,7 @@ photography and videography */
     padding-top: 50px;
     text-align: center;
     margin-bottom: 1.5em;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
   }
 
   .droneapproach-item {
@@ -527,7 +527,7 @@ photography and videography */
 
   .droneapproach-list h2 {
     margin-bottom: 20px;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
     color: #232e35;
     transition: color 0.3s ease;
   }
@@ -536,7 +536,7 @@ photography and videography */
     cursor: pointer;
   }
   .droneapproach-list p {
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1rem;
     color: rgb(124, 124, 124);
     margin-bottom: 1em;
@@ -544,7 +544,7 @@ photography and videography */
   .list-button {
     color: #12d6d6;
     font-weight: 700;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
     transition: color 0.3s ease;
   }
   .list-button:hover {
@@ -621,7 +621,7 @@ photography and videography */
     font-size: 1.3rem;
     font-weight: 700;
     line-height: 40px;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
     margin-bottom: 1.5em;
   }
   .tools {
@@ -656,11 +656,11 @@ photography and videography */
     color: #12d6d6;
   }
   .title {
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
     margin-bottom: 0.5em;
   }
   .content {
-    font-family: "Mazzard";
+    font-family: "Rubik";
     color: rgb(186, 184, 184);
   }
   /* CUSTOMER TESTIMONIAL */
@@ -684,7 +684,7 @@ photography and videography */
     letter-spacing: 3px;
     text-align: center;
     font-weight: 600;
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
     padding-top: 1.2em;
     padding-bottom: 1.5em;
   }
@@ -694,7 +694,7 @@ photography and videography */
     text-align: left;
     font-size: 1em;
     color: #ffffff;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     letter-spacing: 2px;
   }
   .drone-testifier {

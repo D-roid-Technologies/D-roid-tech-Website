@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 /* SECTIONS */
 .section-main {
@@ -94,14 +94,14 @@
   font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   text-align: center;
 }
 .approach-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: #333;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
   letter-spacing: 2px;
 }
@@ -133,20 +133,20 @@
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .our-approach-blue-bg {
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 800;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .join-approach-details {
   color: rgba(240, 240, 240, 0.7);
   font-size: 1.2rem;
   font-weight: 200;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
   letter-spacing: 2px;
 }
@@ -201,13 +201,13 @@
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .services-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
 }
@@ -215,7 +215,7 @@
   font-size: 1.2rem;
   font-weight: 200;
   color: rgba(7, 29, 106, 0.6);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
   padding: 0 200px;
@@ -268,13 +268,13 @@
   font-size: 30px;
   font-weight: 800;
   /* color: #282a94; */
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .carousel-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgba(7, 29, 106, 0.6);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
 }
@@ -331,7 +331,7 @@
 }
 .website-details {
   color: #333;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -383,9 +383,9 @@
   width: 40%;
 }
 .m-app-image {
-  width: 800px;
-  height: 550px;
-  object-fit: cover;
+  width: 600px !important;
+  height: 350px;
+  object-fit: contain;
 }
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
@@ -477,14 +477,14 @@
     line-height: 10px;
     font-size: 1.5rem !important;
     font-weight: 600;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
   }
   .join-approach-details {
     color: rgba(240, 240, 240, 0.7);
     font-size: 1rem;
     font-weight: 200;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -578,13 +578,13 @@
     line-height: 10px;
     font-size: 1.5rem;
     font-weight: 700;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
   .carousel-details {
     font-size: 1.2rem;
     font-weight: 200;
     color: #333;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -645,7 +645,7 @@
   }
   .website-details {
     color: #333;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;

@@ -43,14 +43,14 @@
   font-size: 2rem;
   letter-spacing: 2px;
   font-weight: 500;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .training-smaller-centered-heading {
   margin-top: 1em;
   font-size: 1.5rem;
   word-spacing: 1px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 .training-main-content-section {
@@ -66,13 +66,13 @@
 .training-section-heading {
   margin-bottom: 1em;
   line-height: 1.5;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .training-section-details {
   font-size: 1rem;
   line-height: 1.5;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
 }
 
@@ -99,7 +99,7 @@
   font-size: 2rem;
   text-align: center;
   margin-bottom: 1em;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
@@ -107,7 +107,7 @@
   font-size: 2rem;
   text-align: center;
   margin-bottom: 2em;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
@@ -155,12 +155,12 @@
 
 .training-approach-item h2 {
   margin-bottom: 20px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   transition: color 0.3s ease;
 }
 
 .training-approach-item p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1rem;
   margin-bottom: 1em;
 }
@@ -205,11 +205,11 @@
 
 .training-program-item h3 {
   margin-bottom: 10px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .training-program-item p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1rem;
   margin-bottom: 1em;
 }

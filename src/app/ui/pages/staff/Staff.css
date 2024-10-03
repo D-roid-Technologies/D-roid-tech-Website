@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 .outer-container {
   display: flex;
@@ -16,7 +16,7 @@
 .staff-header {
   margin-top: 20px;
   color: #ffffff;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-bottom: 20px;
   font-weight: 800;
   font-size: 30px;
@@ -27,7 +27,7 @@
   color: #ffffff;
   margin-bottom: 10px;
   letter-spacing: 2px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 .input-button {

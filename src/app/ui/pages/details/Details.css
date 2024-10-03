@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 .details-bg-image {
   background-size: cover;
@@ -17,7 +17,7 @@
 }
 
 .page-head {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin: 0;
   padding-top: 1em;
   text-align: center;
@@ -28,7 +28,7 @@
 
 .page-head-details {
   text-align: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -54,13 +54,13 @@
 }
 
 .img-con h3 {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-bottom: 10px;
   font-size: 2rem;
 }
 
 .img-con p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -100,13 +100,13 @@
   margin-bottom: 5px;
   font-size: 1.5rem;
   color: #444;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .category p,
 .tools p {
   font-size: 1.1em;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
 }
@@ -114,7 +114,7 @@
 .tool-item {
   margin-right: 10px;
   font-size: 1.1em;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
 }
@@ -138,7 +138,7 @@
 }
 
 .procedure-title {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   font-size: 1.5em;
   margin-bottom: 25px;
 }
@@ -147,7 +147,7 @@
   font-size: 1.2rem;
   margin-top: 15px;
   margin-bottom: 10px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .procedure-content {
@@ -160,12 +160,12 @@
 
 .procedure-item-title {
   font-weight: bold;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   font-size: 1rem;
 }
 
 .procedure-item-desc {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   margin-left: 10px;
@@ -174,7 +174,7 @@
 
 .fees-container {
   text-align: center;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .fees-section {
@@ -205,7 +205,7 @@
   font-size: 1.3em;
   margin-bottom: 10px;
   color: #333;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .fees-card p {
@@ -278,9 +278,9 @@
   }
 }
 
-/* @import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 .details-bg-image {
   background-size: cover;
@@ -296,7 +296,7 @@
 }
 
 .page-head {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin: 0;
   padding-top: 1em;
   text-align: center;
@@ -307,7 +307,7 @@
 }
 .page-head-details {
   text-align: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 
   font-size: 1.2rem;
   font-weight: 500;
@@ -327,12 +327,12 @@
   width: 46%;
 }
 .img-con h3 {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-bottom: 10px;
   font-size: 2rem;
 }
 .img-con p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -372,7 +372,7 @@
   margin-bottom: 5px;
   font-size: 1.5rem;
   color: #444;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .category p,
@@ -380,7 +380,7 @@
   gap: 20px;
   font-size: 1.1em;
   margin-right: 60px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -389,7 +389,7 @@
   margin-right: 30px;
   font-size: 1.1em;
   margin-right: 30px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -413,7 +413,7 @@
 }
 
 .procedure-title {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   font-size: 1.5em;
   margin-bottom: 25px;
 }
@@ -422,7 +422,7 @@
   font-size: 1.2rem;
   margin-top: 15px;
   margin-bottom: 10px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .procedure-content {
@@ -435,12 +435,12 @@
 
 .procedure-item-title {
   font-weight: bold;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   font-size: 1rem;
 }
 
 .procedure-item-desc {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   margin-left: 10px;
@@ -449,7 +449,7 @@
 
 .fees-container {
   text-align: center;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 .fees-section {
   background-color: #262a97;
@@ -480,7 +480,7 @@
   font-size: 1.3em;
   margin-bottom: 10px;
   color: #333;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .fees-card p {

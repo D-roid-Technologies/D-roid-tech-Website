@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular"); */
 
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -13,12 +14,12 @@
   --heading-line-height: 1.2;
   --heading-font-size: 35px;
   --heading-font-weight: 800;
-  --heading-font-family: "Rammetto", sans-serif;
+  --heading-font-family: "Rubik", sans-serif;
 
   /* Variables for paragraph */
   --paragraph-font-size: 1.2rem;
   --paragraph-font-weight: 200;
-  --paragraph-font-family: "Mazzard", sans-serif;
+  --paragraph-font-family: "Rubik", sans-serif;
   --paragraph-letter-spacing: 2px;
 }
 /* Why is a style for a service heading on the app entry css? */
@@ -28,7 +29,7 @@
   /* line-height: 1rem; */
   font-size: 1.5rem;
   font-weight: 800;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   text-align: center;
 }
 
@@ -38,7 +39,7 @@
   font-family: "Verdana Pro";
   font-weight: 200;
   color: #333 !important;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   text-align: left;
   /* letter-spacing: 2px; */
@@ -90,13 +91,13 @@
   margin-bottom: 10px;
   color: #282a94;
   font-size: 24px;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
 }
 
 .modal-body {
   color: #000000;
   font-size: 18px;
-  font-family: "MazzardH";
+  font-family: "RubikH";
 }
 /* AI Section */
 .chat-with-ogo {
@@ -129,7 +130,7 @@
   height: 40px;
 }
 .chat-with-ogo-p {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   font-weight: 800;
   color: #ffffff;
 }
@@ -144,7 +145,7 @@
 .toast-title {
   font-size: 18px;
   font-weight: 800;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   color: #ffffff;
 }
 /* Add these keyframes for the shaking animation */
@@ -256,7 +257,7 @@
     padding: 20px;
   }
   .chat-with-ogo-p {
-    font-family: "Rammetto One";
+    font-family: "Rubik One";
     font-weight: 800;
     color: #ffffff;
     font-size: 10px;

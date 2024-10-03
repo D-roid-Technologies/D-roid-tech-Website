@@ -101,20 +101,15 @@ const Services: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div
-        style={{
-          backgroundImage: `url("${Assets.images.servicesMain}")`,
-        }}
-        className="bg-image"
-      >
-        {/* <div className="home-section">
-          <article className="home-content">
-            <p className="home-heading" style={{ color: getColor("light") }}>
-              OUR SERVICES
-            </p>
-          </article>
-        </div> */}
-      </div>
+      <section className="service-hero-section">
+        <div>
+          <img src={Assets.images.whatwedoBanner} height={650} alt="" />
+        </div>
+
+        <div className="service-text-area">
+          <h2>WHAT WE DO?</h2>
+        </div>
+      </section>
       <div className="service-main">
         <h1
           style={{ color: Assets.colors.primary }}

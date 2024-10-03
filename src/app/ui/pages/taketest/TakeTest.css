@@ -14,7 +14,7 @@
 .test-text-area h2 {
   font-size: 2.7rem;
   font-weight: 600;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-bottom: 1em;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
@@ -138,7 +138,7 @@
 .result {
   margin-bottom: 20px;
   font-size: 2rem;
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   /* color: #333; */
   color: #ffffff;
 }

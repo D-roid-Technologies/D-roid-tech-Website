@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 /* Global Styles */
 .products-banner,
@@ -10,21 +10,21 @@
 }
 
 .our-catalog-header {
-  font-family: "Rammetto One", sans-serif;
+  font-family: "Rubik One", sans-serif;
   font-size: 40px;
   margin-bottom: 30px;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
 .products-header {
-  font-family: "Rammetto One", sans-serif;
+  font-family: "Rubik One", sans-serif;
   font-size: 40px;
   margin-bottom: 30px;
   color: #ffb100;
 }
 
 .product-pp {
-  font-family: "MazzardH", sans-serif;
+  font-family: "RubikH", sans-serif;
   letter-spacing: 2px;
   font-size: 22px;
   color: #071d6a;
@@ -34,7 +34,7 @@
   line-height: 20px;
   color: #333;
   font-weight: 400;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   margin-bottom: 20px;
 }
@@ -107,7 +107,7 @@
 }
 
 .product-bottom-title {
-  font-family: "MazzardH", sans-serif;
+  font-family: "RubikH", sans-serif;
   letter-spacing: 2px;
   font-size: 18px;
   color: #ffffff;
@@ -144,7 +144,7 @@
   width: 50%;
 }
 .our-catalog-header {
-  font-family: "Rammetto One";
+  font-family: "Rubik One";
   margin-top: 50px;
 }
 /* PRODUCT FILTER */
@@ -289,7 +289,7 @@
     display: none;
   }
   .products-header {
-    font-family: "Rammetto One", sans-serif;
+    font-family: "Rubik One", sans-serif;
     font-size: 1.8rem;
     margin-bottom: 10px;
     color: #ffb100;
@@ -301,7 +301,7 @@
     bottom: 0;
   }
   .product-pp {
-    font-family: "MazzardH", sans-serif;
+    font-family: "RubikH", sans-serif;
     letter-spacing: 2px;
     font-size: 1.2rem;
     color: #071d6a;

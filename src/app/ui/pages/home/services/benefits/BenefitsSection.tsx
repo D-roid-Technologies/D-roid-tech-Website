@@ -87,7 +87,7 @@ const BenefitItem: React.FunctionComponent<BenefitItemType> = ({
         style={{
           textAlign: "left",
           marginBottom: "20px",
-          fontFamily: "Rammetto One",
+          fontFamily: "Rubik One",
           color: getColor("basic"),
         }}
       >
@@ -123,7 +123,7 @@ const BenefitsSection: React.FunctionComponent = () => {
 const styles: { [key: string]: CSSProperties } = {
   heading: {
     color: Assets.colors.basic,
-    fontFamily: "Rammetto One",
+    fontFamily: "Rubik One",
     fontSize: "2rem",
   },
   benefitItem: {
@@ -134,10 +134,10 @@ const styles: { [key: string]: CSSProperties } = {
   title: {
     textAlign: "left",
     marginBottom: "20px",
-    fontFamily: "Rammetto One",
+    fontFamily: "Rubik One",
   },
   description: {
-    fontFamily: "Mazzard",
+    fontFamily: "Rubik",
     fontSize: "1rem",
     color: Assets.colors.paragraph,
     marginBottom: "1em",

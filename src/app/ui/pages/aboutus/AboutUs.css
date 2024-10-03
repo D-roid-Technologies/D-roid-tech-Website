@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+@import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
 
 .aboutus-bg-color {
   background-color: #f9f9f9;
@@ -40,12 +40,12 @@
   font-weight: 700;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .about-histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   line-height: 30px;
   color: #333;
@@ -81,7 +81,7 @@
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 
 /* VISION MISSION VALUE - BOX SECTIONS */
@@ -100,7 +100,7 @@
   font-size: 32px;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 
 .vision-main {
@@ -118,7 +118,7 @@
   font-size: 1.2rem;
   font-weight: 200;
   color: #333;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
   line-height: 1.5;
 }
@@ -135,7 +135,7 @@
   font-weight: 700;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 
 .core-value-vision-header-small {
@@ -143,7 +143,7 @@
   line-height: 10px;
   font-size: 1.7rem;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   margin-top: 10px;
 }
 .core-value-icons {
@@ -163,7 +163,7 @@
   font-size: 1.2rem;
   font-weight: 200;
   color: #333;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
   line-height: 1.5;
 }
@@ -174,13 +174,13 @@
 .our-team {
   text-align: center;
   margin-bottom: 0.6em;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   font-size: 2rem;
 }
 .our-team-details {
   padding: 0 90px;
   text-align: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2rem;
   color: rgb(186, 184, 184);
   margin-bottom: 1.5em;
@@ -199,11 +199,11 @@
   /* object-fit: cover; */
 }
 .profile-one h3 {
-  font-family: "Rammetto";
+  font-family: "Rubik";
   font-size: 1.2rem;
 }
 .profile-one p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   color: rgb(186, 184, 184);
   font-weight: 600;
 }
@@ -223,7 +223,7 @@
 .team-heading {
   text-align: center;
   margin-bottom: 0.6em;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   font-size: 2rem;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
@@ -317,7 +317,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: #282a94;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
   }
   .about-histoy-details {
@@ -326,7 +326,7 @@
     color: rgb(186, 184, 184) !important;
     text-align: justify;
     line-height: 20px;
-    font-family: "Mazzard";
+    font-family: "Rubik";
   }
 
   /* VISION AND MISSION SECTION */
@@ -356,7 +356,7 @@
     font-size: 32px;
     font-weight: 600;
     color: #282a94;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
 
   .vision-box {
@@ -368,7 +368,7 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: rgb(186, 184, 184);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: left;
     line-height: 1.3;
   }
@@ -382,7 +382,7 @@
     line-height: 10px;
     font-size: 32px;
     color: #282a94;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
 
   .core-value-vision-box {
@@ -396,7 +396,7 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: rgb(186, 184, 184);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: left;
     line-height: 1.3;
   }
@@ -408,13 +408,13 @@
   .our-team {
     text-align: center;
     margin-bottom: 0.6em;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-size: 2rem;
   }
   .our-team-details {
     padding: 0 90px;
     text-align: center;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     color: rgb(186, 184, 184);
   }
@@ -432,11 +432,11 @@
   }
 
   .profile-one h3 {
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-size: 1.2rem;
   }
   .profile-one p {
-    font-family: "Mazzard";
+    font-family: "Rubik";
     color: rgb(186, 184, 184);
     font-weight: 600;
   }
@@ -477,7 +477,7 @@
     font-size: 0.6rem;
     font-weight: 600;
     color: #282a94;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
   }
   .about-histoy-details {
@@ -487,7 +487,7 @@
     text-align: justify;
     letter-spacing: 0;
     line-height: 20px;
-    font-family: "Mazzard";
+    font-family: "Rubik";
   }
   .about-history-details-div {
     padding: 30px 15px;
@@ -531,7 +531,7 @@
     font-size: 30px;
     font-weight: 600;
     color: #282a94;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
 
   /* .vision-box {
@@ -545,7 +545,7 @@
     font-size: 1rem;
     font-weight: 200;
     color: rgb(186, 184, 184);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: left;
     line-height: 1.5;
   } */
@@ -557,7 +557,7 @@
     font-size: 15px;
     font-weight: 200;
     color: #333;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: justify;
     line-height: 1.5;
   }
@@ -580,7 +580,7 @@
     line-height: 10px;
     font-size: 25px;
     color: #282a94;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
 
   .core-value-vision-box {
@@ -594,7 +594,7 @@
     font-size: 1rem;
     font-weight: 200;
     color: rgb(186, 184, 184);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: left;
     line-height: 1.5;
   }
@@ -606,13 +606,13 @@
   .our-team {
     text-align: center;
     margin-bottom: 0.4em;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-size: 25px;
   }
   .our-team-details {
     padding: 0 0;
     text-align: center;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 15px;
     color: rgb(186, 184, 184);
   }
@@ -632,11 +632,11 @@
   }
 
   .profile-one h3 {
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-size: 1.8rem;
   }
   .profile-one p {
-    font-family: "Mazzard";
+    font-family: "Rubik";
     color: rgb(186, 184, 184);
     font-weight: 600;
     font-size: 1.2rem;
@@ -645,7 +645,7 @@
   .team-heading {
     text-align: center;
     margin-bottom: 0.6em;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-size: 2rem;
     color: #282a94;
   }
