@@ -113,7 +113,7 @@ const Services: React.FunctionComponent = () => {
       <div className="service-main">
         <h1
           style={{ color: Assets.colors.primary }}
-          className="general-heading"
+          className="general-heading-two"
         >
           Comprehensive Technology Solutions
         </h1>
