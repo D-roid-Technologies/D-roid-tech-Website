@@ -45,13 +45,25 @@ const Equipments: React.FunctionComponent<any> = () => {
     { label: "Streamline-web", icon: Assets.images.streamlineWeb },
     { label: "Arrow-up icon", icon: Assets.images.arrowUp },
     { label: "Midi-passport", icon: Assets.images.midiPassport },
-    { label: "Badge outline", icon: "badgeOutline" },
-    { label: "Eva-settings", icon: "evaSettings" },
-    { label: "Customer service icon", icon: "customerService" },
-    { label: "Arrow outline", icon: "arrowOutline" },
-    { label: "Notification-fill", icon: "notificationFill" },
-    { label: "Programming outline", icon: "programmingOutline" },
-    { label: "Outline-laptop", icon: "outlineLaptop" },
+    { label: "Badge outline", icon: Assets.images.badgeOutline },
+    { label: "Eva-settings", icon: Assets.images.evaSettings },
+    { label: "Customer service icon", icon: Assets.images.customerServiceIcon },
+    { label: "Arrow outline", icon: Assets.images.arrowOutline },
+    { label: "Notification-fill", icon: Assets.images.notificationIcon },
+    { label: "Programming outline", icon: Assets.images.programmingOutline },
+    { label: "Outline-laptop", icon: Assets.images.outlineLaptop },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
+    { label: "Database-light", icon: "databaseLight" },
     { label: "Database-light", icon: "databaseLight" },
   ];
 
@@ -66,16 +78,16 @@ const Equipments: React.FunctionComponent<any> = () => {
           <h1 className="contact-header"> D’roid Icons</h1>
           <div className="icon-list">
             {droidIcons.map((iconItem) => (
-              <div className="icon-item" key={iconItem.icon}>
+              <div key={iconItem.icon}>
                 {/* Placeholder for the actual icon, replace with the icon component/library you use */}
-                <div className="icon">
+                <div className="icon icon-item">
                   <img
                     src={iconItem.icon}
                     alt={iconItem.label}
                     className="droid-icon-size"
                   />
                 </div>
-                {/* <p className="icon-label">{iconItem.label}</p> */}
+                <p className="icon-label">{iconItem.label}</p>
               </div>
             ))}
           </div>

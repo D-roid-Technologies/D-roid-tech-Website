@@ -101,6 +101,13 @@ export const Assets = {
     streamlineWeb: require("../../images/png/streamline_web.png"),
     arrowUp: require("../../images/png/arrow-up.png"),
     midiPassport: require("../../images/png/mdi_passport.png"),
+    badgeOutline: require("../../images/png/badge-outline.png"),
+    evaSettings: require("../../images/png/eva_settings-2-fill.png"),
+    customerServiceIcon: require("../../images/png/customer-service-01.png"),
+    arrowOutline: require("../../images/png/arrow-outlined.png"),
+    notificationIcon: require("../../images/png/notification-fill.png"),
+    programmingOutline: require("../../images/png/programming-script-code.png"),
+    outlineLaptop: require("../../images/png/outlineLaptop.png"),
   },
   colors: {
     basic: "#000000",
