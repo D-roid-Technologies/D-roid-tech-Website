@@ -356,9 +356,9 @@ const Section: React.FunctionComponent = () => {
               best of our Services.
             </p> */}
             <p className="download ">
-              Get Our <br />
-              Knowledge City <br />
-              Mobile App On.
+              Get all <br />
+              Our Mobile <br />
+              Applications On.
             </p>
             <div className="app-btn-container">
               <span className="Apple-store">

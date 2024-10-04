@@ -385,7 +385,7 @@
 .m-app-image {
   object-fit: contain;
   width: 600px;
-  height: 400px;
+  height: 500px;
 }
 .mobile-screens {
   display: flex;

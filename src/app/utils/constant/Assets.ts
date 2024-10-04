@@ -43,7 +43,7 @@ export const Assets = {
 
     stellaimg: require("../../images/png/stellaImage.jpeg"),
     uzoimg: require("../../images/png/Uzoimage.png"),
-    faithimg: require("../../images/png/faithimg.png"),
+    princewill: require("../../images/png/princewil-image.jpg"),
 
     tech: require("../../images/png/tech.jpg"),
     tech2: require("../../images/png/tech2.webp"),
