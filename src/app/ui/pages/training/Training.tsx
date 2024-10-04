@@ -157,8 +157,9 @@ const Training: React.FC = () => {
         </div>
         <TrainingApproach />
       </div>
-
-      <TechnologiesAndTools />
+      <span className="tech-tools">
+        <TechnologiesAndTools />
+      </span>
     </div>
   );
 };

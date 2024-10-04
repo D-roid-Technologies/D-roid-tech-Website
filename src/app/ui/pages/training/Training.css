@@ -92,7 +92,8 @@
 /* Approach Section */
 .training-approach-main-one {
   /* margin-bottom: 50px; */
-  margin-top: 2rem;
+  margin-top: 1em;
+  margin-bottom: 6em;
 }
 
 .training-approach-head {
@@ -216,6 +217,10 @@
 .technologies {
   margin-bottom: 50px;
   padding: 0 20px;
+}
+.tech-tools {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 /* Media queries for smaller screens */

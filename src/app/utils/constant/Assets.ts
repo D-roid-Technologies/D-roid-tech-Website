@@ -92,6 +92,15 @@ export const Assets = {
     cashBasket: require("../../images/png/newcashbasket.png"),
     knowledgecity: require("../../images/png/knowledgecityscreenshot.png"),
     dome: require("../../images/png/dome.png"),
+
+    // Droid Icons
+    scheduleLine: require("../../images/png/mingcute_schedule-line.png"),
+    phoneChat: require("../../images/png/phone-chat.png"),
+    solidPeopleRoof: require("../../images/png/solid_people-roof.png"),
+    windowDevTools: require("../../images/png/window-dev-tools.png"),
+    streamlineWeb: require("../../images/png/streamline_web.png"),
+    arrowUp: require("../../images/png/arrow-up.png"),
+    midiPassport: require("../../images/png/mdi_passport.png"),
   },
   colors: {
     basic: "#000000",
