@@ -369,7 +369,7 @@ const Section: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
-                  fWeight={700}
+                  fWeight={900}
                   color="#071d69"
                   bRadius={5}
                   bRadiusColor="#071d69"
@@ -394,7 +394,7 @@ const Section: React.FunctionComponent = () => {
                   mLeft={0}
                   mRight={0}
                   bRadius={5}
-                  fWeight={700}
+                  fWeight={900}
                   color="#071d69"
                   bRadiusColor="#071d69"
                   icon={
@@ -410,13 +410,18 @@ const Section: React.FunctionComponent = () => {
               </span>
             </div>
           </div>
-          <div>
+          {/* app image */}
+          {/* <div className="mobile-screens"> */}
+          <div className="mobile-screens">
             <img
               src={Assets.images.knowledgeCityMobileApp}
               alt="knowledge city img"
               className="m-app-image"
+              // width={600}
+              // height={200}
             />
           </div>
+          {/* </div> */}
         </section>
       </div>
     </>

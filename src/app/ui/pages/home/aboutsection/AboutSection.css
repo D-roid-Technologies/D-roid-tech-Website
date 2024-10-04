@@ -42,14 +42,14 @@
   font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   text-align: center;
 }
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: #333 !important;
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   text-align: left;
   letter-spacing: 2px;
 }
@@ -228,7 +228,7 @@
   font-weight: 800;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
 }
 .carousel-container {
   width: 100%;
@@ -321,7 +321,7 @@
 .website-header {
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -364,7 +364,7 @@
 }
 .download {
   color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   font-size: 3.3rem;
   font-style: normal;
   font-weight: 600;
@@ -383,9 +383,13 @@
   width: 40%;
 }
 .m-app-image {
-  width: 600px !important;
-  height: 350px;
   object-fit: contain;
+  width: 600px;
+  height: 400px;
+}
+.mobile-screens {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
@@ -423,7 +427,7 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: #333 !important;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -455,7 +459,7 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: #333 !important;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -525,7 +529,7 @@
     font-size: 35px !important;
     font-weight: 800;
     color: #282a94;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
   }
   .our-services-s {
     margin-bottom: 1em;
@@ -534,14 +538,14 @@
     font-weight: 600;
     color: #071d6a;
     text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
   }
 
   .services-detailss {
     font-size: 1.2rem;
     font-weight: 200;
     color: #333;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
     padding: 0 20px;

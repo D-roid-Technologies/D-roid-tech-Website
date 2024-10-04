@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik One");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular"); */
 
 /* CONTENT */
 .home-main {
@@ -57,7 +57,7 @@
   font-weight: 700;
   color: #071d6a;
   /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
 }
 
 .product-button {

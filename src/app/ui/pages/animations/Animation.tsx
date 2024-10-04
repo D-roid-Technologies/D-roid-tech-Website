@@ -298,6 +298,7 @@ const Animation: React.FunctionComponent = () => {
             className="our-catalog-icon"
           />
         </div>
+
         <div className="our-catalog-right">
           <h1 className="our-catalog-header">Why our Clients choose us?</h1>
           <ol>

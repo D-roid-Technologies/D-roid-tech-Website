@@ -365,13 +365,13 @@
     letter-spacing: 1px;
     text-align: center;
     font-weight: 700;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
 
   .testiminial-details {
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     letter-spacing: 0;
     color: rgba(7, 29, 106, 0.6);
     font-size: 1rem;

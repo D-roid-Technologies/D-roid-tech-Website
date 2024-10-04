@@ -447,6 +447,7 @@ const Contact: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
+                  bRadius={5}
                   bRadiusColor="#FFB100"
                   title="Submit"
                   color="#071d69"

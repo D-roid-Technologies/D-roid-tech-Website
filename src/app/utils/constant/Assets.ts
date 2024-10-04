@@ -64,7 +64,8 @@ export const Assets = {
     trainingBannerTwo: require("../../images/png/Training-banner-two.png"),
     tarinigBannerThree: require("../../images/png/Training-banner-three.png"),
     trainingIconImage: require("../../images/png/training-icon-image.png"),
-    knowledgeCityMobileApp: require("../../images/png/Knowledge-M-app.png"),
+    knowledgeCityMobileApp: require("../../images/png/iphone-image-removebg-preview.png"),
+    // knowledgeCityMobileAppTwo: require("../../images/png/iPhone 2.png"),
     whatwedoBanner: require("../../images/png/what-we-do-banner-image.png"),
 
     productCustomerReview: require("../../images/png/product-client-removebg-preview.png"),

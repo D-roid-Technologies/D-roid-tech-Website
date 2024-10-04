@@ -253,7 +253,8 @@ textarea {
 }
 /* FAQ section */
 .faq-container {
-  max-width: 600px;
+  width: 70%;
+  /* max-width: 900px; */
   margin: 0 auto;
   padding: 20px;
   margin-bottom: 3em;
