@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import "../aboutus/AboutUs.css";
@@ -11,8 +11,13 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { DATA } from "../../../utils/constant/Data";
 import { FaXTwitter } from "react-icons/fa6";
 import Button from "../../components/button/Button";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const AboutUs: React.FunctionComponent = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   const { getColor } = useThemeColor();
 
   return (
@@ -123,27 +128,17 @@ const AboutUs: React.FunctionComponent = () => {
             >
               <h2 className="core-value-vision-header">Core Values</h2>
               <div className="core-values">
-                <motion.div
-                  variants={fadeIn("right", 0.2)}
-                  initial="hidden"
-                  whileInView={"show"}
-                  viewport={{ once: false, amount: 0.7 }}
-                >
+                <div data-aos="flip-left">
                   <GiRosaShield className="core-value-icons" />
-                  <h2 className="core-value-vision-header-small">Integtity</h2>
+                  <h2 className="core-value-vision-header-small">Integrity</h2>
                   <p className="about-histoy-details">
                     At D'roid Technologies, integrity is the cornerstone of our
                     operations. We are committed to conducting our business with
                     the highest ethical standards, ensuring transparency,
                     honesty, and accountability in all our interactions.
                   </p>
-                </motion.div>
-                <motion.div
-                  variants={fadeIn("down", 0.2)}
-                  initial="hidden"
-                  whileInView={"show"}
-                  viewport={{ once: false, amount: 0.7 }}
-                >
+                </div>
+                <div data-aos="zoom-in-up">
                   <FaGears className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Innovation</h2>
                   <p className="about-histoy-details">
@@ -152,13 +147,8 @@ const AboutUs: React.FunctionComponent = () => {
                     of technology to deliver groundbreaking solutions that drive
                     progress and create new opportunities.
                   </p>
-                </motion.div>
-                <motion.div
-                  variants={fadeIn("left", 0.2)}
-                  initial="hidden"
-                  whileInView={"show"}
-                  viewport={{ once: false, amount: 0.7 }}
-                >
+                </div>
+                <div data-aos="flip-right">
                   <RiCustomerService2Fill className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">
                     Customer Focus
@@ -169,7 +159,7 @@ const AboutUs: React.FunctionComponent = () => {
                     anticipating your needs, delivering tailored solutions that
                     drive success and satisfaction.
                   </p>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>
