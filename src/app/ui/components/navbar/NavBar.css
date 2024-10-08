@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik One");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans"); */
+/* @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .nav-link-container {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 .dark-mode {
@@ -36,7 +37,7 @@
   text-decoration: none;
   background-color: #000000;
   padding: 12px;
-  font-family: "Rubik One";
+  font-family: "Rubik";
 }
 .drop-down-links:hover {
   transition: 0.8s;
@@ -73,7 +74,7 @@
   background-color: transparent;
   align-items: center;
   height: 70px;
-  padding: 0 100px;
+  padding: 10px 100px;
 }
 
 .list {

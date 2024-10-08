@@ -39,7 +39,7 @@ const ToolItem: React.FC<ToolItemProps> = ({ title, description, icon }) => {
     },
     title: {
       marginBottom: "20px",
-      fontFamily: "Rubik One",
+      fontFamily: "Rubik",
       color: getColor("basic"),
     },
     description: {
@@ -72,7 +72,7 @@ const TechnologiesAndTools: React.FC = () => {
   const styles = {
     heading: {
       color: getColor("basic"),
-      fontFamily: "Rubik One",
+      fontFamily: "Rubik",
     },
   };
 

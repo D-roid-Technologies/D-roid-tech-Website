@@ -83,7 +83,7 @@ const TrainingApproach: React.FC = () => {
   const styles = {
     heading: {
       color: getColor("basic"),
-      fontFamily: "Rubik One",
+      fontFamily: "Rubik",
       marginBottom: "1.5em",
     },
     trainingApproachItem: {
@@ -93,7 +93,7 @@ const TrainingApproach: React.FC = () => {
     },
     title: {
       marginBottom: "1rem",
-      fontFamily: "Rubik One",
+      fontFamily: "Rubik",
       color: "#071d6a",
       transition: "color 0.3s ease",
     },

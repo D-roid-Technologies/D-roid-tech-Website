@@ -19,7 +19,7 @@
   margin-bottom: 1.5em;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Rubik One";
+  font-family: "Rubik";
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -69,7 +69,7 @@
   font-size: 2rem;
   letter-spacing: 2px;
   font-weight: 500;
-  font-family: "Rubik One";
+  font-family: "Rubik";
 }
 
 .smaller-centered-heading {
@@ -107,7 +107,7 @@
 .section-heading {
   margin-bottom: 1em;
   line-height: 1.5;
-  font-family: "Rubik One";
+  font-family: "Rubik";
 }
 
 .section-details {
@@ -145,7 +145,7 @@
 .software-approach-heads {
   text-align: center;
   margin-bottom: 1em;
-  font-family: "Rubik One";
+  font-family: "Rubik";
   color: #ffb100;
   font-size: 48px;
   font-style: normal;
@@ -174,7 +174,7 @@
 
 .software-approach-item h2 {
   margin-bottom: 20px;
-  font-family: "Rubik One";
+  font-family: "Rubik";
   color: #071d6a;
   transition: color 0.3s ease;
 }
@@ -295,7 +295,7 @@
   .software-approach-heads {
     text-align: center;
     margin-bottom: 1em;
-    font-family: "Rubik One";
+    font-family: "Rubik";
     color: #ffb100;
     font-size: 1.8rem;
     font-style: normal;

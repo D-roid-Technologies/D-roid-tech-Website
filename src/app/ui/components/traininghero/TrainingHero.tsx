@@ -37,10 +37,15 @@ const TrainingHero: React.FC = () => {
   };
 
   return (
-    <div
-      className="training-hero"
-      //   style={{ backgroundColor: getColor("light") }}
-    >
+    <>
+      <div
+        className="training-hero"
+        //   style={{ backgroundColor: getColor("light") }}
+      >
+        <h1 className="trinig-hero-head">
+          Explore the advent <br /> of our resounding <br /> Tech training
+        </h1>
+      </div>
       {/* <div
         className="training-hero-content"
         style={{ backgroundImage: `url("${photos[currentPhotoIndex].image}")` }}
@@ -88,7 +93,7 @@ const TrainingHero: React.FC = () => {
           mRight={0}
         />
       </div> */}
-    </div>
+    </>
   );
 };
 

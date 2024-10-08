@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=RubikH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .contact-containerr {
   padding: 0 100px;
@@ -56,7 +56,7 @@
   color: white;
   font-size: 1.8rem;
   margin-bottom: 0.6em;
-  font-family: "Rubik One";
+  font-family: "Rubik";
 }
 .info-details-p {
   color: #fbcc34;
@@ -356,7 +356,7 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rubik One";
+    font-family: "Rubik";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
@@ -511,7 +511,7 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rubik One";
+    font-family: "Rubik";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
