@@ -163,19 +163,7 @@ const Details: React.FunctionComponent = () => {
           )}
         </div>
       </section>
-      {/* <section className="fees-section"> */}
-      {/* <div className="fees">
-          <h3>FEES</h3>
-          {basicPrice && <p>Basic Price: {basicPrice}</p>}
-          {proPrice && <p>Pro Price: {proPrice}</p>}
-          {advancedPrice && <p>Advanced Price: {advancedPrice}</p>}
-        </div> */}
-      {/* <div className="fees">
-          <h3>FEES</h3>
-          <h4>{data.currency}</h4>
-          <p>{data.price}</p>
-        </div> */}
-      {/* </section> */}
+      {/* 
       <h3 className="fees-container">FEES</h3>
       <section className="fees-section">
         <div className="fees">
@@ -192,7 +180,7 @@ const Details: React.FunctionComponent = () => {
             {advancedPrice && <p>{advancedPrice}</p>}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

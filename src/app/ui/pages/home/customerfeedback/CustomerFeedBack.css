@@ -10,6 +10,17 @@
   background-color: rgba(7, 29, 106, 0.1);
   height: 250px;
   padding: 30px 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.testimonial-bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin-bottom: 50px;
 }
 
 .read {

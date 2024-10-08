@@ -19,6 +19,7 @@ import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../../utils/constant/Variants";
 import { TESTIMONIALS } from "../../../../utils/constant/Testimonial";
+import testimonialImage from "../../../../images/png/home-testinomial-bg.png";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -46,7 +47,12 @@ const CustomerFeedBack: React.FunctionComponent = () => {
   return (
     <div className="customerfeedback-main">
       <h2 className="read">READ WHAT OUR CUSTOMERS HAVE TO SAY!</h2>
-      <div className="customer-testimonials">
+      <div
+        className="customer-testimonials"
+        style={{
+          backgroundImage: `url("${testimonialImage}")`,
+        }}
+      >
         <div>
           <div>
             <div className="testiminial-details">
