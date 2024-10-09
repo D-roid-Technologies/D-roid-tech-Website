@@ -1,23 +1,52 @@
 .training-hero {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative; */
-  padding: 20px;
+  padding: 20px 50px;
   margin: 4rem 3rem;
-  border-radius: 17.415px;
-  opacity: 0.4;
-  height: 80vh;
+  border-radius: 20px;
+  height: 90vh; /* Ensure it adjusts with the viewport height */
   background: rgba(7, 29, 106, 0.3);
-  box-shadow: 0px 4px 4px 0px rgba(7, 29, 106, 0.4);
+  box-shadow: 0px 4px 4px rgba(7, 29, 106, 0.4); /* Remove redundant '0px' */
+  display: flex; /* Ensure the hero maintains its layout even with small screens */
+  justify-content: center; /* Align center for responsiveness */
+  align-items: center;
+  position: relative;
 }
+
+.t-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* max-width: 1200px; */
+  padding-top: 30px;
+}
+
+.t-hero-bg-image {
+  width: 100%;
+  height: auto;
+  /* max-width: 800px; Ensure the image doesn't overflow on smaller screens */
+  /* max-height: 480px; */
+  object-fit: cover;
+  /* border-radius: 10px; */
+}
+
 .trinig-hero-head {
-  color: #ffb100;
-  font-family: "Rubik";
+  color: #fac17a;
+  font-family: "Rubik", sans-serif;
   font-size: 48px;
   font-style: normal;
   font-weight: 600;
+  line-height: 1.3;
+  white-space: pre-wrap; /* Allow for line breaks if using \n in the text */
+}
+
+.t-hero-btn {
+  margin-top: 3em;
+  width: 40%; /* Adjust to the button size */
+  transition: transform 0.3s ease-in-out;
+}
+
+.t-hero-btn:hover {
+  transform: scale(1.1);
 }
 
 .training-hero-content {
@@ -41,7 +70,7 @@
 .training-hero-text h1 {
   font-size: 2rem;
   margin-bottom: 20px;
-  font-family: "Rubik";
+  font-family: "Rubik", sans-serif;
 }
 
 .training-hero-image {
@@ -57,8 +86,25 @@
 }
 
 .navigation-buttons {
-  position: absolute;
-  bottom: 20px;
+  margin-top: 3em;
+  width: fit-content; /* Adjust width based on content */
   display: flex;
   gap: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.t-nav-btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50%; /* Rounded button */
+  background-color: #071d6a;
+  color: #ffffff;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.t-nav-btn:active {
+  transform: scale(1.1);
+  color: #fac17a;
+  background-color: #ffffff;
 }

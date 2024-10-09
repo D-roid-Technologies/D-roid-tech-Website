@@ -8,15 +8,15 @@ import "./TrainingHero.css";
 const photos: TrainingPhoto[] = [
   {
     image: Assets.images.trainingBannerOne,
-    text: "Explore the advent of our resounding Tech training",
+    text: "Explore the advent\nof our resounding\nTech training",
   },
   {
     image: Assets.images.trainingBannerTwo,
-    text: "Explore the advent of our resounding Tech training",
+    text: "Delve into cutting-edge\ntechnology with expert\nguidance",
   },
   {
     image: Assets.images.tarinigBannerThree,
-    text: "Explore the advent of our resounding Tech training",
+    text: "Advance your career\nwith top-notch\ntechnical skills",
   },
 ];
 
@@ -38,61 +38,64 @@ const TrainingHero: React.FC = () => {
 
   return (
     <>
-      <div
-        className="training-hero"
-        //   style={{ backgroundColor: getColor("light") }}
-      >
-        <h1 className="trinig-hero-head">
-          Explore the advent <br /> of our resounding <br /> Tech training
-        </h1>
-      </div>
-      {/* <div
-        className="training-hero-content"
-        style={{ backgroundImage: `url("${photos[currentPhotoIndex].image}")` }}
-      ></div>
-      <div className="training-hero-text" style={{ color: getColor("light") }}>
-        <h1>{photos[currentPhotoIndex].text}</h1>
-      </div>
-      <Button
-        title="Explore Now"
-        bgColor={getColor("overlay")}
-        color={getColor("light")}
-        mTop={0}
-        mBottom={0}
-        mLeft={0}
-        mRight={0}
-        onClickButton={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
+      <div className="training-hero">
+        <div className="t-hero">
+          <div>
+            <h1 className="trinig-hero-head">
+              {photos[currentPhotoIndex].text}
+            </h1>
+            <div className="t-hero-btn">
+              <Button
+                title="Explore Now"
+                bgColor="#071d6a"
+                color="#ffffff"
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                bRadius={5}
+                fWeight={700}
+                onClickButton={() => {
+                  console.log("Explore Now clicked!");
+                }}
+              />
+            </div>
+            <div className="navigation-buttons">
+              <Button
+                title="<"
+                bgColor={"#071D6A"}
+                color={getColor("light")}
+                onClickButton={handlePreviousPhoto}
+                bRadius={30}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                className="t-nav-btn"
+              />
+              <Button
+                title=">"
+                bgColor={"#071D6A"}
+                color={getColor("light")}
+                onClickButton={handleNextPhoto}
+                bRadius={30}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+              />
+            </div>
+          </div>
 
-      <div className="training-hero-image">
-        <img src={photos[currentPhotoIndex].image} alt="Training Banner" />
+          <div className="training-hero-image">
+            <img
+              src={photos[currentPhotoIndex].image}
+              alt="Training Banner"
+              className="t-hero-bg-image"
+            />
+          </div>
+        </div>
       </div>
-      <div className="navigation-buttons">
-        <Button
-          title="<"
-          bgColor={"#071D6A"}
-          color={getColor("light")}
-          onClickButton={handlePreviousPhoto}
-          bRadius={40}
-          mTop={0}
-          mBottom={0}
-          mLeft={0}
-          mRight={0}
-        />
-        <Button
-          title=">"
-          bgColor={"#071D6A"}
-          color={getColor("light")}
-          onClickButton={handleNextPhoto}
-          bRadius={40}
-          mTop={0}
-          mBottom={0}
-          mLeft={0}
-          mRight={0}
-        />
-      </div> */}
     </>
   );
 };
