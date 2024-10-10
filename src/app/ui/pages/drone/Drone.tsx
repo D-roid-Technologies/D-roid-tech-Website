@@ -18,46 +18,81 @@ import {
 
 import { fadeIn } from "../../../utils/constant/Variants";
 import { Assets } from "../../../utils/constant/Assets";
+interface CardItem {
+  title: string;
+  description: string;
+  buttonText: string;
+}
+const cardData: CardItem[] = [
+  {
+    title: "Tooltips",
+    description:
+      "Our tooltip component is reusable and provides information when hovering over a specific element.",
+    buttonText: "View More",
+  },
+  {
+    title: "Button",
+    description:
+      "Our button component is customizable for creating buttons with various styling options.",
+    buttonText: "View More",
+  },
+  {
+    title: "Avatar",
+    description:
+      "Our avatar is a customizable component that displays user initials with styling options.",
+    buttonText: "View More",
+  },
+  {
+    title: "Textarea",
+    description:
+      "Our textarea is a customizable form component that renders a textarea input field.",
+    buttonText: "View More",
+  },
+  {
+    title: "Badge",
+    description:
+      "The badge component is a versatile component that adds a small badge to its child elements.",
+    buttonText: "View More",
+  },
+  {
+    title: "Carousel",
+    description:
+      "Our Carousel component is customizable and responsive for creating interactive image sliders.",
+    buttonText: "View More",
+  },
+  {
+    title: "Accordion",
+    description:
+      "Our accordion component is a flexible container used to collapse/expand sections.",
+    buttonText: "View More",
+  },
+  {
+    title: "Tabs",
+    description:
+      "The tabs component is a customizable component that creates a tabbed interface.",
+    buttonText: "View More",
+  },
+  {
+    title: "Datepicker",
+    description:
+      "Our datepicker is a customizable form component that selects a date from a calendar interface.",
+    buttonText: "View More",
+  },
+  {
+    title: "Dropdown-Select",
+    description:
+      "Our dropdown-select is a customizable form component that displays a dropdown of options.",
+    buttonText: "View More",
+  },
+  {
+    title: "Alert-notification",
+    description:
+      "Our alert-notification is a pop-up component that displays customizable messages, warnings, or notifications.",
+    buttonText: "View More",
+  },
+];
 
 const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
-  //hidden text
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const toggleContent = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-  //End of hidden text
-  const [isTextHidden, setIsTextHidden] = useState(false);
-  const appEntry = useSelector((state: RootState) => state.appEntry);
-  // console.log(companyBanner);
-  const modal = appEntry.showModal;
-  const aTitle = appEntry.appTitle;
-  const aBody = appEntry.appBody;
-
-  const dispatch = useDispatch();
-
-  const onSuccessTitle = "Our Testimonies";
-  const onFailedTitle = "Failed";
-  const onSuccessBody = (
-    <>
-      <p>
-        "D'roid Technologies drone services helped us streamline our
-        construction projects by providing accurate aerial mapping and surveying
-        data. Their team's professionalism and attention to detail were
-        commendable, and the results exceeded our expectations." - Sarah Smith,
-        Project Manager.
-      </p>
-    </>
-  );
-  const navigate = useNavigate();
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-  };
   return (
     <main>
       <div>
@@ -65,7 +100,7 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
         <div className="products-banner">
           <div className="products-banner-inner">
             <div className="products-banner-desc">
-              <h1 className="products-header">Developer Tools</h1>
+              <h1 className="dev-header">Developer Tools</h1>
               <p className="product-pp">
                 Our team has developed tools that streamline the website design
                 process, enabling intuitive layouts, enhanced user engagement,
@@ -76,11 +111,23 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               <img
                 src={Assets.images.developersHeroImage}
                 alt=""
-                className="product-cart"
+                className="dev-cart"
               />
             </div>
           </div>
         </div>
+        <section className="dev-body">
+          <h1 className="our-catalog-header">Our Catalog</h1>
+          <div className="card-grid">
+            {cardData.map((card, index) => (
+              <div className="card" key={index}>
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+                <button>{card.buttonText}</button>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

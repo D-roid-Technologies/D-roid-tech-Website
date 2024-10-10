@@ -234,7 +234,7 @@ const Animation: React.FunctionComponent = () => {
         </div>
         {/* <div className="product-bottom-banner">{mapThroughIconData()}</div> */}
       </div>
-      mm
+
       <div className="product-bottom-banner">{mapThroughIconData()}</div>
       <div className="our-catalog">
         <h1 className="our-catalog-header">Our Catalog</h1>

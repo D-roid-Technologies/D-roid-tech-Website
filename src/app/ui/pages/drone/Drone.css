@@ -1,19 +1,17 @@
-.products-banner,
-.our-catalog,
-.choose-us-product {
+.products-banner {
   padding: 100px;
 }
 
 .our-catalog-header {
   font-family: "Rubik", sans-serif;
   font-size: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
-.products-header {
+.dev-header {
   font-family: "Rubik", sans-serif;
-  font-size: 40px;
+  font-size: 4rem;
   margin-bottom: 30px;
   color: #ffb100;
 }
@@ -64,7 +62,60 @@
   bottom: 10rem;
 }
 
-.product-cart {
-  width: 580px;
+.dev-cart {
+  width: 650px;
   height: 480px;
+}
+
+/* dev body */
+.dev-body {
+  padding: 50px 100px;
+}
+/* CardList.css */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.card button {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.card button:hover {
+  background-color: #e67e22;
 }
