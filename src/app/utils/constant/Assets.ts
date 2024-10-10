@@ -22,6 +22,8 @@ export const Assets = {
 
     // software page
     softwareBannerImage: require("../../images/png/sotware dev 1.png"),
+    benefitillustratorOne: require("../../images/png/benefit-illustrator-image-one.png"),
+    benefitillustratorTwo: require("../../images/png/benefit-illustrator-image-two.png"),
 
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
     companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),

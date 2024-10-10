@@ -73,15 +73,15 @@
 
 /* CardList.css */
 
-.card-grid {
+.dev-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 40px;
   padding: 20px;
 }
 
-.card {
-  background-color: #efeff4;
+.dev-card {
+  background-color: #eeeef2;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 20px;
@@ -90,23 +90,23 @@
   transition: transform 0.2s;
 }
 
-.card:hover {
+.dev-card:hover {
   transform: translateY(-5px);
 }
 
-.card h3 {
+.dev-card h3 {
   font-size: 1.3rem;
   margin-bottom: 10px;
   color: #071d6a;
 }
 
-.card p {
+.dev-card p {
   font-size: 1rem;
   color: #666;
   margin-bottom: 20px;
 }
 
-.card button {
+.dev-card button {
   background-color: #f39c12;
   color: #333;
   border: none;
@@ -117,7 +117,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.card button:hover {
+.dev-card button:hover {
   background-color: #e67e22;
   transform: scale(1.1);
 }

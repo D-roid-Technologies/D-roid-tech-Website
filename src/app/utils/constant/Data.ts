@@ -494,7 +494,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     desc: "We specialize in delivering top-notch web development solutions tailored to meet the unique needs of your business. Our team of experienced developers and designers are dedicated to creating dynamic, responsive, and user-friendly websites that enhance your online presence and drive business growth.",
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
-    tools: ["React Js", "Next Js", "HTML", "Css", "Javascript", "Typescript"],
+    tools: ["Reactjs", "Nextjs", "HTML", "Css", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
     procedure: [
       {

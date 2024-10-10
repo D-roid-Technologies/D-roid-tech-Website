@@ -150,10 +150,10 @@ const Drone: React.FunctionComponent<any> = ({ type: boolean }) => {
               onChange={(e) => setSearchQuery(e.target.value)} // Update search query
             />
           </div>
-          <div className="card-grid">
+          <div className="dev-card-grid">
             {filteredData.length > 0 ? (
               filteredData.map((card, index) => (
-                <div className="card" key={index}>
+                <div className="dev-card" key={index}>
                   <h3 className="dev-class-title">{card.title}</h3>
                   <p>{card.description}</p>
                   {card.link ? (
