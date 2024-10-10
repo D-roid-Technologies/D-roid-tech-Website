@@ -4,6 +4,7 @@ import Button from "../../components/button/Button";
 import { TrainingPhoto } from "../../../utils/Types";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import "./TrainingHero.css";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 const photos: TrainingPhoto[] = [
   {
@@ -63,6 +64,7 @@ const TrainingHero: React.FC = () => {
             <div className="navigation-buttons">
               <Button
                 title="<"
+                //  <FiArrowLeft size={24} />
                 bgColor={"#071D6A"}
                 color={getColor("light")}
                 onClickButton={handlePreviousPhoto}

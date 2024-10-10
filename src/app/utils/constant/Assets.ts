@@ -93,6 +93,9 @@ export const Assets = {
     knowledgecity: require("../../images/png/knowledgecityscreenshot.png"),
     dome: require("../../images/png/dome.png"),
 
+    // developers page
+    developersHeroImage: require("../../images/png/developer-hero-img.png"),
+
     // Droid Icons
     scheduleLine: require("../../images/png/mingcute_schedule-line.png"),
     phoneChat: require("../../images/png/phone-chat.png"),
