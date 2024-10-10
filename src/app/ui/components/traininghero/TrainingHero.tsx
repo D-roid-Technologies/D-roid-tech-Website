@@ -83,6 +83,7 @@ const TrainingHero: React.FC = () => {
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
+                style={{ fontSize: "24px" }}
               />
             </div>
           </div>
