@@ -87,9 +87,9 @@ const Details: React.FunctionComponent = () => {
           }}
         />
       </div> */}
-      <div className="test-top-con">
-        <button onClick={() => navigate("/")} className="test-btn-hero">
-          <IoChevronBackOutline className="back-btn-icon" />
+      <div className="details-top-con">
+        <button onClick={() => navigate("/")} className="details-btn-hero">
+          <IoChevronBackOutline className="details-back-btn-icon" />
         </button>
       </div>
       <div className="details-top-data-container">
@@ -157,13 +157,18 @@ const Details: React.FunctionComponent = () => {
                       )}
                   </div>
                   <div>
-                    <img src={Assets.images.benefitillustratorOne} alt="" />
+                    <img
+                      src={Assets.images.benefitillustratorOne}
+                      alt=""
+                      className="details-soft-image"
+                    />
                   </div>
                 </section>
 
                 {/* part two */}
-                <section className="benefit-container">
-                  <div className="benefits">
+                <section className="benefits">
+                  <div className="benefit-container">
+                    {/* <div className="benefits"> */}
                     <div>
                       <h3 className="procedure-subtitle">{proc.subTitleTwo}</h3>
                       {proc.subTitleTwoContent &&
@@ -180,15 +185,19 @@ const Details: React.FunctionComponent = () => {
                           )
                         )}
                     </div>
-                    <div>
-                      <img src={Assets.images.benefitillustratorTwo} alt="" />
-                    </div>
+                  </div>
+                  <div>
+                    <img
+                      src={Assets.images.benefitillustratorTwo}
+                      alt=""
+                      className="details-soft-image"
+                    />
                   </div>
                 </section>
               </div>
             ))
           ) : (
-            <p>No procedures available</p>
+            <p className="no-procedure">No procedures available</p>
           )}
         </div>
       </section>

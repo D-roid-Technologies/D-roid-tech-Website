@@ -1,7 +1,31 @@
 /* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
-
+/* navigation */
+.details-top-con {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  width: 40px;
+}
+.details-back-btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: rgba(227, 225, 225, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.details-btn-hero {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+.details-btn-hero:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 .details-bg-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -33,7 +57,7 @@
   font-weight: 500;
 }
 .details-top-data-container {
-  padding: 0 100px;
+  padding: 0 50px;
 }
 
 .top-data-container {
@@ -46,7 +70,7 @@
   padding: 40px 40px;
   border-radius: 10px;
   background: rgba(240, 240, 240, 0.5);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .img-banner {
@@ -131,33 +155,46 @@
 }
 
 .procedure {
-  padding: 0 20px;
+  /* padding: 0 20px; */
   margin-bottom: 50px;
 }
 
 .procedure-section {
-  margin: 20px 0;
+  margin: 0 0;
   /* text-align: center; */
 }
 
 .benefits {
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #ffffff;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: rgba(240, 240, 240, 0.5);
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  margin-bottom: 4em;
+  gap: 60px;
+}
+.details-soft-image {
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .procedure-title {
   font-family: "Rubik";
-  font-size: 2rem;
+  font-size: 2.5rem;
+  margin-top: 4em;
   margin-bottom: 2em;
   color: #071d6a;
+  text-align: center;
   text-shadow: 0px 5.975px 5.975px rgba(255, 177, 0, 0.25);
 }
 
 .procedure-subtitle {
-  font-size: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
   margin-top: 15px;
   margin-bottom: 2em;
   font-family: "Rubik";
@@ -178,7 +215,7 @@
   font-family: "Rubik";
   font-size: 1.2rem;
   color: #071d6a;
-  margin-top: 1em;
+  margin-top: 1.5em;
   text-align: center;
 }
 
@@ -188,6 +225,13 @@
   color: #333333;
   margin-left: 10px;
   font-size: 1.1rem;
+  text-align: center;
+}
+.no-procedure {
+  text-align: center;
+  font-weight: 600;
+  font-family: "Rubik";
+  color: #333333;
 }
 
 .fees-container {
