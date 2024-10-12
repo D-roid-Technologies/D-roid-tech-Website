@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../equipments/Equipments.css";
 import equipmentbg from "../../../images/png/equipmentSetup.jpg";
@@ -13,6 +13,7 @@ import {
   FaBookReader,
   FaCheckCircle,
   FaHandshake,
+  FaSearch,
   FaThumbsUp,
 } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
@@ -31,12 +32,8 @@ interface Icon {
 }
 
 const Equipments: React.FunctionComponent<any> = () => {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const appEntry = useSelector((state: RootState) => state.appEntry);
-  // const modal = appEntry.showModal;
-  // const aTitle = appEntry.appTitle;
-  // const aBody = appEntry.appBody;
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
   const droidIcons: Icon[] = [
     { label: "Schedule-line", icon: Assets.images.scheduleLine },
     { label: "Phone-Chat", icon: Assets.images.phoneChat },
@@ -79,30 +76,46 @@ const Equipments: React.FunctionComponent<any> = () => {
     { label: "Email-icon", icon: Assets.images.emailIcon },
     { label: "Add icon", icon: Assets.images.addIcon },
   ];
+  // Filter icons based on search query
+  const filteredIcons = droidIcons.filter((iconItem) =>
+    iconItem.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <main>
       <div>
         <NavBar />
       </div>
-
       <section className="margin-btm">
         <div className="droid-icons">
-          <h1 className="contact-header"> D’roid Icons</h1>
+          <h1 className="contact-header">D’roid Icons</h1>
+          <div className="search-container">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              className="search-bar"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+            />
+          </div>
           <div className="icon-list">
-            {droidIcons.map((iconItem) => (
-              <div key={iconItem.icon}>
-                {/* Placeholder for the actual icon, replace with the icon component/library you use */}
-                <div className="icon icon-item">
-                  <img
-                    src={iconItem.icon}
-                    alt={iconItem.label}
-                    className="droid-icon-size"
-                  />
+            {filteredIcons.length > 0 ? (
+              filteredIcons.map((iconItem) => (
+                <div key={iconItem.icon}>
+                  <div className="icon icon-item">
+                    <img
+                      src={iconItem.icon}
+                      alt={iconItem.label}
+                      className="droid-icon-size"
+                    />
+                  </div>
+                  <p className="icon-label">{iconItem.label}</p>
                 </div>
-                <p className="icon-label">{iconItem.label}</p>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p>No components found matching your search.</p>
+            )}
           </div>
         </div>
       </section>
