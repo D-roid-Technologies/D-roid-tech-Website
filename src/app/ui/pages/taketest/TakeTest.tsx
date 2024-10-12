@@ -46,15 +46,92 @@ const TakeTest: React.FunctionComponent = () => {
 
   const renderTotalResult = () => {
     const totalCorrectAnswers = calculateTotalCorrectAnswers();
+    const cutOffMark = 12; // Define the cut-off mark here
+
     return (
-      <div className="submit-section">
-        <div className="results-container">
-          <h2 className="result">Test Result</h2>
-          <hr />
-          <h3 className="score">
-            You scored: {totalCorrectAnswers} out of {Test.length}
-          </h3>
+      //     <div className="test-submit-container">
+      //       <div className="submit-section">
+      //         <div className="results-container">
+      //           <h2 className="result">Test Result</h2>
+      //           <hr />
+      //           <h3 className="score">
+      //             You scored: {totalCorrectAnswers} out of {Test.length}
+      //           </h3>
+      //         </div>
+      //       </div>
+      //       <p className="passed-resutl">
+      //         Congratulations! You have met the cut-off mark for the internship
+      //         position
+      //       </p>
+      //       <div className="test-apply-btn">
+      //         <div className="apply-btn">
+      //           <Button
+      //             bgColor="#e2b059"
+      //             mTop={0}
+      //             mBottom={0}
+      //             mLeft={0}
+      //             mRight={0}
+      //             title="Apply"
+      //             color="#333333"
+      //             fWeight={800}
+      //             bRadius={5}
+      //             bRadiusColor="#e2b059"
+      //             onClickButton={() => {
+      //               navigate("");
+      //             }}
+      //           />
+      //         </div>
+      //       </div>
+      //       <p className="failed-test">
+      //         Sorry, you did not meet the cut-off mark for the internship position.
+      //         Please try again next time
+      //       </p>
+      //     </div>
+      //   );
+      // };
+      <div className="test-submit-container">
+        <div className="submit-section">
+          <div className="results-container">
+            <h2 className="result">Test Result</h2>
+            <hr />
+            <h3 className="score">
+              You scored: {totalCorrectAnswers} out of {Test.length}
+            </h3>
+          </div>
         </div>
+
+        {totalCorrectAnswers >= cutOffMark ? (
+          <div>
+            <p className="passed-result">
+              Congratulations! You have met the cut-off mark for the internship
+              position.
+            </p>
+            <div className="test-apply-btn">
+              <div className="apply-btn">
+                <Button
+                  bgColor="#e2b059"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Apply"
+                  color="#333333"
+                  fWeight={800}
+                  bRadius={5}
+                  bRadiusColor="#e2b059"
+                  onClickButton={() => {
+                    navigate("/apply"); // Define the correct route here
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p className="failed-test">
+            Sorry, you did not meet the cut-off mark for the internship
+            position. Please try again next time.
+          </p>
+        )}
       </div>
     );
   };

@@ -7,6 +7,8 @@ import Card from "../../components/card/Card";
 import { convertToCurrency } from "../../../utils/currencyUtils";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Assets } from "../../../utils/constant/Assets";
+import { FaBookReader } from "react-icons/fa";
+import { FaDownload } from "react-icons/fa";
 
 const Details: React.FunctionComponent = () => {
   const location = useLocation();
@@ -199,6 +201,55 @@ const Details: React.FunctionComponent = () => {
           ) : (
             <p className="no-procedure">No procedures available</p>
           )}
+        </div>
+      </section>
+      {/* butoon section */}
+      <section className="details-application">
+        <div className="details-page-btn">
+          <div className="click-btn">
+            <Button
+              bgColor="#091d6a"
+              mTop={0}
+              mBottom={0}
+              mLeft={30}
+              mRight={30}
+              title="Apply for our development"
+              color="#fff"
+              fWeight={900}
+              bRadius={5}
+              bRadiusColor="#091d6a"
+              icon={<FaBookReader className="style-home-icon" />}
+              onClickButton={() => {
+                navigate("");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="details-page-btn">
+          <div className="click-btn">
+            <Button
+              bgColor="#feb100"
+              mTop={0}
+              mBottom={0}
+              mLeft={20}
+              mRight={20}
+              title="Download our software Development process"
+              color="#071D6A"
+              fWeight={900}
+              bRadius={5}
+              bRadiusColor="#feb100"
+              icon={
+                <FaDownload
+                  style={{ color: "#071D6A" }}
+                  className="style-home-icon"
+                />
+              }
+              onClickButton={() => {
+                navigate("");
+              }}
+            />
+          </div>
         </div>
       </section>
       {/* 

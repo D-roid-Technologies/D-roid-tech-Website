@@ -127,17 +127,20 @@
   margin-top: 40px;
   margin-bottom: 50px;
   padding: 20px 50px;
-  background-color: #103791;
+  background-color: #091d6a;
   border: 1px solid #ddd;
   border-radius: 8px;
   text-align: center;
+}
+.test-submit-container {
+  min-height: 60vh;
 }
 
 .submit-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  margin-top: 2em;
 }
 
 .result {
@@ -160,7 +163,41 @@ hr {
   background: #25d366;
   margin: 20px 0;
 }
+.passed-resutl {
+  color: #02b15a;
+  font-family: "Rubik";
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+.test-apply-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
 
+.apply-btn {
+  margin-top: 2em;
+  width: 13%;
+  border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.apply-btn:hover {
+  transform: scale(1.1);
+}
+.failed-test {
+  color: #e2b059;
+  font-family: "Rubik";
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
 @media screen and (max-width: 992px) {
   .test-text-area {
     padding-left: 50px;
