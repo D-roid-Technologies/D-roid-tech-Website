@@ -308,4 +308,14 @@ hr {
     border-radius: 8px;
     text-align: center;
   }
+  .failed-test {
+    color: #e2b059;
+    font-family: "Rubik";
+    padding: 0 20px;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+  }
 }

@@ -355,15 +355,10 @@ const Section: React.FunctionComponent = () => {
         {/* download App */}
         <section className="app-section">
           <div>
-            {/* <p className="download ">
-              Download Our CashBasket <br />
-              Mobile App & Experience the <br />
-              best of our Services.
-            </p> */}
             <p className="download ">
               Get all <br />
               Our Mobile <br />
-              Applications On.
+              Applications On
             </p>
             <div className="app-btn-container">
               <span className="Apple-store">

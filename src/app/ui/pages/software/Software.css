@@ -310,7 +310,7 @@
   }
   .soft-paragraph {
     color: rgba(240, 240, 240, 0.8);
-    text-align: justify;
+    text-align: left;
     letter-spacing: 0;
   }
 
