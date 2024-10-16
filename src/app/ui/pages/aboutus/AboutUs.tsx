@@ -50,7 +50,8 @@ const AboutUs: React.FunctionComponent = () => {
                 <p className="about-history-heading"> Our History</p>
                 <p className="about-histoy-details">
                   D'roid Technologies traces its roots back to 2018, when
-                  visionary entrepreneur <a href="#">Ekenedilichukwu Okoli</a>{" "}
+                  visionary entrepreneur{" "}
+                  <a href="https://ekenedilichukwu.com">Ekenedilichukwu Okoli</a>{" "}
                   embarked on a mission to redefine the digital landscape.
                   Inspired by a passion for innovation and a desire to make a
                   difference, our company was born in a small office space with
