@@ -1,7 +1,31 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
-
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
+/* navigation */
+.details-top-con {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  width: 40px;
+}
+.details-back-btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: rgba(227, 225, 225, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.details-btn-hero {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+.details-btn-hero:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 .details-bg-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -17,7 +41,7 @@
 }
 
 .page-head {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin: 0;
   padding-top: 1em;
   text-align: center;
@@ -28,9 +52,12 @@
 
 .page-head-details {
   text-align: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2rem;
   font-weight: 500;
+}
+.details-top-data-container {
+  padding: 0 50px;
 }
 
 .top-data-container {
@@ -39,8 +66,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
-  padding: 0 100px;
   gap: 50px;
+  padding: 40px 40px;
+  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.5);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .img-banner {
@@ -54,17 +84,21 @@
 }
 
 .img-con h3 {
-  font-family: "Rammetto One";
-  margin-bottom: 10px;
+  font-family: "Rubik";
+  margin-bottom: 1rem;
   font-size: 2rem;
+  color: #071d6a;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
 
 .img-con p {
-  font-family: "Mazzard";
-  letter-spacing: 2px;
-  color: rgb(124, 124, 124);
+  font-family: "Rubik";
+  letter-spacing: 1px;
+  color: #333;
   font-size: 1.1rem;
-  line-height: 30px;
+  line-height: 25px;
+  margin-bottom: 2em;
 }
 
 .text-con {
@@ -74,19 +108,19 @@
 
 .info-con {
   padding: 0 20px;
-  margin-top: 20px;
+  margin-top: 4em;
   text-align: center;
 }
 
 .info-con h3 {
   margin-bottom: 10px;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: #333;
 }
 
 .info-con p {
-  font-size: 1.2em;
-  color: #666;
+  font-size: 1.2rem;
+  color: #333333;
 }
 
 .category,
@@ -99,55 +133,73 @@
 .tools h3 {
   margin-bottom: 5px;
   font-size: 1.5rem;
-  color: #444;
-  font-family: "Rammetto One";
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Rubik";
 }
 
 .category p,
 .tools p {
   font-size: 1.1em;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
-  color: rgb(124, 124, 124);
+  color: #333333;
 }
 
 .tool-item {
   margin-right: 10px;
-  font-size: 1.1em;
-  font-family: "Mazzard";
+  font-size: 1.1rem;
+  font-family: "Rubik";
   letter-spacing: 2px;
-  color: rgb(124, 124, 124);
+  color: #333333;
 }
 
 .procedure {
-  padding: 0 20px;
+  /* padding: 0 20px; */
   margin-bottom: 50px;
 }
 
 .procedure-section {
-  margin: 20px 0;
-  text-align: center;
+  margin: 0 0;
+  /* text-align: center; */
 }
 
 .benefits {
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #ffffff;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: rgba(240, 240, 240, 0.5);
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  margin-bottom: 4em;
+  gap: 60px;
+}
+.details-soft-image {
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .procedure-title {
-  font-family: "Rammetto One";
-  font-size: 1.5em;
-  margin-bottom: 25px;
+  font-family: "Rubik";
+  font-size: 2.5rem;
+  margin-top: 4em;
+  margin-bottom: 2em;
+  color: #071d6a;
+  text-align: center;
+  text-shadow: 0px 5.975px 5.975px rgba(255, 177, 0, 0.25);
 }
 
 .procedure-subtitle {
-  font-size: 1.2rem;
+  text-align: center;
+  font-size: 1.8rem;
   margin-top: 15px;
-  margin-bottom: 10px;
-  font-family: "Rammetto One";
+  margin-bottom: 2em;
+  font-family: "Rubik";
+  color: #071d6a;
+  text-shadow: 0px 5.975px 5.975px rgba(255, 177, 0, 0.25);
 }
 
 .procedure-content {
@@ -160,21 +212,53 @@
 
 .procedure-item-title {
   font-weight: bold;
-  font-family: "Rammetto One";
-  font-size: 1rem;
+  font-family: "Rubik";
+  font-size: 1.2rem;
+  color: #071d6a;
+  margin-top: 1.5em;
+  text-align: left;
 }
 
 .procedure-item-desc {
-  font-family: "Mazzard";
-  letter-spacing: 2px;
-  color: rgb(124, 124, 124);
-  margin-left: 10px;
-  font-size: 1.2rem;
+  font-family: "Rubik";
+  letter-spacing: 1px;
+  color: #333333;
+  margin-top: 0.3em;
+  font-size: 20px;
+  text-align: left;
+}
+.no-procedure {
+  text-align: center;
+  font-weight: 600;
+  font-family: "Rubik";
+  color: #333333;
+}
+/* button section */
+.details-application {
+  display: flex;
+  justify-content: center;
+  gap: 8em;
+}
+.details-page-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+
+.click-btn {
+  width: 400%;
+  border-radius: none;
+  transition: transform 0.8s ease-in-out;
+}
+.click-btn:hover {
+  transform: scale(1.1);
 }
 
 .fees-container {
   text-align: center;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .fees-section {
@@ -205,7 +289,7 @@
   font-size: 1.3em;
   margin-bottom: 10px;
   color: #333;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .fees-card p {
@@ -246,8 +330,30 @@
 }
 
 @media (max-width: 600px) {
+  .details-top-con {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    width: 40px;
+  }
+  .details-top-data-container {
+    padding: 0 20px;
+  }
   .page-head {
     font-size: 2.5rem;
+  }
+  .benefits {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: rgba(240, 240, 240, 0.5);
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+    margin-bottom: 4em;
+    gap: 60px;
   }
 
   .top-data-container {
@@ -259,6 +365,53 @@
     padding: 0 20px;
     gap: 50px;
   }
+  .info-con {
+    padding: 0 0 !important;
+    margin-top: 4em;
+    text-align: center;
+  }
+
+  .img-con h3 {
+    font-family: "Rubik";
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #071d6a;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  }
+  .img-con p {
+    font-family: "Rubik";
+    letter-spacing: 1px;
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 25px;
+    margin-bottom: 2em;
+    text-align: justify;
+  }
+  .category h3,
+  .tools h3 {
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-family: "Rubik";
+  }
+
+  .category p,
+  .tools p {
+    font-size: 1.1em;
+    font-family: "Rubik";
+    letter-spacing: 2px;
+    color: #333333;
+  }
+
+  .tool-item {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    font-family: "Rubik";
+    letter-spacing: 2px;
+    color: #333333;
+  }
 
   .info-con {
     padding: 0 10px;
@@ -267,7 +420,81 @@
   .procedure {
     padding: 0 10px;
   }
+  /* procedure */
+  .details-soft-image {
+    display: none;
+    /* width: 600px;
+    height: 400px;
+    object-fit: cover; */
+  }
+  .procedure-title {
+    font-family: "Rubik";
+    font-size: 1.8rem;
+    margin-top: 4em;
+    margin-bottom: 2em;
+    color: #071d6a;
+    text-align: center;
+    text-shadow: 0px 5.975px 5.975px rgba(255, 177, 0, 0.25);
+  }
 
+  .procedure-subtitle {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.7rem;
+    margin-top: 15px;
+    margin-bottom: 2em;
+    font-family: "Rubik";
+    color: #071d6a;
+    text-shadow: 0px 5.975px 5.975px rgba(255, 177, 0, 0.25);
+  }
+
+  .procedure-content {
+    margin-bottom: 20px;
+  }
+
+  .procedure-item {
+    margin-bottom: 10px;
+  }
+
+  .procedure-item-title {
+    font-weight: bold;
+    font-family: "Rubik";
+    font-size: 1.2rem;
+    color: #071d6a;
+    margin-top: 1.5em;
+    text-align: center;
+  }
+
+  .procedure-item-desc {
+    font-family: "Rubik";
+    letter-spacing: 1px;
+    color: #333333;
+    margin-top: 0.3em;
+    font-size: 20px;
+    text-align: left;
+  }
+  .no-procedure {
+    text-align: center;
+    font-weight: 600;
+    font-family: "Rubik";
+    color: #333333;
+  }
+  /* button section */
+  .details-application {
+    flex-direction: column;
+    gap: 1.5em; /* Further reduce gap */
+  }
+
+  .click-btn {
+    width: 100%; /* Full width for mobile */
+    padding: 0.5em 1em; /* Adjust padding for mobile */
+    border-radius: 8px; /* Add border radius for a better look on small screens */
+  }
+
+  .details-page-btn {
+    margin-bottom: 2em; /* Adjust margins for smaller screens */
+  }
   .fees-section {
     padding: 10px;
   }
@@ -278,9 +505,9 @@
   }
 }
 
-/* @import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular");
 
 .details-bg-image {
   background-size: cover;
@@ -296,7 +523,7 @@
 }
 
 .page-head {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin: 0;
   padding-top: 1em;
   text-align: center;
@@ -307,7 +534,7 @@
 }
 .page-head-details {
   text-align: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 
   font-size: 1.2rem;
   font-weight: 500;
@@ -327,12 +554,12 @@
   width: 46%;
 }
 .img-con h3 {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin-bottom: 10px;
   font-size: 2rem;
 }
 .img-con p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -372,7 +599,7 @@
   margin-bottom: 5px;
   font-size: 1.5rem;
   color: #444;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .category p,
@@ -380,7 +607,7 @@
   gap: 20px;
   font-size: 1.1em;
   margin-right: 60px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -389,7 +616,7 @@
   margin-right: 30px;
   font-size: 1.1em;
   margin-right: 30px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   font-size: 1.1rem;
@@ -413,7 +640,7 @@
 }
 
 .procedure-title {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   font-size: 1.5em;
   margin-bottom: 25px;
 }
@@ -422,7 +649,7 @@
   font-size: 1.2rem;
   margin-top: 15px;
   margin-bottom: 10px;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .procedure-content {
@@ -435,12 +662,12 @@
 
 .procedure-item-title {
   font-weight: bold;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   font-size: 1rem;
 }
 
 .procedure-item-desc {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
   color: rgb(124, 124, 124);
   margin-left: 10px;
@@ -449,7 +676,7 @@
 
 .fees-container {
   text-align: center;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 .fees-section {
   background-color: #262a97;
@@ -480,7 +707,7 @@
   font-size: 1.3em;
   margin-bottom: 10px;
   color: #333;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .fees-card p {

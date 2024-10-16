@@ -205,24 +205,31 @@ export const DATA = {
         twitter: "",
       },
     },
+    {
+      image: require("../../images/png/princewil-image.jpg"),
+      name: "Princewill Godwin",
+      designation: "Product Designer",
+      socials: {
+        linkedin: "http://www.linkedin.com/in/princewill-godwin-uiuxdesigner",
+        twitter: "https://x.com/princewill1_g ",
+      },
+    },
+    {
+      image: require("../../images/png/Amarachi-image-resize.jpg"),
+      name: "Amarachi Abams",
+      designation: "Product Designer",
+      socials: {
+        linkedin: "http://www.linkedin.com/in/amarachiabams",
+        twitter: "https://x.com/Zibah_grafix?t=CH87kJA3wKHtvYLATLtApw&s=09 ",
+      },
+    },
     // {
-    //   image: require("../../images/png/faithchukwukezieportfolio.png"),
-    //   name: "Faith Chukwueze",
-    //   designation: "Digital marketer",
+    //   image: require("../../images/png/Amarachi-image.jpg"),
+    //   name: "Amarachi Abams",
+    //   designation: "Product Designer",
     //   socials: {
-    //     linkedin:
-    //       "https://www.linkedin.com/in/chukwueze-faith-direct-response-copywriter?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    //     twitter: " https://x.com/BChukwueze?t=wua6N7DGKdm028cVhfX2Ag&s=09",
-    //   },
-    // },
-    // {
-    //   image: require("../../images/png/faithchukwukezieportfolio.png"),
-    //   name: "Faith Chukwueze",
-    //   designation: "Digital marketer",
-    //   socials: {
-    //     linkedin:
-    //       "https://www.linkedin.com/in/chukwueze-faith-direct-response-copywriter?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    //     twitter: " https://x.com/BChukwueze?t=wua6N7DGKdm028cVhfX2Ag&s=09",
+    //     linkedin: "",
+    //     twitter: " ",
     //   },
     // },
   ],
@@ -487,7 +494,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     desc: "We specialize in delivering top-notch web development solutions tailored to meet the unique needs of your business. Our team of experienced developers and designers are dedicated to creating dynamic, responsive, and user-friendly websites that enhance your online presence and drive business growth.",
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
-    tools: ["React Js", "Next Js", "HTML", "Css", "Javascript", "Typescript"],
+    tools: ["Reactjs", "Nextjs", "HTML", "Css", "Javascript", "Typescript"],
     currency: ["$", "N", "e"],
     procedure: [
       {

@@ -8,6 +8,7 @@ import {
 import { Assets } from "../../../../../utils/constant/Assets";
 import { CSSProperties } from "react";
 import { useThemeColor } from "../../../../../utils/hooks/useThemeColor";
+import "../benefits/Benefits.css";
 
 type BenefitItemType = {
   title: string;
@@ -87,7 +88,7 @@ const BenefitItem: React.FunctionComponent<BenefitItemType> = ({
         style={{
           textAlign: "left",
           marginBottom: "20px",
-          fontFamily: "Rammetto One",
+          fontFamily: "Rubik",
           color: getColor("basic"),
         }}
       >
@@ -102,11 +103,11 @@ const BenefitItem: React.FunctionComponent<BenefitItemType> = ({
 
 const BenefitsSection: React.FunctionComponent = () => {
   return (
-    <div className="training-approach-main">
+    <div className="training-approach-main-benefits">
       <h2 style={styles.heading} className="training-approach-head">
         Benefits of Working with Us
       </h2>
-      <ul className="service-card-container">
+      <ul className="service-card-container-benefit">
         {benefitItems.map((item, index) => (
           <BenefitItem
             key={index}
@@ -123,21 +124,21 @@ const BenefitsSection: React.FunctionComponent = () => {
 const styles: { [key: string]: CSSProperties } = {
   heading: {
     color: Assets.colors.basic,
-    fontFamily: "Rammetto One",
+    fontFamily: "Rubik",
     fontSize: "2rem",
   },
   benefitItem: {
-    flexBasis: "calc(23% - 2%)",
+    flexBasis: "calc(33.33% - 10px)",
     borderRadius: "5px",
     transition: "box-shadow 0.3s ease",
   },
   title: {
     textAlign: "left",
     marginBottom: "20px",
-    fontFamily: "Rammetto One",
+    fontFamily: "Rubik",
   },
   description: {
-    fontFamily: "Mazzard",
+    fontFamily: "Rubik",
     fontSize: "1rem",
     color: Assets.colors.paragraph,
     marginBottom: "1em",

@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans"); */
+/* @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .footer-main {
   background-color: #071d6a;
@@ -19,7 +19,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   letter-spacing: 0.1em;
 }
 
@@ -86,7 +86,7 @@
   letter-spacing: 0.1em;
   font-size: 1.5rem;
   color: #fff;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin-bottom: 0.5em;
 }
 .connect-subscribe {
@@ -133,7 +133,7 @@
   font-weight: 500;
   font-size: medium;
   color: #7f8fc9;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   /* border-top: 2px solid burlywood; */
 }
 
@@ -149,7 +149,7 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   color: #fff;
 }
 
@@ -212,7 +212,7 @@
   }
 
   .signup-btn {
-    width: 100%;
+    width: 100% !important;
   }
 
   .footer-buttom {

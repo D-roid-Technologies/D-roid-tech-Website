@@ -68,19 +68,19 @@ const Home: React.FunctionComponent = () => {
           >
             <div className="See-our-product">
               <Button
-                bgColor={"#071d6a"}
+                bgColor={"#fbcc34"}
                 mTop={0}
                 mBottom={0}
                 mLeft={0}
                 mRight={0}
                 title="Schedule an Appointment"
-                color="#ffffff"
-                fWeight={800}
+                color="#333333"
+                fWeight={900}
                 bRadius={5}
-                bRadiusColor="#071d6a"
+                bRadiusColor="#fbcc34"
                 icon={
                   <FaRegCalendarPlus
-                    style={{ color: "#ffffff" }}
+                    style={{ color: "#333333" }}
                     className="icon-styles"
                   />
                 }

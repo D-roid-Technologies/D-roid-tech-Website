@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 /* Global Styles */
 .products-banner,
@@ -10,21 +10,21 @@
 }
 
 .our-catalog-header {
-  font-family: "Rammetto One", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 40px;
   margin-bottom: 30px;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
 }
 .products-header {
-  font-family: "Rammetto One", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 40px;
   margin-bottom: 30px;
   color: #ffb100;
 }
 
 .product-pp {
-  font-family: "MazzardH", sans-serif;
+  font-family: "Rubik", sans-serif;
   letter-spacing: 2px;
   font-size: 22px;
   color: #071d6a;
@@ -34,7 +34,7 @@
   line-height: 20px;
   color: #333;
   font-weight: 400;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   margin-bottom: 20px;
 }
@@ -43,13 +43,13 @@
 .products-banner {
   width: 100%;
   height: 100vh;
-  display: block;
+  /* display: block; */
 
   background: rgba(255, 177, 0, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.25),
     74.467px -74.467px 74.467px 0px rgba(194, 135, 0, 0.1) inset,
     -74.467px 74.467px 74.467px 0px rgba(255, 255, 255, 0.1) inset;
-  backdrop-filter: blur(74.46666717529297px);
+  /* backdrop-filter: blur(74.46666717529297px); */
   /* margin-bottom: 80px; */
 }
 
@@ -107,7 +107,7 @@
 }
 
 .product-bottom-title {
-  font-family: "MazzardH", sans-serif;
+  font-family: "Rubik", sans-serif;
   letter-spacing: 2px;
   font-size: 18px;
   color: #ffffff;
@@ -144,7 +144,7 @@
   width: 50%;
 }
 .our-catalog-header {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin-top: 50px;
 }
 /* PRODUCT FILTER */
@@ -280,6 +280,7 @@
     backdrop-filter: blur(74.46666717529297px);
     /* margin-bottom: 80px; */
   }
+
   .products-banner,
   .our-catalog,
   .choose-us-product {
@@ -289,7 +290,7 @@
     display: none;
   }
   .products-header {
-    font-family: "Rammetto One", sans-serif;
+    font-family: "Rubik", sans-serif;
     font-size: 1.8rem;
     margin-bottom: 10px;
     color: #ffb100;
@@ -301,7 +302,7 @@
     bottom: 0;
   }
   .product-pp {
-    font-family: "MazzardH", sans-serif;
+    font-family: "Rubik", sans-serif;
     letter-spacing: 2px;
     font-size: 1.2rem;
     color: #071d6a;

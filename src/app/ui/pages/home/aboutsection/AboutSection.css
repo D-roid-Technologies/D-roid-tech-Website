@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 /* SECTIONS */
 .section-main {
@@ -42,16 +42,16 @@
   font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   text-align: center;
 }
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: #333 !important;
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   text-align: left;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 /* CONTACT US BOTTON */
 .style-home-icon {
@@ -94,16 +94,16 @@
   font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   text-align: center;
 }
 .approach-details {
   font-size: 1.2rem;
   font-weight: 200;
-  color: #333;
-  font-family: "Mazzard";
+  color: #333333;
+  font-family: "Rubik";
   text-align: left;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 /* JOIN TECH TEAM */
 .join-us {
@@ -133,20 +133,20 @@
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .our-approach-blue-bg {
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 800;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .join-approach-details {
   color: rgba(240, 240, 240, 0.7);
   font-size: 1.2rem;
   font-weight: 200;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
   letter-spacing: 2px;
 }
@@ -201,13 +201,13 @@
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .services-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
 }
@@ -215,7 +215,7 @@
   font-size: 1.2rem;
   font-weight: 200;
   color: rgba(7, 29, 106, 0.6);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
   padding: 0 200px;
@@ -228,7 +228,7 @@
   font-weight: 800;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
 }
 .carousel-container {
   width: 100%;
@@ -268,13 +268,13 @@
   font-size: 30px;
   font-weight: 800;
   /* color: #282a94; */
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .carousel-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgba(7, 29, 106, 0.6);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
 }
@@ -321,7 +321,7 @@
 .website-header {
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -330,11 +330,12 @@
   text-align: center;
 }
 .website-details {
-  color: #333;
-  font-family: "Mazzard";
+  color: #333333;
+  font-family: "Rubik";
   font-size: 20px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 200;
+  text-align: justify;
   line-height: normal;
 }
 .our-servicess-btns {
@@ -354,6 +355,42 @@
 }
 .servicess-btns:hover {
   transform: scale(1.1);
+}
+/* APP DOWNLOAD */
+.app-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.download {
+  color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  font-family: "Rubik";
+  font-size: 3.3rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 6px;
+}
+.app-btn-container {
+  display: flex;
+  gap: 50px;
+  margin-top: 4em;
+}
+.Apple-store {
+  width: 40%;
+}
+.google-play {
+  width: 40%;
+}
+.m-app-image {
+  object-fit: contain;
+  width: 600px;
+  height: 500px;
+}
+.mobile-screens {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
@@ -391,7 +428,7 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: #333 !important;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -423,7 +460,7 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: #333 !important;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -445,14 +482,14 @@
     line-height: 10px;
     font-size: 1.5rem !important;
     font-weight: 600;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
   }
   .join-approach-details {
     color: rgba(240, 240, 240, 0.7);
     font-size: 1rem;
     font-weight: 200;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -493,7 +530,7 @@
     font-size: 35px !important;
     font-weight: 800;
     color: #282a94;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
   }
   .our-services-s {
     margin-bottom: 1em;
@@ -502,14 +539,14 @@
     font-weight: 600;
     color: #071d6a;
     text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
   }
 
   .services-detailss {
     font-size: 1.2rem;
     font-weight: 200;
     color: #333;
-    font-family: "Verdana Pro";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
     padding: 0 20px;
@@ -544,15 +581,15 @@
     margin-top: 1em;
     margin-bottom: 1em;
     line-height: 10px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
   .carousel-details {
     font-size: 1.2rem;
     font-weight: 200;
     color: #333;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
@@ -613,7 +650,7 @@
   }
   .website-details {
     color: #333;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
@@ -636,5 +673,44 @@
   }
   .servicess-btns:hover {
     transform: scale(1.1);
+  }
+  .app-section {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+  .download {
+    color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+    font-family: "Rubik";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 6px;
+  }
+  .app-btn-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 2em;
+  }
+  .Apple-store {
+    width: 65%;
+  }
+  .google-play {
+    width: 65%;
+  }
+  .m-app-image {
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+  }
+  .mobile-screens {
+    display: none;
+    /* display: flex;
+    justify-content: flex-start; */
   }
 }

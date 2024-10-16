@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import "../taketest/TakeTest.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { Test } from "../../../utils/constant/Test";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 interface Question {
   question: string;
@@ -45,15 +46,92 @@ const TakeTest: React.FunctionComponent = () => {
 
   const renderTotalResult = () => {
     const totalCorrectAnswers = calculateTotalCorrectAnswers();
+    const cutOffMark = 12; // Define the cut-off mark here
+
     return (
-      <div className="submit-section">
-        <div className="results-container">
-          <h2 className="result">Test Result</h2>
-          <hr />
-          <h3 className="score">
-            You scored: {totalCorrectAnswers} out of {Test.length}
-          </h3>
+      //     <div className="test-submit-container">
+      //       <div className="submit-section">
+      //         <div className="results-container">
+      //           <h2 className="result">Test Result</h2>
+      //           <hr />
+      //           <h3 className="score">
+      //             You scored: {totalCorrectAnswers} out of {Test.length}
+      //           </h3>
+      //         </div>
+      //       </div>
+      //       <p className="passed-resutl">
+      //         Congratulations! You have met the cut-off mark for the internship
+      //         position
+      //       </p>
+      //       <div className="test-apply-btn">
+      //         <div className="apply-btn">
+      //           <Button
+      //             bgColor="#e2b059"
+      //             mTop={0}
+      //             mBottom={0}
+      //             mLeft={0}
+      //             mRight={0}
+      //             title="Apply"
+      //             color="#333333"
+      //             fWeight={800}
+      //             bRadius={5}
+      //             bRadiusColor="#e2b059"
+      //             onClickButton={() => {
+      //               navigate("");
+      //             }}
+      //           />
+      //         </div>
+      //       </div>
+      //       <p className="failed-test">
+      //         Sorry, you did not meet the cut-off mark for the internship position.
+      //         Please try again next time
+      //       </p>
+      //     </div>
+      //   );
+      // };
+      <div className="test-submit-container">
+        <div className="submit-section">
+          <div className="results-container">
+            <h2 className="result">Test Result</h2>
+            <hr />
+            <h3 className="score">
+              You scored: {totalCorrectAnswers} out of {Test.length}
+            </h3>
+          </div>
         </div>
+
+        {totalCorrectAnswers >= cutOffMark ? (
+          <div>
+            <p className="passed-result">
+              Congratulations! You have met the cut-off mark for the internship
+              position.
+            </p>
+            <div className="test-apply-btn">
+              <div className="apply-btn">
+                <Button
+                  bgColor="#e2b059"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  title="Apply"
+                  color="#333333"
+                  fWeight={800}
+                  bRadius={5}
+                  bRadiusColor="#e2b059"
+                  onClickButton={() => {
+                    navigate("/apply"); // Define the correct route here
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p className="failed-test">
+            Sorry, you did not meet the cut-off mark for the internship
+            position. Please try again next time.
+          </p>
+        )}
       </div>
     );
   };
@@ -68,6 +146,7 @@ const TakeTest: React.FunctionComponent = () => {
             <ul key={optionIndex} className="map-test-ul">
               <li className="map-test-list">
                 <input
+                  className="custom-checkbox"
                   type="checkbox"
                   checked={isChecked}
                   onChange={() => handleOptionChange(questionIndex, option)}
@@ -84,29 +163,16 @@ const TakeTest: React.FunctionComponent = () => {
   return (
     <div>
       <div className="test-top-con">
-        <Button
-          bgColor="green"
-          mTop={0}
-          mBottom={0}
-          mLeft={0}
-          mRight={0}
-          bRadiusColor="#ffffff"
-          title="Back"
-          color="#000000"
-          icon={<TiArrowBack className="test-top-back-arrow" />}
-          onClickButton={() => {
-            navigate("/");
-          }}
-        />
+        <button onClick={() => navigate("/")} className="test-btn-hero">
+          <IoChevronBackOutline className="back-btn-icon" />
+        </button>
       </div>
       <div>
-        <div
-          style={{
-            backgroundImage: `url("${Assets.images.testImage}")`,
-          }}
-          className="test-image-container"
-        ></div>
-        {!takeTest && !showResults && (
+        <section className="test-hero-section">
+          <div>
+            <img src={Assets.images.testImage} height={650} alt="" />
+          </div>
+          {/* <div> */}
           <div className="test-text-area">
             <h2>Ready to test your skills?</h2>
             <p>
@@ -117,19 +183,30 @@ const TakeTest: React.FunctionComponent = () => {
               It comprises different questions related to Programming, Computer
               Science, and Critical Thinking.
             </p>
+          </div>
+          {/* </div> */}
+        </section>
+        {!takeTest && !showResults && (
+          <div className="test-text-area">
             <div className="take-test">
               <div className="take-test-btn">
                 <Button
-                  bgColor={"#da2a34"}
+                  bgColor={"#FFB100"}
                   mTop={0}
                   mBottom={0}
                   mLeft={0}
                   bRadius={10}
                   mRight={0}
-                  bRadiusColor={"#da2a34"}
+                  bRadiusColor={"#FFB100"}
+                  fWeight={900}
                   title="Take test now"
-                  color="#ffffff"
-                  icon={<FaPenAlt className="test-icon" />}
+                  color="#000000"
+                  icon={
+                    <FaPenAlt
+                      style={{ color: "#000000", fontWeight: "900" }}
+                      className="test-icon"
+                    />
+                  }
                   onClickButton={handletestClick}
                 />
               </div>
@@ -148,10 +225,16 @@ const TakeTest: React.FunctionComponent = () => {
                 mLeft={0}
                 bRadius={10}
                 mRight={0}
+                fWeight={900}
                 bRadiusColor={Assets.colors.primary}
                 title="Submit Test"
                 color="#ffffff"
-                icon={<IoCheckmarkSharp className="test-top-back-arrow" />}
+                icon={
+                  <IoCheckmarkSharp
+                    style={{ color: "#ffffff", fontWeight: "900" }}
+                    className="test-top-back-arrow"
+                  />
+                }
                 onClickButton={handleSubmit}
               />
             </div>

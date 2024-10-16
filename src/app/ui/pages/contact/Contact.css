@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .contact-containerr {
   padding: 0 100px;
@@ -8,8 +8,9 @@
 }
 .container-raduis {
   display: flex;
+  gap: 20px;
   border-radius: 5px;
-  padding: 80px 30px;
+  padding: 40px 30px;
   border-radius: 10px;
   background: rgba(240, 240, 240, 0.5);
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -33,31 +34,34 @@
 
 .message p {
   color: #333;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2em;
   margin-bottom: 4em;
 }
 /* CONTACT INFORMATION */
 .contact-information {
+  margin-top: 5em;
   background-color: #071d69;
+  border-radius: 8px;
   width: auto;
+  height: 50%;
 }
 .contact-info-details {
   padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 30px;
+  padding-right: 0;
   padding-bottom: 0;
 }
 .info-details-head {
   color: white;
   font-size: 1.8rem;
   margin-bottom: 0.6em;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 .info-details-p {
   color: #fbcc34;
   font-size: 1.1rem;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   margin-bottom: 2.5em;
 }
 /* phone number */
@@ -83,6 +87,7 @@
 
 .icon-section {
   margin-top: 3em;
+  margin-bottom: 3em;
   display: flex;
   gap: 25px;
 }
@@ -128,13 +133,13 @@
   width: 100%;
 }
 .subject-feild {
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 /* MESSAGE AREA */
 .text-area {
   margin-top: 20px;
-  margin-bottom: 68px;
+  margin-bottom: 20px;
 }
 
 textarea {
@@ -143,7 +148,7 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   resize: none;
 }
 
@@ -167,7 +172,7 @@ textarea {
 /* TESTIMONIAL SECTION */
 .equip-margin-bt {
   margin-bottom: 10px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 .contact-testimonial {
   display: flex;
@@ -193,8 +198,9 @@ textarea {
 }
 /* TESTIMONIAL FORM */
 .testimonial-form {
+  /* margin-top: 50px; */
   max-width: 600px;
-  margin: 0 auto;
+  margin: 70px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -248,8 +254,9 @@ textarea {
 }
 /* FAQ section */
 .faq-container {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 70%;
+  /* max-width: 900px; */
+  margin: 100px auto;
   padding: 20px;
   margin-bottom: 3em;
 }
@@ -328,7 +335,7 @@ textarea {
 
   .message p {
     color: rgb(124, 124, 124);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2em;
   }
   /* CONTACT INFORMATION */
@@ -350,12 +357,12 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rammetto One";
+    font-family: "Rubik";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
     font-size: 1.1rem;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     margin-bottom: 4em;
   }
   /* phone number */
@@ -482,7 +489,7 @@ textarea {
 
   .message p {
     color: rgb(124, 124, 124);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1em;
     text-align: center;
   }
@@ -505,12 +512,12 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rammetto One";
+    font-family: "Rubik";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
     font-size: 1.1rem;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     margin-bottom: 4em;
   }
   /* phone number */

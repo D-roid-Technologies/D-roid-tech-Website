@@ -62,7 +62,7 @@ const Software: React.FunctionComponent = () => {
         <div className="training-approach-main">
           <h1
             style={{
-              fontFamily: "Rammetto One",
+              fontFamily: "Rubik",
               color: "#071D6A",
               textShadow: "0px 4px 4px rgba(255, 177, 0, 0.25)",
             }}

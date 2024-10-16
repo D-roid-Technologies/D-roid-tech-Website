@@ -19,7 +19,7 @@
   margin-bottom: 1.5em;
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -34,7 +34,7 @@
 }
 
 .home-to-software-p {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1rem;
   color: rgba(240, 240, 240, 0.8);
   margin-bottom: 1em;
@@ -69,7 +69,7 @@
   font-size: 2rem;
   letter-spacing: 2px;
   font-weight: 500;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .smaller-centered-heading {
@@ -77,7 +77,7 @@
   font-size: 1.5rem;
   word-spacing: 1px;
   color: #fff;
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 .main-content-section {
@@ -107,14 +107,14 @@
 .section-heading {
   margin-bottom: 1em;
   line-height: 1.5;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .section-details {
   font-size: 1rem;
   line-height: 1.5;
   color: rgb(124, 124, 124);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
 }
 
@@ -145,7 +145,7 @@
 .software-approach-heads {
   text-align: center;
   margin-bottom: 1em;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   color: #ffb100;
   font-size: 48px;
   font-style: normal;
@@ -174,7 +174,7 @@
 
 .software-approach-item h2 {
   margin-bottom: 20px;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   color: #071d6a;
   transition: color 0.3s ease;
 }
@@ -188,7 +188,7 @@
   font-size: 1rem;
   font-weight: 400;
   color: #333 !important;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   /* text-align: justify; */
   /* letter-spacing: 2px; */
 }
@@ -295,7 +295,7 @@
   .software-approach-heads {
     text-align: center;
     margin-bottom: 1em;
-    font-family: "Rammetto One";
+    font-family: "Rubik";
     color: #ffb100;
     font-size: 1.8rem;
     font-style: normal;
@@ -310,12 +310,12 @@
   }
   .soft-paragraph {
     color: rgba(240, 240, 240, 0.8);
-    text-align: justify;
+    text-align: left;
     letter-spacing: 0;
   }
 
   .home-to-software-p {
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1rem;
     color: rgba(240, 240, 240, 0.8);
     margin-bottom: 0;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../equipments/Equipments.css";
 import equipmentbg from "../../../images/png/equipmentSetup.jpg";
@@ -13,6 +13,7 @@ import {
   FaBookReader,
   FaCheckCircle,
   FaHandshake,
+  FaSearch,
   FaThumbsUp,
 } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
@@ -24,148 +25,97 @@ import {
   updateModal,
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
+import { Assets } from "../../../utils/constant/Assets";
+interface Icon {
+  label: string;
+  icon: string;
+}
 
 const Equipments: React.FunctionComponent<any> = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const appEntry = useSelector((state: RootState) => state.appEntry);
-  const modal = appEntry.showModal;
-  const aTitle = appEntry.appTitle;
-  const aBody = appEntry.appBody;
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const droidIcons: Icon[] = [
+    { label: "Schedule-line", icon: Assets.images.scheduleLine },
+    { label: "Phone-Chat", icon: Assets.images.phoneChat },
+    { label: "Solid people roof", icon: Assets.images.solidPeopleRoof },
+    { label: "Window-dev tool", icon: Assets.images.windowDevTools },
+    { label: "Streamline-web", icon: Assets.images.streamlineWeb },
+    { label: "Arrow-up icon", icon: Assets.images.arrowUp },
+    { label: "Midi-passport", icon: Assets.images.midiPassport },
+    { label: "Badge outline", icon: Assets.images.badgeOutline },
+    { label: "Eva-settings", icon: Assets.images.evaSettings },
+    { label: "Customer service icon", icon: Assets.images.customerServiceIcon },
+    { label: "Arrow outline", icon: Assets.images.arrowOutline },
+    { label: "Notification-fill", icon: Assets.images.notificationIcon },
+    { label: "Programming outline", icon: Assets.images.programmingOutline },
+    { label: "Outline-laptop", icon: Assets.images.outlineLaptop },
+    { label: "Database-light", icon: Assets.images.lightDatabase },
+    { label: "Mdi2: dev tool", icon: Assets.images.mdi2DevTool },
+    { label: "Right arrow", icon: Assets.images.rightArrow },
+    { label: "Left arrow", icon: Assets.images.leftArrow },
+    { label: "Fingerprint icon", icon: Assets.images.fingerprintIcon },
+    { label: "Span-app-fill", icon: Assets.images.spanAppFill },
+    { label: "Social-work", icon: Assets.images.socialWork },
+    { label: "Gridicon-chat", icon: Assets.images.gridiconChat },
+    { label: "Crypto chart", icon: Assets.images.cryptoChart },
+    { label: "Learning", icon: Assets.images.learning },
+    { label: "Mdi-transport", icon: Assets.images.mdiTransport },
+    { label: "Trade icon", icon: Assets.images.tradeIcon },
+    { label: "Submit-fill", icon: Assets.images.submitFill },
+    { label: "Outline-correct", icon: Assets.images.outlineCorrect },
+    { label: "Arrow-down", icon: Assets.images.arrowDown },
+    { label: "Testimonial-icon", icon: Assets.images.testimonialIcon },
+    { label: "Play-icon", icon: Assets.images.playIcon },
+    { label: "Survey-icon", icon: Assets.images.surveyIcon },
+    { label: "Secure-icon", icon: Assets.images.secureIcon },
+    { label: "Plant icon", icon: Assets.images.plantIcon },
+    { label: "Drone icon", icon: Assets.images.droneIcon },
+    { label: "Camera-icon", icon: Assets.images.cameraIcon },
+    { label: "Tools-fill", icon: Assets.images.toolsFill },
+    { label: "Phone-icon", icon: Assets.images.phoneIcon },
+    { label: "Email-icon", icon: Assets.images.emailIcon },
+    { label: "Add icon", icon: Assets.images.addIcon },
+  ];
+  // Filter icons based on search query
+  const filteredIcons = droidIcons.filter((iconItem) =>
+    iconItem.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <main>
-      <div
-        style={{
-          backgroundImage: `url("${equipmentbg}")`,
-        }}
-        className="e-image"
-      >
+      <div>
         <NavBar />
-
-        {/* CONTENT */}
-        <article className="equipment-main">
-          <article className="equipment-content">
-            <p className="equipment-heading">
-              PROFESSIONAL EQUIPMENT SET-UP
-              <br />
-              SERVICES
-            </p>
-          </article>
-          <p className="equipment-heading-details">
-            Expert equipment setup services designed to ensure your technology
-            infrastructure is installed correctly and efficiently.
-          </p>
-        </article>
       </div>
-
-      {/* OUR SERVICES SECTION */}
-      <div className="equip-main">
-        <div>
-          <h1 className="equip-header"> Our Services </h1>
-        </div>
-        <motion.section
-          variants={fadeIn("up", 0.2)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.7 }}
-          className="margin-btm"
-        >
-          <ul className="service-card-container">
-            {courses.map((course) => (
-              <Card
-                key={course.id}
-                title={course.title}
-                image="https://via.placeholder.com/300x200"
-                content={course.trainings}
-                actions={
-                  <Button
-                    title="See More Details"
-                    bgColor="#282a94"
-                    color="#ffffff"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    bRadiusColor="#000000"
-                    onClickButton={() => {
-                      dispatch(
-                        updateModalContent({
-                          appTitle: "See more",
-                        })
-                      );
-                      dispatch(updateModal(true));
-                    }}
-                  />
-                }
-              />
-            ))}
-          </ul>
-        </motion.section>
-      </div>
-
-      {/* BENEFIT OF WORKING WITH US */}
       <section className="margin-btm">
-        <div className="choose-us-product">
-          <div>
-            <FaHandshake
-              className="our-catalog-icon equip-icon"
-              // id="equip-icon"
+        <div className="droid-icons">
+          <h1 className="contact-header">D’roid Icons</h1>
+          <div className="search-container">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              className="search-bar"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Update search query
             />
           </div>
-          <div className="our-catalog-right">
-            <h1 className="our-catalog-header">Benefits of Working with Us</h1>
-            <ol>
-              <li className="product-p">
-                Expert Technicians: Our team comprises experienced professionals
-                with extensive knowledge in equipment setup and configuration.
-              </li>
-              <li className="product-p">
-                Customised Solutions: We tailor our services to meet your
-                specific needs and preferences.
-              </li>
-              <li className="product-p">
-                Efficiency and Reliability: We ensure that your equipment is set
-                up quickly and works reliably from day one.
-              </li>
-              <li className="product-p">
-                Ongoing Support: We provide continued support and maintenance to
-                keep your systems running smoothly.
-              </li>
-              <li className="product-p">
-                Competitive Pricing: Our transparent pricing structure ensures
-                you get the best value for your investment.
-              </li>
-            </ol>
-          </div>
-        </div>
-      </section>
-      <section className="margin-btm">
-        <div>
-          <h1 className="contact-header"> Contact Us</h1>
-          <p className="equip-contact-details">
-            Ready to get started with our equipment setup services? Contact us
-            today to schedule an appointment or to learn more about how we can
-            assist you.
-          </p>
-        </div>
-        <div className="equipment-btn">
-          <div className="equipment-btn-details">
-            <Button
-              bgColor="#000000"
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              mRight={0}
-              title="Contact us"
-              color="#ffffff"
-              fWeight={800}
-              bRadius={5}
-              icon={<FaArrowRightToBracket className="style-home-icon" />}
-              onClickButton={() => {
-                navigate("/contact");
-              }}
-            />
+          <div className="icon-list">
+            {filteredIcons.length > 0 ? (
+              filteredIcons.map((iconItem) => (
+                <div key={iconItem.icon}>
+                  <div className="icon icon-item">
+                    <img
+                      src={iconItem.icon}
+                      alt={iconItem.label}
+                      className="droid-icon-size"
+                    />
+                  </div>
+                  <p className="icon-label">{iconItem.label}</p>
+                </div>
+              ))
+            ) : (
+              <p>No components found matching your search.</p>
+            )}
           </div>
         </div>
       </section>

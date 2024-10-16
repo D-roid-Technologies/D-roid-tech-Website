@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./AboutSection.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import Button from "../../../components/button/Button";
@@ -21,8 +21,15 @@ import { TbWriting } from "react-icons/tb";
 import { FaUserGraduate } from "react-icons/fa";
 import { HiOutlineTemplate } from "react-icons/hi";
 import { FcTemplate } from "react-icons/fc";
+import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { FaApple } from "react-icons/fa";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Section: React.FunctionComponent = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   const { getColor } = useThemeColor();
   const NextArrow = (props: any) => {
     const { className, style, onClick } = props;
@@ -171,7 +178,7 @@ const Section: React.FunctionComponent = () => {
           </div>
         </div>
         <div className="join-images">
-          <span>
+          <span data-aos="flip-left">
             <img
               src={Assets.images.joinImageOne}
               alt=""
@@ -179,7 +186,7 @@ const Section: React.FunctionComponent = () => {
               width="270"
             />
           </span>
-          <span>
+          <span data-aos="flip-right">
             <img
               src={Assets.images.joinImageTwo}
               alt=""
@@ -318,7 +325,7 @@ const Section: React.FunctionComponent = () => {
               set up a website in just five minutes. Begin a step-by-step guide
               to help you create your website in a flash.
             </p>
-            <div className="our-servicess-btns">
+            {/* <div className="our-servicess-btns">
               <div className="servicess-btns">
                 <Button
                   bgColor="#071d6a"
@@ -342,9 +349,80 @@ const Section: React.FunctionComponent = () => {
                   }}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
+        {/* download App */}
+        <section className="app-section">
+          <div>
+            <p className="download ">
+              Get all <br />
+              Our Mobile <br />
+              Applications On
+            </p>
+            <div className="app-btn-container">
+              <span className="Apple-store">
+                <Button
+                  bgColor={"#ffffff"}
+                  title="Apple Store"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  fWeight={900}
+                  color="#071d69"
+                  bRadius={5}
+                  bRadiusColor="#071d69"
+                  icon={
+                    <FaApple
+                      style={{ color: "#071d69" }}
+                      className="icon-styles"
+                    />
+                  }
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </span>
+              <span className="google-play">
+                <Button
+                  className="google-play"
+                  bgColor={"#ffffff"}
+                  title="Google play"
+                  mTop={0}
+                  mBottom={0}
+                  mLeft={0}
+                  mRight={0}
+                  bRadius={5}
+                  fWeight={900}
+                  color="#071d69"
+                  bRadiusColor="#071d69"
+                  icon={
+                    <IoLogoGooglePlaystore
+                      style={{ color: "#071d69" }}
+                      className="icon-styles"
+                    />
+                  }
+                  onClickButton={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </span>
+            </div>
+          </div>
+          {/* app image */}
+          {/* <div className="mobile-screens"> */}
+          <div className="mobile-screens" data-aos="zoom-in">
+            <img
+              src={Assets.images.knowledgeCityMobileApp}
+              alt="knowledge city img"
+              className="m-app-image"
+              // width={600}
+              // height={200}
+            />
+          </div>
+          {/* </div> */}
+        </section>
       </div>
     </>
   );

@@ -77,6 +77,7 @@ export type AppButtonType = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
+  // title: React.ReactNode; // Changed this line to accept ReactNode
   bgColor: string;
   mTop: number;
   mBottom: number;

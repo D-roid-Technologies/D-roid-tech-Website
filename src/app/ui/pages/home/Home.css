@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 /* CONTENT */
 .home-main {
@@ -57,7 +57,7 @@
   font-weight: 700;
   color: #071d6a;
   /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
-  font-family: "Verdana Pro";
+  font-family: "Rubik";
 }
 
 .product-button {
@@ -67,7 +67,7 @@
 }
 
 .See-our-product {
-  font-family: "Mazzard";
+  font-family: "Rubik";
   cursor: pointer;
   width: 60%;
   margin-top: 20px;
@@ -152,7 +152,7 @@
     display: none;
   }
   .See-our-product {
-    font-family: "Mazzard";
+    font-family: "Rubik";
     cursor: pointer;
     width: 90%;
     margin-top: 20px;

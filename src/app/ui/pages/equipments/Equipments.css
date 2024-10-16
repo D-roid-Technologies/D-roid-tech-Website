@@ -1,88 +1,62 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
-/* CONTENT */
-.equipment-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding-top: 150px;
+.droid-icons {
+  padding: 4em 0;
 }
-
-.e-image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100vh;
-  /* margin-bottom: 50px; */
-}
-
-.equipment-heading {
-  font-size: 4.5rem;
-  letter-spacing: 3px;
-  text-align: center;
-  font-weight: 500;
-  font-family: "Rammetto One";
-}
-.equipment-heading-details {
-  margin-top: 1em;
-  font-size: 1.8rem;
-  word-spacing: 2px;
-  text-align: center;
-  color: #fff;
-  font-family: "Mazzard";
-}
-
-/* OUR SERVICES SECTION*/
-.equip-main {
-  padding: 0 100px;
-  padding-top: 50px;
-}
-.equip-header {
-  margin-bottom: 30px;
-  font-size: 32px;
-  font-weight: 600;
-  text-align: center;
-  color: #282a94;
-  font-family: "Rammetto";
-}
-.margin-btm {
-  margin-bottom: 50px;
-}
-.equip-icon {
-  color: #282a94;
-}
-/* CONTACT US */
 .contact-header {
   margin-bottom: 30px;
   font-size: 32px;
   font-weight: 600;
   text-align: left;
   color: #282a94;
-  font-family: "Rammetto";
-}
-.equip-contact-details {
-  text-align: left;
-  font-family: "Mazzard";
-  letter-spacing: 2px;
-  font-size: 1.2rem;
-  /* color: rgb(39, 39, 39); */
-  color: rgb(124, 124, 124);
-  margin-bottom: 20px;
+  font-family: "Rubik";
 }
 
-/* BENEFIT OF WORKING WITH US */
+/* IconList.css */
+.icon-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  /* max-width: 200px; Set a maximum width */
+}
 
-.equipment-btn-details {
-  width: 20%;
-  border-radius: none;
-  transition: transform 0.3s ease-in-out;
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 5px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
-.equipment-btn-details:hover {
-  transform: scale(1.1);
+
+.icon-item:hover {
+  transform: scale(1.05);
 }
+
+.icon-label {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+.droid-icon-size {
+  width: 28px;
+  height: 28px;
+}
+
+/* Customize the size of the icons */
+.icon {
+  font-size: 20px;
+  color: #2a3d66; /* Change the color to match your theme */
+}
+
 .margin-btm {
   padding: 0 100px;
 }
@@ -100,36 +74,7 @@
     padding: 0 20px;
     padding-top: 50px;
   }
-  .e-image {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 60vh;
-    /* margin-bottom: 50px; */
-  }
-  .equipment-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding-top: 120px;
-  }
 
-  .equipment-heading {
-    font-size: 1.4rem;
-    letter-spacing: 3px;
-    text-align: center;
-    font-weight: 500;
-    font-family: "Rammetto One";
-  }
-  .equipment-heading-details {
-    margin-top: 1em;
-    font-size: 1rem;
-    word-spacing: 2px;
-    text-align: center;
-    color: #fff;
-    font-family: "Mazzard";
-  }
   .equipment-btn-details {
     width: 100%;
     border-radius: none;

@@ -345,6 +345,7 @@ const Contact: React.FunctionComponent = () => {
                         w="100%"
                         h={40}
                         pLeft={10}
+                        bRadius={5}
                         pHolder="Full Name"
                         onchangeText={(e: any) => {
                           setFullNameData(e.target.value);
@@ -360,6 +361,7 @@ const Contact: React.FunctionComponent = () => {
                         w="100%"
                         h={40}
                         pLeft={10}
+                        bRadius={5}
                         pHolder="Email"
                         onchangeText={(e: any) => {
                           setEmailData(e.target.value);
@@ -388,9 +390,10 @@ const Contact: React.FunctionComponent = () => {
                   <br />
                   <div className="input-container">
                     <AppInput
-                      w="100%"
+                      w="50%"
                       h={40}
                       pLeft={10}
+                      bRadius={5}
                       pHolder="Phone Number"
                       onchangeText={(e: any) => {
                         setPhoneNumberData(e.target.value);
@@ -409,6 +412,7 @@ const Contact: React.FunctionComponent = () => {
                         pLeft={10}
                         pHolder="Subject"
                         bagColor="#ffffff"
+                        bRadius={5}
                         isDropdown={true}
                         options={optionsList}
                         className="subject-feild"
@@ -426,7 +430,7 @@ const Contact: React.FunctionComponent = () => {
                   <label style={{ color: Assets.colors.light }}></label>
                   <br />
                   <textarea
-                    rows={13}
+                    rows={10}
                     name="comment"
                     placeholder="Write your message here"
                     onChange={(e: any) => {
@@ -443,6 +447,7 @@ const Contact: React.FunctionComponent = () => {
                   mBottom={0}
                   mLeft={0}
                   mRight={0}
+                  bRadius={5}
                   bRadiusColor="#FFB100"
                   title="Submit"
                   color="#071d69"
