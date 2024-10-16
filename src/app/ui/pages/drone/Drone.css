@@ -150,3 +150,68 @@
   transform: translateY(-50%);
   color: #aaa; /* Icon color */
 }
+
+/* Mobile responsiveness for screens with a max-width of 600px */
+@media only screen and (max-width: 600px) {
+  .products-banner {
+    padding: 50px;
+    height: auto; /* Adjust to fit content */
+  }
+
+  .products-banner-inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Adjust height for mobile */
+    text-align: center;
+  }
+
+  .dev-banner-desc {
+    width: 100%; /* Make the description take full width */
+    bottom: 0; /* Remove the large bottom positioning */
+  }
+
+  .dev-header {
+    font-size: 2.5rem; /* Adjust heading size */
+  }
+
+  .product-pp {
+    font-size: 18px; /* Adjust paragraph size */
+  }
+
+  .dev-cart {
+    width: 100%; /* Make image responsive */
+    height: auto;
+    max-width: 300px; /* Limit maximum width */
+  }
+
+  /* Dev body */
+  .dev-body {
+    padding: 20px; /* Reduce padding on smaller screens */
+  }
+
+  /* Card grid */
+  .dev-card-grid {
+    grid-template-columns: 1fr; /* Make cards full-width on mobile */
+    gap: 20px; /* Reduce gap between cards */
+  }
+
+  .dev-card {
+    max-width: 100%; /* Allow cards to take full width */
+  }
+
+  /* Search bar */
+  .search-container {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .search-bar {
+    font-size: 0.9rem; /* Adjust font size for search input */
+    padding: 10px 40px;
+  }
+
+  .search-icon {
+    font-size: 16px;
+  }
+}
