@@ -1,9 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Playpen Sans"); */
+/* @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .nav-link-container {
   display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 .dark-mode {
@@ -18,11 +20,12 @@
 }
 
 .version {
-  font-weight: 200;
-  background-color: #00ffff;
-  padding: 5px;
+  background-color: #1bc47e;
+  padding: 3px 10px;
   font-size: 13px;
   margin-right: 45px;
+  color: #fff;
+  font-weight: 500;
 }
 .drop-down-links {
   position: absolute;
@@ -34,25 +37,25 @@
   text-decoration: none;
   background-color: #000000;
   padding: 12px;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 .drop-down-links:hover {
   transition: 0.8s;
-  /* color: #00ffff !important; */
-  color: #FBCC34 !important;
+  color: #fbcc34 !important;
 }
 
 .nav-list {
   text-decoration: none;
+  font-size: 1.2rem;
   cursor: pointer;
   font-weight: 700;
   letter-spacing: 2px;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 
 .nav-list:hover {
   transition: 0.8s;
-  color: #FBCC34 !important;
+  color: #fbcc34 !important;
 }
 .list-container {
   list-style: none;
@@ -70,9 +73,8 @@
   justify-content: space-between;
   background-color: transparent;
   align-items: center;
-  height: 60px;
-  padding-left: 100px;
-  padding-right: 100px;
+  height: 70px;
+  padding: 10px 100px;
 }
 
 .list {

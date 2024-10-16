@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 /* Global Styles */
 .products-banner,
@@ -9,26 +9,32 @@
   padding: 100px;
 }
 
-.products-header,
 .our-catalog-header {
-  font-family: "Rammetto One", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 40px;
-  color: #000000;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+}
+.products-header {
+  font-family: "Rubik", sans-serif;
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: #ffb100;
 }
 
 .product-pp {
-  font-family: "MazzardH", sans-serif;
+  font-family: "Rubik", sans-serif;
   letter-spacing: 2px;
   font-size: 22px;
-  color: rgb(39, 39, 39);
+  color: #071d6a;
 }
 .product-p {
   font-size: 1.2rem;
-  color: rgb(124, 124, 124);
-  line-height: 30px;
-  letter-spacing: 2px;
-  font-family: "Mazzard";
+  line-height: 20px;
+  color: #333;
+  font-weight: 400;
+  font-family: "Rubik";
   text-align: justify;
   margin-bottom: 20px;
 }
@@ -37,32 +43,39 @@
 .products-banner {
   width: 100%;
   height: 100vh;
-  display: block;
+  /* display: block; */
+
+  background: rgba(255, 177, 0, 0.1);
+  box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.25),
+    74.467px -74.467px 74.467px 0px rgba(194, 135, 0, 0.1) inset,
+    -74.467px 74.467px 74.467px 0px rgba(255, 255, 255, 0.1) inset;
+  /* backdrop-filter: blur(74.46666717529297px); */
   /* margin-bottom: 80px; */
 }
 
 .products-banner-inner {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20%;
+  /* gap: 20%; */
   height: 500px;
 }
 
 .products-banner-desc {
-  width: 40%;
+  /* width: 40%; */
   height: auto;
+  position: relative;
+  bottom: 10rem;
 }
 
 .product-cart {
-  width: 450px;
-  height: 450px;
-  color: #000000;
+  width: 580px;
+  height: 480px;
 }
 
 .product-bottom-banner {
-  background-color: #000000;
+  background-color: #071d6a;
   width: 100%;
   height: 130px;
   padding: 12px;
@@ -94,7 +107,7 @@
 }
 
 .product-bottom-title {
-  font-family: "MazzardH", sans-serif;
+  font-family: "Rubik", sans-serif;
   letter-spacing: 2px;
   font-size: 18px;
   color: #ffffff;
@@ -109,6 +122,7 @@
   align-items: center;
   gap: 30px;
 }
+
 .card {
   margin: 10px;
   flex: 1 1 300px; /* Adjust based on your card width */
@@ -122,7 +136,7 @@
 }
 
 .our-catalog-icon {
-  width: 400px;
+  width: 580px;
   height: 400px;
 }
 
@@ -130,7 +144,7 @@
   width: 50%;
 }
 .our-catalog-header {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin-top: 50px;
 }
 /* PRODUCT FILTER */
@@ -145,7 +159,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 .product-name {
-  width: 35% !important;
+  width: 35%;
   padding: 10px 15px;
   margin: 10px 0;
   box-sizing: border-box;
@@ -255,6 +269,18 @@
 }
 
 @media (max-width: 600px) {
+  .products-banner {
+    width: 100%;
+    height: 50vh;
+    display: block;
+    background: rgba(255, 177, 0, 0.1);
+    box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.25),
+      74.467px -74.467px 74.467px 0px rgba(194, 135, 0, 0.1) inset,
+      -74.467px 74.467px 74.467px 0px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(74.46666717529297px);
+    /* margin-bottom: 80px; */
+  }
+
   .products-banner,
   .our-catalog,
   .choose-us-product {
@@ -262,6 +288,35 @@
   }
   .banner-icon {
     display: none;
+  }
+  .products-header {
+    font-family: "Rubik", sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ffb100;
+  }
+  .products-banner-desc {
+    margin-top: 6.5em;
+    height: 0;
+    position: none;
+    bottom: 0;
+  }
+  .product-pp {
+    font-family: "Rubik", sans-serif;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    color: #071d6a;
+  }
+  /* Scroll icon */
+  .product-bottom-list {
+    border-right: 1.8px solid #ffffff;
+    height: auto;
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* gap: 20px; */
+    animation: scroll 15s linear infinite;
   }
   .product-p {
     margin-bottom: 20px;
@@ -306,7 +361,7 @@
 .product-bottom-list {
   display: inline-block;
   margin-right: 20px;
-  animation: scroll 15s linear infinite;
+  animation: scroll 10s linear infinite;
 }
 .margin-btm {
   padding: 0 20px;
@@ -314,14 +369,7 @@
 
 /* PRODUCT FILTER */
 .search {
-  /* margin-bottom: 0;
-  display: flex;
-  flex-direction: column; */
   width: 100%;
-  /* padding: 20px;s */
-  /* background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* .product-search {
@@ -329,12 +377,10 @@
 } */
 /* INPUT SECTION */
 .product-name {
-  width: 100%;
+  width: 50%;
   padding: 15px 15px;
   margin: 10px 0;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  /* border-radius: 4px; */
   font-size: 16px;
-  /* transition: border-color 0.3s ease-in-out; */
 }

@@ -5,6 +5,10 @@ import { TiArrowBack } from "react-icons/ti";
 import { useNavigate, useLocation } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { convertToCurrency } from "../../../utils/currencyUtils";
+import { IoChevronBackOutline } from "react-icons/io5";
+import { Assets } from "../../../utils/constant/Assets";
+import { FaBookReader } from "react-icons/fa";
+import { FaDownload } from "react-icons/fa";
 
 const Details: React.FunctionComponent = () => {
   const location = useLocation();
@@ -69,7 +73,7 @@ const Details: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="test-top-con">
+      {/* <div className="test-top-con">
         <Button
           bgColor="green"
           mTop={0}
@@ -84,37 +88,45 @@ const Details: React.FunctionComponent = () => {
             navigate(data.path);
           }}
         />
+      </div> */}
+      <div className="details-top-con">
+        <button onClick={() => navigate("/")} className="details-btn-hero">
+          <IoChevronBackOutline className="details-back-btn-icon" />
+        </button>
       </div>
-      <div className="top-data-container">
-        <div className="img-con">
-          <img src={data.image} alt="" className="img-banner" />
-        </div>
-        <div className="img-con">
-          <h3>{data.title}</h3>
-          <p>{data.desc}</p>
+      <div className="details-top-data-container">
+        <div className="top-data-container">
+          <div className="img-con">
+            <img src={data.image} alt="" className="img-banner" />
+          </div>
+          <div className="img-con">
+            <h3>{data.title}</h3>
+            <p>{data.desc}</p>
+            {/* category section */}
+            <section>
+              <div className="info-con">
+                <div className="category">
+                  <h3>Categories</h3>
+                  {/* <p>{data.category.join(", ")}</p> */}
+                  <p>
+                    {Array.isArray(data.category)
+                      ? data.category.join(", ")
+                      : "No categories available"}
+                  </p>
+                </div>
+                <div className="tools">
+                  <h3>Tools</h3>
+                  {toolsArray.map((tool: any, index: any) => (
+                    <span key={index} className="tool-item">
+                      {tool.trim()}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-      <section>
-        <div className="info-con">
-          <div className="category">
-            <h3>Categories</h3>
-            {/* <p>{data.category.join(", ")}</p> */}
-            <p>
-              {Array.isArray(data.category)
-                ? data.category.join(", ")
-                : "No categories available"}
-            </p>
-          </div>
-          <div className="tools">
-            <h3>Tools</h3>
-            {toolsArray.map((tool: any, index: any) => (
-              <span key={index} className="tool-item">
-                {tool.trim()}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="procedure">
         <div className="procedure-section">
@@ -122,32 +134,23 @@ const Details: React.FunctionComponent = () => {
             data.procedure.map((proc: any, procIndex: number) => (
               <div key={procIndex} className="procedure-content">
                 <h3 className="procedure-title">{proc.title}</h3>
-                <div className="benefits">
-                  <div>
-                    <h4 className="procedure-subtitle">{proc.subTitleOne}</h4>
-                  </div>
-                  {proc.subTitleOneContent &&
-                    proc.subTitleOneContent.map(
-                      (content: any, contentIndex: number) => (
-                        <div key={contentIndex} className="procedure-item">
-                          <h4 className="procedure-item-title">
-                            {content.title}
-                          </h4>
-                          <p className="procedure-item-desc">{content.desc}</p>
-                        </div>
-                      )
-                    )}
-                </div>
-                <div className="benefits">
-                  <div>
-                    <h3 className="procedure-subtitle">{proc.subTitleTwo}</h3>
-                    {proc.subTitleTwoContent &&
-                      proc.subTitleTwoContent.map(
+                {/* part one */}
+
+                <section className="benefits">
+                  <div className="benefit-container">
+                    <div>
+                      {/* benefit */}
+                      <h4 className="procedure-subtitle">{proc.subTitleOne}</h4>
+                    </div>
+                    {proc.subTitleOneContent &&
+                      proc.subTitleOneContent.map(
                         (content: any, contentIndex: number) => (
                           <div key={contentIndex} className="procedure-item">
-                            <h6 className="procedure-item-title">
+                            {/* benefit sub title */}
+                            <h4 className="procedure-item-title">
                               {content.title}
-                            </h6>
+                            </h4>
+                            {/* benefit content */}
                             <p className="procedure-item-desc">
                               {content.desc}
                             </p>
@@ -155,27 +158,101 @@ const Details: React.FunctionComponent = () => {
                         )
                       )}
                   </div>
-                </div>
+                  <div>
+                    <img
+                      src={Assets.images.benefitillustratorOne}
+                      alt=""
+                      className="details-soft-image"
+                    />
+                  </div>
+                </section>
+
+                {/* part two */}
+                <section className="benefits">
+                  <div className="benefit-container">
+                    {/* <div className="benefits"> */}
+                    <div>
+                      <h3 className="procedure-subtitle">{proc.subTitleTwo}</h3>
+                      {proc.subTitleTwoContent &&
+                        proc.subTitleTwoContent.map(
+                          (content: any, contentIndex: number) => (
+                            <div key={contentIndex} className="procedure-item">
+                              <h6 className="procedure-item-title">
+                                {content.title}
+                              </h6>
+                              <p className="procedure-item-desc">
+                                {content.desc}
+                              </p>
+                            </div>
+                          )
+                        )}
+                    </div>
+                  </div>
+                  <div>
+                    <img
+                      src={Assets.images.benefitillustratorTwo}
+                      alt=""
+                      className="details-soft-image"
+                    />
+                  </div>
+                </section>
               </div>
             ))
           ) : (
-            <p>No procedures available</p>
+            <p className="no-procedure">No procedures available</p>
           )}
         </div>
       </section>
-      {/* <section className="fees-section"> */}
-      {/* <div className="fees">
-          <h3>FEES</h3>
-          {basicPrice && <p>Basic Price: {basicPrice}</p>}
-          {proPrice && <p>Pro Price: {proPrice}</p>}
-          {advancedPrice && <p>Advanced Price: {advancedPrice}</p>}
-        </div> */}
-      {/* <div className="fees">
-          <h3>FEES</h3>
-          <h4>{data.currency}</h4>
-          <p>{data.price}</p>
-        </div> */}
-      {/* </section> */}
+      {/* butoon section */}
+      <section className="details-application">
+        <div className="details-page-btn">
+          <div className="click-btn">
+            <Button
+              bgColor="#091d6a"
+              mTop={0}
+              mBottom={0}
+              mLeft={30}
+              mRight={30}
+              title="Apply for our development"
+              color="#fff"
+              fWeight={900}
+              bRadius={5}
+              bRadiusColor="#091d6a"
+              icon={<FaBookReader className="style-home-icon" />}
+              onClickButton={() => {
+                navigate("");
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="details-page-btn">
+          <div className="click-btn">
+            <Button
+              bgColor="#feb100"
+              mTop={0}
+              mBottom={0}
+              mLeft={20}
+              mRight={20}
+              title="Download our software Development process"
+              color="#071D6A"
+              fWeight={900}
+              bRadius={5}
+              bRadiusColor="#feb100"
+              icon={
+                <FaDownload
+                  style={{ color: "#071D6A" }}
+                  className="style-home-icon"
+                />
+              }
+              onClickButton={() => {
+                navigate("");
+              }}
+            />
+          </div>
+        </div>
+      </section>
+      {/* 
       <h3 className="fees-container">FEES</h3>
       <section className="fees-section">
         <div className="fees">
@@ -192,7 +269,7 @@ const Details: React.FunctionComponent = () => {
             {advancedPrice && <p>{advancedPrice}</p>}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

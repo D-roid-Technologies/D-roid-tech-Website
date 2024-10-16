@@ -39,11 +39,11 @@ const ToolItem: React.FC<ToolItemProps> = ({ title, description, icon }) => {
     },
     title: {
       marginBottom: "20px",
-      fontFamily: "Rammetto One",
+      fontFamily: "Rubik",
       color: getColor("basic"),
     },
     description: {
-      fontFamily: "Mazzard",
+      fontFamily: "Rubik",
       fontSize: "1rem",
       color: getColor("basic"),
       marginBottom: "1em",
@@ -72,7 +72,7 @@ const TechnologiesAndTools: React.FC = () => {
   const styles = {
     heading: {
       color: getColor("basic"),
-      fontFamily: "Rammetto One",
+      fontFamily: "Rubik",
     },
   };
 
@@ -81,7 +81,7 @@ const TechnologiesAndTools: React.FC = () => {
       <h1 style={styles.heading} className="training-approach-head">
         Technologies and Tools
       </h1>
-      <ul className="training-approach-list">
+      <ul className="training-approach-listss">
         {toolItems.map((item, index) => (
           <ToolItem
             key={index}

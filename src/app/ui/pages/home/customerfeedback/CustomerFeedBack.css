@@ -1,40 +1,64 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .customerfeedback-main {
   margin-bottom: 50px;
 }
 .customer-testimonials {
   margin-bottom: 50px;
-  background-color: #282a94;
-  height: 400px;
+  background-color: rgba(7, 29, 106, 0.1);
+  height: 250px;
+  padding: 30px 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.testimonial-bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin-bottom: 50px;
 }
 
 .read {
-  color: #fff;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-size: 2.5rem;
   letter-spacing: 3px;
   text-align: center;
-  font-weight: 500;
-  font-family: "Rammetto One";
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
+  font-weight: 700;
+  font-family: "Rubik";
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .testiminial-details {
-  padding: 0 50px;
-  color: #ffffff;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   letter-spacing: 2px;
+  color: rgba(7, 29, 106, 0.6);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .testifier {
   margin-top: 10px;
-  color: #00ffff;
+  color: #071d6a;
+  font-family: "Rubik";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 20px;
 }
 /* Button */
 .contact-uss {
-  padding-left: 50px;
+  display: flex;
+  justify-content: center;
+  /* padding-left: 100px; */
   margin-top: 50px;
 }
 
@@ -59,11 +83,16 @@
   margin-bottom: 50px;
 }
 .heading {
-  font-size: 1.5rem;
-  color: #333;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 700;
   padding-bottom: 0.2px;
-  font-family: "Rammetto";
+  font-family: "Rubik";
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  /* font-size: 40px; */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 .rule {
   border-top: 2px solid rgb(218, 214, 214);
@@ -71,49 +100,72 @@
 
 .questions {
   text-align: center;
-  padding: 30px 0;
-  font-family: "Rammetto";
-  font-weight: 500;
-  font-size: 1.6rem;
+  padding: 20px 0;
+  font-family: "Rubik";
+  font-size: 2rem;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 .clients {
   text-align: center;
-  color: rgb(186, 184, 184);
+  color: rgba(7, 29, 106, 0.7);
   padding-bottom: 30px;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2rem;
 }
 .droid {
-  font-family: "Rammetto";
+  font-family: "Rubik";
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.8rem;
   padding-bottom: 30px;
+  color: #071d6a;
 }
 .hours {
-  font-family: "Rammetto";
+  font-family: "Rubik";
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.6rem;
   padding-bottom: 27px;
+  color: #071d6a;
+}
+.time-container {
+  padding: 0 420px !important;
 }
 .time {
   text-align: center;
   font-size: 1.2rem;
   padding-bottom: 30px;
-  color: rgb(186, 184, 184);
-  font-family: "Mazzard";
+  padding: 12px 0;
+  font-family: "Rubik";
+  color: #071d6a;
+  font-weight: 600;
+
+  border-radius: 8px;
+  background: rgba(7, 29, 106, 0.1);
+  box-shadow: 49.467px -49.467px 49.467px 0px rgba(5, 22, 81, 0.1) inset,
+    -49.467px 49.467px 49.467px 0px rgba(255, 255, 255, 0.1) inset;
+  backdrop-filter: blur(49.46666717529297px);
 }
 .friday {
-  color: aqua;
+  color: #071d6a;
+  background-color: #fbcc34;
+  padding: 12px 15px;
+  border-radius: 10px;
+  /* border-top-left-radius: 15px; */
 }
 
 .contact-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   gap: 30px;
+  margin-top: 2rem;
 }
 
 .contactus-button-style {
@@ -122,7 +174,7 @@
   align-items: center;
   width: 14%;
   border: none;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2rem;
   transition: transform 0.3s ease-in-out;
 }
@@ -135,7 +187,7 @@
   align-items: center;
   width: 14%;
   border: none;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   font-size: 1.2rem;
   transition: transform 0.3s ease-in-out;
 }
@@ -161,14 +213,14 @@
     letter-spacing: 3px;
     text-align: center;
     font-weight: 500;
-    font-family: "Rammetto One";
+    font-family: "Rubik";
     padding-top: 2em;
     padding-bottom: 1em;
   }
   .testiminial-details {
     padding: 0 10px;
     color: #ffffff;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     letter-spacing: 2px;
     text-align: justify;
   }
@@ -222,7 +274,7 @@
     color: #333;
     font-weight: 500;
     padding-bottom: 0.8em;
-    font-family: "Rammetto";
+    font-family: "Rubik";
   }
   .rule {
     border-top: 2px solid rgb(218, 214, 214);
@@ -231,7 +283,7 @@
   .questions {
     text-align: center;
     padding: 30px 0;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-weight: 500;
     font-size: 1.6rem;
   }
@@ -239,18 +291,18 @@
     text-align: center;
     color: rgb(186, 184, 184);
     padding-bottom: 30px;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1rem;
   }
   .droid {
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
     font-weight: 500;
     font-size: 1.8rem;
     padding-bottom: 30px;
   }
   .hours {
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
     font-weight: 500;
     font-size: 1.8rem;
@@ -280,7 +332,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Mazzard";
+    font-family: "Rubik";
   }
 
   .contactus-button-style {
@@ -289,7 +341,7 @@
     align-items: center;
     width: 22%;
     border: none;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     font-weight: 600;
   }
@@ -299,7 +351,7 @@
     align-items: center;
     width: 22%;
     border: none;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     font-weight: 600;
   }
@@ -310,52 +362,59 @@
   .customerfeedback-main {
     margin-bottom: 50px;
   }
-
   .customer-testimonials {
-    margin-bottom: 60px;
-    background-color: #282a94;
-    height: 400px;
+    margin-bottom: 50px;
+    background-color: rgba(7, 29, 106, 0.1);
+    height: auto;
+    padding: 30px 10px;
   }
 
   .read {
-    color: #fff;
-    font-size: 0.9rem;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-size: 1.4rem;
     letter-spacing: 1px;
     text-align: center;
-    font-weight: 500;
-    font-family: "Rammetto One";
-    padding-top: 1.8em;
-    padding-bottom: 1em;
+    font-weight: 700;
+    font-family: "Rubik";
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
+
   .testiminial-details {
-    padding: 0 20px;
-    color: #ffffff;
-    font-family: "Mazzard";
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-align: justify;
+    font-family: "Rubik";
+    letter-spacing: 0;
+    color: rgba(7, 29, 106, 0.6);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   .testifier {
     margin-top: 10px;
-    color: #00ffff;
-    font-size: 10px;
+    color: #071d6a;
+    font-family: "Rubik";
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
   }
-
   /* Button */
   .contact-uss {
-    padding-left: 20px;
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
   }
 
   .contactuss-button {
-    width: 55%;
+    width: 70%;
     border-radius: none;
     transition: transform 0.3s ease-in-out;
   }
   .contactuss-button:hover {
     transform: scale(1.1);
   }
-
   /* SECTION FOUR */
   .section-four {
     padding-left: 15px;
@@ -366,13 +425,14 @@
   /* CONTACT US SECTION */
   .cont-main {
     margin-bottom: 60px;
+    margin-top: 100px;
   }
   .heading {
     font-size: 1.5rem;
     color: #333;
     font-weight: 500;
-    padding-bottom: 0.8em;
-    font-family: "Rammetto";
+    padding-bottom: 0;
+    font-family: "Rubik";
   }
   .rule {
     border-top: 2px solid rgb(218, 214, 214);
@@ -381,32 +441,36 @@
   .questions {
     text-align: center;
     padding: 20px 0;
-    font-family: "Rammetto";
+    font-family: "Rubik";
     font-weight: 500;
     font-size: 1.4rem;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   }
   .clients {
     text-align: center;
     color: rgb(124, 124, 124);
     padding-bottom: 20px;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1rem;
   }
   .droid {
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.5rem;
     padding-bottom: 20px;
+    color: #071d6a;
   }
   .hours {
-    font-family: "Rammetto";
+    font-family: "Rubik";
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.4rem;
     padding-bottom: 27px;
+    color: #071d6a;
   }
-  .time {
+  /* .time {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -423,27 +487,86 @@
     border: none;
     outline: none;
     color: aqua;
-    /* font-size: 0.6rem; */
   }
   .contact-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Mazzard";
+    font-family: "Rubik";
   }
 
   .contactus-button-style {
     width: 48%;
     border: none;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     font-weight: 600;
   }
   .contactus-button-styles {
     width: 48%;
     border: none;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2rem;
     font-weight: 600;
+  } */
+  .time-container {
+    padding: 0 10px !important;
+  }
+  .time {
+    text-align: center;
+    font-size: 1rem;
+    padding-bottom: 30px;
+    padding: 5px 0;
+    font-family: "Rubik";
+    color: #071d6a;
+    font-weight: 600;
+    border-radius: 8px;
+    background: rgba(7, 29, 106, 0.1);
+    box-shadow: 49.467px -49.467px 49.467px 0px rgba(5, 22, 81, 0.1) inset,
+      -49.467px 49.467px 49.467px 0px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(49.46666717529297px);
+  }
+  .friday {
+    color: #071d6a;
+    background-color: #fbcc34;
+    padding: 12px 15px;
+    border-radius: 10px;
+    /* border-top-left-radius: 15px; */
+  }
+
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Rubik";
+    gap: 30px;
+    margin-top: 2rem;
+  }
+
+  .contactus-button-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46%;
+    border: none;
+    font-family: "Rubik";
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  .contactus-button-style:hover {
+    transform: scale(1.1);
+  }
+  .contactus-button-styles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46%;
+    border: none;
+    font-family: "Rubik";
+    font-size: 1.2rem;
+    transition: transform 0.3s ease-in-out;
+  }
+  .contactus-button-styles:hover {
+    transform: scale(1.1);
   }
 }

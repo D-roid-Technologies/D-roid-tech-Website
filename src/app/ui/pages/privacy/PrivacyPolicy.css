@@ -24,13 +24,13 @@
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 600;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 
 .privacy-description {
   font-size: 1.2rem;
   font-weight: 200;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   margin-top: 1.5rem;
 }
@@ -41,32 +41,53 @@
   gap: 30px;
 }
 
-.privacy-subsection {
-  padding: 20px 0;
+.privacy-subsection-one {
+  padding: 20px 30px;
   border-radius: 5px;
   text-align: left;
+  border: 1px solid rgb(215, 210, 210);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.privacy-subsection-two {
+  padding: 20px 30px;
+  border-radius: 5px;
+  text-align: left;
+  border: 1px solid rgb(215, 210, 210);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .privacy-subsection-heading {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1em;
+  margin-top: 2em;
   line-height: 10px;
-  font-size: 32px;
-  font-family: "Rammetto";
-}
-
-.privacy-subsection-subheading {
   font-size: 1.5rem;
+  font-family: "Rubik";
+}
+.privacy-subsection-heading-cookies {
+  margin-bottom: 1em;
+  margin-top: 2em;
+  line-height: 10px;
+  font-size: 1.5rem;
+  font-family: "Rubik";
+}
+.privacy-subsection-subheading {
+  font-size: 1.2rem;
   font-weight: 600;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   margin-bottom: 0.5rem;
 }
 
 .privacy-subsection-content {
   font-size: 1.2rem;
   font-weight: 200;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: left;
   margin-bottom: 1rem;
+}
+.privacy-btn {
+  width: 18%;
 }
 
 /* Responsive styles */
@@ -116,8 +137,25 @@
 /* Mobile */
 @media screen and (max-width: 600px) {
   .privacy-main {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 1em;
+  }
+  .privacy-subsection-one {
+    padding: 20px 15px;
+    border-radius: 5px;
+    text-align: left;
+    border: 1px solid rgb(215, 210, 210);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .privacy-subsection-two {
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: left;
+    border: 1px solid rgb(215, 210, 210);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
   .privacy-section {
@@ -142,14 +180,28 @@
   }
 
   .privacy-subsection-heading {
-    font-size: 20px;
+    font-size: 1.5rem;
+  }
+  .privacy-subsection-heading-cookies {
+    font-size: 1.3rem;
+    margin-bottom: 1em;
+    margin-top: 2em;
+    line-height: 10px;
+    font-family: "Rubik";
   }
 
   .privacy-subsection-subheading {
-    font-size: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    margin-top: 2em;
   }
 
   .privacy-subsection-content {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    text-align: justify;
+  }
+  .privacy-btn {
+    width: 35%;
   }
 }

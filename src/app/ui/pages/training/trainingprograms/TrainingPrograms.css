@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .details-bg-image {
   background-size: cover;
@@ -15,7 +15,7 @@
 }
 
 .page-header {
-  font-family: "Rammetto One";
+  font-family: "Rubik";
   margin: 0;
   padding-top: 1em;
   text-align: center;
@@ -26,7 +26,7 @@
 }
 .page-header-details {
   text-align: center;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   /* color: #ffffff; */
   font-size: 1.2rem;
   font-weight: 500;

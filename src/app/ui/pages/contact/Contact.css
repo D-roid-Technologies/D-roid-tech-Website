@@ -1,61 +1,68 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .contact-containerr {
   padding: 0 100px;
-  margin-bottom: 50px;
+  /* margin-bottom: 100px; */
 }
 .container-raduis {
   display: flex;
-  padding: 20px;
-  border: 1px solid #282a94;
+  gap: 20px;
   border-radius: 5px;
+  padding: 40px 30px;
+  border-radius: 10px;
+  background: rgba(240, 240, 240, 0.5);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .contact-information {
   flex: 1 1 40%;
 }
 .message {
   text-align: center;
-  margin-bottom: 50px;
-  margin-top: 80px;
+  margin-bottom: 10px;
+  margin-top: 30px;
 }
 
 .message h2 {
   margin-bottom: 0.6em;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #071d69;
 }
 
 .message p {
-  color: rgb(124, 124, 124);
-  font-family: "Mazzard";
+  color: #333;
+  font-family: "Rubik";
   font-size: 1.2em;
+  margin-bottom: 4em;
 }
 /* CONTACT INFORMATION */
 .contact-information {
-  /* background-color: #292929; */
-  background-color: #282a94;
+  margin-top: 5em;
+  background-color: #071d69;
+  border-radius: 8px;
   width: auto;
-  /* width: fit-content; */
-
-  /* border-radius: 5px; */
+  height: 50%;
 }
 .contact-info-details {
   padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 140px;
+  padding-left: 30px;
+  padding-right: 0;
+  padding-bottom: 0;
 }
 .info-details-head {
   color: white;
   font-size: 1.8rem;
   margin-bottom: 0.6em;
-  font-family: "Rammetto One";
+  font-family: "Rubik";
 }
 .info-details-p {
-  color: rgb(124, 124, 124);
+  color: #fbcc34;
   font-size: 1.1rem;
-  font-family: "Mazzard";
-  margin-bottom: 4em;
+  font-family: "Rubik";
+  margin-bottom: 2.5em;
 }
 /* phone number */
 .flex-contact {
@@ -79,7 +86,8 @@
 }
 
 .icon-section {
-  margin-top: 5em;
+  margin-top: 3em;
+  margin-bottom: 3em;
   display: flex;
   gap: 25px;
 }
@@ -93,7 +101,7 @@
 /* MESSAGE  SECTION */
 .input-section {
   flex: 1 1 60%;
-  padding: 10px;
+  padding: 0 10px;
   /* background-color: #282a94; */
 }
 
@@ -114,8 +122,10 @@
 /* INPUT SECTION TWO */
 .name-section-two {
   display: flex;
+  position: relative;
+  bottom: 1.2rem;
   /* justify-content: space-between; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
   gap: 10px;
 }
 
@@ -123,13 +133,13 @@
   width: 100%;
 }
 .subject-feild {
-  font-family: "Mazzard";
+  font-family: "Rubik";
 }
 
 /* MESSAGE AREA */
 .text-area {
   margin-top: 20px;
-  margin-bottom: 23px;
+  margin-bottom: 20px;
 }
 
 textarea {
@@ -138,7 +148,7 @@ textarea {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-family: "Mazzard";
+  font-family: "Rubik";
   resize: none;
 }
 
@@ -146,7 +156,8 @@ textarea {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 40%;
+  width: 30%;
+  margin-bottom: 20px;
   /* transition: transform 0.3s ease-in-out; */
 }
 
@@ -161,6 +172,7 @@ textarea {
 /* TESTIMONIAL SECTION */
 .equip-margin-bt {
   margin-bottom: 10px;
+  margin-top: 100px;
 }
 .contact-testimonial {
   display: flex;
@@ -186,8 +198,9 @@ textarea {
 }
 /* TESTIMONIAL FORM */
 .testimonial-form {
+  /* margin-top: 50px; */
   max-width: 600px;
-  margin: 0 auto;
+  margin: 70px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -239,6 +252,61 @@ textarea {
   font-weight: 600;
   margin-bottom: 20px;
 }
+/* FAQ section */
+.faq-container {
+  width: 70%;
+  /* max-width: 900px; */
+  margin: 100px auto;
+  padding: 20px;
+  margin-bottom: 3em;
+}
+
+.faq-container h1 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.faq-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 1rem;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #ddd;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #fafafa;
+  padding: 0 10px;
+}
+
+.faq-answer.open {
+  max-height: 150px;
+  padding: 15px;
+}
+
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
   .contact-containerr {
@@ -267,7 +335,7 @@ textarea {
 
   .message p {
     color: rgb(124, 124, 124);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1.2em;
   }
   /* CONTACT INFORMATION */
@@ -289,12 +357,12 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rammetto One";
+    font-family: "Rubik";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
     font-size: 1.1rem;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     margin-bottom: 4em;
   }
   /* phone number */
@@ -421,7 +489,7 @@ textarea {
 
   .message p {
     color: rgb(124, 124, 124);
-    font-family: "Mazzard";
+    font-family: "Rubik";
     font-size: 1em;
     text-align: center;
   }
@@ -444,12 +512,12 @@ textarea {
     color: white;
     font-size: 1.8rem;
     margin-bottom: 0.6em;
-    font-family: "Rammetto One";
+    font-family: "Rubik";
   }
   .info-details-p {
     color: rgb(124, 124, 124);
     font-size: 1.1rem;
-    font-family: "Mazzard";
+    font-family: "Rubik";
     margin-bottom: 4em;
   }
   /* phone number */
@@ -554,5 +622,21 @@ textarea {
     align-items: flex-end;
     width: 60%;
     transition: transform 0.3s ease-in-out;
+  }
+  /* FAQ */
+  .faq-container h1 {
+    font-size: 1.5rem;
+  }
+  .faq-question {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  .faq-answer {
+    font-size: 0.8rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 10px;
   }
 }

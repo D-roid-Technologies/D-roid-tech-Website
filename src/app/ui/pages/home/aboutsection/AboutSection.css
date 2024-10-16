@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Rammetto One");
+/* @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=MazzardH-Regular");
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 /* SECTIONS */
 .section-main {
@@ -9,11 +9,23 @@
   margin-top: 2em;
 }
 /* SECTION ONE OUR HISTORY */
-.section-one {
+.hero-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+.hero-image {
+  width: 500px;
+  height: 450px;
+}
+.section-one {
+  /* display: flex;
   gap: 60px;
   padding-top: 1.8em;
-  padding-bottom: 2.2em;
+  padding-bottom: 2.2em; */
 }
 .coding-image {
   border-radius: 10px;
@@ -25,25 +37,31 @@
 }
 
 .our-history {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   line-height: 10px;
-  font-size: 35px !important;
+  font-size: 30px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
   text-align: center;
 }
 .histoy-details {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgb(186, 184, 184) !important;
-  font-family: "Mazzard";
-  text-align: justify;
-  letter-spacing: 2px;
+  color: #333 !important;
+  font-family: "Rubik";
+  text-align: left;
+  letter-spacing: 1px;
 }
 /* CONTACT US BOTTON */
 .style-home-icon {
   color: #ffffff;
+  /* margin-left: 10px; */
+  width: 15px;
+  height: 15px;
+}
+.style-home-icons {
+  color: #000000;
   /* margin-left: 10px; */
   width: 15px;
   height: 15px;
@@ -53,6 +71,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
 .readmore-btn {
@@ -65,54 +84,96 @@
 }
 
 /* SECTION TWO OUR APPROACH */
-.section-two {
-  display: flex;
-  gap: 60px;
-  padding-top: 1.8em;
-  padding-bottom: 2.2em;
-}
-.image-size {
-  width: 600px;
-  height: 300px;
-}
 .approach {
-  padding: 70px 30px;
-  text-align: center;
+  padding: 50px 0;
+  text-align: left;
 }
 .our-approach {
+  margin-bottom: 0.5em;
+  line-height: 10px;
+  font-size: 30px !important;
+  font-weight: 800;
+  color: #282a94;
+  font-family: "Rubik";
+  text-align: center;
+}
+.approach-details {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: #333333;
+  font-family: "Rubik";
+  text-align: left;
+  letter-spacing: 1px;
+}
+/* JOIN TECH TEAM */
+.join-us {
+  height: auto;
+  padding: 40px 100px;
+  color: rgb(223, 219, 219);
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+.join-container {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* gap: 300px; */
+}
+.join-images {
+  display: flex;
+  gap: 20px;
+}
+.join-images-two {
+  position: relative;
+  top: 2.8rem;
+}
+.our-approach-two {
   margin-bottom: 1em;
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
-.approach-details {
+.our-approach-blue-bg {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 35px !important;
+  font-weight: 800;
+  font-family: "Rubik";
+}
+.join-approach-details {
+  color: rgba(240, 240, 240, 0.7);
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgb(186, 184, 184);
-  font-family: "Mazzard";
-  text-align: justify;
+  font-family: "Rubik";
+  text-align: left;
   letter-spacing: 2px;
 }
-/* APPROACH BOTTON */
-.our-approach-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1em;
-}
-
-.approach-btn {
-  width: 35%;
-  border-radius: none;
+.div-button {
+  width: 30%;
+  margin-top: 30px;
   transition: transform 0.3s ease-in-out;
 }
-.approach-btn:hover {
+.div-button:hover {
+  transform: scale(1.1);
+}
+.div-button-second {
+  width: 60%;
+  margin-top: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+.div-button-second:hover {
   transform: scale(1.1);
 }
 
-/* SECTION THREE OUR SERVICES */
+.icon-test {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+/*  OUR SERVICES */
 .our-service-main {
   margin-bottom: 50px;
 }
@@ -140,26 +201,45 @@
   font-size: 35px !important;
   font-weight: 800;
   color: #282a94;
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .services-details {
   font-size: 1.2rem;
   font-weight: 200;
   color: rgb(186, 184, 184);
-  font-family: "Mazzard";
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
 }
+.services-detailss {
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: rgba(7, 29, 106, 0.6);
+  font-family: "Rubik";
+  text-align: justify;
+  letter-spacing: 2px;
+  padding: 0 200px;
+}
 /* CAROUSEL SECTION */
+.our-services-s {
+  margin-bottom: 1em;
+  line-height: 10px;
+  font-size: 30px !important;
+  font-weight: 800;
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Rubik";
+}
 .carousel-container {
   width: 100%;
   margin: 0 auto;
   margin-bottom: 2em;
+  border-bottom: 2px solid rgb(223, 219, 219);
 }
 
 .carousel-container img {
-  width: 100%;
-  height: 400px;
+  /* width: 100%;
+  height: 400px; */
   object-fit: cover;
 }
 
@@ -169,8 +249,18 @@
 
 .imageone {
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* box-shadow: 10px 10px gray; */
 }
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .carousel-heading {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -178,15 +268,20 @@
   font-size: 30px;
   font-weight: 800;
   /* color: #282a94; */
-  font-family: "Rammetto";
+  font-family: "Rubik";
 }
 .carousel-details {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgb(186, 184, 184);
-  font-family: "Mazzard";
+  color: rgba(7, 29, 106, 0.6);
+  font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
+}
+.image-sizessd {
+  width: 500px !important;
+  height: 300px;
+  object-fit: cover;
 }
 
 /* OUR SERVICES BOTTON */
@@ -196,6 +291,7 @@
   align-items: center;
   margin-top: 2em;
   text-decoration: none;
+  margin-bottom: 50px;
 }
 
 .services-btn {
@@ -208,247 +304,97 @@
   transform: scale(1.1);
 }
 
-.join-us {
-  width: 100%;
-  height: auto;
-  padding: 40px;
-  color: rgb(223, 219, 219);
+/* our services */
+.our-service-main-two {
+  margin-bottom: 50px;
+  padding: 0 100px;
+}
+/* Create website section */
+.web-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 15em;
+  padding: 30px 0;
+  border-bottom: 2px solid rgb(223, 219, 219);
 }
-.our-approach-two {
+.website-header {
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Rubik";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   margin-bottom: 1em;
-  line-height: 10px;
-  font-size: 35px !important;
-  font-weight: 800;
-  color: #282a94;
-  font-family: "Rammetto";
+  text-align: center;
 }
-.our-approach-blue-bg {
-  margin-bottom: 1em;
-  line-height: 10px;
-  font-size: 35px !important;
-  font-weight: 800;
-  font-family: "Rammetto";
+.website-details {
+  color: #333333;
+  font-family: "Rubik";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 200;
+  text-align: justify;
+  line-height: normal;
 }
-.div-button {
-  width: 30%;
-  margin-top: 30px;
-  transition: transform 0.3s ease-in-out;
-}
-.div-button:hover {
-  transform: scale(1.1);
-}
-.div-button-second {
-  width: 60%;
-  margin-top: 30px;
-  transition: transform 0.3s ease-in-out;
-}
-.div-button-second:hover {
-  transform: scale(1.1);
+.our-servicess-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  text-decoration: none;
+  margin-bottom: 50px;
 }
 
-.icon-test {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 15px;
+.servicess-btns {
+  text-decoration: none;
+  width: 35%;
+  border-radius: none;
+  transition: transform 0.3s ease-in-out;
+}
+.servicess-btns:hover {
+  transform: scale(1.1);
+}
+/* APP DOWNLOAD */
+.app-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.download {
+  color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  font-family: "Rubik";
+  font-size: 3.3rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 6px;
+}
+.app-btn-container {
+  display: flex;
+  gap: 50px;
+  margin-top: 4em;
+}
+.Apple-store {
+  width: 40%;
+}
+.google-play {
+  width: 40%;
+}
+.m-app-image {
+  object-fit: contain;
+  width: 600px;
+  height: 500px;
+}
+.mobile-screens {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*Tablet:  On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
-  /* SECTIONS */
-  .section-main {
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 2em;
-  }
-
-  /* SECTION ONE */
-  .section-one {
-    display: flex;
-    gap: 20px;
-    padding-top: 1.8em;
-    padding-bottom: 1.8em;
-  }
-  .image-size {
-    width: 370px;
-    height: 200px;
-  }
-  .history {
-    padding: 10px 0px;
-    text-align: left;
-  }
-
-  .our-history {
-    margin-bottom: 1em;
-    text-align: center;
-    line-height: 0px;
-    font-size: 24px;
-    font-weight: 500;
-    color: #282a94;
-    font-family: "Rammetto";
-  }
-
-  .histoy-details {
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgb(186, 184, 184);
-    font-family: "Mazzard";
-    line-height: 0.5cm;
-    text-align: left;
-    letter-spacing: 1px;
-  }
-  /* CONTACT US BOTTON */
-  .history-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.4em;
-  }
-
-  .readmore-btn {
-    width: 48%;
-    border-radius: none;
-  }
-
-  /* SECTION TWO OUR APPROACH */
-  .section-two {
-    display: flex;
-    gap: 20px;
-    padding-top: 1.8em;
-  }
-  .image-size {
-    width: 370px;
-    height: 200px;
-  }
-  .approach {
-    padding: 20px 0px;
-    text-align: left;
-  }
-  .our-approach {
-    margin-bottom: 1em;
-    text-align: center;
-    line-height: 0px;
-    font-size: 24px;
-    font-weight: 500;
-    color: #282a94;
-    font-family: "Rammetto";
-  }
-
-  .approach-details {
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgb(186, 184, 184);
-    font-family: "Mazzard";
-    line-height: 0.5cm;
-    text-align: left;
-    letter-spacing: 1px;
-  }
-  /* APPROACH BOTTON */
-  .our-approach-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.4em;
-  }
-
-  .approach-btn {
-    width: 48%;
-    border-radius: none;
-  }
-
-  /* SECTION THREE OUR SERVICES */
-  .our-service-main {
-    margin-bottom: 50px;
-  }
-  .section-three {
-    display: flex;
-    gap: 20px;
-    padding-top: 1.8em;
-  }
-  .image-size {
-    width: 370px;
-    height: 200px;
-  }
-  .services {
-    padding: 20px 0px;
-    text-align: left;
-  }
-
-  .our-services {
-    margin-bottom: 1em;
-    text-align: center;
-    line-height: 0;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #282a94;
-    font-family: "Rammetto";
-  }
-
-  .services-details {
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgb(186, 184, 184);
-    font-family: "Mazzard";
-    line-height: 0.5cm;
-    text-align: left;
-    letter-spacing: 1px;
-  }
-
-  /* CAROUSEL SECTION */
-  .carousel-container {
-    width: 100%;
-    margin: 0 auto;
-    margin-bottom: 2em;
-  }
-
-  .carousel-container img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-  }
-
-  .carousel-heading {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    line-height: 10px;
-    font-size: 30px;
-    font-weight: 800;
-    /* color: #282a94; */
-    font-family: "Rammetto";
-  }
-  .carousel-details {
-    font-size: 1.2rem;
-    font-weight: 200;
-    color: rgb(186, 184, 184);
-    font-family: "Mazzard";
-    text-align: justify;
-    letter-spacing: 1px;
-  }
-
-  .slick-slide div {
-    text-align: center;
-  }
-
-  .imageone {
-    border-radius: 20px;
-  }
-  /* .padded {
-    padding-left: 20px;
-    padding-right: 20px;
-  } */
-  /* OUR SERVICES BOTTON */
-  .our-services-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 2em; */
-  }
-
-  .services-btn {
-    width: 35%;
-    border-radius: none;
-  }
 }
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
@@ -456,229 +402,315 @@
   .section-main {
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 0.5em;
+    margin-top: 0;
   }
-
-  /* SECTION ONE */
-  .section-one {
+  .hero-container {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding-top: 0.5em;
-    padding-bottom: 1.2em;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 50px;
+    margin-bottom: 0;
   }
-  .image-size {
-    width: 350px;
+  .hero-image {
+    width: 360px;
     height: 200px;
+    object-fit: cover;
   }
-  .history {
-    padding: 15px 0px;
-    /* text-align: left; */
-  }
-
   .our-history {
     margin-bottom: 1em;
-    text-align: center;
-    line-height: 0;
-    font-size: 12px;
-    font-weight: 400;
-    color: #282a94;
-    font-family: "Rammetto";
-    padding-top: 20px;
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
   }
   .histoy-details {
-    font-size: 15px;
+    font-size: 1.2rem;
     font-weight: 200;
-    color: rgb(186, 184, 184) !important;
-    font-family: "Mazzard";
-    line-height: 0.5cm;
-    text-align: left;
-    letter-spacing: 1px;
+    color: #333 !important;
+    font-family: "Rubik";
+    text-align: justify;
+    letter-spacing: 0;
   }
-  /* CONTACT US BOTTON */
   .history-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
   }
 
   .readmore-btn {
-    width: 65%;
+    width: 100%;
     border-radius: none;
+    transition: transform 0.2s ease-in-out;
   }
-
   /* SECTION TWO OUR APPROACH */
-  .section-two {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 90px;
-  }
-  .image-size {
-    width: 350px;
-    height: 200px;
-  }
   .approach {
-    padding: 5px 0px;
+    padding: 50px 0;
     text-align: left;
   }
   .our-approach {
     margin-bottom: 1em;
-    text-align: center;
-    line-height: 0;
-    font-size: 22px !important;
-    font-weight: 600;
-    color: #282a94;
-    font-family: "Rammetto";
+    line-height: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
   }
   .approach-details {
-    font-size: 15px;
+    font-size: 1.2rem;
     font-weight: 200;
-    color: rgb(186, 184, 184) !important;
-    font-family: "Mazzard";
-    line-height: 0.5cm;
-    text-align: left;
-    letter-spacing: 1px;
-    /* padding-bottom: 20px; */
+    color: #333 !important;
+    font-family: "Rubik";
+    text-align: justify;
+    letter-spacing: 0;
   }
-  /* CONTACT US BOTTON */
-  .our-approach-btn {
+  /* JOIN TECH TEAM */
+  .join-us {
+    height: auto;
+    padding: 40px 20px;
+    color: rgb(223, 219, 219);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 80px;
+    gap: 70px;
+  }
+  .icon-test {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+  .our-approach-blue-bg {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    font-family: "Rubik";
+    text-align: center;
+  }
+  .join-approach-details {
+    color: rgba(240, 240, 240, 0.7);
+    font-size: 1rem;
+    font-weight: 200;
+    font-family: "Rubik";
+    text-align: justify;
+    letter-spacing: 0;
+  }
+  .div-button {
+    width: 60%;
+    margin-top: 30px;
+    transition: transform 0.3s ease-in-out;
+  }
+  .div-button:hover {
+    transform: scale(1.1);
   }
 
-  .approach-btn {
-    width: 65%;
-    border-radius: none;
+  .join-images {
+    display: none;
+    /* gap: 20px; */
   }
-  /* SECTION TREE OUR SERVICES */
-  .our-service-main {
-    margin-bottom: 20px;
+  /*  OUR SERVICES */
+  .our-service-main-two {
+    margin-bottom: 50px;
+    padding: 0 0;
   }
   .section-three {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-top: 50px;
-  }
-  .image-size {
-    width: 350px;
-    height: 200px;
+    gap: 0;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    align-self: center;
   }
   .services {
-    padding: 5px 0px;
-    text-align: left;
+    padding-top: 0;
+    padding-bottom: 30px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
   }
   .our-services {
     margin-bottom: 1em;
-    text-align: center;
-    line-height: 0;
-    font-size: 28px;
-    font-weight: 700;
+    line-height: 10px;
+    font-size: 35px !important;
+    font-weight: 800;
     color: #282a94;
-    font-family: "Rammetto";
-    padding-top: 20px;
+    font-family: "Rubik";
   }
-  .services-details {
-    font-size: 15px;
+  .our-services-s {
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 30px !important;
+    font-weight: 600;
+    color: #071d6a;
+    text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+    font-family: "Rubik";
+  }
+
+  .services-detailss {
+    font-size: 1.2rem;
     font-weight: 200;
-    color: rgb(186, 184, 184) !important;
-    font-family: "Mazzard";
-    line-height: 0.5cm;
-    text-align: left;
-    letter-spacing: 1px;
+    color: #333;
+    font-family: "Rubik";
+    text-align: justify;
+    letter-spacing: 0;
+    padding: 0 20px;
   }
+  /* .image-size {
+    width: 600px;
+    height: 300px;
+  } */
+
   /* CAROUSEL SECTION */
   .carousel-container {
     width: 100%;
+    padding: 0 20px;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin-bottom: 2em;
+    border-bottom: 2px solid rgb(223, 219, 219);
   }
-
-  .carousel-container img {
-    width: 100%;
-    height: 400px;
+  .image-sizessd {
+    width: 350px !important;
+    height: 200px;
     object-fit: cover;
   }
 
-  .carousel-heading {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    line-height: 10px;
-    font-size: 25px;
-    font-weight: 400;
-    /* color: #282a94; */
-    font-family: "Rammetto";
-  }
-
-  .carousel-details {
-    font-size: 15px;
-    font-weight: 200;
-    color: rgb(186, 184, 184);
-    font-family: "Mazzard";
-    text-align: justify;
-    /* line-height: 0; */
-    letter-spacing: 1px;
+  .carousel-container img {
+    object-fit: cover;
   }
 
   .slick-slide div {
     text-align: center;
   }
+  .carousel-heading {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    line-height: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: "Rubik";
+  }
+  .carousel-details {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #333;
+    font-family: "Rubik";
+    text-align: justify;
+    letter-spacing: 0;
+  }
 
   .imageone {
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* box-shadow: 10px 10px gray; */
   }
-  /* .padded {
-    padding-left: 20px;
-    padding-right: 20px;
-  } */
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   /* OUR SERVICES BOTTON */
   .our-services-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2em;
+    text-decoration: none;
+    margin-bottom: 50px;
   }
-
   .services-btn {
+    text-decoration: none;
     width: 65%;
     border-radius: none;
+    transition: transform 0.3s ease-in-out;
   }
-
-  /* Join section */
-  .our-approach-blue-bg {
-    margin-bottom: 1em;
-    line-height: 0;
-    font-size: 21px !important;
+  .services-btn:hover {
+    transform: scale(1.1);
+  }
+  /* Create website section */
+  .web-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 30px 20px;
+    border-bottom: 2px solid rgb(223, 219, 219);
+  }
+  .home-web-image {
+    width: 350px;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 3em;
+  }
+  .website-header {
+    font-size: 1.9rem;
+    font-style: normal;
     font-weight: 700;
-    font-family: "Rammetto";
+    line-height: normal;
+    margin-bottom: 0.5em;
   }
-  .div-button {
-    width: 60%;
-    margin-top: 30px;
+  .website-details {
+    color: #333;
+    font-family: "Rubik";
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
-  .use-our-template {
+  .our-servicess-btns {
     display: flex;
     justify-content: center;
-  }
-  .div-button-second {
-    width: 80%;
-    margin-top: 30px;
+    align-items: center;
+    margin-top: 2em;
+    text-decoration: none;
+    margin-bottom: 50px;
   }
 
-  /* section two */
-  .our-approach-two {
-    margin-bottom: 1em;
-    text-align: center;
-    line-height: 0;
-    font-size: 25px !important;
+  .servicess-btns {
+    text-decoration: none;
+    width: 45%;
+    border-radius: none;
+    transition: transform 0.3s ease-in-out;
+  }
+  .servicess-btns:hover {
+    transform: scale(1.1);
+  }
+  .app-section {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+  .download {
+    color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+    font-family: "Rubik";
+    font-size: 2rem;
+    font-style: normal;
     font-weight: 600;
-    color: #282a94;
-    font-family: "Rammetto";
+    line-height: normal;
+    letter-spacing: 6px;
+  }
+  .app-btn-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 2em;
+  }
+  .Apple-store {
+    width: 65%;
+  }
+  .google-play {
+    width: 65%;
+  }
+  .m-app-image {
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+  }
+  .mobile-screens {
+    display: none;
+    /* display: flex;
+    justify-content: flex-start; */
   }
 }

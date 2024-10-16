@@ -29,7 +29,11 @@ const Card: React.FunctionComponent<CardProps> = ({
   return (
     <div className="card">
       <div className="card__image-container">
-        {icon && <div className="card__icon" style={{marginTop: "0.5rem"}}>{icon}</div>}
+        {icon && (
+          <div className="card__icon" style={{ marginTop: "0.5rem" }}>
+            {icon}
+          </div>
+        )}
         {image && <img src={image} alt="Card" className="card__image" />}
         {tag && <div className="card__tag">{tag}</div>}
       </div>
@@ -37,14 +41,18 @@ const Card: React.FunctionComponent<CardProps> = ({
         {title && (
           <h2
             style={{ color: `${getColor("basic")}` }}
-            className="general-heading"
+            className="general-heading title-card"
           >
             {title}
           </h2>
         )}
         {subtitle && <p className="card__subtitle">{subtitle}</p>}
         {content && <div className="paragraph">{truncatedContent}</div>}
-        {actions && <div className="card__actions" style={{marginTop: "1rem"}}>{actions}</div>}
+        {actions && (
+          <div className="card__actions" style={{ marginTop: "1rem" }}>
+            {actions}
+          </div>
+        )}
         {actions2 && <div className="card__actions">{actions2}</div>}
       </div>
     </div>

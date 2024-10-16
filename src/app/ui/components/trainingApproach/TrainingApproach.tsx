@@ -1,7 +1,8 @@
 import React from "react";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
+import "../../components/trainingApproach/TrainingApproach.css";
 
 type ApproachItem = {
   title: string;
@@ -82,7 +83,8 @@ const TrainingApproach: React.FC = () => {
   const styles = {
     heading: {
       color: getColor("basic"),
-      fontFamily: "Rammetto One",
+      fontFamily: "Rubik",
+      marginBottom: "1.5em",
     },
     trainingApproachItem: {
       flexBasis: "calc(23% - 2%)",
@@ -90,25 +92,25 @@ const TrainingApproach: React.FC = () => {
       transition: "box-shadow 0.3s ease",
     },
     title: {
-      marginBottom: "20px",
-      fontFamily: "Rammetto One",
-      color: getColor("basic"),
+      marginBottom: "1rem",
+      fontFamily: "Rubik",
+      color: "#071d6a",
       transition: "color 0.3s ease",
     },
     description: {
-      fontFamily: "Mazzard",
+      fontFamily: "Rubik",
       fontSize: "1rem",
-      color: getColor("basic"),
+      color: "#333",
       marginBottom: "1em",
     },
   };
 
   return (
-    <div className="training-approach-main">
+    <div className="training-approach-mains">
       <h1 style={styles.heading} className="training-approach-head">
         Our Approach
       </h1>
-      <ul className="training-approach-list">
+      <ul className="training-approach-listtt">
         {approachItems.map((item, index) => (
           <TrainingApproachItem
             key={index}

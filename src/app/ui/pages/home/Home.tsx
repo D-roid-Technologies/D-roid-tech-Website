@@ -44,71 +44,72 @@ const Home: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div
-        style={{
-          backgroundImage: `url("${Assets.images.homeBg}")`,
-        }}
-        className="bg-image"
-      >
-        {/* <NavBar /> */}
-
-        {/* CONTENT */}
-        <div className="home-main">
-          <div className="home">
-            <div>
-              <motion.article
-                variants={fadeIn("up", 0.3)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.7 }}
-                className="home-content"
-              >
-                <p className="home-heading">
-                  WE TURN YOUR IDEAS
-                  <br />
-                  INTO REALITY
-                </p>
-              </motion.article>
-              <motion.div
-                variants={fadeIn("down", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.7 }}
-                className="product-button"
-              >
-                <div className="See-our-product">
-                  <Button
-                    bgColor={Assets.colors.substitute}
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="Schedule an Appointment"
-                    color="black"
-                    fWeight={800}
-                    bRadius={5}
-                    bRadiusColor="#ffffff"
-                    icon={<FaRegCalendarPlus className="icon-styles" />}
-                    onClickButton={() => {
-                      window.location.href =
-                        "https://calendly.com/droidtechint";
-                    }}
-                    // onClickButton={() => {
-                    // }}
+      <div className="home-main">
+        <div className="home-left">
+          <motion.article
+            variants={fadeIn("up", 0.3)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="home-content"
+          >
+            <p className="home-heading">
+              WE TURN YOUR <br /> IDEAS
+              <br />
+              INTO REALITY
+            </p>
+          </motion.article>
+          <motion.div
+            variants={fadeIn("down", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
+            className="product-button"
+          >
+            <div className="See-our-product">
+              <Button
+                bgColor={"#fbcc34"}
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="Schedule an Appointment"
+                color="#333333"
+                fWeight={900}
+                bRadius={5}
+                bRadiusColor="#fbcc34"
+                icon={
+                  <FaRegCalendarPlus
+                    style={{ color: "#333333" }}
+                    className="icon-styles"
                   />
-                </div>
-              </motion.div>
+                }
+                onClickButton={() => {
+                  window.location.href = "https://calendly.com/droidtechint";
+                }}
+              />
             </div>
+          </motion.div>
+        </div>
+        <div className="home-right">
+          <div>
+            <img
+              src={Assets.images.homeBannerone}
+              alt="banner"
+              className="banner-size     banner-one"
+            />
+          </div>
+          <div>
+            <img
+              src={Assets.images.homeBannertwo}
+              alt="banner"
+              className="banner-size       banner-two"
+            />
           </div>
         </div>
       </div>
-      <div
-        // variants={fadeIn("right", 0.2)}
-        // initial="hidden"
-        // whileInView={"show"}
-        // viewport={{ once: false, amount: 0.3 }}
-        className="home-middle-banner"
-      >
+
+      <div className="home-middle-banner">
         <div className="home-middle-one">
           <FaMobileRetro className="home-middle-one-icon" />
           <p className="home-middle-one-p">Android / IOS App Development</p>
