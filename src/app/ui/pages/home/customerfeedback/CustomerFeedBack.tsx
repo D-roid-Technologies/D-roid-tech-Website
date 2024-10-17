@@ -102,7 +102,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               We know that our clients have unique needs. Send us a message, and
               we will get back to you. <br />
             </p>
-            <h2 className="droid"> D'roid Technologies International</h2>
+            <h2 className="droid"> D'roid Technologies Limited</h2>
             <p className="hours"> Hours</p>
             <p className="time-container">
               <p className="time">

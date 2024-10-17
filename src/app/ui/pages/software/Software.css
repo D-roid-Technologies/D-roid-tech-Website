@@ -297,7 +297,7 @@
     margin-bottom: 1em;
     font-family: "Rubik";
     color: #ffb100;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -312,6 +312,7 @@
     color: rgba(240, 240, 240, 0.8);
     text-align: left;
     letter-spacing: 0;
+    font-size: 15px;
   }
 
   .home-to-software-p {
@@ -322,7 +323,7 @@
   }
   .banner-image {
     position: absolute;
-    top: 38rem;
+    top: 34rem;
   }
   .soft-hero-image {
     width: 410px;

@@ -247,7 +247,7 @@ hr {
   }
 
   .test-text-area p {
-    font-size: 1.1rem; /* Reduce paragraph font size for smaller screens */
+    font-size: 15px; /* Reduce paragraph font size for smaller screens */
     letter-spacing: 0.8px; /* Adjust letter spacing */
   }
   /* .test-text-area h2 {
@@ -279,13 +279,27 @@ hr {
   .btn-parent {
     width: 100%;
   }
+  .map-test-inner h3 {
+    font-size: 15px;
+  }
 
   .map-test-ul {
     padding-left: 10px;
+    /* font-size: 15px; */
+    color: #6e6a6a;
+  }
+  .map-test-list {
+    text-decoration: none;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    font-family: "Rubik";
   }
 
   .results-container {
     padding: 0 20px;
+    /* font-size: 14px; */
   }
 
   .result {
@@ -293,7 +307,7 @@ hr {
   }
 
   .results-container h3 {
-    font-size: 1.2rem;
+    font-size: 15px;
   }
   .take-test-btn {
     margin-top: 60px;
@@ -312,7 +326,7 @@ hr {
     color: #e2b059;
     font-family: "Rubik";
     padding: 0 20px;
-    font-size: 1.1rem;
+    font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

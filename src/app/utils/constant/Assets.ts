@@ -1,6 +1,7 @@
 export const Assets = {
   images: {
-    companyLogo: require("../../images/png/droidLogo.png"),
+    companyLogo: require("../../images/png/company-logo-removebg-preview.png"),
+    // companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),
     homeBannerone: require("../../images/png/home-banner-one.png"),
     homeBannertwo: require("../../images/png/home-banner-two.png"),
@@ -26,7 +27,7 @@ export const Assets = {
     benefitillustratorTwo: require("../../images/png/benefit-illustrator-image-two.png"),
 
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
-    companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
+    companyLogoNoBg: require("../../images/png/company-logo-removebg-preview.png"),
     coding: require("../../images/png/coding.png"),
     statistics: require("../../images/png/statistics.png"),
     ourServices: require("../../images/png/our services.png"),

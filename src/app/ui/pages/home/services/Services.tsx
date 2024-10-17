@@ -43,18 +43,18 @@ const services: Service[] = [
     ],
     path: "/software",
   },
-  {
-    title: "Animation Creation",
-    description:
-      "Our animation creation services bring your ideas to life with stunning visuals. We produce high-quality animations for various purposes, including marketing, educational content, and entertainment. Our team works closely with you to understand your vision and deliver animations that captivate your audience.",
-    icon: Assets.images.animationWhatWeDo,
-    prices: [
-      { name: "Short Animation (up to 1 minute)", price: 1000 },
-      { name: "Medium Animation (1-3 minutes)", price: 3000 },
-      { name: "Long Animation (over 3 minutes)", price: 7000 },
-    ],
-    path: "",
-  },
+  // {
+  //   title: "Developers Tools",
+  //   description:
+  //     "Our animation creation services bring your ideas to life with stunning visuals. We produce high-quality animations for various purposes, including marketing, educational content, and entertainment. Our team works closely with you to understand your vision and deliver animations that captivate your audience.",
+  //   icon: Assets.images.animationWhatWeDo,
+  //   prices: [
+  //     { name: "Short Animation (up to 1 minute)", price: 1000 },
+  //     { name: "Medium Animation (1-3 minutes)", price: 3000 },
+  //     { name: "Long Animation (over 3 minutes)", price: 7000 },
+  //   ],
+  //   path: "",
+  // },
   {
     title: "Tech Trainings",
     description:
@@ -68,9 +68,9 @@ const services: Service[] = [
     path: "/training",
   },
   {
-    title: "Drone Services",
+    title: "Developers Tools",
     description:
-      "Our professional drone services include aerial photography, videography, surveying, and inspection. We use state-of-the-art drones and technology to capture high-resolution images and videos, providing valuable insights for various industries such as real estate, construction, and agriculture.",
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. At reiciendisdoloremque sequi, voluptatem laboriosam minima hic dicta in tempora.",
     icon: Assets.images.droneWhatwedo,
     prices: [
       { name: "Aerial Photography Session", price: 500 },
@@ -80,9 +80,10 @@ const services: Service[] = [
     path: "/drone",
   },
   {
-    title: "Equipment Set-up",
+    // title: "Equipment Set-up",
+    title: "D'roid Icons",
     description:
-      "We provide expert equipment setup services, ensuring your technology infrastructure is installed correctly and efficiently. Our services include setting up computers, networks, servers, and other IT equipment, tailored to meet the specific needs of your business.",
+      " Lorem, ipsum dolor sit amet consectetur adipisicing elit. At reiciendoloremque sequi, voluptatem laboriosam minima hic dicta in tempora",
     icon: Assets.images.equipmentwhatwedo,
     prices: [
       { name: "Basic Equipment Setup", price: 500 },

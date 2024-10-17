@@ -132,7 +132,7 @@
   margin-bottom: 1.5em;
   font-weight: 500;
   font-size: medium;
-  color: #7f8fc9;
+  color: #5d6584;
   font-family: "Rubik";
   /* border-top: 2px solid burlywood; */
 }
@@ -142,7 +142,7 @@
 
 .color-change {
   text-decoration: none;
-  color: #7f8fc9;
+  color: #5d6584;
 }
 .policy {
   display: flex;
@@ -185,6 +185,9 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+  .social-heading {
+    display: none;
   }
 
   .footer-logo-container {
