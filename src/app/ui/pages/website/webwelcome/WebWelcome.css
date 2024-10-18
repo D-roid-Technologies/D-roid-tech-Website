@@ -1,0 +1,125 @@
+.web-company-logo-container {
+  padding-left: 30px;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.3);
+}
+.main-web-hero-container {
+  padding: 0 40px;
+  padding-top: 20px;
+  margin-bottom: 100px;
+  margin-top: 2em;
+}
+.web-hero-con {
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  background: rgba(240, 240, 240, 0.5);
+}
+
+.web-company-logo {
+  width: 70px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.web-top-con {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  /* padding-left: 20px; */
+  width: 40px;
+}
+.web-back-btn-icon {
+  color: #071d6a;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: rgba(227, 225, 225, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.web-btn-hero {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+.web-btn-hero:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+/* Welcome to D’roid Technologies */
+.welcome-web-heading {
+  text-align: center;
+  color: #071d6a;
+  text-shadow: 0px 4.643px 4.643px rgba(255, 177, 0, 0.25);
+  font-family: "Rubik";
+  font-size: 37px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 1em;
+}
+.welcome-web-details {
+  color: #333;
+  font-family: "Rubik";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  margin-bottom: 2em;
+}
+.welcome-web-sub-heading {
+  color: #071d6a;
+  font-family: "Rubik";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0.8em;
+  margin-left: 40px;
+}
+.welcome-page-illustrator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+.welcome-illustrator {
+  width: 600px;
+  height: 300px;
+  object-fit: contain;
+}
+/* btn section */
+.web-welcome-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20%;
+  margin-bottom: 2em;
+}
+.web-welcome-btn-one {
+  padding: 15px 70px;
+  border: none;
+  border-radius: 10px;
+  background: #ffb100;
+  color: #333;
+  font-weight: 600;
+  font-family: "Rubik";
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+.web-welcome-btn-one:hover {
+  transform: scale(1.1);
+}
+.web-welcome-btn-two {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  background: #071d6a;
+  color: #f0f0f0;
+  font-weight: 600;
+  font-family: "Rubik";
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+.web-welcome-btn-two:hover {
+  transform: scale(1.1);
+}

@@ -20,6 +20,7 @@ import TrainingPrograms from "../ui/pages/training/trainingprograms/TrainingProg
 import Details from "../ui/pages/details/Details";
 import AI from "../ui/pages/AI/AI";
 import Website from "../ui/pages/website/Website";
+import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -47,6 +48,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/taketest" element={<TakeTest />} />
         <Route path="/ai" element={<AI />} />
         <Route path="/website" element={<Website />} />
+        <Route path="/webwelcome" element={<WebWelcome />} />
       </Routes>
     </BrowserRouter>
   );

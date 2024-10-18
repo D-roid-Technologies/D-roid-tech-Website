@@ -140,6 +140,9 @@ export const Assets = {
     phoneIcon: require("../../images/png/solar_phone-bold.png"),
     emailIcon: require("../../images/png/ic_round-email.png"),
     addIcon: require("../../images/png/ph_plus-bold.png"),
+
+    // WEBSITE BUILDER SECTION
+    welcompageheroImage: require("../../images/png/welcome-image-icon-removebg-preview.png"),
   },
   colors: {
     basic: "#000000",

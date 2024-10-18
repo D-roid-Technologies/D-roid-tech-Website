@@ -53,7 +53,14 @@ const Website: React.FunctionComponent = () => {
               </p>
             </div>
             <div className="web-con-btn-container">
-              <button className="web-con-btn">Continue</button>
+              <button
+                className="web-con-btn"
+                onClick={() => {
+                  navigate("/webwelcome");
+                }}
+              >
+                Continue
+              </button>
             </div>
           </div>
         </section>
