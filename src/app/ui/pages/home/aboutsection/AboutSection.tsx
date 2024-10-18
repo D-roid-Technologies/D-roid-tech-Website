@@ -325,7 +325,7 @@ const Section: React.FunctionComponent = () => {
               set up a website in just five minutes. Begin a step-by-step guide
               to help you create your website in a flash.
             </p>
-            {/* <div className="our-servicess-btns">
+            <div className="our-servicess-btns">
               <div className="servicess-btns">
                 <Button
                   bgColor="#071d6a"
@@ -345,11 +345,11 @@ const Section: React.FunctionComponent = () => {
                     />
                   }
                   onClickButton={() => {
-                    navigate("");
+                    navigate("/website");
                   }}
                 />
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
         {/* download App */}

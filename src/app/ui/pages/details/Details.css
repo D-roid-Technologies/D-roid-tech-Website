@@ -401,6 +401,9 @@
     padding: 0 10px;
   }
   /* procedure */
+  .det-image {
+    display: none;
+  }
   .details-soft-image {
     display: none;
     /* width: 600px;

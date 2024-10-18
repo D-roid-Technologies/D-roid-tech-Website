@@ -158,7 +158,7 @@ const Details: React.FunctionComponent = () => {
                         )
                       )}
                   </div>
-                  <div>
+                  <div className="det-image">
                     <img
                       src={Assets.images.benefitillustratorOne}
                       alt=""
@@ -188,7 +188,7 @@ const Details: React.FunctionComponent = () => {
                         )}
                     </div>
                   </div>
-                  <div>
+                  <div className="det-image">
                     <img
                       src={Assets.images.benefitillustratorTwo}
                       alt=""
