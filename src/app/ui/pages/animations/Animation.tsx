@@ -204,10 +204,7 @@ const Animation: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div
-        className="products-banner"
-        // style={{ backgroundColor: Assets.colors.substitute }}
-      >
+      <div className="products-banner">
         <div className="products-banner-inner">
           <motion.div
             variants={fadeIn("up", 0.2)}
@@ -224,7 +221,6 @@ const Animation: React.FunctionComponent = () => {
             </p>
           </motion.div>
           <div className="banner-icon">
-            {/* <FaGrinStars className="product-cart" /> */}
             <img
               src={Assets.images.productPageBanner}
               alt=""
@@ -232,7 +228,6 @@ const Animation: React.FunctionComponent = () => {
             />
           </div>
         </div>
-        {/* <div className="product-bottom-banner">{mapThroughIconData()}</div> */}
       </div>
 
       <div className="product-bottom-banner">{mapThroughIconData()}</div>

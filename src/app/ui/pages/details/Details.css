@@ -255,46 +255,21 @@
 .click-btn:hover {
   transform: scale(1.1);
 }
-
-.fees-container {
-  text-align: center;
-  font-family: "Rubik";
-}
-
-.fees-section {
-  background-color: #262a97;
-  padding: 20px;
-  margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.fees {
+.details-page-btn-two {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 4em;
 }
 
-.fees-card {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  text-align: center;
-  margin-bottom: 20px;
+.click-btn-two {
+  width: 400%;
+  border-radius: none;
+  transition: transform 0.8s ease-in-out;
 }
-
-.fees-card h4 {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  color: #333;
-  font-family: "Rubik";
-}
-
-.fees-card p {
-  font-size: 1.2em;
-  color: #555;
+.click-btn-two:hover {
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
@@ -370,6 +345,10 @@
     margin-top: 4em;
     text-align: center;
   }
+  .info-con p {
+    font-size: 15px;
+    color: #333333;
+  }
 
   .img-con h3 {
     font-family: "Rubik";
@@ -383,7 +362,7 @@
     font-family: "Rubik";
     letter-spacing: 1px;
     color: #333;
-    font-size: 1.1rem;
+    font-size: 15px;
     line-height: 25px;
     margin-bottom: 2em;
     text-align: justify;
@@ -399,7 +378,7 @@
 
   .category p,
   .tools p {
-    font-size: 1.1em;
+    font-size: 15px;
     font-family: "Rubik";
     letter-spacing: 2px;
     color: #333333;
@@ -407,10 +386,11 @@
 
   .tool-item {
     margin-right: 10px;
-    font-size: 1.1rem;
+    font-size: 15px;
     font-family: "Rubik";
     letter-spacing: 2px;
     color: #333333;
+    word-wrap: break-word;
   }
 
   .info-con {
@@ -429,7 +409,7 @@
   }
   .procedure-title {
     font-family: "Rubik";
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-top: 4em;
     margin-bottom: 2em;
     color: #071d6a;
@@ -438,10 +418,10 @@
   }
 
   .procedure-subtitle {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     margin-top: 15px;
     margin-bottom: 2em;
     font-family: "Rubik";
@@ -471,250 +451,56 @@
     letter-spacing: 1px;
     color: #333333;
     margin-top: 0.3em;
-    font-size: 20px;
-    text-align: left;
+    font-size: 15px;
+    text-align: justify;
   }
   .no-procedure {
     text-align: center;
     font-weight: 600;
     font-family: "Rubik";
     color: #333333;
+    font-size: 15px;
   }
   /* button section */
   .details-application {
+    display: flex;
     flex-direction: column;
-    gap: 1.5em; /* Further reduce gap */
+    justify-content: center;
+    /* align-items: center; */
+    gap: 1em;
+    margin-bottom: 4em;
+    margin-right: 70px;
+  }
+  .details-page-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 0;
   }
 
   .click-btn {
-    width: 100%; /* Full width for mobile */
-    padding: 0.5em 1em; /* Adjust padding for mobile */
-    border-radius: 8px; /* Add border radius for a better look on small screens */
+    /* width: 60%; */
+    border-radius: none;
+    transition: transform 0.8s ease-in-out;
+  }
+  .click-btn:hover {
+    transform: scale(1.1);
+  }
+  .details-page-btn-two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 0;
   }
 
-  .details-page-btn {
-    margin-bottom: 2em; /* Adjust margins for smaller screens */
+  .click-btn-two {
+    /* width: 60%; */
+    border-radius: none;
+    transition: transform 0.8s ease-in-out;
   }
-  .fees-section {
-    padding: 10px;
-  }
-
-  .fees-card {
-    width: 100%;
-    margin: 10px 0;
+  .click-btn-two:hover {
+    transform: scale(1.1);
   }
 }
-
-/* @import url("https://fonts.googleapis.com/css?family=Rubik");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular");
-
-.details-bg-image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 400px;
-  object-fit: contain;
-}
-.softservice-main {
-  padding-left: 180px;
-  padding-right: 180px;
-  color: #ffffff;
-}
-
-.page-head {
-  font-family: "Rubik";
-  margin: 0;
-  padding-top: 1em;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 4.5rem;
-
-  font-weight: 700;
-}
-.page-head-details {
-  text-align: center;
-  font-family: "Rubik";
-
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-.top-data-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 50px;
-  padding: 0 100px;
-}
-.img-banner {
-  width: 100%;
-  height: 600px;
-}
-.img-con {
-  width: 46%;
-}
-.img-con h3 {
-  font-family: "Rubik";
-  margin-bottom: 10px;
-  font-size: 2rem;
-}
-.img-con p {
-  font-family: "Rubik";
-  letter-spacing: 2px;
-  color: rgb(124, 124, 124);
-  font-size: 1.1rem;
-  line-height: 30px;
-}
-
-.text-con {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.info-con {
-  padding: 0 100px;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.info-con h3 {
-  margin-bottom: 10px;
-  font-size: 1.5em;
-  color: #333;
-}
-
-.info-con p {
-  font-size: 1.2em;
-  color: #666;
-}
-
-.category,
-.tools {
-  margin-top: 10px;
-  margin-bottom: 50px;
-}
-
-.category h3,
-.tools h3 {
-  margin-bottom: 5px;
-  font-size: 1.5rem;
-  color: #444;
-  font-family: "Rubik";
-}
-
-.category p,
-.tools p {
-  gap: 20px;
-  font-size: 1.1em;
-  margin-right: 60px;
-  font-family: "Rubik";
-  letter-spacing: 2px;
-  color: rgb(124, 124, 124);
-  font-size: 1.1rem;
-}
-.tool-item {
-  margin-right: 30px;
-  font-size: 1.1em;
-  margin-right: 30px;
-  font-family: "Rubik";
-  letter-spacing: 2px;
-  color: rgb(124, 124, 124);
-  font-size: 1.1rem;
-}
-
-.procedure {
-  padding: 0 100px;
-  margin-bottom: 50px;
-}
-.procedure-section {
-  margin: 20px 0;
-
-  text-align: center;
-}
-.benefits {
-  padding: 40px 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #ffffff;
-  margin-bottom: 20px;
-}
-
-.procedure-title {
-  font-family: "Rubik";
-  font-size: 1.5em;
-  margin-bottom: 25px;
-}
-
-.procedure-subtitle {
-  font-size: 1.2rem;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  font-family: "Rubik";
-}
-
-.procedure-content {
-  margin-bottom: 20px;
-}
-
-.procedure-item {
-  margin-bottom: 10px;
-}
-
-.procedure-item-title {
-  font-weight: bold;
-  font-family: "Rubik";
-  font-size: 1rem;
-}
-
-.procedure-item-desc {
-  font-family: "Rubik";
-  letter-spacing: 2px;
-  color: rgb(124, 124, 124);
-  margin-left: 10px;
-  font-size: 1.2rem;
-}
-
-.fees-container {
-  text-align: center;
-  font-family: "Rubik";
-}
-.fees-section {
-  background-color: #262a97;
-  padding: 20px;
-
-  margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.fees {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.fees-card {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  width: 200px;
-  text-align: center;
-}
-
-.fees-card h4 {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  color: #333;
-  font-family: "Rubik";
-}
-
-.fees-card p {
-  font-size: 1.2em;
-  color: #555;
-}
-@media (max-width: 768px) {
-}
-@media (max-width: 600px) {
-} */

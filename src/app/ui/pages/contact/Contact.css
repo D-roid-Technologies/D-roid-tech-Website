@@ -469,7 +469,7 @@ textarea {
   .container-raduis {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 20 10px;
     border: 1px solid #282a94;
     border-radius: 5px;
   }
@@ -479,7 +479,7 @@ textarea {
   .message {
     text-align: center;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   .message h2 {

@@ -218,33 +218,33 @@ const Details: React.FunctionComponent = () => {
               fWeight={900}
               bRadius={5}
               bRadiusColor="#091d6a"
-              icon={<FaBookReader className="style-home-icon" />}
+              // icon={<FaBookReader className="style-home-icon" />}
               onClickButton={() => {
-                navigate("");
+                window.location.href = "mailto:hr@droidtechinternational.com";
               }}
             />
           </div>
         </div>
 
-        <div className="details-page-btn">
-          <div className="click-btn">
+        <div className="details-page-btn-two">
+          <div className="click-btn-two">
             <Button
               bgColor="#feb100"
               mTop={0}
               mBottom={0}
-              mLeft={20}
-              mRight={20}
+              mLeft={30}
+              mRight={30}
               title="Download our software Development process"
               color="#071D6A"
               fWeight={900}
               bRadius={5}
               bRadiusColor="#feb100"
-              icon={
-                <FaDownload
-                  style={{ color: "#071D6A" }}
-                  className="style-home-icon"
-                />
-              }
+              // icon={
+              //   <FaDownload
+              //     style={{ color: "#071D6A" }}
+              //     className="style-home-icon"
+              //   />
+              // }
               onClickButton={() => {
                 navigate("");
               }}
