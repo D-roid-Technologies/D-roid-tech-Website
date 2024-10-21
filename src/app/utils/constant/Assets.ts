@@ -141,6 +141,17 @@ export const Assets = {
     emailIcon: require("../../images/png/ic_round-email.png"),
     addIcon: require("../../images/png/ph_plus-bold.png"),
 
+    // PRODUCT DETAILS PAGE
+    knowledgeBannerImage: require("../../images/png/Knowledge-Welcome Page member.png"),
+    knowledgeBannerTwo: require("../../images/png/kn-Welcome Page two.png"),
+    knwledgeMentorImage: require("../../images/png/knw-Mentor-page.png"),
+    cashBasketOne: require("../../images/png/cash-basket-image.png"),
+    cashBasketTwo: require("../../images/png/Cashbasket-frame-two.png"),
+    cashBasketThree: require("../../images/png/cashbasket-three.png"),
+    domeImage: require("../../images/png/dome-banner-one.png"),
+    domeBannerTwo: require("../../images/png/Dome-banner-two.png"),
+    domeBannerThree: require("../../images/png/Dome-banner-three.png"),
+
     // WEBSITE BUILDER SECTION
     welcompageheroImage: require("../../images/png/welcome-image-icon-removebg-preview.png"),
   },

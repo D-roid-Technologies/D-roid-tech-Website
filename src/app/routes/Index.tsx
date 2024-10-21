@@ -21,6 +21,9 @@ import Details from "../ui/pages/details/Details";
 import AI from "../ui/pages/AI/AI";
 import Website from "../ui/pages/website/Website";
 import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
+import KnowledgeCityDetails from "../ui/pages/knowledgecitydetailspage/KnowledgeCityDetails";
+import Cashbasket from "../ui/pages/cashbasket/Cashbasket";
+import Dome from "../ui/pages/dome/Dome";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -49,6 +52,12 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/ai" element={<AI />} />
         <Route path="/website" element={<Website />} />
         <Route path="/webwelcome" element={<WebWelcome />} />
+        <Route
+          path="/knowledgecitydetails"
+          element={<KnowledgeCityDetails />}
+        />
+        <Route path="/cashbasket" element={<Cashbasket />} />
+        <Route path="/dome" element={<Dome />} />
       </Routes>
     </BrowserRouter>
   );
