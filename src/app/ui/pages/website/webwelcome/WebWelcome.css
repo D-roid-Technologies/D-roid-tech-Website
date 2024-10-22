@@ -96,6 +96,7 @@
   margin-bottom: 2em;
 }
 .web-welcome-btn-one {
+  text-decoration: none;
   padding: 15px 70px;
   border: none;
   border-radius: 10px;
@@ -110,6 +111,7 @@
   transform: scale(1.1);
 }
 .web-welcome-btn-two {
+  text-decoration: none;
   padding: 15px 30px;
   border: none;
   border-radius: 10px;

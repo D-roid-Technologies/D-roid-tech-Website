@@ -1,12 +1,20 @@
 import React from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./WebWelcome.css";
 // import "../../pages/website/webwelcome/WebWelcome.css";
 import { Assets } from "../../../../utils/constant/Assets";
 
 const WebWelcome: React.FunctionComponent = () => {
   const navigate = useNavigate();
+
+  const handleSignInClick = () => {
+    navigate("/signin"); // Change '/signin' to your desired route for sign-in
+  };
+
+  const handleCreateAccountClick = () => {
+    navigate("/signup"); // Change '/signup' to your desired route for creating an account
+  };
   return (
     <>
       <main>
@@ -41,12 +49,28 @@ const WebWelcome: React.FunctionComponent = () => {
             </div>
             <div className="web-welcome-btn-container">
               <div>
-                <button className="web-welcome-btn-one">Sign in</button>
+                <Link
+                  to="https://kcity-c8580.web.app/login"
+                  className="web-welcome-btn-one"
+                >
+                  Sign in
+                </Link>
               </div>
-              <div>
+              {/* <div>
+                <button className="web-welcome-btn-one">Sign in</button>
+              </div> */}
+              {/* <div>
                 <button className="web-welcome-btn-two">
                   Create an Account
                 </button>
+              </div> */}
+              <div>
+                <Link
+                  to="https://kcity-c8580.web.app/register"
+                  className="web-welcome-btn-two"
+                >
+                  Create an Account
+                </Link>
               </div>
             </div>
           </div>
