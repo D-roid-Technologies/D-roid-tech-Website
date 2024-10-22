@@ -1,20 +1,22 @@
 import React from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./WebWelcome.css";
 // import "../../pages/website/webwelcome/WebWelcome.css";
 import { Assets } from "../../../../utils/constant/Assets";
+import Button from "../../../components/button/Button";
 
 const WebWelcome: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
   const handleSignInClick = () => {
-    navigate("/signin"); // Change '/signin' to your desired route for sign-in
+    window.location.href = "https://kcity-c8580.web.app/login";
   };
 
   const handleCreateAccountClick = () => {
-    navigate("/signup"); // Change '/signup' to your desired route for creating an account
+    window.location.href = "https://kcity-c8580.web.app/register";
   };
+
   return (
     <>
       <main>
@@ -49,32 +51,41 @@ const WebWelcome: React.FunctionComponent = () => {
             </div>
             <div className="web-welcome-btn-container">
               <div>
-                <Link
-                  to="https://kcity-c8580.web.app/login"
+                <button
                   className="web-welcome-btn-one"
+                  onClick={handleSignInClick}
                 >
                   Sign in
-                </Link>
-              </div>
-              {/* <div>
-                <button className="web-welcome-btn-one">Sign in</button>
-              </div> */}
-              {/* <div>
-                <button className="web-welcome-btn-two">
-                  Create an Account
                 </button>
-              </div> */}
+              </div>
               <div>
-                <Link
-                  to="https://kcity-c8580.web.app/register"
+                <button
                   className="web-welcome-btn-two"
+                  onClick={handleCreateAccountClick}
                 >
                   Create an Account
-                </Link>
+                </button>
               </div>
             </div>
           </div>
         </section>
+        {/* TEST SECTION */}
+        <div>
+          <Button
+            bgColor={"#fbcc34"}
+            mTop={0}
+            mBottom={0}
+            mLeft={0}
+            mRight={0}
+            fWeight={800}
+            bRadiusColor="#fbcc34"
+            title="View Product"
+            color={"#071d69"}
+            onClickButton={() => {
+              navigate("/weboverview");
+            }}
+          />
+        </div>
       </main>
     </>
   );

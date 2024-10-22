@@ -24,6 +24,7 @@ import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
 import KnowledgeCityDetails from "../ui/pages/knowledgecitydetailspage/KnowledgeCityDetails";
 import Cashbasket from "../ui/pages/cashbasket/Cashbasket";
 import Dome from "../ui/pages/dome/Dome";
+import WebOverview from "../ui/pages/website/weboverview/WebOverview";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -58,6 +59,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         />
         <Route path="/cashbasket" element={<Cashbasket />} />
         <Route path="/dome" element={<Dome />} />
+        <Route path="/weboverview" element={<WebOverview />} />
       </Routes>
     </BrowserRouter>
   );
