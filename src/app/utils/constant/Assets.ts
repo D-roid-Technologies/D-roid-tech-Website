@@ -155,6 +155,9 @@ export const Assets = {
     // WEBSITE BUILDER SECTION
     welcompageheroImage: require("../../images/png/welcome-image-icon-removebg-preview.png"),
     webOverviewBanner: require("../../images/png/web-overview-banner.png"),
+    projectImageOne: require("../../images/png/project-image-one.png"),
+    projectImageTwo: require("../../images/png/project-image-two.png"),
+    projectImageThree: require("../../images/png/project-image-three.png"),
   },
   colors: {
     basic: "#000000",

@@ -85,6 +85,20 @@ const WebWelcome: React.FunctionComponent = () => {
               navigate("/weboverview");
             }}
           />
+          <Button
+            bgColor={"#fbcc34"}
+            mTop={0}
+            mBottom={0}
+            mLeft={0}
+            mRight={0}
+            fWeight={800}
+            bRadiusColor="#fbcc34"
+            title="View Product"
+            color={"#071d69"}
+            onClickButton={() => {
+              navigate("/project");
+            }}
+          />
         </div>
       </main>
     </>
