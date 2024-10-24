@@ -79,7 +79,7 @@ const WebWelcome: React.FunctionComponent = () => {
             mRight={0}
             fWeight={800}
             bRadiusColor="#fbcc34"
-            title="View Product"
+            title="Overview of your previous"
             color={"#071d69"}
             onClickButton={() => {
               navigate("/weboverview");
@@ -93,10 +93,24 @@ const WebWelcome: React.FunctionComponent = () => {
             mRight={0}
             fWeight={800}
             bRadiusColor="#fbcc34"
-            title="View Product"
+            title="View Your Projects"
             color={"#071d69"}
             onClickButton={() => {
               navigate("/project");
+            }}
+          />
+          <Button
+            bgColor={"#fbcc34"}
+            mTop={0}
+            mBottom={0}
+            mLeft={0}
+            mRight={0}
+            fWeight={800}
+            bRadiusColor="#fbcc34"
+            title="View selection"
+            color={"#071d69"}
+            onClickButton={() => {
+              navigate("/webfoarm");
             }}
           />
         </div>

@@ -26,6 +26,7 @@ import Cashbasket from "../ui/pages/cashbasket/Cashbasket";
 import Dome from "../ui/pages/dome/Dome";
 import WebOverview from "../ui/pages/website/weboverview/WebOverview";
 import Project from "../ui/pages/website/project/Project";
+import WebFoarm from "../ui/pages/website/webfoarm/WebFoarm";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -62,6 +63,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/dome" element={<Dome />} />
         <Route path="/weboverview" element={<WebOverview />} />
         <Route path="/project" element={<Project />} />
+        <Route path="/webfoarm" element={<WebFoarm />} />
       </Routes>
     </BrowserRouter>
   );

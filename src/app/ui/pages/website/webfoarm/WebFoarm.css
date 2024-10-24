@@ -1,0 +1,180 @@
+.form-company-logo-container {
+  padding-left: 30px;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.3);
+}
+.form-company-logo {
+  width: 70px;
+  height: 50px;
+  object-fit: contain;
+}
+.form-web-hero-container {
+  padding-top: 20px;
+  margin-bottom: 100px;
+  margin-top: 0;
+}
+.form-hero-con {
+  padding: 10px 50px;
+}
+
+/* .form-top-con {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  width: 40px;
+} */
+.form-back-btn-icon {
+  color: #071d6a;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: rgba(227, 225, 225, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.form-btn-hero {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+.form-btn-hero:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.form-project-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+.form-project-btn {
+  padding: 10px 35px;
+  border: none;
+  font-weight: 700;
+  border-radius: 50px;
+  color: #071d6a;
+  background-color: #e0e2ea;
+  transition: transform 0.3s ease-in-out;
+}
+.form-project-btn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.form-project-heading {
+  color: #071d6a;
+  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  font-family: "Rubik";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+/* item selection section */
+/* Container styling for centering the content and managing layout */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  min-height: 50vh;
+
+  font-family: "Arial", sans-serif;
+}
+
+/* Styling for headings */
+.form-heading {
+  color: #071d6a;
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-align: left;
+  padding: 0 20px;
+  letter-spacing: 2px;
+}
+.form-heading-details {
+  padding: 0 20px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* List styling for the options */
+.form-list {
+  padding: 0 40px;
+  margin: 0 0 20px 0;
+  width: 100%;
+  max-width: 580px;
+  font-size: 18px;
+}
+
+/* List item styling */
+.form-list-details {
+  background-color: rgba(217, 217, 217, 0.5);
+  padding: 15px 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+  text-align: left;
+  border: 1px solid #dfe4ea;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for list items */
+.form-list-details:hover {
+  /* background-color: #e9ebf3; */
+  transform: translateY(-2px);
+}
+.form-list-details:active {
+  background-color: #071d6a;
+  color: #fff; /* Text color changes to white when active */
+  border: none; /* Remove border for the active state */
+  transform: translateY(-2px); /* Keep the hover effect in the active state */
+}
+
+.active {
+  background-color: #071d6a;
+  color: white;
+}
+
+/* Button styling */
+.form-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.form-continue-btn {
+  background-color: #e0e2ea;
+  color: #071d6a;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.3s ease-in-out;
+  /* transition: background-color 0.3s, box-shadow 0.3s; */
+  margin-top: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for the button */
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  ul {
+    max-width: 300px;
+  }
+
+  li {
+    padding: 12px 16px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
