@@ -3,13 +3,13 @@
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 /* SECTIONS */
-.section-main {
+/* .section-main {
   padding-left: 100px;
   padding-right: 100px;
   margin-top: 2em;
-}
+} */
 /* SECTION ONE OUR HISTORY */
-.hero-container {
+/* .hero-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,13 +20,14 @@
 .hero-image {
   width: 500px;
   height: 450px;
-}
-.section-one {
-  /* display: flex;
+ } */
+
+/* .section-one {
+ display: flex;
   gap: 60px;
   padding-top: 1.8em;
-  padding-bottom: 2.2em; */
-}
+  padding-bottom: 2.2em; 
+} */
 .coding-image {
   border-radius: 10px;
 }
@@ -37,18 +38,18 @@
 }
 
 .our-history {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.8em;
   line-height: 10px;
-  font-size: 30px !important;
+  font-size: 24px !important;
   font-weight: 800;
   color: #282a94;
   font-family: "Rubik";
-  text-align: center;
+  text-align: left;
 }
 .histoy-details {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 200;
-  color: #333 !important;
+  color: #757575 !important;
   font-family: "Rubik";
   text-align: left;
   letter-spacing: 1px;
@@ -68,14 +69,10 @@
 }
 .history-btn {
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 1em;
-  margin-bottom: 1.5em;
 }
 
 .readmore-btn {
-  width: 30%;
   border-radius: none;
   transition: transform 0.3s ease-in-out;
 }
@@ -85,22 +82,21 @@
 
 /* SECTION TWO OUR APPROACH */
 .approach {
-  padding: 50px 0;
   text-align: left;
 }
 .our-approach {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.7em;
   line-height: 10px;
-  font-size: 30px !important;
+  font-size: 24px !important;
   font-weight: 800;
   color: #282a94;
   font-family: "Rubik";
-  text-align: center;
+  text-align: left;
 }
 .approach-details {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 200;
-  color: #333333;
+  color: #757575 !important;
   font-family: "Rubik";
   text-align: left;
   letter-spacing: 1px;
@@ -399,7 +395,7 @@
 
 /*Mobile: On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
-  .section-main {
+  /* .section-main {
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 0;
@@ -412,14 +408,15 @@
     gap: 60px;
     margin-top: 50px;
     margin-bottom: 0;
-  }
-  .hero-image {
+  } */
+  /* .hero-image {
     width: 360px;
     height: 200px;
     object-fit: cover;
-  }
+  } */
   .our-history {
     margin-bottom: 1em;
+    margin-top: 1em;
     line-height: 10px;
     font-size: 1.5rem;
     font-weight: 700;
@@ -436,8 +433,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1em;
-    margin-bottom: 1.5em;
   }
 
   .readmore-btn {
@@ -447,7 +442,6 @@
   }
   /* SECTION TWO OUR APPROACH */
   .approach {
-    padding: 50px 0;
     text-align: left;
   }
   .our-approach {

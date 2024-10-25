@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "../navbar/NavBar.css";
+// Richard liteGrid CSS for responsiveness
+import "../liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
@@ -112,9 +114,9 @@ const NavBar: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="wrapper-fluid">
       <div className="nav-main">
-        <div className="logo-image">
+        <div className="logo-image" style={{ marginTop: "10px" }}>
           <a
             onClick={() => {
               navigate("/");

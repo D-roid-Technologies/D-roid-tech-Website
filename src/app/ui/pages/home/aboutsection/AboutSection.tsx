@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+// Richard liteGrid CSS for responsiveness
+import "../../../components/liteGrid@v1.0/lite-grid.css";
 import "./AboutSection.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import Button from "../../../components/button/Button";
@@ -80,60 +82,68 @@ const Section: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="section-main">
-        <div className="hero-container">
-          <div>
-            <img src={Assets.images.aboutImage} alt="" className="hero-image" />
+      <div
+        style={{ maxWidth: "92%", margin: "65px auto" }}
+        className="group justify-content-center"
+      >
+        <div className="block-12 block-lg-6 align-center">
+          <img src={Assets.images.aboutImage} alt="" className="image-fluid" />
+        </div>
+        <div className="block-12 block-lg-6 about-text-con">
+          <section className="history">
+            <p className="our-history"> Our History</p>
+            <p className="histoy-details">
+              D'roid Technologies traces its roots back to 2015, when visionary
+              Entrepreneur Ekenedilichukwu Okoli embarked on a mission to
+              redefine the digital landscape. Inspired by a passion for
+              innovation and a desire to make a difference, our company was born
+              in a small office space with just a handful of dedicated
+              individuals.
+            </p>
+          </section>
+          {/* -----------------  */}
+          <div
+            style={{
+              width: "100%",
+              height: "2px",
+              background: "#eee",
+              margin: "20px 0",
+            }}
+          ></div>
+          <div className="approach">
+            <p className="our-approach"> Our Approach</p>
+            <p className="approach-details">
+              At D'roid Technologies International, we take a collaborative
+              approach to software development. We work closely with our clients
+              to gain a deep understanding of the business needs and goals, and
+              we use that knowledge to develope tailored solutions that meet
+              their unique requirements.
+            </p>
           </div>
-          <div className="about-container-one">
-            <section className="history">
-              <p className="our-history"> Our History</p>
-              <p className="histoy-details">
-                D'roid Technologies traces its roots back to 2015, when
-                visionary Entrepreneur Ekenedilichukwu Okoli embarked on a
-                mission to redefine the digital landscape. Inspired by a passion
-                for innovation and a desire to make a difference, our company
-                was born in a small office space with just a handful of
-                dedicated individuals.
-              </p>
-              {/* CONTACT US BUTTON */}
-              <div className="history-btn">
-                <div className="readmore-btn">
-                  <Button
-                    bgColor="#091d6a"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    title="Read more about us"
-                    color="#fff"
-                    fWeight={800}
-                    bRadius={5}
-                    bRadiusColor="#091d6a"
-                    icon={<FaBookReader className="style-home-icon" />}
-                    onClickButton={() => {
-                      navigate("/aboutus");
-                    }}
-                  />
-                </div>
-              </div>
-            </section>
-            {/* </div> */}
-            {/* SECTION TWO */}
-            {/* <div className="section-two"> */}
-            <div className="approach">
-              <p className="our-approach"> Our Approach</p>
-              <p className="approach-details">
-                At D'roid Technologies International, we take a collaborative
-                approach to software development. We work closely with our
-                clients to gain a deep understanding of the business needs and
-                goals, and we use that knowledge to develope tailored solutions
-                that meet their unique requirements.
-              </p>
+          {/* ------------------  */}
+          <div className="history-btn">
+            <div className="readmore-btn">
+              <Button
+                bgColor="#091d6a"
+                mTop={0}
+                mBottom={0}
+                mLeft={0}
+                mRight={0}
+                title="Read more about us"
+                color="#fff"
+                fWeight={800}
+                bRadius={5}
+                bRadiusColor="#091d6a"
+                icon={<FaBookReader className="style-home-icon" />}
+                onClickButton={() => {
+                  navigate("/aboutus");
+                }}
+              />
             </div>
           </div>
         </div>
       </div>
+      {/* <div className="wrapper" style={{ margin: "65px 0" }}></div> */}
       {/* JOIN TECH TEAM  */}
       <div className="join-us" style={{ backgroundColor: "#091d6a" }}>
         {/* <section className="join-container"> */}
