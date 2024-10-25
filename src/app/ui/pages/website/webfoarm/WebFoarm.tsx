@@ -74,7 +74,10 @@ const WebFoarm = () => {
         <div className="form-hero-con">
           <div className="form-project-container">
             {/* <div className="form-top-con"> */}
-            <button onClick={() => navigate("/")} className="form-btn-hero">
+            <button
+              onClick={() => navigate("/project")}
+              className="form-btn-hero"
+            >
               <IoChevronBackOutline className="form-back-btn-icon" />
             </button>
             {/* </div> */}

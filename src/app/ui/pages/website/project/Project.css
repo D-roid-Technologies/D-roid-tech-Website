@@ -140,3 +140,18 @@
   transform: scale(1.1);
   background-color: #fb8500;
 }
+.create-websites-btn-containerss {
+  display: flex;
+  justify-content: center;
+  margin-top: 4em;
+}
+.create-websites-btn-containerss:hover {
+  cursor: pointer;
+}
+.create-websites-btnss {
+  width: 25%;
+  transition: transform 0.3s ease-in-out;
+}
+.create-websites-btnss:hover {
+  transform: scale(1.1);
+}

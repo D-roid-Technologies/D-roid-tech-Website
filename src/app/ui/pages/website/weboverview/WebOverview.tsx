@@ -21,7 +21,10 @@ const WebOverview: React.FunctionComponent = () => {
       <section className="overview-web-hero-container">
         <div className="overview-hero-con">
           <div className="overview-top-con">
-            <button onClick={() => navigate("/")} className="overview-btn-hero">
+            <button
+              onClick={() => navigate("/webwelcome")}
+              className="overview-btn-hero"
+            >
               <IoChevronBackOutline className="overview-back-btn-icon" />
             </button>
           </div>
@@ -50,7 +53,7 @@ const WebOverview: React.FunctionComponent = () => {
                     bRadiusColor={Assets.colors.substitute}
                     icon={<FaClipboardCheck className="icon-styles" />}
                     onClickButton={() => {
-                      navigate("/");
+                      navigate("");
                     }}
                   />
                 </div>
@@ -73,7 +76,7 @@ const WebOverview: React.FunctionComponent = () => {
                       />
                     }
                     onClickButton={() => {
-                      navigate("/");
+                      navigate("/project");
                     }}
                   />
                 </div>

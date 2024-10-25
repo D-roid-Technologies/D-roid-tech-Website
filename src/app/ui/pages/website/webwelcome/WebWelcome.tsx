@@ -10,11 +10,13 @@ const WebWelcome: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
   const handleSignInClick = () => {
-    window.location.href = "https://kcity-c8580.web.app/login";
+    // window.location.href = "https://kcity-c8580.web.app/login";
+    window.location.href = "/weboverview";
   };
 
   const handleCreateAccountClick = () => {
-    window.location.href = "https://kcity-c8580.web.app/register";
+    // window.location.href = "https://kcity-c8580.web.app/register";
+    window.location.href = "/weboverview";
   };
 
   return (
@@ -30,7 +32,10 @@ const WebWelcome: React.FunctionComponent = () => {
         <section className="main-web-hero-container">
           <div className="web-hero-con">
             <div className="web-top-con">
-              <button onClick={() => navigate("/")} className="web-btn-hero">
+              <button
+                onClick={() => navigate("/website")}
+                className="web-btn-hero"
+              >
                 <IoChevronBackOutline className="web-back-btn-icon" />
               </button>
             </div>

@@ -53,14 +53,15 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="*" element={<NotFound />} />
         <Route path="/taketest" element={<TakeTest />} />
         <Route path="/ai" element={<AI />} />
-        <Route path="/website" element={<Website />} />
-        <Route path="/webwelcome" element={<WebWelcome />} />
+
         <Route
           path="/knowledgecitydetails"
           element={<KnowledgeCityDetails />}
         />
         <Route path="/cashbasket" element={<Cashbasket />} />
         <Route path="/dome" element={<Dome />} />
+        <Route path="/website" element={<Website />} />
+        <Route path="/webwelcome" element={<WebWelcome />} />
         <Route path="/weboverview" element={<WebOverview />} />
         <Route path="/project" element={<Project />} />
         <Route path="/webfoarm" element={<WebFoarm />} />
