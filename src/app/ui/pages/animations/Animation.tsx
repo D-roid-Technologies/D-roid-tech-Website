@@ -205,7 +205,7 @@ const Animation: React.FunctionComponent = () => {
     <div>
       <NavBar />
       <div
-        className="products-banner"
+        className="products-banner alt-banner"
         // style={{ backgroundColor: Assets.colors.substitute }}
       >
         <div className="products-banner-inner">

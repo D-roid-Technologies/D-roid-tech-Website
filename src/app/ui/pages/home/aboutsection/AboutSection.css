@@ -147,7 +147,7 @@
   letter-spacing: 2px;
 }
 .div-button {
-  width: 30%;
+  width: 45%;
   margin-top: 30px;
   transition: transform 0.3s ease-in-out;
 }
@@ -292,7 +292,7 @@
 
 .services-btn {
   text-decoration: none;
-  width: 18%;
+  /* width: 18%; */
   border-radius: none;
   transition: transform 0.3s ease-in-out;
 }
