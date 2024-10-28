@@ -57,7 +57,7 @@ export const Assets = {
     softwareBg: require("../../images/png/sd.png"),
     homeBg: require("../../images/png/homepage.png"),
 
-    droid_web: require("../../images/png/D'roid_Web.png"),
+    droid_web: require("../../images/png/droi-product-image.png"),
     reign: require("../../images/png/reign.png"),
     one_one: require("../../images/png/training-image-one.png"),
     uni: require("../../images/png/training-image-three.png"),
@@ -93,7 +93,7 @@ export const Assets = {
     maximuspage: require("../../images/png/Maximuspage.jpg"),
     drizzle: require("../../images/png/drizzlepage.jpg"),
     cashBasket: require("../../images/png/newcashbasket.png"),
-    knowledgecity: require("../../images/png/knowledgecityscreenshot.png"),
+    knowledgecity: require("../../images/png/knowledge-product-image.png"),
     dome: require("../../images/png/dome.png"),
 
     // developers page
