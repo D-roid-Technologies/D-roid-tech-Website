@@ -239,7 +239,7 @@
   }
 
   .contactuss-button {
-    width: 30%;
+    width: 25%;
     border-radius: none;
     transition: transform 0.3s ease-in-out;
   }
@@ -385,7 +385,7 @@
     font-family: "Rubik";
     letter-spacing: 0;
     color: rgba(7, 29, 106, 0.6);
-    font-size: 1rem;
+    font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -452,13 +452,13 @@
     color: rgb(124, 124, 124);
     padding-bottom: 20px;
     font-family: "Rubik";
-    font-size: 1rem;
+    font-size: 15px;
   }
   .droid {
     font-family: "Rubik";
     text-align: center;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 26px;
     padding-bottom: 20px;
     color: #071d6a;
   }

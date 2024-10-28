@@ -19,6 +19,14 @@ import TakeTest from "../ui/pages/taketest/TakeTest";
 import TrainingPrograms from "../ui/pages/training/trainingprograms/TrainingPrograms";
 import Details from "../ui/pages/details/Details";
 import AI from "../ui/pages/AI/AI";
+import Website from "../ui/pages/website/Website";
+import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
+import KnowledgeCityDetails from "../ui/pages/animations/knowledgecitydetailspage/KnowledgeCityDetails";
+import Cashbasket from "../ui/pages/animations/cashbasket/Cashbasket";
+import Dome from "../ui/pages/animations/dome/Dome";
+import WebOverview from "../ui/pages/website/weboverview/WebOverview";
+import Project from "../ui/pages/website/project/Project";
+import WebFoarm from "../ui/pages/website/webfoarm/WebFoarm";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -45,6 +53,18 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="*" element={<NotFound />} />
         <Route path="/taketest" element={<TakeTest />} />
         <Route path="/ai" element={<AI />} />
+
+        <Route
+          path="/knowledgecitydetails"
+          element={<KnowledgeCityDetails />}
+        />
+        <Route path="/cashbasket" element={<Cashbasket />} />
+        <Route path="/dome" element={<Dome />} />
+        <Route path="/website" element={<Website />} />
+        <Route path="/webwelcome" element={<WebWelcome />} />
+        <Route path="/weboverview" element={<WebOverview />} />
+        <Route path="/project" element={<Project />} />
+        <Route path="/webfoarm" element={<WebFoarm />} />
       </Routes>
     </BrowserRouter>
   );

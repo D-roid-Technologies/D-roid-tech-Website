@@ -108,17 +108,31 @@ const Animation: React.FunctionComponent = () => {
       image: Assets.images.droid_web,
       title: "D'roid Technologies",
       desc: "DTI Software Solutions is a leading provider of innovative software solutions tailored to meet the evolving needs of businesses across diverse industries.",
-      link: "https://www.droidtechinternational.com/",
+      link: "/",
     },
-    {
-      image: Assets.images.reign,
-      title: "Reign Enterprise",
-      desc: "At Reign Collections, we have all the basic things you need for your house hold. From bathroom equpients, kitchen tools, lounge set-up and more.",
-      link: "",
-    },
+
     {
       image: Assets.images.knowledgecity,
       title: "Knowledge City",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "/knowledgecitydetails",
+    },
+
+    {
+      image: Assets.images.cashBasket,
+      title: "Cash Basket",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "/cashbasket",
+    },
+    {
+      image: Assets.images.dome,
+      title: "Dome",
+      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      link: "/dome",
+    },
+    {
+      image: Assets.images.drizzle,
+      title: "Drizzle Ogos Place",
       desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
       link: "",
     },
@@ -129,21 +143,9 @@ const Animation: React.FunctionComponent = () => {
       link: "",
     },
     {
-      image: Assets.images.drizzle,
-      title: "Drizzle Ogos Place",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
-      link: "",
-    },
-    {
-      image: Assets.images.cashBasket,
-      title: "Cash Basket",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
-      link: "",
-    },
-    {
-      image: Assets.images.dome,
-      title: "Dome",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      image: Assets.images.reign,
+      title: "Reign Enterprise",
+      desc: "At Reign Collections, we have all the basic things you need for your house hold. From bathroom equpients, kitchen tools, lounge set-up and more.",
       link: "",
     },
 
@@ -204,10 +206,7 @@ const Animation: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div
-        className="products-banner alt-banner"
-        // style={{ backgroundColor: Assets.colors.substitute }}
-      >
+      <div className="products-banner alt-banner">
         <div className="products-banner-inner">
           <motion.div
             variants={fadeIn("up", 0.2)}
@@ -224,7 +223,6 @@ const Animation: React.FunctionComponent = () => {
             </p>
           </motion.div>
           <div className="banner-icon">
-            {/* <FaGrinStars className="product-cart" /> */}
             <img
               src={Assets.images.productPageBanner}
               alt=""
@@ -232,7 +230,6 @@ const Animation: React.FunctionComponent = () => {
             />
           </div>
         </div>
-        {/* <div className="product-bottom-banner">{mapThroughIconData()}</div> */}
       </div>
 
       <div className="product-bottom-banner">{mapThroughIconData()}</div>

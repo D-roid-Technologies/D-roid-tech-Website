@@ -1,6 +1,7 @@
 export const Assets = {
   images: {
-    companyLogo: require("../../images/png/droidLogo.png"),
+    companyLogo: require("../../images/png/company-logo-removebg-preview.png"),
+    // companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),
     homeBannerone: require("../../images/png/home-banner-one.png"),
     homeBannertwo: require("../../images/png/home-banner-two.png"),
@@ -26,7 +27,7 @@ export const Assets = {
     benefitillustratorTwo: require("../../images/png/benefit-illustrator-image-two.png"),
 
     comapanyAboutImage1: require("../../images/png/aboutimage1.png"),
-    companyLogoNoBg: require("../../images/png/droidLogo-nobg.png"),
+    companyLogoNoBg: require("../../images/png/company-logo-removebg-preview.png"),
     coding: require("../../images/png/coding.png"),
     statistics: require("../../images/png/statistics.png"),
     ourServices: require("../../images/png/our services.png"),
@@ -56,7 +57,7 @@ export const Assets = {
     softwareBg: require("../../images/png/sd.png"),
     homeBg: require("../../images/png/homepage.png"),
 
-    droid_web: require("../../images/png/D'roid_Web.png"),
+    droid_web: require("../../images/png/droi-product-image.png"),
     reign: require("../../images/png/reign.png"),
     one_one: require("../../images/png/training-image-one.png"),
     uni: require("../../images/png/training-image-three.png"),
@@ -92,7 +93,7 @@ export const Assets = {
     maximuspage: require("../../images/png/Maximuspage.jpg"),
     drizzle: require("../../images/png/drizzlepage.jpg"),
     cashBasket: require("../../images/png/newcashbasket.png"),
-    knowledgecity: require("../../images/png/knowledgecityscreenshot.png"),
+    knowledgecity: require("../../images/png/knowledge-product-image.png"),
     dome: require("../../images/png/dome.png"),
 
     // developers page
@@ -139,6 +140,24 @@ export const Assets = {
     phoneIcon: require("../../images/png/solar_phone-bold.png"),
     emailIcon: require("../../images/png/ic_round-email.png"),
     addIcon: require("../../images/png/ph_plus-bold.png"),
+
+    // PRODUCT DETAILS PAGE
+    knowledgeBannerImage: require("../../images/png/Knowledge-Welcome Page member.png"),
+    knowledgeBannerTwo: require("../../images/png/kn-Welcome Page two.png"),
+    knwledgeMentorImage: require("../../images/png/knw-Mentor-page.png"),
+    cashBasketOne: require("../../images/png/cash-basket-image.png"),
+    cashBasketTwo: require("../../images/png/Cashbasket-frame-two.png"),
+    cashBasketThree: require("../../images/png/cashbasket-three.png"),
+    domeImage: require("../../images/png/dome-banner-one.png"),
+    domeBannerTwo: require("../../images/png/Dome-banner-two.png"),
+    domeBannerThree: require("../../images/png/Dome-banner-three.png"),
+
+    // WEBSITE BUILDER SECTION
+    welcompageheroImage: require("../../images/png/welcome-image-icon-removebg-preview.png"),
+    webOverviewBanner: require("../../images/png/web-overview-banner.png"),
+    projectImageOne: require("../../images/png/project-image-one.png"),
+    projectImageTwo: require("../../images/png/project-image-two.png"),
+    projectImageThree: require("../../images/png/project-image-three.png"),
   },
   colors: {
     basic: "#000000",

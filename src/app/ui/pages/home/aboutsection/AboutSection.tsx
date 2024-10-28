@@ -355,7 +355,7 @@ const Section: React.FunctionComponent = () => {
                     />
                   }
                   onClickButton={() => {
-                    navigate("");
+                    navigate("/website");
                   }}
                 />
               </div>

@@ -94,8 +94,8 @@ body {
   width: 100%;
   padding: 0 100px;
   display: flex;
-  height: 35px;
-  justify-content: flex-start;
+  height: 120px;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
 }
@@ -138,10 +138,6 @@ body {
     padding: 0 20px;
     height: 50vh;
   }
-  /* .home-main {
-    padding: 0 20px;
-    text-align: center;
-  } */
 
   .home-heading {
     font-size: 1.8rem;
@@ -149,7 +145,11 @@ body {
     text-align: center;
   }
   .home-left {
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2.3em;
   }
   .home-right {
     display: none;
@@ -167,17 +167,23 @@ body {
   }
   .home-middle-banner {
     height: 70px;
-    padding: 0 20px;
-  }
-
-  .home-middle-one {
-    gap: 10px; /* Adjust the gap for smaller screens */
-    animation: scroll 15s linear infinite;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
   }
 
   .home-middle-one-icon {
-    width: 30px;
+    width: 40px;
     height: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  .home-middle-one {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    animation: scroll 15s linear infinite;
   }
 
   .home-middle-one-p {
