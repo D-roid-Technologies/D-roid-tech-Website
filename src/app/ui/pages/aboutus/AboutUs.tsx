@@ -220,14 +220,18 @@ const AboutUs: React.FunctionComponent = () => {
                         </div>
                         <ul className="social">
                           <li>
-                            <a href="#">
-                              <FaLinkedin className="icon-s" />
-                            </a>
+                            {item.socials?.linkedin && (
+                              <a href={item.socials.linkedin}>
+                                <FaLinkedin className="icon-s" />
+                              </a>
+                            )}
                           </li>
                           <li>
-                            <a href="#">
-                              <FaXTwitter className="icon-s" />
-                            </a>
+                            {item.socials?.twitter && (
+                              <a href={item.socials.twitter}>
+                                <FaXTwitter className="icon-s" />
+                              </a>
+                            )}
                           </li>
                         </ul>
                       </div>

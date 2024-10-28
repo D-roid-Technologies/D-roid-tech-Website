@@ -88,8 +88,8 @@ const Home: React.FunctionComponent = () => {
                     />
                   }
                   onClickButton={() => {
-                    // window.location.href = "https://calendly.com/droidtechint";
-                    window.location.href = "";
+                    window.location.href = "https://calendly.com/droidtechint";
+                    // window.location.href = "";
                   }}
                 />
               </div>
