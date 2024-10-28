@@ -53,3 +53,44 @@
   width: 100%;
   object-fit: contain;
 }
+@media (max-width: 600px) {
+  .kn-top-con {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    width: 40px;
+  }
+  /* end of back button */
+  .kn-container {
+    padding: 0 10px;
+  }
+  .about-kn {
+    color: #071d6a;
+    text-shadow: 0px 4.019px 4.019px rgba(255, 177, 0, 0.25);
+    font-family: "Rubik";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .about-kn-details {
+    color: #333;
+    font-family: "Rubik";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 50px;
+    text-align: left n gtftr;
+  }
+  .knw-banner-one {
+    margin-bottom: 50px;
+  }
+  .kn-banner {
+    width: 100%;
+    object-fit: contain;
+  }
+}

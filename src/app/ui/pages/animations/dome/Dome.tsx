@@ -1,10 +1,10 @@
 import React from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import "./KnowledgeCityDetails.css";
-import { Assets } from "../../../utils/constant/Assets";
+import "./Dome.css";
+import { Assets } from "../../../../utils/constant/Assets";
 
-const KnowledgeCityDetails: React.FunctionComponent = () => {
+const Dome: React.FunctionComponent = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -14,31 +14,30 @@ const KnowledgeCityDetails: React.FunctionComponent = () => {
         </button>
       </div>
       <div className="kn-container">
-        <p className="about-kn">About Knowledge City</p>
+        <p className="about-kn">About Dome</p>
         <p className="about-kn-details">
-          Knowledge city product is a platform that empowers the learning
-          journey of individuals whether for education or professional purposes.
-          The platform is designed to deliver an engaging and seamless learning
-          experience.
+          Dome is a comprehensive platform aimed at simplifying domestic tasks
+          for users by providing seamless purposes such as food delivery,
+          cleaning, driving, laundry, culinary services and grocery shopping.
         </p>
         <section>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.knowledgeBannerImage}
+              src={Assets.images.domeImage}
               alt="banner"
               className="kn-banner"
             />
           </div>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.knowledgeBannerTwo}
+              src={Assets.images.domeBannerTwo}
               alt="banner"
               className="kn-banner"
             />
           </div>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.knwledgeMentorImage}
+              src={Assets.images.domeBannerThree}
               alt="banner"
               className="kn-banner"
             />
@@ -49,4 +48,4 @@ const KnowledgeCityDetails: React.FunctionComponent = () => {
   );
 };
 
-export default KnowledgeCityDetails;
+export default Dome;

@@ -1,10 +1,10 @@
 import React from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import "../cashbasket/Cashbasket.css";
-import { Assets } from "../../../utils/constant/Assets";
+import "../knowledgecitydetailspage/KnowledgeCityDetails.css";
+import { Assets } from "../../../../utils/constant/Assets";
 
-const Cashbasket: React.FunctionComponent = () => {
+const KnowledgeCityDetails: React.FunctionComponent = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -14,30 +14,31 @@ const Cashbasket: React.FunctionComponent = () => {
         </button>
       </div>
       <div className="kn-container">
-        <p className="about-kn">About CashBasket</p>
+        <p className="about-kn">About Knowledge City</p>
         <p className="about-kn-details">
-          CashBasket is a Fintech platform that enables the avenue in managing
-          users’ finances, budgeting, tracking expenses, investing, sending and
-          receiving of payment purposes.
+          Knowledge city product is a platform that empowers the learning
+          journey of individuals whether for education or professional purposes.
+          The platform is designed to deliver an engaging and seamless learning
+          experience.
         </p>
         <section>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.cashBasketOne}
+              src={Assets.images.knowledgeBannerImage}
               alt="banner"
               className="kn-banner"
             />
           </div>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.cashBasketTwo}
+              src={Assets.images.knowledgeBannerTwo}
               alt="banner"
               className="kn-banner"
             />
           </div>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.cashBasketThree}
+              src={Assets.images.knwledgeMentorImage}
               alt="banner"
               className="kn-banner"
             />
@@ -48,4 +49,4 @@ const Cashbasket: React.FunctionComponent = () => {
   );
 };
 
-export default Cashbasket;
+export default KnowledgeCityDetails;

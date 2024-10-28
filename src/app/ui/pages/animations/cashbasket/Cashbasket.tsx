@@ -1,10 +1,10 @@
 import React from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import "../dome/Dome.css";
-import { Assets } from "../../../utils/constant/Assets";
+import "./Cashbasket.css";
+import { Assets } from "../../../../utils/constant/Assets";
 
-const Dome: React.FunctionComponent = () => {
+const Cashbasket: React.FunctionComponent = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -14,30 +14,30 @@ const Dome: React.FunctionComponent = () => {
         </button>
       </div>
       <div className="kn-container">
-        <p className="about-kn">About Dome</p>
+        <p className="about-kn">About CashBasket</p>
         <p className="about-kn-details">
-          Dome is a comprehensive platform aimed at simplifying domestic tasks
-          for users by providing seamless purposes such as food delivery,
-          cleaning, driving, laundry, culinary services and grocery shopping.
+          CashBasket is a Fintech platform that enables the avenue in managing
+          users’ finances, budgeting, tracking expenses, investing, sending and
+          receiving of payment purposes.
         </p>
         <section>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.domeImage}
+              src={Assets.images.cashBasketOne}
               alt="banner"
               className="kn-banner"
             />
           </div>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.domeBannerTwo}
+              src={Assets.images.cashBasketTwo}
               alt="banner"
               className="kn-banner"
             />
           </div>
           <div className="knw-banner-one">
             <img
-              src={Assets.images.domeBannerThree}
+              src={Assets.images.cashBasketThree}
               alt="banner"
               className="kn-banner"
             />
@@ -48,4 +48,4 @@ const Dome: React.FunctionComponent = () => {
   );
 };
 
-export default Dome;
+export default Cashbasket;
