@@ -2,6 +2,16 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
+* {
+  box-sizing: border-box; /* Ensures padding and borders are included in the width */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll caused by extra width */
+}
+
 /* CONTENT */
 .home-main {
   display: flex;
@@ -34,7 +44,7 @@
   background-color: #fff9e9;
   border-radius: 50%;
 }
-.banner-one {
+/* .banner-one {
   position: relative;
   left: -5rem;
   bottom: -7rem;
@@ -43,7 +53,7 @@
   position: relative;
   left: -22rem;
   top: -2.5rem;
-}
+} */
 
 .home-content {
   text-align: center;
@@ -51,9 +61,9 @@
 }
 
 .home-heading {
-  font-size: 3.8rem;
+  font-size: 3rem;
   letter-spacing: 3px;
-  text-align: center;
+  /* text-align: center; */
   font-weight: 700;
   color: #071d6a;
   /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
@@ -62,8 +72,8 @@
 
 .product-button {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .See-our-product {
@@ -82,27 +92,25 @@
 .home-middle-banner {
   background-color: #fbcc34;
   width: 100%;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding: 0 100px;
   display: flex;
   height: 120px;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden; /* Prevent overflow */
-}
-
-.home-middle-one-icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
+  overflow: hidden;
 }
 
 .home-middle-one {
   display: flex;
   align-items: center;
-  gap: 10px;
-  animation: scroll 15s linear infinite;
+  gap: 20px;
+  white-space: nowrap;
+  animation: scroll 30s linear infinite;
+}
+
+.home-middle-one-icon {
+  width: 40px;
+  height: 40px;
 }
 
 .home-middle-one-p {
@@ -110,12 +118,7 @@
   margin-top: 10px;
   font-size: 16px;
 }
-.icon-styles {
-  color: #000000;
-  width: 15px;
-  height: 15px;
-}
-/* home Banner css */
+
 @keyframes scroll {
   0% {
     transform: translateX(100%);
@@ -124,7 +127,6 @@
     transform: translateX(-100%);
   }
 }
-
 /* TABLET On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
 }
@@ -155,7 +157,7 @@
   .See-our-product {
     font-family: "Rubik";
     cursor: pointer;
-    width: 150%;
+    width: 100%;
     margin-top: 20px;
     transition: transform 0.3s ease-in-out;
   }
@@ -164,11 +166,6 @@
     transform: scale(1.1);
   }
   .home-middle-banner {
-    background-color: #fbcc34;
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
     height: 70px;
     justify-content: space-between;
     align-items: center;
@@ -190,10 +187,9 @@
   }
 
   .home-middle-one-p {
-    font-family: "Courier New", Courier, monospace;
-    margin-top: 5px;
     font-size: 12px;
   }
+
   .icon-styles {
     color: #000000;
     width: 15px;

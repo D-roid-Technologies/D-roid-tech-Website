@@ -206,7 +206,7 @@ const Animation: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-      <div className="products-banner">
+      <div className="products-banner alt-banner">
         <div className="products-banner-inner">
           <motion.div
             variants={fadeIn("up", 0.2)}

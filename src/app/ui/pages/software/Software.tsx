@@ -26,7 +26,7 @@ const Software: React.FunctionComponent = () => {
       <NavBar />
 
       {/* Home to software section */}
-      <div className="home-to-software">
+      <div className="home-to-software" style={{marginTop: '40px'}}>
         <div className="software-banner">
           <section className="soft-banner">
             <h1 className="software-approach-heads">

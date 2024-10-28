@@ -13,6 +13,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import Button from "../../components/button/Button";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import "../../components/liteGrid@v1.0/lite-grid.css";
 
 const AboutUs: React.FunctionComponent = () => {
   useEffect(() => {
@@ -51,7 +52,9 @@ const AboutUs: React.FunctionComponent = () => {
                 <p className="about-histoy-details">
                   D'roid Technologies traces its roots back to 2018, when
                   visionary entrepreneur{" "}
-                  <a href="https://ekenedilichukwu.com">Ekenedilichukwu Okoli</a>{" "}
+                  <a href="https://ekenedilichukwu.com">
+                    Ekenedilichukwu Okoli
+                  </a>{" "}
                   embarked on a mission to redefine the digital landscape.
                   Inspired by a passion for innovation and a desire to make a
                   difference, our company was born in a small office space with
@@ -167,7 +170,7 @@ const AboutUs: React.FunctionComponent = () => {
           {/* OUT TEAM */}
           <section>
             <p className="team-heading"> Our Team </p>
-            <ul className="team-container">
+            {/* <ul className="team-container">
               {DATA.droidStaff.map((item, index) => (
                 <li className="team" key={index}>
                   <div>
@@ -199,7 +202,44 @@ const AboutUs: React.FunctionComponent = () => {
                   </div>
                 </li>
               ))}
-            </ul>
+            </ul> */}
+            <div className="wrapper-fluid">
+              <div className="group mb-5">
+                {DATA.droidStaff.map((item, index) => (
+                  <div className="block-12 block-lg-3">
+                    <div key={index} className="team-card">
+                      <div className="imgbox">
+                        <img src={item.image} />
+                      </div>
+                      <div className="content">
+                        <div className="contentBox">
+                          <h3>
+                            {item.name} <br />
+                            <span>{item.designation}</span>
+                          </h3>
+                        </div>
+                        <ul className="social">
+                          <li>
+                            {item.socials?.linkedin && (
+                              <a href={item.socials.linkedin}>
+                                <FaLinkedin className="icon-s" />
+                              </a>
+                            )}
+                          </li>
+                          <li>
+                            {item.socials?.twitter && (
+                              <a href={item.socials.twitter}>
+                                <FaXTwitter className="icon-s" />
+                              </a>
+                            )}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
         </div>
       </div>

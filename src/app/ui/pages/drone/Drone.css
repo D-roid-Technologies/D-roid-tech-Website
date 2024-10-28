@@ -169,6 +169,7 @@
   .dev-banner-desc {
     width: 100%; /* Make the description take full width */
     bottom: 0; /* Remove the large bottom positioning */
+    margin-top: 25%;
   }
 
   .dev-header {
