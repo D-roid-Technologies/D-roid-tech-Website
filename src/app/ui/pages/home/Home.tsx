@@ -46,7 +46,6 @@ const Home: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-<<<<<<< HEAD
       <div className="wrapper">
         <div className="group pt-5">
           <br />
@@ -103,51 +102,6 @@ const Home: React.FunctionComponent = () => {
                 alt="banner"
                 // className="banner-size       banner-two"
                 className="align-center image-fluid"
-=======
-      <div className="home-main">
-        <div className="home-left">
-          <motion.article
-            variants={fadeIn("up", 0.3)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="home-content"
-          >
-            <p className="home-heading">
-              WE TURN YOUR <br /> IDEAS
-              <br />
-              INTO REALITY
-            </p>
-          </motion.article>
-          <motion.div
-            variants={fadeIn("down", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.7 }}
-            className="product-button"
-          >
-            <div className="See-our-product">
-              <Button
-                bgColor={"#fbcc34"}
-                mTop={0}
-                mBottom={0}
-                mLeft={7}
-                mRight={7}
-                title="Schedule an Appointment"
-                color="#333333"
-                fWeight={900}
-                bRadius={5}
-                bRadiusColor="#fbcc34"
-                icon={
-                  <FaRegCalendarPlus
-                    style={{ color: "#333333" }}
-                    className="icon-styles"
-                  />
-                }
-                onClickButton={() => {
-                  window.location.href = "https://calendly.com/droidtechint";
-                }}
->>>>>>> 90a1ee186f3e56a536211b6dbceac552651ab074
               />
             </div>
           </div>

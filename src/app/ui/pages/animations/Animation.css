@@ -299,7 +299,8 @@
     .products-banner-desc {
       margin-top: 1em;
       height: 0;
-      position: absolute;
+      /* position: absolute; */
+      margin-top: 30%;
       bottom: 0;
     }
     .product-pp {
