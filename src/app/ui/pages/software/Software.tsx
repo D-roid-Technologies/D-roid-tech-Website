@@ -249,7 +249,9 @@ const Software: React.FunctionComponent = () => {
               color="#071d6a"
               bRadiusColor="#ffb100"
               title="Want to Know more? Click to Contact Us"
-              onClickButton={() => {}}
+              onClickButton={() => {
+                navigate("/contact", {});
+              }}
             />
           </div>
         </div>

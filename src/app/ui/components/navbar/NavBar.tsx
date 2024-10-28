@@ -21,6 +21,7 @@ const NavBar: React.FunctionComponent = () => {
   const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
 
   const imageListRef = ref(storage, "droidlogo/");
+  console.log(companyLogo);
 
   const dimension = useSelector((state: RootState) => state.dimension);
   const navigate = useNavigate();

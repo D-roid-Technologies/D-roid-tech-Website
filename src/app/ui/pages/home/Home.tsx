@@ -71,8 +71,8 @@ const Home: React.FunctionComponent = () => {
                 bgColor={"#fbcc34"}
                 mTop={0}
                 mBottom={0}
-                mLeft={0}
-                mRight={0}
+                mLeft={7}
+                mRight={7}
                 title="Schedule an Appointment"
                 color="#333333"
                 fWeight={900}

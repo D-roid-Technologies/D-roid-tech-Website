@@ -188,16 +188,7 @@ export const DATA = {
 
   droidStaff: [
     {
-      image: require("../../images/png/stellaImage.jpeg"),
-      name: "Stella Eneh",
-      designation: "Frontend Developer",
-      socials: {
-        linkedin: "https://www.linkedin.com/in/stella-eneh/",
-        twitter: "https://twitter.com/StellaEneh_",
-      },
-    },
-    {
-      image: require("../../images/png/Uzoportfolio.png"),
+      image: require("../../images/png/uzo-onyekwelu.jpeg"),
       name: "Uzochukwu Felix",
       designation: "Frontend Developer",
       socials: {
@@ -206,7 +197,17 @@ export const DATA = {
       },
     },
     {
-      image: require("../../images/png/princewil-image.jpg"),
+      image: require("../../images/png/stella-eneh-two.jpg"),
+      name: "Stella Eneh",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/stella-eneh/",
+        twitter: "https://twitter.com/StellaEneh_",
+      },
+    },
+
+    {
+      image: require("../../images/png/princewill-image-two.jpeg"),
       name: "Princewill Godwin",
       designation: "Product Designer",
       socials: {
@@ -223,15 +224,25 @@ export const DATA = {
         twitter: "https://x.com/Zibah_grafix?t=CH87kJA3wKHtvYLATLtApw&s=09 ",
       },
     },
-    // {
-    //   image: require("../../images/png/Amarachi-image.jpg"),
-    //   name: "Amarachi Abams",
-    //   designation: "Product Designer",
-    //   socials: {
-    //     linkedin: "",
-    //     twitter: " ",
-    //   },
-    // },
+    {
+      image: require("../../images/png/chisom-iwuh-image.jpeg"),
+      name: "Chisom Iwuh",
+      designation: "Product Designer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/iwuh-chisom-884905218/",
+        twitter: " ",
+      },
+    },
+    {
+      image: require("../../images/png/chidinmma.jpg"),
+      name: "Chidinma Okoli",
+      designation: "Digital Maketer",
+      socials: {
+        linkedin:
+          "https://www.linkedin.com/in/chidinma-okoli-16b24832a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: "https://x.com/NightB80193?t=8niahHpoo5TpZDZcGm2bmQ&s=09 ",
+      },
+    },
   ],
 };
 

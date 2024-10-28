@@ -420,12 +420,12 @@
   }
   .our-history {
     margin-bottom: 1em;
-    line-height: 10px;
-    font-size: 1.5rem;
+    line-height: 5px;
+    font-size: 1.3rem;
     font-weight: 700;
   }
   .histoy-details {
-    font-size: 1.2rem;
+    font-size: 15px;
     font-weight: 200;
     color: #333 !important;
     font-family: "Rubik";
@@ -441,7 +441,7 @@
   }
 
   .readmore-btn {
-    width: 100%;
+    width: 60%;
     border-radius: none;
     transition: transform 0.2s ease-in-out;
   }
@@ -453,11 +453,11 @@
   .our-approach {
     margin-bottom: 1em;
     line-height: 10px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
   }
   .approach-details {
-    font-size: 1.2rem;
+    font-size: 15px;
     font-weight: 200;
     color: #333 !important;
     font-family: "Rubik";
@@ -487,14 +487,14 @@
   }
   .join-approach-details {
     color: rgba(240, 240, 240, 0.7);
-    font-size: 1rem;
+    font-size: 15px;
     font-weight: 200;
     font-family: "Rubik";
     text-align: justify;
     letter-spacing: 0;
   }
   .div-button {
-    width: 60%;
+    width: 50%;
     margin-top: 30px;
     transition: transform 0.3s ease-in-out;
   }
@@ -527,7 +527,7 @@
   .our-services {
     margin-bottom: 1em;
     line-height: 10px;
-    font-size: 35px !important;
+    font-size: 32px !important;
     font-weight: 800;
     color: #282a94;
     font-family: "Rubik";
@@ -543,7 +543,7 @@
   }
 
   .services-detailss {
-    font-size: 1.2rem;
+    font-size: 15px;
     font-weight: 200;
     color: #333;
     font-family: "Rubik";
@@ -586,7 +586,7 @@
     font-family: "Rubik";
   }
   .carousel-details {
-    font-size: 1.2rem;
+    font-size: 15px;
     font-weight: 200;
     color: #333;
     font-family: "Rubik";
@@ -642,7 +642,7 @@
     margin-bottom: 3em;
   }
   .website-header {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -651,7 +651,7 @@
   .website-details {
     color: #333;
     font-family: "Rubik";
-    font-size: 1.2rem;
+    font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -705,12 +705,12 @@
   }
   .m-app-image {
     object-fit: contain;
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 250px;
   }
   .mobile-screens {
-    display: none;
-    /* display: flex;
-    justify-content: flex-start; */
+    /* display: none; */
+    display: flex;
+    justify-content: flex-start;
   }
 }

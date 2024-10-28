@@ -88,6 +88,7 @@
   height: 120px;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden; /* Prevent overflow */
 }
 
 .home-middle-one-icon {
@@ -135,10 +136,6 @@
     padding: 0 20px;
     height: 50vh;
   }
-  /* .home-main {
-    padding: 0 20px;
-    text-align: center;
-  } */
 
   .home-heading {
     font-size: 1.8rem;
@@ -146,7 +143,11 @@
     text-align: center;
   }
   .home-left {
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2.3em;
   }
   .home-right {
     display: none;
@@ -154,7 +155,7 @@
   .See-our-product {
     font-family: "Rubik";
     cursor: pointer;
-    width: 90%;
+    width: 150%;
     margin-top: 20px;
     transition: transform 0.3s ease-in-out;
   }
@@ -171,11 +172,11 @@
     height: 70px;
     justify-content: space-between;
     align-items: center;
-    gap: 25px;
+    gap: 40px;
   }
 
   .home-middle-one-icon {
-    width: 30px;
+    width: 40px;
     height: 30px;
     display: flex;
     align-items: center;
@@ -184,7 +185,6 @@
   .home-middle-one {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     gap: 10px;
     animation: scroll 15s linear infinite;
   }

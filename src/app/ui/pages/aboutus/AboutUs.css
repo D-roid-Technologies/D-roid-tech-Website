@@ -22,7 +22,7 @@
 }
 .image-sized {
   width: 600px;
-  height: 300px;
+  height: 500px;
   object-fit: contain;
 }
 .about-history {
@@ -461,7 +461,7 @@
   }
   .image-sized {
     width: 600px;
-    height: 300px;
+    height: 500px;
     object-fit: contain;
   }
 
@@ -474,8 +474,8 @@
   .about-history-heading {
     margin-bottom: 1em;
     line-height: 0;
-    font-size: 0.6rem;
-    font-weight: 600;
+    font-size: 0.5rem;
+    font-weight: 500;
     color: #282a94;
     font-family: "Rubik";
     text-align: center;
