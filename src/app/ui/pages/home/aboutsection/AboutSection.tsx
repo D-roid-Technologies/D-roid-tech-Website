@@ -318,7 +318,7 @@ const Section: React.FunctionComponent = () => {
           {/* </a> */}
         </div>
         {/* Create website section */}
-        <div className="web-container">
+        {/* <div className="web-container">
           <div>
             <img
               src={Assets.images.websiteImage}
@@ -334,8 +334,8 @@ const Section: React.FunctionComponent = () => {
               knowledge to build one. With the right tools and platforms you can
               set up a website in just five minutes. Begin a step-by-step guide
               to help you create your website in a flash.
-            </p>
-            {/* <div className="our-servicess-btns">
+            </p> */}
+        {/* <div className="our-servicess-btns">
               <div className="servicess-btns">
                 <Button
                   bgColor="#071d6a"
@@ -360,8 +360,8 @@ const Section: React.FunctionComponent = () => {
                 />
               </div>
             </div> */}
-          </div>
-        </div>
+        {/* </div>
+        </div> */}
         {/* download App */}
         <section className="app-section">
           <div>
