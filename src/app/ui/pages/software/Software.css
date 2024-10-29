@@ -275,6 +275,11 @@
     align-items: flex-start;
   }
 }
+@media (max-width: 490px) {
+  .soft-hero-image {
+    margin: 75px 0;
+  }
+}
 
 @media (max-width: 600px) {
   /* Home to software section */
@@ -323,6 +328,7 @@
   }
   .banner-image {
     position: absolute;
+    max-width: 100%;
     top: 34rem;
   }
   .soft-hero-image {

@@ -230,19 +230,19 @@ export const DATA = {
       designation: "Product Designer",
       socials: {
         linkedin: "https://www.linkedin.com/in/iwuh-chisom-884905218/",
-        twitter: " ",
+        twitter: "",
       },
     },
-    {
-      image: require("../../images/png/chidinmma.jpg"),
-      name: "Chidinma Okoli",
-      designation: "Digital Maketer",
-      socials: {
-        linkedin:
-          "https://www.linkedin.com/in/chidinma-okoli-16b24832a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        twitter: "https://x.com/NightB80193?t=8niahHpoo5TpZDZcGm2bmQ&s=09 ",
-      },
-    },
+    // {
+    //   image: require("../../images/png/chidinmma.jpg"),
+    //   name: "Chidinma Okoli",
+    //   designation: "Digital Maketer",
+    //   socials: {
+    //     linkedin:
+    //       "https://www.linkedin.com/in/chidinma-okoli-16b24832a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    //     twitter: "https://x.com/NightB80193?t=8niahHpoo5TpZDZcGm2bmQ&s=09 ",
+    //   },
+    // },
   ],
 };
 

@@ -143,24 +143,24 @@ const NavBar: React.FunctionComponent = () => {
           <div>
             <span className="version">{Assets.text.appVersion}</span>
           </div>
-          {/* <div className="icons-right">
-            {isDarkMode ? (
+          <div className="icons-right">
+            {/* {isDarkMode ? (
               <FaSun className="dark-mode" onClick={toggleTheme} />
             ) : (
               <FaMoon className="dark-mode" onClick={toggleTheme} />
-            )}
+            )} */}
             <CiMenuFries
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}
             />
-          </div> */}
+          </div>
         </div>
         {showDropDown ? (
           <div className="drop-down-links">
             <ul>{dropDownLinks()}</ul>
           </div>
         ) : null}
-        {/* {showMenuBtn ? (
+        {showMenuBtn ? (
           <>
             <div className="mobile-nav">
               <div style={{ display: "flex", justifyContent: "right" }}>
@@ -173,7 +173,7 @@ const NavBar: React.FunctionComponent = () => {
               {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
             </div>
           </>
-        ) : null} */}
+        ) : null}
         {showMenuBtn ? (
           <div className={`mobile-nav ${showMenuBtn ? "active" : ""}`}>
             <HiX className="mobile-x" onClick={() => setShowMenuBtn(false)} />
