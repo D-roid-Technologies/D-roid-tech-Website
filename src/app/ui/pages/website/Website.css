@@ -1,0 +1,100 @@
+.web-company-logo-container {
+  padding-left: 30px;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.3);
+}
+.main-web-hero-container {
+  padding: 0 40px;
+  padding-top: 20px;
+  margin-bottom: 100px;
+  margin-top: 2em;
+}
+.web-hero-con {
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  background: rgba(240, 240, 240, 0.5);
+}
+
+.web-company-logo {
+  width: 70px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.web-top-con {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  /* padding-left: 20px; */
+  width: 40px;
+}
+.web-back-btn-icon {
+  color: #071d6a;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: rgba(227, 225, 225, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.web-btn-hero {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+.web-btn-hero:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+/* create a website in 5mins */
+.create-web-heading {
+  text-align: center;
+  color: #071d6a;
+  text-shadow: 0px 4.643px 4.643px rgba(255, 177, 0, 0.25);
+  font-family: "Rubik";
+  font-size: 46.427px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.5em;
+}
+.web-head-container {
+  padding: 0 40px;
+  margin-bottom: 3.5em;
+}
+.create-web-sub-heading {
+  color: #071d6a;
+  font-family: "Rubik";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0.8em;
+}
+.creat-web-details {
+  color: #333;
+  font-family: "Rubik";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 2em;
+}
+.web-con-btn {
+  padding: 8px 40px;
+  color: #071d6a;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  background: #e0e2ea;
+  box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.25);
+  transition: transform 0.3s ease-in-out;
+}
+.web-con-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.web-con-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}

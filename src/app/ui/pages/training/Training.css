@@ -337,5 +337,10 @@
   .training-approach-main-one {
     margin-top: 0;
   }
-  /* technologies and tools */
+  .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    text-align: left;
+    color: #071d69;
+  }
 }

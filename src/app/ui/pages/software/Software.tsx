@@ -26,7 +26,7 @@ const Software: React.FunctionComponent = () => {
       <NavBar />
 
       {/* Home to software section */}
-      <div className="home-to-software">
+      <div className="home-to-software" style={{marginTop: '40px'}}>
         <div className="software-banner">
           <section className="soft-banner">
             <h1 className="software-approach-heads">
@@ -249,7 +249,9 @@ const Software: React.FunctionComponent = () => {
               color="#071d6a"
               bRadiusColor="#ffb100"
               title="Want to Know more? Click to Contact Us"
-              onClickButton={() => {}}
+              onClickButton={() => {
+                navigate("/contact", {});
+              }}
             />
           </div>
         </div>

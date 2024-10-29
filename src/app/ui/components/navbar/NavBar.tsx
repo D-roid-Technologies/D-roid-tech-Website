@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "../navbar/NavBar.css";
+// Richard liteGrid CSS for responsiveness
+import "../liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,7 @@ const NavBar: React.FunctionComponent = () => {
   const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
 
   const imageListRef = ref(storage, "droidlogo/");
+  console.log(companyLogo);
 
   const dimension = useSelector((state: RootState) => state.dimension);
   const navigate = useNavigate();
@@ -112,20 +115,27 @@ const NavBar: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="wrapper-fluid">
       <div className="nav-main">
-        <div className="logo-image">
+        <div
+          className="logo-image"
+          style={{ marginTop: "10px", cursor: "pointer" }}
+        >
           <a
             onClick={() => {
               navigate("/");
             }}
           >
-            <img
-              src={companyLogo[0]}
-              alt="D'roid Logo"
-              width={60}
-              height={60}
-            />
+            {companyLogo.length > 0 ? (
+              <img
+                src={companyLogo[0]}
+                alt="D'roid Logo"
+                width={60}
+                height={60}
+              />
+            ) : (
+              <>... Loading Image</>
+            )}
           </a>
         </div>
         <div className="nav-link-container">
@@ -133,7 +143,7 @@ const NavBar: React.FunctionComponent = () => {
           <div>
             <span className="version">{Assets.text.appVersion}</span>
           </div>
-          <div className="icons-right">
+          {/* <div className="icons-right">
             {isDarkMode ? (
               <FaSun className="dark-mode" onClick={toggleTheme} />
             ) : (
@@ -143,7 +153,7 @@ const NavBar: React.FunctionComponent = () => {
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}
             />
-          </div>
+          </div> */}
         </div>
         {showDropDown ? (
           <div className="drop-down-links">

@@ -3,9 +3,13 @@
 /* @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
 .nav-link-container {
+  margin-top: 7px;
   display: flex;
   justify-content: center;
   /* align-items: center; */
+}
+.wrapper-fluid {
+  background-color: #ffffff;
 }
 
 .dark-mode {
@@ -46,7 +50,7 @@
 
 .nav-list {
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   font-weight: 700;
   letter-spacing: 2px;
@@ -75,6 +79,7 @@
   align-items: center;
   height: 70px;
   padding: 10px 100px;
+  background-color: transparent;
 }
 
 .list {
@@ -84,7 +89,7 @@
 }
 
 .mobile-x {
-  align-self: right;
+  float: right;
   width: 40px;
   height: 40px;
   color: #00ffff;
@@ -95,10 +100,15 @@
   right: 0px;
   padding: 25px;
   width: 100%;
-  height: 500px;
-  top: 10px;
+  height: auto;
+  top: 0;
   justify-content: center;
   transition: 10s;
+  z-index: 1000;
+}
+
+.mobile-nav ul {
+  margin: 60px 10px;
 }
 
 /* On screens that are 992px or less, set the background color to blue */

@@ -169,14 +169,15 @@
   .dev-banner-desc {
     width: 100%; /* Make the description take full width */
     bottom: 0; /* Remove the large bottom positioning */
+    margin-top: 25%;
   }
 
   .dev-header {
-    font-size: 2.5rem; /* Adjust heading size */
+    font-size: 2rem; /* Adjust heading size */
   }
 
   .product-pp {
-    font-size: 18px; /* Adjust paragraph size */
+    font-size: 15px; /* Adjust paragraph size */
   }
 
   .dev-cart {
