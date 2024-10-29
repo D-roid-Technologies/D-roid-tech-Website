@@ -114,32 +114,32 @@ const Animation: React.FunctionComponent = () => {
     {
       image: Assets.images.knowledgecity,
       title: "Knowledge City",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      desc: "Knowledge City aims in ending the barrier of learning. With well fitted courses, one on one mentorships and any health accomodation we provide a space where education comes to you.",
       link: "/knowledgecitydetails",
     },
 
     {
       image: Assets.images.cashBasket,
       title: "Cash Basket",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      desc: "Send money from anywhere in the world directly to the account of your choice.",
       link: "/cashbasket",
     },
     {
       image: Assets.images.dome,
       title: "Dome",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      desc: "The Umbrella that got you covered for all your needs, expenses and transportaion.",
       link: "/dome",
     },
     {
       image: Assets.images.drizzle,
       title: "Drizzle Ogos Place",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      desc: "For the best African food in the continent, Drizzle's Den offers an amazing experience leaving you wanting more with every bite",
       link: "",
     },
     {
       image: Assets.images.maximuspage,
       title: "Maximus",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optioreiciendis minima facilis ipsam hic assumenda officia temporacorporis, dolorem architecto omnis totam consequatur amet dolores eius",
+      desc: "Stories they say is a never ending cycle. Watch our animated movies and enjoy every bit of or world.",
       link: "",
     },
     {

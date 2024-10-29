@@ -117,18 +117,25 @@ const NavBar: React.FunctionComponent = () => {
   return (
     <div className="wrapper-fluid">
       <div className="nav-main">
-        <div className="logo-image" style={{ marginTop: "10px" }}>
+        <div
+          className="logo-image"
+          style={{ marginTop: "10px", cursor: "pointer" }}
+        >
           <a
             onClick={() => {
               navigate("/");
             }}
           >
-            <img
-              src={companyLogo[0]}
-              alt="D'roid Logo"
-              width={60}
-              height={60}
-            />
+            {companyLogo.length > 0 ? (
+              <img
+                src={companyLogo[0]}
+                alt="D'roid Logo"
+                width={60}
+                height={60}
+              />
+            ) : (
+              <>... Loading Image</>
+            )}
           </a>
         </div>
         <div className="nav-link-container">
@@ -136,7 +143,7 @@ const NavBar: React.FunctionComponent = () => {
           <div>
             <span className="version">{Assets.text.appVersion}</span>
           </div>
-          <div className="icons-right">
+          {/* <div className="icons-right">
             {isDarkMode ? (
               <FaSun className="dark-mode" onClick={toggleTheme} />
             ) : (
@@ -146,7 +153,7 @@ const NavBar: React.FunctionComponent = () => {
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}
             />
-          </div>
+          </div> */}
         </div>
         {showDropDown ? (
           <div className="drop-down-links">

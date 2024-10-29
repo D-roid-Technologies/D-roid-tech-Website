@@ -743,67 +743,67 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     ],
     path: "/software",
   },
-  {
-    title: "Template Service",
-    image: Assets.images.tService,
-    desc: "We provide cutting-edge automated template generation services designed to streamline your content creation processes and boost productivity. Our solutions empower businesses to quickly generate consistent, high-quality templates for various applications, from marketing materials to business documents, saving valuable time and resources.",
-    price: [864.99, 785.99, 792.99],
-    category: ["FinTech", "E-Commerce", "E-Learning,"],
-    tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
-    procedure: [
-      {
-        title: "Why Choose Our Web Development Service",
-        subTitleOne: "Benefits of Working with Us:",
-        subTitleOneContent: [
-          {
-            title: "Expertise and Experience:",
-            desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
-          },
-          {
-            title: "Tailored Solutions:",
-            desc: "We provide bespoke web development solutions that cater to your specific business needs.",
-          },
-          {
-            title: "Cutting-edge Technologies:",
-            desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
-          },
-          {
-            title: "Comprehensive Support:",
-            desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
-          },
-          {
-            title: "Proven Track Record:",
-            desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
-          },
-        ],
-        subTitleTwo: "Values and Incentives:",
-        subTitleTwoContent: [
-          {
-            title: "Client-Centric Approach:",
-            desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
-          },
-          {
-            title: "Transparent Communication:",
-            desc: "Stay informed with regular updates and open communication throughout the development process.",
-          },
-          {
-            title: "Innovative Solutions:",
-            desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
-          },
-          {
-            title: "Competitive Pricing:",
-            desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
-          },
-          {
-            title: "Timely Delivery:",
-            desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
-          },
-        ],
-      },
-    ],
-    path: "/software",
-  },
+  // {
+  //   title: "Template Service",
+  //   image: Assets.images.tService,
+  //   desc: "We provide cutting-edge automated template generation services designed to streamline your content creation processes and boost productivity. Our solutions empower businesses to quickly generate consistent, high-quality templates for various applications, from marketing materials to business documents, saving valuable time and resources.",
+  //   price: [864.99, 785.99, 792.99],
+  //   category: ["FinTech", "E-Commerce", "E-Learning,"],
+  //   tools: ["React Native", "Flutter", "Javascript", "Typescript"],
+  //   currency: ["$", "N", "e"],
+  //   procedure: [
+  //     {
+  //       title: "Why Choose Our Web Development Service",
+  //       subTitleOne: "Benefits of Working with Us:",
+  //       subTitleOneContent: [
+  //         {
+  //           title: "Expertise and Experience:",
+  //           desc: "Our team of seasoned developers has years of experience in creating custom, responsive, and user-friendly websites.",
+  //         },
+  //         {
+  //           title: "Tailored Solutions:",
+  //           desc: "We provide bespoke web development solutions that cater to your specific business needs.",
+  //         },
+  //         {
+  //           title: "Cutting-edge Technologies:",
+  //           desc: "We utilize the latest technologies and frameworks to ensure your website is fast, secure, and scalable.",
+  //         },
+  //         {
+  //           title: "Comprehensive Support:",
+  //           desc: "Enjoy ongoing support and maintenance to keep your website running smoothly.",
+  //         },
+  //         {
+  //           title: "Proven Track Record:",
+  //           desc: "With a portfolio of successful projects and satisfied clients, you can trust us to deliver excellence.",
+  //         },
+  //       ],
+  //       subTitleTwo: "Values and Incentives:",
+  //       subTitleTwoContent: [
+  //         {
+  //           title: "Client-Centric Approach:",
+  //           desc: "We prioritize understanding your business goals to deliver a website that truly represents your brand.",
+  //         },
+  //         {
+  //           title: "Transparent Communication:",
+  //           desc: "Stay informed with regular updates and open communication throughout the development process.",
+  //         },
+  //         {
+  //           title: "Innovative Solutions:",
+  //           desc: "Our team continuously innovates to incorporate the best practices and emerging trends in web development.",
+  //         },
+  //         {
+  //           title: "Competitive Pricing:",
+  //           desc: "Get high-quality web development services at competitive prices, with clear and upfront cost estimates.",
+  //         },
+  //         {
+  //           title: "Timely Delivery:",
+  //           desc: "We are committed to delivering your project on time, every time, without compromising on quality.",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  //   path: "/software",
+  // },
 ];
 // 2.
 

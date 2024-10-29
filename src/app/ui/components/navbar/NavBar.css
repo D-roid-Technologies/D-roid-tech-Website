@@ -8,6 +8,9 @@
   justify-content: center;
   /* align-items: center; */
 }
+.wrapper-fluid {
+  background-color: #ffffff;
+}
 
 .dark-mode {
   color: #282a94;
@@ -47,7 +50,7 @@
 
 .nav-list {
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   font-weight: 700;
   letter-spacing: 2px;
@@ -76,6 +79,7 @@
   align-items: center;
   height: 70px;
   padding: 10px 100px;
+  background-color: transparent;
 }
 
 .list {
