@@ -161,15 +161,17 @@ export const Assets = {
   },
   colors: {
     basic: "#000000",
-    light: "#FFFFFF",
+    light: "#ffffff",
     primary: "#071D6A",
     secondary: "#479BE8",
     tertiary: "#FF6F61",
+    flat: "#97A3B6",
     overlay: "#00000080",
     borderColor: "#CCCCCC",
     paragraph: "#BAB8B8",
     backgroundColor: "#F9F9F9",
-    substitute: "#FBCC34",
+    substitute: "#864733",
+    hoier: "#040711",
 
     // dark
     darkbasic: "#FFFFFF",

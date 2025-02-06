@@ -1,9 +1,25 @@
-/* @import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular");
 
 * {
   box-sizing: border-box; /* Ensures padding and borders are included in the width */
+}
+
+.rubik{
+  font-family: 'Rubik';
+}
+
+.Courier{
+  font-family: "Courier New", Courier, monospace;
+}
+
+.playpen{
+  font-family: "Playpen";
+}
+
+.letterspacing{
+  letter-spacing: 2px;
 }
 
 body {
@@ -21,22 +37,6 @@ body {
   height: 80vh;
 }
 
-/* .home-left {
-  flex: 1; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
-/* .home-right {
-  flex: 1; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem; 
-} */
-
 .banner-size {
   width: 300px;
   height: 300px;
@@ -44,16 +44,6 @@ body {
   background-color: #fff9e9;
   border-radius: 50%;
 }
-/* .banner-one {
-  position: relative;
-  left: -5rem;
-  bottom: -7rem;
-}
-.banner-two {
-  position: relative;
-  left: -22rem;
-  top: -2.5rem;
-} */
 
 .home-content {
   text-align: center;
@@ -90,7 +80,7 @@ body {
 
 /* home Banner css */
 .home-middle-banner {
-  background-color: #fbcc34;
+  background-color: #111724;
   width: 100%;
   padding: 0 100px;
   display: flex;
@@ -111,12 +101,13 @@ body {
 .home-middle-one-icon {
   width: 40px;
   height: 40px;
+  color: #97A3B6
 }
 
 .home-middle-one-p {
-  font-family: "Courier New", Courier, monospace;
   margin-top: 10px;
   font-size: 16px;
+  color: #97A3B6
 }
 
 @keyframes scroll {

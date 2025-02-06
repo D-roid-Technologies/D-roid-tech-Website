@@ -8,7 +8,8 @@
   padding: 10px 25px;
   flex-shrink: 0;
   cursor: pointer;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Playpen";
+  letter-spacing: 2px;
 }
 
 .button-icon {
