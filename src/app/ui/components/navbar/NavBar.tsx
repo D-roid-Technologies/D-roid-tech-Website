@@ -23,7 +23,7 @@ const NavBar: React.FunctionComponent = () => {
   const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
 
   const imageListRef = ref(storage, "droidlogo/");
-  console.log(companyLogo);
+  // console.log(companyLogo);
 
   const dimension = useSelector((state: RootState) => state.dimension);
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const NavBar: React.FunctionComponent = () => {
               color:
                 window.location.pathname === item.path
                   ? Assets.colors.substitute
-                  : Assets.colors.primary,
+                  : Assets.colors.flat,
             }}
           >
             {item.link}

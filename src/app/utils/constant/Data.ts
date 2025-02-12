@@ -14,10 +14,6 @@ export const DATA = {
   },
   navLinks: [
     {
-      link: "About Us",
-      path: "/aboutus",
-    },
-    {
       link: "Software Development",
       path: "/software",
     },
@@ -26,12 +22,12 @@ export const DATA = {
       path: "/training",
     },
     {
-      link: "Products",
-      path: "/products",
+      link: "Tool Box",
+      path: "/toolbox",
     },
     {
-      link: "Contact",
-      path: "/contact",
+      link: "Products",
+      path: "/products",
     },
     {
       link: "More",
@@ -46,6 +42,14 @@ export const DATA = {
     {
       link: "D'roid Icons",
       path: "/droidicons",
+    },
+    {
+      link: "About Us",
+      path: "/aboutus",
+    },
+    {
+      link: "Contact",
+      path: "/contact",
     },
   ],
 

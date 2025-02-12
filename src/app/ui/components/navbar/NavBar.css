@@ -1,15 +1,10 @@
-/* @import url("https://fonts.googleapis.com/css?family=Rubik");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans"); */
-/* @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
-
 .nav-link-container {
   margin-top: 7px;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 .wrapper-fluid {
-  background-color: #ffffff;
+  background-color: #13191C;
 }
 
 .dark-mode {
@@ -24,7 +19,7 @@
 }
 
 .version {
-  background-color: #1bc47e;
+  background-color: #864733;
   padding: 3px 10px;
   font-size: 13px;
   margin-right: 45px;
@@ -46,7 +41,7 @@
 }
 .drop-down-links:hover {
   transition: 0.8s;
-  color: #fbcc34 !important;
+  color: #864733 !important;
 }
 
 .nav-list {
@@ -60,7 +55,7 @@
 
 .nav-list:hover {
   transition: 0.8s;
-  color: #fbcc34 !important;
+  color: #864733 !important;
 }
 .list-container {
   list-style: none;
