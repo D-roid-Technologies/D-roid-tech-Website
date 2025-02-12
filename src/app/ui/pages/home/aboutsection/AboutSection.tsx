@@ -16,6 +16,7 @@ import { IoLogoGooglePlaystore } from "react-icons/io5";
 import { FaApple } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import ButtonAlt from "../../../components/button-alt/ButtonAlt";
 
 const Section: React.FunctionComponent = () => {
   useEffect(() => {
@@ -112,7 +113,7 @@ const Section: React.FunctionComponent = () => {
           {/* ------------------  */}
           <div className="history-btn">
             <div className="readmore-btn">
-              <Button
+              {/* <Button
                 bgColor="#091d6a"
                 mTop={0}
                 mBottom={0}
@@ -127,7 +128,9 @@ const Section: React.FunctionComponent = () => {
                 onClickButton={() => {
                   navigate("/aboutus");
                 }}
-              />
+              /> */}
+              <br />
+              <ButtonAlt href="/aboutus">Read more about us</ButtonAlt>
             </div>
           </div>
         </div>
@@ -157,8 +160,8 @@ const Section: React.FunctionComponent = () => {
             <br />
             The Fastest way to become a Techie - Only by D'roid Technologies.
           </p>
-          <div className="div-button">
-            <Button
+          {/* <div className="div-button"> */}
+          {/* <Button
               bgColor={Assets.colors.substitute}
               mTop={0}
               mBottom={0}
@@ -173,8 +176,13 @@ const Section: React.FunctionComponent = () => {
               onClickButton={() => {
                 navigate("/taketest");
               }}
-            />
-          </div>
+            /> */}
+          <br />
+          <br />
+          <ButtonAlt style={{ background: "#864733" }} href="/taketest">
+            <TbWriting className="icon-styles" /> Take our Test
+          </ButtonAlt>
+          {/* </div> */}
         </div>
         <div className="join-images">
           <span data-aos="flip-left">
@@ -286,7 +294,7 @@ const Section: React.FunctionComponent = () => {
           {/* <a href=""> */}
           <div className="our-services-btn">
             <div className="services-btn">
-              <Button
+              {/* <Button
                 bgColor="#fbcc34"
                 mTop={0}
                 mBottom={0}
@@ -301,7 +309,14 @@ const Section: React.FunctionComponent = () => {
                 onClickButton={() => {
                   navigate("/services");
                 }}
-              />
+              /> */}
+              <ButtonAlt
+                style={{ background: "#fbcc34", color: "#000" }}
+                href="/services"
+              >
+                <MdHomeRepairService className="style-home-icons" /> See all our
+                services
+              </ButtonAlt>
             </div>
           </div>
           {/* </a> */}
@@ -361,7 +376,7 @@ const Section: React.FunctionComponent = () => {
             </p>
             <div className="app-btn-container">
               <span className="Apple-store">
-                <Button
+                {/* <Button
                   bgColor={"#ffffff"}
                   title="Apple Store"
                   mTop={0}
@@ -381,10 +396,23 @@ const Section: React.FunctionComponent = () => {
                   onClickButton={function (): void {
                     throw new Error("Function not implemented.");
                   }}
-                />
+                /> */}
+                <ButtonAlt
+                  onClick={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  style={{ background: "#fff", color: "#071d69" }}
+                  // href="/taketest"
+                >
+                  <FaApple
+                    style={{ color: "#071d69" }}
+                    className="icon-styles"
+                  />
+                  Apple Store
+                </ButtonAlt>
               </span>
               <span className="google-play">
-                <Button
+                {/* <Button
                   className="google-play"
                   bgColor={"#ffffff"}
                   title="Google play"
@@ -405,7 +433,20 @@ const Section: React.FunctionComponent = () => {
                   onClickButton={function (): void {
                     throw new Error("Function not implemented.");
                   }}
-                />
+                /> */}
+                <ButtonAlt
+                  onClick={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  style={{ background: "#fff", color: "#071d69" }}
+                  // href="/taketest"
+                >
+                  <IoLogoGooglePlaystore
+                    style={{ color: "#071d69" }}
+                    className="icon-styles"
+                  />{" "}
+                  Google play
+                </ButtonAlt>
               </span>
             </div>
           </div>

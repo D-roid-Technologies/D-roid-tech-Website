@@ -6,19 +6,19 @@
   box-sizing: border-box; /* Ensures padding and borders are included in the width */
 }
 
-.rubik{
-  font-family: 'Rubik';
+.rubik {
+  font-family: "Rubik";
 }
 
-.Courier{
+.Courier {
   font-family: "Courier New", Courier, monospace;
 }
 
-.playpen{
+.playpen {
   font-family: "Playpen";
 }
 
-.letterspacing{
+.letterspacing {
   letter-spacing: 2px;
 }
 
@@ -50,6 +50,18 @@ body {
   margin-bottom: 2rem;
 }
 
+.home_banner {
+  text-align: center;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.home_banner img {
+  max-width: 200px;
+}
 .home-heading {
   font-size: 3rem;
   letter-spacing: 3px;
@@ -71,12 +83,12 @@ body {
   cursor: pointer;
   width: 60%;
   margin-top: 20px;
-  transition: transform 0.3s ease-in-out;
+  /* transition: transform 0.3s ease-in-out; */
 }
 
-.See-our-product:hover {
+/* .See-our-product:hover {
   transform: scale(1.1);
-}
+} */
 
 /* home Banner css */
 .home-middle-banner {
@@ -101,13 +113,13 @@ body {
 .home-middle-one-icon {
   width: 40px;
   height: 40px;
-  color: #97A3B6
+  color: #97a3b6;
 }
 
 .home-middle-one-p {
   margin-top: 10px;
   font-size: 16px;
-  color: #97A3B6
+  color: #97a3b6;
 }
 
 @keyframes scroll {
@@ -150,12 +162,12 @@ body {
     cursor: pointer;
     width: 100%;
     margin-top: 20px;
-    transition: transform 0.3s ease-in-out;
+    /* transition: trans  form 0.3s ease-in-out; */
   }
 
-  .See-our-product:hover {
+  /* .See-our-product:hover {
     transform: scale(1.1);
-  }
+  } */
   .home-middle-banner {
     height: 70px;
     justify-content: space-between;

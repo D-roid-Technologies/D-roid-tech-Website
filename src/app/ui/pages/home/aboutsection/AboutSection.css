@@ -74,11 +74,11 @@
 
 .readmore-btn {
   border-radius: none;
-  transition: transform 0.3s ease-in-out;
+  /* transition: transform 0.3s ease-in-out; */
 }
-.readmore-btn:hover {
+/* .readmore-btn:hover {
   transform: scale(1.1);
-}
+} */
 
 /* SECTION TWO OUR APPROACH */
 .approach {
@@ -210,7 +210,7 @@
 .services-detailss {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgba(7, 29, 106, 0.6);
+  color: #97a3b6;
   font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
@@ -222,7 +222,7 @@
   line-height: 10px;
   font-size: 30px !important;
   font-weight: 800;
-  color: #071d6a;
+  color: #97a3b6;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-family: "Rubik";
 }
@@ -269,7 +269,7 @@
 .carousel-details {
   font-size: 1.2rem;
   font-weight: 200;
-  color: rgba(7, 29, 106, 0.6);
+  color: #97a3b6;
   font-family: "Rubik";
   text-align: justify;
   letter-spacing: 2px;
@@ -360,7 +360,7 @@
   align-items: center;
 }
 .download {
-  color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #000);
+  color: var(--Miscellaneous-Floating-Tab---Text-Unselected, #97a3b6);
   font-family: "Rubik";
   font-size: 3.3rem;
   font-style: normal;
