@@ -30,7 +30,8 @@
   text-align: center;
 
   border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
+  /* background: rgba(240, 240, 240, 0.5); */
+  background-color: #111724;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .about-history-heading {
@@ -39,7 +40,6 @@
   font-size: 35px !important;
   font-weight: 700;
   color: #071d6a;
-  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-family: "Rubik";
 }
 .about-histoy-details {
@@ -48,7 +48,6 @@
   font-family: "Rubik";
   text-align: justify;
   line-height: 30px;
-  color: #333;
 }
 .about-history-details-div {
   padding: 70px 30px;
@@ -117,7 +116,7 @@
 .vision-box p {
   font-size: 1.2rem;
   font-weight: 200;
-  color: #333;
+  /* color: #333; */
   font-family: "Rubik";
   text-align: left;
   line-height: 1.5;
@@ -155,14 +154,14 @@
 .core-value-vision-box {
   padding: 40px 20px;
   border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
+  background: #111724;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .core-value-vision-box p {
   font-size: 1.2rem;
   font-weight: 200;
-  color: #333;
+  /* color: #333; */
   font-family: "Rubik";
   text-align: left;
   line-height: 1.5;
@@ -316,14 +315,14 @@
     line-height: 0;
     font-size: 1.5rem;
     font-weight: 600;
-    color: #282a94;
+    /* color: #282a94; */
     font-family: "Rubik";
     text-align: center;
   }
   .about-histoy-details {
     font-size: 1rem;
     font-weight: 200;
-    color: rgb(186, 184, 184) !important;
+    /* color: rgb(186, 184, 184) !important; */
     text-align: justify;
     line-height: 20px;
     font-family: "Rubik";
@@ -361,13 +360,12 @@
 
   .vision-box {
     padding: 35px 20px;
-    box-shadow: 0.35em 0.35em 1em grey;
+    /* box-shadow: 0.35em 0.35em 1em grey; */
     border-radius: 5px;
   }
   .vision-box p {
     font-size: 1.2rem;
     font-weight: 200;
-    color: rgb(186, 184, 184);
     font-family: "Rubik";
     text-align: left;
     line-height: 1.3;
@@ -386,9 +384,9 @@
   }
 
   .core-value-vision-box {
-    background-color: #ffffff;
+    /* background-color: #ffffff;  */
     padding: 25px 10px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 5px;
   }
 
@@ -483,7 +481,6 @@
   .about-histoy-details {
     font-size: 15px;
     font-weight: 200;
-    color: #333 !important;
     text-align: justify;
     letter-spacing: 0;
     line-height: 20px;
@@ -514,12 +511,13 @@
     align-items: center;
     padding-top: 0;
     gap: 30px;
+    background-color: #040711;
   }
   .vision-main {
     padding: 0;
     border-radius: 10px;
     background: rgba(240, 240, 240, 0.5);
-    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.25); */
   }
 
   /* BOX ONE */
@@ -556,7 +554,7 @@
   .vision-box p {
     font-size: 15px;
     font-weight: 200;
-    color: #333;
+    /* color: #333; */
     font-family: "Rubik";
     text-align: justify;
     line-height: 1.5;
@@ -584,9 +582,9 @@
   }
 
   .core-value-vision-box {
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     padding: 25px 10px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 5px;
   }
 

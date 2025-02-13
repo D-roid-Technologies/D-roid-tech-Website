@@ -107,7 +107,10 @@ const Services: React.FunctionComponent = () => {
           <img src={Assets.images.whatwedoBanner} height={650} alt="" />
         </div>
 
-        <div className="service-text-area">
+        <div
+          className="service-text-area"
+          style={{ color: Assets.colors.flat }}
+        >
           <h2>WHAT WE DO?</h2>
         </div>
       </section>
