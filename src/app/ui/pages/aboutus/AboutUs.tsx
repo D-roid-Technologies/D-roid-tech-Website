@@ -24,7 +24,13 @@ const AboutUs: React.FunctionComponent = () => {
   return (
     <>
       <NavBar />
-      <div style={{ backgroundColor: getColor("backgroundColor") }}>
+      <div
+        style={{
+          backgroundColor: "#040711",
+          marginTop: "-35px",
+          paddingBottom: "20px",
+        }}
+      >
         <div className="about-main">
           <div className="aboutus-marginbutton">
             <div className="section-one">
@@ -48,8 +54,17 @@ const AboutUs: React.FunctionComponent = () => {
                 viewport={{ once: false, amount: 0.7 }}
                 className="about-history"
               >
-                <p className="about-history-heading"> Our History</p>
-                <p className="about-histoy-details">
+                <p
+                  className="about-history-heading"
+                  style={{ color: Assets.colors.flat }}
+                >
+                  {" "}
+                  Our History
+                </p>
+                <p
+                  className="about-histoy-details"
+                  style={{ color: Assets.colors.flat }}
+                >
                   D'roid Technologies was birthed in 2015 with an idea to
                   digitalize the most simplest of things.{" "}
                   <a href="https://ekenedilichukwu.com">
@@ -103,7 +118,7 @@ const AboutUs: React.FunctionComponent = () => {
           </div>
           <div
             className="vision-marginbuttom"
-            style={{ backgroundColor: getColor("backgroundColor") }}
+            // style={{ backgroundColor: getColor("backgroundColor") }}
           >
             <section>
               <div className="vision-mission-value">
@@ -145,14 +160,17 @@ const AboutUs: React.FunctionComponent = () => {
           <div className="core-value-vision-main">
             <div
               className="core-value-vision-box"
-              style={{ backgroundColor: getColor("backgroundColor") }}
+              // style={{ backgroundColor: getColor("backgroundColor") }}
             >
               <h2 className="core-value-vision-header">Core Values</h2>
               <div className="core-values">
                 <div data-aos="flip-left">
                   <GiRosaShield className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Integrity</h2>
-                  <p className="about-histoy-details">
+                  <p
+                    className="about-histoy-details"
+                    style={{ color: Assets.colors.flat }}
+                  >
                     At D'roid Technologies, integrity is the cornerstone of our
                     operations. We are committed to conducting our business with
                     the highest ethical standards, ensuring transparency,
@@ -162,7 +180,10 @@ const AboutUs: React.FunctionComponent = () => {
                 <div data-aos="zoom-in-up">
                   <FaGears className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Innovation</h2>
-                  <p className="about-histoy-details">
+                  <p
+                    className="about-histoy-details"
+                    style={{ color: Assets.colors.flat }}
+                  >
                     At D'roid Technologies, innovation is at the heart of
                     everything we do. We are committed to pushing the boundaries
                     of technology to deliver groundbreaking solutions that drive
@@ -174,7 +195,10 @@ const AboutUs: React.FunctionComponent = () => {
                   <h2 className="core-value-vision-header-small">
                     Customer Focus
                   </h2>
-                  <p className="about-histoy-details">
+                  <p
+                    className="about-histoy-details"
+                    style={{ color: Assets.colors.flat }}
+                  >
                     At D'roid Technologies, our customers are at the heart of
                     everything we do. We are dedicated to understanding and
                     anticipating your needs, delivering tailored solutions that
