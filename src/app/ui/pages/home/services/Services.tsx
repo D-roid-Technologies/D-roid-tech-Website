@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { useThemeColor } from "../../../../utils/hooks/useThemeColor";
 import { convertToCurrency } from "../../../../utils/currencyUtils";
 import { useNavigate } from "react-router-dom";
+import ButtonAlt from "../../../components/button-alt/ButtonAlt";
 
 type Service = {
   title: string;
@@ -31,7 +32,8 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: "Software Development - Mobile and Web",
+    title: "Software Development",
+    // title: "Software Development - Mobile and Web",
     description:
       "Our software development services cover both mobile and web applications. We specialize in creating responsive, high-performance applications using modern technologies such as React Native, React.js, HTML, CSS, TypeScript, and JavaScript. Whether you need a custom web application or a cross-platform mobile app, we deliver solutions that meet your business requirements.",
     icon: Assets.images.softwareWhatWeDo,
@@ -116,13 +118,13 @@ const Services: React.FunctionComponent = () => {
       </section>
       <div className="service-main">
         <h1
-          style={{ color: Assets.colors.primary }}
+          style={{ color: Assets.colors.flat }}
           className="general-heading-two"
         >
           Comprehensive Technology Solutions
         </h1>
         <p
-          style={{ color: Assets.colors.paragraph, marginTop: "1.5rem" }}
+          style={{ color: Assets.colors.flat, marginTop: "1.5rem" }}
           className="paragraph"
         >
           Your one-stop solution for cutting-edge technology services. From
@@ -141,6 +143,7 @@ const Services: React.FunctionComponent = () => {
                   alt={service.title}
                   style={{
                     width: "300px",
+                    marginTop: "-20px",
                     height: "160px",
                     objectFit: "cover",
                   }}
@@ -150,47 +153,57 @@ const Services: React.FunctionComponent = () => {
               title={service.title}
               content={service.description}
               actions={
-                <Button
-                  title="Read More"
-                  bgColor="#fbcc34"
-                  color="#000"
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  fWeight={700}
-                  bRadiusColor={"#fbcc34"}
-                  onClickButton={() => {
-                    navigate(service.path);
-                  }}
-                  // onClickButton={async () => {
-                  //   const convertedPrices = await Promise.all(
-                  //     service.prices.map(async (price) => {
-                  //       const convertedAmount = await convertToCurrency(
-                  //         price.price
-                  //       );
-                  //       return `${price.name}: ${convertedAmount}`;
-                  //     })
-                  //   );
+                // <Button
+                //   title="Read More"
+                //   bgColor="#fbcc34"
+                //   color="#000"
+                //   mTop={0}
+                //   mBottom={0}
+                //   mLeft={0}
+                //   mRight={0}
+                //   fWeight={700}
+                //   bRadiusColor={"#fbcc34"}
+                //   onClickButton={() => {
+                //     navigate(service.path);
+                //   }}
+                //   onClickButton={async () => {
+                //     const convertedPrices = await Promise.all(
+                //       service.prices.map(async (price) => {
+                //         const convertedAmount = await convertToCurrency(
+                //           price.price
+                //         );
+                //         return `${price.name}: ${convertedAmount}`;
+                //       })
+                //     );
 
-                  //   dispatch(
-                  //     updateModalContent({
-                  //       appTitle: service.title,
-                  //       appBody: `
-                  //         <div class="modal-content">
-                  //           <p>${service.description}</p>
-                  //           <ul style="list-style: none;">
-                  //             ${convertedPrices
-                  //               .map((price) => `<li>${price}</li>`)
-                  //               .join("")}
-                  //           </ul>
-                  //         </div>
-                  //       `,
-                  //     })
-                  //   );
-                  //   dispatch(updateModal(true));
-                  // }}
-                />
+                //     dispatch(
+                //       updateModalContent({
+                //         appTitle: service.title,
+                //         appBody: `
+                //           <div class="modal-content">
+                //             <p>${service.description}</p>
+                //             <ul style="list-style: none;">
+                //               ${convertedPrices
+                //                 .map((price) => `<li>${price}</li>`)
+                //                 .join("")}
+                //             </ul>
+                //           </div>
+                //         `,
+                //       })
+                //     );
+                //     dispatch(updateModal(true));
+                //   }}
+                // />
+                <ButtonAlt
+                  style={{
+                    width: "100%",
+                    background: "#fbcc34",
+                    color: "#333",
+                  }}
+                  href={service.path}
+                >
+                  Read More
+                </ButtonAlt>
               }
             />
           ))}
