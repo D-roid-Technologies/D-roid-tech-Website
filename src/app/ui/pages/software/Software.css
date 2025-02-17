@@ -5,7 +5,7 @@
 }
 .software-banner {
   border-radius: 10px;
-  background: #071d6a;
+  background-color: #111724;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .soft-banner {
@@ -26,11 +26,11 @@
   line-height: normal;
 }
 .over {
-  color: #f0f0f0;
+  color: #97a3b6;
   font-weight: 600;
 }
 .soft-paragraph {
-  color: rgba(240, 240, 240, 0.8);
+  color: #a9b7cc;
 }
 
 .home-to-software-p {
@@ -146,7 +146,7 @@
   text-align: center;
   margin-bottom: 1em;
   font-family: "Rubik";
-  color: #ffb100;
+  color: #97a3b6;
   font-size: 48px;
   font-style: normal;
   font-weight: 700;
@@ -174,20 +174,20 @@
 
 .software-approach-item h2 {
   margin-bottom: 20px;
+  color: rgb(186, 184, 184);
   font-family: "Rubik";
-  color: #071d6a;
   transition: color 0.3s ease;
 }
 
 .software-approach-item h2:hover {
-  color: #fbcc34;
+  color: rgb(151, 163, 182);
   cursor: pointer;
 }
 
 .software-approach-item p {
   font-size: 1rem;
   font-weight: 400;
-  color: #333 !important;
+  color: rgb(151, 163, 182) !important;
   font-family: "Rubik";
   /* text-align: justify; */
   /* letter-spacing: 2px; */
@@ -203,12 +203,12 @@
 .tech-contain {
   padding: 40px 20px;
   border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #0b1321;
 }
 .show-list {
   margin-top: 80px;
-  background-color: rgb(124, 124, 124);
+  /* background-color: rgb(124, 124, 124); */
   display: flex;
   height: 40px;
   align-items: center;
@@ -231,9 +231,9 @@
   margin-top: 20px;
   transition: transform 0.3s ease-in-out;
 }
-.wantto-know:hover {
+/* .wantto-know:hover {
   transform: scale(1.1);
-}
+} */
 .wantto-know-btn {
   width: 25%;
 }
