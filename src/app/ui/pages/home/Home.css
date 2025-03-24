@@ -51,12 +51,13 @@ body {
 }
 
 .home_banner {
-  text-align: center;
+  /* text-align: center; */
   height: 550px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   flex-direction: column;
+  padding: 100px;
 }
 
 .home_banner img {
@@ -70,6 +71,7 @@ body {
   color: #071d6a;
   /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
   font-family: "Rubik";
+  margin-bottom: 20px;
 }
 
 .product-button {
@@ -194,7 +196,7 @@ body {
   }
 
   .icon-styles {
-    color: #000000;
+    color: #203499;
     width: 15px;
     height: 15px;
   }

@@ -37,18 +37,18 @@ const Home: React.FunctionComponent = () => {
   // const onFailedBody = "Your login was unsuccessful, kindly try again or contact your Admin!";
 
   return (
-    <div style={{ backgroundColor: "#040711" }}>
+    <div style={{ backgroundColor: "#203499" }}>
       <NavBar />
       <div className="home_banner">
-        <img src={Assets.images.companyLogoAlt} alt="" />
+        {/* <img src={Assets.images.companyLogoAlt} alt="" /> */}
         <p
-          className="home-heading align-center"
-          style={{ color: Assets.colors.flat }}
+          className="home-heading"
+          style={{ color: Assets.colors.light }}
         >
           WE TURN IDEAS INTO REALITY
         </p>
         <div style={{ width: "80%" }}>
-          <p
+          {/* <p
             className="rubik"
             style={{
               color: Assets.colors.flat,
@@ -58,6 +58,9 @@ const Home: React.FunctionComponent = () => {
               fontSize: 13,
             }}
           >
+
+          </p> */}
+          <p className="join-approach-details">
             We don’t just dream, we build. From concept to execution, we
             transform ideas into powerful, innovative solutions. Whether it’s a
             mobile app, website, or cutting-edge software, we bring your vision

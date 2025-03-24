@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #111724;
+  background-color: #ffffff;
   padding: 40px 0;
 }
 
@@ -21,6 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #203499;
 }
 
 .partner-item {
@@ -34,5 +35,5 @@
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #97a3b6;
+  color: #203499;
 }
