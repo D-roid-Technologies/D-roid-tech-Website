@@ -145,7 +145,7 @@
   padding: 20px;
   font-size: 1rem;
   border-radius: 5px;
-  transition: box-shadow 0.3s ease;
+  transition: 0.3s ease;
   flex-basis: calc(23% - 2%);
   color: #333;
 }
@@ -156,6 +156,7 @@
 
 .training-approach-item h2 {
   margin-bottom: 20px;
+  color: rgb(151, 163, 182);
   font-family: "Rubik";
   transition: color 0.3s ease;
 }
@@ -163,6 +164,7 @@
 .training-approach-item p {
   font-family: "Rubik";
   font-size: 1rem;
+  color: rgb(186, 184, 184);
   margin-bottom: 1em;
 }
 

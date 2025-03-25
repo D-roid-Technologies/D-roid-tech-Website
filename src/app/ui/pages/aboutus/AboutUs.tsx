@@ -13,6 +13,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import Button from "../../components/button/Button";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import "../../components/liteGrid@v1.0/lite-grid.css";
 
 const AboutUs: React.FunctionComponent = () => {
   useEffect(() => {
@@ -23,7 +24,13 @@ const AboutUs: React.FunctionComponent = () => {
   return (
     <>
       <NavBar />
-      <div style={{ backgroundColor: getColor("backgroundColor") }}>
+      <div
+        style={{
+          backgroundColor: "#040711",
+          marginTop: "-35px",
+          paddingBottom: "20px",
+        }}
+      >
         <div className="about-main">
           <div className="aboutus-marginbutton">
             <div className="section-one">
@@ -47,21 +54,49 @@ const AboutUs: React.FunctionComponent = () => {
                 viewport={{ once: false, amount: 0.7 }}
                 className="about-history"
               >
-                <p className="about-history-heading"> Our History</p>
-                <p className="about-histoy-details">
-                  D'roid Technologies traces its roots back to 2018, when
-                  visionary entrepreneur{" "}
-                  <a href="https://ekenedilichukwu.com">Ekenedilichukwu Okoli</a>{" "}
-                  embarked on a mission to redefine the digital landscape.
-                  Inspired by a passion for innovation and a desire to make a
-                  difference, our company was born in a small office space with
-                  just a handful of dedicated individuals.
+                <p
+                  className="about-history-heading"
+                  style={{ color: Assets.colors.flat }}
+                >
+                  {" "}
+                  Our History
+                </p>
+                <p
+                  className="about-histoy-details"
+                  style={{ color: Assets.colors.flat }}
+                >
+                  D'roid Technologies was birthed in 2015 with an idea to
+                  digitalize the most simplest of things.{" "}
+                  <a href="https://ekenedilichukwu.com">
+                    Ekenedilichukwu Okoli
+                  </a>{" "}
+                  wanted to be able to make things easier for every individual
+                  allowing them to be able to fufill each and every aspest of
+                  their lives to a percentage of 90 no matter their
+                  circumstance.
+                  <br />
+                  <br />
+                  The word "D'roid" was derived from the the word "Android" in a
+                  long term attempt to create a personal Health Robot Companion
+                  for every human being across the globe. Allowing better
+                  physical movements, better commnication and better life plans
+                  that are more fitted to each individal.
+                  <br />
+                  <br />
+                  D'roid Technologies aims to one day sync all consenting humans
+                  directly to a D'roid Health Bot allowing better care, instant
+                  medication, physical training and out door activities.
                 </p>
               </motion.div>
             </div>
           </div>
           <div className="about-history-details-div">
             <p className="about-histoy-details">
+              In 2018, we embarked on the development of our first contract and
+              inspired by a passion for innovation plus desire to make a
+              difference our company was born with the first set of D'roid
+              employees. <br />
+              <br />
               In the early days, we faced numerous challenges and obstacles, but
               our unwavering determination and commitment to excellence
               propelled us forward. With each hurdle we overcame, we gained
@@ -83,7 +118,7 @@ const AboutUs: React.FunctionComponent = () => {
           </div>
           <div
             className="vision-marginbuttom"
-            style={{ backgroundColor: getColor("backgroundColor") }}
+            // style={{ backgroundColor: getColor("backgroundColor") }}
           >
             <section>
               <div className="vision-mission-value">
@@ -125,14 +160,17 @@ const AboutUs: React.FunctionComponent = () => {
           <div className="core-value-vision-main">
             <div
               className="core-value-vision-box"
-              style={{ backgroundColor: getColor("backgroundColor") }}
+              // style={{ backgroundColor: getColor("backgroundColor") }}
             >
               <h2 className="core-value-vision-header">Core Values</h2>
               <div className="core-values">
                 <div data-aos="flip-left">
                   <GiRosaShield className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Integrity</h2>
-                  <p className="about-histoy-details">
+                  <p
+                    className="about-histoy-details"
+                    style={{ color: Assets.colors.flat }}
+                  >
                     At D'roid Technologies, integrity is the cornerstone of our
                     operations. We are committed to conducting our business with
                     the highest ethical standards, ensuring transparency,
@@ -142,7 +180,10 @@ const AboutUs: React.FunctionComponent = () => {
                 <div data-aos="zoom-in-up">
                   <FaGears className="core-value-icons" />
                   <h2 className="core-value-vision-header-small">Innovation</h2>
-                  <p className="about-histoy-details">
+                  <p
+                    className="about-histoy-details"
+                    style={{ color: Assets.colors.flat }}
+                  >
                     At D'roid Technologies, innovation is at the heart of
                     everything we do. We are committed to pushing the boundaries
                     of technology to deliver groundbreaking solutions that drive
@@ -154,7 +195,10 @@ const AboutUs: React.FunctionComponent = () => {
                   <h2 className="core-value-vision-header-small">
                     Customer Focus
                   </h2>
-                  <p className="about-histoy-details">
+                  <p
+                    className="about-histoy-details"
+                    style={{ color: Assets.colors.flat }}
+                  >
                     At D'roid Technologies, our customers are at the heart of
                     everything we do. We are dedicated to understanding and
                     anticipating your needs, delivering tailored solutions that
@@ -167,7 +211,7 @@ const AboutUs: React.FunctionComponent = () => {
           {/* OUT TEAM */}
           <section>
             <p className="team-heading"> Our Team </p>
-            <ul className="team-container">
+            {/* <ul className="team-container">
               {DATA.droidStaff.map((item, index) => (
                 <li className="team" key={index}>
                   <div>
@@ -199,7 +243,44 @@ const AboutUs: React.FunctionComponent = () => {
                   </div>
                 </li>
               ))}
-            </ul>
+            </ul> */}
+            <div className="wrapper-fluid">
+              <div className="group mb-5">
+                {DATA.droidStaff.map((item, index) => (
+                  <div className="block-12 block-lg-3">
+                    <div key={index} className="team-card">
+                      <div className="imgbox">
+                        <img src={item.image} />
+                      </div>
+                      <div className="content">
+                        <div className="contentBox">
+                          <h3>
+                            {item.name} <br />
+                            <span>{item.designation}</span>
+                          </h3>
+                        </div>
+                        <ul className="social">
+                          <li>
+                            {item.socials?.linkedin && (
+                              <a href={item.socials.linkedin}>
+                                <FaLinkedin className="icon-s" />
+                              </a>
+                            )}
+                          </li>
+                          <li>
+                            {item.socials?.twitter && (
+                              <a href={item.socials.twitter}>
+                                <FaXTwitter className="icon-s" />
+                              </a>
+                            )}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
         </div>
       </div>

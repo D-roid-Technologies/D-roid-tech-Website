@@ -263,21 +263,21 @@ const Contact: React.FunctionComponent = () => {
                   </p>
                   <div className="flex-contact">
                     {/* PHONE NUMBER */}
-                    <div className="call-contact">
+                    {/* <div className="call-contact">
                       <span>
                         <LuPhoneCall className="phone-icon" />
                       </span>
                       <a href="tel:+447886386437" className="phone-no">
                         UK: +447886386437
                       </a>
-                    </div>
+                    </div> */}
                     {/* Nigeria line */}
                     <div className="call-contact">
                       <span>
-                        {/* <LuPhoneCall className="phone-icon" /> */}
+                        <LuPhoneCall className="phone-icon" />
                       </span>
                       <a href="tel:+2347068815984" className="phone-no">
-                        NIG: +2347068815984
+                        NIG: +234 8133992410
                       </a>
                     </div>
                   </div>
@@ -304,7 +304,7 @@ const Contact: React.FunctionComponent = () => {
                       <span>
                         <address>
                           <p className="phone-no">
-                            Head Office: Lincoln, England, United Kingdom
+                            Head Office: Lagos, Nigeria
                           </p>
                         </address>
                       </span>

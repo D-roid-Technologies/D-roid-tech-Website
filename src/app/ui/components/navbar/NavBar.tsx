@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "../navbar/NavBar.css";
+// Richard liteGrid CSS for responsiveness
+import "../liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { DATA } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +23,7 @@ const NavBar: React.FunctionComponent = () => {
   const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
 
   const imageListRef = ref(storage, "droidlogo/");
-  console.log(companyLogo);
+  // console.log(companyLogo);
 
   const dimension = useSelector((state: RootState) => state.dimension);
   const navigate = useNavigate();
@@ -45,7 +47,7 @@ const NavBar: React.FunctionComponent = () => {
               color:
                 window.location.pathname === item.path
                   ? Assets.colors.substitute
-                  : Assets.colors.primary,
+                  : Assets.colors.flat,
             }}
           >
             {item.link}
@@ -113,20 +115,27 @@ const NavBar: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="wrapper-fluid">
       <div className="nav-main">
-        <div className="logo-image">
+        <div
+          className="logo-image"
+          style={{ marginTop: "10px", cursor: "pointer" }}
+        >
           <a
             onClick={() => {
               navigate("/");
             }}
           >
-            <img
-              src={companyLogo[0]}
-              alt="D'roid Logo"
-              width={60}
-              height={60}
-            />
+            {companyLogo.length > 0 ? (
+              <img
+                src={companyLogo[0]}
+                alt="D'roid Logo"
+                width={60}
+                height={60}
+              />
+            ) : (
+              <>... Loading Image</>
+            )}
           </a>
         </div>
         <div className="nav-link-container">
@@ -135,11 +144,11 @@ const NavBar: React.FunctionComponent = () => {
             <span className="version">{Assets.text.appVersion}</span>
           </div>
           <div className="icons-right">
-            {isDarkMode ? (
+            {/* {isDarkMode ? (
               <FaSun className="dark-mode" onClick={toggleTheme} />
             ) : (
               <FaMoon className="dark-mode" onClick={toggleTheme} />
-            )}
+            )} */}
             <CiMenuFries
               className="menu-button"
               onClick={() => setShowMenuBtn(true)}
@@ -151,7 +160,7 @@ const NavBar: React.FunctionComponent = () => {
             <ul>{dropDownLinks()}</ul>
           </div>
         ) : null}
-        {/* {showMenuBtn ? (
+        {showMenuBtn ? (
           <>
             <div className="mobile-nav">
               <div style={{ display: "flex", justifyContent: "right" }}>
@@ -164,7 +173,7 @@ const NavBar: React.FunctionComponent = () => {
               {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
             </div>
           </>
-        ) : null} */}
+        ) : null}
         {showMenuBtn ? (
           <div className={`mobile-nav ${showMenuBtn ? "active" : ""}`}>
             <HiX className="mobile-x" onClick={() => setShowMenuBtn(false)} />

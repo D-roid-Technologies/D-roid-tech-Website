@@ -127,7 +127,7 @@
 .search-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   /* margin: 0 auto;  removed fixed maegin*/
   margin-bottom: 20px;
 }
@@ -169,6 +169,7 @@
   .dev-banner-desc {
     width: 100%; /* Make the description take full width */
     bottom: 0; /* Remove the large bottom positioning */
+    margin-top: 25%;
   }
 
   .dev-header {

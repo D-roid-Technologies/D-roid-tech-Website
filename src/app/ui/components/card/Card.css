@@ -1,11 +1,14 @@
 .card {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #0b1321;
   max-width: 300px;
   position: relative;
 }
-
+.card:hover {
+  cursor: pointer;
+}
 .card__image-container {
   position: relative;
 }
@@ -22,8 +25,8 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: #fff;
-  color: #000;
+  /* background-color: #fff; */
+  color: #fff;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -43,6 +46,11 @@
   text-align: center;
 }
 .title-card {
+  color: #97a3b6 !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  text-align: left !important;
 }
 
 .card__title {

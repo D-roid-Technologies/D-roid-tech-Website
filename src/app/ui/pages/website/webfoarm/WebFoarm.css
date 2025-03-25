@@ -166,7 +166,7 @@ button:hover {
 /* Media queries for responsiveness */
 @media (max-width: 600px) {
   ul {
-    max-width: 300px;
+    /* max-width: 300px; */
   }
 
   li {

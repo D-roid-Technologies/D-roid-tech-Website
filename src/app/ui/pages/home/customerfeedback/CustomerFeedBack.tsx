@@ -20,6 +20,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../../utils/constant/Variants";
 import { TESTIMONIALS } from "../../../../utils/constant/Testimonial";
 import testimonialImage from "../../../../images/png/home-testinomial-bg.png";
+import ButtonAlt from "../../../components/button-alt/ButtonAlt";
 
 const CustomerFeedBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const CustomerFeedBack: React.FunctionComponent = () => {
         </div>
       </div>
       <div className="contact-uss">
-        <div className="contactuss-button">
+        {/* <div className="contactuss-button">
           <Button
             bgColor="#071D6A"
             mTop={0}
@@ -87,7 +88,20 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               navigate("/contact");
             }}
           />
-        </div>
+        </div> */}
+        <ButtonAlt
+          // onClick={function (): void {
+          //   throw new Error("Function not implemented.");
+          // }}
+          style={{ background: "#071d69", color: "#fff" }}
+          href="/contact"
+        >
+          <FaBookReader
+            style={{ color: "#ffffff", marginRight: "10px" }}
+            className="style-home-icon"
+          />
+          See more testimonials
+        </ButtonAlt>
       </div>
 
       {/* SECTION FOUR */}
@@ -111,53 +125,49 @@ const CustomerFeedBack: React.FunctionComponent = () => {
               </p>
             </p>
             <div className="contact-buttons">
-              <div className="contactus-button-style">
-                <Button
-                  bgColor="#071D6A"
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="Send us an Email"
-                  color="#ffffff"
-                  fWeight={800}
-                  bRadius={5}
-                  bRadiusColor="#071D6A"
-                  icon={
-                    <IoMailUnread
-                      style={{ color: "#ffffff" }}
-                      className="style-home-icon"
-                    />
-                  }
-                  onClickButton={() => {
-                    window.location.href =
-                      "mailto:hr@droidtechinternational.com";
+              <ButtonAlt
+                // onClick={function (): void {
+                //   throw new Error("Function not implemented.");
+                // }}
+                style={{
+                  background: "#071d69",
+                  color: "#fff",
+                  marginBottom: "20px",
+                }}
+                href="mailto:hr@droidtechinternational.com"
+              >
+                <IoMailUnread
+                  style={{
+                    color: "#ffffff",
+                    marginRight: "10px",
+                    marginBottom: "-3px",
                   }}
+                  className="style-home-icon"
                 />
-              </div>
-              <div className="contactus-button-styles">
-                <Button
-                  bgColor="#071D6A"
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  title="WhatsApp Chat"
-                  color="#ffffff"
-                  fWeight={800}
-                  bRadius={5}
-                  bRadiusColor="#071D6A"
-                  icon={
-                    <IoLogoWhatsapp
-                      style={{ color: "#ffffff" }}
-                      className="icon-styles"
-                    />
-                  }
-                  onClickButton={() => {
-                    window.location.href = DATA.socialLinks.whatsapp;
+                Send us an email
+              </ButtonAlt>
+
+              <ButtonAlt
+                // onClick={function (): void {
+                //   throw new Error("Function not implemented.");
+                // }}
+                style={{
+                  background: "#071d69",
+                  color: "#fff",
+                  marginBottom: "20px",
+                }}
+                href={DATA.socialLinks.whatsapp}
+              >
+                <IoLogoWhatsapp
+                  style={{
+                    color: "#ffffff",
+                    marginRight: "10px",
+                    marginBottom: "-3px",
                   }}
+                  className="style-home-icon"
                 />
-              </div>
+                Whatsapp Chat
+              </ButtonAlt>
             </div>
           </article>
         </div>

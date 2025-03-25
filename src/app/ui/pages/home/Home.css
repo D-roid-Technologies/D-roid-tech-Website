@@ -1,6 +1,32 @@
-/* @import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
+@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular");
+
+* {
+  box-sizing: border-box; /* Ensures padding and borders are included in the width */
+}
+
+.rubik {
+  font-family: "Rubik";
+}
+
+.Courier {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.playpen {
+  font-family: "Playpen";
+}
+
+.letterspacing {
+  letter-spacing: 2px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll caused by extra width */
+}
 
 /* CONTENT */
 .home-main {
@@ -11,22 +37,6 @@
   height: 80vh;
 }
 
-/* .home-left {
-  flex: 1; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
-/* .home-right {
-  flex: 1; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem; 
-} */
-
 .banner-size {
   width: 300px;
   height: 300px;
@@ -34,36 +44,40 @@
   background-color: #fff9e9;
   border-radius: 50%;
 }
-.banner-one {
-  position: relative;
-  left: -5rem;
-  bottom: -7rem;
-}
-.banner-two {
-  position: relative;
-  left: -22rem;
-  top: -2.5rem;
-}
 
 .home-content {
   text-align: center;
   margin-bottom: 2rem;
 }
 
+.home_banner {
+  /* text-align: center; */
+  height: 550px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+  padding: 100px;
+}
+
+.home_banner img {
+  max-width: 200px;
+}
 .home-heading {
-  font-size: 3.8rem;
+  font-size: 3rem;
   letter-spacing: 3px;
-  text-align: center;
+  /* text-align: center; */
   font-weight: 700;
   color: #071d6a;
   /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
   font-family: "Rubik";
+  margin-bottom: 20px;
 }
 
 .product-button {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .See-our-product {
@@ -71,51 +85,45 @@
   cursor: pointer;
   width: 60%;
   margin-top: 20px;
-  transition: transform 0.3s ease-in-out;
+  /* transition: transform 0.3s ease-in-out; */
 }
 
-.See-our-product:hover {
+/* .See-our-product:hover {
   transform: scale(1.1);
-}
+} */
 
 /* home Banner css */
 .home-middle-banner {
-  background-color: #fbcc34;
+  background-color: #111724;
   width: 100%;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding: 0 100px;
   display: flex;
   height: 120px;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden; /* Prevent overflow */
-}
-
-.home-middle-one-icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
+  overflow: hidden;
 }
 
 .home-middle-one {
   display: flex;
   align-items: center;
-  gap: 10px;
-  animation: scroll 15s linear infinite;
+  gap: 20px;
+  white-space: nowrap;
+  animation: scroll 30s linear infinite;
+}
+
+.home-middle-one-icon {
+  width: 40px;
+  height: 40px;
+  color: #97a3b6;
 }
 
 .home-middle-one-p {
-  font-family: "Courier New", Courier, monospace;
   margin-top: 10px;
   font-size: 16px;
+  color: #97a3b6;
 }
-.icon-styles {
-  color: #000000;
-  width: 15px;
-  height: 15px;
-}
-/* home Banner css */
+
 @keyframes scroll {
   0% {
     transform: translateX(100%);
@@ -124,7 +132,6 @@
     transform: translateX(-100%);
   }
 }
-
 /* TABLET On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
 }
@@ -155,20 +162,15 @@
   .See-our-product {
     font-family: "Rubik";
     cursor: pointer;
-    width: 150%;
+    width: 100%;
     margin-top: 20px;
-    transition: transform 0.3s ease-in-out;
+    /* transition: trans  form 0.3s ease-in-out; */
   }
 
-  .See-our-product:hover {
+  /* .See-our-product:hover {
     transform: scale(1.1);
-  }
+  } */
   .home-middle-banner {
-    background-color: #fbcc34;
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
     height: 70px;
     justify-content: space-between;
     align-items: center;
@@ -190,12 +192,11 @@
   }
 
   .home-middle-one-p {
-    font-family: "Courier New", Courier, monospace;
-    margin-top: 5px;
     font-size: 12px;
   }
+
   .icon-styles {
-    color: #000000;
+    color: #203499;
     width: 15px;
     height: 15px;
   }

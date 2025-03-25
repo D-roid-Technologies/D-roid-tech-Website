@@ -12,6 +12,7 @@ import { softwareDevMain } from "../../../utils/constant/Data";
 import { useNavigate } from "react-router-dom";
 import { store } from "../../../redux/Store";
 import { updateToast } from "../../../redux/slices/AppEntrySlice";
+import ButtonAlt from "../../components/button-alt/ButtonAlt";
 
 const Software: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -22,11 +23,17 @@ const Software: React.FunctionComponent = () => {
   // const [notActive, setNotActivev] = useState<string>("#7C7C7C");
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#040711",
+        marginBottom: "-55px",
+        // paddingBottom: "20px",
+      }}
+    >
       <NavBar />
 
       {/* Home to software section */}
-      <div className="home-to-software">
+      <div className="home-to-software" style={{ marginTop: "40px" }}>
         <div className="software-banner">
           <section className="soft-banner">
             <h1 className="software-approach-heads">
@@ -63,7 +70,8 @@ const Software: React.FunctionComponent = () => {
           <h1
             style={{
               fontFamily: "Rubik",
-              color: "#071D6A",
+              color: "#97A3B6",
+              marginTop: "-20px",
               textShadow: "0px 4px 4px rgba(255, 177, 0, 0.25)",
             }}
             className="training-approach-head"
@@ -78,17 +86,40 @@ const Software: React.FunctionComponent = () => {
                 image={item.image}
                 content={item.desc}
                 actions={
-                  <Button
-                    title="Apply Now"
-                    bgColor="#fbcc34"
-                    color="#071d6a"
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    fWeight={600}
-                    bRadiusColor="#fbcc34"
-                    onClickButton={() => {
+                  // <Button
+                  //   title="Apply Now"
+                  //   bgColor="#fbcc34"
+                  //   color="#071d6a"
+                  //   mTop={0}
+                  //   mBottom={0}
+                  //   mLeft={0}
+                  //   mRight={0}
+                  //   fWeight={600}
+                  //   bRadiusColor="#fbcc34"
+                  //   onClickButton={() => {
+                  //     navigate("/details", {
+                  //       state: {
+                  //         title: item.title,
+                  //         image: item.image,
+                  //         desc: item.desc,
+                  //         procedure: item.procedure,
+                  //         category: item.category,
+                  //         tools: item.tools,
+                  //         price: item.price,
+                  //         currency: item.currency,
+                  //         path: "/software",
+                  //       },
+                  //     });
+                  //   }}
+                  // />
+                  <ButtonAlt
+                    style={{
+                      width: "100%",
+                      background: "#fbcc34",
+                      color: "#333",
+                      textAlign: "center",
+                    }}
+                    onClick={() =>
                       navigate("/details", {
                         state: {
                           title: item.title,
@@ -101,9 +132,11 @@ const Software: React.FunctionComponent = () => {
                           currency: item.currency,
                           path: "/software",
                         },
-                      });
-                    }}
-                  />
+                      })
+                    }
+                  >
+                    Apply Now
+                  </ButtonAlt>
                 }
               />
             ))}
@@ -113,7 +146,10 @@ const Software: React.FunctionComponent = () => {
 
       {/* Technologies and Tools Section */}
       <div className="technologiess" style={{ marginTop: "1rem" }}>
-        <h1 className="training-approach-head" style={{ marginTop: "2em" }}>
+        <h1
+          className="training-approach-head"
+          style={{ marginTop: "2em", color: Assets.colors.flat }}
+        >
           Technologies and Tools
         </h1>
         <div className="tech-contain">
@@ -172,7 +208,10 @@ const Software: React.FunctionComponent = () => {
 
       {/* Approach Section */}
       <div className="software-approach-main">
-        <h1 className="software-approach-head">
+        <h1
+          className="software-approach-head"
+          style={{ color: Assets.colors.flat }}
+        >
           5 Stages of our Software Development Process
         </h1>
         <ul className="software-approach-list">
@@ -239,7 +278,7 @@ const Software: React.FunctionComponent = () => {
         </ul>
         <div className="wantto-know">
           <div className="wantto-know-btn">
-            <Button
+            {/* <Button
               bgColor={"#ffb100"}
               mTop={0}
               mBottom={0}
@@ -252,7 +291,22 @@ const Software: React.FunctionComponent = () => {
               onClickButton={() => {
                 navigate("/contact", {});
               }}
-            />
+            /> */}
+            <ButtonAlt
+              style={{
+                width: "100%",
+                background: "#fbcc34",
+                color: "#333",
+                textAlign: "center",
+                fontSize: "1.2rem",
+              }}
+              onClick={() => navigate("/contact", {})}
+            >
+              Click to Contact Us
+            </ButtonAlt>
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </div>
