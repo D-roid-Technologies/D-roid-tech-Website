@@ -16,6 +16,7 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { TechTraining } from "../../../utils/constant/Data";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import TrainingHero from "../../components/traininghero/TrainingHero";
+import ButtonAlt from "../../components/button-alt/ButtonAlt";
 
 const photos: TrainingPhoto[] = [
   {
@@ -54,7 +55,7 @@ const Training: React.FC = () => {
   };
 
   return (
-    <div style={{ backgroundColor: getColor("light") }}>
+    <div style={{ backgroundColor: "#040711" }}>
       <NavBar />
       <TrainingHero />
       {/* <div
@@ -103,18 +104,18 @@ const Training: React.FC = () => {
       {/* Approach Section */}
 
       <div className="training-main-content-section">
-        <div style={{ textAlign: "center" }}>
+        {/* <div style={{ textAlign: "center" }}>
           <img
             src={Assets.images.trainingIconImage}
             alt=""
             style={{ fontSize: "15rem" }}
             className="icon"
           />
-        </div>
+        </div> */}
 
         <div className="training-approach-main-one">
           <h1
-            style={{ color: getColor("basic"), fontFamily: "Rubik" }}
+            style={{ color: Assets.colors.flat, fontFamily: "Rubik" }}
             className="training-approach-heads"
           >
             Training Programs
@@ -127,17 +128,14 @@ const Training: React.FC = () => {
                 image={item.image}
                 content={item.description}
                 actions={
-                  <Button
-                    title="See More Details"
-                    bgColor={"#fbcc34"}
-                    color={"#071d6a"}
-                    mTop={0}
-                    mBottom={0}
-                    mLeft={0}
-                    mRight={0}
-                    fWeight={700}
-                    bRadiusColor={"#fbcc34"}
-                    onClickButton={() => {
+                  <ButtonAlt
+                    style={{
+                      width: "100%",
+                      background: "#fbcc34",
+                      color: "#333",
+                      textAlign: "center",
+                    }}
+                    onClick={() =>
                       navigate("/details", {
                         state: {
                           title: item.title,
@@ -147,9 +145,11 @@ const Training: React.FC = () => {
                           procedure: item.applicationProcedure,
                           path: "/training",
                         },
-                      });
-                    }}
-                  />
+                      })
+                    }
+                  >
+                    See More Details
+                  </ButtonAlt>
                 }
               />
             ))}

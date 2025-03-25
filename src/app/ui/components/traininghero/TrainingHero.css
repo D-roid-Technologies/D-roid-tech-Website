@@ -3,7 +3,7 @@
   margin: 4rem 3rem;
   border-radius: 20px;
   height: 90vh;
-  background: rgba(107, 130, 215, 0.3);
+  background: #0b1321;
   /* box-shadow: 0px 4px 4px 0px rgba(7, 29, 106, 0.4); */
   /* background: #f5f5f5; Light background to match the image */
   display: flex;
@@ -26,7 +26,6 @@
 }
 
 .trinig-hero-head {
-  color: #ffb700; /* Updated to match the yellow text color */
   font-family: "Rubik", sans-serif;
   font-size: 3rem; /* Adjusted for better visibility */
   font-weight: 600;
@@ -41,9 +40,9 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.t-hero-btn:hover {
+/* .t-hero-btn:hover {
   transform: scale(1.1);
-}
+} */
 
 .training-hero-content {
   display: flex;

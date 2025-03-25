@@ -3,6 +3,7 @@ import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import { color, motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import "../../components/trainingApproach/TrainingApproach.css";
+import { Assets } from "../../../utils/constant/Assets";
 
 type ApproachItem = {
   title: string;
@@ -82,7 +83,7 @@ const TrainingApproach: React.FC = () => {
 
   const styles = {
     heading: {
-      color: getColor("basic"),
+      color: Assets.colors.flat,
       fontFamily: "Rubik",
       marginBottom: "1.5em",
     },
