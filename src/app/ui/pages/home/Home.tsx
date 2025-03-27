@@ -68,7 +68,7 @@ const Home: React.FunctionComponent = () => {
           </p>
         </div>
         <ButtonAlt href="https://calendly.com/droidtechint">
-          Schedule an Appointment
+          Schedule an Appointmentt
         </ButtonAlt>
       </div>
       <ProductSlider />
