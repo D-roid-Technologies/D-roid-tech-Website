@@ -1,6 +1,8 @@
 export const Assets = {
   images: {
     companyLogo: require("../../images/png/company-logo-removebg-preview.png"),
+    companyLogoTwo: require("../../images/png/company-logo-two.png"),
+    companyLogoTwoAlt: require("../../images/png/logo-alt.png"),
     companyLogoAlt: require("../../images/png/company-logo-alt.png"),
     // companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),

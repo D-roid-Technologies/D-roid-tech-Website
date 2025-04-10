@@ -1,189 +1,99 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "../navbar/NavBar.css";
-// Richard liteGrid CSS for responsiveness
-import "../liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { DATA } from "../../../utils/constant/Data";
-import { useNavigate } from "react-router-dom";
-import { FaSun, FaMoon } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
 import { HiMenu, HiX } from "react-icons/hi";
-import { CiMenuFries } from "react-icons/ci";
-import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { storage } from "../../../../firebase";
-import { listAll, ref, getDownloadURL } from "firebase/storage";
-import { url } from "inspector";
+import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 
-const NavBar: React.FunctionComponent = () => {
-  const [showDropDown, setShowDropDown] = React.useState<boolean>(false);
-  const [showMenuBtn, setShowMenuBtn] = React.useState<boolean>(false);
-  const [showMobileNav, setShowMobileNav] = React.useState<boolean>(false);
+const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
-
-  const imageListRef = ref(storage, "droidlogo/");
-  // console.log(companyLogo);
-
-  const dimension = useSelector((state: RootState) => state.dimension);
-  const navigate = useNavigate();
-  const { getColor, toggleTheme, isDarkMode } = useThemeColor();
-
-  const navMap = () => {
-    return DATA.navLinks.map((item, index) => {
-      return (
-        <li key={index} className="list-container">
-          <div
-            onClick={() => {
-              if (item.link === "More") {
-                setShowDropDown(!showDropDown);
-              } else {
-                navigate(item.path);
-                setShowMenuBtn(false);
-              }
-            }}
-            className="nav-list"
-            style={{
-              color:
-                window.location.pathname === item.path
-                  ? Assets.colors.substitute
-                  : Assets.colors.flat,
-            }}
-          >
-            {item.link}
-          </div>
-        </li>
-      );
-    });
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
-
-  const navMapMobile = () => {
-    return DATA.navLinks.map((item, index) => {
-      return (
-        <li key={index} className="list-container">
-          <div
-            onClick={() => {
-              if (item.link === "More") {
-                setShowMobileNav(!showMobileNav);
-              } else {
-                navigate(item.path);
-                setShowMenuBtn(false);
-              }
-            }}
-            className="nav-list"
-            style={{
-              color: Assets.colors.substitute,
-            }}
-          >
-            {item.link}
-          </div>
-        </li>
-      );
-    });
-  };
-
-  const dropDownLinks = () => {
-    return DATA.dropDownLinks.map((i, j) => {
-      return (
-        <li key={j} className="list-container">
-          <div
-            onClick={() => {
-              navigate(i.path);
-            }}
-            style={{
-              color:
-                window.location.pathname === i.path
-                  ? Assets.colors.primary
-                  : Assets.colors.substitute,
-            }}
-          >
-            {i.link}
-          </div>
-        </li>
-      );
-    });
-  };
-
-  useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((items) => {
-        getDownloadURL(items).then((url) => {
-          setCompanyLogo((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
 
   return (
-    <div className="wrapper-fluid">
-      <div className="nav-main">
-        <div
-          className="logo-image"
-          style={{ marginTop: "10px", cursor: "pointer" }}
-        >
-          <a
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            {companyLogo.length > 0 ? (
-              <img
-                src={companyLogo[0]}
-                alt="D'roid Logo"
-                width={60}
-                height={60}
-              />
-            ) : (
-              <>... Loading Image</>
-            )}
+    <nav className="navbar">
+      <div className="navbar-container">
+        {/* Left side - Logo */}
+        <a href="/" className="navbar-logo">
+          <img src={Assets.images.companyLogoTwoAlt} alt="D-roidTech Logo" />
+        </a>
+
+        {/* Desktop Navigation */}
+        <div className="desktop-nav">
+          <ul className="navbar-links">
+            <li>
+              <a href="/services">Services</a>
+            </li>
+            <li>
+              <a href="/success-stories">Success Stories</a>
+            </li>
+            <li>
+              <a href="/about">About</a>
+            </li>
+            <li>
+              <a href="/careers">Careers</a>
+            </li>
+            <li>
+              <a href="/resources">Resources</a>
+            </li>
+          </ul>
+          <a href="/start-a-project" className="navbar-cta">
+            Start a project
           </a>
         </div>
-        <div className="nav-link-container">
-          <ul className="list"> {navMap()} </ul>
-          <div>
-            <span className="version">{Assets.text.appVersion}</span>
-          </div>
-          <div className="icons-right">
-            {/* {isDarkMode ? (
-              <FaSun className="dark-mode" onClick={toggleTheme} />
-            ) : (
-              <FaMoon className="dark-mode" onClick={toggleTheme} />
-            )} */}
-            <CiMenuFries
-              className="menu-button"
-              onClick={() => setShowMenuBtn(true)}
-            />
-          </div>
-        </div>
-        {showDropDown ? (
-          <div className="drop-down-links">
-            <ul>{dropDownLinks()}</ul>
-          </div>
-        ) : null}
-        {showMenuBtn ? (
-          <>
-            <div className="mobile-nav">
-              <div style={{ display: "flex", justifyContent: "right" }}>
-                <HiX
-                  className="mobile-x"
-                  onClick={() => setShowMenuBtn(false)}
-                />
-              </div>
-              <ul>{navMapMobile()}</ul>
-              {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
-            </div>
-          </>
-        ) : null}
-        {showMenuBtn ? (
-          <div className={`mobile-nav ${showMenuBtn ? "active" : ""}`}>
-            <HiX className="mobile-x" onClick={() => setShowMenuBtn(false)} />
-            <ul>{navMapMobile()}</ul>
-            {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
-          </div>
-        ) : null}
+
+        {/* Mobile Menu Button */}
+        <button className="mobile-menu-button" onClick={toggleMenu}>
+          {isMenuOpen ? (
+            <HiX size={28} />
+          ) : (
+            <HiOutlineBars3CenterLeft size={28} />
+          )}
+        </button>
       </div>
-    </div>
+
+      {/* Mobile Navigation */}
+      <div className={`mobile-nav ${isMenuOpen ? "open" : ""}`}>
+        <ul>
+          <li>
+            <a href="/services" onClick={toggleMenu}>
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="/success-stories" onClick={toggleMenu}>
+              Success Stories
+            </a>
+          </li>
+          <li>
+            <a href="/about" onClick={toggleMenu}>
+              About
+            </a>
+          </li>
+          <li>
+            <a href="/careers" onClick={toggleMenu}>
+              Careers
+            </a>
+          </li>
+          <li>
+            <a href="/resources" onClick={toggleMenu}>
+              Resources
+            </a>
+          </li>
+          {/* <li>
+            <a
+              href="/start-a-project"
+              onClick={toggleMenu}
+              className="mobile-cta"
+            >
+              Start a project
+            </a>
+          </li> */}
+        </ul>
+      </div>
+    </nav>
   );
 };
 
-export default NavBar;
+export default Navbar;
