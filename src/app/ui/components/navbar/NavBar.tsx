@@ -1,26 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { HiMenu, HiX } from "react-icons/hi";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
+import { FaFacebook, FaLinkedin } from "react-icons/fa6";
+import { FaInstagramSquare } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav
+      className={`navbar ${isScrolled || isHovered ? "scrolled" : ""}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="navbar-container">
-        {/* Left side - Logo */}
+        {/* Logo */}
         <a href="/" className="navbar-logo">
           <img src={Assets.images.companyLogoTwoAlt} alt="D-roidTech Logo" />
         </a>
 
-        {/* Desktop Navigation */}
-        <div className="desktop-nav">
+        {/* Desktop Navigation Links */}
+        <div className="desktop-nav-links">
           <ul className="navbar-links">
             <li>
               <a href="/services">Services</a>
@@ -38,6 +55,10 @@ const Navbar: React.FC = () => {
               <a href="/resources">Resources</a>
             </li>
           </ul>
+        </div>
+
+        {/* CTA Button */}
+        <div className="desktop-cta">
           <a href="/start-a-project" className="navbar-cta">
             Start a project
           </a>
@@ -81,16 +102,18 @@ const Navbar: React.FC = () => {
               Resources
             </a>
           </li>
-          {/* <li>
-            <a
-              href="/start-a-project"
-              onClick={toggleMenu}
-              className="mobile-cta"
-            >
-              Start a project
-            </a>
-          </li> */}
         </ul>
+        <div className="social-icons">
+          <a href="">
+            <FaFacebook />
+          </a>{" "}
+          <a href="">
+            <FaLinkedin />
+          </a>{" "}
+          <a href="">
+            <FaInstagramSquare />
+          </a>
+        </div>
       </div>
     </nav>
   );

@@ -72,7 +72,7 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   // }, [location.pathname]); // Add location.pathname as a dependency to trigger on route change
 
   return (
-    <div style={{ backgroundColor: getColor("backgroundColor") }}>
+    <div>
       {modal && (
         <div className="modal-overlay">
           <div className="modal-inner">

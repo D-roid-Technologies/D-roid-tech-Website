@@ -1,7 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular");
-
 * {
   box-sizing: border-box; /* Ensures padding and borders are included in the width */
 }
@@ -41,7 +37,7 @@ body {
   width: 300px;
   height: 300px;
   object-fit: cover;
-  background-color: #fff9e9;
+  /* background-color: #fff9e9; */
   border-radius: 50%;
 }
 

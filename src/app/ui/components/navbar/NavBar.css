@@ -8,17 +8,26 @@
 .navbar {
   width: 100%;
   background-color: transparent;
-  position: relative;
+  position: fixed;
   z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Scroll and Hover Effect */
+.navbar.scrolled,
+.navbar:hover {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 28px 20px;
-  display: flex;
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
+  gap: 40px;
 }
 
 /* Logo */
@@ -26,14 +35,13 @@
   height: 40px;
   width: auto;
   z-index: 1001;
-  margin-top: 15px;
+  transition: all 0.3s ease;
 }
 
-/* Desktop Navigation */
-.desktop-nav {
+/* Desktop Navigation Links */
+.desktop-nav-links {
   display: flex;
-  align-items: center;
-  gap: 40px;
+  justify-content: center;
 }
 
 .navbar-links {
@@ -47,42 +55,69 @@
 .navbar-links a {
   text-decoration: none;
   color: #fff;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 700;
   transition: color 0.3s ease;
+  position: relative;
+  padding: 5px 0;
 }
 
 .navbar-links a:hover {
   color: #0073e6;
 }
 
+/* Change link colors when scrolled or hovered */
+.navbar.scrolled .navbar-links a,
+.navbar:hover .navbar-links a {
+  color: #000;
+}
+
+.navbar.scrolled .navbar-links a:hover,
+.navbar:hover .navbar-links a:hover {
+  color: #0073e6;
+}
+
 /* CTA Button */
+.desktop-cta {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .navbar-cta {
-  padding: 15px 30px;
-  background-color: transparent;
+  padding: 12px 28px;
+  background-color: #071d6a;
   color: white;
   text-decoration: none;
   font-weight: 600;
   border-radius: 50px;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  border: 1px solid #fff;
   font-size: 16px;
   white-space: nowrap;
 }
 
 .navbar-cta:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #0a2a8a;
+  transform: translateY(-2px);
 }
 
-/* Mobile Menu Button (hidden by default) */
+/* Mobile Menu Button */
 .mobile-menu-button {
   display: none;
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
+  margin-right: -10px;
   z-index: 1001;
+  color: #fff;
+  text-align: right !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .mobile-menu-button,
+.navbar:hover .mobile-menu-button {
+  color: #000;
 }
 
 /* Mobile Navigation */
@@ -92,12 +127,12 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.95);
-  z-index: 1000;
+  background-color: #fff;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: start; */
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 }
@@ -110,73 +145,78 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  gap: 10px;
   padding: 0;
   margin: 0;
   width: 100%;
 }
 
 .mobile-nav a {
-  color: white;
+  color: #000;
   text-decoration: none;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 700;
   transition: color 0.3s ease;
-  padding: 10px 0;
   display: block;
-  width: 100%;
-  text-align: left;
 }
 
 .mobile-nav a:hover {
   color: #0073e6;
 }
 
-.mobile-cta {
-  margin-top: 20px;
-  padding: 15px 30px;
-  border: 1px solid white;
-  border-radius: 50px;
-  font-size: 20px;
-}
-
 /* Responsive Styles */
-@media (max-width: 992px) {
-  .navbar-links {
-    gap: 20px;
+@media (max-width: 1024px) {
+  .navbar-container {
+    gap: 30px;
+    padding: 20px 30px;
   }
-  
-  .desktop-nav {
-    gap: 20px;
+
+  .navbar-links {
+    gap: 24px;
   }
 }
 
 @media (max-width: 768px) {
-  .desktop-nav {
+  .navbar-container {
+    grid-template-columns: auto 1fr auto;
+    padding: 15px 20px;
+  }
+
+  .desktop-nav-links,
+  .desktop-cta {
     display: none;
   }
-  
+
   .mobile-menu-button {
     display: block;
+  }
+
+  .navbar-logo img {
+    height: 35px;
   }
 }
 
 @media (max-width: 480px) {
-  .navbar-container {
-    padding: 20px 15px;
-  }
-  
-  .navbar-logo img {
-    height: 35px;
-  }
-  
   .mobile-nav a {
-    font-size: 22px;
+    font-size: 20px;
   }
-  
-  .mobile-cta {
-    font-size: 18px;
-    padding: 12px 24px;
+
+  .navbar-container {
+    padding: 12px 15px;
   }
 }
 
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  bottom: 15px;
+  position: fixed;
+  width: 100%;
+}
+
+.social-icons a {
+  color: #000;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}

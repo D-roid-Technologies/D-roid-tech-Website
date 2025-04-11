@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/constant/Variants";
 import ButtonAlt from "../../components/button-alt/ButtonAlt";
 import ProductSlider from "../../components/productSlider/ProductSlider";
+import CompanyCarousel from "../companycarousel/CompanyCarousel";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -37,10 +38,9 @@ const Home: React.FunctionComponent = () => {
   // const onFailedBody = "Your login was unsuccessful, kindly try again or contact your Admin!";
 
   return (
-    <div style={{ backgroundColor: "#040711" }}>
+    <div>
       <NavBar />
-      <div className="home_banner">
-        <img src={Assets.images.companyLogoAlt} alt="" />
+      {/* <div className="home_banner">
         <p
           className="home-heading align-center"
           style={{ color: Assets.colors.flat }}
@@ -70,10 +70,42 @@ const Home: React.FunctionComponent = () => {
         <ButtonAlt href="https://calendly.com/droidtechint">
           Schedule an Appointment
         </ButtonAlt>
-      </div>
-      <ProductSlider />
+      </div> */}
+      <CompanyCarousel />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      {/* <ProductSlider />
       <AboutSection />
-      <CustomerFeedBack />
+      <CustomerFeedBack /> */}
     </div>
   );
 };
