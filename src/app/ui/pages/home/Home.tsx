@@ -18,6 +18,7 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import ButtonAlt from "../../components/button-alt/ButtonAlt";
 import ProductSlider from "../../components/productSlider/ProductSlider";
 import CompanyCarousel from "../companycarousel/CompanyCarousel";
+import Intro from "./intro/Intro";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -72,6 +73,7 @@ const Home: React.FunctionComponent = () => {
         </ButtonAlt>
       </div> */}
       <CompanyCarousel />
+      <Intro />
       <br />
       <br />
       <br />

@@ -10,7 +10,9 @@
   box-sizing: border-box;
   font-family: "Red Hat Display", sans-serif;
 }
-
+html, body {
+  background-color: #F5F5F5 !important;
+}
 :root {
   /* Variables for heading */
   --heading-line-height: 1.2;

@@ -40,19 +40,42 @@ const Navbar: React.FC = () => {
         <div className="desktop-nav-links">
           <ul className="navbar-links">
             <li>
-              <a href="/services">Services</a>
-            </li>
-            <li>
-              <a href="/success-stories">Success Stories</a>
-            </li>
-            <li>
               <a href="/about">About</a>
+            </li>
+            <li>
+              <a href="/services">Services</a>
+              {/* make a dropdown 
+             software develpment
+              our training*/}
+            </li>
+            <li>
+              <a href="/resources">Resources</a>
+              {/* make a dropdown 
+              
+              toolbox
+              calculate
+              schedule
+              muzik
+              kontact --
+              kc
+              npm product
+             */}
             </li>
             <li>
               <a href="/careers">Careers</a>
             </li>
+
+            {/* <li>
+              <a href="/success-stories">Success Stories</a>
+            </li> */}
             <li>
-              <a href="/resources">Resources</a>
+              <a href="/success-stories">More</a>
+              {/* make a dropdown 
+              
+           Our Blog
+           Success Stories
+           Events
+             */}
             </li>
           </ul>
         </div>
@@ -62,6 +85,8 @@ const Navbar: React.FC = () => {
           <a href="/start-a-project" className="navbar-cta">
             Start a project
           </a>
+
+          {/* show user countty flag and short code  */}
         </div>
 
         {/* Mobile Menu Button */}
@@ -76,7 +101,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Navigation */}
       <div className={`mobile-nav ${isMenuOpen ? "open" : ""}`}>
-        <ul>
+        {/* <ul>
           <li>
             <a href="/services" onClick={toggleMenu}>
               Services
@@ -101,6 +126,43 @@ const Navbar: React.FC = () => {
             <a href="/resources" onClick={toggleMenu}>
               Resources
             </a>
+          </li>
+        </ul> */}
+        <ul>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/services">Services</a>
+            {/* make a dropdown 
+             software develpment
+              our training*/}
+          </li>
+          <li>
+            <a href="/resources">Resources</a>
+            {/* make a dropdown 
+              
+              toolbox
+              calculate
+              schedule
+              muzik
+              kontact --
+              kc
+              npm product
+             */}
+          </li>
+          <li>
+            <a href="/careers">Careers</a>
+          </li>
+
+          <li>
+            <a href="/success-stories">More</a>
+            {/* make a dropdown 
+              
+           Our Blog
+           Success Stories
+           Events
+             */}
           </li>
         </ul>
         <div className="social-icons">

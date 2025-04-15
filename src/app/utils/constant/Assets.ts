@@ -6,6 +6,7 @@ export const Assets = {
     companyLogoAlt: require("../../images/png/company-logo-alt.png"),
     // companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),
+    lightBulb: require("../../images/png/light-bulb.png"),
     homeBannerone: require("../../images/png/home-banner-one.png"),
     homeBannerSlideOne: require("../../images/png/blue-gradient-slant-bg.png"),
     homeBannerSlideTwo: require("../../images/png/background20.png"),
