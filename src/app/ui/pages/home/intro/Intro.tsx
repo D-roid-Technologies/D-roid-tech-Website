@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./intro.css";
 import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
+import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
 
 const Intro: React.FC = () => {
   const [counters, setCounters] = useState({
@@ -139,42 +140,31 @@ const Intro: React.FC = () => {
           <span className="title_span" style={{ marginLeft: "20px" }}>
             CORE VALUES
           </span>
+          {/* Take out these br's and use margin bottom instead on he div below */}
           <br />
           <br />
           <div className="group mt-4">
-            <div className="block-12 block-md-4 core_value">
-              <img src={Assets.images.trustImg} alt="" />
-
-              <h1>Integrity</h1>
-              <p>
-                At D'roid Technologies, integrity is the cornerstone of our
-                operations. We are committed to conducting our business with the
-                highest ethical standards, ensuring transparency, honesty, and
-                accountability in all our interactions.
-              </p>
-            </div>
-            <div className="block-12 block-md-4 core_value">
-              <img src={Assets.images.innovationImg} alt="" />
-
-              <h1>Innovation</h1>
-              <p>
-                At D'roid Technologies, innovation is at the heart of everything
-                we do. We are committed to pushing the boundaries of technology
-                to deliver groundbreaking solutions that drive progress and
-                create new opportunities.
-              </p>
-            </div>
-            <div className="block-12 block-md-4 core_value">
-              <img src={Assets.images.customerImg} alt="" />
-
-              <h1>Customer focus</h1>
-              <p>
-                At D'roid Technologies, innovation is at the heart of everything
-                we do. We are committed to pushing the boundaries of technology
-                to deliver groundbreaking solutions that drive progress and
-                create new opportunities.
-              </p>
-            </div>
+            <CoreValueCard
+              imageSrc={Assets.images.trustImg}
+              title="Integrity"
+              description="At D'roid Technologies, integrity is the cornerstone of our operations. We are committed to conducting our business with the highest ethical standards, ensuring transparency, honesty, and accountability in all our interactions."
+            />
+            <CoreValueCard
+              imageSrc={Assets.images.innovationImg}
+              title="Innovation"
+              description="At D'roid Technologies, innovation is at the heart of everything
+              we do. We are committed to pushing the boundaries of technology
+              to deliver groundbreaking solutions that drive progress and
+              create new opportunities."
+            />
+            <CoreValueCard
+              imageSrc={Assets.images.customerImg}
+              title="Customer focus"
+              description="At D'roid Technologies, innovation is at the heart of everything
+              we do. We are committed to pushing the boundaries of technology
+              to deliver groundbreaking solutions that drive progress and
+              create new opportunities."
+            />
           </div>
         </div>
       </div>
