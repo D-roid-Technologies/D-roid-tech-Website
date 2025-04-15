@@ -27,6 +27,7 @@ import Dome from "../ui/pages/animations/dome/Dome";
 import WebOverview from "../ui/pages/website/weboverview/WebOverview";
 import Project from "../ui/pages/website/project/Project";
 import WebFoarm from "../ui/pages/website/webfoarm/WebFoarm";
+import StartProjectPage from "../ui/pages/startproject/StartProjectPage";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -44,6 +45,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/software" element={<Software />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/StartProjectPage" element={<StartProjectPage />} />
         <Route path="/trainingprograms" element={<TrainingPrograms />} />
         <Route
           path="/training/course-detail/:courseId"
