@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
         <div className="desktop-nav-links">
           <ul className="navbar-links">
             <li>
-              <a href="/about">About</a>
+              <a href="aboutus">About</a>
             </li>
             <li>
               <a href="/services">Services</a>
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
 
         {/* CTA Button */}
         <div className="desktop-cta">
-          <a href="/start-a-project" className="navbar-cta">
+          <a href="StartProjectPage" className="navbar-cta">
             Start a project
           </a>
 
@@ -130,7 +130,7 @@ const Navbar: React.FC = () => {
         </ul> */}
         <ul>
           <li>
-            <a href="/about">About</a>
+            <a href="aboutus">About</a>
           </li>
           <li>
             <a href="/services">Services</a>

@@ -5,6 +5,7 @@ import { AppEntrySlice } from "./slices/AppEntrySlice";
 import themeReducer from "./slices/ThemeSlice";
 import { ContactSlice } from "./slices/ContactSlice";
 import { TestimonialSlice } from "./slices/TestimonialSlice";
+import { projectSlice } from "./slices/projectSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     contact: ContactSlice.reducer,
     testimonial: TestimonialSlice.reducer,
     theme: themeReducer,
+    projects: projectSlice.reducer
   },
 });
 

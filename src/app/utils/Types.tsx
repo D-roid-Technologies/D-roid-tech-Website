@@ -204,3 +204,15 @@ export type GeolocatedProps = {
   } | null;
   // positionError: PositionError | null;
 };
+
+export type Project = {
+  id: string;
+  title: string;
+  status: "Completed" | "Ongoing" | "In Communication";
+  descriptionUrl: string;
+  summary: string;
+  startDate: string;
+  endDate?: string;
+  client: string;
+  team: string[];
+};
