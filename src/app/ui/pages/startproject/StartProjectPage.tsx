@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
 import { RootState } from "../../../redux/Store";
 import { Project } from "../../../utils/Types";
+import { CiBrightnessDown } from "react-icons/ci";
 
 type Tool = string;
 
@@ -123,6 +124,7 @@ const StartProjectPage: React.FC = () => {
                             onChange={handleChange}
                             value={form.fullName}
                             variant="filled"
+                            startAdornment={<CiBrightnessDown />}
                         />
                     </div>
 
