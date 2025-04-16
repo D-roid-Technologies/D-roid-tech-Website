@@ -13,7 +13,7 @@ export const Assets = {
     homeBannerone: require("../../images/png/home-banner-one.png"),
     homeBannerSlideOne: require("../../images/png/blue-gradient-slant-bg.png"),
     homeBannerSlideTwo: require("../../images/png/background20.png"),
-    homeBannerSlideThree: require("../../images/png/background21.png"),
+    homeBannerSlideThree: require("../../images/png/6402709_3242104.jpg"),
     homeBannertwo: require("../../images/png/home-banner-two.png"),
     aboutImage: require("../../images/png/about-image.png"),
 
