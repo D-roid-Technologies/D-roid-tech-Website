@@ -11,6 +11,7 @@ import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
 import { FaFigma, FaPython, FaReact } from "react-icons/fa6";
 import { IoLogoNodejs } from "react-icons/io5";
 import { SiMysql, SiTypescript } from "react-icons/si";
+import { title } from "process";
 
 type Tool = {
     name: string;
@@ -185,21 +186,16 @@ const StartProjectPage: React.FC = () => {
             </div>
 
             {/* Section 3: Tools */}
-            <div>
+            <div className="wrapper" style={{ padding: "20px" }}>
+                <br />
                 <span className="title_span" style={{ marginLeft: "20px" }}>
-                    Tools We Use
+                    TOOLS WE USE
                 </span>
-
-                <div
-                    className="wrapper"
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
-                        gap: "20px",
-                        padding: "20px",
-                    }}
-                >
-                    {tools.map((tool, index) => (
+                {/* Take out these br's and use margin bottom instead on he div below */}
+                <br />
+                <br />
+                <div className="group mt-4">
+                    {tools.map((tool) => (
                         <CoreValueCard
                             imageSrc={tool.icon}
                             title={tool.name}

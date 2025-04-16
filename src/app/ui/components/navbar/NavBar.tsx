@@ -32,17 +32,21 @@ const Navbar: React.FC = () => {
     services: [
       { title: "Software Development", link: "/software-development" },
       { title: "Training Programs", link: "/training" },
+      { title: "Animation / Short Stories", link: "/training" },
       { title: "Consulting", link: "/consulting" },
     ],
     resources: [
       { title: "Toolbox", link: "/toolbox" },
-      { title: "Calculators", link: "/calculators" },
-      { title: "Product Suite", link: "/products" },
+      { title: "Calculate", link: "/calculators" },
+      { title: "Schedules", link: "/products" },
+      { title: "Muzik", link: "/products" },
+      { title: "Knowledge City", link: "/products" },
     ],
     more: [
-      { title: "Our Blog", link: "/blog" },
-      { title: "Success Stories", link: "/success-stories" },
-      { title: "Events", link: "/events" },
+      { title: "D'roid Journal", link: "/blog" },
+      { title: "Product Suite", link: "/products" },
+      // { title: "Success Stories", link: "/success-stories" },
+      // { title: "Events", link: "/events" },
     ],
   };
 
@@ -163,9 +167,8 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-services" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -194,9 +197,8 @@ const Navbar: React.FC = () => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-resources" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -230,9 +232,8 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-more" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
