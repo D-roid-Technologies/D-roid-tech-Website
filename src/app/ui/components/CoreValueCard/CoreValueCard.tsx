@@ -6,7 +6,11 @@ type CoreValueCardProps = {
   description: string;
 };
 
-const CoreValueCard: React.FC<CoreValueCardProps> = ({ imageSrc, title, description }) => {
+const CoreValueCard: React.FC<CoreValueCardProps> = ({
+  imageSrc,
+  title,
+  description,
+}) => {
   return (
     <div className="block-12 block-md-4 core_value">
       <img src={imageSrc} alt={title || "core value"} />
