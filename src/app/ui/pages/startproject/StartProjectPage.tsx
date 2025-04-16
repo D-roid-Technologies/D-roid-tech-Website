@@ -2,14 +2,54 @@
 import NavBar from "../../components/navbar/NavBar";
 import { DroidInput } from "@droid-tech/react-droidinput";
 import { useSelector } from "react-redux";
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
+import React, { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
 import { RootState } from "../../../redux/Store";
 import { Project } from "../../../utils/Types";
 import { CiBrightnessDown } from "react-icons/ci";
+import { Assets } from "../../../utils/constant/Assets";
+import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
+import { FaFigma, FaPython, FaReact } from "react-icons/fa6";
+import { IoLogoNodejs } from "react-icons/io5";
+import { SiMysql, SiTypescript } from "react-icons/si";
 
-type Tool = string;
+type Tool = {
+    name: string;
+    desc: string;
+    icon: React.ReactNode;
+};
 
-const tools: Tool[] = ["React", "Node.js", "Figma", "TypeScript", "MongoDB", "Docker"];
+const tools: Tool[] = [
+    {
+        name: "React Js",
+        desc: "A JavaScript library for building fast, interactive user interfaces, mainly for web apps. Built by Facebook, it uses components and a virtual DOM for efficient rendering.",
+        icon: <FaReact />
+    },
+    {
+        name: "Node.js",
+        desc: "A runtime environment that allows JavaScript to run on the server-side. Great for building scalable backend services like APIs and real-time apps.",
+        icon: <IoLogoNodejs />
+    },
+    {
+        name: "Figma",
+        desc: "A browser-based design tool used for UI/UX design and prototyping. Loved for its real-time collaboration and ease of use for teams.",
+        icon: <FaFigma />
+    },
+    {
+        name: "TypeScript",
+        desc: "A superset of JavaScript that adds static typing. Helps catch errors early and makes your code more robust and easier to maintain.",
+        icon: <SiTypescript />
+    },
+    {
+        name: "Python",
+        desc: "A versatile, beginner-friendly programming language known for its clean syntax. Widely used in data science, web development, AI, automation, and more.",
+        icon: <FaPython />
+    },
+    {
+        name: "SQL",
+        desc: "Structured Query Language — used for managing and querying relational databases. Essential for tasks like data retrieval, insertion, and updates.",
+        icon: <SiMysql />
+    }
+];
 
 const StartProjectPage: React.FC = () => {
     const projects = useSelector((state: RootState) => state.projects.projects);
@@ -67,12 +107,61 @@ const StartProjectPage: React.FC = () => {
             <NavBar />
 
             {/* Section 1: Intro */}
-            <div>
-                <h1>Start a Project With Us</h1>
-                <p>Kick off your next big idea with D'roid Technologies.</p>
+            <div style={{
+                backgroundImage: `url(${Assets.images.homeBannerSlideOne})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                height: "60vh",
+                alignItems: "center",
+                // justifyContent: "center",
+                display: "flex",
+                paddingLeft: "60px"
+            }}
+            // className="slide-content"
+            >
                 <div>
-                    <button>Schedule an Appointment</button>
-                    <button>Contact Us</button>
+                    <h1 style={{
+                        fontSize: "5rem",
+                        fontWeight: "900",
+                        marginBottom: "20px",
+                        textShadow: "rgba(0, 0, 0, 0.5)",
+                        color: "#ffffff"
+                    }}>Start a Project With Us</h1>
+                    <p style={{
+                        fontSize: "1.5rem",
+                        lineHeight: "1.6",
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+                        color: "#ffffff"
+                    }}>Kick start your next big idea with D'roid Technologies.</p>
+                    <div style={{
+                        display: "flex",
+                        gap: "20px",
+                        alignItems: "center"
+                    }}>
+                        <div
+                            style={{ display: "flex", gap: "20px", marginTop: "30px" }}
+                        >
+                            <a
+                                href="/start-a-project"
+                                style={{ backgroundColor: "#fff", color: "#071d6a" }}
+                                className="navbar-cta"
+                            >
+                                Schedule an Appointment
+                            </a>
+                        </div>
+                        <div
+                            style={{ display: "flex", gap: "20px", marginTop: "30px" }}
+                        >
+                            <a
+                                href="/start-a-project"
+                                style={{ backgroundColor: "#fff", color: "#071d6a" }}
+                                className="navbar-cta"
+                            >
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -97,13 +186,30 @@ const StartProjectPage: React.FC = () => {
 
             {/* Section 3: Tools */}
             <div>
-                <h2>Tools We Use</h2>
-                <ul>
+                <span className="title_span" style={{ marginLeft: "20px" }}>
+                    Tools We Use
+                </span>
+
+                <div
+                    className="wrapper"
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+                        gap: "20px",
+                        padding: "20px",
+                    }}
+                >
                     {tools.map((tool, index) => (
-                        <li key={index}>{tool}</li>
+                        <CoreValueCard
+                            imageSrc={tool.icon}
+                            title={tool.name}
+                            description={tool.desc}
+                        />
                     ))}
-                </ul>
+                </div>
             </div>
+
+
 
             {/* Section 4: Contact Form */}
             <div>
