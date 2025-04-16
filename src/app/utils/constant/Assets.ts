@@ -9,6 +9,7 @@ export const Assets = {
     lightBulb: require("../../images/png/light-bulb.png"),
     trustImg: require("../../images/png/trust.png"),
     innovationImg: require("../../images/png/energy-saving.png"),
+    teamImg: require("../../images/png/team_img.jpg"),
     customerImg: require("../../images/png/client.png"),
     homeBannerone: require("../../images/png/home-banner-one.png"),
     homeBannerSlideOne: require("../../images/png/blue-gradient-slant-bg.png"),
@@ -103,6 +104,7 @@ export const Assets = {
     maximuspage: require("../../images/png/Maximuspage.jpg"),
     drizzle: require("../../images/png/drizzlepage.jpg"),
     cashBasket: require("../../images/png/newcashbasket.png"),
+    npm: require("../../images/png/npm.png"),
     knowledgecity: require("../../images/png/knowledge-product-image.png"),
     dome: require("../../images/png/dome.png"),
 
