@@ -24,7 +24,7 @@ const Intro: React.FC = () => {
           }
         });
       },
-      { threshold: 0.5 } // Trigger when 50% of component is visible
+      { threshold: 0.15 }
     );
 
     if (introRef.current) {
