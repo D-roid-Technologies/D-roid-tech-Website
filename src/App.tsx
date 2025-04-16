@@ -12,8 +12,7 @@ function App() {
   // The App.js file
   return (
     <Provider store={store}>
-      {/* <AppEntry /> */}
-      <ConsultingPage/>
+      <AppEntry />
     </Provider>
   );
 }
