@@ -19,6 +19,7 @@ import ButtonAlt from "../../components/button-alt/ButtonAlt";
 import ProductSlider from "../../components/productSlider/ProductSlider";
 import CompanyCarousel from "../companycarousel/CompanyCarousel";
 import Intro from "./intro/Intro";
+import Products from "../products/Products";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -74,35 +75,7 @@ const Home: React.FunctionComponent = () => {
       </div> */}
       <CompanyCarousel />
       <Intro />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <Products />
       <br />
 
       {/* <ProductSlider />

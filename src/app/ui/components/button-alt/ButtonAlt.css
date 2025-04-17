@@ -1,15 +1,15 @@
 .buttonAlt {
-  padding: 0.8em 1.6em;
-  font-size: 1 rem;
+  padding: 12px 28px;
   background-color: #071d6a;
-  color: #97a3b6;
-  border: none;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s ease;
+  color: white;
   text-decoration: none;
-  margin-top: 30px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  white-space: nowrap;
+  outline: none;
+  border: none;
 }
 
 .buttonAlt:disabled {

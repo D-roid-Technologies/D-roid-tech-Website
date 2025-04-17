@@ -1,25 +1,25 @@
 import React from "react";
 
 type CoreValueCardProps = {
-  imageSrc?: string;
-  title: string | undefined;
-  description: string | undefined;
-  link?: string | undefined;
+  imageSrc: string | React.ReactNode;
+  title: string;
+  description: string;
 };
 
 const CoreValueCard: React.FC<CoreValueCardProps> = ({
   imageSrc,
   title,
   description,
-  link,
 }) => {
   return (
     <div className="block-12 block-md-4 core_value">
-      <img src={imageSrc} alt={title || "core value"} />
+      {typeof imageSrc === "string" ? (
+        <img src={imageSrc} alt={title || "core value"} />
+      ) : (
+        imageSrc
+      )}
       <h1>{title}</h1>
       <p>{description}</p>
-      {/* <p>{descriptionUrl}</p> */}
-      <p>{link}</p>
     </div>
   );
 };

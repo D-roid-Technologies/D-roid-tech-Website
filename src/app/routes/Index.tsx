@@ -28,6 +28,18 @@ import WebOverview from "../ui/pages/website/weboverview/WebOverview";
 import Project from "../ui/pages/website/project/Project";
 import WebFoarm from "../ui/pages/website/webfoarm/WebFoarm";
 import StartProjectPage from "../ui/pages/startproject/StartProjectPage";
+import CareersPage from "../ui/pages/careers/CareersPage";
+import SoftwareDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwareDevelopmentPage";
+import ConsultingPage from "../ui/pages/consultingPage/ConsltingPage";
+import AnimationPage from "../ui/pages/animationPage/AnimationPage";
+import TrainingProgramsPage from "../ui/pages/trainingPrograms/TrainingProgramsPage";
+import ToolBoxPage from "../ui/pages/toolboxpage/ToolBoxPage";
+import CalculatorPage from "../ui/pages/calculator/CalculatorPage";
+import SchedulePage from "../ui/pages/schedule/SchedulePage";
+import Muzik from "../ui/pages/muzik/Muzik";
+import KnowledgeCity from "../ui/pages/animations/knowledgecity/KnowledgeCity";
+import DroidJournalPage from "../ui/pages/DroidJournal/DroidJournalPage";
+import Products from "../ui/pages/products/Products";
 
 const Index: React.FunctionComponent<RouterType> = ({ width }) => {
   return (
@@ -35,6 +47,30 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/StartProjectPage" element={<StartProjectPage />} />
+
+        {/* Services Dropdown Routes */}
+        <Route
+          path="/software-development"
+          element={<SoftwareDevelopmentPage />}
+        />
+        <Route path="/training" element={<TrainingProgramsPage />} />
+        <Route path="/animation" element={<AnimationPage />} />
+        <Route path="/consulting" element={<ConsultingPage />} />
+
+        {/* Resources Dropdown Routes */}
+        <Route path="/toolbox" element={<ToolBoxPage />} />
+        <Route path="/calculators" element={<CalculatorPage />} />
+        <Route path="/schedules" element={<SchedulePage />} />
+        <Route path="/muzik" element={<Muzik />} />
+        <Route path="/knowledge-city" element={<KnowledgeCity />} />
+
+        {/* More Dropdown Routes */}
+        <Route path="/blog" element={<DroidJournalPage />} />
+        <Route path="/products" element={<Products />} />
+
+        {/* Existing Routes */}
         <Route path="/products" element={<Animation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/training" element={<Training />} />
@@ -45,7 +81,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/software" element={<Software />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/details" element={<Details />} />
-        <Route path="/StartProjectPage" element={<StartProjectPage />} />
+        {/* <Route path="/StartProjectPage" element={<StartProjectPage />} /> */}
         <Route path="/trainingprograms" element={<TrainingPrograms />} />
         <Route
           path="/training/course-detail/:courseId"
@@ -67,6 +103,7 @@ const Index: React.FunctionComponent<RouterType> = ({ width }) => {
         <Route path="/weboverview" element={<WebOverview />} />
         <Route path="/project" element={<Project />} />
         <Route path="/webfoarm" element={<WebFoarm />} />
+        <Route path="/services" element={<WebFoarm />} />
       </Routes>
     </BrowserRouter>
   );

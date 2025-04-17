@@ -1,7 +1,7 @@
 import NavBar from "../../components/navbar/NavBar";
 import { DroidInput } from "@droid-tech/react-droidinput";
 import { useSelector } from "react-redux";
-import {
+import React, {
   JSXElementConstructor,
   Key,
   ReactElement,
@@ -12,19 +12,50 @@ import {
 import { RootState } from "../../../redux/Store";
 import { Project } from "../../../utils/Types";
 import { CiBrightnessDown } from "react-icons/ci";
-import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
 import { Assets } from "../../../utils/constant/Assets";
-import "../../pages/startproject/StartProject.css";
+import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
+import { FaFigma, FaPython, FaReact } from "react-icons/fa6";
+import { IoLogoNodejs } from "react-icons/io5";
+import { SiMysql, SiTypescript } from "react-icons/si";
+import { title } from "process";
 
-type Tool = string;
+type Tool = {
+  name: string;
+  desc: string;
+  icon: React.ReactNode;
+};
 
 const tools: Tool[] = [
-  "React",
-  "Node.js",
-  "Figma",
-  "TypeScript",
-  "MongoDB",
-  "Docker",
+  {
+    name: "React Js",
+    desc: "A JavaScript library for building fast, interactive user interfaces, mainly for web apps. Built by Facebook, it uses components and a virtual DOM for efficient rendering.",
+    icon: <FaReact />,
+  },
+  {
+    name: "Node.js",
+    desc: "A runtime environment that allows JavaScript to run on the server-side. Great for building scalable backend services like APIs and real-time apps.",
+    icon: <IoLogoNodejs />,
+  },
+  {
+    name: "Figma",
+    desc: "A browser-based design tool used for UI/UX design and prototyping. Loved for its real-time collaboration and ease of use for teams.",
+    icon: <FaFigma />,
+  },
+  {
+    name: "TypeScript",
+    desc: "A superset of JavaScript that adds static typing. Helps catch errors early and makes your code more robust and easier to maintain.",
+    icon: <SiTypescript />,
+  },
+  {
+    name: "Python",
+    desc: "A versatile, beginner-friendly programming language known for its clean syntax. Widely used in data science, web development, AI, automation, and more.",
+    icon: <FaPython />,
+  },
+  {
+    name: "SQL",
+    desc: "Structured Query Language — used for managing and querying relational databases. Essential for tasks like data retrieval, insertion, and updates.",
+    icon: <SiMysql />,
+  },
 ];
 
 const StartProjectPage: React.FC = () => {
@@ -70,73 +101,112 @@ const StartProjectPage: React.FC = () => {
     }
   };
 
-  //   const renderProjectsByStatus = (status: Project["status"]) =>
-  //     projects
-  //       .filter((project: { status: string }) => project.status === status)
-  //       .map(
-  //         (project: {
-  //           id: Key | null | undefined;
-  //           title:
-  //             | string
-  //             | number
-  //             | boolean
-  //             | ReactElement<any, string | JSXElementConstructor<any>>
-  //             | Iterable<ReactNode>
-  //             | ReactPortal
-  //             | null
-  //             | undefined;
-  //           descriptionUrl: string | undefined;
-  //           link: string | undefined;
-  //         }) => (
-  //   <CoreValueCard
-  //           //     title={project.title}
-  //           //     description={project.descriptionUrl}
-  //           //     link={}
-  //           //   />
-  //           <div key={project.id} className="border p-3 rounded-md mb-2">
-  //             {/* <img src={project.image}/> */}
-  //             <h4 className="text-lg font-semibold">{project.title}</h4>
-  //             <a
-  //               href={project.descriptionUrl}
-  //               className="text-blue-600 underline"
-  //             >
-  //               View Description
-  //             </a>
-  //           </div>
-  //
-  //         )
-  //       );
+  const renderProjectsByStatus = (status: Project["status"]) =>
+    projects
+      .filter((project: { status: string }) => project.status === status)
+      .map(
+        (project: {
+          id: Key | null | undefined;
+          title:
+            | string
+            | number
+            | boolean
+            | ReactElement<any, string | JSXElementConstructor<any>>
+            | Iterable<ReactNode>
+            | ReactPortal
+            | null
+            | undefined;
+          descriptionUrl: string | undefined;
+        }) => (
+          <div key={project.id} className="border p-3 rounded-md mb-2">
+            {/* <img src={project.image}/> */}
+            <h4 className="text-lg font-semibold">{project.title}</h4>
+            <a
+              href={project.descriptionUrl}
+              className="text-blue-600 underline"
+            >
+              View Description
+            </a>
+          </div>
+        )
+      );
 
   return (
     <div>
       <NavBar />
 
       {/* Section 1: Intro */}
-      <section className="company-carousels">
-        <div className="carousel-tracks">
-          <div
-            className="slides"
+      <div
+        style={{
+          backgroundImage: `url(${Assets.images.homeBannerSlideOne})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "60vh",
+          alignItems: "center",
+          // justifyContent: "center",
+          display: "flex",
+          paddingLeft: "60px",
+        }}
+        // className="slide-content"
+      >
+        <div>
+          <h1
             style={{
-              backgroundImage: `url(${Assets.images.homeBannerSlideOne})`,
+              fontSize: "5rem",
+              fontWeight: "900",
+              marginBottom: "20px",
+              textShadow: "rgba(0, 0, 0, 0.5)",
+              color: "#ffffff",
             }}
           >
-            <div className="slide-overlays"></div>
-            <div className="slide-contents">
-              <h2>Start a Project With Us</h2>
-              <p>Kick off your next big idea with D'roid Technologies.</p>
-              <div>
-                <button>Schedule an Appointment</button>
-                <button>Contact Us</button>
-              </div>
+            Start a Project With Us
+          </h1>
+          <p
+            style={{
+              fontSize: "1.5rem",
+              lineHeight: "1.6",
+              textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+              color: "#ffffff",
+            }}
+          >
+            Kick start your next big idea with D'roid Technologies.
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+              <a
+                href="/start-a-project"
+                style={{ backgroundColor: "#fff", color: "#071d6a" }}
+                className="navbar-cta"
+              >
+                Schedule an Appointment
+              </a>
+            </div>
+            <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+              <a
+                href="/start-a-project"
+                style={{ backgroundColor: "#fff", color: "#071d6a" }}
+                className="navbar-cta"
+              >
+                Contact Us
+              </a>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Section 2: Projects */}
-      <div>
-        <h2>Projects</h2>
-        {/* <div>
+      <div className="wrapper" style={{ padding: "20px" }}>
+        <h2 className="title_span" style={{ marginLeft: "20px" }}>
+          Projects
+        </h2>
+        <div className="group mt-4">
           <div>
             <h3>Completed</h3>
             {renderProjectsByStatus("Completed")}
@@ -149,17 +219,27 @@ const StartProjectPage: React.FC = () => {
             <h3>In Communication</h3>
             {renderProjectsByStatus("In Communication")}
           </div>
-        </div> */}
+        </div>
       </div>
 
       {/* Section 3: Tools */}
-      <div>
-        <h2>Tools We Use</h2>
-        <ul>
-          {tools.map((tool, index) => (
-            <li key={index}>{tool}</li>
+      <div className="wrapper" style={{ padding: "20px" }}>
+        <br />
+        <span className="title_span" style={{ marginLeft: "20px" }}>
+          TOOLS WE USE
+        </span>
+        {/* Take out these br's and use margin bottom instead on he div below */}
+        <br />
+        <br />
+        <div className="group mt-4">
+          {tools.map((tool) => (
+            <CoreValueCard
+              imageSrc={tool.icon}
+              title={tool.name}
+              description={tool.desc}
+            />
           ))}
-        </ul>
+        </div>
       </div>
 
       {/* Section 4: Contact Form */}
