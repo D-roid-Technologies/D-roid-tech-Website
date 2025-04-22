@@ -18,6 +18,7 @@ import { FaFigma, FaPython, FaReact } from "react-icons/fa6";
 import { IoLogoNodejs } from "react-icons/io5";
 import { SiMysql, SiTypescript } from "react-icons/si";
 import { title } from "process";
+import ProjectSection from "../../components/startprojectcomponent/ProjectSection";
 
 type Tool = {
   name: string;
@@ -202,7 +203,9 @@ const StartProjectPage: React.FC = () => {
       </div>
 
       {/* Section 2: Projects */}
-      <div className="wrapper" style={{ padding: "20px" }}>
+      <ProjectSection />
+
+      {/* <div className="wrapper" style={{ padding: "20px" }}>
         <h2 className="title_span" style={{ marginLeft: "20px" }}>
           Projects
         </h2>
@@ -220,7 +223,7 @@ const StartProjectPage: React.FC = () => {
             {renderProjectsByStatus("In Communication")}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Section 3: Tools */}
       <div className="wrapper" style={{ padding: "20px" }}>
