@@ -4,6 +4,7 @@ import { RootState } from "../../../redux/Store";
 import { Project } from "../../../utils/Types";
 // import "../../pages/startproject/StartProjectPage.css";
 import "../../pages/startproject/StartProject.css";
+import { Assets } from "../../../utils/constant/Assets";
 
 const ProjectSection = () => {
   const projects = useSelector((state: RootState) => state.projects.projects);
@@ -23,6 +24,17 @@ const ProjectSection = () => {
 
     return filteredProjects.map((project) => (
       <div key={project.id} className="project-card">
+        {/* <div className="project-image">
+          {project.imageUrl ? (
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="project-thumbnail"
+            />
+          ) : (
+            "/static/media/client.bb9e845446.c63a1a96d.png"
+          )}
+        </div> */}
         <h4 className="project-title">{project.title}</h4>
         {project.summary && (
           <p className="project-description">{project.summary}</p>
