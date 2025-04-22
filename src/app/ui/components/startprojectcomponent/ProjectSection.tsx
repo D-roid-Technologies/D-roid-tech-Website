@@ -38,7 +38,7 @@ const ProjectSection = () => {
     <section className="projects-container">
       <div className="container">
         <h2 className="projects-heading">
-          <span className="projects-title-span">Projects</span>
+          <span className="projects-title-span">PROJECTS</span>
         </h2>
 
         <div className="projects-grid">
@@ -51,7 +51,7 @@ const ProjectSection = () => {
             </div>
           </div>
 
-          <div className="project-column">
+          <div className="project-column ">
             <div className="project-column-header ongoing-header">
               <h3>Ongoing</h3>
             </div>

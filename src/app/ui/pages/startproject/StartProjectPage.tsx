@@ -102,35 +102,35 @@ const StartProjectPage: React.FC = () => {
     }
   };
 
-  const renderProjectsByStatus = (status: Project["status"]) =>
-    projects
-      .filter((project: { status: string }) => project.status === status)
-      .map(
-        (project: {
-          id: Key | null | undefined;
-          title:
-            | string
-            | number
-            | boolean
-            | ReactElement<any, string | JSXElementConstructor<any>>
-            | Iterable<ReactNode>
-            | ReactPortal
-            | null
-            | undefined;
-          descriptionUrl: string | undefined;
-        }) => (
-          <div key={project.id} className="border p-3 rounded-md mb-2">
-            {/* <img src={project.image}/> */}
-            <h4 className="text-lg font-semibold">{project.title}</h4>
-            <a
-              href={project.descriptionUrl}
-              className="text-blue-600 underline"
-            >
-              View Description
-            </a>
-          </div>
-        )
-      );
+  //   const renderProjectsByStatus = (status: Project["status"]) =>
+  //     projects
+  //       .filter((project: { status: string }) => project.status === status)
+  //       .map(
+  //         (project: {
+  //           id: Key | null | undefined;
+  //           title:
+  //             | string
+  //             | number
+  //             | boolean
+  //             | ReactElement<any, string | JSXElementConstructor<any>>
+  //             | Iterable<ReactNode>
+  //             | ReactPortal
+  //             | null
+  //             | undefined;
+  //           descriptionUrl: string | undefined;
+  //         }) => (
+  //           <div key={project.id} className="border p-3 rounded-md mb-2">
+  //             {/* <img src={project.image}/> */}
+  //             <h4 className="text-lg font-semibold">{project.title}</h4>
+  //             <a
+  //               href={project.descriptionUrl}
+  //               className="text-blue-600 underline"
+  //             >
+  //               View Description
+  //             </a>
+  //           </div>
+  //         )
+  //       );
 
   return (
     <div>
@@ -143,7 +143,7 @@ const StartProjectPage: React.FC = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "60vh",
+          height: "70vh",
           alignItems: "center",
           // justifyContent: "center",
           display: "flex",
@@ -154,7 +154,7 @@ const StartProjectPage: React.FC = () => {
         <div>
           <h1
             style={{
-              fontSize: "5rem",
+              fontSize: "4rem",
               fontWeight: "900",
               marginBottom: "20px",
               textShadow: "rgba(0, 0, 0, 0.5)",

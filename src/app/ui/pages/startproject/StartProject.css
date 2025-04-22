@@ -85,6 +85,7 @@
   font-weight: 700;
   color: #222;
   margin-bottom: 40px;
+  /* text-transform: capitalize; */
   /* text-align: center; */
 }
 
@@ -98,7 +99,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 60px;
+  width: 40px;
   height: 3px;
   background-color: #0066cc;
 }
@@ -158,28 +159,29 @@
 .project-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
+  color: #0a0d31;
   margin-bottom: 8px;
 }
 
 .project-description {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
   margin-bottom: 12px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .project-link {
-  color: #0066cc;
-  text-decoration: underline;
+  color: #666;
   font-size: 0.9rem;
   font-weight: 500;
+  text-decoration: none;
 }
 
 .project-link:hover {
+  text-decoration: underline;
   color: #004999;
 }
 
