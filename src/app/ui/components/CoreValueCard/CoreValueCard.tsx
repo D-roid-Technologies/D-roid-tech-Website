@@ -13,7 +13,11 @@ const CoreValueCard: React.FC<CoreValueCardProps> = ({
 }) => {
   return (
     <div className="block-12 block-md-4 core_value">
-      {typeof imageSrc === "string" ? <img src={imageSrc} alt={title || "core value"} /> : imageSrc}
+      {typeof imageSrc === "string" ? (
+        <img src={imageSrc} alt={title || "core value"} />
+      ) : (
+        imageSrc
+      )}
       <h1>{title}</h1>
       <p>{description}</p>
     </div>

@@ -32,15 +32,15 @@ const Navbar: React.FC = () => {
     services: [
       { title: "Software Development", link: "/software-development" },
       { title: "Training Programs", link: "/training" },
-      { title: "Animation / Short Stories", link: "/training" },
+      { title: "Animation / Short Stories", link: "/animation" },
       { title: "Consulting", link: "/consulting" },
     ],
     resources: [
       { title: "Toolbox", link: "/toolbox" },
       { title: "Calculate", link: "/calculators" },
-      { title: "Schedules", link: "/products" },
-      { title: "Muzik", link: "/products" },
-      { title: "Knowledge City", link: "/products" },
+      { title: "Schedules", link: "/schedules" },
+      { title: "Muzik", link: "/muzik" },
+      { title: "Knowledge City", link: "/knowledge-city" },
     ],
     more: [
       { title: "D'roid Journal", link: "/blog" },
@@ -167,8 +167,9 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-services" ? "active" : ""
+            }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -197,8 +198,9 @@ const Navbar: React.FC = () => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-resources" ? "active" : ""
+            }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -232,8 +234,9 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-more" ? "active" : ""
+            }`}
           >
             <div
               className="mobile-dropdown-title"

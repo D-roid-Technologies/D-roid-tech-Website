@@ -215,4 +215,5 @@ export type Project = {
   endDate?: string;
   client: string;
   team: string[];
+  imageUrl?: string;
 };
