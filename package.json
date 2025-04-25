@@ -16,6 +16,7 @@
     "dotenv": "^16.4.5",
     "firebase": "^10.13.1",
     "framer-motion": "^11.2.10",
+    "keen-slider": "^6.8.6",
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
