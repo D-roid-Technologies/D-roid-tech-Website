@@ -14,8 +14,6 @@ import Button from "../../components/button/Button";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "../../components/liteGrid@v1.0/lite-grid.css";
-import OurTeam from "../../components/aboutdroid/AboutDriod";
-import Staff from "../staff/Staff";
 import Management from "../../components/staffandmanagement/Management";
 import AboutDroid from "../../components/aboutdroid/AboutDriod";
 import OurHistory from "../../components/ourhistory/OurHistory";
