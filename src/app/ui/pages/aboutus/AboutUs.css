@@ -2,23 +2,27 @@
 @import url("https://fonts.googleapis.com/css?family=Playpen Sans");
 @import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
 
+.our-historyy {
+  margin: 5em 0;
+}
 .aboutus-bg-color {
   background-color: #f9f9f9;
 }
 .about-main {
   padding-left: 100px;
   padding-right: 100px;
-  margin-top: 2em;
+  /* margin-top: 8em; */
 }
 /* SECTION ONE OUR HISTORY */
 .aboutus-marginbutton {
   margin-bottom: 50px;
+  /* margin-top: 8em; */
 }
 .section-one {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1.8em;
+  padding-top: 8em;
 }
 .image-sized {
   width: 600px;
@@ -28,10 +32,8 @@
 .about-history {
   padding: 70px 30px;
   text-align: center;
-
   border-radius: 10px;
-  /* background: rgba(240, 240, 240, 0.5); */
-  background-color: #111724;
+  background-color: #000d41;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .about-history-heading {
@@ -39,7 +41,7 @@
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 700;
-  color: #071d6a;
+  color: #ffffff;
   font-family: "Rubik";
 }
 .about-histoy-details {
@@ -59,19 +61,7 @@
 /* VISION AND MISSION SECTION */
 .vision-marginbuttom {
   padding: 70px 0;
-  /* padding: 0 0; */
-  border-bottom: 1px solid #071d6a;
-  border-top: 1px solid #071d6a;
-  /* border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
-  /* background-color: #ffffff;
-  margin-bottom: 50px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: box-shadow 0.3s ease;
-  flex-basis: calc(23% - 2%); */
+  /* border-top: 3px dotted rgba(67, 97, 238, 0.3); */
 }
 .vision {
   text-align: center;
@@ -97,16 +87,16 @@
   margin-bottom: 1.2em;
   line-height: 10px;
   font-size: 32px;
-  color: #071d6a;
-  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
+  /* color: #071d6a; */
+  /* text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25); */
   font-family: "Rubik";
 }
 
 .vision-main {
   padding: 40px 0;
-  border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  /* border-radius: 10px; */
+  /* background: rgba(240, 240, 240, 0.5); */
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
 }
 
 .vision-box {
@@ -114,25 +104,27 @@
 }
 
 .vision-box p {
-  font-size: 1.2rem;
-  font-weight: 200;
-  /* color: #333; */
-  font-family: "Rubik";
+  line-height: 1.8;
+  color: #555;
+  font-size: 1.05rem;
+
+  /* font-family: "Rubik"; */
   text-align: left;
-  line-height: 1.5;
+  /* line-height: 1.5; */
 }
 /* CORE VALUES */
 .core-value-vision-main {
   margin-bottom: 100px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 .core-value-vision-header {
   text-align: center;
   margin-bottom: 0.8em;
+  margin-top: 1rem;
   line-height: 10px;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #071d6a;
+  color: #ffffff;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-family: "Rubik";
 }
@@ -152,10 +144,10 @@
 }
 
 .core-value-vision-box {
-  padding: 40px 20px;
-  border-radius: 10px;
-  background: #111724;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 50px 20px;
+  /* border-radius: 10px; */
+  background: #030617;
+  /* box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 
 .core-value-vision-box p {
