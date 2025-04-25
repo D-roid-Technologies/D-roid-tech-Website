@@ -1,162 +1,112 @@
-import React, { useEffect } from "react";
-import "../footer/Footer.css";
-import { DATA } from "../../../utils/constant/Data";
-import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import { FiInstagram } from "react-icons/fi";
-import AppInput from "../textInput/AppInput";
-import Button from "../button/Button";
-import { FaWhatsapp } from "react-icons/fa6";
-import { MdOutlineEmail } from "react-icons/md";
-import { FaBell } from "react-icons/fa";
-import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../../utils/constant/Variants";
-import { useSelector } from "react-redux";
-import { RootState, store } from "../../../redux/Store";
-import { addUserEmail } from "../../../redux/slices/User";
+import React from "react";
+import "./Footer.css"; // We'll create this CSS file
+import { Assets } from "../../../utils/constant/Assets";
 import {
-  updateToast,
-  updateToastTitle,
-} from "../../../redux/slices/AppEntrySlice";
+  FaFacebook,
+  FaGithub,
+  FaInstagramSquare,
+  FaLinkedin,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
-const Footer: React.FunctionComponent = () => {
-  const [emailSubscription, setEmailSubscription] = React.useState<string>("");
-  const userState = useSelector((state: RootState) => state.user);
-  const userEmail = userState.userEmail;
+interface FooterLinkGroup {
+  title: string;
+  links: {
+    name: string;
+    href: string;
+  }[];
+}
 
-  console.log("email from user input", emailSubscription);
-  console.log("email from email state", userEmail);
+interface SocialLink {
+  name: string;
+  href: string;
+  icon: any; // Using emoji for simplicity, could use SVG in real project
+}
 
-  const { getColor } = useThemeColor();
+const Footer: React.FC = () => {
+  const footerLinks: FooterLinkGroup[] = [
+    {
+      title: "Company",
+      links: [
+        { name: "About", href: "#" },
+        { name: "Careers", href: "#" },
+        { name: "Brand Center", href: "#" },
+        { name: "Blog", href: "#" },
+      ],
+    },
+    {
+      title: "Help Center",
+      links: [
+        { name: "Discord", href: "#" },
+        { name: "Twitter", href: "#" },
+        { name: "FAQ", href: "#" },
+        { name: "Contact Us", href: "#" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { name: "Privacy Policy", href: "#" },
+        { name: "Licensing", href: "#" },
+        { name: "Terms", href: "#" },
+      ],
+    },
+  ];
 
-  const sendEmailToReduxStore = () => {
-    store.dispatch(addUserEmail(emailSubscription));
-  };
-
-  const sendEmailToBackEnd = () => {
-    // Use user email to send email to firebase for storage.
-  };
-
-  const fetchEmailFromBackEnd = () => {
-    // For fetching email from firebase for storage.
-  };
-
-  const handleUserEmail = () => {
-    sendEmailToReduxStore();
-    store.dispatch(updateToastTitle("Thank you for your Subscription!"));
-    store.dispatch(updateToast(true));
-    setTimeout(() => {
-      store.dispatch(updateToast(false));
-    }, 5000);
-  };
+  const socialLinks: SocialLink[] = [
+    { name: "Facebook", href: "#", icon: <FaFacebook /> },
+    { name: "Twitter", href: "#", icon: <FaXTwitter /> },
+    { name: "Instagram", href: "#", icon: <FaInstagramSquare /> },
+    { name: "LinkedIn", href: "#", icon: <FaLinkedin /> },
+    { name: "GitHub", href: "#", icon: <FaGithub /> },
+  ];
 
   return (
-    <div className="footer-main">
-      <section className="footer-inner">
-        <section className="social-container">
-          <div>
-            <h1 className=" social-heading"> SOCIALS </h1>
-
-            <div className="footer-logo-container">
-              <div className="twitter-icon">
-                <a href={DATA.socialLinks.twitter} target="_blank">
-                  <FaXTwitter className="logo-size" />
-                </a>
-              </div>
-              <div className="linkedin-icon">
-                <a href={DATA.socialLinks.linkedin} target="_blank">
-                  <FaLinkedin className="logo-size" />
-                </a>
-              </div>
-              <div className="instagram-icon">
-                <a href={DATA.socialLinks.instagram} target="_blank">
-                  <FiInstagram className="logo-size" />
-                </a>
-              </div>
-              <div className="whatsapp-icon">
-                <a href={DATA.socialLinks.whatsapp} target="_blank">
-                  <FaWhatsapp className="logo-size" />
-                </a>
-              </div>
-              <div className="email-icon">
-                <a href={`mailto:${DATA.socialLinks.email}`} target="_blank">
-                  <MdOutlineEmail className="logo-size" />
-                </a>
-              </div>
-            </div>
-          </div>
-          {/* END OF LOGO */}
-          <div>
-            <h1 className="subscribe"> SUBSCRIBE </h1>
-            <p className="connect-subscribe">
-              Sign up to hear from us about specials, sales, and events.
-            </p>
-
-            {/* FORM SECTION */}
-            <div className="footer-form">
-              <div className="form-input">
-                <AppInput
-                  w="100%"
-                  h={50}
-                  pLeft={20}
-                  mRight={40}
-                  pHolder="Enter email"
-                  bagColor="#071d69"
-                  bColor="#071d54"
-                  fWeight={900}
-                  color="#ffffff"
-                  onchangeText={(e: any) => {
-                    setEmailSubscription(e.target.value);
-                  }}
-                  bRadius={5}
-                  type="email"
-                />
-              </div>
-              <div className="signup-btn">
-                <Button
-                  title="Subscribe"
-                  bgColor="#d3d5e1"
-                  mTop={0}
-                  mBottom={0}
-                  mLeft={0}
-                  mRight={0}
-                  color="#000"
-                  fWeight={700}
-                  // bRadius={10}
-                  bRadiusColor="#d3d5e1"
-                  icon={
-                    <FaBell
-                      style={{ color: "#000 " }}
-                      className="style-home-icon"
-                    />
-                  }
-                  onClickButton={() => {
-                    handleUserEmail();
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <hr className="ruled" />
-        {/* LAST FOOTER SECTION */}
-        <div className=" footer-buttom">
-          <p className="text-center md:text-left ">
-            Copyright &copy; 2024 D'roid Technologies Ltd - All Right Reserved
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-brand">
+          <h2 className="footer-logo">D'roid Technologies</h2>
+          <p className="footer-description">
+            Making the world better through elegant digital solutions.
           </p>
-          <span className="powered">
-            <a href="/" className="color-change">
-              Powered by &nbsp;
-              <span className="company-link">D'roid Technologies Ltd</span>
-            </a>
-          </span>
+          <div className="footer-social">
+            {socialLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="social-link"
+                aria-label={link.name}
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
         </div>
-        <a href="/privacy" className="color-change">
-          <p className="policy">Privacy Policy</p>
-        </a>
-      </section>
-    </div>
+
+        <div className="footer-links">
+          {footerLinks.map((group, index) => (
+            <div key={index} className="link-group">
+              <h3 className="link-group-title">{group.title}</h3>
+              <ul className="link-list">
+                {group.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <a href={link.href} className="footer-link">
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p className="copyright">
+          &copy; {new Date().getFullYear()} YourBrand. All rights reserved.
+        </p>
+      </div>
+    </footer>
   );
 };
 
