@@ -191,15 +191,15 @@ export const DATA = {
   ],
 
   droidStaff: [
-    {
-      image: require("../../images/png/uzo-onyekwelu.jpeg"),
-      name: "Uzochukwu Felix",
-      designation: "Frontend Developer",
-      socials: {
-        linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
-        twitter: "",
-      },
-    },
+    // {
+    //   image: require("../../images/png/uzo-onyekwelu.jpeg"),
+    //   name: "Uzochukwu Felix",
+    //   designation: "Frontend Developer",
+    //   socials: {
+    //     linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
+    //     twitter: "",
+    //   },
+    // },
     {
       image: require("../../images/png/stella-eneh-two.jpg"),
       name: "Stella Eneh",
@@ -210,33 +210,33 @@ export const DATA = {
       },
     },
 
-    {
-      image: require("../../images/png/princewill-image-two.jpeg"),
-      name: "Princewill Godwin",
-      designation: "Product Designer",
-      socials: {
-        linkedin: "http://www.linkedin.com/in/princewill-godwin-uiuxdesigner",
-        twitter: "https://x.com/princewill1_g ",
-      },
-    },
-    {
-      image: require("../../images/png/Amarachi-image-resize.jpg"),
-      name: "Amarachi Abams",
-      designation: "Product Designer",
-      socials: {
-        linkedin: "http://www.linkedin.com/in/amarachiabams",
-        twitter: "https://x.com/Zibah_grafix?t=CH87kJA3wKHtvYLATLtApw&s=09 ",
-      },
-    },
-    {
-      image: require("../../images/png/chisom-iwuh-image.jpeg"),
-      name: "Chisom Iwuh",
-      designation: "Product Designer",
-      socials: {
-        linkedin: "https://www.linkedin.com/in/iwuh-chisom-884905218/",
-        twitter: "",
-      },
-    },
+    // {
+    //   image: require("../../images/png/princewill-image-two.jpeg"),
+    //   name: "Princewill Godwin",
+    //   designation: "Product Designer",
+    //   socials: {
+    //     linkedin: "http://www.linkedin.com/in/princewill-godwin-uiuxdesigner",
+    //     twitter: "https://x.com/princewill1_g ",
+    //   },
+    // },
+    // {
+    //   image: require("../../images/png/Amarachi-image-resize.jpg"),
+    //   name: "Amarachi Abams",
+    //   designation: "Product Designer",
+    //   socials: {
+    //     linkedin: "http://www.linkedin.com/in/amarachiabams",
+    //     twitter: "https://x.com/Zibah_grafix?t=CH87kJA3wKHtvYLATLtApw&s=09 ",
+    //   },
+    // },
+    // {
+    //   image: require("../../images/png/chisom-iwuh-image.jpeg"),
+    //   name: "Chisom Iwuh",
+    //   designation: "Product Designer",
+    //   socials: {
+    //     linkedin: "https://www.linkedin.com/in/iwuh-chisom-884905218/",
+    //     twitter: "",
+    //   },
+    // },
     // {
     //   image: require("../../images/png/chidinmma.jpg"),
     //   name: "Chidinma Okoli",

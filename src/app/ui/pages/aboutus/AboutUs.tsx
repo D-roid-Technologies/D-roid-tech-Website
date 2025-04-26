@@ -16,112 +16,31 @@ import Button from "../../components/button/Button";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "../../components/liteGrid@v1.0/lite-grid.css";
+import Management from "../../components/staffandmanagement/Management";
+import AboutDroid from "../../components/aboutdroid/AboutDriod";
+import OurHistory from "../../components/ourhistory/OurHistory";
+import OurJourney from "../../components/ourjourney/OurJourney";
 
 const AboutUs: React.FunctionComponent = () => {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
-  const { getColor } = useThemeColor();
+  // const { getColor } = useThemeColor();
 
   return (
     <>
       <NavBar />
-      <div
-        style={{
-          backgroundColor: "#040711",
-          marginTop: "-35px",
-          paddingBottom: "20px",
-        }}
-      >
+      <AboutDroid />
+      <div className="our-historyy">
+        <OurHistory />
+      </div>
+      <div className="our-historyy">
+        <OurJourney />
+      </div>
+
+      <div>
         <div className="about-main">
-          <div className="aboutus-marginbutton">
-            <div className="section-one">
-              <motion.div
-                variants={fadeIn("right", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.7 }}
-                className="coding-image"
-              >
-                <img
-                  src={Assets.images.companyLogoNoBg}
-                  alt="codingImage"
-                  className="image-sized"
-                />
-              </motion.div>
-              <motion.div
-                variants={fadeIn("left", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.7 }}
-                className="about-history"
-              >
-                <p
-                  className="about-history-heading"
-                  style={{ color: Assets.colors.flat }}
-                >
-                  {" "}
-                  Our History
-                </p>
-                <p
-                  className="about-histoy-details"
-                  style={{ color: Assets.colors.flat }}
-                >
-                  D'roid Technologies was birthed in 2015 with an idea to
-                  digitalize the most simplest of things.{" "}
-                  <a href="https://ekenedilichukwu.com">
-                    Ekenedilichukwu Okoli
-                  </a>{" "}
-                  wanted to be able to make things easier for every individual
-                  allowing them to be able to fufill each and every aspest of
-                  their lives to a percentage of 90 no matter their
-                  circumstance.
-                  <br />
-                  <br />
-                  The word "D'roid" was derived from the the word "Android" in a
-                  long term attempt to create a personal Health Robot Companion
-                  for every human being across the globe. Allowing better
-                  physical movements, better commnication and better life plans
-                  that are more fitted to each individal.
-                  <br />
-                  <br />
-                  D'roid Technologies aims to one day sync all consenting humans
-                  directly to a D'roid Health Bot allowing better care, instant
-                  medication, physical training and out door activities.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-          <div className="about-history-details-div">
-            <p className="about-histoy-details">
-              In 2018, we embarked on the development of our first contract and
-              inspired by a passion for innovation plus desire to make a
-              difference our company was born with the first set of D'roid
-              employees. <br />
-              <br />
-              In the early days, we faced numerous challenges and obstacles, but
-              our unwavering determination and commitment to excellence
-              propelled us forward. With each hurdle we overcame, we gained
-              valuable insights and experience that shaped our journey. As the
-              years passed, D'roid Technologies continued to grow and evolve,
-              expanding our team and refining our capabilities. We established
-              ourselves as pioneers in the software industry, known for our
-              innovative solutions and cutting-edge technologies. <br />
-              <br /> Throughout our journey, we've remained true to our core
-              values of integrity, innovation, and customer focus. We've forged
-              strong partnerships with clients and collaborators, earning their
-              trust and loyalty through our unwavering commitment to quality and
-              excellence. Today, as we reflect on our history, we're proud of
-              the milestones we've achieved and the obstacles we've overcome.
-              But our journey is far from over. As we look to the future, we're
-              excited to continue pushing the boundaries of possibility and
-              shaping the digital landscape for years to come."
-            </p>
-          </div>
-          <div
-            className="vision-marginbuttom"
-          // style={{ backgroundColor: getColor("backgroundColor") }}
-          >
+          <div className="vision-marginbuttom">
             <section>
               <div className="vision-mission-value">
                 {/* BOX ONE */}
@@ -158,133 +77,97 @@ const AboutUs: React.FunctionComponent = () => {
               </div>
             </section>
           </div>
-          {/* CORE VALUES BOX THREE */}
-          <div className="core-value-vision-main">
-            <div
-              className="core-value-vision-box"
-            // style={{ backgroundColor: getColor("backgroundColor") }}
-            >
-              <h2 className="core-value-vision-header">Core Values</h2>
-              <div className="core-values">
-                <div data-aos="flip-left">
-                  <GiRosaShield className="core-value-icons" />
-                  <h2 className="core-value-vision-header-small">Integrity</h2>
-                  <p
-                    className="about-histoy-details"
-                    style={{ color: Assets.colors.flat }}
-                  >
-                    At D'roid Technologies, integrity is the cornerstone of our
-                    operations. We are committed to conducting our business with
-                    the highest ethical standards, ensuring transparency,
-                    honesty, and accountability in all our interactions.
-                  </p>
-                </div>
-                <div data-aos="zoom-in-up">
-                  <FaGears className="core-value-icons" />
-                  <h2 className="core-value-vision-header-small">Innovation</h2>
-                  <p
-                    className="about-histoy-details"
-                    style={{ color: Assets.colors.flat }}
-                  >
-                    At D'roid Technologies, innovation is at the heart of
-                    everything we do. We are committed to pushing the boundaries
-                    of technology to deliver groundbreaking solutions that drive
-                    progress and create new opportunities.
-                  </p>
-                </div>
-                <div data-aos="flip-right">
-                  <RiCustomerService2Fill className="core-value-icons" />
-                  <h2 className="core-value-vision-header-small">
-                    Customer Focus
-                  </h2>
-                  <p
-                    className="about-histoy-details"
-                    style={{ color: Assets.colors.flat }}
-                  >
-                    At D'roid Technologies, our customers are at the heart of
-                    everything we do. We are dedicated to understanding and
-                    anticipating your needs, delivering tailored solutions that
-                    drive success and satisfaction.
-                  </p>
-                </div>
+        </div>
+        {/* CORE VALUES BOX THREE */}
+        <div className="core-value-vision-main">
+          <div className="core-value-vision-box">
+            <h2 className="core-value-vision-header">Core Values</h2>
+            <div className="core-values">
+              <div data-aos="flip-left">
+                <GiRosaShield className="core-value-icons" />
+                <h2 className="core-value-vision-header-small">Integrity</h2>
+                <p
+                  className="about-histoy-details"
+                  style={{ color: Assets.colors.flat }}
+                >
+                  At D'roid Technologies, integrity is the cornerstone of our
+                  operations. We are committed to conducting our business with
+                  the highest ethical standards, ensuring transparency, honesty,
+                  and accountability in all our interactions.
+                </p>
+              </div>
+              <div data-aos="zoom-in-up">
+                <FaGears className="core-value-icons" />
+                <h2 className="core-value-vision-header-small">Innovation</h2>
+                <p
+                  className="about-histoy-details"
+                  style={{ color: Assets.colors.flat }}
+                >
+                  At D'roid Technologies, innovation is at the heart of
+                  everything we do. We are committed to pushing the boundaries
+                  of technology to deliver groundbreaking solutions that drive
+                  progress and create new opportunities.
+                </p>
+              </div>
+              <div data-aos="flip-right">
+                <RiCustomerService2Fill className="core-value-icons" />
+                <h2 className="core-value-vision-header-small">
+                  Customer Focus
+                </h2>
+                <p
+                  className="about-histoy-details"
+                  style={{ color: Assets.colors.flat }}
+                >
+                  At D'roid Technologies, our customers are at the heart of
+                  everything we do. We are dedicated to understanding and
+                  anticipating your needs, delivering tailored solutions that
+                  drive success and satisfaction.
+                </p>
               </div>
             </div>
           </div>
-          {/* OUT TEAM */}
-          <section>
-            <p className="team-heading"> Our Team </p>
-            {/* <ul className="team-container">
-              {DATA.droidStaff.map((item, index) => (
-                <li className="team" key={index}>
-                  <div>
-                    <img src={item.image} alt="" className="team-image" />
-                  </div>
-                  <div className="team-details">
-                    <h2 className="team-name">{item.name}</h2>
-                    <p className="team-designation">{item.designation}</p>
-                    <div className="team-socials">
-                      {item.socials?.linkedin && (
-                        <a
-                          href={item.socials.linkedin}
-                          className="social-link twitter"
-                          target="blank"
-                        >
-                          <FaLinkedin style={{ color: "blue" }} />
-                        </a>
-                      )}
-                      {item.socials?.twitter && (
-                        <a
-                          href={item.socials.twitter}
-                          className="social-link"
-                          target="blank"
-                        >
-                          <FaXTwitter style={{ color: "black" }} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul> */}
-            <div className="wrapper-fluid">
-              <div className="group mb-5">
-                {DATA.droidStaff.map((item, index) => (
-                  <div className="block-12 block-lg-3">
-                    <div key={index} className="team-card">
-                      <div className="imgbox">
-                        <img src={item.image} />
-                      </div>
-                      <div className="content">
-                        <div className="contentBox">
-                          <h3>
-                            {item.name} <br />
-                            <span>{item.designation}</span>
-                          </h3>
-                        </div>
-                        <ul className="social">
-                          <li>
-                            {item.socials?.linkedin && (
-                              <a href={item.socials.linkedin}>
-                                <FaLinkedin className="icon-s" />
-                              </a>
-                            )}
-                          </li>
-                          <li>
-                            {item.socials?.twitter && (
-                              <a href={item.socials.twitter}>
-                                <FaXTwitter className="icon-s" />
-                              </a>
-                            )}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
         </div>
+        {/* OUT TEAM */}
+        <section>
+          <Management />
+          <div className="wrapper-fluid">
+            <div className="group mb-5">
+              {DATA.droidStaff.map((item, index) => (
+                <div className="block-12 block-lg-3">
+                  <div key={index} className="team-card">
+                    <div className="imgbox">
+                      <img src={item.image} />
+                    </div>
+                    <div className="content">
+                      <div className="contentBox">
+                        <h3>
+                          {item.name} <br />
+                          <span>{item.designation}</span>
+                        </h3>
+                      </div>
+                      <ul className="social">
+                        <li>
+                          {item.socials?.linkedin && (
+                            <a href={item.socials.linkedin}>
+                              <FaLinkedin className="icon-s" />
+                            </a>
+                          )}
+                        </li>
+                        <li>
+                          {item.socials?.twitter && (
+                            <a href={item.socials.twitter}>
+                              <FaXTwitter className="icon-s" />
+                            </a>
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
