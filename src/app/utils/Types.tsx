@@ -65,7 +65,6 @@ export type AppInputType = React.DetailedHTMLProps<
   bWidth?: number;
   pHolder: string;
   bagColor?: string;
-  // added dropdown
   isDropdown?: boolean;
   options?: string[];
   onchangeText?: (e: any) => void;
@@ -95,33 +94,6 @@ export type TrainingPhoto = {
   image: string;
   text: string;
 };
-
-// export type Course = {
-//   id: number;
-//   level?: string;
-//   title: string;
-//   subtitle?: string;
-//   description?: string;
-//   benefits?: {
-//     title: string;
-//     description: string;
-//   }[];
-//   projects?: {
-//     title: string;
-//     description: string;
-//   }[];
-//   howItWorks: {
-//     title: string;
-//     content: string;
-//   }[];
-//   courseDetails: {
-//     startDate: string;
-//     duration: string;
-//     price: number;
-//     discountedPrice: number;
-//     offerExpiry: string;
-//   };
-// };
 
 export type Course = { id: number; title: string };
 
@@ -202,13 +174,12 @@ export type GeolocatedProps = {
     latitude: number;
     longitude: number;
   } | null;
-  // positionError: PositionError | null;
 };
 
 export type Project = {
-  id: string;
+  id?: string;
   title: string;
-  status: "Completed" | "Ongoing" | "In Communication";
+  status?: "Completed" | "Ongoing" | "In Communication";
   descriptionUrl: string;
   summary: string;
   startDate: string;
@@ -216,4 +187,7 @@ export type Project = {
   client: string;
   team: string[];
   imageUrl?: string;
+  category?: string;
+  price?: string;
+  author?: string;
 };

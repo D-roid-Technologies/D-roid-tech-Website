@@ -30,10 +30,10 @@ const Testimonial: React.FC = () => {
     },
     {
       id: 2,
-      name: "Michael Chen",
-      role: "CTO, InnovateX",
+      name: "Michael Obiagwu",
+      role: "Senior Backend Engineer, Ecobank Nigeria",
       content:
-        "The custom software developed by D'roidTech has been game-changing for our operations. Their attention to detail and post-launch support is exceptional.",
+        "The custom software developed by D'roid has been game-changing for our operations. Their attention to detail and micro-launch support is exceptional.",
       avatar: Assets.images.background1,
       companyLogo: Assets.images.companyLogo,
     },

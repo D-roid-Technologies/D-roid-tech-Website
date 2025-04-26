@@ -170,6 +170,12 @@ export const Assets = {
     projectImageOne: require("../../images/png/project-image-one.png"),
     projectImageTwo: require("../../images/png/project-image-two.png"),
     projectImageThree: require("../../images/png/project-image-three.png"),
+
+    //
+    smeappp: require("../../images/png/smeappp.png"),
+    ecobankmobile: require("../../images/png/ecobankmobile.png"),
+    droidweb: require("../../images/png/droidweb.png"),
+    droidinput: require("../../images/png/droidinput.png"),
   },
   colors: {
     basic: "#000000",

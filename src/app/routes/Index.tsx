@@ -1,6 +1,6 @@
 // Importing all dependencies first
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 // Importing all the pages/components
 import Home from "../ui/pages/home/Home";
@@ -50,13 +50,13 @@ export enum RoutePaths {
   AboutUs = "/aboutus",
   Careers = "/careers",
   StartProjectPage = "/StartProjectPage",
-  
+
   // Services Routes
   SoftwareDevelopment = "/software-development",
   Training = "/training",
   Animation = "/animation",
   Consulting = "/consulting",
-  
+
   // Resources Routes
   Toolbox = "/toolbox",
   Calculators = "/calculators",
@@ -64,10 +64,13 @@ export enum RoutePaths {
   Muzik = "/muzik",
   KnowledgeCity = "/knowledge-city",
 
-  // More Routes
-  Blog = "/blog",
-  Products = "/products",
-  JoinOurCommnity = "/our-commnity",
+  // Parent "More" route
+  More = "/more",
+
+  // More Routes (nested under /more)
+  Blog = `/more/blog`,
+  Products = "/more/products",
+  JoinOurCommunity = "/more/join-our-community",
 
   // Existing Routes
   Contact = "/contact",
@@ -99,6 +102,38 @@ export enum RoutePaths {
   WebFoarm = "/webfoarm",
 }
 
+interface DropdownItem {
+  title: string;
+  link: string;
+}
+
+interface DropdownItems {
+  services: DropdownItem[];
+  resources: DropdownItem[];
+  more: DropdownItem[];
+}
+
+export const dropdownItems: DropdownItems = {
+  services: [
+    { title: "Software Development", link: RoutePaths.SoftwareDevelopment },
+    { title: "Training Programs", link: RoutePaths.Training },
+    { title: "Animation / Short Stories", link: RoutePaths.Animation },
+    { title: "Consulting", link: RoutePaths.Consulting },
+  ],
+  resources: [
+    { title: "Toolbox", link: RoutePaths.Toolbox },
+    { title: "Calculate", link: RoutePaths.Calculators },
+    { title: "Schedules", link: RoutePaths.Schedules },
+    { title: "Muzik", link: RoutePaths.Muzik },
+    { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
+  ],
+  more: [
+    { title: "D'roid Journal", link: RoutePaths.Blog },
+    { title: "Products", link: RoutePaths.Products },
+    { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
+  ],
+};
+
 const Index: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
@@ -121,10 +156,13 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.Muzik} element={<Muzik />} />
         <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
 
-        {/* More Routes */}
-        <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
-        <Route path={RoutePaths.Products} element={<Products />} />
-        <Route path={RoutePaths.JoinOurCommnity} element={<SignUp />} />
+        {/* Grouped More Routes */}
+        <Route path={RoutePaths.More}>
+          <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
+          <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
+          <Route path={RoutePaths.Products} element={<Products />} />
+          <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
+        </Route>
 
         {/* Existing Routes */}
         <Route path={RoutePaths.Contact} element={<Contact />} />

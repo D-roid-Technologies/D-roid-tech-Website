@@ -3,6 +3,7 @@ import "./intro.css";
 import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
+import { RoutePaths } from "../../../../routes/Index";
 
 interface Counters {
   satisfaction: number;
@@ -100,7 +101,7 @@ const Intro: React.FC = () => {
                 <h1>we turn your ideas into reality</h1>
                 <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
                   <a
-                    href="/start-a-project"
+                    href={RoutePaths.JoinOurCommunity}
                     style={{ backgroundColor: "#fff", color: "#071d6a" }}
                     className="navbar-cta"
                   >
@@ -164,7 +165,7 @@ const Intro: React.FC = () => {
               The Fastest way to become a Techie — Only at D'roid Technologies.
             </p>
             <a
-              href="/start-a-project"
+              href={RoutePaths.Careers}
               style={{ backgroundColor: "#071d6a", color: "#fff" }}
               className="navbar-cta"
             >

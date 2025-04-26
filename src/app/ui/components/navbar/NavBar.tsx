@@ -7,17 +7,7 @@ import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
 import Flag from "react-world-flags";  // Import Flag component
-
-interface DropdownItem {
-  title: string;
-  link: string;
-}
-
-interface DropdownItems {
-  services: DropdownItem[];
-  resources: DropdownItem[];
-  more: DropdownItem[];
-}
+import { dropdownItems, RoutePaths } from "../../../routes/Index";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -25,26 +15,6 @@ const Navbar: React.FC = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [userCountry, setUserCountry] = useState<string>("");
-
-  const dropdownItems: DropdownItems = {
-    services: [
-      { title: "Software Development", link: "/software-development" },
-      { title: "Training Programs", link: "/training" },
-      { title: "Animation / Short Stories", link: "/animation" },
-      { title: "Consulting", link: "/consulting" },
-    ],
-    resources: [
-      { title: "Toolbox", link: "/toolbox" },
-      { title: "Calculate", link: "/calculators" },
-      { title: "Schedules", link: "/schedules" },
-      { title: "Muzik", link: "/muzik" },
-      { title: "Knowledge City", link: "/knowledge-city" },
-    ],
-    more: [
-      { title: "D'roid Journal", link: "/blog" },
-      { title: "Join Our Community", link: "/our-commnity" },
-    ],
-  };
 
   // Extract country code from user's locale
   useEffect(() => {

@@ -2,40 +2,11 @@ import React from "react";
 import "./Products.css";
 import "../../components/liteGrid@v1.0/lite-grid.css";
 import ProductCard from "../../components/productcard/ProductCard";
-import { Assets } from "../../../utils/constant/Assets";
-
-interface Product {
-  imageUrl: string;
-  category: string;
-  price: string;
-  title: string;
-  author: string;
-}
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
 
 const Products: React.FC = () => {
-  const products: Product[] = [
-    {
-      imageUrl: Assets.images.knowledgecity,
-      category: "School",
-      price: "Free",
-      title: "Knowledge City",
-      author: "D'roid Tech",
-    },
-    {
-      imageUrl: Assets.images.cashBasket,
-      category: "Finance",
-      price: "Free",
-      title: "Cash Basket",
-      author: "D'roid Tech",
-    },
-    {
-      imageUrl: Assets.images.npm,
-      category: "Development",
-      price: "Free",
-      title: "NPM Packages",
-      author: "D'roid Tech",
-    },
-  ];
+  const projects = useSelector((state: RootState) => state.projects.projects);
 
   return (
     <section className="product_sec">
@@ -48,14 +19,13 @@ const Products: React.FC = () => {
             OUR PRODUCTS
           </span>
         </div>
-        <h1>Lorem ipsum dolor sit.</h1>
+        <h1>Our Innovations and Projects</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Accusantium, aspernatur animi quod blanditiis fuga sunt saepe labore
-          molestias fugit inventore?
+          We transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.
         </p>
         <div className="group">
-          {products.map((product, index) => (
+          {/* {projects.slice(0, 3).map((product, index) => ( */}
+          {projects.map((product, index) => (
             <div key={index} className="block-12 block-md-4">
               <ProductCard
                 imageUrl={product.imageUrl}
@@ -63,6 +33,11 @@ const Products: React.FC = () => {
                 price={product.price}
                 title={product.title}
                 author={product.author}
+                descriptionUrl={product.summary}
+                summary={product.summary}
+                startDate=""
+                client=""
+                team={[]}
               />
             </div>
           ))}
