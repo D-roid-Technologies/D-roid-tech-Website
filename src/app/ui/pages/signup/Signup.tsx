@@ -1,11 +1,35 @@
-// @ts-nocheck
-
+// @ts-nocheck 
 import React, { useState } from 'react';
 import { FaUsers, FaArrowLeft } from 'react-icons/fa';
 import { RoutePaths } from '../../../routes/Index';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
+import { auth } from '../../../../firebase'; // Make sure this path is correct
+import { useNavigate } from 'react-router-dom';
+
+interface FormData {
+  userType: string;
+  staffId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  agreeToPolicy: boolean;
+};
+
+interface FormErrors {
+  userType?: string;
+  staffId?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  agreeToPolicy?: string;
+};
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     userType: '',
     staffId: '',
     firstName: '',
@@ -16,21 +40,22 @@ const SignUp = () => {
     agreeToPolicy: false,
   });
 
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+
 
   const regex = {
     name: /^[A-Za-z]+$/,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{6,}$/,
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
 
   const validate = () => {
-    let errors: any = {};
+    let errors = {};
     let isValid = true;
 
     if (!formData.userType) {
@@ -59,7 +84,7 @@ const SignUp = () => {
     }
 
     if (!formData.password || !regex.password.test(formData.password)) {
-      errors.password = 'Password must be at least 8 characters long and include a number.';
+      errors.password = 'Password must be at least 6 characters long and include a number.';
       isValid = false;
     }
 
@@ -77,12 +102,46 @@ const SignUp = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validate()) {
-      console.log('Form submitted successfully', formData);
-    }
+  const navigate = useNavigate();
+
+  
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+      if (validate()) {
+        const auth = getAuth(); // Initialize auth
+  
+        createUserWithEmailAndPassword(auth, formData.email, formData.password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            
+            // Update profile information
+            updateProfile(user, {
+              displayName: `${formData.firstName} ${formData.lastName}`,
+            }).then(() => {
+              console.log('Profile updated!');
+            });
+  
+            // Send verification email
+            sendEmailVerification(user)
+              .then(() => {
+                console.log('Verification email sent!');
+              })
+              .catch((error) => {
+                console.error('Error sending verification email:', error);
+              });
+  
+            // Redirect to login page
+            navigate(RoutePaths.DashBoard);
+          })
+          .catch((error) => {
+            console.error('Error creating user:', error.message);
+            setFormErrors({ ...formErrors, email: error.message });
+          });
+      }
   };
+  
+
+
 
   return (
     <div
@@ -118,6 +177,7 @@ const SignUp = () => {
             alignItems: 'center',
           }}
         >
+          {/* ts-nocheck */}
           <FaArrowLeft style={{ marginRight: '8px' }} /> Back to Home
         </a>
 
@@ -278,7 +338,7 @@ const SignUp = () => {
 
           <div style={{ marginBottom: '15px' }}>
             <input
-              type="password"
+              type="text"
               name="password"
               placeholder="Password"
               value={formData.password}
@@ -298,7 +358,7 @@ const SignUp = () => {
 
           <div style={{ marginBottom: '15px' }}>
             <input
-              type="password"
+              type="text"
               name="confirmPassword"
               placeholder="Confirm Password"
               value={formData.confirmPassword}
@@ -333,7 +393,9 @@ const SignUp = () => {
                 onChange={handleChange}
                 style={{ marginRight: '8px' }}
               />
-              I agree to the{' '}
+              By clicking you accept our{' '} <a href={RoutePaths.TermsAndCondition} style={{ color: '#479BE8', textDecoration: 'underline', marginLeft: '4px' }}>
+                Terms and Condition
+              </a> {" "} and {" "}
               <a href={RoutePaths.PrivacyPolicy} style={{ color: '#479BE8', textDecoration: 'underline', marginLeft: '4px' }}>
                 Privacy Policy
               </a>

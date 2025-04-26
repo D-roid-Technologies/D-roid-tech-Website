@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 function AppContent() {
-  const user = useSelector((state: RootState) => state.user);
+  const user: any = useSelector((state: RootState) => state.user);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
 
   useEffect(() => {

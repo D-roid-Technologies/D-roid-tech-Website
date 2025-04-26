@@ -45,8 +45,12 @@ import Products from "../ui/pages/products/Products";
 import SignUp from "../ui/pages/signup/Signup";
 import StaffLogin from "../ui/pages/staffLogin/StaffLogin";
 import ForgotPassword from "../ui/pages/ForgotPassword/ForgotPassword";
+import MemberLogin from "../ui/pages/memberLogin/MemberLogin";
+import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition";
+import Dashboard from "../ui/pages/Dashboard/Dashboard";
 
 // Define an enum for all route paths
+
 export enum RoutePaths {
   Home = "/",
   AboutUs = "/aboutus",
@@ -97,6 +101,7 @@ export enum RoutePaths {
   ForgotPassword = "/auth/forgot-password",
   StaffLogin = "/auth/staff-login",
   MemberLogin = "/auth/member-login",
+  DashBoard = "/auth/dashboard",
 
   // Animation Routes
   KnowledgeCityDetails = "/knowledgecitydetails",
@@ -109,7 +114,9 @@ export enum RoutePaths {
   WebOverview = "/weboverview",
   Project = "/project",
   WebFoarm = "/webfoarm",
-
+  // Existing Routes
+  Login // Existing Routes
+  = "Login"
 }
 
 interface DropdownItem {
@@ -189,7 +196,9 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
         <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
         <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
-        {/* <Route path={RoutePaths.MemberLogin} element={<M />} /> */}
+        <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
+        <Route path={RoutePaths.TermsAndCondition} element={<TermsAndConditions />} />
+        <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
 
         {/* Animation Routes */}
         <Route path={RoutePaths.KnowledgeCityDetails} element={<KnowledgeCityDetails />} />
