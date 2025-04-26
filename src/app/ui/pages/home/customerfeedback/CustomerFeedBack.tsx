@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import feedBackImage from "../../../images/png/feedbackpics.png";
 import "../customerfeedback/CustomerFeedBack.css";

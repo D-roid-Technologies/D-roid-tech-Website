@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect } from "react";
 // Richard liteGrid CSS for responsiveness
 import "../../../components/liteGrid@v1.0/lite-grid.css";

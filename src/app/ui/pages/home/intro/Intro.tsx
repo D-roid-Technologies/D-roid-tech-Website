@@ -4,13 +4,21 @@ import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
 
+interface Counters {
+  satisfaction: number;
+  projects: number;
+  years: number;
+  countries: number;
+}
+
 const Intro: React.FC = () => {
-  const [counters, setCounters] = useState({
+  const [counters, setCounters] = useState<Counters>({
     satisfaction: 0,
     projects: 0,
     years: 0,
     countries: 0,
   });
+
   const introRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,7 +26,6 @@ const Intro: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Start counting when component is visible
             animateCounters();
             observer.unobserve(entry.target);
           }
@@ -39,7 +46,6 @@ const Intro: React.FC = () => {
   }, []);
 
   const animateCounters = () => {
-    // Animation duration in milliseconds
     const duration = 2000;
     const startTime = Date.now();
 
@@ -48,7 +54,7 @@ const Intro: React.FC = () => {
       const progress = Math.min(elapsed / duration, 1);
 
       setCounters({
-        satisfaction: Math.floor(progress * 99.9),
+        satisfaction: parseFloat((progress * 99.9).toFixed(1)),
         projects: Math.floor(progress * 32),
         years: Math.floor(progress * 5),
         countries: Math.floor(progress * 2),
@@ -57,7 +63,6 @@ const Intro: React.FC = () => {
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
-        // Ensure final numbers are exact
         setCounters({
           satisfaction: 99.9,
           projects: 32,
@@ -74,48 +79,26 @@ const Intro: React.FC = () => {
     <>
       <section className="intro" ref={introRef}>
         <div className="wrapper">
-          {/* <center> */}
           <div className="group">
-            <div className="block-6 block-lg-3 intro-block block-alt">
-              <h1>
-                {counters.satisfaction.toFixed(
-                  counters.satisfaction === 99.9 ? 1 : 0
-                )}
-                <small>%</small>
-              </h1>
-              <p>Customers satisfaction</p>
-            </div>
-            <div className="block-6 block-lg-3 intro-block">
-              <h1>
-                {counters.projects}
-                <small>+</small>
-              </h1>
-              <p>Projects completed</p>
-            </div>
-            <div className="block-6 block-lg-3 intro-block mt-3 mt-lg-0">
-              <h1>
-                {counters.years}
-                <small>+</small>
-              </h1>
-              <p>Years in the market</p>
-            </div>
-            <div className="block-6 block-lg-3 intro-block mt-3 mt-lg-0">
-              <h1>{counters.countries}</h1>
-              <p>Countries of Operation</p>
-            </div>
+            <CounterBlock
+              value={counters.satisfaction}
+              isPercentage
+              label="Customers satisfaction"
+            />
+            <CounterBlock value={counters.projects} label="Projects completed" />
+            <CounterBlock value={counters.years} label="Years in the market" />
+            <CounterBlock value={counters.countries} label="Countries of Operation" />
           </div>
-          {/* </center> */}
         </div>
-        {/* what we do section  */}
+
+        {/* What we do section */}
         <div className="wrapper mt-5">
           <div className="color_bg">
             <span>WHAT WE DO</span>
             <div className="group">
               <div className="block-12 block-md-5 text_con">
                 <h1>we turn your ideas into reality</h1>
-                <div
-                  style={{ display: "flex", gap: "20px", marginTop: "30px" }}
-                >
+                <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
                   <a
                     href="/start-a-project"
                     style={{ backgroundColor: "#fff", color: "#071d6a" }}
@@ -124,28 +107,23 @@ const Intro: React.FC = () => {
                     Join Our Community
                   </a>
                 </div>
-                {/* buttons
-              
-              */}
               </div>
-              <div className="block-12 block-md-2"></div>
+              <div className="block-12 block-md-2" />
               <div
                 className="block-12 block-md-5 image_con"
                 style={{ textAlign: "center" }}
               >
-                <img src={Assets.images.lightBulb} alt="" />
+                <img src={Assets.images.lightBulb} alt="Light Bulb" />
               </div>
             </div>
           </div>
-          {/* core values section  */}
+
+          {/* Core Values Section */}
           <div className="wrapper" style={{ padding: "20px" }}>
-            <br />
             <span className="title_span" style={{ marginLeft: "20px" }}>
               CORE VALUES
             </span>
-            {/* Take out these br's and use margin bottom instead on he div below */}
-            <br />
-            <br />
+
             <div className="group mt-4">
               <CoreValueCard
                 imageSrc={Assets.images.trustImg}
@@ -155,26 +133,20 @@ const Intro: React.FC = () => {
               <CoreValueCard
                 imageSrc={Assets.images.innovationImg}
                 title="Innovation"
-                description="At D'roid Technologies, innovation is at the heart of everything
-              we do. We are committed to pushing the boundaries of technology
-              to deliver groundbreaking solutions that drive progress and
-              create new opportunities."
+                description="At D'roid Technologies, innovation is at the heart of everything we do. We are committed to pushing the boundaries of technology to deliver groundbreaking solutions that drive progress and create new opportunities."
               />
               <CoreValueCard
                 imageSrc={Assets.images.customerImg}
                 title="Customer focus"
-                description="At D'roid Technologies, innovation is at the heart of everything
-              we do. We are committed to pushing the boundaries of technology
-              to deliver groundbreaking solutions that drive progress and
-              create new opportunities."
+                description="We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence."
               />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Our Team Section */}
       <div className="wrapper team_sec">
-        <br />
-        <br />
         <center className="mt-5">
           <span className="title_span" style={{ background: "#fff" }}>
             OUR TEAM
@@ -185,16 +157,11 @@ const Intro: React.FC = () => {
             <h1>
               Join <span style={{ color: "#071d6a" }}>the team</span>
             </h1>
-
             <p className="mb-5">
-              Are you passionate about Technology and Innovation? Join us now on
-              a 6 Months Sofware Development Training and become a full time
-              Staff with D'roid Technologies. Work on exciting projects, grow
-              your career, and be part of a team that values creativity,
-              excellence, and customer focus.
+              Are you passionate about Technology and Innovation? Join us for a 6-month Software Development Training and become a full-time staff member at D'roid Technologies. Work on exciting projects, grow your career, and be part of a team that values creativity, excellence, and customer focus.
               <br />
               <br />
-              The Fastest way to become a Techie - Only by D'roid Technologies.
+              The Fastest way to become a Techie — Only at D'roid Technologies.
             </p>
             <a
               href="/start-a-project"
@@ -205,17 +172,36 @@ const Intro: React.FC = () => {
             </a>
           </div>
         </div>
+
         <div className="group justify-content-center">
           <div className="block-12 block-md-10">
             <img
               src={Assets.images.tech}
-              alt="team"
+              alt="Team"
               className="team_image image-fluid"
             />
           </div>
         </div>
       </div>
     </>
+  );
+};
+
+interface CounterBlockProps {
+  value: number;
+  label: string;
+  isPercentage?: boolean;
+}
+
+const CounterBlock: React.FC<CounterBlockProps> = ({ value, label, isPercentage = false }) => {
+  return (
+    <div className="block-6 block-lg-3 intro-block">
+      <h1>
+        {isPercentage ? value.toFixed(value === 99.9 ? 1 : 0) : value}
+        <small>{isPercentage ? "%" : "+"}</small>
+      </h1>
+      <p>{label}</p>
+    </div>
   );
 };
 

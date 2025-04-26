@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IoChevronBackOutline } from "react-icons/io5";

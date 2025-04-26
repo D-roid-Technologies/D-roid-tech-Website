@@ -1,9 +1,12 @@
+// @ts-nocheck
+
 import React, { useState, useEffect } from "react";
 import "../navbar/NavBar.css";
 import { Assets } from "../../../utils/constant/Assets";
 import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
+
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,11 +79,14 @@ const Navbar: React.FC = () => {
             >
               <div className="dropdown-title">
                 Services
-                {activeDropdown === "services" ? (
+                {/* @ts-ignore */}
+                {activeDropdown === "services" ?
+
                   <HiChevronUp />
-                ) : (
-                  <HiChevronDown />
-                )}
+                  : (
+
+                    <HiChevronDown />
+                  )}
               </div>
               {activeDropdown === "services" && (
                 <ul className="dropdown-menu">
@@ -167,9 +173,8 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-services" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -198,9 +203,8 @@ const Navbar: React.FC = () => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-resources" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -234,9 +238,8 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-more" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"

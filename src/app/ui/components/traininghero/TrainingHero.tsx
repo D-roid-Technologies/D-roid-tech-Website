@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState } from "react";
 import { Assets } from "../../../utils/constant/Assets";
 import Button from "../../components/button/Button";

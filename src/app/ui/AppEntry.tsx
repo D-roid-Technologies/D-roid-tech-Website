@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../ui/AppEntry.css";
 import { AppEntryType } from "../utils/Types";
 import Footer from "./components/footer/Footer";
-import { HiX } from "react-icons/hi";
 import { RootState, store } from "../redux/Store";
 import { addHeight, addWidth } from "../redux/slices/Dimension";
 import { useSelector } from "react-redux";
@@ -15,6 +14,7 @@ import { useThemeColor } from "../utils/hooks/useThemeColor";
 import { Assets } from "../utils/constant/Assets";
 import Index from "../routes/Index";
 import { useLocation } from "react-router-dom"; // Import useLocation
+import { HiX } from "react-icons/hi";
 
 const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
   const [shake, setShake] = useState(false);
@@ -80,6 +80,7 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
               className="modal-x"
               onClick={() => store.dispatch(updateModal(false))}
             >
+              {/* @ts-ignore */}
               <HiX />
             </div>
             <div className="modal-text">

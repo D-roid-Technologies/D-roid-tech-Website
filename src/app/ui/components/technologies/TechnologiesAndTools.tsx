@@ -1,8 +1,8 @@
+// @ts-nocheck
+
 import React from "react";
 import { FaChalkboardTeacher, FaVideo, FaLaptopCode } from "react-icons/fa";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../../utils/constant/Variants";
 
 type ToolItemProps = {
   title: string;

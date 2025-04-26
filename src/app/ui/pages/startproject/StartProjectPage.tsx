@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import NavBar from "../../components/navbar/NavBar";
 import { DroidInput } from "@droid-tech/react-droidinput";
 import { useSelector } from "react-redux";

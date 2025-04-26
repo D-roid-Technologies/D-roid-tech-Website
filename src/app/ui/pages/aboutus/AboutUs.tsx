@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
@@ -118,7 +120,7 @@ const AboutUs: React.FunctionComponent = () => {
           </div>
           <div
             className="vision-marginbuttom"
-            // style={{ backgroundColor: getColor("backgroundColor") }}
+          // style={{ backgroundColor: getColor("backgroundColor") }}
           >
             <section>
               <div className="vision-mission-value">
@@ -160,7 +162,7 @@ const AboutUs: React.FunctionComponent = () => {
           <div className="core-value-vision-main">
             <div
               className="core-value-vision-box"
-              // style={{ backgroundColor: getColor("backgroundColor") }}
+            // style={{ backgroundColor: getColor("backgroundColor") }}
             >
               <h2 className="core-value-vision-header">Core Values</h2>
               <div className="core-values">

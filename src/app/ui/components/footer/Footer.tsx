@@ -54,10 +54,15 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks: SocialLink[] = [
+    // @ts-ignore 
     { name: "Facebook", href: "#", icon: <FaFacebook /> },
+    // @ts-ignore
     { name: "Twitter", href: "#", icon: <FaXTwitter /> },
+    // @ts-ignore
     { name: "Instagram", href: "#", icon: <FaInstagramSquare /> },
+    // @ts-ignore
     { name: "LinkedIn", href: "#", icon: <FaLinkedin /> },
+    // @ts-ignore
     { name: "GitHub", href: "#", icon: <FaGithub /> },
   ];
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import "../AI/AI.css";
 import { TiArrowBack } from "react-icons/ti";

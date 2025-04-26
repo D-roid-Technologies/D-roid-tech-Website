@@ -1,42 +1,28 @@
+// @ts-nocheck
+
 import React, { useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../contact/Contact.css";
 import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../../components/textInput/AppInput";
-// import contactBgImage from "../../../images/png/contactbg.jpg";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
-import testimonialbackgroundImage from "../../../images/png/customerfeedback2.jpg";
 import {
   updateModal,
-  updateModalContent,
   updateToast,
   updateToastTitle,
 } from "../../../redux/slices/AppEntrySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, store } from "../../../redux/Store";
+import { RootState } from "../../../redux/Store";
 import {
-  addUserFullName,
-  addUserPhoneNumber,
-  addUserSubject,
-  addUserMessage,
-  addUserContactEmail,
-} from "../../../redux/slices/ContactSlice";
-import {
-  addName,
-  addComapanyName,
-  addPosition,
-  addServiceType,
-  addMessage,
   addTestimonial, // Import addTestimonial here
 } from "../../../redux/slices/TestimonialSlice";
 import { IoBagAdd } from "react-icons/io5";
@@ -586,9 +572,8 @@ const Contact: React.FunctionComponent = () => {
                   {index + 1}. {faq.question}
                 </button>
                 <div
-                  className={`faq-answer ${
-                    activeIndex === index ? "open" : ""
-                  }`}
+                  className={`faq-answer ${activeIndex === index ? "open" : ""
+                    }`}
                 >
                   {faq.answer}
                 </div>

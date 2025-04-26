@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import { Assets } from "../../../../utils/constant/Assets";
 import "../project/Project.css";

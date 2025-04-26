@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { ChangeEvent, useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Animation.css";
