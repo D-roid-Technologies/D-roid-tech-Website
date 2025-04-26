@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import "./Footer.css"; // We'll create this CSS file
 import { Assets } from "../../../utils/constant/Assets";
@@ -9,20 +11,26 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-interface FooterLinkGroup {
-  title: string;
-  links: {
-    name: string;
-    href: string;
-  }[];
+// Define the type for a single link in a footer group
+interface FooterLink {
+  name: string;
+  href: string;
 }
 
+// Define the type for a group of footer links
+interface FooterLinkGroup {
+  title: string;
+  links: FooterLink[];
+}
+
+// Define the type for a single social media link
 interface SocialLink {
   name: string;
   href: string;
-  icon: any; // Using emoji for simplicity, could use SVG in real project
+  icon: React.ReactNode; // `icon` can be any valid React node (SVG, JSX, etc.)
 }
 
+// Define the component
 const Footer: React.FC = () => {
   const footerLinks: FooterLinkGroup[] = [
     {
@@ -54,15 +62,10 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks: SocialLink[] = [
-    // @ts-ignore 
     { name: "Facebook", href: "#", icon: <FaFacebook /> },
-    // @ts-ignore
     { name: "Twitter", href: "#", icon: <FaXTwitter /> },
-    // @ts-ignore
     { name: "Instagram", href: "#", icon: <FaInstagramSquare /> },
-    // @ts-ignore
     { name: "LinkedIn", href: "#", icon: <FaLinkedin /> },
-    // @ts-ignore
     { name: "GitHub", href: "#", icon: <FaGithub /> },
   ];
 
@@ -70,7 +73,7 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-brand">
-          <h2 className="footer-logo">D'roid Technologies</h2>
+          <h2 className="footer-logo">D'roid Technologies Ltd</h2>
           <p className="footer-description">
             Making the world better through elegant digital solutions.
           </p>
@@ -108,7 +111,7 @@ const Footer: React.FC = () => {
 
       <div className="footer-bottom">
         <p className="copyright">
-          &copy; {new Date().getFullYear()} YourBrand. All rights reserved.
+          &copy; {new Date().getFullYear()} D'roid Technologies Ltd. All rights reserved.
         </p>
       </div>
     </footer>

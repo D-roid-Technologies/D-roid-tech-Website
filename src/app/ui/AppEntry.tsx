@@ -65,11 +65,6 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
     const timer = setTimeout(() => setShake(false), 900); // Duration of the shake animation
     return () => clearTimeout(timer);
   }, []);
-  // useEffect(() => {
-  //   setShake(true);
-  //   const timer = setTimeout(() => setShake(false), 900); // Duration of the shake animation
-  //   return () => clearTimeout(timer);
-  // }, [location.pathname]); // Add location.pathname as a dependency to trigger on route change
 
   return (
     <div>
@@ -107,7 +102,7 @@ const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
         </div>
       ) : null}
 
-      <Index width={appWidth} />
+      <Index />
       <Footer />
       <div
         onClick={() => {

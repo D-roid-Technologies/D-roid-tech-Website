@@ -2,13 +2,23 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Testimonial.css";
 import { Assets } from "../../../utils/constant/Assets";
 
+interface TestimonialData {
+  id: number;
+  name: string;
+  role: string;
+  content: string;
+  avatar: string;
+  companyLogo: string;
+}
+
 const Testimonial: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [touchStart, setTouchStart] = useState<number>(0);
+  const [touchEnd, setTouchEnd] = useState<number>(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const testimonials = [
+  // Array of testimonial objects, each typed with the TestimonialData interface
+  const testimonials: TestimonialData[] = [
     {
       id: 1,
       name: "Sarah Johnson",

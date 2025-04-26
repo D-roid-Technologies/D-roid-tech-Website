@@ -6,32 +6,27 @@ import { Assets } from "../../../utils/constant/Assets";
 import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
+import Flag from "react-world-flags";  // Import Flag component
 
+interface DropdownItem {
+  title: string;
+  link: string;
+}
+
+interface DropdownItems {
+  services: DropdownItem[];
+  resources: DropdownItem[];
+  more: DropdownItem[];
+}
 
 const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [userCountry, setUserCountry] = useState<string>("");
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    setActiveDropdown(null);
-  };
-
-  const toggleDropdown = (dropdown: string) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const dropdownItems = {
+  const dropdownItems: DropdownItems = {
     services: [
       { title: "Software Development", link: "/software-development" },
       { title: "Training Programs", link: "/training" },
@@ -47,11 +42,35 @@ const Navbar: React.FC = () => {
     ],
     more: [
       { title: "D'roid Journal", link: "/blog" },
-      { title: "Product Suite", link: "/products" },
-      // { title: "Success Stories", link: "/success-stories" },
-      // { title: "Events", link: "/events" },
+      { title: "Join Our Community", link: "/our-commnity" },
     ],
   };
+
+  // Extract country code from user's locale
+  useEffect(() => {
+    const country = navigator.language.split('-')[1]; // Extract country code
+    setUserCountry(country || 'US'); // Default to 'US' if country code is not found
+  }, []);
+
+  // Toggle the menu for mobile
+  const toggleMenu = (): void => {
+    setIsMenuOpen(!isMenuOpen);
+    setActiveDropdown(null);
+  };
+
+  // Toggle the dropdown visibility
+  const toggleDropdown = (dropdown: string): void => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = (): void => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav
@@ -79,14 +98,11 @@ const Navbar: React.FC = () => {
             >
               <div className="dropdown-title">
                 Services
-                {/* @ts-ignore */}
-                {activeDropdown === "services" ?
-
+                {activeDropdown === "services" ? (
                   <HiChevronUp />
-                  : (
-
-                    <HiChevronDown />
-                  )}
+                ) : (
+                  <HiChevronDown />
+                )}
               </div>
               {activeDropdown === "services" && (
                 <ul className="dropdown-menu">
@@ -154,8 +170,17 @@ const Navbar: React.FC = () => {
           <a href="StartProjectPage" className="navbar-cta">
             Start a project
           </a>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <Flag code={userCountry} style={{ width: "30px", height: "20px" }} />
+            <span style={{ color: "white", fontSize: "14px" }}>{userCountry}</span>
+          </div>
         </div>
-
         <button className="mobile-menu-button" onClick={toggleMenu}>
           {isMenuOpen ? (
             <HiX size={28} />
@@ -173,8 +198,7 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""}`}
           >
             <div
               className="mobile-dropdown-title"
@@ -203,8 +227,7 @@ const Navbar: React.FC = () => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""}`}
           >
             <div
               className="mobile-dropdown-title"
@@ -238,8 +261,7 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""}`}
           >
             <div
               className="mobile-dropdown-title"

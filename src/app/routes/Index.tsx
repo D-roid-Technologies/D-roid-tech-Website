@@ -1,11 +1,13 @@
+// Importing all dependencies first
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// Importing all the pages/components
 import Home from "../ui/pages/home/Home";
 import AboutUs from "../ui/pages/aboutus/AboutUs";
 import Animation from "../ui/pages/animations/Animation";
 import Contact from "../ui/pages/contact/Contact";
 import Training from "../ui/pages/training/Training";
-import { RouterType } from "../utils/Types";
 import Equipments from "../ui/pages/equipments/Equipments";
 import Drone from "../ui/pages/drone/Drone";
 import Staff from "../ui/pages/staff/Staff";
@@ -40,70 +42,118 @@ import Muzik from "../ui/pages/muzik/Muzik";
 import KnowledgeCity from "../ui/pages/animations/knowledgecity/KnowledgeCity";
 import DroidJournalPage from "../ui/pages/DroidJournal/DroidJournalPage";
 import Products from "../ui/pages/products/Products";
+import SignUp from "../ui/pages/signup/Signup";
 
-const Index: React.FunctionComponent<RouterType> = ({ width }) => {
+// Define an enum for all route paths
+export enum RoutePaths {
+  Home = "/",
+  AboutUs = "/aboutus",
+  Careers = "/careers",
+  StartProjectPage = "/StartProjectPage",
+  
+  // Services Routes
+  SoftwareDevelopment = "/software-development",
+  Training = "/training",
+  Animation = "/animation",
+  Consulting = "/consulting",
+  
+  // Resources Routes
+  Toolbox = "/toolbox",
+  Calculators = "/calculators",
+  Schedules = "/schedules",
+  Muzik = "/muzik",
+  KnowledgeCity = "/knowledge-city",
+
+  // More Routes
+  Blog = "/blog",
+  Products = "/products",
+  JoinOurCommnity = "/our-commnity",
+
+  // Existing Routes
+  Contact = "/contact",
+  TrainingPage = "/training",
+  DevTools = "/devtools",
+  DroidIcons = "/droidicons",
+  Staff = "/staff",
+  AllStaffs = "/allstaffs",
+  Software = "/software",
+  PrivacyPolicy = "/privacy",
+  Details = "/details",
+  TrainingPrograms = "/trainingprograms",
+  CourseDetail = "/training/course-detail/:courseId",
+  Services = "/services",
+  NotFound = "*",
+  TakeTest = "/taketest",
+  AI = "/ai",
+
+  // Animation Routes
+  KnowledgeCityDetails = "/knowledgecitydetails",
+  CashBasket = "/cashbasket",
+  Dome = "/dome",
+
+  // Website Routes
+  Website = "/website",
+  WebWelcome = "/webwelcome",
+  WebOverview = "/weboverview",
+  Project = "/project",
+  WebFoarm = "/webfoarm",
+}
+
+const Index: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/careers" element={<CareersPage />} />
-        <Route path="/StartProjectPage" element={<StartProjectPage />} />
+        <Route path={RoutePaths.Home} element={<Home />} />
+        <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
+        <Route path={RoutePaths.Careers} element={<CareersPage />} />
+        <Route path={RoutePaths.StartProjectPage} element={<StartProjectPage />} />
 
-        {/* Services Dropdown Routes */}
-        <Route
-          path="/software-development"
-          element={<SoftwareDevelopmentPage />}
-        />
-        <Route path="/training" element={<TrainingProgramsPage />} />
-        <Route path="/animation" element={<AnimationPage />} />
-        <Route path="/consulting" element={<ConsultingPage />} />
+        {/* Services Routes */}
+        <Route path={RoutePaths.SoftwareDevelopment} element={<SoftwareDevelopmentPage />} />
+        <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
+        <Route path={RoutePaths.Animation} element={<AnimationPage />} />
+        <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
 
-        {/* Resources Dropdown Routes */}
-        <Route path="/toolbox" element={<ToolBoxPage />} />
-        <Route path="/calculators" element={<CalculatorPage />} />
-        <Route path="/schedules" element={<SchedulePage />} />
-        <Route path="/muzik" element={<Muzik />} />
-        <Route path="/knowledge-city" element={<KnowledgeCity />} />
+        {/* Resources Routes */}
+        <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
+        <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
+        <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
+        <Route path={RoutePaths.Muzik} element={<Muzik />} />
+        <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
 
-        {/* More Dropdown Routes */}
-        <Route path="/blog" element={<DroidJournalPage />} />
-        <Route path="/products" element={<Products />} />
+        {/* More Routes */}
+        <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
+        <Route path={RoutePaths.Products} element={<Products />} />
+        <Route path={RoutePaths.JoinOurCommnity} element={<SignUp />} />
 
         {/* Existing Routes */}
-        <Route path="/products" element={<Animation />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/training" element={<Training />} />
-        <Route path="/devtools" element={<Drone />} />
-        <Route path="/droidicons" element={<Equipments />} />
-        <Route path="/staff" element={<Staff />} />
-        <Route path="/allstaffs" element={<AllStaffs />} />
-        <Route path="/software" element={<Software />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/details" element={<Details />} />
-        {/* <Route path="/StartProjectPage" element={<StartProjectPage />} /> */}
-        <Route path="/trainingprograms" element={<TrainingPrograms />} />
-        <Route
-          path="/training/course-detail/:courseId"
-          element={<CourseDetail />}
-        />
-        <Route path="/services" element={<Services />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/taketest" element={<TakeTest />} />
-        <Route path="/ai" element={<AI />} />
+        <Route path={RoutePaths.Contact} element={<Contact />} />
+        <Route path={RoutePaths.TrainingPage} element={<Training />} />
+        <Route path={RoutePaths.DevTools} element={<Drone />} />
+        <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
+        <Route path={RoutePaths.Staff} element={<Staff />} />
+        <Route path={RoutePaths.AllStaffs} element={<AllStaffs />} />
+        <Route path={RoutePaths.Software} element={<Software />} />
+        <Route path={RoutePaths.PrivacyPolicy} element={<PrivacyPolicy />} />
+        <Route path={RoutePaths.Details} element={<Details />} />
+        <Route path={RoutePaths.TrainingPrograms} element={<TrainingPrograms />} />
+        <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
+        <Route path={RoutePaths.Services} element={<Services />} />
 
-        <Route
-          path="/knowledgecitydetails"
-          element={<KnowledgeCityDetails />}
-        />
-        <Route path="/cashbasket" element={<Cashbasket />} />
-        <Route path="/dome" element={<Dome />} />
-        <Route path="/website" element={<Website />} />
-        <Route path="/webwelcome" element={<WebWelcome />} />
-        <Route path="/weboverview" element={<WebOverview />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/webfoarm" element={<WebFoarm />} />
-        <Route path="/services" element={<WebFoarm />} />
+        {/* Animation Routes */}
+        <Route path={RoutePaths.KnowledgeCityDetails} element={<KnowledgeCityDetails />} />
+        <Route path={RoutePaths.CashBasket} element={<Cashbasket />} />
+        <Route path={RoutePaths.Dome} element={<Dome />} />
+
+        {/* Website Routes */}
+        <Route path={RoutePaths.Website} element={<Website />} />
+        <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
+        <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
+        <Route path={RoutePaths.Project} element={<Project />} />
+        <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
+
+        {/* 404 Page */}
+        <Route path={RoutePaths.NotFound} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
