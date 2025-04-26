@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
         <div className="footer-brand">
           <h2 className="footer-logo">D'roid Technologies Ltd</h2>
           <p className="footer-description">
-            Making the world better through elegant digital solutions.
+            Making the world better using code.
           </p>
           <div className="footer-social">
             {socialLinks.map((link, index) => (

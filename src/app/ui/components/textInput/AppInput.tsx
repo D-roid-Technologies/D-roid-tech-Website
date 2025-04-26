@@ -4,8 +4,8 @@ import { AppInputType } from "../../../utils/Types";
 import "../textInput/AppInput.css";
 import { store } from "../../../redux/Store";
 import {
-  addContactInfo,
-  addSixDigitCodeFromUser,
+  // addContactInfo,
+  // addSixDigitCodeFromUser,
 } from "../../../redux/slices/User";
 
 const AppInput: React.FunctionComponent<AppInputType> = ({

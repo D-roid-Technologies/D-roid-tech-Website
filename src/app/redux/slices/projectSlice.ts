@@ -51,7 +51,7 @@ const initialState: ProjectState = {
       client: "TransGlobe Shipping",
       team: ["Ngozi Obi", "Liam Chen", "Julia Fernandez"],
       imageUrl: Assets.images.droidweb,
-      category: "School",
+      category: "Company",
       price: "",
       author: "D'roid",
     },

@@ -43,6 +43,8 @@ import KnowledgeCity from "../ui/pages/animations/knowledgecity/KnowledgeCity";
 import DroidJournalPage from "../ui/pages/DroidJournal/DroidJournalPage";
 import Products from "../ui/pages/products/Products";
 import SignUp from "../ui/pages/signup/Signup";
+import StaffLogin from "../ui/pages/staffLogin/StaffLogin";
+import ForgotPassword from "../ui/pages/ForgotPassword/ForgotPassword";
 
 // Define an enum for all route paths
 export enum RoutePaths {
@@ -70,7 +72,10 @@ export enum RoutePaths {
   // More Routes (nested under /more)
   Blog = `/more/blog`,
   Products = "/more/products",
-  JoinOurCommunity = "/more/join-our-community",
+  JoinOurCommunity = "/auth/join-our-community",
+  Signup = "/auth/signup",
+
+
 
   // Existing Routes
   Contact = "/contact",
@@ -80,14 +85,18 @@ export enum RoutePaths {
   Staff = "/staff",
   AllStaffs = "/allstaffs",
   Software = "/software",
-  PrivacyPolicy = "/privacy",
   Details = "/details",
+  PrivacyPolicy = "/privacy-policy",
+  TermsAndCondition = "/terms-and-condition",
   TrainingPrograms = "/trainingprograms",
   CourseDetail = "/training/course-detail/:courseId",
   Services = "/services",
   NotFound = "*",
   TakeTest = "/taketest",
   AI = "/ai",
+  ForgotPassword = "/auth/forgot-password",
+  StaffLogin = "/auth/staff-login",
+  MemberLogin = "/auth/member-login",
 
   // Animation Routes
   KnowledgeCityDetails = "/knowledgecitydetails",
@@ -100,6 +109,7 @@ export enum RoutePaths {
   WebOverview = "/weboverview",
   Project = "/project",
   WebFoarm = "/webfoarm",
+
 }
 
 interface DropdownItem {
@@ -161,7 +171,6 @@ const Index: React.FunctionComponent = () => {
           <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
           <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
           <Route path={RoutePaths.Products} element={<Products />} />
-          <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
         </Route>
 
         {/* Existing Routes */}
@@ -177,6 +186,10 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.TrainingPrograms} element={<TrainingPrograms />} />
         <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
         <Route path={RoutePaths.Services} element={<Services />} />
+        <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
+        <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
+        <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
+        {/* <Route path={RoutePaths.MemberLogin} element={<M />} /> */}
 
         {/* Animation Routes */}
         <Route path={RoutePaths.KnowledgeCityDetails} element={<KnowledgeCityDetails />} />

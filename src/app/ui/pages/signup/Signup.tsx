@@ -1,11 +1,13 @@
 // @ts-nocheck
 
 import React, { useState } from 'react';
-import { FaUsers } from 'react-icons/fa';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaUsers, FaArrowLeft } from 'react-icons/fa';
+import { RoutePaths } from '../../../routes/Index';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
+    userType: '',
+    staffId: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -14,14 +16,7 @@ const SignUp = () => {
     agreeToPolicy: false,
   });
 
-  const [formErrors, setFormErrors] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    agreeToPolicy: '',
-  });
+  const [formErrors, setFormErrors] = useState({});
 
   const regex = {
     name: /^[A-Za-z]+$/,
@@ -29,7 +24,7 @@ const SignUp = () => {
     password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
   };
@@ -37,6 +32,16 @@ const SignUp = () => {
   const validate = () => {
     let errors: any = {};
     let isValid = true;
+
+    if (!formData.userType) {
+      errors.userType = 'Please select a user type.';
+      isValid = false;
+    }
+
+    if (formData.userType === 'Staff' && !formData.staffId.trim()) {
+      errors.staffId = 'Staff ID is required for staff users.';
+      isValid = false;
+    }
 
     if (!formData.firstName || !regex.name.test(formData.firstName)) {
       errors.firstName = 'First name should only contain letters.';
@@ -75,7 +80,7 @@ const SignUp = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Form submitted successfully');
+      console.log('Form submitted successfully', formData);
     }
   };
 
@@ -100,7 +105,6 @@ const SignUp = () => {
           position: 'relative',
         }}
       >
-        {/* Back Button */}
         <a
           href="/"
           style={{
@@ -133,20 +137,29 @@ const SignUp = () => {
         }}
       >
         {/* Top Links */}
-        <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
-          <a
-            href="/login"
-            style={{
-              color: '#479BE8',
-              textDecoration: 'none',
-              fontSize: '16px',
-            }}
-          >
-            Log me in
+        <div style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          display: 'flex',
+          gap: '20px',
+        }}>
+          <a href={RoutePaths.StaffLogin} style={{ color: '#479BE8', textDecoration: 'none', fontSize: '16px' }}>
+            Staff Login
           </a>
         </div>
 
-        <h2 style={{ fontSize: '32px', marginBottom: '10px', color: '#071D6A' }}>
+        <div style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+        }}>
+          <a href={RoutePaths.MemberLogin} style={{ color: '#479BE8', textDecoration: 'none', fontSize: '16px' }}>
+            Member Login
+          </a>
+        </div>
+
+        <h2 style={{ fontSize: '32px', marginBottom: '10px', color: '#071D6A', fontWeight: '800' }}>
           Join the D'roid Community
         </h2>
         <p style={{ fontSize: '18px', marginBottom: '30px', color: '#BAB8B8' }}>
@@ -154,7 +167,55 @@ const SignUp = () => {
         </p>
 
         <form onSubmit={handleSubmit}>
-          {/* Input Fields */}
+          {/* User Type Dropdown */}
+          <div style={{ marginBottom: '15px' }}>
+            <select
+              name="userType"
+              value={formData.userType}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '12px',
+                borderRadius: '5px',
+                border: '1px solid #CCCCCC',
+                backgroundColor: '#F9F9F9',
+                color: formData.userType ? '#000' : '#BAB8B8',
+              }}
+            >
+              <option value="">Select User Type</option>
+              <option value="Staff">Staff</option>
+              <option value="Organisation">Organisation</option>
+              <option value="Member">Member</option>
+            </select>
+            {formErrors.userType && (
+              <div style={{ color: '#FF6F61', fontSize: '12px' }}>{formErrors.userType}</div>
+            )}
+          </div>
+
+          {/* Staff ID Input (only if userType is Staff) */}
+          {formData.userType === 'Staff' && (
+            <div style={{ marginBottom: '15px' }}>
+              <input
+                type="text"
+                name="staffId"
+                placeholder="Staff ID"
+                value={formData.staffId}
+                onChange={handleChange}
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  borderRadius: '5px',
+                  border: '1px solid #CCCCCC',
+                  backgroundColor: '#F9F9F9',
+                }}
+              />
+              {formErrors.staffId && (
+                <div style={{ color: '#FF6F61', fontSize: '12px' }}>{formErrors.staffId}</div>
+              )}
+            </div>
+          )}
+
+          {/* Other Fields (firstName, lastName, etc.) */}
           <div style={{ marginBottom: '15px' }}>
             <input
               type="text"
@@ -256,8 +317,15 @@ const SignUp = () => {
           </div>
 
           {/* Privacy Checkbox */}
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ fontSize: '14px', color: '#BAB8B8' }}>
+          {/* Privacy Checkbox and Forgot Password */}
+          <div style={{
+            marginBottom: '20px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <label style={{ fontSize: '14px', color: '#BAB8B8', display: 'flex', alignItems: 'center' }}>
               <input
                 type="checkbox"
                 name="agreeToPolicy"
@@ -266,17 +334,22 @@ const SignUp = () => {
                 style={{ marginRight: '8px' }}
               />
               I agree to the{' '}
-              <a
-                href="/privacy-policy"
-                style={{ color: '#479BE8', textDecoration: 'underline' }}
-              >
+              <a href={RoutePaths.PrivacyPolicy} style={{ color: '#479BE8', textDecoration: 'underline', marginLeft: '4px' }}>
                 Privacy Policy
               </a>
             </label>
+
+            <a href={RoutePaths.ForgotPassword} style={{ fontSize: '14px', color: '#479BE8', textDecoration: 'underline' }}>
+              Forgot Password?
+            </a>
+
             {formErrors.agreeToPolicy && (
-              <div style={{ color: '#FF6F61', fontSize: '12px' }}>{formErrors.agreeToPolicy}</div>
+              <div style={{ color: '#FF6F61', fontSize: '12px', width: '100%', marginTop: '8px' }}>
+                {formErrors.agreeToPolicy}
+              </div>
             )}
           </div>
+
 
           {/* Submit Button */}
           <button

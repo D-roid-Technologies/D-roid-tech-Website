@@ -19,8 +19,8 @@ const Staff: React.FunctionComponent<any> = () => {
 
   const wStaff = dimension.width;
   const hStaff = dimension.height;
-  const fixedCode = user.sixDigitCode;
-  const userCode = user.sixDigitCodeFromUser;
+  // const fixedCode = user.sixDigitCode;
+  // const userCode = user.sixDigitCodeFromUser;
   const modal = appEntry.showModal;
 
   const onSuccessTitle = "Congratulations";
@@ -32,31 +32,31 @@ const Staff: React.FunctionComponent<any> = () => {
 
   const navigate = useNavigate();
 
-  function verifyCode() {
-    if (fixedCode === userCode) {
-      store.dispatch(updateModal(true));
-      store.dispatch(
-        updateModalContent({
-          appTitle: onSuccessTitle,
-          appBody: onSuccessBody,
-        })
-      );
-      setTimeout(() => {
-        store.dispatch(updateModal(false));
-      }, 5000);
-      setTimeout(() => {
-        navigate("/allstaffs");
-      }, 7000);
-    } else {
-      store.dispatch(updateModal(true));
-      store.dispatch(
-        updateModalContent({
-          appTitle: onFailedTitle,
-          appBody: onFailedBody,
-        })
-      );
-    }
-  }
+  // function verifyCode() {
+  //   if (fixedCode === userCode) {
+  //     store.dispatch(updateModal(true));
+  //     store.dispatch(
+  //       updateModalContent({
+  //         appTitle: onSuccessTitle,
+  //         appBody: onSuccessBody,
+  //       })
+  //     );
+  //     setTimeout(() => {
+  //       store.dispatch(updateModal(false));
+  //     }, 5000);
+  //     setTimeout(() => {
+  //       navigate("/allstaffs");
+  //     }, 7000);
+  //   } else {
+  //     store.dispatch(updateModal(true));
+  //     store.dispatch(
+  //       updateModalContent({
+  //         appTitle: onFailedTitle,
+  //         appBody: onFailedBody,
+  //       })
+  //     );
+  //   }
+  // }
 
   return (
     <div>
@@ -89,7 +89,9 @@ const Staff: React.FunctionComponent<any> = () => {
               mRight={0}
               color="#ffffff"
               fWeight={700}
-              onClickButton={() => verifyCode()}
+              onClickButton={() => { }
+                //verifyCode()
+              }
             />
           </div>
         </div>

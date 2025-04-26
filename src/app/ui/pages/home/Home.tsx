@@ -8,6 +8,7 @@ import CompanyCarousel from "../companycarousel/CompanyCarousel";
 import Intro from "./intro/Intro";
 import Products from "../products/Products";
 import Testimonial from "../testimonial/Testimonial";
+import ProductsSmall from "../products/ProductsSmall";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -17,7 +18,7 @@ const Home: React.FunctionComponent = () => {
       <NavBar />
       <CompanyCarousel />
       <Intro />
-      <Products />
+      <ProductsSmall />
       <Testimonial />
     </div>
   );
