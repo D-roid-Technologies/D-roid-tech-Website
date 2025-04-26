@@ -49,9 +49,9 @@ const ProjectSection = () => {
   return (
     <section className="projects-container">
       <div className="container">
-        <h2 className="projects-heading">
-          <span className="projects-title-span">PROJECTS</span>
-        </h2>
+        <p className="projects-heading">
+          <span className="projects-title-span title_span">PROJECTS</span>
+        </p>
 
         <div className="projects-grid">
           <div className="project-column">

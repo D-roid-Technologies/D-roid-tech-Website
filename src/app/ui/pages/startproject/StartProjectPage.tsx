@@ -257,14 +257,14 @@ const StartProjectPage: React.FC = () => {
               placeholder={"First Last"}
               width={""}
               border={""}
-              padding={""}
+              padding={"10px 0"}
               color={""}
               borderRadius={""}
               backgroundColor={""}
               onChange={handleChange}
               value={form.fullName}
               variant="filled"
-              startAdornment={<CiBrightnessDown />}
+              //   startAdornment={<CiBrightnessDown />}
             />
           </div>
 

@@ -98,6 +98,7 @@
 .projects-title-span {
   position: relative;
   padding-bottom: 10px;
+  /* font-size: 0.8rem; */
 }
 
 .projects-title-span::after {
@@ -107,7 +108,7 @@
   bottom: 0;
   width: 40px;
   height: 3px;
-  background-color: #0066cc;
+  background-color: #0a0d31;
 }
 
 .projects-grid {
@@ -139,7 +140,7 @@
 }
 
 .communication-header {
-  background-color: #f59e0b;
+  background-color: #90e0ef;
 }
 
 .project-list {
@@ -197,6 +198,77 @@
 .project-link:hover {
   text-decoration: underline;
   color: #004999;
+}
+
+/* form section */
+
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #2d3748;
+  font-size: 0.875rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-error {
+  margin-top: 0.5rem;
+  color: #e53e3e;
+  font-size: 0.875rem;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 1rem;
+  background-color: #4299e1;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form-submit:hover {
+  background-color: #3182ce;
+}
+
+.input-icon {
+  color: #718096;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 @media (min-width: 768px) {
