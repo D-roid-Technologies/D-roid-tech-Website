@@ -108,6 +108,9 @@ const Navbar: React.FC = () => {
               )}
             </li>
             <li>
+              <a href="/#">Mobile</a>
+            </li>
+            <li>
               <a href="/careers">Careers</a>
             </li>
             <li
@@ -140,7 +143,7 @@ const Navbar: React.FC = () => {
           <a href="StartProjectPage" className="navbar-cta">
             Start a project
           </a>
-          <div
+          {/* <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -149,7 +152,7 @@ const Navbar: React.FC = () => {
           >
             <Flag code={userCountry} style={{ width: "30px", height: "20px" }} />
             <span style={{ color: "white", fontSize: "14px" }}>{userCountry}</span>
-          </div>
+          </div> */}
         </div>
         <button className="mobile-menu-button" onClick={toggleMenu}>
           {isMenuOpen ? (
