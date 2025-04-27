@@ -1,51 +1,67 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import { FaUsers, FaCheckCircle, FaExclamationCircle, FaFileAlt } from 'react-icons/fa';
-import { RoutePaths } from '../../../routes/Index';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/Store'; // adjust this import based on where your store is configured
 import { useNavigate } from 'react-router-dom';
+import { RoutePaths } from '../../../routes/Index';
+import { FaUser, FaTasks, FaBullhorn, FaCalendarAlt, FaFileInvoiceDollar, FaUserPlus, FaCommentDots, FaChalkboardTeacher, FaChartLine, FaBookOpen } from 'react-icons/fa';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../../../firebase';
 
 const Dashboard: React.FunctionComponent = () => {
-    // Sample data for dashboard
-    const [staffDetails, setStaffDetails] = useState({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        staffId: 'S12345',
-    });
 
-    const [tasks, setTasks] = useState([
+    const menuItems = [
+        { label: 'Personal Details', icon: FaUser, onClick: () => console.log('Personal Details') },
+        { label: 'Tasks', icon: FaTasks, onClick: () => console.log('Tasks') },
+        { label: 'Announcements', icon: FaBullhorn, onClick: () => console.log('Announcements') },
+        { label: 'Schedules', icon: FaCalendarAlt, onClick: () => console.log('Schedules') },
+        { label: 'Payslips', icon: FaFileInvoiceDollar, onClick: () => console.log('Payslips') },
+        { label: 'Onboarding', icon: FaUserPlus, onClick: () => console.log('Onboarding') },
+        { label: 'Say It', icon: FaCommentDots, onClick: () => console.log('Say It') },
+        { label: 'Training', icon: FaChalkboardTeacher, onClick: () => console.log('Training') },
+        { label: 'Progressions', icon: FaChartLine, onClick: () => console.log('Progressions') },
+        { label: 'Resource', icon: FaBookOpen, onClick: () => console.log('Resource') },
+    ];
+
+    const navigate = useNavigate();
+
+    // Fetch user data from Redux store
+    const staffDetails = useSelector((state: RootState) => state.user);
+
+    // Static data for now (tasks, announcements, schedule)
+    const tasks = [
         { id: 1, name: 'Task 1', status: 'Completed' },
         { id: 2, name: 'Task 2', status: 'Ongoing' },
         { id: 3, name: 'Task 3', status: 'Not Started' },
-    ]);
+    ];
 
-    const [announcements, setAnnouncements] = useState([
+    const announcements = [
         { id: 1, title: 'New Staff Training', message: 'Mandatory training next week' },
         { id: 2, title: 'Office Closed', message: 'Office will be closed on Friday for a holiday' },
-    ]);
+    ];
 
-    const [schedule, setSchedule] = useState({
+    const schedule = {
         workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         leave: {
             approved: ['Monday', 'Wednesday'],
             awaiting: ['Friday'],
         },
-    });
+    };
 
-    const navigate = useNavigate();
-
-    // Fetch data (This can be replaced with an API call)
-    useEffect(() => {
-        // Replace with actual data fetching logic if needed
-        // Example:
-        // fetchStaffData();
-        // fetchTasks();
-        // fetchSchedule();
-        // fetchAnnouncements();
-    }, []);
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            navigate(RoutePaths.JoinOurCommunity);
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
+    };
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#F9F9F9' }}>
+            {/* Header */}
             <div
                 style={{
                     backgroundColor: '#071D6A',
@@ -57,23 +73,28 @@ const Dashboard: React.FunctionComponent = () => {
                 }}
             >
                 <h2 style={{ fontWeight: '800' }}>D'roid Dashboard</h2>
-                <a
-                    href="/"
+                <div
                     style={{
-                        color: '#FFFFFF',
-                        textDecoration: 'none',
-                        fontSize: '18px',
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '50%',
+                        backgroundColor: '#FFFFFF',
+                        color: '#071D6A',
                         display: 'flex',
+                        justifyContent: 'center',
                         alignItems: 'center',
+                        fontWeight: '800',
+                        fontSize: '18px',
+                        cursor: 'pointer',
                     }}
                 >
-                    {/* <FaArrowLeft style={{ marginRight: '8px' }} /> */}
-                    Back to Home
-                </a>
+                    {`${staffDetails.firstName[0]}${staffDetails.lastName[0]}`}
+                </div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'row', padding: '20px', gap: '20px' }}>
                 {/* Left Section: Staff Information */}
+
                 <div
                     style={{
                         width: '30%',
@@ -83,14 +104,75 @@ const Dashboard: React.FunctionComponent = () => {
                         boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
                     }}
                 >
-                    <h3 style={{ color: '#071D6A' }}>User Information</h3>
-                    <p><strong>First Name:</strong> {staffDetails.firstName}</p>
-                    <p><strong>Last Name:</strong> {staffDetails.lastName}</p>
-                    <p><strong>Email:</strong> {staffDetails.email}</p>
-                    <p><strong>Staff ID:</strong> {staffDetails.staffId}</p>
+                    <h3 style={{ color: '#071D6A', fontWeight: "900", fontSize: "30px" }}>
+                        Welcome, {staffDetails.firstName} {staffDetails.lastName}
+                    </h3>
+                    <p>{staffDetails.email}</p>
+                    <div style={{ marginTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <p>{staffDetails.userType} Account</p>
+                        <p><strong>ID:</strong> {staffDetails.staffId}</p>
+                    </div>
+
+                    {/* Button List */}
+                    <div
+                        style={{
+                            marginTop: "40px",
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '15px',
+                            maxHeight: '300px',
+                            overflowY: 'auto',
+                            paddingRight: '8px',
+                        }}
+                    >
+                        {menuItems.map((item) => (
+                            <div
+                                key={item.label}
+                                onClick={item.onClick}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    padding: '12px 16px',
+                                    backgroundColor: '#F5F5F5',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer',
+                                    transition: 'background-color 0.3s',
+                                }}
+                                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e0e0e0')}
+                                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#F5F5F5')}
+                            >
+                                <item.icon style={{ marginRight: '10px', color: '#071D6A' }} />
+                                <span style={{ fontWeight: 600, color: '#333' }}>{item.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                    {/* Sign Out Button */}
+                    <button
+                        onClick={
+                            handleSignOut
+                        }
+                        style={{
+                            marginTop: '20px',
+                            padding: '12px 16px',
+                            backgroundColor: '#DC3545',
+                            color: '#FFFFFF',
+                            fontWeight: '700',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            transition: 'background-color 0.3s',
+                            width: "100%"
+                        }}
+                        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#c82333')}
+                        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#DC3545')}
+                    >
+                        Sign Out
+                    </button>
+
                 </div>
 
-                {/* Right Section: Staff Tasks, Announcements, Schedule */}
+
+                {/* Right Section: Tasks, Announcements, Schedule */}
                 <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     {/* Staff Tasks */}
                     <div
@@ -159,17 +241,17 @@ const Dashboard: React.FunctionComponent = () => {
     );
 };
 
-// Helper function to determine task status color
+// Helper function
 const getTaskColor = (status: string) => {
     switch (status) {
         case 'Completed':
-            return '#28A745'; // Green
+            return '#28A745';
         case 'Ongoing':
-            return '#FFC107'; // Yellow
+            return '#FFC107';
         case 'Not Started':
-            return '#DC3545'; // Red
+            return '#DC3545';
         default:
-            return '#6C757D'; // Grey
+            return '#6C757D';
     }
 };
 

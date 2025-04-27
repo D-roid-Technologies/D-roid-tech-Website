@@ -5,9 +5,10 @@ import { store, persistor } from "./app/redux/Store";
 import { RootState } from "./app/redux/Store";
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { UserType } from "./app/utils/Types";
 
 function AppContent() {
-  const user: any = useSelector((state: RootState) => state.user);
+  const user: UserType = useSelector((state: RootState) => state.user);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
 
   useEffect(() => {
@@ -41,10 +42,10 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      console.log("User logged in:", user);
+    if (user.isLoggedIn === true) {
+      console.log("User exists", user);
     } else {
-      console.log("No user logged in");
+      console.log("No user exists");
     }
   }, [user]);
 

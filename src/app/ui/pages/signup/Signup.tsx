@@ -1,10 +1,13 @@
-// @ts-nocheck 
+// @ts-nocheck
 import React, { useState } from 'react';
 import { FaUsers, FaArrowLeft } from 'react-icons/fa';
 import { RoutePaths } from '../../../routes/Index';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
-import { auth } from '../../../../firebase'; // Make sure this path is correct
 import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../../../firebase';
+import { collection, doc, setDoc, getDoc } from 'firebase/firestore'; // Firestore functions
+import { updateUser } from '../../../redux/slices/User'; // import updateUser action
+import { store } from '../../../redux/Store';
 
 interface FormData {
   userType: string;
@@ -29,6 +32,7 @@ interface FormErrors {
 };
 
 const SignUp = () => {
+  const [text, setText] = useState<any>("Sign Up");
   const [formData, setFormData] = useState<FormData>({
     userType: '',
     staffId: '',
@@ -104,44 +108,66 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-      e.preventDefault();
-      if (validate()) {
-        const auth = getAuth(); // Initialize auth
-  
-        createUserWithEmailAndPassword(auth, formData.email, formData.password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            
-            // Update profile information
-            updateProfile(user, {
-              displayName: `${formData.firstName} ${formData.lastName}`,
-            }).then(() => {
-              console.log('Profile updated!');
-            });
-  
-            // Send verification email
-            sendEmailVerification(user)
-              .then(() => {
-                console.log('Verification email sent!');
-              })
-              .catch((error) => {
-                console.error('Error sending verification email:', error);
-              });
-  
-            // Redirect to login page
-            navigate(RoutePaths.DashBoard);
-          })
-          .catch((error) => {
-            console.error('Error creating user:', error.message);
-            setFormErrors({ ...formErrors, email: error.message });
-          });
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+
+    if (!validate()) return;
+
+    try {
+      // 1. Create user
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+      console.log("User created:", user.uid);
+      setText("Creating your D'roid Account...");
+
+      // 2. Send email verification
+      await sendEmailVerification(user);
+      console.log('Verification email sent!');
+
+      // 3. Update profile
+      await updateProfile(user, {
+        displayName: `${formData.firstName} ${formData.lastName}`,
+      });
+      console.log('Profile updated!');
+
+      // 4. Save user data to Firestore
+      const userDocRef = doc(collection(db, "users"), user.uid); // db is your firestore instance
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        initials: `${formData.firstName[0]}${formData.lastName[0]}`.toUpperCase(),
+        userType: formData.userType || 'staff', // or default
+        staffId: formData.staffId || '',
+        email: formData.email,
+        agreeToPolicy: formData.agreeToPolicy,
+        isLoggedIn: true,
+      };
+
+      await setDoc(userDocRef, userData);
+      console.log('User data written to Firestore!');
+
+      // 5. Fetch user data again from Firestore
+      const userSnapshot = await getDoc(userDocRef);
+      if (userSnapshot.exists()) {
+        const fetchedUserData = userSnapshot.data();
+
+        // 6. Dispatch to redux store
+        store.dispatch(updateUser(fetchedUserData));
+        console.log('User dispatched to store:', fetchedUserData);
+
+        // 7. Navigate to Dashboard
+        navigate(RoutePaths.DashBoard);
+      } else {
+        console.error('No user data found after write.');
       }
+
+    } catch (error: any) {
+      console.error('Error during signup:', error.message);
+      setText("Sign Up");
+      setFormErrors({ ...formErrors, email: error.message });
+    }
   };
-  
-
-
 
   return (
     <div
@@ -433,7 +459,7 @@ const SignUp = () => {
               e.currentTarget.style.backgroundColor = '#479BE8';
             }}
           >
-            Sign Up
+            {text}
           </button>
         </form>
       </div>

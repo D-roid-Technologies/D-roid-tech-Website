@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../ui/AppEntry.css";
-import { AppEntryType } from "../utils/Types";
 import Footer from "./components/footer/Footer";
 import { RootState, store } from "../redux/Store";
 import { addHeight, addWidth } from "../redux/slices/Dimension";
@@ -16,7 +15,7 @@ import Index from "../routes/Index";
 import { useLocation } from "react-router-dom"; // Import useLocation
 import { HiX } from "react-icons/hi";
 
-const AppEntry: React.FunctionComponent<AppEntryType> = ({ closeModal }) => {
+const AppEntry: React.FunctionComponent<any> = () => {
   const [shake, setShake] = useState(false);
   const [toastMessage, setToastMessage] = React.useState<string>(
     "Hi There, I'm still being developed!"

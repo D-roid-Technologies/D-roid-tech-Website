@@ -1,7 +1,3 @@
-export type AppEntryType = {
-  closeModal?: () => void;
-};
-
 export type RouterType = {
   width: number;
 };
@@ -11,13 +7,17 @@ export type DimensionType = {
   height: number;
 };
 export type UserType = {
-  sixDigitCode: string;
-  sixDigitCodeFromUser: string;
-  userFName: string;
-  userLName: string;
-  message: string;
-  userEmail: string;
-};
+  firstName: string;
+  lastName: string;
+  initials: string;
+  userType: string;
+  staffId: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  agreeToPolicy: boolean;
+  isLoggedIn: boolean;
+}
 export type ContactType = {
   userFullName: string;
   userEmail: string;

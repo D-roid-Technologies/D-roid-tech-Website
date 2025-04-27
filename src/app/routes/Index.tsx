@@ -79,8 +79,6 @@ export enum RoutePaths {
   JoinOurCommunity = "/auth/join-our-community",
   Signup = "/auth/signup",
 
-
-
   // Existing Routes
   Contact = "/contact",
   TrainingPage = "/training",
