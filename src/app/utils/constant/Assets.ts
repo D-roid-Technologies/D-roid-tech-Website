@@ -176,6 +176,10 @@ export const Assets = {
     ecobankmobile: require("../../images/png/ecobankmobile.png"),
     droidweb: require("../../images/png/droidweb.png"),
     droidinput: require("../../images/png/droidinput.png"),
+    immaclate: require("../../images/png/immaculate.png"),
+    cityboys: require("../../images/png/cityboys.png"),
+    warriors: require("../../images/png/warriors.png"),
+    brothers: require("../../images/png/brothers.png"),
   },
   colors: {
     basic: "#000000",

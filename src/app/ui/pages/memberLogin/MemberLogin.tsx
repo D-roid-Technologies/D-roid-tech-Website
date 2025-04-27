@@ -1,15 +1,23 @@
 // @ts-nocheck
 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { FaUser, FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../../../firebase';
+import { updateUser } from '../../../redux/slices/User';
+import { store } from '../../../redux/Store';
+import { RoutePaths } from '../../../routes/Index';
 
 const MemberLogin = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
 
-    const [formErrors, setFormErrors] = useState({});
+    const [formErrors, setFormErrors] = useState<{ email?: string; password?: string }>({});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -34,11 +42,25 @@ const MemberLogin = () => {
         return isValid;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (validate()) {
-            console.log('Member login submitted', formData);
-            // Proceed with login logic
+            const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password).then(async (res) => {
+                const userDocRef = doc(collection(db, "users"), res.user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+                if (userDocSnap.exists()) {
+                    const fetchedUserData = userDocSnap.data();
+                    store.dispatch(updateUser(fetchedUserData));
+                    navigate(RoutePaths.DashBoard);
+                }
+            }).catch((err) => {
+                console.log(err.message);
+                alert(err.message);
+            })
+
+            return userCredential
+        }else{
+            alert("Wrong Validation");
         }
     };
 

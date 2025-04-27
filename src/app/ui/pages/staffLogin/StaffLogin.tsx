@@ -1,15 +1,23 @@
 // @ts-nocheck
 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
-import { FaUsers, FaArrowLeft } from 'react-icons/fa';
+import { FaUsers } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../../../firebase';
+import { updateUser } from '../../../redux/slices/User';
+import { store } from '../../../redux/Store';
+import { RoutePaths } from '../../../routes/Index';
 
-const StaffLogin = () => {
+const StaffLogin: React.FC<any> = ({ navigation }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        staffId: '',
+        email: '',
         password: '',
     });
 
-    const [formErrors, setFormErrors] = useState({});
+    const [formErrors, setFormErrors] = useState<{ email?: string; password?: string }>({});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -17,11 +25,11 @@ const StaffLogin = () => {
     };
 
     const validate = () => {
-        let errors: any = {};
+        let errors: { email?: string; password?: string } = {};
         let isValid = true;
 
-        if (!formData.staffId.trim()) {
-            errors.staffId = 'Staff ID is required.';
+        if (!formData.email.trim()) {
+            errors.email = 'Email is required.';
             isValid = false;
         }
 
@@ -34,11 +42,25 @@ const StaffLogin = () => {
         return isValid;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (validate()) {
-            console.log('Staff login submitted', formData);
-            // Proceed with login logic
+            const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password).then(async (res) => {
+                const userDocRef = doc(collection(db, "users"), res.user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+                if (userDocSnap.exists()) {
+                    const fetchedUserData = userDocSnap.data();
+                    store.dispatch(updateUser(fetchedUserData));
+                    navigate(RoutePaths.DashBoard);
+                }
+            }).catch((err) => {
+                console.log(err.message);
+                alert(err.message);
+            })
+
+            return userCredential
+        }else{
+            alert("Wrong Validation");
         }
     };
 
@@ -63,21 +85,28 @@ const StaffLogin = () => {
                     position: 'relative',
                 }}
             >
-                <a
-                    href="/"
+                <div
+                    onClick={() => navigate(RoutePaths.Signup)}  // Use navigate.goBack()
                     style={{
                         position: 'absolute',
                         top: '20px',
                         left: '20px',
-                        color: '#FFFFFF',
-                        textDecoration: 'none',
-                        fontSize: '18px',
+                        backgroundColor: '#FFFFFF',
+                        color: '#071D6A',
+                        borderRadius: '50%',
+                        width: '50px',
+                        height: '50px',
                         display: 'flex',
                         alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: 'bold',
+                        fontSize: '18px',
+                        cursor: 'pointer', // Add cursor pointer to indicate it's clickable
                     }}
                 >
-                    <FaArrowLeft style={{ marginRight: '8px' }} /> Back to Home
-                </a>
+                    {/* You can use an icon if you want */}
+                    &#8592;
+                </div>
 
                 <FaUsers style={{ fontSize: '120px', color: '#FFFFFF' }} />
             </div>
@@ -102,13 +131,13 @@ const StaffLogin = () => {
                 </p>
 
                 <form onSubmit={handleSubmit}>
-                    {/* Staff ID Input */}
+                    {/* Email Input */}
                     <div style={{ marginBottom: '15px' }}>
                         <input
                             type="text"
-                            name="staffId"
-                            placeholder="Staff ID"
-                            value={formData.staffId}
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
                             onChange={handleChange}
                             style={{
                                 width: '100%',
@@ -118,8 +147,8 @@ const StaffLogin = () => {
                                 backgroundColor: '#F9F9F9',
                             }}
                         />
-                        {formErrors.staffId && (
-                            <div style={{ color: '#FF6F61', fontSize: '12px' }}>{formErrors.staffId}</div>
+                        {formErrors.email && (
+                            <div style={{ color: '#FF6F61', fontSize: '12px' }}>{formErrors.email}</div>
                         )}
                     </div>
 
