@@ -42,7 +42,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
         return isValid;
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmitStaff = async (e: React.FormEvent) => {
         e.preventDefault();
         if (validate()) {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password).then(async (res) => {
@@ -59,7 +59,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
             })
 
             return userCredential
-        }else{
+        } else {
             alert("Wrong Validation");
         }
     };
@@ -130,7 +130,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
                     Welcome back! Please login to your account.
                 </p>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitStaff}>
                     {/* Email Input */}
                     <div style={{ marginBottom: '15px' }}>
                         <input

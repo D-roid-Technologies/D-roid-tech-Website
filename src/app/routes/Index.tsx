@@ -196,7 +196,6 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
         <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
         <Route path={RoutePaths.TermsAndCondition} element={<TermsAndConditions />} />
-        <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
 
         {/* Animation Routes */}
         <Route path={RoutePaths.KnowledgeCityDetails} element={<KnowledgeCityDetails />} />
@@ -209,6 +208,9 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
         <Route path={RoutePaths.Project} element={<Project />} />
         <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
+
+        {/* Private Routes */}
+        <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
 
         {/* 404 Page */}
         <Route path={RoutePaths.NotFound} element={<NotFound />} />
