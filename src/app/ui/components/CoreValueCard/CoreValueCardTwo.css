@@ -1,0 +1,83 @@
+.core-value-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.core-value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.core-value-card-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+}
+
+.core-value-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #071d6a;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.core-value-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #4285f4;
+}
+
+.core-value-card-description {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Section styling for development process */
+.soft-dev-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+/* Section styling for what we build section */
+.tech-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 30px;
+}
+
+/* Different color schemes for different card sections */
+.process-card .core-value-card-title::after {
+  background-color: #4285f4;
+}
+
+.tech-card .core-value-card-title::after {
+  background-color: #34a853;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .soft-dev-content,
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .core-value-card {
+    padding: 20px;
+  }
+}
