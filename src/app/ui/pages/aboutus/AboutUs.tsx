@@ -20,6 +20,24 @@ import Management from "../../components/staffandmanagement/Management";
 import AboutDroid from "../../components/aboutdroid/AboutDriod";
 import OurHistory from "../../components/ourhistory/OurHistory";
 import OurJourney from "../../components/ourjourney/OurJourney";
+import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
+import { FaBullseye } from "react-icons/fa";
+import { GiNightVision } from "react-icons/gi";
+
+export const companyValues = [
+  {
+    title: "Vision",
+    description:
+      "Our vision is to be a global leader in technological innovation, known for our exceptional service and transformative solutions. We aspire to create a future where technology seamlessly integrates with everyday life, fostering growth, creativity, and progress. By continually advancing our expertise and embracing new challenges, we aim to shape a world where technology is accessible and beneficial to all.",
+    icon: GiNightVision({ size: 24 }),
+  },
+  {
+    title: "Mission",
+    description:
+      "Our mission is to empower individuals and businesses through innovative technology solutions. We strive to deliver high-quality, scalable, and user-friendly software applications, cutting-edge animation, comprehensive tech training, and advanced drone services. Our commitment is to enhance our clients' capabilities, enabling them to achieve their goals with efficiency and excellence.",
+    icon: FaBullseye({ size: 24 }),
+  },
+];
 
 const AboutUs: React.FunctionComponent = () => {
   useEffect(() => {
@@ -43,36 +61,17 @@ const AboutUs: React.FunctionComponent = () => {
           <div className="vision-marginbuttom">
             <section>
               <div className="vision-mission-value">
-                {/* BOX ONE */}
-                <div className="vision-main">
-                  <div className="vision-box">
-                    <h2 className="vision-header">Vision</h2>
-                    <p>
-                      Our vision is to be a global leader in technological
-                      innovation, known for our exceptional service and
-                      transformative solutions. We aspire to create a future
-                      where technology seamlessly integrates with everyday life,
-                      fostering growth, creativity, and progress. By continually
-                      advancing our expertise and embracing new challenges, we
-                      aim to shape a world where technology is accessible and
-                      beneficial to all.
-                    </p>
-                  </div>
-                </div>
-                {/* BOX TWO */}
-                <div className="vision-main">
-                  <div className="vision-box">
-                    <h2 className="vision-header">Mission</h2>
-                    <p>
-                      Our mission is to empower individuals and businesses
-                      through innovative technology solutions. We strive to
-                      deliver high-quality, scalable, and user-friendly software
-                      applications, cutting-edge animation, comprehensive tech
-                      training, and advanced drone services. Our commitment is
-                      to enhance our clients' capabilities, enabling them to
-                      achieve their goals with efficiency and excellence.
-                    </p>
-                  </div>
+                <div className="soft-dev-content">
+                  {companyValues.map((tech, index) => (
+                    <CoreValueCardTwo
+                      key={index}
+                      title={tech.title}
+                      description={tech.description}
+                      imageSrc={tech.imageSrc}
+                      icon={tech.icon}
+                      className="process-card"
+                    />
+                  ))}
                 </div>
               </div>
             </section>
