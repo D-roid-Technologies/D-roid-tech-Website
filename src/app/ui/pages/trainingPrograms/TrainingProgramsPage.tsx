@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
+import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 
 const programs = [
   {
@@ -53,27 +54,22 @@ const TrainingProgramsPage: React.FC = () => {
             Training Programs
           </h1>
           <p style={{ fontSize: "1.25rem", color: "#eee", maxWidth: "600px" }}>
-            Empowering the next generation of tech talent. Our hands-on training programs are built to make you industry-ready.
+            Empowering the next generation of tech talent. Our hands-on training
+            programs are built to make you industry-ready.
           </p>
         </div>
       </div>
 
       {/* Programs List */}
-      <div className="wrapper" style={{ padding: "40px" }}>
-        <h2 style={{ marginBottom: "30px" }}>Explore Our Programs</h2>
-        <div
-          style={{
-            display: "grid",
-            gap: "30px",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          }}
-        >
+      <div className="wrapper soft-wrapper">
+        <h2 className="soft-dev-header title_span">Explore Our Programs</h2>
+        <div className="soft-dev-content">
           {programs.map((prog, index) => (
-            <CoreValueCard
+            <CoreValueCardTwo
               key={index}
               title={prog.title}
               description={prog.description}
-              imageSrc="" // optional: add icons for visual aid
+              imageSrc=""
             />
           ))}
         </div>
@@ -92,7 +88,8 @@ const TrainingProgramsPage: React.FC = () => {
           Ready to Learn & Level Up?
         </h2>
         <p style={{ fontSize: "1.1rem" }}>
-          Whether you're just starting out or upskilling, our programs are built for growth.
+          Whether you're just starting out or upskilling, our programs are built
+          for growth.
         </p>
         <a
           href="/contact"
