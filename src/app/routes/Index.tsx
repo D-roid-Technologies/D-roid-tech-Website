@@ -48,6 +48,7 @@ import ForgotPassword from "../ui/pages/ForgotPassword/ForgotPassword";
 import MemberLogin from "../ui/pages/memberLogin/MemberLogin";
 import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition";
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
+import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
 
 // Define an enum for all route paths
 
@@ -99,6 +100,7 @@ export enum RoutePaths {
   ForgotPassword = "/auth/forgot-password",
   StaffLogin = "/auth/staff-login",
   MemberLogin = "/auth/member-login",
+  MobilePhone = "/mobile",
   DashBoard = "/auth/dashboard",
 
   // Animation Routes
@@ -195,6 +197,7 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
         <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
         <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
+        <Route path={RoutePaths.MobilePhone} element={<DroidPhonesPage />} />
         <Route path={RoutePaths.TermsAndCondition} element={<TermsAndConditions />} />
 
         {/* Animation Routes */}

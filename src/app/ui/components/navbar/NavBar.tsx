@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
               )}
             </li>
             <li>
-              <a href="/#">Mobile</a>
+              <a href={RoutePaths.MobilePhone}>Mobile</a>
             </li>
             <li>
               <a href="/careers">Careers</a>
