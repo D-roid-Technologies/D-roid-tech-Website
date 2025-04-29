@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { FaUser, FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../../firebase';
-import { updateUser } from '../../../redux/slices/User';
+import { setUser } from '../../../redux/slices/User';
 import { store } from '../../../redux/Store';
 import { RoutePaths } from '../../../routes/Index';
 
@@ -50,7 +50,7 @@ const MemberLogin = () => {
                 const userDocSnap = await getDoc(userDocRef);
                 if (userDocSnap.exists()) {
                     const fetchedUserData = userDocSnap.data();
-                    store.dispatch(updateUser(fetchedUserData));
+                    store.dispatch(setUser(fetchedUserData));
                     navigate(RoutePaths.DashBoard);
                 }
             }).catch((err) => {
@@ -59,7 +59,7 @@ const MemberLogin = () => {
             })
 
             return userCredential
-        }else{
+        } else {
             alert("Wrong Validation");
         }
     };
