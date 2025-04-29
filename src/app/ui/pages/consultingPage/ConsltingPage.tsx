@@ -17,36 +17,42 @@ const offer = [
     description:
       "We analyze your current technology and recommend optimal solutions aligned with your business goals.",
     icon: FaSearch({ size: 24 }),
+    url: "",
   },
   {
     title: "Digital Transformation Roadmapping",
     description:
       "We create a strategic plan to modernize your technology infrastructure and processes.",
     icon: FaRocket({ size: 24 }),
+    url: "",
   },
   {
     title: "CTO-as-a-Service for Startups",
     description:
       "We provide on-demand technical leadership to guide your startup's technology decisions.",
     icon: FaBrain({ size: 24 }),
+    url: "",
   },
   {
     title: "Security & Infrastructure Review",
     description:
       "We evaluate your systems for vulnerabilities and recommend improvements to strengthen security.",
     icon: FaLock({ size: 24 }),
+    url: "",
   },
   {
     title: "Scalability & Performance Optimization",
     description:
       "We identify bottlenecks and implement solutions to improve system performance and scalability.",
     icon: FaChartLine({ size: 24 }),
+    url: "",
   },
   {
     title: "Custom Software Strategy & Architecture",
     description:
       "We design tailored software solutions that address your unique business challenges.",
     icon: FaPuzzlePiece({ size: 24 }),
+    url: "",
   },
 ];
 const ConsultingPage: React.FC = () => {
@@ -80,7 +86,7 @@ const ConsultingPage: React.FC = () => {
 
       {/* What We Offer */}
       <div className="wrapper soft-wrapper">
-        <h2 className="soft-dev-header title_span">
+        <h2 className="title_span soft-dev-header ">
           What We Bring to the Table
         </h2>
         <div className="soft-dev-content">
@@ -90,17 +96,10 @@ const ConsultingPage: React.FC = () => {
               title={phase.title}
               description={phase.description}
               icon={phase.icon}
+              url="{phase.url}"
               className="process-card"
             />
           ))}
-          {/* <ul style={{ lineHeight: "2", fontSize: "1.1rem", color: "#333" }}>
-            <li>🔍 Tech Stack Evaluation & Recommendation</li>
-            <li>🚀 Digital Transformation Roadmapping</li>
-            <li>🧠 CTO-as-a-Service for Startups</li>
-            <li>🔐 Security & Infrastructure Review</li>
-            <li>📈 Scalability & Performance Optimization</li>
-            <li>🧩 Custom Software Strategy & Architecture</li>
-          </ul> */}
         </div>
       </div>
 

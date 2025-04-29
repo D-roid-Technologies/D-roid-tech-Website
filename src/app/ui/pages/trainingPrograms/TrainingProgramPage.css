@@ -1,10 +1,10 @@
 .soft-wrapper {
   padding: 40px;
 }
-.soft-dev-header {
+/* .soft-dev-header {
   position: relative;
   padding-bottom: 10px;
-}
+} */
 .soft-dev-content {
   display: grid;
   gap: 30px;

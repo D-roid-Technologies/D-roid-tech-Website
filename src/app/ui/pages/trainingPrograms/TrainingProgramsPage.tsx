@@ -62,7 +62,12 @@ const TrainingProgramsPage: React.FC = () => {
 
       {/* Programs List */}
       <div className="wrapper soft-wrapper">
-        <h2 className="soft-dev-header title_span">Explore Our Programs</h2>
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#fff" }}
+        >
+          Explore Our Programs
+        </span>
         <div className="soft-dev-content">
           {programs.map((prog, index) => (
             <CoreValueCardTwo
