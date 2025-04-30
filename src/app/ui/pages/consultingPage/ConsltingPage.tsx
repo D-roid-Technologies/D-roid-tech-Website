@@ -86,9 +86,12 @@ const ConsultingPage: React.FC = () => {
 
       {/* What We Offer */}
       <div className="wrapper soft-wrapper">
-        <h2 className="title_span soft-dev-header ">
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#fff" }}
+        >
           What We Bring to the Table
-        </h2>
+        </span>
         <div className="soft-dev-content">
           {offer.map((phase, index) => (
             <CoreValueCardTwo
