@@ -1,42 +1,46 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserType } from "../../utils/Types";
 
-interface UserState {
-  firstName: string;
-  lastName: string;
-  initials: string;
-  userType: string;
-  staffId: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  agreeToPolicy: boolean;
-  isLoggedIn: boolean;
-}
-
-const initialState: UserState = {
-  firstName: '',
-  lastName: '',
-  initials: '',
-  userType: '',
-  staffId: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
+const initialState: UserType = {
+  firstName: "",
+  lastName: "",
+  middleName: "",
+  initials: "",
+  userType: "",
+  staffId: "",
+  email: "",
+  phone: "",
   agreeToPolicy: false,
   isLoggedIn: false,
+  gender: "",
+  dateOfBirth: "",
+  disability: false,
+  disabilityType: "",
+  photoUrl: "",
+  educationalLevel: "",
+  referralName: "",
+  secondaryEmail: "",
+  securityQuestion: "",
+  securityAnswer: "",
+  verifiedEmail: false,
+  verifyPhoneNumber: false,
+  agreedToTerms: false,
+  twoFactorSettings: false,
+  password: ""
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
-    updateUser: (state, action: PayloadAction<Partial<UserState>>) => {
+    setUser(state, action: PayloadAction<UserType>) {
       return { ...state, ...action.payload };
     },
-    clearUser: () => initialState,
+    logoutUser() {
+      return { ...initialState };
+    },
   },
 });
 
-export const { updateUser, clearUser } = userSlice.actions;
-
+export const { setUser, logoutUser } = userSlice.actions;
 export default userSlice.reducer;

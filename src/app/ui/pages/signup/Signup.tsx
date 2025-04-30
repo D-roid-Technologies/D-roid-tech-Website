@@ -1,24 +1,41 @@
-// @ts-nocheck
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUsers, FaArrowLeft } from 'react-icons/fa';
 import { RoutePaths } from '../../../routes/Index';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../../../../firebase';
-import { collection, doc, setDoc, getDoc } from 'firebase/firestore'; // Firestore functions
-import { updateUser } from '../../../redux/slices/User'; // import updateUser action
-import { store } from '../../../redux/Store';
+import { RootState, store } from '../../../redux/Store';
+import { addLocation } from '../../../redux/slices/Location';
+import { useSelector } from 'react-redux';
+import { LocationState } from '../../../utils/Types';
+import { authService } from '../../../redux/configuration/auth.service';
 
 interface FormData {
   userType: string;
   staffId: string;
   firstName: string;
   lastName: string;
+  middleName: string;
   email: string;
   password: string;
   confirmPassword: string;
   agreeToPolicy: boolean;
-};
+  initials: string;
+  phone: string;
+  isLoggedIn: boolean;
+  gender: string;
+  dateOfBirth: string;
+  disability: boolean;
+  disabilityType: string;
+  photoUrl: string;
+  educationalLevel: string;
+  referralName: string;
+  secondaryEmail: string;
+  securityQuestion: string;
+  securityAnswer: string;
+  verifiedEmail: boolean;
+  verifyPhoneNumber: boolean;
+  agreedToTerms: boolean;
+  twoFactorSettings: boolean;
+}
 
 interface FormErrors {
   userType?: string;
@@ -31,9 +48,11 @@ interface FormErrors {
   agreeToPolicy?: string;
 };
 
-const SignUp = () => {
+const SignUp: React.FunctionComponent = () => {
   const [text, setText] = useState<any>("Sign Up");
+  const userLocation: LocationState = useSelector((state: RootState) => state.location)
   const [formData, setFormData] = useState<FormData>({
+    middleName: '',
     userType: '',
     staffId: '',
     firstName: '',
@@ -42,24 +61,81 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
     agreeToPolicy: false,
+    initials: "",
+    phone: "",
+    isLoggedIn: false,
+    gender: "",
+    dateOfBirth: "",
+    disability: false,
+    disabilityType: "",
+    photoUrl: "",
+    educationalLevel: "",
+    referralName: "",
+    secondaryEmail: "",
+    securityQuestion: "",
+    securityAnswer: "",
+    verifiedEmail: false,
+    verifyPhoneNumber: false,
+    agreedToTerms: false,
+    twoFactorSettings: false,
   });
 
-  const [formErrors, setFormErrors] = useState<FormErrors>({});
 
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let attempts = 0;
+    const maxAttempts = 5;
+    const retryDelay = 5000;
+
+    const fetchLocation = () => {
+      navigator.geolocation.getCurrentPosition(
+        async (res) => {
+          const { latitude, longitude } = res.coords;
+          const geoApi = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+          const response = await fetch(geoApi);
+          const data = await response.json();
+
+          store.dispatch(addLocation(data));
+        },
+        (error) => {
+          if (error.code === error.PERMISSION_DENIED) {
+            attempts++;
+            if (attempts < maxAttempts) {
+              console.warn("Permission denied. Retrying in 5 seconds...");
+              setTimeout(fetchLocation, retryDelay);
+            } else {
+              console.error("User denied location access. Max retries reached.");
+            }
+          } else {
+            console.error("Geolocation error:", error.message);
+          }
+        }
+      );
+    };
+
+    fetchLocation();
+  }, []);
 
   const regex = {
-    name: /^[A-Za-z]+$/,
+    name: /^[A-Za-z\s]+$/,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{6,}$/,
   };
 
-  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
   };
 
   const validate = () => {
-    let errors = {};
+    let errors: FormErrors = {};
     let isValid = true;
 
     if (!formData.userType) {
@@ -106,67 +182,33 @@ const SignUp = () => {
     return isValid;
   };
 
-  const navigate = useNavigate();
-
+  const generateUniqueId = (userType: string) => {
+    const baseId = `DT-B${Math.random().toString(36).substring(2, 8).toUpperCase()}W`;
+    if (userType === 'Member') {
+      return `${baseId}-M`;
+    }
+    if (userType === 'Organisation') {
+      return `${baseId}-O`;
+    }
+    return '';  // No ID for Staff
+  };
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-
     if (!validate()) return;
-
-    try {
-      // 1. Create user
-      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      const user = userCredential.user;
-      console.log("User created:", user.uid);
-      setText("Creating your D'roid Account...");
-
-      // 2. Send email verification
-      await sendEmailVerification(user);
-      console.log('Verification email sent!');
-
-      // 3. Update profile
-      await updateProfile(user, {
-        displayName: `${formData.firstName} ${formData.lastName}`,
-      });
-      console.log('Profile updated!');
-
-      // 4. Save user data to Firestore
-      const userDocRef = doc(collection(db, "users"), user.uid); // db is your firestore instance
-      const userData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        initials: `${formData.firstName[0]}${formData.lastName[0]}`.toUpperCase(),
-        userType: formData.userType || 'staff', // or default
-        staffId: formData.staffId || '',
-        email: formData.email,
-        agreeToPolicy: formData.agreeToPolicy,
-        isLoggedIn: true,
-      };
-
-      await setDoc(userDocRef, userData);
-      console.log('User data written to Firestore!');
-
-      // 5. Fetch user data again from Firestore
-      const userSnapshot = await getDoc(userDocRef);
-      if (userSnapshot.exists()) {
-        const fetchedUserData = userSnapshot.data();
-
-        // 6. Dispatch to redux store
-        store.dispatch(updateUser(fetchedUserData));
-        console.log('User dispatched to store:', fetchedUserData);
-
-        // 7. Navigate to Dashboard
-        navigate(RoutePaths.DashBoard);
-      } else {
-        console.error('No user data found after write.');
-      }
-
-    } catch (error: any) {
-      console.error('Error during signup:', error.message);
+    const generatedId = generateUniqueId(formData.userType);
+    setFormData((prevData) => ({
+      ...prevData,
+      staffId: generatedId,
+    }));
+    console.log(formData)
+    await authService.handleUserRegistration(formData, userLocation).then(() => {
+      setText("Creating your D'roid Account");
+      navigate(RoutePaths.DashBoard)
+    }).catch((error) => {
       setText("Sign Up");
       setFormErrors({ ...formErrors, email: error.message });
-    }
+    });
   };
 
   return (
@@ -203,10 +245,11 @@ const SignUp = () => {
             alignItems: 'center',
           }}
         >
-          {/* ts-nocheck */}
+          {/* @ts-ignore */}
           <FaArrowLeft style={{ marginRight: '8px' }} /> Back to Home
         </a>
 
+        {/* @ts-ignore */}
         <FaUsers style={{ fontSize: '120px', color: '#FFFFFF' }} />
       </div>
 

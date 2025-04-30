@@ -9,15 +9,31 @@ export type DimensionType = {
 export type UserType = {
   firstName: string;
   lastName: string;
+  middleName: string;
   initials: string;
   userType: string;
   staffId: string;
   email: string;
+  phone: string;
   password: string;
-  confirmPassword: string;
   agreeToPolicy: boolean;
   isLoggedIn: boolean;
-}
+  gender: string;
+  dateOfBirth: string;
+  disability: boolean;
+  disabilityType: string;
+  photoUrl: string;
+  educationalLevel: string;
+  referralName: string;
+  secondaryEmail: string;
+  securityQuestion: string;
+  securityAnswer: string;
+  verifiedEmail: boolean;
+  verifyPhoneNumber: boolean;
+  agreedToTerms: boolean;
+  twoFactorSettings: boolean;
+};
+
 export type ContactType = {
   userFullName: string;
   userEmail: string;
@@ -191,3 +207,26 @@ export type Project = {
   price?: string;
   author?: string;
 };
+
+interface LocalityInfo {
+  administrative: Array<any>;
+  informative: Array<any>;
+}
+
+export type LocationState = {
+  city: string;
+  continent: string;
+  continentCode: string;
+  countryCode: string;
+  countryName: string;
+  latitude: number;
+  locality: string;
+  localityInfo: LocalityInfo;
+  localityLanguageRequested: string;
+  longitude: number;
+  lookupSource: string;
+  plusCode: string;
+  postcode: string;
+  principalSubdivision: string;
+  principalSubdivisionCode: string;
+}

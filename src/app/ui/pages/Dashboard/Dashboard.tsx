@@ -10,12 +10,13 @@ import { FaUser, FaTasks, FaBullhorn, FaCalendarAlt, FaFileInvoiceDollar, FaUser
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../../firebase';
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { UserType } from '../../../utils/Types';
+import { LocationState, UserType } from '../../../utils/Types';
 
 const Dashboard: React.FunctionComponent = () => {
 
     const navigate = useNavigate();
     const staffDetails: UserType = useSelector((state: RootState) => state.user);
+    const location: LocationState = useSelector((state: RootState) => state.location);
     // State to track which menu item is clicked
 
     const [input, setInput] = useState('');
@@ -514,23 +515,35 @@ const Dashboard: React.FunctionComponent = () => {
                 }}
             >
                 <h2 style={{ fontWeight: '800' }}>D'roid Dashboard</h2>
-                <div
-                    style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: '#FFFFFF',
-                        color: '#071D6A',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontWeight: '800',
-                        fontSize: '18px',
-                        cursor: 'pointer',
-                    }}
-                >
-                    {`${staffDetails.firstName[0]}${staffDetails.lastName[0]}`}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: "20px"
+                }}>
+
+                    <span>
+                        {location.principalSubdivision}
+                    </span>
+                    <div
+                        style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '50%',
+                            backgroundColor: '#FFFFFF',
+                            color: '#071D6A',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            fontWeight: '800',
+                            fontSize: '18px',
+                        }}
+                    >
+
+                        {`${staffDetails.firstName[0]}${staffDetails.lastName[0]}`}
+                    </div>
                 </div>
+
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'row', padding: '20px', gap: '20px' }}>
