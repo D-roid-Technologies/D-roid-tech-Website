@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
-import { FaUsers } from 'react-icons/fa';
+import { FaArrowLeft, FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../../firebase';
 import { authService } from '../../../redux/configuration/auth.service';
@@ -77,29 +75,24 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
                     position: 'relative',
                 }}
             >
-                <div
-                    onClick={() => navigate(RoutePaths.Signup)}  // Use navigate.goBack()
+                <a
+                    href="/"
                     style={{
                         position: 'absolute',
                         top: '20px',
                         left: '20px',
-                        backgroundColor: '#FFFFFF',
-                        color: '#071D6A',
-                        borderRadius: '50%',
-                        width: '50px',
-                        height: '50px',
+                        color: '#FFFFFF',
+                        textDecoration: 'none',
+                        fontSize: '18px',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        fontWeight: 'bold',
-                        fontSize: '18px',
-                        cursor: 'pointer', // Add cursor pointer to indicate it's clickable
                     }}
                 >
-                    {/* You can use an icon if you want */}
-                    &#8592;
-                </div>
+                    {/* @ts-ignore */}
+                    <FaArrowLeft style={{ marginRight: '8px' }} /> Back to Home
+                </a>
 
+                {/* @ts-ignore */}
                 <FaUsers style={{ fontSize: '120px', color: '#FFFFFF' }} />
             </div>
 

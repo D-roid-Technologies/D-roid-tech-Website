@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
@@ -200,6 +200,17 @@ export class AuthService {
             alert(err.message);
         })
         return userCredential
+    }
+
+    async handlePasswordReset(email: string): Promise<void> {
+        // Sending password reset email
+        await sendPasswordResetEmail(auth, email).then(() => {
+            console.log("Password reset email sent to:", email);
+            alert("Password reset email sent. Please check your inbox.");
+        }).catch((error: any) => {
+            console.error("Error resetting password:", error.message);
+            alert("Error resetting password. Please try again.");
+        });
     }
 }
 

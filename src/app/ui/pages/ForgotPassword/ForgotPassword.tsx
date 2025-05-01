@@ -1,22 +1,29 @@
-// @ts-nocheck
-
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../../../redux/configuration/auth.service';
+import { RoutePaths } from '../../../routes/Index';
 
-const ForgotPassword = () => {
+const ForgotPassword: React.FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       setError('Please enter your email address.');
       return;
+    } else {
+      await authService.handlePasswordReset(email).then(() => {
+        setError('');
+        setSubmitted(true);
+        navigate(RoutePaths.JoinOurCommunity)
+      }).catch(() => {
+        alert(`There was an error resetting your password using ${email}`)
+      })
     }
-    setError('');
-    setSubmitted(true);
-    console.log('Password reset link sent to:', email);
     // You would typically make an API call here
   };
 
@@ -42,7 +49,7 @@ const ForgotPassword = () => {
         }}
       >
         <a
-          href="/login"
+          href="/"
           style={{
             position: 'absolute',
             top: '20px',
@@ -54,6 +61,7 @@ const ForgotPassword = () => {
             alignItems: 'center',
           }}
         >
+          {/* @ts-ignore */}
           <FaArrowLeft style={{ marginRight: '8px' }} /> Back to Login
         </a>
 
