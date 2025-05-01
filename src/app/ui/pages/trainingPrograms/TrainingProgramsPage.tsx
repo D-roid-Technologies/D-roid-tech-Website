@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
-import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 
 const programs = [
@@ -9,26 +8,32 @@ const programs = [
     title: "Frontend Development Bootcamp",
     description:
       "Learn HTML, CSS, JavaScript, React, and responsive design from the ground up. Perfect for beginners and those looking to switch careers.",
+    url: "",
   },
   {
     title: "Backend Engineering with Node.js",
     description:
       "Master server-side development with Node.js, Express, RESTful APIs, databases, and authentication.",
+    url: "",
   },
   {
     title: "UI/UX Design Essentials",
     description:
       "Understand the principles of great design, prototyping with Figma, user research, and design systems.",
+    url: "",
   },
   {
     title: "Fullstack Engineering",
     description:
       "Become a job-ready developer by learning both frontend and backend technologies, including React, Node, and databases.",
+    url: "",
   },
   {
     title: "Data & Python for Beginners",
+
     description:
       "Get introduced to programming and data analysis using Python—perfect for those curious about tech, AI, or automation.",
+    url: "",
   },
 ];
 
@@ -62,14 +67,21 @@ const TrainingProgramsPage: React.FC = () => {
 
       {/* Programs List */}
       <div className="wrapper soft-wrapper">
-        <h2 className="soft-dev-header title_span">Explore Our Programs</h2>
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#fff" }}
+        >
+          Explore Our Programs
+        </span>
         <div className="soft-dev-content">
           {programs.map((prog, index) => (
             <CoreValueCardTwo
               key={index}
               title={prog.title}
               description={prog.description}
-              imageSrc=""
+              url="{prog.url}"
+              // url={prog.url}
+              className="process-card"
             />
           ))}
         </div>

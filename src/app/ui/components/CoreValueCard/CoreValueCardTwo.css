@@ -19,6 +19,11 @@
   height: 50px;
   margin-bottom: 16px;
 }
+.core-value-card-icon-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+}
 
 .core-value-card-title {
   font-size: 1.25rem;
@@ -68,6 +73,18 @@
 
 .tech-card .core-value-card-title::after {
   background-color: #34a853;
+}
+
+/* Link section */
+.custom-link {
+  color: #3b82f6;
+  transition: color 0.2s ease-in-out;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.custom-link:hover {
+  color: #1d4ed8;
 }
 
 /* Responsive adjustments */

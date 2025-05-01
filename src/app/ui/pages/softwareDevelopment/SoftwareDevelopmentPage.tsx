@@ -81,25 +81,14 @@ const SoftwareDevelopmentPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Approach Section */}
-      <div className="wrapper soft-wrapper">
-        <h2 className="soft-dev-header title_span">Our Development Process</h2>
-        <div className="soft-dev-content">
-          {devPhases.map((phase, index) => (
-            <CoreValueCardTwo
-              key={index}
-              title={phase.title}
-              description={phase.description}
-              icon={phase.icon}
-              className="process-card"
-            />
-          ))}
-        </div>
-      </div>
-
       {/* What We Build */}
       <div className="wrapper soft-wrapper">
-        <h2 className="soft-dev-header title_span">What We Build</h2>
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#e2e8f0" }}
+        >
+          What We Build
+        </span>
         <div className="soft-dev-content">
           {technologies.map((tech, index) => (
             <CoreValueCardTwo
@@ -107,6 +96,27 @@ const SoftwareDevelopmentPage: React.FC = () => {
               title={tech.title}
               description={tech.description}
               imageSrc={tech.imageSrc}
+              className="process-card"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Approach Section */}
+      <div className="wrapper soft-wrapper">
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#e2e8f0" }}
+        >
+          Our Development Process
+        </span>
+        <div className="soft-dev-content">
+          {devPhases.map((phase, index) => (
+            <CoreValueCardTwo
+              key={index}
+              title={phase.title}
+              description={phase.description}
+              icon={phase.icon}
               className="process-card"
             />
           ))}
