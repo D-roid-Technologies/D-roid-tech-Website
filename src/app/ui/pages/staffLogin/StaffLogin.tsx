@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../../firebase';
+import { authService } from '../../../redux/configuration/auth.service';
 import { setUser } from '../../../redux/slices/User';
 import { store } from '../../../redux/Store';
 import { RoutePaths } from '../../../routes/Index';
@@ -18,6 +19,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
     });
 
     const [formErrors, setFormErrors] = useState<{ email?: string; password?: string }>({});
+    const [text, setText] = useState<string>('Login');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -44,24 +46,14 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
 
     const handleSubmitStaff = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password).then(async (res) => {
-                const userDocRef = doc(collection(db, "users"), res.user.uid);
-                const userDocSnap = await getDoc(userDocRef);
-                if (userDocSnap.exists()) {
-                    const fetchedUserData = userDocSnap.data();
-                    store.dispatch(setUser(fetchedUserData));
-                    navigate(RoutePaths.DashBoard);
-                }
-            }).catch((err) => {
-                console.log(err.message);
-                alert(err.message);
-            })
 
-            return userCredential
-        } else {
-            alert("Wrong Validation");
-        }
+        if (!validate()) return;
+        await authService.handleUserLogin(formData.email, formData.password).then(() => {
+            setText('Fetching your Information')
+            navigate(RoutePaths.DashBoard);
+        }).catch((err) => {
+            setText('Login')
+        })
     };
 
     return (
@@ -193,7 +185,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
                             e.currentTarget.style.backgroundColor = '#479BE8';
                         }}
                     >
-                        Login
+                        {text}
                     </button>
                 </form>
 

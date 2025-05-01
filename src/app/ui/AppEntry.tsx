@@ -23,7 +23,7 @@ const AppEntry: React.FunctionComponent<any> = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
   const [nToast, setNToast] = React.useState<boolean>(false);
   const { getColor } = useThemeColor();
-  // const location = useLocation(); // Use useLocation to detect route changes
+  const location = useLocation(); // Use useLocation to detect route changes
 
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
@@ -59,11 +59,14 @@ const AppEntry: React.FunctionComponent<any> = () => {
       store.dispatch(updateToast(false));
     }, 5000);
   }
+
   useEffect(() => {
     setShake(true);
     const timer = setTimeout(() => setShake(false), 900); // Duration of the shake animation
     return () => clearTimeout(timer);
   }, []);
+
+  const hideFooter = location.pathname === "/auth/dashboard"; // Check if the current path is '/auth/dashboard'
 
   return (
     <div>
@@ -102,7 +105,10 @@ const AppEntry: React.FunctionComponent<any> = () => {
       ) : null}
 
       <Index />
-      <Footer />
+      
+      {/* Conditionally render Footer */}
+      {!hideFooter && <Footer />}
+
       <div
         onClick={() => {
           showToast();

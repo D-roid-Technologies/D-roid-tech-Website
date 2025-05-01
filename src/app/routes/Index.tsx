@@ -153,7 +153,7 @@ export const dropdownItems: DropdownItems = {
 
 const Index: React.FunctionComponent = () => {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <Routes>
         <Route path={RoutePaths.Home} element={<Home />} />
         <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
@@ -218,7 +218,7 @@ const Index: React.FunctionComponent = () => {
         {/* 404 Page */}
         <Route path={RoutePaths.NotFound} element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 };
 

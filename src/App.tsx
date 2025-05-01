@@ -6,6 +6,7 @@ import { RootState } from "./app/redux/Store";
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { UserType } from "./app/utils/Types";
+import { BrowserRouter } from 'react-router-dom';
 
 function AppContent() {
   const user: UserType = useSelector((state: RootState) => state.user);
@@ -52,7 +53,9 @@ function AppContent() {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <AppEntry />
+      <BrowserRouter>
+        <AppEntry />
+      </BrowserRouter>
     </>
   );
 }

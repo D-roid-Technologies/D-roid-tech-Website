@@ -10,6 +10,7 @@ import { TestimonialSlice } from "./slices/TestimonialSlice";
 import { projectSlice } from "./slices/projectSlice";
 import { userSlice } from "./slices/User"; // make sure the casing matches!
 import { locationSlice } from './slices/Location';
+import { allUsersSlice } from './slices/AllUserSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   testimonial: TestimonialSlice.reducer,
   theme: themeReducer,
   projects: projectSlice.reducer,
-  location: locationSlice.reducer
+  location: locationSlice.reducer,
+  allUsers: allUsersSlice.reducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

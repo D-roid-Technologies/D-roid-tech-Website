@@ -10,7 +10,7 @@ import { authService } from '../../../redux/configuration/auth.service';
 
 interface FormData {
   userType: string;
-  staffId: string;
+  uniqueId: string;
   firstName: string;
   lastName: string;
   middleName: string;
@@ -54,7 +54,7 @@ const SignUp: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormData>({
     middleName: '',
     userType: '',
-    staffId: '',
+    uniqueId: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -143,7 +143,7 @@ const SignUp: React.FunctionComponent = () => {
       isValid = false;
     }
 
-    if (formData.userType === 'Staff' && !formData.staffId.trim()) {
+    if (formData.userType === 'Staff' && !formData.uniqueId.trim()) {
       errors.staffId = 'Staff ID is required for staff users.';
       isValid = false;
     }
@@ -182,29 +182,43 @@ const SignUp: React.FunctionComponent = () => {
     return isValid;
   };
 
-  const generateUniqueId = (userType: string) => {
-    const baseId = `DT-B${Math.random().toString(36).substring(2, 8).toUpperCase()}W`;
-    if (userType === 'Member') {
-      return `${baseId}-M`;
+  function generateUniqueId(userType: string): string | null {
+    const prefix = "DT-";
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let randomPart = "";
+
+    for (let i = 0; i < 5; i++) {
+      randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    if (userType === 'Organisation') {
-      return `${baseId}-O`;
+
+    let suffix = "";
+    if (userType.toLowerCase() === "Organisation") {
+      suffix = "O";
+    } else if (userType.toLowerCase() === "Member") {
+      suffix = "M";
+    } else {
+      return '';  // Return null for any type that is not "organisation" or "member"
     }
-    return '';  // No ID for Staff
-  };
+
+    return `${prefix}${randomPart}-${suffix}`;
+  }
+
+
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (!validate()) return;
-    const generatedId = generateUniqueId(formData.userType);
-    setFormData((prevData) => ({
-      ...prevData,
-      staffId: generatedId,
-    }));
-    console.log(formData)
+    const generatedId = generateUniqueId(formData.userType) || '';
+    setFormData({
+      ...formData,
+      uniqueId: generatedId,
+    });
+
     await authService.handleUserRegistration(formData, userLocation).then(() => {
       setText("Creating your D'roid Account");
-      navigate(RoutePaths.DashBoard)
+      setTimeout(() => {
+        navigate(RoutePaths.DashBoard)
+      }, 4000)
     }).catch((error) => {
       setText("Sign Up");
       setFormErrors({ ...formErrors, email: error.message });
@@ -326,9 +340,9 @@ const SignUp: React.FunctionComponent = () => {
             <div style={{ marginBottom: '15px' }}>
               <input
                 type="text"
-                name="staffId"
-                placeholder="Staff ID"
-                value={formData.staffId}
+                name="uniqueId"
+                placeholder="Unique ID"
+                value={formData.uniqueId}
                 onChange={handleChange}
                 style={{
                   width: '100%',

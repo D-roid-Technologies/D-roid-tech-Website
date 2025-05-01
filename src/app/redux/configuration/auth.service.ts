@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
@@ -67,7 +67,7 @@ export class AuthService {
                         middleName: "",
                         initials: `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
                         userType: userData.userType,
-                        staffId: userData.staffId,
+                        uniqueId: userData.uniqueId,
                         email: userData.email,
                         phone: "",
                         agreeToPolicy: userData.agreeToPolicy,
@@ -146,15 +146,59 @@ export class AuthService {
             if (userSnapshot.exists()) {
                 const fetchedUserData = userSnapshot.data();
                 const primaryInformation = fetchedUserData.user.primaryInformation
-                store.dispatch(setUser(primaryInformation));
+                store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
                 // principalSubdivision
             } else {
-                console.error('No user data found after write.');
+                alert("User Information does not exist");
             }
         }).catch((error) => {
             console.error(`Error creating your D'roid Account:`, error.message);
         })
 
+        return userCredential
+    }
+
+    async getAllUsersFromFirestore() {
+        try {
+            // Step 1: Check if the current user is a Super Admin
+            const user = auth.currentUser; // Get the current authenticated user
+            console.log(user)
+            // if (!user || user.role !== "superAdmin") {
+            //     throw new Error("You do not have permission to view all users.");
+            // }
+
+            // Step 2: Query Firestore to get all user documents
+            // const userCollectionRef = collection(db, "droidaccount");
+            // const userSnapshot = await getDocs(userCollectionRef);
+            // const usersList: UserType[] = [];
+
+            // userSnapshot.forEach(doc => {
+            //     const userData = doc.data();
+            //     usersList.push(userData.user.primaryInformation);
+            // });
+
+            // // Step 3: Dispatch all the fetched user data to the Redux store
+            // store.dispatch(setAllUsers(usersList)); // Dispatching the data to the protected slice
+        } catch (error: any) {
+            console.error("Error fetching users:", error.message);
+        }
+    }
+
+    async handleUserLogin(email: string, password: string) {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password).then(async (res) => {
+            const userDocRef = doc(collection(db, "droidaccount"), res.user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+            if (userDocSnap.exists()) {
+                const fetchedUserData = userDocSnap.data();
+                const primaryInformation = fetchedUserData.user.primaryInformation
+                store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }))
+            } else {
+                alert("User Information does not exist");
+            }
+        }).catch((err) => {
+            console.log(err.message);
+            alert(err.message);
+        })
         return userCredential
     }
 }

@@ -12,10 +12,9 @@ export type UserType = {
   middleName: string;
   initials: string;
   userType: string;
-  staffId: string;
+  uniqueId: string;
   email: string;
   phone: string;
-  password: string;
   agreeToPolicy: boolean;
   isLoggedIn: boolean;
   gender: string;
@@ -32,7 +31,10 @@ export type UserType = {
   verifyPhoneNumber: boolean;
   agreedToTerms: boolean;
   twoFactorSettings: boolean;
+  password: string;
+  role?: string; // ✅ Added this field
 };
+
 
 export type ContactType = {
   userFullName: string;

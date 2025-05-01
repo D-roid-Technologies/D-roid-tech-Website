@@ -7,7 +7,7 @@ const initialState: UserType = {
   middleName: "",
   initials: "",
   userType: "",
-  staffId: "",
+  uniqueId: "",
   email: "",
   phone: "",
   agreeToPolicy: false,
@@ -26,7 +26,8 @@ const initialState: UserType = {
   verifyPhoneNumber: false,
   agreedToTerms: false,
   twoFactorSettings: false,
-  password: ""
+  password: "",
+  role: "",
 };
 
 export const userSlice = createSlice({
