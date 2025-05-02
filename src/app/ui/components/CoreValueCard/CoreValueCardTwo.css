@@ -89,6 +89,9 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .core-value-card {
+    background-color: none;
+  }
   .soft-dev-content,
   .tech-grid {
     grid-template-columns: 1fr;
@@ -96,5 +99,11 @@
 
   .core-value-card {
     padding: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .core-value-card {
+    background-color: none;
   }
 }
