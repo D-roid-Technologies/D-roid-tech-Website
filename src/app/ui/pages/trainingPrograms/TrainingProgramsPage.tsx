@@ -43,22 +43,10 @@ const TrainingProgramsPage: React.FC = () => {
       <NavBar />
 
       {/* Hero */}
-      <div
-        style={{
-          backgroundImage: `url(${Assets.images.homeBannerSlideTwo})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "60vh",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "60px",
-        }}
-      >
-        <div>
-          <h1 style={{ fontSize: "4rem", color: "#fff", fontWeight: 800 }}>
-            Training Programs
-          </h1>
-          <p style={{ fontSize: "1.25rem", color: "#eee", maxWidth: "600px" }}>
+      <div className="software-main">
+        <div className="software-main-content">
+          <h1 className="software-header"> Training Programs</h1>
+          <p>
             Empowering the next generation of tech talent. Our hands-on training
             programs are built to make you industry-ready.
           </p>
