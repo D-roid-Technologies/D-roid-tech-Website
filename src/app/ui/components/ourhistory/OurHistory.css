@@ -1,9 +1,8 @@
 .history-container {
-  max-width: 1250px;
+  /* max-width: 1250px; */
   margin: 0 auto;
   padding: 4rem 2rem;
   background: linear-gradient(to bottom right, #0a1232, #000d41);
-  /* border-radius: 12px; */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   color: #ffffff;
   font-family: "Inter", sans-serif;
@@ -94,7 +93,6 @@
   font-weight: 600;
   position: relative;
   display: inline-block;
-  /* margin: 0 4px; */
   text-decoration: none;
 }
 

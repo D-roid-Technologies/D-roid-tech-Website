@@ -61,23 +61,10 @@ const ConsultingPage: React.FC = () => {
       <NavBar />
 
       {/* Hero Section */}
-      <div
-        style={{
-          backgroundImage: `url(${Assets.images.homeBannerSlideTwo})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "60vh",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "60px",
-          color: "#fff",
-        }}
-      >
-        <div>
-          <h1 style={{ fontSize: "4rem", fontWeight: 800 }}>
-            Tech Consulting Services
-          </h1>
-          <p style={{ fontSize: "1.25rem", maxWidth: "600px" }}>
+      <div className="software-main">
+        <div className="software-main-content">
+          <h1 className="software-header"> Tech Consulting Services</h1>
+          <p>
             Drive innovation, solve complex challenges, and build smarter with
             strategic guidance from D’roid Technologies.
           </p>

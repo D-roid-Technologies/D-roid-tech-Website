@@ -18,19 +18,11 @@
   color: #eee;
   max-width: 550px;
 }
+/* What we build */
 .soft-dev-header {
   position: relative;
   padding-bottom: 10px;
 }
-/* .soft-dev-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 40px;
-  height: 3px;
-  background-color: #0a0d31;
-} */
 .soft-wrapper {
   padding: 40px;
 }
@@ -63,4 +55,42 @@
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
+}
+/* Medium screens (tablets) */
+@media (max-width: 1023px) {
+  .software-header {
+    font-size: 3rem;
+  }
+
+  .software-main {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .software-main-content p {
+    font-size: 1.125rem;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 767px) {
+  .software-main {
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .software-header {
+    font-size: 2rem;
+  }
+
+  .software-main-content {
+    max-width: 100%;
+  }
+
+  .software-main-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
 }
