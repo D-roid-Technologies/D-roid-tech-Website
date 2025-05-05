@@ -4,6 +4,7 @@ import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
 import { RoutePaths } from "../../../../routes/Index";
+import KnowledgeCity from "../../knowledgecityApp/KnowledgeCity";
 
 interface Counters {
   satisfaction: number;
@@ -86,9 +87,15 @@ const Intro: React.FC = () => {
               isPercentage
               label="Customers satisfaction"
             />
-            <CounterBlock value={counters.projects} label="Projects completed" />
+            <CounterBlock
+              value={counters.projects}
+              label="Projects completed"
+            />
             <CounterBlock value={counters.years} label="Years in the market" />
-            <CounterBlock value={counters.countries} label="Countries of Operation" />
+            <CounterBlock
+              value={counters.countries}
+              label="Countries of Operation"
+            />
           </div>
         </div>
 
@@ -99,7 +106,9 @@ const Intro: React.FC = () => {
             <div className="group">
               <div className="block-12 block-md-5 text_con">
                 <h1>we turn your ideas into reality</h1>
-                <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+                <div
+                  style={{ display: "flex", gap: "20px", marginTop: "30px" }}
+                >
                   <a
                     href={RoutePaths.JoinOurCommunity}
                     style={{ backgroundColor: "#fff", color: "#071d6a" }}
@@ -144,8 +153,8 @@ const Intro: React.FC = () => {
             </div>
           </div>
         </div>
+       
       </section>
-
       {/* Our Team Section */}
       <div className="wrapper team_sec">
         <center className="mt-5">
@@ -159,7 +168,11 @@ const Intro: React.FC = () => {
               Join <span style={{ color: "#071d6a" }}>the team</span>
             </h1>
             <p className="mb-5">
-              Are you passionate about Technology and Innovation? Join us for a 6-month Software Development Training and become a full-time staff member at D'roid Technologies. Work on exciting projects, grow your career, and be part of a team that values creativity, excellence, and customer focus.
+              Are you passionate about Technology and Innovation? Join us for a
+              6-month Software Development Training and become a full-time staff
+              member at D'roid Technologies. Work on exciting projects, grow
+              your career, and be part of a team that values creativity,
+              excellence, and customer focus.
               <br />
               <br />
               The Fastest way to become a Techie — Only at D'roid Technologies.
@@ -194,7 +207,11 @@ interface CounterBlockProps {
   isPercentage?: boolean;
 }
 
-const CounterBlock: React.FC<CounterBlockProps> = ({ value, label, isPercentage = false }) => {
+const CounterBlock: React.FC<CounterBlockProps> = ({
+  value,
+  label,
+  isPercentage = false,
+}) => {
   return (
     <div className="block-6 block-lg-3 intro-block">
       <h1>
