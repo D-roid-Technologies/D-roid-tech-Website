@@ -1,19 +1,16 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 
-const CalculatorPage = () => {
+const CalculatorPage: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
       {/* Hero */}
       <div className="software-main">
         <div className="software-main-content">
-          <h1 className="software-header">Driod Calculate</h1>
+          <h1 className="software-header">D'roid Calculate</h1>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi a id
-            dolores, odit nesciunt recusandae nisi veritatis dolore. Modi
-            provident earum deserunt nostrum quibusdam, accusamus saepe. Illo
-            nostrum ea placeat!
+            D'roid Calculate is your sleek, all-in-one calculator built to simplify math, budgeting, and everyday problem-solving.
           </p>
         </div>
       </div>
@@ -25,17 +22,6 @@ const CalculatorPage = () => {
         >
           Calculator
         </span>
-        {/* <div className="soft-dev-content">
-          {tools.map((tech, index) => (
-            <CoreValueCardTwo
-              key={index}
-              title={tech.title}
-              description={tech.description}
-              icon={tech.icon}
-              className="process-card"
-            />
-          ))}
-        </div> */}
       </div>
     </div>
   );

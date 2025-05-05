@@ -8,7 +8,7 @@ const KnowledgeCity: React.FC = () => {
   return (
     <div
       style={{
-        background: "skyblue",
+        background: "#0B1437",
         height: "300px",
         marginTop: "160px",
         marginBottom: "150px",
@@ -25,12 +25,11 @@ const KnowledgeCity: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            // alignItems: "center",
           }}
         >
-          <h1>Get Our Knowledge City App</h1>
+          <h1>Get Our Mobile Apps</h1>
           <p>
-            You can download the app on Google playstore or Appstore and sign up
+            You can download the any of our apps from  Google playstore or Apple store.
           </p>
           <StoreButtons />
         </div>
