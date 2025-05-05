@@ -21,6 +21,7 @@ export const Assets = {
     joinImageOne: require("../../images/png/join-image-one.png"),
     joinImageTwo: require("../../images/png/join-image-two.png"),
     serviceImage: require("../../images/png/servic-image.png"),
+    KMapp: require("../../images/png/knowledgeCityMobileApp.png"),
     serviceImageTwo: require("../../images/png/service-image-two.png"),
     serviceImageThree: require("../../images/png/service-image-three.png"),
     websiteImage: require("../../images/png/website-image.png"),

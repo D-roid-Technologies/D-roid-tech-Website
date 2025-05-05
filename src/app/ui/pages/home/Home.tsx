@@ -9,6 +9,7 @@ import Intro from "./intro/Intro";
 import Products from "../products/Products";
 import Testimonial from "../testimonial/Testimonial";
 import ProductsSmall from "../products/ProductsSmall";
+import KnowledgeCity from "../knowledgecityApp/KnowledgeCity";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -19,6 +20,8 @@ const Home: React.FunctionComponent = () => {
       <CompanyCarousel />
       <Intro />
       <ProductsSmall />
+
+      <KnowledgeCity />
       <Testimonial />
     </div>
   );

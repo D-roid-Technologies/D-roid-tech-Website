@@ -1,0 +1,27 @@
+.store-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.store-button {
+  display: inline-block;
+  width: 160px;
+  height: 50px;
+  background-size: 100%;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.2s ease;
+}
+
+.store-button:hover {
+  transform: scale(1.05);
+}
+
+.app-store {
+  background-image: url("../../../../images/png/appstore.png");
+}
+
+.play-store {
+  background-image: url("../../../../images/png/playstore.png");
+}
