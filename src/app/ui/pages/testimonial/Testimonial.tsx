@@ -87,7 +87,12 @@ const Testimonial: React.FC = () => {
         <br />
         <br />
         <br />
-        <h2 className="section-title">What Our customers Say</h2>
+        <h2
+          style={{ color: "#111724", fontSize: "4rem", fontWeight: "900" }}
+          className="section-title"
+        >
+          What Our customers Say
+        </h2>
       </div>
 
       <div

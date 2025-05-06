@@ -25,6 +25,8 @@ export const Assets = {
     serviceImageTwo: require("../../images/png/service-image-two.png"),
     serviceImageThree: require("../../images/png/service-image-three.png"),
     websiteImage: require("../../images/png/website-image.png"),
+    phone_One: require("../../images/png/photo-1.png"),
+    phone_Two: require("../../images/png/photo-2.png"),
 
     // what we do images
     softwareWhatWeDo: require("../../images/png/software-what-we-do.png"),

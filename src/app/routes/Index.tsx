@@ -49,6 +49,8 @@ import MemberLogin from "../ui/pages/memberLogin/MemberLogin";
 import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition";
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
 import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
+import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
+import DroidLanding from "../ui/pages/mobile/DroidLanding";
 
 // Define an enum for all route paths
 
@@ -67,6 +69,7 @@ export enum RoutePaths {
   // Resources Routes
   Toolbox = "/toolbox",
   Calculators = "/calculators",
+  ScientificCalculate = "/sciencecalculate",
   Schedules = "/schedules",
   Muzik = "/muzik",
   KnowledgeCity = "/knowledge-city",
@@ -139,6 +142,7 @@ export const dropdownItems: DropdownItems = {
   resources: [
     { title: "Toolbox", link: RoutePaths.Toolbox },
     { title: "Calculate", link: RoutePaths.Calculators },
+    { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
     { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.Muzik },
     { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
@@ -161,7 +165,6 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.StartProjectPage}
         element={<StartProjectPage />}
       />
-
       {/* Services Routes */}
       <Route
         path={RoutePaths.SoftwareDevelopment}
@@ -170,21 +173,22 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
       <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
-
       {/* Resources Routes */}
       <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
+      <Route
+        path={RoutePaths.ScientificCalculate}
+        element={<ScienceCalculate />}
+      />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       <Route path={RoutePaths.Muzik} element={<Muzik />} />
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
-
       {/* Grouped More Routes */}
       <Route path={RoutePaths.More}>
         <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
         <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
         <Route path={RoutePaths.Products} element={<Products />} />
       </Route>
-
       {/* Existing Routes */}
       <Route path={RoutePaths.Contact} element={<Contact />} />
       <Route path={RoutePaths.TrainingPage} element={<Training />} />
@@ -205,12 +209,11 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
       <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
       <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
-      <Route path={RoutePaths.MobilePhone} element={<DroidPhonesPage />} />
+      <Route path={RoutePaths.MobilePhone} element={<DroidLanding />} />
       <Route
         path={RoutePaths.TermsAndCondition}
         element={<TermsAndConditions />}
       />
-
       {/* Animation Routes */}
       <Route
         path={RoutePaths.KnowledgeCityDetails}
@@ -218,17 +221,14 @@ const Index: React.FunctionComponent = () => {
       />
       <Route path={RoutePaths.CashBasket} element={<Cashbasket />} />
       <Route path={RoutePaths.Dome} element={<Dome />} />
-
       {/* Website Routes */}
       <Route path={RoutePaths.Website} element={<Website />} />
       <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
       <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
-
       {/* Private Routes */}
       <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
-
       {/* 404 Page */}
       <Route path={RoutePaths.NotFound} element={<NotFound />} />
     </Routes>
