@@ -129,7 +129,10 @@ const Intro: React.FC = () => {
           </div>
 
           {/* Core Values Section */}
-          <div className="wrapper" style={{ padding: "20px" }}>
+          <div
+            className="wrapper"
+            style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
+          >
             <span className="title_span" style={{ marginLeft: "20px" }}>
               CORE VALUES
             </span>
@@ -153,7 +156,6 @@ const Intro: React.FC = () => {
             </div>
           </div>
         </div>
-       
       </section>
       {/* Our Team Section */}
       <div className="wrapper team_sec">
@@ -164,10 +166,10 @@ const Intro: React.FC = () => {
         </center>
         <div className="group justify-content-center">
           <div className="block-12 block-md-8 team_decs">
-            <h1>
+            <h1 style={{ color: "#111724" }}>
               Join <span style={{ color: "#071d6a" }}>the team</span>
             </h1>
-            <p className="mb-5">
+            <p className="mb-5" style={{ color: "#111724" }}>
               Are you passionate about Technology and Innovation? Join us for a
               6-month Software Development Training and become a full-time staff
               member at D'roid Technologies. Work on exciting projects, grow

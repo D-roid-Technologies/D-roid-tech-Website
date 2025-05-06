@@ -50,6 +50,7 @@ import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition"
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
 import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
 import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
+import DroidLanding from "../ui/pages/mobile/DroidLanding";
 
 // Define an enum for all route paths
 
@@ -142,6 +143,7 @@ export const dropdownItems: DropdownItems = {
     { title: "Toolbox", link: RoutePaths.Toolbox },
     { title: "Calculate", link: RoutePaths.Calculators },
     { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
+    { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
     { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.Muzik },
     { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
@@ -208,7 +210,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
       <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
       <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
-      <Route path={RoutePaths.MobilePhone} element={<DroidPhonesPage />} />
+      <Route path={RoutePaths.MobilePhone} element={<DroidLanding />} />
       <Route
         path={RoutePaths.TermsAndCondition}
         element={<TermsAndConditions />}

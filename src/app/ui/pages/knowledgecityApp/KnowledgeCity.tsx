@@ -29,7 +29,7 @@ const KnowledgeCity: React.FC = () => {
         >
           <h1>Get Our Mobile Apps</h1>
           <p>
-            You can download the any of our apps from  Google playstore or Apple store.
+            You can download any of our apps from  Google playstore or Apple store.
           </p>
           <StoreButtons />
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../home/Home.css";
+import { useNavigate } from "react-router-dom";
 import "../../components/liteGrid@v1.0/lite-grid.css";
 import { RootState } from "../../../redux/Store";
 import { useSelector } from "react-redux";
@@ -13,6 +14,7 @@ import KnowledgeCity from "../knowledgecityApp/KnowledgeCity";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <div>
@@ -20,9 +22,26 @@ const Home: React.FunctionComponent = () => {
       <CompanyCarousel />
       <Intro />
       <ProductsSmall />
-
       <KnowledgeCity />
       <Testimonial />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2 style={{ fontSize: "4rem", fontWeight: "900" }}>
+              D'roid Mobile Phones
+            </h2>
+            <p>
+              Experience technology that adapts to your lifestyle. The D'roid
+              Mobile is more than just a phone — it's your creative companion,
+              productivity partner, and entertainment powerhouse, all in one
+              sleek, powerful device.
+            </p>
+            <button className="cta-primary" onClick={() => navigate("/mobile")}>
+              See More
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
