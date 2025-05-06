@@ -4,6 +4,7 @@ import { FaCalculator } from "react-icons/fa6";
 import { GiCalculator } from "react-icons/gi";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
+import { RoutePaths } from "../../../routes/Index";
 
 const CalculatorPage = () => {
   const calculators = [
@@ -12,12 +13,14 @@ const CalculatorPage = () => {
       description:
         "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
       icon: FaCalculator({ size: 24 }),
+      link: RoutePaths.ScientificCalculate,
     },
     {
       title: "BMI Calculator",
       description:
         "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
       icon: GiCalculator({ size: 24 }),
+      link: "/calculator/scientific",
     },
   ];
   return (
@@ -48,21 +51,11 @@ const CalculatorPage = () => {
               title={tech.title}
               description={tech.description}
               icon={tech.icon}
+              link={tech.link}
               className="process-card"
             />
           ))}
         </div>
-        {/* <div className="soft-dev-content">
-          {tools.map((tech, index) => (
-            <CoreValueCardTwo
-              key={index}
-              title={tech.title}
-              description={tech.description}
-              icon={tech.icon}
-              className="process-card"
-            />
-          ))}
-        </div> */}
       </div>
     </div>
   );

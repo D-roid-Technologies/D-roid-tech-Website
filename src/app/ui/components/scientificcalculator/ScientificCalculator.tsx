@@ -349,200 +349,222 @@ const ScientificCalculator: React.FC = () => {
   };
 
   return (
-    <div
-      className="calculator-container"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-    >
-      <div className="calculator">
-        <div className="display">
-          <div className="display-top">
-            <div className="mode-indicator">
-              <span
-                className={`memory-indicator ${
-                  state.memory !== 0 ? "active" : ""
-                }`}
-              >
-                M
-              </span>
-              <span className="angle-mode" onClick={toggleAngleMode}>
-                {state.angleMode}
-              </span>
+    <div className="calculator-wrapper">
+      <div
+        className="calculator-container"
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+      >
+        <div className="calculator">
+          <div className="display">
+            <div className="display-top">
+              <div className="mode-indicator">
+                <span
+                  className={`memory-indicator ${
+                    state.memory !== 0 ? "active" : ""
+                  }`}
+                >
+                  M
+                </span>
+                <span className="angle-mode" onClick={toggleAngleMode}>
+                  {state.angleMode}
+                </span>
+              </div>
+              <div className="history-toggle" onClick={toggleHistory}>
+                <span>↑</span>
+              </div>
             </div>
-            <div className="history-toggle" onClick={toggleHistory}>
-              <span>↑</span>
-            </div>
+            <div className="display-main">{state.displayValue}</div>
           </div>
-          <div className="display-main">{state.displayValue}</div>
-        </div>
 
-        {state.showHistory && (
-          <div className="history-panel">
-            <div className="history-header">
-              <h3>History</h3>
-              <button onClick={clearHistory}>Clear</button>
+          {state.showHistory && (
+            <div className="history-panel">
+              <div className="history-header">
+                <h3>History</h3>
+                <button onClick={clearHistory}>Clear</button>
+              </div>
+              <div className="history-list">
+                {state.history.length === 0 ? (
+                  <div className="history-empty">No history yet</div>
+                ) : (
+                  state.history.map((entry, index) => (
+                    <div className="history-item" key={index}>
+                      {entry}
+                    </div>
+                  ))
+                )}
+              </div>
             </div>
-            <div className="history-list">
-              {state.history.length === 0 ? (
-                <div className="history-empty">No history yet</div>
+          )}
+
+          <div className="keypad">
+            <div className="memory-keys">
+              <button onClick={() => handleMemoryOperation("MC")}>MC</button>
+              <button onClick={() => handleMemoryOperation("MR")}>MR</button>
+              <button onClick={() => handleMemoryOperation("M+")}>M+</button>
+              <button onClick={() => handleMemoryOperation("M-")}>M-</button>
+              <button onClick={() => handleMemoryOperation("MS")}>MS</button>
+            </div>
+
+            <div className="function-keys">
+              <button
+                className={state.showSecondary ? "active" : ""}
+                onClick={toggleSecondaryFunctions}
+              >
+                2nd
+              </button>
+              <button onClick={() => handleScientificFunction("pi")}>π</button>
+              <button onClick={() => handleScientificFunction("e")}>e</button>
+              <button onClick={clearAll}>C</button>
+              <button onClick={clearEntry}>CE</button>
+              <button
+                onClick={() => {
+                  if (
+                    state.displayValue.length === 1 ||
+                    (state.displayValue.length === 2 &&
+                      state.displayValue.startsWith("-"))
+                  ) {
+                    setState({
+                      ...state,
+                      displayValue: "0",
+                    });
+                  } else {
+                    setState({
+                      ...state,
+                      displayValue: state.displayValue.slice(0, -1),
+                    });
+                  }
+                }}
+              >
+                ⌫
+              </button>
+            </div>
+
+            <div className="scientific-keys">
+              {state.showSecondary ? (
+                <>
+                  <button onClick={() => handleScientificFunction("asin")}>
+                    sin⁻¹
+                  </button>
+                  <button onClick={() => handleScientificFunction("acos")}>
+                    cos⁻¹
+                  </button>
+                  <button onClick={() => handleScientificFunction("atan")}>
+                    tan⁻¹
+                  </button>
+                  <button onClick={() => handleScientificFunction("10^x")}>
+                    10^x
+                  </button>
+                  <button onClick={() => handleScientificFunction("e^x")}>
+                    e^x
+                  </button>
+                  <button onClick={() => handleScientificFunction("x^3")}>
+                    x³
+                  </button>
+                </>
               ) : (
-                state.history.map((entry, index) => (
-                  <div className="history-item" key={index}>
-                    {entry}
-                  </div>
-                ))
+                <>
+                  <button onClick={() => handleScientificFunction("sin")}>
+                    sin
+                  </button>
+                  <button onClick={() => handleScientificFunction("cos")}>
+                    cos
+                  </button>
+                  <button onClick={() => handleScientificFunction("tan")}>
+                    tan
+                  </button>
+                  <button onClick={() => handleScientificFunction("log")}>
+                    log
+                  </button>
+                  <button onClick={() => handleScientificFunction("ln")}>
+                    ln
+                  </button>
+                  <button onClick={() => handleScientificFunction("x^2")}>
+                    x²
+                  </button>
+                </>
               )}
             </div>
-          </div>
-        )}
 
-        <div className="keypad">
-          <div className="memory-keys">
-            <button onClick={() => handleMemoryOperation("MC")}>MC</button>
-            <button onClick={() => handleMemoryOperation("MR")}>MR</button>
-            <button onClick={() => handleMemoryOperation("M+")}>M+</button>
-            <button onClick={() => handleMemoryOperation("M-")}>M-</button>
-            <button onClick={() => handleMemoryOperation("MS")}>MS</button>
-          </div>
+            <div className="main-keypad">
+              <button onClick={() => handleScientificFunction("sqrt")}>
+                √
+              </button>
+              <button onClick={() => performOperation("y^x")}>y^x</button>
+              <button onClick={() => handleScientificFunction("1/x")}>
+                1/x
+              </button>
+              <button onClick={() => handleScientificFunction("abs")}>
+                |x|
+              </button>
+              <button onClick={() => handleScientificFunction("fact")}>
+                n!
+              </button>
 
-          <div className="function-keys">
-            <button
-              className={state.showSecondary ? "active" : ""}
-              onClick={toggleSecondaryFunctions}
-            >
-              2nd
-            </button>
-            <button onClick={() => handleScientificFunction("pi")}>π</button>
-            <button onClick={() => handleScientificFunction("e")}>e</button>
-            <button onClick={clearAll}>C</button>
-            <button onClick={clearEntry}>CE</button>
-            <button
-              onClick={() => {
-                if (
-                  state.displayValue.length === 1 ||
-                  (state.displayValue.length === 2 &&
-                    state.displayValue.startsWith("-"))
-                ) {
-                  setState({
-                    ...state,
-                    displayValue: "0",
-                  });
-                } else {
-                  setState({
-                    ...state,
-                    displayValue: state.displayValue.slice(0, -1),
-                  });
-                }
-              }}
-            >
-              ⌫
-            </button>
-          </div>
+              <button className="number" onClick={() => inputDigit("7")}>
+                7
+              </button>
+              <button className="number" onClick={() => inputDigit("8")}>
+                8
+              </button>
+              <button className="number" onClick={() => inputDigit("9")}>
+                9
+              </button>
+              <button
+                className="operator"
+                onClick={() => performOperation("÷")}
+              >
+                ÷
+              </button>
+              <button onClick={inputPercent}>%</button>
 
-          <div className="scientific-keys">
-            {state.showSecondary ? (
-              <>
-                <button onClick={() => handleScientificFunction("asin")}>
-                  sin⁻¹
-                </button>
-                <button onClick={() => handleScientificFunction("acos")}>
-                  cos⁻¹
-                </button>
-                <button onClick={() => handleScientificFunction("atan")}>
-                  tan⁻¹
-                </button>
-                <button onClick={() => handleScientificFunction("10^x")}>
-                  10^x
-                </button>
-                <button onClick={() => handleScientificFunction("e^x")}>
-                  e^x
-                </button>
-                <button onClick={() => handleScientificFunction("x^3")}>
-                  x³
-                </button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => handleScientificFunction("sin")}>
-                  sin
-                </button>
-                <button onClick={() => handleScientificFunction("cos")}>
-                  cos
-                </button>
-                <button onClick={() => handleScientificFunction("tan")}>
-                  tan
-                </button>
-                <button onClick={() => handleScientificFunction("log")}>
-                  log
-                </button>
-                <button onClick={() => handleScientificFunction("ln")}>
-                  ln
-                </button>
-                <button onClick={() => handleScientificFunction("x^2")}>
-                  x²
-                </button>
-              </>
-            )}
-          </div>
+              <button className="number" onClick={() => inputDigit("4")}>
+                4
+              </button>
+              <button className="number" onClick={() => inputDigit("5")}>
+                5
+              </button>
+              <button className="number" onClick={() => inputDigit("6")}>
+                6
+              </button>
+              <button
+                className="operator"
+                onClick={() => performOperation("×")}
+              >
+                ×
+              </button>
+              <button onClick={toggleSign}>±</button>
 
-          <div className="main-keypad">
-            <button onClick={() => handleScientificFunction("sqrt")}>√</button>
-            <button onClick={() => performOperation("y^x")}>y^x</button>
-            <button onClick={() => handleScientificFunction("1/x")}>1/x</button>
-            <button onClick={() => handleScientificFunction("abs")}>|x|</button>
-            <button onClick={() => handleScientificFunction("fact")}>n!</button>
+              <button className="number" onClick={() => inputDigit("1")}>
+                1
+              </button>
+              <button className="number" onClick={() => inputDigit("2")}>
+                2
+              </button>
+              <button className="number" onClick={() => inputDigit("3")}>
+                3
+              </button>
+              <button
+                className="operator"
+                onClick={() => performOperation("-")}
+              >
+                −
+              </button>
+              <button className="equals" onClick={calculateResult}>
+                =
+              </button>
 
-            <button className="number" onClick={() => inputDigit("7")}>
-              7
-            </button>
-            <button className="number" onClick={() => inputDigit("8")}>
-              8
-            </button>
-            <button className="number" onClick={() => inputDigit("9")}>
-              9
-            </button>
-            <button className="operator" onClick={() => performOperation("÷")}>
-              ÷
-            </button>
-            <button onClick={inputPercent}>%</button>
-
-            <button className="number" onClick={() => inputDigit("4")}>
-              4
-            </button>
-            <button className="number" onClick={() => inputDigit("5")}>
-              5
-            </button>
-            <button className="number" onClick={() => inputDigit("6")}>
-              6
-            </button>
-            <button className="operator" onClick={() => performOperation("×")}>
-              ×
-            </button>
-            <button onClick={toggleSign}>±</button>
-
-            <button className="number" onClick={() => inputDigit("1")}>
-              1
-            </button>
-            <button className="number" onClick={() => inputDigit("2")}>
-              2
-            </button>
-            <button className="number" onClick={() => inputDigit("3")}>
-              3
-            </button>
-            <button className="operator" onClick={() => performOperation("-")}>
-              −
-            </button>
-            <button className="equals" onClick={calculateResult}>
-              =
-            </button>
-
-            <button className="number zero" onClick={() => inputDigit("0")}>
-              0
-            </button>
-            <button onClick={inputDot}>.</button>
-            <button className="operator" onClick={() => performOperation("+")}>
-              +
-            </button>
+              <button className="number zero" onClick={() => inputDigit("0")}>
+                0
+              </button>
+              <button onClick={inputDot}>.</button>
+              <button
+                className="operator"
+                onClick={() => performOperation("+")}
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
       </div>

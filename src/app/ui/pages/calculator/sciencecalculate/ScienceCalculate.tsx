@@ -11,10 +11,10 @@ const ScienceCalculate = () => {
         <div className="software-main-content">
           <h1 className="software-header">Scientific Calculator</h1>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi a id
-            dolores, odit nesciunt recusandae nisi veritatis dolore. Modi
-            provident earum deserunt nostrum quibusdam, accusamus saepe. Illo
-            nostrum ea placeat!
+            Unlock the power of precision with our advanced Scientific
+            Calculator. Designed for students, engineers, and everyday
+            problem-solvers, it handles complex equations, trigonometric
+            functions, logarithms, and more. All in one sleek interface.
           </p>
         </div>
       </div>
