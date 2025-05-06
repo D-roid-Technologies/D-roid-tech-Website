@@ -36,11 +36,13 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
           </a>
         </div>
       )}
-      <div className="mt-2">
-        <a href={link} className="launch-button">
-          Lunch
-        </a>
-      </div>
+      {link && (
+        <div className="mt-2">
+          <a href={link} className="launch-button">
+            Lunch
+          </a>
+        </div>
+      )}
     </div>
   );
 };

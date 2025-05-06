@@ -9,28 +9,82 @@ const tools = [
     description:
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
     icon: FaCompressArrowsAlt({ size: 24 }),
+    category: "Image Tools"
   },
   {
-    title: "Color Conversion",
+    title: "Color Converter",
     description:
       "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
     icon: FaPalette({ size: 24 }),
+    category: "Color Tools"
+  },
+  {
+    title: "Image Compressor",
+    description:
+      "Reduce file size while maintaining quality",
+    icon: FaPalette({ size: 24 }),
+    category: "Image Tools"
+  },
+  {
+    title: "Crop Tool",
+    description:
+      "Trim or cut images to focus on specific parts",
+    icon: FaPalette({ size: 24 }),
+    category: "Image Tools"
+  },
+  {
+    title: "Color Picker",
+    description:
+      "Select and copy hex/RGB/HSV codes from a color palette or screen",
+    icon: FaPalette({ size: 24 }),
+    category: "Color Tools"
+  },
+  {
+    title: "Word Counter",
+    description:
+      "Count words, characters, and paragraphs",
+    icon: FaPalette({ size: 24 }),
+  },
+  {
+    title: "Currency Converter",
+    description:
+      "Get real-time conversion rates for global currencies",
+    icon: FaPalette({ size: 24 }),
+    category: "Calculation Tools"
+  },
+  {
+    title: "JSON Formatter",
+    description:
+      "Beautify and validate JSON code",
+    icon: FaPalette({ size: 24 }),
+    category: "Developer Tools"
+  },
+  {
+    title: "UUID Generator",
+    description:
+      "Generate unique identifiers for development",
+    icon: FaPalette({ size: 24 }),
+    category: "Developer Tools"
+  },
+  {
+    title: "Base64 Encoder/Decoder",
+    description:
+      "Encode or decode base64 strings",
+    icon: FaPalette({ size: 24 }),
+    category: "Developer Tools"
   },
 ];
 
-const ToolBoxPage = () => {
+const ToolBoxPage: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
       {/* Hero */}
       <div className="software-main">
         <div className="software-main-content">
-          <h1 className="software-header">Driod ToolBox</h1>
+          <h1 className="software-header">D'roid ToolBox</h1>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi a id
-            dolores, odit nesciunt recusandae nisi veritatis dolore. Modi
-            provident earum deserunt nostrum quibusdam, accusamus saepe. Illo
-            nostrum ea placeat!
+            Toolbox is your ultimate Android companion — a powerful all-in-one utility app designed to help you manage, optimize, and customize your tasks with ease.
           </p>
         </div>
       </div>
