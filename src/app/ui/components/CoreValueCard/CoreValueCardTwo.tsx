@@ -8,6 +8,7 @@ interface CoreValueCardProps {
   className?: string;
   icon?: ReactNode;
   url?: string;
+  link?: string;
 }
 
 const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
@@ -17,6 +18,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
   className = "",
   icon,
   url,
+  link,
 }) => {
   return (
     <div className={`core-value-card ${className}`}>
@@ -34,6 +36,11 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
           </a>
         </div>
       )}
+      <div className="mt-2">
+        <a href={link} className="launch-button">
+          Lunch
+        </a>
+      </div>
     </div>
   );
 };
