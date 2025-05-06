@@ -143,6 +143,7 @@ export const dropdownItems: DropdownItems = {
     { title: "Toolbox", link: RoutePaths.Toolbox },
     { title: "Calculate", link: RoutePaths.Calculators },
     { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
+    { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
     { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.Muzik },
     { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
