@@ -86,6 +86,21 @@
 .custom-link:hover {
   color: #1d4ed8;
 }
+.launch-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #a7dca5;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.launch-button:hover {
+  background-color: #2c8e47;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

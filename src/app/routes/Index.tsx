@@ -49,6 +49,7 @@ import MemberLogin from "../ui/pages/memberLogin/MemberLogin";
 import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition";
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
 import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
+import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
 
 // Define an enum for all route paths
 
@@ -67,6 +68,7 @@ export enum RoutePaths {
   // Resources Routes
   Toolbox = "/toolbox",
   Calculators = "/calculators",
+  ScientificCalculate = "/sciencecalculate",
   Schedules = "/schedules",
   Muzik = "/muzik",
   KnowledgeCity = "/knowledge-city",
@@ -115,8 +117,7 @@ export enum RoutePaths {
   Project = "/project",
   WebFoarm = "/webfoarm",
   // Existing Routes
-  Login // Existing Routes
-  = "Login"
+  Login = "Login", // Existing Routes
 }
 
 interface DropdownItem {
@@ -140,6 +141,7 @@ export const dropdownItems: DropdownItems = {
   resources: [
     { title: "Toolbox", link: RoutePaths.Toolbox },
     { title: "Calculate", link: RoutePaths.Calculators },
+    { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
     { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.Muzik },
     { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
@@ -154,70 +156,81 @@ export const dropdownItems: DropdownItems = {
 const Index: React.FunctionComponent = () => {
   return (
     // <BrowserRouter>
-      <Routes>
-        <Route path={RoutePaths.Home} element={<Home />} />
-        <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
-        <Route path={RoutePaths.Careers} element={<CareersPage />} />
-        <Route path={RoutePaths.StartProjectPage} element={<StartProjectPage />} />
-
-        {/* Services Routes */}
-        <Route path={RoutePaths.SoftwareDevelopment} element={<SoftwareDevelopmentPage />} />
-        <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
-        <Route path={RoutePaths.Animation} element={<AnimationPage />} />
-        <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
-
-        {/* Resources Routes */}
-        <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
-        <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
-        <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
-        <Route path={RoutePaths.Muzik} element={<Muzik />} />
-        <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
-
-        {/* Grouped More Routes */}
-        <Route path={RoutePaths.More}>
-          <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
-          <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
-          <Route path={RoutePaths.Products} element={<Products />} />
-        </Route>
-
-        {/* Existing Routes */}
-        <Route path={RoutePaths.Contact} element={<Contact />} />
-        <Route path={RoutePaths.TrainingPage} element={<Training />} />
-        <Route path={RoutePaths.DevTools} element={<Drone />} />
-        <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
-        <Route path={RoutePaths.Staff} element={<Staff />} />
-        <Route path={RoutePaths.AllStaffs} element={<AllStaffs />} />
-        <Route path={RoutePaths.Software} element={<Software />} />
-        <Route path={RoutePaths.PrivacyPolicy} element={<PrivacyPolicy />} />
-        <Route path={RoutePaths.Details} element={<Details />} />
-        <Route path={RoutePaths.TrainingPrograms} element={<TrainingPrograms />} />
-        <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
-        <Route path={RoutePaths.Services} element={<Services />} />
-        <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
-        <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
-        <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
-        <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
-        <Route path={RoutePaths.MobilePhone} element={<DroidPhonesPage />} />
-        <Route path={RoutePaths.TermsAndCondition} element={<TermsAndConditions />} />
-
-        {/* Animation Routes */}
-        <Route path={RoutePaths.KnowledgeCityDetails} element={<KnowledgeCityDetails />} />
-        <Route path={RoutePaths.CashBasket} element={<Cashbasket />} />
-        <Route path={RoutePaths.Dome} element={<Dome />} />
-
-        {/* Website Routes */}
-        <Route path={RoutePaths.Website} element={<Website />} />
-        <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
-        <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
-        <Route path={RoutePaths.Project} element={<Project />} />
-        <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
-
-        {/* Private Routes */}
-        <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
-
-        {/* 404 Page */}
-        <Route path={RoutePaths.NotFound} element={<NotFound />} />
-      </Routes>
+    <Routes>
+      <Route path={RoutePaths.Home} element={<Home />} />
+      <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
+      <Route path={RoutePaths.Careers} element={<CareersPage />} />
+      <Route
+        path={RoutePaths.StartProjectPage}
+        element={<StartProjectPage />}
+      />
+      {/* Services Routes */}
+      <Route
+        path={RoutePaths.SoftwareDevelopment}
+        element={<SoftwareDevelopmentPage />}
+      />
+      <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
+      <Route path={RoutePaths.Animation} element={<AnimationPage />} />
+      <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
+      {/* Resources Routes */}
+      <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
+      <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
+      <Route
+        path={RoutePaths.ScientificCalculate}
+        element={<ScienceCalculate />}
+      />
+      <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
+      <Route path={RoutePaths.Muzik} element={<Muzik />} />
+      <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
+      {/* Grouped More Routes */}
+      <Route path={RoutePaths.More}>
+        <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
+        <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
+        <Route path={RoutePaths.Products} element={<Products />} />
+      </Route>
+      {/* Existing Routes */}
+      <Route path={RoutePaths.Contact} element={<Contact />} />
+      <Route path={RoutePaths.TrainingPage} element={<Training />} />
+      <Route path={RoutePaths.DevTools} element={<Drone />} />
+      <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
+      <Route path={RoutePaths.Staff} element={<Staff />} />
+      <Route path={RoutePaths.AllStaffs} element={<AllStaffs />} />
+      <Route path={RoutePaths.Software} element={<Software />} />
+      <Route path={RoutePaths.PrivacyPolicy} element={<PrivacyPolicy />} />
+      <Route path={RoutePaths.Details} element={<Details />} />
+      <Route
+        path={RoutePaths.TrainingPrograms}
+        element={<TrainingPrograms />}
+      />
+      <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
+      <Route path={RoutePaths.Services} element={<Services />} />
+      <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
+      <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
+      <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
+      <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
+      <Route path={RoutePaths.MobilePhone} element={<DroidPhonesPage />} />
+      <Route
+        path={RoutePaths.TermsAndCondition}
+        element={<TermsAndConditions />}
+      />
+      {/* Animation Routes */}
+      <Route
+        path={RoutePaths.KnowledgeCityDetails}
+        element={<KnowledgeCityDetails />}
+      />
+      <Route path={RoutePaths.CashBasket} element={<Cashbasket />} />
+      <Route path={RoutePaths.Dome} element={<Dome />} />
+      {/* Website Routes */}
+      <Route path={RoutePaths.Website} element={<Website />} />
+      <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
+      <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
+      <Route path={RoutePaths.Project} element={<Project />} />
+      <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
+      {/* Private Routes */}
+      <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
+      {/* 404 Page */}
+      <Route path={RoutePaths.NotFound} element={<NotFound />} />
+    </Routes>
     // </BrowserRouter>
   );
 };

@@ -23,18 +23,21 @@ const devPhases = [
     description:
       "Our UI/UX experts create sleek interfaces and clickable prototypes to bring ideas to life—before writing code.",
     icon: FaPencilRuler({ size: 24 }),
+    url: "",
   },
   {
     title: "Development & Testing",
     description:
       "We build clean, scalable code using modern frameworks and run extensive testing to ensure quality.",
     icon: FaCode({ size: 24 }),
+    url: "",
   },
   {
     title: "Deployment & Maintenance",
     description:
       "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
     icon: FaServer({ size: 24 }),
+    url: "",
   },
 ];
 
@@ -44,24 +47,28 @@ const technologies = [
     description:
       "Modern, responsive UIs using React, TypeScript, and Tailwind CSS.",
     imageSrc: "", // optional icon/image
+    url: "",
   },
   {
     title: "Backend Development",
     description:
       "Powerful APIs and logic using Node.js, Express, Python, and more.",
     imageSrc: "",
+    url: "",
   },
   {
     title: "Database & Cloud",
     description:
       "Robust data solutions with MySQL, MongoDB, Firebase, and scalable cloud architecture.",
     imageSrc: "",
+    url: "",
   },
   {
     title: "Cross-Platform Apps",
     description:
       "React Native & hybrid mobile solutions to reach iOS and Android users seamlessly.",
     imageSrc: "",
+    url: "",
   },
 ];
 
@@ -96,6 +103,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
               title={tech.title}
               description={tech.description}
               imageSrc={tech.imageSrc}
+              url="{tech.url}"
               className="process-card"
             />
           ))}
@@ -117,6 +125,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
               title={phase.title}
               description={phase.description}
               icon={phase.icon}
+              url="{tech.url}"
               className="process-card"
             />
           ))}
