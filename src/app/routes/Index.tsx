@@ -50,6 +50,7 @@ import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition"
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
 import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
 import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
+import ImageResizer from "../ui/pages/toolboxpage/imageresizer/ImageResizer";
 
 // Define an enum for all route paths
 
@@ -69,6 +70,7 @@ export enum RoutePaths {
   Toolbox = "/toolbox",
   Calculators = "/calculators",
   ScientificCalculate = "/sciencecalculate",
+  ToolImageResizer = "/imageresizing",
   Schedules = "/schedules",
   Muzik = "/muzik",
   KnowledgeCity = "/knowledge-city",
@@ -140,8 +142,13 @@ export const dropdownItems: DropdownItems = {
   ],
   resources: [
     { title: "Toolbox", link: RoutePaths.Toolbox },
+    // Toolbox
+    { title: "imageresizing", link: RoutePaths.ToolImageResizer },
+
+    // Driod calculate
     { title: "Calculate", link: RoutePaths.Calculators },
     { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
+
     { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.Muzik },
     { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
@@ -172,8 +179,12 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
       <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
+
       {/* Resources Routes */}
       <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
+      <Route path={RoutePaths.ToolImageResizer} element={<ImageResizer />} />
+
+      {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
       <Route
         path={RoutePaths.ScientificCalculate}

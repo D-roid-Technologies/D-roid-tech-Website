@@ -4,7 +4,12 @@ import { FaCompressArrowsAlt, FaPalette, FaImages } from "react-icons/fa";
 import { BiSolidCrop } from "react-icons/bi";
 import { CgColorPicker } from "react-icons/cg";
 import { FaFileWord } from "react-icons/fa6";
+import { BsCurrencyExchange } from "react-icons/bs";
+import { LuFileJson } from "react-icons/lu";
+import { GiPowerGenerator } from "react-icons/gi";
+import { SiLetsencrypt } from "react-icons/si";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
+import { RoutePaths } from "../../../routes/Index";
 
 const tools = [
   {
@@ -13,6 +18,7 @@ const tools = [
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
     icon: FaCompressArrowsAlt({ size: 24 }),
     category: "Image Tools",
+    // link: RoutePaths.ToolImageResizer,
     link: "/calculator/scientific",
   },
   {
@@ -54,28 +60,28 @@ const tools = [
   {
     title: "Currency Converter",
     description: "Get real-time conversion rates for global currencies",
-    icon: FaPalette({ size: 24 }),
+    icon: BsCurrencyExchange({ size: 24 }),
     category: "Calculation Tools",
     link: "/calculator/scientific",
   },
   {
     title: "JSON Formatter",
     description: "Beautify and validate JSON code",
-    icon: FaPalette({ size: 24 }),
+    icon: LuFileJson({ size: 24 }),
     category: "Developer Tools",
     link: "/calculator/scientific",
   },
   {
     title: "UUID Generator",
     description: "Generate unique identifiers for development",
-    icon: FaPalette({ size: 24 }),
+    icon: GiPowerGenerator({ size: 24 }),
     category: "Developer Tools",
     link: "/calculator/scientific",
   },
   {
     title: "Base64 Encoder/Decoder",
     description: "Encode or decode base64 strings",
-    icon: FaPalette({ size: 24 }),
+    icon: SiLetsencrypt({ size: 24 }),
     category: "Developer Tools",
     link: "/calculator/scientific",
   },
