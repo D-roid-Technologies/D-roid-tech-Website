@@ -51,6 +51,7 @@ import Dashboard from "../ui/pages/Dashboard/Dashboard";
 import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
 import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
 import DroidLanding from "../ui/pages/mobile/DroidLanding";
+import Blog from "../ui/pages/DroidJournal/Blog";
 
 // Define an enum for all route paths
 
