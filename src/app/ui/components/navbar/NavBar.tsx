@@ -48,9 +48,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
   return (
     <nav
-      className={`navbar ${className || ""} ${
-        isScrolled || isHovered ? "scrolled" : ""
-      }`}
+      className={`navbar ${className || ""} ${isScrolled || isHovered ? "scrolled" : ""
+        }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -65,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         <div className="desktop-nav-links">
           <ul className="navbar-links">
             <li>
-              <a href="aboutus">About</a>
+              <a href={RoutePaths.AboutUs}>About</a>
             </li>
             <li
               className="dropdown-trigger"
@@ -146,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         </div>
 
         <div className="desktop-cta">
-          <a href="StartProjectPage" className="navbar-cta">
+          <a href={RoutePaths.StartProjectPage} className="navbar-cta">
             Start a project
           </a>
           {/* <div
@@ -177,9 +176,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-services" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -208,9 +206,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-resources" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -244,9 +241,8 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${
-              activeDropdown === "mobile-more" ? "active" : ""
-            }`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"

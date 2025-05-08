@@ -134,7 +134,7 @@ const DroidLanding = () => {
           <div className="hero-grid">
             <motion.div className="hero-content" variants={heroVariants}>
               <motion.h1 variants={heroItemVariants}>
-                D'roid Mobile Phones
+                D'roid Companion
               </motion.h1>
               <motion.h2 variants={heroItemVariants}>
                 Built for the Future. Designed for You.
@@ -160,7 +160,7 @@ const DroidLanding = () => {
             >
               <img
                 src={Assets.images.phone_One}
-                alt="D'roid Mobile Phone"
+                alt="D'roid Companion"
                 className="phone-img"
               />
               <div className="phone-glow"></div>

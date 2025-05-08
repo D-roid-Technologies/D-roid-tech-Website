@@ -28,11 +28,11 @@ const Home: React.FunctionComponent = () => {
         <div className="container">
           <div className="cta-content">
             <h2 style={{ fontSize: "4rem", fontWeight: "900" }}>
-              D'roid Mobile Phones
+              D'roid Companion
             </h2>
             <p>
               Experience technology that adapts to your lifestyle. The D'roid
-              Mobile is more than just a phone — it's your creative companion,
+              Companion is more than just a phone — it's your creative companion,
               productivity partner, and entertainment powerhouse, all in one
               sleek, powerful device.
             </p>
