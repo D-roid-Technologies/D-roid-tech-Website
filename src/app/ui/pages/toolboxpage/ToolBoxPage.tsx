@@ -28,6 +28,7 @@ const tools = [
     icon: FaPalette({ size: 24 }),
     category: "Color Tools",
     link: "/calculator/scientific",
+    // link: RoutePaths.ToolColorConverter,
   },
   {
     title: "Image Compressor",

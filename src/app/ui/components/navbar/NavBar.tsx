@@ -9,7 +9,11 @@ import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
 import Flag from "react-world-flags";  // Import Flag component
 import { dropdownItems, RoutePaths } from "../../../routes/Index";
 
-const Navbar: React.FC = () => {
+interface NavBarProps {
+  className?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -18,8 +22,8 @@ const Navbar: React.FC = () => {
 
   // Extract country code from user's locale
   useEffect(() => {
-    const country = navigator.language.split('-')[1]; // Extract country code
-    setUserCountry(country || 'US'); // Default to 'US' if country code is not found
+    const country = navigator.language.split("-")[1]; // Extract country code
+    setUserCountry(country || "US"); // Default to 'US' if country code is not found
   }, []);
 
   // Toggle the menu for mobile
@@ -44,7 +48,8 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`navbar ${isScrolled || isHovered ? "scrolled" : ""}`}
+      className={`navbar ${className || ""} ${isScrolled || isHovered ? "scrolled" : ""
+        }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -59,7 +64,7 @@ const Navbar: React.FC = () => {
         <div className="desktop-nav-links">
           <ul className="navbar-links">
             <li>
-              <a href="aboutus">About</a>
+              <a href={RoutePaths.AboutUs}>About</a>
             </li>
             <li
               className="dropdown-trigger"
@@ -140,7 +145,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="desktop-cta">
-          <a href="StartProjectPage" className="navbar-cta">
+          <a href={RoutePaths.StartProjectPage} className="navbar-cta">
             Start a project
           </a>
           {/* <div
@@ -171,7 +176,8 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""}`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -200,7 +206,8 @@ const Navbar: React.FC = () => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""}`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -234,7 +241,8 @@ const Navbar: React.FC = () => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""}`}
+            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
+              }`}
           >
             <div
               className="mobile-dropdown-title"

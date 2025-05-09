@@ -10,6 +10,21 @@ const initialState: ProjectState = {
   projects: [
     {
       id: "1",
+      title: "D'roid Web App",
+      status: "In Communication",
+      descriptionUrl: "/projects/blockchain-logistics",
+      summary:
+        "At D'roid, we transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.",
+      startDate: "2025-05-01",
+      client: "TransGlobe Shipping",
+      team: ["Ngozi Obi", "Liam Chen", "Julia Fernandez"],
+      imageUrl: Assets.images.droidweb,
+      category: "Company",
+      price: "",
+      author: "D'roid",
+    },
+    {
+      id: "2",
       title: "Knowledge City Web App",
       status: "Ongoing",
       descriptionUrl: "https://kcity-c8580.web.app/",
@@ -24,7 +39,7 @@ const initialState: ProjectState = {
       author: "D'roid",
     },
     {
-      id: "2",
+      id: "3",
       title: "EcoBank Mobile App",
       status: "Completed",
       descriptionUrl:
@@ -40,21 +55,7 @@ const initialState: ProjectState = {
       price: "",
       author: "Eco Bank",
     },
-    {
-      id: "3",
-      title: "D'roid Web App",
-      status: "In Communication",
-      descriptionUrl: "/projects/blockchain-logistics",
-      summary:
-        "At D'roid, we transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.",
-      startDate: "2025-05-01",
-      client: "TransGlobe Shipping",
-      team: ["Ngozi Obi", "Liam Chen", "Julia Fernandez"],
-      imageUrl: Assets.images.droidweb,
-      category: "Company",
-      price: "",
-      author: "D'roid",
-    },
+
     {
       id: "4",
       title: "mySME App",

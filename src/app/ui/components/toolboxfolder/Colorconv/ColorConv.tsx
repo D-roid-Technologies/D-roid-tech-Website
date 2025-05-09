@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./ColorConverter.css";
+import "../Colorconv/ColorConv.css";
 
 type ColorFormat = "hex" | "rgb" | "rgba" | "hsl" | "hsla" | "cmyk";
 
@@ -489,322 +489,360 @@ const ColorConv: React.FC = () => {
   };
 
   return (
-    <div className="color-converter">
-      <h1>Color Converter</h1>
+    <div className="color-converter-container">
+      <div className="color-converter">
+        <h1>Color Converter</h1>
 
-      <div className="color-preview" style={{ backgroundColor: colors.hex }}>
-        <div className="actions">
-          <button className="copy-button" onClick={copyToClipboard}>
-            {copied ? "Copied!" : "Copy"}
-          </button>
-          <button className="random-button" onClick={handleRandomColor}>
-            Random
-          </button>
+        <div className="color-preview" style={{ backgroundColor: colors.hex }}>
+          <div className="actions">
+            <button className="copy-button" onClick={copyToClipboard}>
+              {copied ? "Copied!" : "Copy"}
+            </button>
+            <button className="random-button" onClick={handleRandomColor}>
+              Random
+            </button>
+          </div>
         </div>
-      </div>
 
-      {error && <div className="error-message">{error}</div>}
+        {error && <div className="error-message">{error}</div>}
 
-      <div className="tabs">
-        {["hex", "rgb", "rgba", "hsl", "hsla", "cmyk"].map((format) => (
-          <button
-            key={format}
-            className={`tab ${activeFormat === format ? "active" : ""}`}
-            onClick={() => setActiveFormat(format as ColorFormat)}
-          >
-            {format.toUpperCase()}
-          </button>
-        ))}
-      </div>
+        <div className="tabs">
+          {["hex", "rgb", "rgba", "hsl", "hsla", "cmyk"].map((format) => (
+            <button
+              key={format}
+              className={`tab ${activeFormat === format ? "active" : ""}`}
+              onClick={() => setActiveFormat(format as ColorFormat)}
+            >
+              {format.toUpperCase()}
+            </button>
+          ))}
+        </div>
 
-      <div className="input-section">
-        {activeFormat === "hex" && (
-          <div className="input-group">
-            <label htmlFor="hex-input">HEX:</label>
-            <input
-              id="hex-input"
-              type="text"
-              value={colors.hex}
-              onChange={handleHexChange}
-              maxLength={7}
-              placeholder="#RRGGBB"
-            />
-          </div>
-        )}
+        <div className="input-section">
+          {activeFormat === "hex" && (
+            <div className="input-group">
+              <label htmlFor="hex-input">HEX:</label>
+              <input
+                id="hex-input"
+                type="text"
+                value={colors.hex}
+                onChange={handleHexChange}
+                maxLength={7}
+                placeholder="#RRGGBB"
+              />
+            </div>
+          )}
 
-        {activeFormat === "rgb" && (
-          <div className="rgb-inputs">
-            <div className="input-group">
-              <label htmlFor="r-input">R:</label>
-              <input
-                id="r-input"
-                type="number"
-                min="0"
-                max="255"
-                value={colors.rgb.r}
-                onChange={(e) => handleInputChange("rgb", "r", e.target.value)}
-              />
+          {activeFormat === "rgb" && (
+            <div className="rgb-inputs">
+              <div className="input-group">
+                <label htmlFor="r-input">R:</label>
+                <input
+                  id="r-input"
+                  type="number"
+                  min="0"
+                  max="255"
+                  value={colors.rgb.r}
+                  onChange={(e) =>
+                    handleInputChange("rgb", "r", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="g-input">G:</label>
+                <input
+                  id="g-input"
+                  type="number"
+                  min="0"
+                  max="255"
+                  value={colors.rgb.g}
+                  onChange={(e) =>
+                    handleInputChange("rgb", "g", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="b-input">B:</label>
+                <input
+                  id="b-input"
+                  type="number"
+                  min="0"
+                  max="255"
+                  value={colors.rgb.b}
+                  onChange={(e) =>
+                    handleInputChange("rgb", "b", e.target.value)
+                  }
+                />
+              </div>
             </div>
-            <div className="input-group">
-              <label htmlFor="g-input">G:</label>
-              <input
-                id="g-input"
-                type="number"
-                min="0"
-                max="255"
-                value={colors.rgb.g}
-                onChange={(e) => handleInputChange("rgb", "g", e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="b-input">B:</label>
-              <input
-                id="b-input"
-                type="number"
-                min="0"
-                max="255"
-                value={colors.rgb.b}
-                onChange={(e) => handleInputChange("rgb", "b", e.target.value)}
-              />
-            </div>
-          </div>
-        )}
+          )}
 
-        {activeFormat === "rgba" && (
-          <div className="rgba-inputs">
-            <div className="input-group">
-              <label htmlFor="rgba-r-input">R:</label>
-              <input
-                id="rgba-r-input"
-                type="number"
-                min="0"
-                max="255"
-                value={colors.rgba.r}
-                onChange={(e) => handleInputChange("rgba", "r", e.target.value)}
-              />
+          {activeFormat === "rgba" && (
+            <div className="rgba-inputs">
+              <div className="input-group">
+                <label htmlFor="rgba-r-input">R:</label>
+                <input
+                  id="rgba-r-input"
+                  type="number"
+                  min="0"
+                  max="255"
+                  value={colors.rgba.r}
+                  onChange={(e) =>
+                    handleInputChange("rgba", "r", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="rgba-g-input">G:</label>
+                <input
+                  id="rgba-g-input"
+                  type="number"
+                  min="0"
+                  max="255"
+                  value={colors.rgba.g}
+                  onChange={(e) =>
+                    handleInputChange("rgba", "g", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="rgba-b-input">B:</label>
+                <input
+                  id="rgba-b-input"
+                  type="number"
+                  min="0"
+                  max="255"
+                  value={colors.rgba.b}
+                  onChange={(e) =>
+                    handleInputChange("rgba", "b", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="rgba-a-input">A:</label>
+                <input
+                  id="rgba-a-input"
+                  type="number"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={colors.rgba.a}
+                  onChange={(e) =>
+                    handleInputChange("rgba", "a", e.target.value)
+                  }
+                />
+              </div>
             </div>
-            <div className="input-group">
-              <label htmlFor="rgba-g-input">G:</label>
-              <input
-                id="rgba-g-input"
-                type="number"
-                min="0"
-                max="255"
-                value={colors.rgba.g}
-                onChange={(e) => handleInputChange("rgba", "g", e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="rgba-b-input">B:</label>
-              <input
-                id="rgba-b-input"
-                type="number"
-                min="0"
-                max="255"
-                value={colors.rgba.b}
-                onChange={(e) => handleInputChange("rgba", "b", e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="rgba-a-input">A:</label>
-              <input
-                id="rgba-a-input"
-                type="number"
-                min="0"
-                max="1"
-                step="0.1"
-                value={colors.rgba.a}
-                onChange={(e) => handleInputChange("rgba", "a", e.target.value)}
-              />
-            </div>
-          </div>
-        )}
+          )}
 
-        {activeFormat === "hsl" && (
-          <div className="hsl-inputs">
-            <div className="input-group">
-              <label htmlFor="h-input">H:</label>
-              <input
-                id="h-input"
-                type="number"
-                min="0"
-                max="360"
-                value={colors.hsl.h}
-                onChange={(e) => handleInputChange("hsl", "h", e.target.value)}
-              />
+          {activeFormat === "hsl" && (
+            <div className="hsl-inputs">
+              <div className="input-group">
+                <label htmlFor="h-input">H:</label>
+                <input
+                  id="h-input"
+                  type="number"
+                  min="0"
+                  max="360"
+                  value={colors.hsl.h}
+                  onChange={(e) =>
+                    handleInputChange("hsl", "h", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="s-input">S:</label>
+                <input
+                  id="s-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.hsl.s}
+                  onChange={(e) =>
+                    handleInputChange("hsl", "s", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
+              <div className="input-group">
+                <label htmlFor="l-input">L:</label>
+                <input
+                  id="l-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.hsl.l}
+                  onChange={(e) =>
+                    handleInputChange("hsl", "l", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
             </div>
-            <div className="input-group">
-              <label htmlFor="s-input">S:</label>
-              <input
-                id="s-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.hsl.s}
-                onChange={(e) => handleInputChange("hsl", "s", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-            <div className="input-group">
-              <label htmlFor="l-input">L:</label>
-              <input
-                id="l-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.hsl.l}
-                onChange={(e) => handleInputChange("hsl", "l", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-          </div>
-        )}
+          )}
 
-        {activeFormat === "hsla" && (
-          <div className="hsla-inputs">
-            <div className="input-group">
-              <label htmlFor="hsla-h-input">H:</label>
-              <input
-                id="hsla-h-input"
-                type="number"
-                min="0"
-                max="360"
-                value={colors.hsla.h}
-                onChange={(e) => handleInputChange("hsla", "h", e.target.value)}
-              />
+          {activeFormat === "hsla" && (
+            <div className="hsla-inputs">
+              <div className="input-group">
+                <label htmlFor="hsla-h-input">H:</label>
+                <input
+                  id="hsla-h-input"
+                  type="number"
+                  min="0"
+                  max="360"
+                  value={colors.hsla.h}
+                  onChange={(e) =>
+                    handleInputChange("hsla", "h", e.target.value)
+                  }
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="hsla-s-input">S:</label>
+                <input
+                  id="hsla-s-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.hsla.s}
+                  onChange={(e) =>
+                    handleInputChange("hsla", "s", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
+              <div className="input-group">
+                <label htmlFor="hsla-l-input">L:</label>
+                <input
+                  id="hsla-l-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.hsla.l}
+                  onChange={(e) =>
+                    handleInputChange("hsla", "l", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
+              <div className="input-group">
+                <label htmlFor="hsla-a-input">A:</label>
+                <input
+                  id="hsla-a-input"
+                  type="number"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={colors.hsla.a}
+                  onChange={(e) =>
+                    handleInputChange("hsla", "a", e.target.value)
+                  }
+                />
+              </div>
             </div>
-            <div className="input-group">
-              <label htmlFor="hsla-s-input">S:</label>
-              <input
-                id="hsla-s-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.hsla.s}
-                onChange={(e) => handleInputChange("hsla", "s", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-            <div className="input-group">
-              <label htmlFor="hsla-l-input">L:</label>
-              <input
-                id="hsla-l-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.hsla.l}
-                onChange={(e) => handleInputChange("hsla", "l", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-            <div className="input-group">
-              <label htmlFor="hsla-a-input">A:</label>
-              <input
-                id="hsla-a-input"
-                type="number"
-                min="0"
-                max="1"
-                step="0.1"
-                value={colors.hsla.a}
-                onChange={(e) => handleInputChange("hsla", "a", e.target.value)}
-              />
-            </div>
-          </div>
-        )}
+          )}
 
-        {activeFormat === "cmyk" && (
-          <div className="cmyk-inputs">
-            <div className="input-group">
-              <label htmlFor="c-input">C:</label>
-              <input
-                id="c-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.cmyk.c}
-                onChange={(e) => handleInputChange("cmyk", "c", e.target.value)}
-              />
-              <span className="unit">%</span>
+          {activeFormat === "cmyk" && (
+            <div className="cmyk-inputs">
+              <div className="input-group">
+                <label htmlFor="c-input">C:</label>
+                <input
+                  id="c-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.cmyk.c}
+                  onChange={(e) =>
+                    handleInputChange("cmyk", "c", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
+              <div className="input-group">
+                <label htmlFor="m-input">M:</label>
+                <input
+                  id="m-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.cmyk.m}
+                  onChange={(e) =>
+                    handleInputChange("cmyk", "m", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
+              <div className="input-group">
+                <label htmlFor="y-input">Y:</label>
+                <input
+                  id="y-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.cmyk.y}
+                  onChange={(e) =>
+                    handleInputChange("cmyk", "y", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
+              <div className="input-group">
+                <label htmlFor="k-input">K:</label>
+                <input
+                  id="k-input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={colors.cmyk.k}
+                  onChange={(e) =>
+                    handleInputChange("cmyk", "k", e.target.value)
+                  }
+                />
+                <span className="unit">%</span>
+              </div>
             </div>
-            <div className="input-group">
-              <label htmlFor="m-input">M:</label>
-              <input
-                id="m-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.cmyk.m}
-                onChange={(e) => handleInputChange("cmyk", "m", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-            <div className="input-group">
-              <label htmlFor="y-input">Y:</label>
-              <input
-                id="y-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.cmyk.y}
-                onChange={(e) => handleInputChange("cmyk", "y", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-            <div className="input-group">
-              <label htmlFor="k-input">K:</label>
-              <input
-                id="k-input"
-                type="number"
-                min="0"
-                max="100"
-                value={colors.cmyk.k}
-                onChange={(e) => handleInputChange("cmyk", "k", e.target.value)}
-              />
-              <span className="unit">%</span>
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      <div className="color-output">
-        <h3>Color Values</h3>
-        <div className="output-values">
-          <div className="output-item">
-            <label>HEX:</label>
-            <span>{colors.hex}</span>
-          </div>
-          <div className="output-item">
-            <label>RGB:</label>
-            <span>
-              rgb({colors.rgb.r}, {colors.rgb.g}, {colors.rgb.b})
-            </span>
-          </div>
-          <div className="output-item">
-            <label>RGBA:</label>
-            <span>
-              rgba({colors.rgba.r}, {colors.rgba.g}, {colors.rgba.b},{" "}
-              {colors.rgba.a})
-            </span>
-          </div>
-          <div className="output-item">
-            <label>HSL:</label>
-            <span>
-              hsl({colors.hsl.h}, {colors.hsl.s}%, {colors.hsl.l}%)
-            </span>
-          </div>
-          <div className="output-item">
-            <label>HSLA:</label>
-            <span>
-              hsla({colors.hsla.h}, {colors.hsla.s}%, {colors.hsla.l}%,{" "}
-              {colors.hsla.a})
-            </span>
-          </div>
-          <div className="output-item">
-            <label>CMYK:</label>
-            <span>
-              cmyk({colors.cmyk.c}%, {colors.cmyk.m}%, {colors.cmyk.y}%,{" "}
-              {colors.cmyk.k}%)
-            </span>
+        <div className="color-output">
+          <h3>Color Values</h3>
+          <div className="output-values">
+            <div className="output-item">
+              <label>HEX:</label>
+              <span>{colors.hex}</span>
+            </div>
+            <div className="output-item">
+              <label>RGB:</label>
+              <span>
+                rgb({colors.rgb.r}, {colors.rgb.g}, {colors.rgb.b})
+              </span>
+            </div>
+            <div className="output-item">
+              <label>RGBA:</label>
+              <span>
+                rgba({colors.rgba.r}, {colors.rgba.g}, {colors.rgba.b},{" "}
+                {colors.rgba.a})
+              </span>
+            </div>
+            <div className="output-item">
+              <label>HSL:</label>
+              <span>
+                hsl({colors.hsl.h}, {colors.hsl.s}%, {colors.hsl.l}%)
+              </span>
+            </div>
+            <div className="output-item">
+              <label>HSLA:</label>
+              <span>
+                hsla({colors.hsla.h}, {colors.hsla.s}%, {colors.hsla.l}%,{" "}
+                {colors.hsla.a})
+              </span>
+            </div>
+            <div className="output-item">
+              <label>CMYK:</label>
+              <span>
+                cmyk({colors.cmyk.c}%, {colors.cmyk.m}%, {colors.cmyk.y}%,{" "}
+                {colors.cmyk.k}%)
+              </span>
+            </div>
           </div>
         </div>
       </div>

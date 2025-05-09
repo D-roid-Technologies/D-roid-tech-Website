@@ -8,10 +8,10 @@ const AboutDroid: React.FC = () => {
       <div className="overlay-content">
         <h1 className="team-title">
           <span className="title-white">D'roid</span>
-          <span className="title-blue">Technology</span>
+          <span className="title-blue">Technologies</span>
         </h1>
         <p className="team-description">
-          Driod Technologies is a forward-thinking tech company committed to
+          D'riod Technologies is a forward-thinking tech company committed to
           building innovative solutions that address real-world challenges. We
           believe technology should not only advance but also empower, making
           lives easier, businesses smarter, and communities stronger.
