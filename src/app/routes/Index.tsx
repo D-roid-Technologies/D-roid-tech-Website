@@ -50,8 +50,10 @@ import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition"
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
 import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
 import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
+import ImageResizer from "../ui/pages/toolboxpage/imageresizer/ImageResizer";
 import DroidLanding from "../ui/pages/mobile/DroidLanding";
 import Blog from "../ui/pages/DroidJournal/Blog";
+import ColorConverter from "../ui/pages/toolboxpage/colorconverter/ColorConverter";
 
 // Define an enum for all route paths
 
@@ -70,10 +72,16 @@ export enum RoutePaths {
   // Resources Routes
   Toolbox = "/toolbox",
   Calculators = "/calculators",
-  ScientificCalculate = "/sciencecalculate",
   Schedules = "/schedules",
   Muzik = "/muzik",
   KnowledgeCity = "/knowledge-city",
+
+  // toolbox routes
+  ColorConverter = "/toolbox/colorconverter",
+  ToolImageResizer = "/toolbox/imageresizing",
+
+  // calculator routes
+  ScientificCalculate = "/calculators/sciencecalculate",
 
   // Parent "More" route
   More = "/more",
@@ -119,7 +127,8 @@ export enum RoutePaths {
   Project = "/project",
   WebFoarm = "/webfoarm",
   // Existing Routes
-  Login = "Login", // Existing Routes
+  Login = "Login",
+  ToolColorConverter = "ToolColorConverter", // Existing Routes
 }
 
 interface DropdownItem {
@@ -143,8 +152,6 @@ export const dropdownItems: DropdownItems = {
   resources: [
     { title: "Toolbox", link: RoutePaths.Toolbox },
     { title: "Calculate", link: RoutePaths.Calculators },
-    { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
-    { title: "sciencecalculate", link: RoutePaths.ScientificCalculate },
     { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.Muzik },
     { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
@@ -175,8 +182,13 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
       <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
+
       {/* Resources Routes */}
       <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
+      <Route path={RoutePaths.ToolImageResizer} element={<ImageResizer />} />
+      <Route path={RoutePaths.ColorConverter} element={<ColorConverter />} />
+
+      {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
       <Route
         path={RoutePaths.ScientificCalculate}

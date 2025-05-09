@@ -22,6 +22,7 @@
 .calculator-wrapper {
   font-family: var(--button-font);
   background-color: #f0f2f5;
+  /* background-color: blue; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,17 +30,10 @@
   padding: 50px;
 }
 
-/*.app {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
-} */
-
 .calculator-container {
   outline: none;
   width: 100%;
-  max-width: 400px;
+  max-width: 480px;
 }
 
 .calculator {

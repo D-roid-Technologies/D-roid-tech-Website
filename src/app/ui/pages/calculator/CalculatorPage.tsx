@@ -3,7 +3,6 @@ import NavBar from "../../components/navbar/NavBar";
 import { FaCalculator } from "react-icons/fa6";
 import { GiCalculator } from "react-icons/gi";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
-import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
 import { RoutePaths } from "../../../routes/Index";
 
 const CalculatorPage = () => {
