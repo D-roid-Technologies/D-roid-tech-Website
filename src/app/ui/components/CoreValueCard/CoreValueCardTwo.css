@@ -20,9 +20,10 @@
   margin-bottom: 16px;
 }
 .core-value-card-icon-icon {
-  width: 50px;
+  width: 80px;
   height: 50px;
   margin-bottom: 16px;
+  color: #333;
 }
 
 .core-value-card-title {
