@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "../../components/navbar/NavBar";
 import "../../components/liteGrid@v1.0/lite-grid.css";
+import TaskScheduler from "./TaskScheduler";
 
 const SchedulePage: React.FunctionComponent = () => {
   return (
@@ -21,6 +22,10 @@ const SchedulePage: React.FunctionComponent = () => {
           </div>
         </div>
       </div>
+<section>
+  <TaskScheduler />
+</section>
+
     </div>
   );
 };
