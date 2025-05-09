@@ -91,7 +91,7 @@
   display: inline-block;
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: #a7dca5;
+  background-color: #2c8e47;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -100,7 +100,7 @@
 }
 
 .launch-button:hover {
-  background-color: #2c8e47;
+  background-color: #95e692;
 }
 
 /* Responsive adjustments */
