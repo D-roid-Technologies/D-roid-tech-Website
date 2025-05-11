@@ -54,6 +54,7 @@ import ImageResizer from "../ui/pages/toolboxpage/imageresizer/ImageResizer";
 import DroidLanding from "../ui/pages/mobile/DroidLanding";
 import Blog from "../ui/pages/DroidJournal/Blog";
 import ColorConverter from "../ui/pages/toolboxpage/colorconverter/ColorConverter";
+import FrontendDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwarePages/FrontendDevelopmentPage";
 
 // Define an enum for all route paths
 
@@ -129,6 +130,9 @@ export enum RoutePaths {
   // Existing Routes
   Login = "Login",
   ToolColorConverter = "ToolColorConverter", // Existing Routes
+
+  // Software Developemnets Pages
+  FrontendDevelopmentPage = '/software-development/front-end'
 }
 
 interface DropdownItem {
@@ -241,6 +245,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
       <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
+      <Route path={RoutePaths.FrontendDevelopmentPage} element={<FrontendDevelopmentPage />} />
       {/* Private Routes */}
       <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
       {/* 404 Page */}

@@ -12,12 +12,12 @@ export const DimensionSlice = createSlice({
     addWidth: (state, action) => {
       const width = action.payload;
       state.width = width;
-      console.log("getting width from dimension slice", width);
+      // console.log("getting width from dimension slice", width);
     },
     addHeight: (state, action) => {
       const height = action.payload;
       state.height = height;
-      console.log("getting Height from dimension slice", height);
+      // console.log("getting Height from dimension slice", height);
     },
   },
 });

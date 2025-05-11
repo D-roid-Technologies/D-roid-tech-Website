@@ -78,14 +78,14 @@ const AppEntry: React.FunctionComponent<any> = () => {
               onClick={() => store.dispatch(updateModal(false))}
             >
               {/* @ts-ignore */}
-              <HiX />
+              <HiX size={30} color={"red"} />
             </div>
             <div className="modal-text">
               <h2 className="modal-header">{aTitle}</h2>
               <div
-                className="modal-body"
-                dangerouslySetInnerHTML={{ __html: aBody }}
-              />
+                className="modal-body">
+                <p className="modal">{aBody}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@ const AppEntry: React.FunctionComponent<any> = () => {
       ) : null}
 
       <Index />
-      
+
       {/* Conditionally render Footer */}
       {!hideFooter && <Footer />}
 

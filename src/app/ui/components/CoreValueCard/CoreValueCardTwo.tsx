@@ -9,6 +9,8 @@ interface CoreValueCardProps {
   icon?: ReactNode;
   url?: string;
   link?: string;
+  onClick?: (e: any) => void;
+  pressable?: boolean
 }
 
 const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
@@ -19,6 +21,8 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
   icon,
   url,
   link,
+  onClick,
+  pressable = false,
 }) => {
   return (
     <div className={`core-value-card ${className}`}>
@@ -29,13 +33,20 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
       <h3 className="core-value-card-title">{title}</h3>
       <p className="core-value-card-description">{description}</p>
 
-      {url && (
+      {pressable === false ? (
         <div className="mt-3">
           <a href={url} className="custom-link">
             Read more →
           </a>
         </div>
+      ) : (
+        <div className="mt-3">
+          <button className="desktop-cta" onClick={onClick}>
+            Read more →
+          </button>
+        </div>
       )}
+
       {link && (
         <div className="mt-2">
           <a href={link} className="launch-button">

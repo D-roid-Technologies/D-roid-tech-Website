@@ -183,6 +183,8 @@ export const Assets = {
     cityboys: require("../../images/png/cityboys.png"),
     warriors: require("../../images/png/warriors.png"),
     brothers: require("../../images/png/brothers.png"),
+
+    fed: require("../../images/png/fed.png"),
   },
   colors: {
     basic: "#000000",

@@ -46,8 +46,8 @@ const technologies = [
     title: "Frontend Development",
     description:
       "Modern, responsive UIs using React, TypeScript, and Tailwind CSS.",
-    imageSrc: "", // optional icon/image
-    url: "",
+    imageSrc: Assets.images.fed,
+    url: "/software-development/front-end",
   },
   {
     title: "Backend Development",
@@ -103,7 +103,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
               title={tech.title}
               description={tech.description}
               imageSrc={tech.imageSrc}
-              url="{tech.url}"
+              url={tech.url}
               className="process-card"
             />
           ))}

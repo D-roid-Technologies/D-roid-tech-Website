@@ -17,32 +17,32 @@ export const TestimonialSlice = createSlice({
     addName: (state, action) => {
       const name = action.payload;
       state.name = action.payload;
-      console.log("getting  name from testimonial slice", name);
+      // console.log("getting  name from testimonial slice", name);
     },
     addComapanyName: (state, action) => {
       const comapanyName = action.payload;
       state.comapanyName = action.payload;
-      console.log("getting comapany name from testimonial slice", comapanyName);
+      // console.log("getting comapany name from testimonial slice", comapanyName);
     },
     addPosition: (state, action) => {
       const position = action.payload;
       state.position = action.payload;
-      console.log("getting user position from testimonial slice", position);
+      // console.log("getting user position from testimonial slice", position);
     },
     addServiceType: (state, action) => {
       const serviceType = action.payload;
       state.serviceType = action.payload;
-      console.log("getting service Type from testimonial slice", serviceType);
+      // console.log("getting service Type from testimonial slice", serviceType);
     },
     addMessage: (state, action) => {
       const message = action.payload;
       state.message = action.payload;
-      console.log("getting user message from testimonial slice", message);
+      // console.log("getting user message from testimonial slice", message);
     },
     addTestimonial: (state, action) => {
       const newTestimonial = action.payload;
       state.testimonials.push(newTestimonial);
-      console.log("adding new testimonial", newTestimonial);
+      // console.log("adding new testimonial", newTestimonial);
     },
   },
 });

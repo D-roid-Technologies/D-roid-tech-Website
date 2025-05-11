@@ -21,6 +21,7 @@ import { IoLogoNodejs } from "react-icons/io5";
 import { SiMysql, SiTypescript } from "react-icons/si";
 import { title } from "process";
 import ProjectSection from "../../components/startprojectcomponent/ProjectSection";
+import { RoutePaths } from "../../../routes/Index";
 
 type Tool = {
   name: string;
@@ -151,7 +152,7 @@ const StartProjectPage: React.FC = () => {
           display: "flex",
           paddingLeft: "60px",
         }}
-        // className="slide-content"
+      // className="slide-content"
       >
         <div>
           <h1
@@ -193,7 +194,7 @@ const StartProjectPage: React.FC = () => {
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
               <a
-                href="/start-a-project"
+                href={RoutePaths.Contact}
                 style={{ backgroundColor: "#fff", color: "#071d6a" }}
                 className="navbar-cta"
               >
@@ -266,7 +267,7 @@ const StartProjectPage: React.FC = () => {
               onChange={handleChange}
               value={form.fullName}
               variant="filled"
-              //   startAdornment={<CiBrightnessDown />}
+            //   startAdornment={<CiBrightnessDown />}
             />
           </div>
 

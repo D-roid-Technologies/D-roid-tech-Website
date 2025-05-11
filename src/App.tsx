@@ -52,6 +52,17 @@ function AppContent() {
 
   return (
     <>
+      {!isOnline && (
+        <div style={{
+          background: '#ff4d4f',
+          color: '#fff',
+          textAlign: 'center',
+          padding: '10px',
+          fontWeight: '500'
+        }}>
+          🔌 You're offline. Some features may not work.
+        </div>
+      )}
       <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
         <AppEntry />
