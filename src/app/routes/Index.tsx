@@ -55,6 +55,7 @@ import DroidLanding from "../ui/pages/mobile/DroidLanding";
 import Blog from "../ui/pages/DroidJournal/Blog";
 import ColorConverter from "../ui/pages/toolboxpage/colorconverter/ColorConverter";
 import FrontendDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwarePages/FrontendDevelopmentPage";
+import ProtectedRoute from "./ProtectedRoutes";
 
 // Define an enum for all route paths
 
@@ -247,7 +248,14 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
       <Route path={RoutePaths.FrontendDevelopmentPage} element={<FrontendDevelopmentPage />} />
       {/* Private Routes */}
-      <Route path={RoutePaths.DashBoard} element={<Dashboard />} />
+      <Route
+        path={RoutePaths.DashBoard}
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
       {/* 404 Page */}
       <Route path={RoutePaths.NotFound} element={<NotFound />} />
     </Routes>

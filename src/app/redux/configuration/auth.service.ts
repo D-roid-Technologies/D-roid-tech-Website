@@ -1,9 +1,9 @@
-import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
-import { setUser } from "../slices/User";
+import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
 
@@ -51,42 +51,31 @@ const addDaysToDate = (dateInput: string, daysToAdd: number) => {
 
 export class AuthService {
     async handleUserRegistration(userData: UserType, locationData: LocationState) {
-        const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password).then(async (res) => {
-            // 2. Send email verification
-            const currentDateTime = getCurrentDateTime();
+        try {
+            const res = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
             const user = res.user;
+            const currentDateTime = getCurrentDateTime();
+
             await sendEmailVerification(user);
             await updateProfile(user, {
                 displayName: `${userData.firstName} ${userData.lastName}`,
             });
+
             const userDocRef = doc(collection(db, "droidaccount"), user.uid);
+
             const droidAccount = {
                 user: {
                     primaryInformation: {
                         firstName: userData.firstName,
                         lastName: userData.lastName,
-                        middleName: "",
                         initials: `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
                         userType: userData.userType,
                         uniqueId: userData.uniqueId,
                         email: userData.email,
-                        phone: "",
                         agreeToPolicy: userData.agreeToPolicy,
                         isLoggedIn: true,
-                        gender: "",
-                        dateOfBirth: "",
-                        disability: false,
-                        disabilityType: "",
-                        photoUrl: "",
-                        educationalLevel: "",
-                        referralName: "",
-                        secondaryEmail: "",
-                        securityQuestion: "",
-                        securityAnswer: "",
-                        verifiedEmail: false,
-                        verifyPhoneNumber: false,
                         agreedToTerms: true,
-                        twoFactorSettings: false,
+                        // All other optional values omitted for cleaner write
                     },
                     location: {
                         locationFromDevice: locationData,
@@ -98,8 +87,8 @@ export class AuthService {
                             storeCardDetails: false,
                             mineCoins: {
                                 numberOfReferals: 0,
-                                numberOfAdsWatched: 0
-                            }
+                                numberOfAdsWatched: 0,
+                            },
                         },
                         courses: {},
                         notifications: {},
@@ -110,7 +99,7 @@ export class AuthService {
                                 description: "Tell us your thoughts",
                                 startDate: currentDateTime.formattedDateTime,
                                 endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
-                            }
+                            },
                         ],
                         lunchBox: {
                             events: [
@@ -121,19 +110,19 @@ export class AuthService {
                                     attendees: 0,
                                     createdTime: currentDateTime.time,
                                     createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                                }
+                                },
                             ],
                             jobs: [
                                 {
                                     jobTitle: "Front-End Developer - React Js",
-                                    description: "We are looking for a front end developer in Recat Js",
+                                    description: "We are looking for a front end developer in React Js",
                                     imageLink: "",
                                     peopleApplied: 0,
                                     createdTime: currentDateTime.time,
                                     createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                                }
-                            ]
-                        }
+                                },
+                            ],
+                        },
                     },
                     staff: {},
                     toolBox: {},
@@ -142,38 +131,31 @@ export class AuthService {
                     schedules: {},
                 },
             };
+
             await setDoc(userDocRef, droidAccount);
             const userSnapshot = await getDoc(userDocRef);
+
             if (userSnapshot.exists()) {
                 const fetchedUserData = userSnapshot.data();
-                const primaryInformation = fetchedUserData.user.primaryInformation
+                const primaryInformation = fetchedUserData.user.primaryInformation;
                 store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
                 toast.success(`Your D'roid Account has been successfully created`, {
-                    style: {
-                        background: '#4BB543',
-                        color: '#fff',
-                    },
-                })
-                // principalSubdivision
+                    style: { background: '#4BB543', color: '#fff' },
+                });
             } else {
                 toast.error('User Information does not exist 🚫', {
-                    style: {
-                        background: '#ff4d4f',
-                        color: '#fff',
-                    },
-                })
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
             }
-        }).catch((error) => {
-            toast.error(`Error creating your D'roid Account 🚫`, {
-                style: {
-                    background: '#ff4d4f',
-                    color: '#fff',
-                },
-            })
-            console.error(`Error creating your D'roid Account:`, error.message);
-        })
 
-        return userCredential
+            return res; // return userCredential
+        } catch (error: any) {
+            toast.error(`Error creating your D'roid Account 🚫`, {
+                style: { background: '#ff4d4f', color: '#fff' },
+            });
+            console.error(`Error creating your D'roid Account:`, error.message);
+            return null;
+        }
     }
 
     async getAllUsersFromFirestore() {
@@ -202,37 +184,53 @@ export class AuthService {
         }
     }
 
-    async handleUserLogin(email: string, password: string) {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password).then(async (res) => {
-            const userDocRef = doc(collection(db, "droidaccount"), res.user.uid);
+    async handleUserLogin(email: string, password: string, isStaff: boolean) {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userDocRef = doc(collection(db, "droidaccount"), userCredential.user.uid);
             const userDocSnap = await getDoc(userDocRef);
+
             if (userDocSnap.exists()) {
                 const fetchedUserData = userDocSnap.data();
-                const primaryInformation = fetchedUserData.user.primaryInformation
-                store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
-                toast.success(`We ahve successfully logged you into your account.`, {
+                const primaryInformation = fetchedUserData.user?.primaryInformation;
+                const userType = primaryInformation?.userType;
+
+                // Validate userType against the login intent
+                const isUserActuallyStaff = userType === "Staff";
+
+                if (isUserActuallyStaff !== isStaff) {
+                    await auth.signOut();
+                    throw new Error(
+                        isStaff
+                            ? "This account is not a staff account. Please use the member login."
+                            : "Staff accounts must log in through the Staff Login portal."
+                    );
+                }
+
+                // Store and proceed
+                store.dispatch(setUser({ ...primaryInformation, role: primaryInformation.role }));
+
+                toast.success(`We have successfully logged you into your account.`, {
                     style: {
                         background: '#4BB543',
                         color: '#fff',
                     },
                 });
+
+                return userCredential;
             } else {
-                toast.error(`User Information does not exist 🚫`, {
-                    style: {
-                        background: '#ff4d4f',
-                        color: '#fff',
-                    },
-                });
+                throw new Error("User information does not exist in database.");
             }
-        }).catch((err) => {
-            toast.error(`${err.message}`, {
+
+        } catch (err: any) {
+            toast.error(err.message || "Login failed", {
                 style: {
                     background: '#ff4d4f',
                     color: '#fff',
                 },
             });
-        })
-        return userCredential
+            throw err;
+        }
     }
 
     async handlePasswordReset(email: string): Promise<void> {
@@ -252,6 +250,25 @@ export class AuthService {
                 },
             });
         });
+    }
+
+    async handleUserSignout(): Promise<void> {
+        await signOut(auth).then(() => {
+            store.dispatch(logoutUser());
+            toast.success(`You have successfully signed out of your D'roid Account`, {
+                style: {
+                    background: '#4BB543',
+                    color: '#fff',
+                },
+            })
+        }).catch((err) => {
+            toast.error(`Error creating your D'roid Account - ${err.message}`, {
+                style: {
+                    background: '#ff4d4f',
+                    color: '#fff',
+                },
+            })
+        })
     }
 }
 

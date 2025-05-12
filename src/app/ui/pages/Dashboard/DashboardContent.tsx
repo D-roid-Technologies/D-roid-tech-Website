@@ -11,6 +11,7 @@ import Section from './Section';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import PersonalDetails from './PersonalDetails';
 import AllUsers from './users/AllUsers';
+import { authService } from '../../../redux/configuration/auth.service';
 
 const DashboardContent: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const DashboardContent: React.FunctionComponent = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | { title: string; content: string; icon: JSX.Element }>(null);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 
-  console.log(isUserRole)
+  // console.log(isUserRole)
 
   const menuItems = [
     ...(isUserRole ? [
@@ -49,12 +50,11 @@ const DashboardContent: React.FunctionComponent = () => {
   };
 
   const handleSignOut = async () => {
-    try {
-      await signOut(auth);
+    await authService.handleUserSignout().then(() => {
       navigate(RoutePaths.JoinOurCommunity);
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
+    }).catch((err) => {
+
+    })
   };
 
   const rightMenuItems = [

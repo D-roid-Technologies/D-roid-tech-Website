@@ -1,12 +1,7 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { FaArrowLeft, FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../../../../firebase';
 import { authService } from '../../../redux/configuration/auth.service';
-import { setUser } from '../../../redux/slices/User';
-import { store } from '../../../redux/Store';
 import { RoutePaths } from '../../../routes/Index';
 
 const StaffLogin: React.FC<any> = ({ navigation }) => {
@@ -18,6 +13,8 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
 
     const [formErrors, setFormErrors] = useState<{ email?: string; password?: string }>({});
     const [text, setText] = useState<string>('Login');
+
+    const isStaff = true;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -46,12 +43,15 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
         e.preventDefault();
 
         if (!validate()) return;
-        await authService.handleUserLogin(formData.email, formData.password).then(() => {
-            setText('Fetching your Information')
-            navigate(RoutePaths.DashBoard);
-        }).catch((err) => {
-            setText('Login')
-        })
+        setText("Verifying your credentials...");
+
+        try {
+            await authService.handleUserLogin(formData.email, formData.password, isStaff);
+            setText("Fetching your information...");
+            navigate(RoutePaths.DashBoard, { replace: true }); // ✅ Navigate only if login succeeded
+        } catch (err) {
+            setText("Login"); // ❌ Reset button if login failed
+        }
     };
 
     return (

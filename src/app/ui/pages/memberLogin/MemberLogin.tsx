@@ -1,11 +1,8 @@
-// @ts-nocheck
-
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, doc, getDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { FaUser, FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../../firebase';
+import { authService } from '../../../redux/configuration/auth.service';
 import { setUser } from '../../../redux/slices/User';
 import { store } from '../../../redux/Store';
 import { RoutePaths } from '../../../routes/Index';
@@ -18,6 +15,8 @@ const MemberLogin = () => {
     });
 
     const [formErrors, setFormErrors] = useState<{ email?: string; password?: string }>({});
+    const [text, setText] = useState<string>('Login');
+    const isStaff: boolean = false;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -42,25 +41,18 @@ const MemberLogin = () => {
         return isValid;
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmitMember = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password).then(async (res) => {
-                const userDocRef = doc(collection(db, "users"), res.user.uid);
-                const userDocSnap = await getDoc(userDocRef);
-                if (userDocSnap.exists()) {
-                    const fetchedUserData = userDocSnap.data();
-                    store.dispatch(setUser(fetchedUserData));
-                    navigate(RoutePaths.DashBoard);
-                }
-            }).catch((err) => {
-                console.log(err.message);
-                alert(err.message);
-            })
 
-            return userCredential
-        } else {
-            alert("Wrong Validation");
+        if (!validate()) return;
+        setText("Verifying your credentials...");
+
+        try {
+            await authService.handleUserLogin(formData.email, formData.password, isStaff);
+            setText("Fetching your information...");
+            navigate(RoutePaths.DashBoard, { replace: true }); // ✅ Navigate only if login succeeded
+        } catch (err) {
+            setText("Login"); // ❌ Reset button if login failed
         }
     };
 
@@ -98,9 +90,11 @@ const MemberLogin = () => {
                         alignItems: 'center',
                     }}
                 >
+                    {/* @ts-ignore */}
                     <FaArrowLeft style={{ marginRight: '8px' }} /> Back to Home
                 </a>
 
+                {/* @ts-ignore */}
                 <FaUser style={{ fontSize: '120px', color: '#FFFFFF' }} />
             </div>
 
@@ -123,7 +117,7 @@ const MemberLogin = () => {
                     Welcome back! Please login to your account.
                 </p>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitMember}>
                     {/* Email Input */}
                     <div style={{ marginBottom: '15px' }}>
                         <input
