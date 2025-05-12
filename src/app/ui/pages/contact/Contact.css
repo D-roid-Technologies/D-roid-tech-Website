@@ -4,16 +4,14 @@
 
 .contact-containerr {
   padding: 0 100px;
-  /* margin-bottom: 100px; */
 }
 .container-raduis {
   display: flex;
-  gap: 20px;
-  border-radius: 5px;
-  padding: 40px 30px;
+  padding: 20px 25%;
   border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #071d69;
+  margin-top: 100px;
+  /* box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 .contact-information {
   flex: 1 1 40%;
@@ -288,10 +286,11 @@ textarea {
   text-align: left;
   cursor: pointer;
   transition: background-color 0.3s;
+  background-color: #282a94;
 }
 
 .faq-question:hover {
-  background-color: #ddd;
+  background-color: #282a94;
 }
 
 .faq-answer {
@@ -300,6 +299,7 @@ textarea {
   transition: max-height 0.3s ease-out;
   background-color: #fafafa;
   padding: 0 10px;
+  background-color: #000000;
 }
 
 .faq-answer.open {

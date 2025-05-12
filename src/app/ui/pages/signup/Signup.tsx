@@ -7,6 +7,8 @@ import { addLocation } from '../../../redux/slices/Location';
 import { useSelector } from 'react-redux';
 import { LocationState } from '../../../utils/Types';
 import { authService } from '../../../redux/configuration/auth.service';
+import emailjs from "emailjs-com";
+import toast from "react-hot-toast";
 
 interface FormData {
   userType: string;
@@ -79,6 +81,9 @@ const SignUp: React.FunctionComponent = () => {
     agreedToTerms: false,
     twoFactorSettings: false,
   });
+  const SERVICE_ID = "service_o1jbklr";
+  const TEMPLATE_ID = "template_p8h58ur";
+  const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
 
 
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -216,6 +221,35 @@ const SignUp: React.FunctionComponent = () => {
 
     await authService.handleUserRegistration(formData, userLocation).then(() => {
       setText("Creating your D'roid Account");
+      const templatePharams = {
+        name: formData.firstName + " " + formData.lastName,
+        title: `Welcome to D'roid Technologies Ltd. 
+
+        Hey ${formData.firstName}, we are excited to welcome you to the Esteemed D'roid Community. Make sure you do not share your password with any one and don't forget to comfirm your account by clicking on the link we sent earlier. 
+
+        At D'roid Technologies, we welcome innovation, creativity and freedom. Feel free to reach out if you need any extra information`,
+        email: formData.email,
+      }
+      emailjs
+        .send(SERVICE_ID, TEMPLATE_ID, templatePharams, PUBLIC_KEY)
+        .then(
+          (result) => {
+            toast.success('Email successfully sent!', {
+              style: {
+                background: '#4BB543',
+                color: '#fff',
+              },
+            });
+          },
+          (error) => {
+            toast.error('Error sending email 🚫', {
+              style: {
+                background: '#ff4d4f',
+                color: '#fff',
+              },
+            });
+          }
+        );
       setTimeout(() => {
         navigate(RoutePaths.DashBoard)
       }, 4000)

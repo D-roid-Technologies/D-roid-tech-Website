@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Blog.css";
 import Navbar from "../../components/navbar/NavBar";
+import { Assets } from "../../../utils/constant/Assets";
+import ProductCard from "../../components/productcard/ProductCard";
+import { RoutePaths } from "../../../routes/Index";
 
 interface BlogPost {
   id: number;
@@ -110,6 +113,56 @@ const Blog: React.FC = () => {
     },
   ];
 
+  const projects = [
+    {
+      id: "1",
+      title: "Events",
+      status: "In Communication",
+      descriptionUrl: "/projects/blockchain-logistics",
+      summary:
+        "At D'roid, we transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.",
+      startDate: "2025-05-01",
+      client: "TransGlobe Shipping",
+      team: ["Ngozi Obi", "Liam Chen", "Julia Fernandez"],
+      imageUrl: Assets.images.events,
+      category: "Activities",
+      price: "",
+      author: "D'roid",
+    },
+    {
+      id: "2",
+      title: "Tech News",
+      status: "Ongoing",
+      descriptionUrl: "https://kcity-c8580.web.app/",
+      summary:
+        "Empower your Learning Journey with Knowledge City Whether you're a student, educator, or professional, our platform is designed to deliver an engaging and seamless learning experience.",
+      startDate: "2023-01-10",
+      client: "Rectail Education Board.",
+      team: ["Alice Johnson", "Daniel Okafor", "Wei Lin"],
+      imageUrl: Assets.images.tecch,
+      category: "News",
+      price: "",
+      author: "D'roid",
+    },
+    {
+      id: "3",
+      title: "Business News",
+      status: "Completed",
+      descriptionUrl:
+        "https://play.google.com/store/apps/details?id=com.app.ecobank&hl=en_GB",
+      summary:
+        "The revamped and enhanced Ecobank Mobile app makes it super easy to bank on the go 24/7. Manage your everyday banking needs anywhere anytime directly from your mobile device. Manage your account, send money, make payments and get help from the Ecobank mobile app in all 33 African countries where Ecobank is present.",
+      startDate: "2023-03-03",
+      endDate: "2023-11-01",
+      client: "Ecobank Nigeria",
+      team: ["Sandra Kim", "Mohamed Al-Mansoor", "James Liu"],
+      imageUrl: Assets.images.business,
+      category: "News",
+      price: "",
+      author: "Eco Bank",
+    },
+  ];
+
   return (
     <div className="blog-container">
       {/* Hero Section */}
@@ -127,28 +180,13 @@ const Blog: React.FC = () => {
               fontWeight: "900",
             }}
           >
-            <span className="hero-line">Explore the</span>
-            <span className="hero-line">Future of</span>
-            <span className="hero-line highlight">Technology</span>
+            <span className="hero-line">The D'roid </span>
+            {/* <span className="hero-line">Future of</span> */}
+            <span className="hero-line highlight">Journal</span>
           </h1>
           <p className="hero-subtitle">
-            Insights, tutorials and cutting-edge trends from industry experts
+            Your premier source for everything happening in the world of D’roid Technologies and beyond. From exclusive behind-the-scenes access to our latest events and product launches, to curated insights into the fast-evolving tech industry and strategic business trends—this journal keeps you informed, inspired, and ahead of the curve.
           </p>
-          <div>
-            {/* <input type="text" placeholder="Search articles..." />
-              <button className="search-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                </svg>
-              </button> */}
-            <a href="StartProjectPage" className="navbar-cta">
-              Read More...
-            </a>
-          </div>
         </div>
         <div className="hero-image">
           <div className="image-wrapper">
@@ -158,6 +196,53 @@ const Blog: React.FC = () => {
             />
           </div>
         </div>
+      </section>
+      <section className="product_sec">
+        <div className="wrapper">
+          <div className="product_title">
+            <span
+              className="title_span"
+              style={{ background: "#242627", color: "#efecfe" }}
+            >
+              CATEGORY
+            </span>
+          </div>
+          <h1>Our Categories</h1>
+          <p>
+            Whether you're a client, developer, entrepreneur, or simply tech-curious, The D’roid Journal delivers thought-provoking content designed to connect innovation with impact.
+          </p>
+          <div className="group">
+            {projects.map((product, index) => (
+              <div key={index} className="block-12 block-md-4">
+                <ProductCard
+                  imageUrl={product.imageUrl}
+                  category={product.category}
+                  price={product.price}
+                  title={product.title}
+                  author={product.author}
+                  descriptionUrl={product.summary}
+                  summary={product.summary}
+                  startDate={""}
+                  client={""}
+                  team={[]}
+                  isBtn={true}
+                />
+              </div>
+            ))}
+          </div>
+          {/* <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+            <a
+              href={RoutePaths.Products}
+              style={{ backgroundColor: "#fff", color: "#071d6a" }}
+              className="navbar-cta"
+            >
+              See all Projects
+            </a>
+          </div> */}
+        </div>
+        <br />
+        <br />
+        <br />
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
 import { setUser } from "../slices/User";
@@ -147,11 +148,28 @@ export class AuthService {
                 const fetchedUserData = userSnapshot.data();
                 const primaryInformation = fetchedUserData.user.primaryInformation
                 store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
+                toast.success(`Your D'roid Account has been successfully created`, {
+                    style: {
+                        background: '#4BB543',
+                        color: '#fff',
+                    },
+                })
                 // principalSubdivision
             } else {
-                alert("User Information does not exist");
+                toast.error('User Information does not exist 🚫', {
+                    style: {
+                        background: '#ff4d4f',
+                        color: '#fff',
+                    },
+                })
             }
         }).catch((error) => {
+            toast.error(`Error creating your D'roid Account 🚫`, {
+                style: {
+                    background: '#ff4d4f',
+                    color: '#fff',
+                },
+            })
             console.error(`Error creating your D'roid Account:`, error.message);
         })
 
@@ -191,13 +209,28 @@ export class AuthService {
             if (userDocSnap.exists()) {
                 const fetchedUserData = userDocSnap.data();
                 const primaryInformation = fetchedUserData.user.primaryInformation
-                store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }))
+                store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
+                toast.success(`We ahve successfully logged you into your account.`, {
+                    style: {
+                        background: '#4BB543',
+                        color: '#fff',
+                    },
+                });
             } else {
-                alert("User Information does not exist");
+                toast.error(`User Information does not exist 🚫`, {
+                    style: {
+                        background: '#ff4d4f',
+                        color: '#fff',
+                    },
+                });
             }
         }).catch((err) => {
-            console.log(err.message);
-            alert(err.message);
+            toast.error(`${err.message}`, {
+                style: {
+                    background: '#ff4d4f',
+                    color: '#fff',
+                },
+            });
         })
         return userCredential
     }
@@ -205,11 +238,19 @@ export class AuthService {
     async handlePasswordReset(email: string): Promise<void> {
         // Sending password reset email
         await sendPasswordResetEmail(auth, email).then(() => {
-            console.log("Password reset email sent to:", email);
-            alert("Password reset email sent. Please check your inbox.");
+            toast.success(`Password reset email sent to: ${email}. Please check your inbox.`, {
+                style: {
+                    background: '#4BB543',
+                    color: '#fff',
+                },
+            });
         }).catch((error: any) => {
-            console.error("Error resetting password:", error.message);
-            alert("Error resetting password. Please try again.");
+            toast.error(`${error.message}`, {
+                style: {
+                    background: '#ff4d4f',
+                    color: '#fff',
+                },
+            });
         });
     }
 }

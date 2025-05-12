@@ -10,6 +10,9 @@ import {
   FaPencilRuler,
   FaServer,
 } from "react-icons/fa";
+import { store } from "../../../redux/Store";
+import { updateModal, updateModalContent } from "../../../redux/slices/AppEntrySlice";
+import ContactSoftware from "../contact/ContactSection/ContactSoftware";
 
 const devPhases = [
   {
@@ -40,6 +43,10 @@ const devPhases = [
     url: "",
   },
 ];
+
+
+// This website stores cookies on your computer. These cookies are used to improve your website experience and provide more personalized services to you, both on this website and through other media. Find our full Cookie Policy: Here. To find out more about the cookies we use, see our Privacy Policy.
+// We won't track your information when you visit our site. But in order to comply with your preferences, we'll have to use just one tiny cookie so that you're not asked to make this choice again.
 
 const technologies = [
   {
@@ -109,6 +116,30 @@ const SoftwareDevelopmentPage: React.FC = () => {
           ))}
         </div>
       </div>
+      {/* Call to Action */}
+      <div className="soft-cta" style={{ marginBottom: "60px" }}>
+        <h2 className="cta-header">Ready to build something great?</h2>
+        <p>
+          Whether it’s an app, platform, or SaaS—you bring the idea, we’ll build
+          the solution.
+        </p>
+        <button className="soft-cta-button"
+          onClick={() => {
+            store.dispatch(updateModal(true))
+            store.dispatch(updateModalContent({
+              appTitle: "Let's kick start your Idea",
+              appBody: (
+                <>
+                  <p>Turn your vision into reality with D'roid Technologies. Whether it's a product, platform, or service, we help you design, build, and launch with precision and innovation—every step of the way.</p>
+                  <p>Please fill the form below and we'll be in touch.</p>
+                  <ContactSoftware />
+                </>
+              )
+            }));
+          }}>
+          Start a Project →
+        </button>
+      </div>
 
       {/* Approach Section */}
       <div className="wrapper soft-wrapper">
@@ -132,17 +163,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="soft-cta">
-        <h2 className="cta-header">Ready to build something great?</h2>
-        <p>
-          Whether it’s an app, platform, or SaaS—you bring the idea, we’ll build
-          the solution.
-        </p>
-        <a href="/start-a-project" className="soft-cta-button">
-          Start a Project
-        </a>
-      </div>
+
     </div>
   );
 };

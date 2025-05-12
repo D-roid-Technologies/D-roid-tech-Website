@@ -9,6 +9,9 @@ interface ProductCardProps {
   price: string;
   title: string;
   author: string;
+  summary: string;
+  descriptionUrl: string;
+
 }
 
 const ProductCard: React.FC<Project> = ({
@@ -18,7 +21,8 @@ const ProductCard: React.FC<Project> = ({
   title,
   author,
   summary,
-  descriptionUrl
+  descriptionUrl,
+  isBtn = false
 }) => {
   // const navigate = useNavigate();
 
@@ -26,9 +30,15 @@ const ProductCard: React.FC<Project> = ({
     <div className="product-card">
       <div className="card-image">
         <img src={imageUrl} alt={title} />
-        <button
+        {isBtn === false ? (<button
           onClick={() => window.open(`${descriptionUrl}`, '_blank')}
-          className="see-product-btn">See Product</button>
+          className="see-product-btn">See Product
+        </button>) : (<a
+          href={descriptionUrl}
+          className="see-product-btn"
+        >
+          Let's dive in...
+        </a>)}
       </div>
       <div className="card-content">
         <div style={{ display: "flex", justifyContent: "space-between" }}>

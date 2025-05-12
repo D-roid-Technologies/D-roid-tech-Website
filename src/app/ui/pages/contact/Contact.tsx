@@ -1,12 +1,10 @@
 // @ts-nocheck
 
 import React, { useState } from "react";
-import NavBar from "../../components/navbar/NavBar";
 import "../contact/Contact.css";
 import Button from "../../components/button/Button";
 import { Assets } from "../../../utils/constant/Assets";
 import AppInput from "../../components/textInput/AppInput";
-import { LuPhoneCall } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
@@ -23,68 +21,17 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import {
-  addTestimonial, // Import addTestimonial here
+  addTestimonial,
 } from "../../../redux/slices/TestimonialSlice";
 import { IoBagAdd } from "react-icons/io5";
 import { ImBoxAdd } from "react-icons/im";
 import Captcha from "../../components/captcha/Captcha";
 import { useNavigate } from "react-router-dom";
+import ContactSection from "./ContactSection/ContactSection";
+import FAQSection from "./ContactSection/FAQSection";
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-const faqData: FAQItem[] = [
-  {
-    question: "How do I request for a service on this platform?",
-    answer: "You can request a service by...",
-  },
-  {
-    question: "What is D’roid technologies, and what does it do?",
-    answer: "D'roid Technologies is a...",
-  },
-  {
-    question: "What are your hours of operation?",
-    answer: "Our operation hours are from...",
-  },
-  {
-    question: "What services do you offer?",
-    answer: "We offer a variety of services including...",
-  },
-  {
-    question: "How can I book for a special appointment?",
-    answer: "To book a special appointment...",
-  },
-  {
-    question: "Can I develop my business website?",
-    answer: "Yes, we offer custom website development...",
-  },
-  {
-    question: "How long does it take for my request to be delivered?",
-    answer: "The delivery time depends on...",
-  },
-  {
-    question: "How can I be updated on your services?",
-    answer: "You can stay updated by subscribing to...",
-  },
-  {
-    question: "Am I totally guaranteed for the best of your services?",
-    answer: "Yes, we guarantee the best quality services...",
-  },
-  {
-    question: "How do I access my website after being created?",
-    answer: "Once your website is created, you will receive...",
-  },
-];
 
 const Contact: React.FunctionComponent = () => {
-  //CONTACT FOARM
-  const [fullNameData, setFullNameData] = React.useState<string>("");
-  const [emailData, setEmailData] = React.useState<string>("");
-  const [phoneNumberData, setPhoneNumberData] = React.useState<string>("");
-  const [subjectData, setSubjectData] = React.useState<string>("");
-  const [messageData, setMessageData] = React.useState<string>("");
 
   // NEW TESTIMONIAL
   const [nameCon, setNameCon] = React.useState<string>("");
@@ -102,32 +49,14 @@ const Contact: React.FunctionComponent = () => {
     setShowForm(!showForm);
   };
 
-  // START OF FAQ
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-  // END OF FAQ
-
   //CONTACT FOARM
   const contactDetails = useSelector((state: RootState) => state.contact);
-  const userFullName = contactDetails.userFullName;
-  const userEmail = contactDetails.userEmail;
-  const userPhoneNumber = contactDetails.userPhoneNumber;
-  const userSubject = contactDetails.userSubject;
-  const userMessage = contactDetails.userMessage;
   const dispatch = useDispatch();
 
   // NEW TESTIMONIAL
   const testimonialDetails = useSelector(
     (state: RootState) => state.testimonial
   );
-  const Name = testimonialDetails.name;
-  const Company = testimonialDetails.comapanyName;
-  const position = testimonialDetails.position;
-  const serviceType = testimonialDetails.serviceType;
-  const message = testimonialDetails.message;
 
   //CONTACT FOARM
   const sendContactDataToReduxStore = () => {
@@ -287,137 +216,12 @@ const Contact: React.FunctionComponent = () => {
           </section>
 
           {/* MESSAGE  SECTION */}
-          <div className="input-section">
-            <section>
-              <section className="name-section-two">
-                {/* FULL NAME */}
-                <div className="input-width">
-                  <br />
-                  <div className="input-container">
-                    <AppInput
-                      w="100%"
-                      h={40}
-                      pLeft={10}
-                      bRadius={5}
-                      pHolder="Full Name"
-                      onchangeText={(e: any) => {
-                        setFullNameData(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-                {/* EMAIL */}
-                <div className="input-width">
-                  <br />
-                  <div className="input-container">
-                    <AppInput
-                      w="100%"
-                      h={40}
-                      pLeft={10}
-                      bRadius={5}
-                      pHolder="Email"
-                      onchangeText={(e: any) => {
-                        setEmailData(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-                {/* PHONE NUMBER */}
-                {/* <div className="input-width">
-                    <br />
-                    <div className="input-container">
-                      <AppInput
-                        w="100%"
-                        h={40}
-                        pLeft={10}
-                        pHolder="Phone Number"
-                        onchangeText={(e: any) => {
-                          setPhoneNumberData(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div> */}
-              </section>
-              {/* Phone number */}
-              <div className="input-width">
-                <br />
-                <div className="input-container">
-                  <AppInput
-                    w="50%"
-                    h={40}
-                    pLeft={10}
-                    bRadius={5}
-                    pHolder="Phone Number"
-                    onchangeText={(e: any) => {
-                      setPhoneNumberData(e.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-              <section className="name-section">
-                {/* SUBJECT */}
-                <div className="input-width">
-                  <br />
-                  <div className="input-container">
-                    <AppInput
-                      w="100%"
-                      h={40}
-                      pLeft={10}
-                      pHolder="Subject"
-                      bagColor="#ffffff"
-                      bRadius={5}
-                      isDropdown={true}
-                      options={optionsList}
-                      className="subject-feild"
-                      onchangeText={(e: any) => {
-                        setSubjectData(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-              </section>
-            </section>
-            {/* MESSAGE AREA */}
-            <section className="text-area">
-              <div>
-                <label style={{ color: Assets.colors.light }}></label>
-                <br />
-                <textarea
-                  rows={10}
-                  name="comment"
-                  placeholder="Write your message here"
-                  onChange={(e: any) => {
-                    setMessageData(e.target.value);
-                  }}
-                />
-              </div>
-            </section>
-            {/* SUBMIT BUTTON */}
-            <div className="textarea-btn">
-              <Button
-                bgColor="#FFB100"
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                bRadius={5}
-                bRadiusColor="#FFB100"
-                title="Submit"
-                color="#071d69"
-                icon={
-                  <FaArrowRightToBracket
-                    style={{ color: "#071d69" }}
-                    className="icon-style"
-                  />
-                }
-                onClickButton={() => {
-                  handleUserEmail();
-                }}
-              />
-            </div>
-            <div>
-              <Captcha />
-            </div>
+          <div style={{
+            // backgroundColor: "red",
+            width: "50%",
+            overflow: "scroll"
+          }}>
+            <ContactSection />
           </div>
         </div>
       </div>
@@ -525,29 +329,10 @@ const Contact: React.FunctionComponent = () => {
               }}
             />
           </div>
+
         </form>
       )}
-      <div className="faq-container">
-        <h1>FAQs</h1>
-        <ul className="faq-list">
-          {faqData.map((faq, index) => (
-            <li key={index} className="faq-item">
-              <button
-                className="faq-question"
-                onClick={() => toggleFAQ(index)}
-              >
-                {index + 1}. {faq.question}
-              </button>
-              <div
-                className={`faq-answer ${activeIndex === index ? "open" : ""
-                  }`}
-              >
-                {faq.answer}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <FAQSection />
     </>
   );
 };

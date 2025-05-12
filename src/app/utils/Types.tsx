@@ -208,6 +208,7 @@ export type Project = {
   category?: string;
   price?: string;
   author?: string;
+  isBtn?: boolean;
 };
 
 interface LocalityInfo {

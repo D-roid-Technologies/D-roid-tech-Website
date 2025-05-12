@@ -185,6 +185,9 @@ export const Assets = {
     brothers: require("../../images/png/brothers.png"),
 
     fed: require("../../images/png/fed.png"),
+    tecch: require("../../images/png/tecch.png"),
+    business: require("../../images/png/business.png"),
+    events: require("../../images/png/events.png"),
   },
   colors: {
     basic: "#000000",
