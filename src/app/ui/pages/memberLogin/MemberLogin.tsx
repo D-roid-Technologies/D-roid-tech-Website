@@ -78,7 +78,7 @@ const MemberLogin = () => {
                 }}
             >
                 <a
-                    href="/"
+                    href={RoutePaths.JoinOurCommunity}
                     style={{
                         position: 'absolute',
                         top: '20px',

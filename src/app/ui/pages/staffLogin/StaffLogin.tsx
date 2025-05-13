@@ -76,7 +76,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
                 }}
             >
                 <a
-                    href="/"
+                    href={RoutePaths.JoinOurCommunity}
                     style={{
                         position: 'absolute',
                         top: '20px',
@@ -112,7 +112,7 @@ const StaffLogin: React.FC<any> = ({ navigation }) => {
                     Staff Login
                 </h2>
                 <p style={{ fontSize: '18px', marginBottom: '30px', color: '#BAB8B8' }}>
-                    Welcome back! Please login to your account.
+                    Welcome back! Please login to your Staff account.
                 </p>
 
                 <form onSubmit={handleSubmitStaff}>

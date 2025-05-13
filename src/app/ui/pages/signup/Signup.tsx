@@ -223,11 +223,13 @@ const SignUp: React.FunctionComponent = () => {
       setText("Creating your D'roid Account");
       const templatePharams = {
         name: formData.firstName + " " + formData.lastName,
-        title: `Welcome to D'roid Technologies Ltd. 
+        title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
 
-        Hey ${formData.firstName}, we are excited to welcome you to the Esteemed D'roid Community. Make sure you do not share your password with any one and don't forget to comfirm your account by clicking on the link we sent earlier. 
+        Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
 
-        At D'roid Technologies, we welcome innovation, creativity and freedom. Feel free to reach out if you need any extra information`,
+        At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
+        
+        We look forward to achieving great things together`,
         email: formData.email,
       }
       emailjs

@@ -41,11 +41,11 @@ const Partners: React.FC = () => {
       <div className="wrapper ">
         <div className="block-12" style={{ textAlign: "center" }}>
           <span className="title_span" style={{ marginTop: "20px" }}>
-            Clients & Partners
+            Partners
           </span>
           <br />
 
-          <h2 className="partners-h1">Recognized by the best</h2>
+          <h2 className="partners-h1">We Recognize the best</h2>
           <br />
         </div>
         <div className="group justify-content-center">
@@ -70,8 +70,17 @@ const Partners: React.FC = () => {
                 </div>
               ))}
             </div>
+            <div style={{ display: "flex", gap: "20px", marginTop: "30px", justifyContent: "center" }}>
+              <a
+                // href={RoutePaths.Products}
+                style={{ backgroundColor: "#000000", color: "#ffffff" }}
+                className="navbar-cta"
+              >
+                See all Partners
+              </a>
+            </div>
           </div>
-          <div className="block-12 block-md-1"></div>
+
         </div>
       </div>
     </section>
