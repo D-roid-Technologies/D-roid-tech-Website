@@ -11,6 +11,7 @@ import Products from "../products/Products";
 import Testimonial from "../testimonial/Testimonial";
 import ProductsSmall from "../products/ProductsSmall";
 import KnowledgeCity from "../knowledgecityApp/KnowledgeCity";
+import Partners from "../../components/partners/Partners";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -23,6 +24,7 @@ const Home: React.FunctionComponent = () => {
       <Intro />
       <ProductsSmall />
       <KnowledgeCity />
+      <Partners />
       <Testimonial />
       <section className="cta-section">
         <div className="container">
@@ -32,9 +34,9 @@ const Home: React.FunctionComponent = () => {
             </h2>
             <p>
               Experience technology that adapts to your lifestyle. The D'roid
-              Companion is more than just a phone — it's your creative companion,
-              productivity partner, and entertainment powerhouse, all in one
-              sleek, powerful device.
+              Companion is more than just a phone — it's your creative
+              companion, productivity partner, and entertainment powerhouse, all
+              in one sleek, powerful device.
             </p>
             <button className="cta-primary" onClick={() => navigate("/mobile")}>
               See More
