@@ -28,6 +28,13 @@ export const Assets = {
     phone_One: require("../../images/png/photo-1.png"),
     phone_Two: require("../../images/png/photo-2.png"),
 
+    //logo
+    logo1: require("../../images/png/logo-1.png"),
+    logo2: require("../../images/png/logo-2.png"),
+    logo3: require("../../images/png/logo-3.png"),
+    logo4: require("../../images/png/logo-4.png"),
+    logo5: require("../../images/png/logo-5.png"),
+
     // what we do images
     softwareWhatWeDo: require("../../images/png/software-what-we-do.png"),
     animationWhatWeDo: require("../../images/png/animation-what-we-do.png"),
