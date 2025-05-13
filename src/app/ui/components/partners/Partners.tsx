@@ -49,16 +49,16 @@ const Partners: React.FC = () => {
           <br />
         </div>
         <div className="group justify-content-center">
-          {/* <div className="block-12 block-md-4 partners-left">
+          <div className="block-12 block-md-1"></div>
+          <div className="block-12 block-md-4 partners-left">
             <p className="partners-text">
               We have a worldwide presence with clients and partners, and our
               excellence in the IT industry is acknowledged by leading
               organizations.
             </p>
           </div>
-          <div className="block-12 block-md-1"></div> */}
 
-          <div className="block-6">
+          <div className="block-12 block-md-6">
             <div className="partners-logos">
               {logos.map((logo, index) => (
                 <div key={index} className="partners-logo-wrapper">
@@ -71,6 +71,7 @@ const Partners: React.FC = () => {
               ))}
             </div>
           </div>
+          <div className="block-12 block-md-1"></div>
         </div>
       </div>
     </section>
