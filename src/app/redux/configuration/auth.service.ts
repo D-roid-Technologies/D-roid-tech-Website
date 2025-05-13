@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
@@ -75,7 +75,23 @@ export class AuthService {
                         agreeToPolicy: userData.agreeToPolicy,
                         isLoggedIn: true,
                         agreedToTerms: true,
-                        // All other optional values omitted for cleaner write
+                        middleName: "",
+                        phone: "",
+                        gender: "",
+                        dateOfBirth: "",
+                        disability: false,
+                        disabilityType: "",
+                        photoUrl: "",
+                        educationalLevel: "",
+                        referralName: "",
+                        secondaryEmail: "",
+                        securityQuestion: "",
+                        securityAnswer: "",
+                        verifiedEmail: false,
+                        verifyPhoneNumber: false,
+                        twoFactorSettings: false,
+                        password: "",
+                        role: "",
                     },
                     location: {
                         locationFromDevice: locationData,
@@ -269,6 +285,53 @@ export class AuthService {
                 },
             })
         })
+    }
+
+    async updatePrimaryInformation(partialUpdateData: Partial<UserType>) {
+        try {
+            const currentUser = auth.currentUser;
+
+            if (!currentUser) {
+                toast.error("User not authenticated", {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return;
+            }
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, "droidaccount", userId);
+            const userSnapshot = await getDoc(userDocRef);
+
+            if (!userSnapshot.exists()) {
+                toast.error("User not found", {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return;
+            }
+
+            const currentData = userSnapshot.data();
+            const updatedPrimaryInfo = {
+                ...currentData.user.primaryInformation,
+                ...partialUpdateData,
+            };
+
+            await updateDoc(userDocRef, {
+                "user.primaryInformation": updatedPrimaryInfo,
+            });
+
+            // ✅ Update Redux state
+            store.dispatch(setUser(updatedPrimaryInfo));
+
+            toast.success("User information updated successfully", {
+                style: { background: '#4BB543', color: '#fff' },
+            });
+
+        } catch (error: any) {
+            console.error("Failed to update user information:", error.message);
+            toast.error("Failed to update user information", {
+                style: { background: '#ff4d4f', color: '#fff' },
+            });
+        }
     }
 }
 

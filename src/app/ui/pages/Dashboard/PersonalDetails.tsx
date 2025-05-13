@@ -1,17 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { authService } from '../../../redux/configuration/auth.service';
 import { RootState } from '../../../redux/Store';
 import { UserType } from '../../../utils/Types';
 
 const PersonalDetails: React.FunctionComponent = () => {
     const userDetails: UserType = useSelector((state: RootState) => state.user);
+    const [formData, setFormData] = useState<UserType | null>(null);
+    const [photoPreview, setPhotoPreview] = useState<string | null>(null);
     const [selectedMenuItem, setSelectedMenuItem] = useState<null | { title: string; content: string; icon: JSX.Element }>(null);
+
+    useEffect(() => {
+        setFormData({ ...userDetails, referralName: generateReferralName(userDetails) });
+        setPhotoPreview(userDetails.photoUrl || null);
+    }, [userDetails]);
+
+    const generateReferralName = (user: UserType) => {
+        return `${user.firstName}_${user.lastName}_${user.uniqueId}`;
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        if (!formData) return;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPhotoPreview(reader.result as string);
+                setFormData(prev => prev ? { ...prev, photoUrl: reader.result as string } : null);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const rightMenuItems = [
         { title: "Documents", content: "Here are your documents.", icon: <i className="fas fa-file-alt"></i> },
         { title: "Security", content: "Manage your security settings.", icon: <i className="fas fa-shield-alt"></i> },
         { title: "Preferences", content: "Set your personal preferences.", icon: <i className="fas fa-cog"></i> },
     ];
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData) return; // or show a toast error
+        await authService.updatePrimaryInformation(formData);
+    };
 
     return (
         <div>
@@ -22,7 +58,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 flexWrap: "wrap",
                 gap: "10px"
             }}>
-                <p style={{ fontSize: '16px', fontWeight: '500' }}>
+                <p style={{ fontSize: '16px', fontWeight: '500', color: "#000000" }}>
                     Here you can view and update your personal information.
                 </p>
                 <select
@@ -54,13 +90,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 </select>
             </div>
 
-            {/* Main content area */}
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '20px',
-                marginTop: '20px',
-            }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '20px' }}>
                 <div style={{
                     minHeight: '300px',
                     padding: '30px',
@@ -69,13 +99,114 @@ const PersonalDetails: React.FunctionComponent = () => {
                     backgroundColor: '#fafafa',
                     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)'
                 }}>
-                    {selectedMenuItem === null && userDetails ? (
-                        <form style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                            {/* First Name */}
+                    {selectedMenuItem === null && formData ? (
+                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                            {/* Photo Upload */}
+                            {photoPreview ? (
+                                <img
+                                    src={photoPreview}
+                                    alt="Preview"
+                                    style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px' }}
+                                />
+                            ) : (<>
+                                <p style={{ color: "#000000" }}>Select Profile Photo</p>
+                            </>)}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handlePhotoChange}
+                                style={{ fontSize: '14px' }}
+                            />
+
+                            {/* Editable fields */}
+                            {[
+                                { label: 'First Name', name: 'firstName' },
+                                { label: 'Last Name', name: 'lastName' },
+                                { label: 'Middle Name', name: 'middleName' },
+                                { label: 'Phone', name: 'phone' },
+                                { label: 'Gender', name: 'gender' },
+                                { label: 'Date of Birth', name: 'dateOfBirth' },
+                            ].map(field => (
+                                <input
+                                    key={field.name}
+                                    name={field.name}
+                                    type="text"
+                                    placeholder={field.label}
+                                    value={(formData as any)[field.name]}
+                                    onChange={handleInputChange}
+                                    style={{
+                                        padding: '12px',
+                                        borderRadius: '8px',
+                                        border: '1px solid #ccc',
+                                        fontSize: '14px'
+                                    }}
+                                />
+                            ))}
+
+                            {/* Disability Type */}
+                            <select
+                                name="disabilityType"
+                                value={(formData as any).disabilityType || ''}
+                                onChange={handleInputChange}
+                                style={{
+                                    padding: '12px',
+                                    borderRadius: '8px',
+                                    border: '1px solid #ccc',
+                                    fontSize: '14px'
+                                }}
+                            >
+                                <option value="">Select Disability Type</option>
+                                <option value="None">None</option>
+                                <option value="Visual">Visual</option>
+                                <option value="Hearing">Hearing</option>
+                                <option value="Motor">Motor</option>
+                                <option value="Cognitive">Cognitive</option>
+                            </select>
+
+                            {/* Educational Level */}
+                            <select
+                                name="educationalLevel"
+                                value={(formData as any).educationalLevel || ''}
+                                onChange={handleInputChange}
+                                style={{
+                                    padding: '12px',
+                                    borderRadius: '8px',
+                                    border: '1px solid #ccc',
+                                    fontSize: '14px'
+                                }}
+                            >
+                                <option value="">Select Educational Level</option>
+                                <option value="High School">High School</option>
+                                <option value="Undergraduate">Undergraduate</option>
+                                <option value="Graduate">Graduate</option>
+                                <option value="Postgraduate">Postgraduate</option>
+                            </select>
+
+                            {/* Security Question */}
+                            <select
+                                name="securityQuestion"
+                                value={(formData as any).securityQuestion || ''}
+                                onChange={handleInputChange}
+                                style={{
+                                    padding: '12px',
+                                    borderRadius: '8px',
+                                    border: '1px solid #ccc',
+                                    fontSize: '14px'
+                                }}
+                            >
+                                <option value="">Select Security Question</option>
+                                <option value="mother_maiden">What is your mother's maiden name?</option>
+                                <option value="first_pet">What was your first pet’s name?</option>
+                                <option value="birth_city">What city were you born in?</option>
+                            </select>
+
+                            {/* Security Answer */}
                             <input
                                 type="text"
-                                placeholder="First Name"
-                                value={userDetails.firstName}
+                                name="securityAnswer"
+                                placeholder="Security Answer"
+                                value={(formData as any).securityAnswer || ''}
+                                onChange={handleInputChange}
                                 style={{
                                     padding: '12px',
                                     borderRadius: '8px',
@@ -84,38 +215,12 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 }}
                             />
 
-                            {/* Last Name */}
+                            {/* Referral Name (auto-generated) */}
                             <input
                                 type="text"
-                                placeholder="Last Name"
-                                value={userDetails.lastName}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Middle Name */}
-                            <input
-                                type="text"
-                                placeholder="Middle Name"
-                                value={userDetails.middleName}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* User Type (grayed out) */}
-                            <input
-                                type="text"
-                                placeholder="User Type"
-                                value={userDetails.userType}
+                                value={formData.referralName}
                                 disabled
+                                placeholder="Referral Name"
                                 style={{
                                     padding: '12px',
                                     borderRadius: '8px',
@@ -125,102 +230,32 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 }}
                             />
 
-                            {/* Unique ID (grayed out) */}
-                            <input
-                                type="text"
-                                placeholder="Unique ID"
-                                value={userDetails.uniqueId}
-                                disabled
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    backgroundColor: '#f0f0f0',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Email (grayed out) */}
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                value={userDetails.email}
-                                disabled
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    backgroundColor: '#f0f0f0',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Phone */}
-                            <input
-                                type="text"
-                                placeholder="Phone"
-                                value={userDetails.phone}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Gender */}
-                            <input
-                                type="text"
-                                placeholder="Gender"
-                                value={userDetails.gender}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Date of Birth */}
-                            <input
-                                type="text"
-                                placeholder="Date of Birth"
-                                value={userDetails.dateOfBirth}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Disability */}
-                            <input
-                                type="text"
-                                placeholder="Disability"
-                                value={userDetails.disability ? "Yes" : "No"}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
-
-                            {/* Agree to Policy */}
-                            <input
-                                type="text"
-                                placeholder="Agree to Policy"
-                                value={userDetails.agreeToPolicy ? "Yes" : "No"}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            />
+                            {/* Disabled fields */}
+                            {[
+                                { label: 'User Type', name: 'userType' },
+                                { label: 'Unique ID', name: 'uniqueId' },
+                                { label: 'Email', name: 'email' },
+                                { label: 'Disability', name: 'disability', format: (val: boolean) => val ? "Yes" : "No" },
+                                { label: 'Agree to Policy', name: 'agreeToPolicy', format: (val: boolean) => val ? "Yes" : "No" },
+                            ].map(field => (
+                                <input
+                                    key={field.name}
+                                    type="text"
+                                    placeholder={field.label}
+                                    value={field.format ? field.format((formData as any)[field.name]) : (formData as any)[field.name]}
+                                    disabled
+                                    style={{
+                                        padding: '12px',
+                                        borderRadius: '8px',
+                                        border: '1px solid #ccc',
+                                        backgroundColor: '#f0f0f0',
+                                        fontSize: '14px'
+                                    }}
+                                />
+                            ))}
 
                             <button
+                                type="submit"
                                 style={{
                                     marginTop: '20px',
                                     padding: '12px',
@@ -247,7 +282,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default PersonalDetails;

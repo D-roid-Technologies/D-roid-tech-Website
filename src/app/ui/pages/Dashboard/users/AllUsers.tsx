@@ -64,7 +64,7 @@ const AllUsers: React.FC = () => {
 
     return (
         <div>
-            <p style={{ fontSize: '16px', fontWeight: '500', marginBottom: "25px" }}>
+            <p style={{ fontSize: '16px', fontWeight: '500', marginBottom: "25px", color: "#000000" }}>
                 Here you can view and manage your users information.
             </p>
             {currentUsers.length > 0 ? (
@@ -82,6 +82,7 @@ const AllUsers: React.FC = () => {
                                     textAlign: "left",
                                     outline: "none",
                                     userSelect: "none",
+                                    color: "#000000"
                                 }}
                                 onMouseDown={(e) => e.preventDefault()} // Prevents active state visuals
                                 onClick={() => handleUserClick(user)} // Set the clicked user
@@ -98,37 +99,37 @@ const AllUsers: React.FC = () => {
             {/* Display selected user's details */}
             {selectedUser && (
                 <div style={{ marginTop: "20px", padding: "15px", border: "1px solid #ccc", borderRadius: "8px", backgroundColor: "#f9f9f9" }}>
-                    <h3 style={{ marginBottom: "20px" }}>{`${selectedUser.firstName}'s Details`}</h3>
+                    <h3 style={{ marginBottom: "20px", color: "#000000" }}>{`${selectedUser.firstName}'s Details`}</h3>
 
                     <div style={{
                         display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
                     }}>
-                        <p>{selectedUser.firstName} {selectedUser.middleName} {selectedUser.lastName}</p>
-                        <p>{selectedUser.uniqueId || 'Unique Id not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.firstName} {selectedUser.middleName} {selectedUser.lastName}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.uniqueId || 'Unique Id not Provided'}</p>
                     </div>
                     <div style={{
                         display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
                     }}>
-                        <p>{selectedUser.email}</p>
-                        <p>{selectedUser.disability || 'Disability not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.email}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.disability || 'Disability not Provided'}</p>
                     </div>
                     <div style={{
                         display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
                     }}>
-                        <p>{selectedUser.gender || 'Gender not Provided'}</p>
-                        <p>{selectedUser.dateOfBirth || 'Date of Birth not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.gender || 'Gender not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.dateOfBirth || 'Date of Birth not Provided'}</p>
                     </div>
                     <div style={{
                         display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
                     }}>
-                        <p>{selectedUser.educationalLevel || 'Educational Level not Provided'}</p>
-                        <p>{selectedUser.referralName || 'Referral Name not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.educationalLevel || 'Educational Level not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.referralName || 'Referral Name not Provided'}</p>
                     </div>
                     <div style={{
                         display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
                     }}>
-                        <p>{selectedUser.secondaryEmail || 'Secondary Email not Provided'}</p>
-                        <p>{selectedUser.phone || 'Phone not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.secondaryEmail || 'Secondary Email not Provided'}</p>
+                        <p style={{ color: "#000000" }}>{selectedUser.phone || 'Phone not Provided'}</p>
                     </div>
                 </div>
             )}
@@ -139,14 +140,14 @@ const AllUsers: React.FC = () => {
                     <button
                         onClick={() => paginate(currentPage - 1)}
                         disabled={currentPage === 1}
-                        style={{ padding: "10px 16px", marginRight: "8px", borderRadius: "8px", backgroundColor: "#f9f9f9", border: "1px solid #ccc" }}
+                        style={{ padding: "10px 16px", marginRight: "8px", borderRadius: "8px", backgroundColor: "#f9f9f9", border: "1px solid #ccc", color: "#000000" }}
                     >
                         Previous
                     </button>
                     <button
                         onClick={() => paginate(currentPage + 1)}
                         disabled={currentPage === totalPages}
-                        style={{ padding: "10px 16px", borderRadius: "8px", backgroundColor: "#f9f9f9", border: "1px solid #ccc" }}
+                        style={{ padding: "10px 16px", borderRadius: "8px", backgroundColor: "#f9f9f9", border: "1px solid #ccc", color: "#000000" }}
                     >
                         Next
                     </button>

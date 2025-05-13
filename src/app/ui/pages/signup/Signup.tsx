@@ -187,7 +187,7 @@ const SignUp: React.FunctionComponent = () => {
     return isValid;
   };
 
-  function generateUniqueId(userType: string): string | null {
+  function generateUniqueId(userType: string): string {
     const prefix = "DT-";
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let randomPart = "";
@@ -197,40 +197,51 @@ const SignUp: React.FunctionComponent = () => {
     }
 
     let suffix = "";
-    if (userType.toLowerCase() === "Organisation") {
+    const lowerType = userType;
+
+    if (lowerType === "Organisation") {
       suffix = "O";
-    } else if (userType.toLowerCase() === "Member") {
+    } else if (lowerType === "Member") {
       suffix = "M";
     } else {
-      return '';  // Return null for any type that is not "organisation" or "member"
+      return ""; // better to return null for invalid type
     }
 
     return `${prefix}${randomPart}-${suffix}`;
   }
 
-
-
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (!validate()) return;
-    const generatedId = generateUniqueId(formData.userType) || '';
-    setFormData({
+    const generatedId = generateUniqueId(formData.userType.trim());;
+    if (!generatedId) {
+      toast.error('Invalid user type — could not generate ID. 🚫', {
+        style: {
+          background: '#ff4d4f',
+          color: '#fff',
+        },
+      });
+      return;
+    };
+
+    const updatedFormData = {
       ...formData,
       uniqueId: generatedId,
-    });
+    };
+    console.log("Generated ID:", generatedId, updatedFormData);
 
-    await authService.handleUserRegistration(formData, userLocation).then(() => {
+    await authService.handleUserRegistration(updatedFormData, userLocation).then(() => {
       setText("Creating your D'roid Account");
       const templatePharams = {
-        name: formData.firstName + " " + formData.lastName,
+        name: updatedFormData.firstName + " " + updatedFormData.lastName,
         title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
 
         Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
 
         At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
-        
+
         We look forward to achieving great things together`,
-        email: formData.email,
+        email: updatedFormData.email,
       }
       emailjs
         .send(SERVICE_ID, TEMPLATE_ID, templatePharams, PUBLIC_KEY)

@@ -110,7 +110,7 @@ const DashboardContent: React.FunctionComponent = () => {
       return (
         <>
           {/* Staff Tasks */}
-          <Section title="Staff Tasks">
+          <Section title="Tasks">
             {tasks.map((task) => (
               <div key={task.id} style={{ marginBottom: '10px' }}>
                 <p style={{ fontWeight: '600' }}>{task.name}</p>
@@ -130,7 +130,7 @@ const DashboardContent: React.FunctionComponent = () => {
           </Section>
 
           {/* Staff Schedule */}
-          <Section title="Staff Schedule">
+          <Section title="Schedules">
             <div>
               <h4>Working Days:</h4>
               <p>{schedule.workingDays.join(', ')}</p>
@@ -392,11 +392,11 @@ const DashboardContent: React.FunctionComponent = () => {
           <h3 style={{ color: '#071D6A', fontWeight: "900", fontSize: "30px" }}>
             Welcome, {userDetails.firstName} {userDetails.lastName}
           </h3>
-          <p>{userDetails.email}</p>
+          <p style={{ color: "#000000" }}>{userDetails.email}</p>
 
           <div style={{ marginTop: "30px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p>{userDetails.userType} Account</p>
-            <p><strong>ID:</strong> {userDetails.uniqueId}</p>
+            <p style={{ color: "#000000" }}>{userDetails.userType} Account</p>
+            <p style={{ color: "#000000" }}><strong>ID:</strong> {userDetails.uniqueId}</p>
           </div>
 
           {/* Button List */}
@@ -456,8 +456,6 @@ const DashboardContent: React.FunctionComponent = () => {
           Sign Out
         </button>
       </div>
-
-
       {/* Right Section */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '20px', height: '80vh' }}>
         {/* Back Button */}
