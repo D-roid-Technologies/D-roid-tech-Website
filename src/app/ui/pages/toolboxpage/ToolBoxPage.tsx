@@ -27,8 +27,7 @@ const tools = [
       "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
     icon: FaPalette({ size: 24 }),
     category: "Color Tools",
-    link: "/calculator/scientific",
-    // link: RoutePaths.ToolColorConverter,
+    link: "/toolbox/colorconverter",
   },
   {
     title: "Image Compressor",
@@ -50,13 +49,13 @@ const tools = [
       "Select and copy hex/RGB/HSV codes from a color palette or screen",
     icon: CgColorPicker({ size: 24 }),
     category: "Color Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/colorPicker",
   },
   {
     title: "Word Counter",
     description: "Count words, characters, and paragraphs",
     icon: FaFileWord({ size: 24 }),
-    link: "/calculator/scientific",
+    link: "/toolbox/wordconter",
   },
   {
     title: "Currency Converter",

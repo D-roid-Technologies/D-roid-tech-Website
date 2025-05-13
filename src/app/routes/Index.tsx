@@ -56,6 +56,8 @@ import Blog from "../ui/pages/DroidJournal/Blog";
 import ColorConverter from "../ui/pages/toolboxpage/colorconverter/ColorConverter";
 import FrontendDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwarePages/FrontendDevelopmentPage";
 import ProtectedRoute from "./ProtectedRoutes";
+import ColorPicker from "../ui/components/toolboxfolder/colorPicker/ColorPicker";
+import WordCounter from "../ui/components/toolboxfolder/WordCounter/WordCounter";
 
 // Define an enum for all route paths
 
@@ -80,6 +82,8 @@ export enum RoutePaths {
 
   // toolbox routes
   ColorConverter = "/toolbox/colorconverter",
+  ColorPicker = "/toolbox/colorPicker",
+  WordCounter = "/toolbox/wordconter",
   ToolImageResizer = "/toolbox/imageresizing",
 
   // calculator routes
@@ -192,6 +196,8 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
       <Route path={RoutePaths.ToolImageResizer} element={<ImageResizer />} />
       <Route path={RoutePaths.ColorConverter} element={<ColorConverter />} />
+      <Route path={RoutePaths.ColorPicker} element={<ColorPicker />} />
+      <Route path={RoutePaths.WordCounter} element={<WordCounter />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
