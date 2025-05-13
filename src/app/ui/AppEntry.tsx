@@ -143,16 +143,12 @@ const AppEntry: React.FunctionComponent<any> = () => {
       ) : null}
 
       <Index />
-
-      {/* Conditionally render Footer */}
       {!hideFooter && <Footer />}
 
       <div
         onClick={() => {
           showToast();
         }}
-        // className="chat-with-ogo  shaking"
-        // className={`chat-with-ogo ${toast ? "shaking" : "shaking"}`}
         className={`chat-with-ogo ${shake ? "shaking" : ""}`}
       >
         <div>
