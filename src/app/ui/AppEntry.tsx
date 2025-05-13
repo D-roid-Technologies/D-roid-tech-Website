@@ -6,6 +6,7 @@ import { addHeight, addWidth } from "../redux/slices/Dimension";
 import { useSelector } from "react-redux";
 import {
   updateModal,
+  updateModalContent,
   updateToast,
   updateToastTitle,
 } from "../redux/slices/AppEntrySlice";
@@ -25,6 +26,7 @@ const AppEntry: React.FunctionComponent<any> = () => {
   const { getColor } = useThemeColor();
   const location = useLocation(); // Use useLocation to detect route changes
 
+
   const modal = appEntry.showModal;
   const aTitle = appEntry.appTitle;
   const aBody = appEntry.appBody;
@@ -34,22 +36,58 @@ const AppEntry: React.FunctionComponent<any> = () => {
   const [appWidth, setAppWidth] = React.useState<number>(window.innerWidth);
   const [appHeight, setAppHeight] = React.useState<number>(window.innerHeight);
 
+
+
   useEffect(() => {
     const handleResize = () => {
       setAppWidth(window.innerWidth);
       setAppHeight(window.innerHeight);
-    };
+    }
 
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+
   }, []);
+
+  useEffect(() => {
+    if (
+      location.pathname === "/"
+    ) {
+      const hasVisited = localStorage.getItem("hasSeenCookieModal");
+
+      if (!hasVisited) {
+        store.dispatch(updateModal(true));
+        store.dispatch(updateModalContent({
+          appTitle: "Cookies",
+          appBody: (
+            <>
+              <p>
+                {"D'roid Technologies Ltd uses cookies to deliver and enhance the quality of its services and to analyze traffic. If you agree, cookies are also used to serve advertising and to personalize the content and advertisements that you see."}
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 60 }}>
+                <button className="navbar-cta" onClick={() => { store.dispatch(updateModal(false)) }}>
+                  I agree
+                </button>
+                <button className="navbar-cta" onClick={() => { store.dispatch(updateModal(false)) }}>
+                  I do not agree
+                </button>
+              </div>
+            </>
+          ),
+        }));
+
+        localStorage.setItem("hasSeenCookieModal", "true");
+      }
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     store.dispatch(addWidth(appWidth));
     store.dispatch(addHeight(appHeight));
+
   }, [appWidth, appHeight]);
 
   function showToast() {
