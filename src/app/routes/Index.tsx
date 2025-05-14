@@ -59,6 +59,7 @@ import ProtectedRoute from "./ProtectedRoutes";
 import ColorPicker from "../ui/components/toolboxfolder/colorPicker/ColorPicker";
 import WordCounter from "../ui/components/toolboxfolder/WordCounter/WordCounter";
 import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/BackendDevelopment";
+import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescriptionPage";
 
 // Define an enum for all route paths
 
@@ -102,6 +103,7 @@ export enum RoutePaths {
   // Existing Routes
   Contact = "/contact",
   TrainingPage = "/training",
+  TrainingDescriptionPage = "/training/description",
   DevTools = "/devtools",
   DroidIcons = "/droidicons",
   Staff = "/staff",
@@ -219,6 +221,7 @@ const Index: React.FunctionComponent = () => {
       {/* Existing Routes */}
       <Route path={RoutePaths.Contact} element={<Contact />} />
       <Route path={RoutePaths.TrainingPage} element={<Training />} />
+      <Route path={RoutePaths.TrainingDescriptionPage} element={<TrainingDescriptionPage />} />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
       <Route path={RoutePaths.Staff} element={<Staff />} />
