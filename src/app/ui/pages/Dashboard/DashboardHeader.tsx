@@ -17,7 +17,7 @@ const DashboardHeader: React.FC = () => {
                 alignItems: 'center',
             }}
         >
-            <h2 style={{ fontWeight: '800' }}>D'roid Dashboard</h2>
+            <h2 style={{ fontWeight: '800' }}>D'roid One Dashboard</h2>
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
