@@ -2,7 +2,7 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 24px;
+  /* padding: 24px; */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
   display: flex;
@@ -15,14 +15,17 @@
 }
 
 .core-value-card-icon {
-  width: 50px;
-  height: 50px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
   margin-bottom: 16px;
 }
 .core-value-card-icon-icon {
   width: 80px;
   height: 50px;
   margin-bottom: 16px;
+  padding-top: 24px;
+  padding-left: 24px;
   color: #333;
 }
 
@@ -82,6 +85,7 @@
   transition: color 0.2s ease-in-out;
   text-decoration: none;
   font-size: 0.95rem;
+  cursor: pointer;
 }
 
 .custom-link:hover {

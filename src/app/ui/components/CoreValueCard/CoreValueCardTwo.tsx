@@ -10,7 +10,7 @@ interface CoreValueCardProps {
   url?: string;
   link?: string;
   onClick?: (e: any) => void;
-  pressable?: boolean
+  pressable?: boolean;
 }
 
 const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
@@ -30,30 +30,36 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <img src={imageSrc} alt={title} className="core-value-card-icon" />
       )}
       {icon && <div className="core-value-card-icon-icon">{icon}</div>}
-      <h3 className="core-value-card-title">{title}</h3>
-      <p className="core-value-card-description">{description}</p>
+      <div style={{ padding: "24px" }}>
+        <h3 className="core-value-card-title">{title}</h3>
+        <p className="core-value-card-description">{description}</p>
 
-      {pressable === false ? (
-        <div className="mt-3">
-          <a href={url} className="custom-link">
-            Read more →
-          </a>
-        </div>
-      ) : (
-        <div className="mt-3">
-          <button className="desktop-cta" onClick={onClick}>
-            Read more →
-          </button>
-        </div>
-      )}
+        {pressable === false ? (
+          <div className="mt-3">
+            <a
+              onClick={onClick}
+              href={url || undefined}
+              className="custom-link"
+            >
+              Read more →
+            </a>
+          </div>
+        ) : (
+          <div className="mt-3">
+            <button className="desktop-cta" onClick={onClick}>
+              Read more →
+            </button>
+          </div>
+        )}
 
-      {link && (
-        <div className="mt-2">
-          <a href={link} className="launch-button">
-            Lunch
-          </a>
-        </div>
-      )}
+        {link && (
+          <div className="mt-2">
+            <a href={link} className="launch-button">
+              Lunch
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

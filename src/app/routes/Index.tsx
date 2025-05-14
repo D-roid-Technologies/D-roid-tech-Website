@@ -58,6 +58,7 @@ import FrontendDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwarePag
 import ProtectedRoute from "./ProtectedRoutes";
 import ColorPicker from "../ui/components/toolboxfolder/colorPicker/ColorPicker";
 import WordCounter from "../ui/components/toolboxfolder/WordCounter/WordCounter";
+import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/BackendDevelopment";
 
 // Define an enum for all route paths
 
@@ -137,7 +138,8 @@ export enum RoutePaths {
   ToolColorConverter = "ToolColorConverter", // Existing Routes
 
   // Software Developemnets Pages
-  FrontendDevelopmentPage = '/software-development/front-end'
+  FrontendDevelopmentPage = '/software-development/front-end',
+  BackendDevelopment = '/software-development/back-end'
 }
 
 interface DropdownItem {
@@ -253,6 +255,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Project} element={<Project />} />
       <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
       <Route path={RoutePaths.FrontendDevelopmentPage} element={<FrontendDevelopmentPage />} />
+      <Route path={RoutePaths.BackendDevelopment} element={<BackendDevelopment />} />
       {/* Private Routes */}
       <Route
         path={RoutePaths.DashBoard}

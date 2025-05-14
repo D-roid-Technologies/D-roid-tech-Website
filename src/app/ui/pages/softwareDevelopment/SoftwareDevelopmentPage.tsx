@@ -11,7 +11,10 @@ import {
   FaServer,
 } from "react-icons/fa";
 import { store } from "../../../redux/Store";
-import { updateModal, updateModalContent } from "../../../redux/slices/AppEntrySlice";
+import {
+  updateModal,
+  updateModalContent,
+} from "../../../redux/slices/AppEntrySlice";
 import ContactSoftware from "../contact/ContactSection/ContactSoftware";
 
 const devPhases = [
@@ -44,7 +47,6 @@ const devPhases = [
   },
 ];
 
-
 // This website stores cookies on your computer. These cookies are used to improve your website experience and provide more personalized services to you, both on this website and through other media. Find our full Cookie Policy: Here. To find out more about the cookies we use, see our Privacy Policy.
 // We won't track your information when you visit our site. But in order to comply with your preferences, we'll have to use just one tiny cookie so that you're not asked to make this choice again.
 
@@ -60,21 +62,24 @@ const technologies = [
     title: "Backend Development",
     description:
       "Powerful APIs and logic using Node.js, Express, Python, and more.",
-    imageSrc: "",
-    url: "",
+    imageSrc:
+      "https://verpex.com/assets/uploads/images/blog/How-to-become-a-Backend-Developer.jpg?v=1665484477",
+    url: "/software-development/back-end",
   },
   {
     title: "Database & Cloud",
     description:
       "Robust data solutions with MySQL, MongoDB, Firebase, and scalable cloud architecture.",
-    imageSrc: "",
+    imageSrc:
+      "https://img.freepik.com/free-vector/server-room-cloud-storage-icon-datacenter-database-concept-data-exchange-process_39422-556.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
     url: "",
   },
   {
     title: "Cross-Platform Apps",
     description:
       "React Native & hybrid mobile solutions to reach iOS and Android users seamlessly.",
-    imageSrc: "",
+    imageSrc:
+      "https://img.freepik.com/free-vector/gradient-ui-ux-background_23-2149052117.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
     url: "",
   },
 ];
@@ -86,12 +91,14 @@ const SoftwareDevelopmentPage: React.FC = () => {
 
       {/* Hero */}
       <div className="software-main">
-        <div className="software-main-content">
-          <h1 className="software-header">Software Development</h1>
-          <p>
-            We build scalable, performant, and user-focused software tailored to
-            your business needs—from concept to launch.
-          </p>
+        <div className="wrapper">
+          <div className="software-main-content">
+            <h1 className="software-header">Software Development</h1>
+            <p>
+              We build scalable, performant, and user-focused software tailored
+              to your business needs—from concept to launch.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -123,20 +130,29 @@ const SoftwareDevelopmentPage: React.FC = () => {
           Whether it’s an app, platform, or SaaS—you bring the idea, we’ll build
           the solution.
         </p>
-        <button className="soft-cta-button"
+        <button
+          className="soft-cta-button"
           onClick={() => {
-            store.dispatch(updateModal(true))
-            store.dispatch(updateModalContent({
-              appTitle: "Let's kick start your Idea",
-              appBody: (
-                <>
-                  <p>Turn your vision into reality with D'roid Technologies. Whether it's a product, platform, or service, we help you design, build, and launch with precision and innovation—every step of the way.</p>
-                  <p>Please fill the form below and we'll be in touch.</p>
-                  <ContactSoftware />
-                </>
-              )
-            }));
-          }}>
+            store.dispatch(updateModal(true));
+            store.dispatch(
+              updateModalContent({
+                appTitle: "Let's kick start your Idea",
+                appBody: (
+                  <>
+                    <p>
+                      Turn your vision into reality with D'roid Technologies.
+                      Whether it's a product, platform, or service, we help you
+                      design, build, and launch with precision and
+                      innovation—every step of the way.
+                    </p>
+                    <p>Please fill the form below and we'll be in touch.</p>
+                    <ContactSoftware />
+                  </>
+                ),
+              })
+            );
+          }}
+        >
           Start a Project →
         </button>
       </div>
@@ -162,8 +178,6 @@ const SoftwareDevelopmentPage: React.FC = () => {
           ))}
         </div>
       </div>
-
-
     </div>
   );
 };
