@@ -25,14 +25,24 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({ programTitle 
         experience: "",
         motivation: "",
         referralSource: "",
+        title: "",
+        refrenceNumber: "",
         agreeToTerms: false,
     });
 
+    const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
 
     const SERVICE_ID = "service_o1jbklr";
     const TEMPLATE_ID = "template_p8h58ur";
     const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
     const [submitted, setSubmitted] = useState(false);
+
+    const generateReferenceNumber = (): string => {
+        const prefix = "DT";
+        const timestamp = Date.now().toString(36); // Base36 for compact form
+        const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+        return `${prefix}-${timestamp}-${random}`;
+    };
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -48,9 +58,17 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({ programTitle 
     };
 
     const handleSubmit = (e: React.FormEvent) => {
+        const generatedRef = generateReferenceNumber();
+        setReferenceNumber(generatedRef);
         e.preventDefault();
+
+        const updatedFormData = {
+            ...formData,
+            title: programTitle,
+            referenceNumber: referenceNumber
+        };
         const templatePharams = {
-            name: formData.fullName,
+            name: updatedFormData.fullName,
             title: `Thank You for Applying! We're excited to receive your application and appreciate your interest in joining one of our training programs. 
     
             Your application has been successfully submitted. Our team will review your information and contact you via email with the next steps. In the meantime: Ensure your contact details are up-to-date. Check your email (and spam folder) for updates from us. Feel free to explore more about our community and other opportunities.
@@ -58,7 +76,7 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({ programTitle 
             At D'roid Technologies, we believe in learning by doing, empowering people through knowledge, and building a strong community. If you have any questions or need support, don’t hesitate to reach out—we’re here to help.
     
             We look forward to seeing you grow`,
-            email: formData.email,
+            email: updatedFormData.email,
         }
         emailjs
             .send(SERVICE_ID, TEMPLATE_ID, templatePharams, PUBLIC_KEY)
@@ -87,8 +105,16 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({ programTitle 
     if (submitted) {
         return (
             <div style={{ padding: "2rem" }}>
-                <h2 style={{ color: "#000000" }}>Thank You for Applying!</h2>
-                <p style={{ color: "#000000" }}>Your application for <strong>{programTitle}</strong> has been received. We will contact you soon.</p>
+                <h2>Thank You for Applying!</h2>
+                <p>
+                    Your application for <strong>{programTitle}</strong> has been received.
+                    We will contact you soon.
+                </p>
+                {referenceNumber && (
+                    <p>
+                        <strong>Your Reference ID:</strong> {referenceNumber}
+                    </p>
+                )}
             </div>
         );
     }

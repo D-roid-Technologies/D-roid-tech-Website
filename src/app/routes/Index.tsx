@@ -60,6 +60,8 @@ import ColorPicker from "../ui/components/toolboxfolder/colorPicker/ColorPicker"
 import WordCounter from "../ui/components/toolboxfolder/WordCounter/WordCounter";
 import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/BackendDevelopment";
 import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescriptionPage";
+import Partners from "../ui/components/partners/Partners";
+import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
 
 // Define an enum for all route paths
 
@@ -93,6 +95,7 @@ export enum RoutePaths {
 
   // Parent "More" route
   More = "/more",
+  Partners = "/partners",
 
   // More Routes (nested under /more)
   Blog = `/more/blog`,
@@ -212,6 +215,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       <Route path={RoutePaths.Muzik} element={<Muzik />} />
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
+      <Route path={RoutePaths.Partners} element={<PartnersPage />} />
       {/* Grouped More Routes */}
       <Route path={RoutePaths.More}>
         <Route index element={<Navigate to={RoutePaths.Blog} replace />} />

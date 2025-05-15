@@ -353,7 +353,7 @@ const SignUp: React.FunctionComponent = () => {
           Join the D'roid Community
         </h2>
         <p style={{ fontSize: '18px', marginBottom: '30px', color: '#BAB8B8' }}>
-          Connect with other developers, learn together, and build amazing things!
+          Connect with other developers or like minded individuals. Learn together, and build amazing things!
         </p>
 
         <form onSubmit={handleSubmit}>

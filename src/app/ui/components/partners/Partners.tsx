@@ -2,6 +2,7 @@ import React from "react";
 import "./Partners.css";
 import "../liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../utils/constant/Assets";
+import { RoutePaths } from "../../../routes/Index";
 
 const logos = [
   {
@@ -72,7 +73,7 @@ const Partners: React.FC = () => {
             </div>
             <div style={{ display: "flex", gap: "20px", marginTop: "30px", justifyContent: "center" }}>
               <a
-                // href={RoutePaths.Products}
+                href={RoutePaths.Partners}
                 style={{ backgroundColor: "#000000", color: "#ffffff" }}
                 className="navbar-cta"
               >

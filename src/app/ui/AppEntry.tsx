@@ -145,7 +145,7 @@ const AppEntry: React.FunctionComponent<any> = () => {
       <Index />
       {!hideFooter && <Footer />}
 
-      <div
+      {/* <div
         onClick={() => {
           showToast();
         }}
@@ -162,7 +162,7 @@ const AppEntry: React.FunctionComponent<any> = () => {
             Chat with Ogoo
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
