@@ -210,67 +210,74 @@ const SignUp: React.FunctionComponent = () => {
     return `${prefix}${randomPart}-${suffix}`;
   }
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!validate()) return;
-    const generatedId = generateUniqueId(formData.userType.trim());;
-    if (!generatedId) {
-      toast.error('Invalid user type — could not generate ID. 🚫', {
-        style: {
-          background: '#ff4d4f',
-          color: '#fff',
-        },
-      });
-      return;
-    };
+
+    let generatedId = formData.uniqueId;
+
+    // ✅ Only generate ID if user is NOT staff
+    if (formData.userType.trim().toLowerCase() !== 'staff') {
+      generatedId = generateUniqueId(formData.userType.trim());
+
+      if (!generatedId) {
+        toast.error('Invalid user type — could not generate ID. 🚫', {
+          style: {
+            background: '#ff4d4f',
+            color: '#fff',
+          },
+        });
+        return;
+      }
+    }
 
     const updatedFormData = {
       ...formData,
       uniqueId: generatedId,
     };
-    console.log("Generated ID:", generatedId, updatedFormData);
 
-    await authService.handleUserRegistration(updatedFormData, userLocation).then(() => {
-      setText("Creating your D'roid Account");
-      const templatePharams = {
-        name: updatedFormData.firstName + " " + updatedFormData.lastName,
-        title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
+    await authService
+      .handleUserRegistration(updatedFormData, userLocation)
+      .then(() => {
+        setText("Creating your D'roid Account");
 
-        Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
+        const templateParams = {
+          name: updatedFormData.firstName + " " + updatedFormData.lastName,
+          title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
+  
+  Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
+  
+  At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
+  
+  We look forward to achieving great things together`,
+          email: updatedFormData.email,
+        };
 
-        At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
+        emailjs
+          .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+          .then(
+            () => {
+              toast.success('Email successfully sent!', {
+                style: { background: '#4BB543', color: '#fff' },
+              });
+            },
+            () => {
+              toast.error('Error sending email 🚫', {
+                style: { background: '#ff4d4f', color: '#fff' },
+              });
+            }
+          );
 
-        We look forward to achieving great things together`,
-        email: updatedFormData.email,
-      }
-      emailjs
-        .send(SERVICE_ID, TEMPLATE_ID, templatePharams, PUBLIC_KEY)
-        .then(
-          (result) => {
-            toast.success('Email successfully sent!', {
-              style: {
-                background: '#4BB543',
-                color: '#fff',
-              },
-            });
-          },
-          (error) => {
-            toast.error('Error sending email 🚫', {
-              style: {
-                background: '#ff4d4f',
-                color: '#fff',
-              },
-            });
-          }
-        );
-      setTimeout(() => {
-        navigate(RoutePaths.DashBoard)
-      }, 4000)
-    }).catch((error) => {
-      setText("Sign Up");
-      setFormErrors({ ...formErrors, email: error.message });
-    });
+        setTimeout(() => {
+          navigate(RoutePaths.DashBoard);
+        }, 4000);
+      })
+      .catch((error) => {
+        setText("Sign Up");
+        setFormErrors({ ...formErrors, email: error.message });
+      });
   };
+
 
   return (
     <div

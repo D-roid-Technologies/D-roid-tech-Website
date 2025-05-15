@@ -12,6 +12,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import PersonalDetails from './PersonalDetails';
 import AllUsers from './users/AllUsers';
 import { authService } from '../../../redux/configuration/auth.service';
+import SignInOut from './SignInOut';
 
 const DashboardContent: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -359,7 +360,8 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Resource':
         return (
           <Section title="Resource">
-            <p>Browse useful resources and documents.</p>
+            <p style={{ color: "#000000" }}>Browse useful resources and documents.</p>
+            <SignInOut />
           </Section>
         );
       default:

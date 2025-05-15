@@ -1,11 +1,17 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
+type Entry = {
+    email: string;
+    employeeId?: string;
+    timestamp: string;
+    type: 'Sign In' | 'Sign Out';
+};
 
 const getCurrentDateTime = () => {
     const now = new Date();
@@ -28,6 +34,18 @@ const getCurrentDateTime = () => {
         time: formattedTime,
         formattedDateTime: `${formattedDate} ${formattedTime}`
     };
+}
+
+async function getUserDocByUniqueId(uniqueId: string) {
+    const droidAccountCollection = collection(db, "droidaccount");
+    const q = query(droidAccountCollection, where("user.primaryInformation.uniqueId", "==", uniqueId));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) return null;
+
+    // Assuming uniqueId is unique, get the first document
+    const docSnap = querySnapshot.docs[0];
+    return docSnap;
 }
 
 const addDaysToDate = (dateInput: string, daysToAdd: number) => {
@@ -97,55 +115,59 @@ export class AuthService {
                         locationFromDevice: locationData,
                         currentdateTime: currentDateTime,
                     },
-                    knowledgeCity: {
-                        kCoin: {
-                            amount: 0,
-                            storeCardDetails: false,
-                            mineCoins: {
-                                numberOfReferals: 0,
-                                numberOfAdsWatched: 0,
-                            },
-                        },
-                        courses: {},
-                        notifications: {},
-                        schedules: {},
-                        diaries: [
-                            {
-                                diaryTitle: "The Diary Platform",
-                                description: "Tell us your thoughts",
-                                startDate: currentDateTime.formattedDateTime,
-                                endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
-                            },
-                        ],
-                        lunchBox: {
-                            events: [
-                                {
-                                    eventTitle: "D'roid Technologies - Chess Marathon",
-                                    description: "The Chess Marathon of the year",
-                                    imageLink: "",
-                                    attendees: 0,
-                                    createdTime: currentDateTime.time,
-                                    createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                                },
-                            ],
-                            jobs: [
-                                {
-                                    jobTitle: "Front-End Developer - React Js",
-                                    description: "We are looking for a front end developer in React Js",
-                                    imageLink: "",
-                                    peopleApplied: 0,
-                                    createdTime: currentDateTime.time,
-                                    createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                                },
-                            ],
+                },
+                knowledgeCity: {
+                    kCoin: {
+                        amount: 0,
+                        storeCardDetails: false,
+                        mineCoins: {
+                            numberOfReferals: 0,
+                            numberOfAdsWatched: 0,
                         },
                     },
-                    staff: {},
-                    toolBox: {},
-                    muzik: {},
-                    calculate: {},
+                    courses: {},
+                    notifications: {},
                     schedules: {},
+                    diaries: [
+                        {
+                            diaryTitle: "The Diary Platform",
+                            description: "Tell us your thoughts",
+                            startDate: currentDateTime.formattedDateTime,
+                            endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
+                        },
+                    ],
+                    lunchBox: {
+                        events: [
+                            {
+                                eventTitle: "D'roid Technologies - Chess Marathon",
+                                description: "The Chess Marathon of the year",
+                                imageLink: "",
+                                attendees: 0,
+                                createdTime: currentDateTime.time,
+                                createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+                            },
+                        ],
+                        jobs: [
+                            {
+                                jobTitle: "Front-End Developer - React Js",
+                                description: "We are looking for a front end developer in React Js",
+                                imageLink: "",
+                                peopleApplied: 0,
+                                createdTime: currentDateTime.time,
+                                createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+                            },
+                        ],
+                    },
                 },
+                staff: {
+                    staffSignInAndOut: []
+                },
+                forms: {},
+                toolBox: {},
+                muzik: {},
+                calculate: {},
+                schedules: {},
+                nerves: {},
             };
 
             await setDoc(userDocRef, droidAccount);
@@ -333,6 +355,85 @@ export class AuthService {
             });
         }
     }
+
+    async logStaffSignInOut(entry: Entry) {
+        try {
+            const currentUser = auth.currentUser;
+
+            if (!currentUser) {
+                toast.error('No authenticated user found.', {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return null;
+            }
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, "droidaccount", userId);
+            const userSnapshot = await getDoc(userDocRef);
+
+            if (!userSnapshot.exists()) {
+                toast.error("User document not found.", {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return null;
+            }
+
+            const data = userSnapshot.data();
+
+            // Ensure staff object exists
+            if (!data.staff) {
+                data.staff = { staffSignInAndOut: [] };
+            }
+
+            // Add entry to the signIn/signOut array
+            await updateDoc(userDocRef, {
+                'staff.staffSignInAndOut': arrayUnion(entry),
+            });
+
+            toast.success(`${entry.type} recorded at ${entry.timestamp}`, {
+                style: { background: '#4BB543', color: '#fff' },
+            });
+
+            // console.log('Entry successfully logged:', entry);
+            return entry;
+
+        } catch (error: any) {
+            // console.error('Error logging staff sign in/out:', error);
+            toast.error(`Error logging staff entry: ${error.message}`, {
+                style: { background: '#ff4d4f', color: '#fff' },
+            });
+            return null;
+        }
+    }
+
+
+
+
+    // async fetchStaffForms(userId: string) {
+    //     try {
+    //         const userDocRef = doc(db, 'droidaccount', userId);
+    //         const userSnapshot = await getDoc(userDocRef);
+
+    //         if (userSnapshot.exists()) {
+    //             const data = userSnapshot.data();
+    //             const formsInfo = data?.forms || null;
+
+    //             if (stafformsInfofInfo) {
+    //                 console.log('Staff Info:', formsInfo);
+    //                 return formsInfo;
+    //             } else {
+    //                 console.warn('No staff info found for user.');
+    //                 return null;
+    //             }
+    //         } else {
+    //             console.warn('No document found for user.');
+    //             return null;
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching staff info:', error);
+    //         return null;
+    //     }
+    // }
 }
 
 export const authService = new AuthService()
