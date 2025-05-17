@@ -14,6 +14,7 @@
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "emailjs-com": "^3.2.0",
     "firebase": "^11.6.1",
@@ -33,6 +34,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
     "react-world-flags": "^1.6.0",
+    "recharts": "^2.15.3",
     "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.2",
@@ -71,6 +73,7 @@
     "@types/react-dom": "^18.3.0",
     "@types/react-slick": "^0.23.13",
     "@types/react-world-flags": "^1.6.0",
+    "env-cmd": "^10.1.0",
     "typescript": "^4.9.5"
   }
 }

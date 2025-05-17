@@ -3,6 +3,7 @@ import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, g
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
+import { setSignInAndOutData } from "../slices/SignInAndOutSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
@@ -36,7 +37,18 @@ const getCurrentDateTime = () => {
     };
 }
 
-async function getUserDocByUniqueId(uniqueId: string) {
+export async function getUserDocByUniqueId(uniqueId: string) {
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+        toast.error('No authenticated user found.', {
+            style: { background: '#ff4d4f', color: '#fff' },
+        });
+        return null;
+    }
+
+    // const userId = currentUser.uid;
+    // const userDocRef = doc(db, "droidaccount", userId);
     const droidAccountCollection = collection(db, "droidaccount");
     const q = query(droidAccountCollection, where("user.primaryInformation.uniqueId", "==", uniqueId));
     const querySnapshot = await getDocs(q);
@@ -381,24 +393,28 @@ export class AuthService {
             const data = userSnapshot.data();
 
             // Ensure staff object exists
-            if (!data.staff) {
-                data.staff = { staffSignInAndOut: [] };
-            }
+            const existingEntries = data?.staff?.staffSignInAndOut || [];
 
-            // Add entry to the signIn/signOut array
+            // Add new entry
             await updateDoc(userDocRef, {
                 'staff.staffSignInAndOut': arrayUnion(entry),
             });
+
+            // Fetch updated document
+            const updatedSnapshot = await getDoc(userDocRef);
+            const updatedData = updatedSnapshot.data();
+            const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
+
+            // Dispatch to Redux
+            store.dispatch(setSignInAndOutData(updatedEntries));
 
             toast.success(`${entry.type} recorded at ${entry.timestamp}`, {
                 style: { background: '#4BB543', color: '#fff' },
             });
 
-            // console.log('Entry successfully logged:', entry);
             return entry;
 
         } catch (error: any) {
-            // console.error('Error logging staff sign in/out:', error);
             toast.error(`Error logging staff entry: ${error.message}`, {
                 style: { background: '#ff4d4f', color: '#fff' },
             });

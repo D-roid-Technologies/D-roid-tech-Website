@@ -8,16 +8,24 @@ const Dashboard: React.FunctionComponent = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const handleBeforeUnload = (e: PopStateEvent) => {
-            // If the user tries to go back from /dashboard, prevent it
-            if (location.pathname === '/auth/dashboard') {
-                navigate('/auth/dashboard', { replace: true });
-            }
+        // Trap the user on this page
+        const trapHistory = () => {
+            window.history.pushState(null, '', window.location.href);
         };
 
-        window.addEventListener('popstate', handleBeforeUnload);
-        return () => window.removeEventListener('popstate', handleBeforeUnload);
-    }, [location.pathname, navigate]);
+        trapHistory(); // Initial push
+
+        const handlePopState = (e: PopStateEvent) => {
+            // If user presses back, re-trap
+            trapHistory();
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#F9F9F9' }}>

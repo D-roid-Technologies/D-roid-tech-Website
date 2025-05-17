@@ -11,6 +11,7 @@ import { projectSlice } from "./slices/projectSlice";
 import { userSlice } from "./slices/User"; // make sure the casing matches!
 import { locationSlice } from './slices/Location';
 import { allUsersSlice } from './slices/AllUserSlice';
+import { signInAndOutSlice } from './slices/SignInAndOutSlice';
 
 const persistConfig = {
   key: 'root',
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   projects: projectSlice.reducer,
   location: locationSlice.reducer,
-  allUsers: allUsersSlice.reducer
+  allUsers: allUsersSlice.reducer,
+  SignInO: signInAndOutSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

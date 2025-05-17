@@ -3,17 +3,17 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, sendPasswordResetEmail, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCxSBa3szWJQq4XTljacDXNyV_fEcW5Ui4",
-  authDomain: "d-roid-technologies.firebaseapp.com",
-  projectId: "d-roid-technologies",
-  storageBucket: "d-roid-technologies.firebasestorage.app",
-  messagingSenderId: "1097060758359",
-  appId: "1:1097060758359:web:c55593be543e1a68260412",
-  measurementId: "G-P85PQM3KWH"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId
 };
 
 const app = initializeApp(firebaseConfig);
