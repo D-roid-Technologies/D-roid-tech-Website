@@ -13,6 +13,7 @@ import PersonalDetails from './PersonalDetails';
 import AllUsers from './users/AllUsers';
 import { authService } from '../../../redux/configuration/auth.service';
 import SignInOut from './SignInOut';
+import StaffPay from './StaffPay';
 
 const DashboardContent: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -336,7 +337,8 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Payslips':
         return (
           <Section title="Payslips">
-            <p>View your salary payslips here.</p>
+            <p style={{ color: "#000000" }}>View your salary payslips here.</p>
+            <StaffPay />
           </Section>
         );
       case 'Onboarding':
