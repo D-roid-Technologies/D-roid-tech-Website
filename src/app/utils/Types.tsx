@@ -33,6 +33,11 @@ export type UserType = {
   twoFactorSettings: boolean;
   password: string;
   role?: string; // ✅ Added this field
+  streetNumber: string,
+  streetName: string,
+  city: string,
+  state: string,
+  country: string,
 };
 
 

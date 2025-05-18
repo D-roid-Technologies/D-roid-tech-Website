@@ -28,6 +28,11 @@ const initialState: UserType = {
   twoFactorSettings: false,
   password: "",
   role: "",
+  streetNumber: "",
+  streetName: "",
+  city: "",
+  state: "",
+  country: ""
 };
 
 export const userSlice = createSlice({

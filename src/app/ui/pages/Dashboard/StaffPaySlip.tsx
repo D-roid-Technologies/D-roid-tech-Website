@@ -3,68 +3,123 @@ import React from 'react';
 interface PaySlipProps {
     employeeName: string;
     employeeId: string;
-    payPeriodStart: Date;  // start date of pay period
-    payPeriodEnd: Date;    // end date of pay period
-    hoursWorked: number;
-    hourlyRate: number;
+    payPeriodStart: Date;
+    payPeriodEnd: Date;
+    sNumber: string;
+    sName: string;
+    city: string;
+    state: string;
+    country: string;
     deductions: number;
     taxesPercent: number;
     todayMonth: number;
 }
 
-const formatMonth = (date: Date) => {
-    return date.toLocaleString('en-US', { month: 'long' });
+const getCurrentDateInfo = () => {
+    const today = new Date();
+    const currentMonthDate = new Date(today.getFullYear(), today.getMonth(), 9); // 9th of current month
+    const previousMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    const payPeriodStart = new Date(today.getFullYear(), today.getMonth() - 1, 9); // 9th of previous month
+    const payPeriodEnd = new Date(today.getFullYear(), today.getMonth(), 8); // 8th of current month
+
+    return { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd };
 };
 
-const formatPayPeriod = (start: Date, end: Date) => {
-    return `9th of ${formatMonth(start)} to 9th of ${formatMonth(end)}`;
-};
+const formatMonth = (date: Date) =>
+    date.toLocaleString('en-US', { month: 'long' });
+
+const formatDateLong = (date: Date) =>
+    date.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
 
 const StaffPaySlip: React.FC<PaySlipProps> = ({
     employeeName,
     employeeId,
-    payPeriodStart,
-    payPeriodEnd,
-    hoursWorked,
-    hourlyRate,
+    sNumber,
+    sName,
+    city,
+    state,
     deductions,
-    taxesPercent,
-    todayMonth
+    country,
 }) => {
-    const grossPay = hoursWorked * hourlyRate;
-    const taxes = grossPay * (taxesPercent / 100);
-    const netPay = grossPay - taxes - deductions;
+    const grossPay = 87016.0;
+    const taxes = 1633.33;
+    const netPay = 60366.67;
+
+    const { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd } =
+        getCurrentDateInfo();
 
     return (
         <div style={styles.container}>
-            <h1 style={styles.header}>Staff Pay Slip</h1>
+            <div style={styles.letterBlock}>
+                <div>
+                    <p><strong>{employeeName}</strong></p>
+                    <p>{sNumber} {sName}</p>
+                    <p>{city}, {state} State</p>
+                    <p>{country}</p>
+                </div>
+                <div>
+                    <p><strong>D’roid Technologies Ltd</strong></p>
+                    <p>17 John Street</p>
+                    <p>Warri, Delta State</p>
+                </div>
+            </div>
+
+            <p style={{ marginTop: 20 }}>{formatDateLong(currentMonthDate)}</p>
+            <p><strong>Dear {employeeName.split(' ')[0]},</strong></p>
+
+            <h2 style={styles.header}>YOUR PAY SLIP FROM D’ROID TECHNOLOGIES LTD</h2>
+            <p>
+                You will be paid on the 9th of {formatMonth(currentMonthDate)} {currentMonthDate.getFullYear()} for the month of {formatMonth(previousMonth)} {previousMonth.getFullYear()}.
+                Find below all the necessary information.
+            </p>
 
             <section style={styles.section}>
-                <h2 style={styles.subHeader}>Employee Details</h2>
+                <h3 style={styles.subHeader}>Employee & Pay Info</h3>
                 <p><strong>Name:</strong> {employeeName}</p>
                 <p><strong>Employee ID:</strong> {employeeId}</p>
-                <p><strong>Pay Period:</strong> {formatPayPeriod(payPeriodStart, payPeriodEnd)}</p>
-                <p><strong>Pay Month:</strong> {formatMonth(payPeriodStart)}</p>
+                <p><strong>Date of Creation:</strong> {formatDateLong(currentMonthDate)}</p>
+                <p><strong>Period of Payment:</strong> 9th {formatMonth(payPeriodStart)} to 8th {formatMonth(payPeriodEnd)}</p>
+                <p><strong>Leave:</strong> 1 week for the month of {formatMonth(previousMonth)} {previousMonth.getFullYear()}</p>
             </section>
 
             <section style={styles.section}>
-                <h2 style={styles.subHeader}>Pay Details</h2>
+                <h3 style={styles.subHeader}>Deductions</h3>
+                <ul>
+                    <li>Late to meetings: ₦0.00</li>
+                    <li>Absent from meetings: ₦0.00</li>
+                    <li>Wrong Verbal Communication: ₦0.00</li>
+                    <li>Completion of Tasks: ₦0.00</li>
+                    <li>Absent in Signing in: ₦0.00</li>
+                    <li>Absent in Signing out: ₦0.00</li>
+                </ul>
+            </section>
+
+            <section style={styles.section}>
+                <h3 style={styles.subHeader}>Additional Payments</h3>
+                <ul>
+                    <li>Extra days worked: 0</li>
+                    <li>Pension: ₦0.00</li>
+                    <li>Health Insurance: ₦0.00</li>
+                    <li>Miscellaneous: ₦0.00</li>
+                    <li>Transportation: ₦0.00</li>
+                    <li>Hotel Accommodation: ₦0.00</li>
+                </ul>
+            </section>
+
+            <section style={styles.section}>
+                <h3 style={styles.subHeader}>Pay Breakdown</h3>
                 <table style={styles.table}>
                     <tbody>
                         <tr>
-                            <td style={styles.label}>Hours Worked</td>
-                            <td style={styles.value}>{hoursWorked.toFixed(2)}</td>
+                            <td style={styles.label}>Gross Pay</td>
+                            <td style={styles.value}>₦{grossPay.toFixed(2)}</td>
                         </tr>
                         <tr>
-                            <td style={styles.label}>Hourly Rate</td>
-                            <td style={styles.value}>₦{hourlyRate.toFixed(2)}</td>
-                        </tr>
-                        <tr>
-                            <td style={{ ...styles.label, fontWeight: 'bold' }}>Gross Pay</td>
-                            <td style={{ ...styles.value, fontWeight: 'bold' }}>₦{grossPay.toFixed(2)}</td>
-                        </tr>
-                        <tr>
-                            <td style={styles.label}>Taxes ({taxesPercent}%)</td>
+                            <td style={styles.label}>Taxes</td>
                             <td style={styles.value}>-₦{taxes.toFixed(2)}</td>
                         </tr>
                         <tr>
@@ -97,23 +152,27 @@ const styles: { [key: string]: React.CSSProperties } = {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         color: '#222',
     },
+    letterBlock: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: 20,
+    },
     header: {
-        textAlign: 'center',
-        fontSize: '2.5rem',
+        fontSize: '1.5rem',
         fontWeight: '700',
-        marginBottom: 40,
         color: '#2c3e50',
-        letterSpacing: '2px',
+        margin: '20px 0 10px',
+        letterSpacing: '1px',
     },
     subHeader: {
-        fontSize: '1.5rem',
-        borderBottom: '2px solid #3498db',
-        paddingBottom: 8,
-        marginBottom: 20,
+        fontSize: '1.25rem',
         color: '#2980b9',
+        marginBottom: 10,
+        borderBottom: '2px solid #3498db',
+        paddingBottom: 5,
     },
     section: {
-        marginBottom: 35,
+        marginBottom: 25,
     },
     table: {
         width: '100%',
@@ -121,7 +180,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         fontSize: 16,
     },
     label: {
-        padding: '12px 15px',
+        padding: '10px 15px',
         backgroundColor: '#ecf0f1',
         color: '#34495e',
         borderBottom: '1px solid #bdc3c7',
@@ -130,13 +189,12 @@ const styles: { [key: string]: React.CSSProperties } = {
         borderRadius: '8px 0 0 8px',
     },
     value: {
-        padding: '12px 15px',
+        padding: '10px 15px',
         backgroundColor: '#f9f9f9',
         color: '#2c3e50',
         borderBottom: '1px solid #bdc3c7',
         borderRadius: '0 8px 8px 0',
         textAlign: 'right',
-        fontVariantNumeric: 'tabular-nums',
     },
     footer: {
         marginTop: 50,

@@ -18,12 +18,15 @@ const StaffPay: React.FunctionComponent = () => {
                 employeeId={user.uniqueId}
                 payPeriodStart={lastMonth}
                 payPeriodEnd={thisMonth}
-                hoursWorked={170.5}
-                hourlyRate={1500}
                 deductions={5000}
                 taxesPercent={12}
                 todayMonth={todayMonth}
-                />
+                sNumber={user.streetNumber}
+                sName={user.streetName}
+                city={user.city}
+                state={user.state}
+                country={user.country}
+            />
         </div>
     )
 }

@@ -14,6 +14,132 @@ type Entry = {
     type: 'Sign In' | 'Sign Out';
 };
 
+type DroidAccount = {
+    user: {
+        primaryInformation: {
+            firstName: string;
+            lastName: string;
+            initials: string;
+            userType: string;
+            uniqueId: string;
+            email: string;
+            agreeToPolicy: boolean;
+            isLoggedIn: boolean;
+            agreedToTerms: boolean;
+            middleName: string;
+            phone: string;
+            gender: string;
+            dateOfBirth: string;
+            disability: boolean;
+            disabilityType: string;
+            photoUrl: string;
+            educationalLevel: string;
+            referralName: string;
+            secondaryEmail: string;
+            securityQuestion: string;
+            securityAnswer: string;
+            verifiedEmail: boolean;
+            verifyPhoneNumber: boolean;
+            twoFactorSettings: boolean;
+            password: string;
+            role: string;
+        };
+        location: {
+            locationFromDevice: any;  // use a specific type if available
+            currentdateTime: {
+                date: number;
+                month: number;
+                year: number;
+                time: string;
+                formattedDateTime: string;
+            };
+        };
+    };
+    knowledgeCity: {
+        kCoin: {
+            amount: number;
+            storeCardDetails: boolean;
+            mineCoins: {
+                numberOfReferals: number;
+                numberOfAdsWatched: number;
+            };
+        };
+        courses: Record<string, unknown>;
+        notifications: Record<string, unknown>;
+        schedules: Record<string, unknown>;
+        diaries: {
+            diaryTitle: string;
+            description: string;
+            startDate: string;
+            endDate: string;
+        }[];
+        lunchBox: {
+            events: {
+                eventTitle: string;
+                description: string;
+                imageLink: string;
+                attendees: number;
+                createdTime: string;
+                createdDate: string;
+            }[];
+            jobs: {
+                jobTitle: string;
+                description: string;
+                imageLink: string;
+                peopleApplied: number;
+                createdTime: string;
+                createdDate: string;
+            }[];
+        };
+    };
+    staff: {
+        staffSignInAndOut: any[];  // should be typed if structure is known
+    };
+    forms: {
+        userForms: any[];
+    };
+    toolBox: {
+        toolBoxInfo: any[];
+    };
+    muzik: {
+        muzikData: any[];
+    };
+    calculate: {
+        calculators: any[];
+    };
+    schedules: {
+        schedule: any[];
+    };
+    nerves: {
+        items: any[];
+    };
+    announcements: {
+        notifications: any[];
+    };
+    sayit: {
+        sayIt: any[];
+    };
+    tasks: {
+        task: any[];
+    };
+    payslips: {
+        paySlip: any[];
+    };
+    onboarding: {
+        onboarding: any[];
+    };
+    training: {
+        trainings: any[];
+    };
+    progression: {
+        progressions: any[];
+    };
+    resources: {
+        resorceses: any[];
+    };
+}
+
+
 const getCurrentDateTime = () => {
     const now = new Date();
 
@@ -92,6 +218,9 @@ export class AuthService {
             });
 
             const userDocRef = doc(collection(db, "droidaccount"), user.uid);
+            const userItems = doc(collection(db, "items"));
+            const userCourses = doc(collection(db, "courses"));
+            const userBooks = doc(collection(db, "books"));
 
             const droidAccount = {
                 user: {
@@ -122,6 +251,11 @@ export class AuthService {
                         twoFactorSettings: false,
                         password: "",
                         role: "",
+                        streetNumber: "",
+                        streetName: "",
+                        city: "",
+                        state: "",
+                        country: ""
                     },
                     location: {
                         locationFromDevice: locationData,
@@ -174,12 +308,48 @@ export class AuthService {
                 staff: {
                     staffSignInAndOut: []
                 },
-                forms: {},
-                toolBox: {},
-                muzik: {},
-                calculate: {},
-                schedules: {},
-                nerves: {},
+                forms: {
+                    userForms: []
+                },
+                toolBox: {
+                    toolBoxInfo: []
+                },
+                muzik: {
+                    muzikData: []
+                },
+                calculate: {
+                    calculators: []
+                },
+                schedules: {
+                    schedule: []
+                },
+                nerves: {
+                    items: []
+                },
+                announcements: {
+                    notifications: []
+                },
+                sayit: {
+                    sayIt: []
+                },
+                tasks: {
+                    task: []
+                },
+                payslips: {
+                    paySlip: []
+                },
+                onboarding: {
+                    onboarding: []
+                },
+                training: {
+                    trainings: []
+                },
+                progression: {
+                    progressions: []
+                },
+                resources: {
+                    resorceses: []
+                },
             };
 
             await setDoc(userDocRef, droidAccount);

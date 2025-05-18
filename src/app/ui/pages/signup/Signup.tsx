@@ -11,17 +11,15 @@ import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
 
 interface FormData {
-  userType: string;
-  uniqueId: string;
   firstName: string;
   lastName: string;
   middleName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  agreeToPolicy: boolean;
   initials: string;
+  userType: string;
+  uniqueId: string;
+  email: string;
   phone: string;
+  agreeToPolicy: boolean;
   isLoggedIn: boolean;
   gender: string;
   dateOfBirth: string;
@@ -37,6 +35,14 @@ interface FormData {
   verifyPhoneNumber: boolean;
   agreedToTerms: boolean;
   twoFactorSettings: boolean;
+  password: string;
+  confirmPassword: string;
+  role?: string; // ✅ Optional role field
+  streetNumber: string;
+  streetName: string;
+  city: string;
+  state: string;
+  country: string;
 }
 
 interface FormErrors {
@@ -54,33 +60,41 @@ const SignUp: React.FunctionComponent = () => {
   const [text, setText] = useState<any>("Sign Up");
   const userLocation: LocationState = useSelector((state: RootState) => state.location)
   const [formData, setFormData] = useState<FormData>({
-    middleName: '',
-    userType: '',
-    uniqueId: '',
     firstName: '',
     lastName: '',
+    middleName: '',
+    initials: '',
+    userType: '',
+    uniqueId: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    phone: '',
     agreeToPolicy: false,
-    initials: "",
-    phone: "",
     isLoggedIn: false,
-    gender: "",
-    dateOfBirth: "",
+    gender: '',
+    dateOfBirth: '',
     disability: false,
-    disabilityType: "",
-    photoUrl: "",
-    educationalLevel: "",
-    referralName: "",
-    secondaryEmail: "",
-    securityQuestion: "",
-    securityAnswer: "",
+    disabilityType: '',
+    photoUrl: '',
+    educationalLevel: '',
+    referralName: '',
+    secondaryEmail: '',
+    securityQuestion: '',
+    securityAnswer: '',
     verifiedEmail: false,
     verifyPhoneNumber: false,
     agreedToTerms: false,
     twoFactorSettings: false,
+    password: '',
+    confirmPassword: '',
+    role: undefined, // optional field
+    streetNumber: '',
+    streetName: '',
+    city: '',
+    state: '',
+    country: '',
   });
+
+
   const SERVICE_ID = "service_o1jbklr";
   const TEMPLATE_ID = "template_p8h58ur";
   const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";

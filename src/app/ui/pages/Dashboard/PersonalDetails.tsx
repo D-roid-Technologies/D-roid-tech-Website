@@ -318,6 +318,11 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 { label: 'Phone', name: 'phone' },
                                 { label: 'Gender', name: 'gender' },
                                 { label: 'Date of Birth', name: 'dateOfBirth' },
+                                { label: 'Street Number', name: 'streetNumber' },
+                                { label: 'Street Name', name: 'streetName' },
+                                { label: 'City', name: 'city' },
+                                { label: 'State', name: 'state' },
+                                { label: 'Country', name: 'country' },
                             ].map(field => (
                                 <input
                                     key={field.name}

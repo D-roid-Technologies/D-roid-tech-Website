@@ -14,6 +14,7 @@ import AllUsers from './users/AllUsers';
 import { authService } from '../../../redux/configuration/auth.service';
 import SignInOut from './SignInOut';
 import StaffPay from './StaffPay';
+import WelcomePage from './WelcomePage';
 
 const DashboardContent: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -112,40 +113,8 @@ const DashboardContent: React.FunctionComponent = () => {
       return (
         <>
           {/* Staff Tasks */}
-          <Section title="Tasks">
-            {tasks.map((task) => (
-              <div key={task.id} style={{ marginBottom: '10px' }}>
-                <p style={{ fontWeight: '600' }}>{task.name}</p>
-                <p style={{ color: getTaskColor(task.status) }}>{task.status}</p>
-              </div>
-            ))}
-          </Section>
-
-          {/* Announcements */}
-          <Section title="Announcements">
-            {announcements.map((announcement) => (
-              <div key={announcement.id} style={{ marginBottom: '15px' }}>
-                <h4 style={{ color: '#071D6A' }}>{announcement.title}</h4>
-                <p>{announcement.message}</p>
-              </div>
-            ))}
-          </Section>
-
-          {/* Staff Schedule */}
-          <Section title="Schedules">
-            <div>
-              <h4>Working Days:</h4>
-              <p>{schedule.workingDays.join(', ')}</p>
-            </div>
-            <div>
-              <h4>Leave:</h4>
-              <div>
-                <strong>Approved:</strong> {schedule.leave.approved.join(', ')}
-              </div>
-              <div>
-                <strong>Awaiting:</strong> {schedule.leave.awaiting.join(', ')}
-              </div>
-            </div>
+          <Section title='Welcome to your D’roid One Account'>
+            <WelcomePage />
           </Section>
         </>
       );
