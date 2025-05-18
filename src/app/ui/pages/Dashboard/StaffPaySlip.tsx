@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface PaySlipProps {
     employeeName: string;
@@ -45,19 +45,62 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
     deductions,
     country,
 }) => {
-    const grossPay = 87016.0;
-    const taxes = 1633.33;
-    const netPay = 60366.67;
 
-    const { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd } =
-        getCurrentDateInfo();
+    const { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd } = getCurrentDateInfo();
+
+    const [showGenerateButton, setShowGenerateButton] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const today = new Date();
+        if (today.getDate() === 8) {
+            setShowGenerateButton(true);
+        }
+    }, []);
+
+    const handleGenerateClick = async () => {
+        setLoading(true);
+        setMessage('');
+        try {
+            // await generateAndSendPayslips();
+            setMessage('Payslips generated and emails sent successfully.');
+        } catch (error) {
+            console.error(error);
+            setMessage('Error generating payslips. Please try again.');
+        }
+        setLoading(false);
+    };
+
+    const salaryInfo = {
+        monthPaid: formatMonth(payPeriodStart),
+        monthOfPay: formatMonth(payPeriodEnd),
+        grossPay: 87016.00,
+        taxes: 1633.33,
+        netPay: 60366.67,
+        deductions: {
+            totalDeductions: deductions,
+            meetingAbsence: 0.00,
+            taskCompletion: 0.00,
+            signInAndOut: 0.00,
+            others: 0.00
+        },
+        additionalPayments: {
+            extraDaysWorked: 0,
+            pension: 0.00,
+            healthInsurance: 0.00,
+            miscellaneous: 0.00,
+            transportation: 0.00,
+            hotelAccommodation: 0.00
+        }
+    }
 
     return (
         <div style={styles.container}>
             <div style={styles.letterBlock}>
                 <div>
                     <p><strong>{employeeName}</strong></p>
-                    <p>{sNumber} {sName}</p>
+                    <p>{sNumber}, {sName}</p>
                     <p>{city}, {state} State</p>
                     <p>{country}</p>
                 </div>
@@ -87,26 +130,23 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
             </section>
 
             <section style={styles.section}>
-                <h3 style={styles.subHeader}>Deductions</h3>
+                <h3 style={styles.subHeader}>Deductions ₦{salaryInfo.deductions.totalDeductions.toFixed(2)}</h3>
                 <ul>
-                    <li>Late to meetings: ₦0.00</li>
-                    <li>Absent from meetings: ₦0.00</li>
-                    <li>Wrong Verbal Communication: ₦0.00</li>
-                    <li>Completion of Tasks: ₦0.00</li>
-                    <li>Absent in Signing in: ₦0.00</li>
-                    <li>Absent in Signing out: ₦0.00</li>
+                    <li>Absent from meetings: {salaryInfo.deductions.meetingAbsence.toFixed(2)}</li>
+                    <li>Completion of Tasks: {salaryInfo.deductions.taskCompletion.toFixed(2)}</li>
+                    <li>Absent in Signing in and Out: {salaryInfo.deductions.signInAndOut.toFixed(2)}</li>
                 </ul>
             </section>
 
             <section style={styles.section}>
-                <h3 style={styles.subHeader}>Additional Payments</h3>
+                <h3 style={styles.subHeader}>Additional Payments ₦{salaryInfo.additionalPayments.healthInsurance + salaryInfo.additionalPayments.hotelAccommodation + salaryInfo.additionalPayments.miscellaneous + salaryInfo.additionalPayments.healthInsurance + salaryInfo.additionalPayments.pension + salaryInfo.additionalPayments.transportation}</h3>
                 <ul>
-                    <li>Extra days worked: 0</li>
-                    <li>Pension: ₦0.00</li>
-                    <li>Health Insurance: ₦0.00</li>
-                    <li>Miscellaneous: ₦0.00</li>
-                    <li>Transportation: ₦0.00</li>
-                    <li>Hotel Accommodation: ₦0.00</li>
+                    <li>Extra days worked: {salaryInfo.additionalPayments.extraDaysWorked}</li>
+                    <li>Pension: {salaryInfo.additionalPayments.pension.toFixed(2)}</li>
+                    <li>Health Insurance: {salaryInfo.additionalPayments.healthInsurance.toFixed(2)}</li>
+                    <li>Miscellaneous: {salaryInfo.additionalPayments.miscellaneous.toFixed(2)}</li>
+                    <li>Transportation: {salaryInfo.additionalPayments.transportation.toFixed(2)}</li>
+                    <li>Hotel Accommodation: {salaryInfo.additionalPayments.hotelAccommodation.toFixed(2)}</li>
                 </ul>
             </section>
 
@@ -116,23 +156,45 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
                     <tbody>
                         <tr>
                             <td style={styles.label}>Gross Pay</td>
-                            <td style={styles.value}>₦{grossPay.toFixed(2)}</td>
+                            <td style={styles.value}>₦{salaryInfo.grossPay.toFixed(2)}</td>
                         </tr>
                         <tr>
                             <td style={styles.label}>Taxes</td>
-                            <td style={styles.value}>-₦{taxes.toFixed(2)}</td>
+                            <td style={styles.value}>-₦{salaryInfo.taxes.toFixed(2)}</td>
                         </tr>
                         <tr>
                             <td style={styles.label}>Deductions</td>
-                            <td style={styles.value}>-₦{deductions.toFixed(2)}</td>
+                            <td style={styles.value}>-₦{salaryInfo.deductions.totalDeductions.toFixed(2)}</td>
                         </tr>
                         <tr style={{ borderTop: '3px solid #222' }}>
                             <td style={{ ...styles.label, fontWeight: 'bold', fontSize: 18 }}>Net Pay</td>
-                            <td style={{ ...styles.value, fontWeight: 'bold', fontSize: 18 }}>₦{netPay.toFixed(2)}</td>
+                            <td style={{ ...styles.value, fontWeight: 'bold', fontSize: 18 }}>₦{salaryInfo.netPay.toFixed(2)}</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
+
+            {/* Button to generate payslips, shown only on the 8th */}
+            {showGenerateButton && (
+                <div style={{ marginTop: 30, textAlign: 'center' }}>
+                    <button
+                        // onClick={handleGenerateClick}
+                        disabled={loading}
+                        style={{
+                            padding: '12px 25px',
+                            backgroundColor: '#2980b9',
+                            color: '#fff',
+                            fontSize: 16,
+                            border: 'none',
+                            borderRadius: 6,
+                            cursor: loading ? 'not-allowed' : 'pointer',
+                        }}
+                    >
+                        {loading ? 'Generating Payslips...' : 'Generate Payslips'}
+                    </button>
+                    {message && <p style={{ marginTop: 15 }}>{message}</p>}
+                </div>
+            )}
 
             <p style={styles.footer}>
                 This is a computer-generated pay slip and does not require a signature.

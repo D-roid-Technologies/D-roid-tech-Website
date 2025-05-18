@@ -21,7 +21,10 @@
     "framer-motion": "^12.9.7",
     "gsap": "^3.13.0",
     "keen-slider": "^6.8.6",
+    "node-cron": "^4.0.5",
+    "nodemailer": "^7.0.3",
     "postcss-cli": "^11.0.0",
+    "puppeteer": "^24.8.2",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
@@ -68,6 +71,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/aos": "^3.0.7",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^18.3.11",
     "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-dom": "^18.3.0",
