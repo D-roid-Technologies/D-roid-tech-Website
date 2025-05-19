@@ -72,7 +72,7 @@ const technologies = [
       "Robust data solutions with MySQL, MongoDB, Firebase, and scalable cloud architecture.",
     imageSrc:
       "https://img.freepik.com/free-vector/server-room-cloud-storage-icon-datacenter-database-concept-data-exchange-process_39422-556.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
-    url: "",
+    url: "/software-development/database-and-cloud",
   },
   {
     title: "Cross-Platform Apps",
@@ -80,7 +80,7 @@ const technologies = [
       "React Native & hybrid mobile solutions to reach iOS and Android users seamlessly.",
     imageSrc:
       "https://img.freepik.com/free-vector/gradient-ui-ux-background_23-2149052117.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
-    url: "",
+    url: "/software-development/cross-platform-apps",
   },
 ];
 
@@ -172,7 +172,21 @@ const SoftwareDevelopmentPage: React.FC = () => {
               title={phase.title}
               description={phase.description}
               icon={phase.icon}
-              url="{tech.url}"
+              // url="{tech.url}"
+              onClick={() => {
+                store.dispatch(updateModal(true));
+                store.dispatch(
+                  updateModalContent({
+                    appTitle: phase.title,
+                    appBody: (
+                      <>
+                        <span>{phase.description}</span>
+                        {/* <ContactSection /> */}
+                      </>
+                    ),
+                  })
+                );
+              }}
               className="process-card"
             />
           ))}

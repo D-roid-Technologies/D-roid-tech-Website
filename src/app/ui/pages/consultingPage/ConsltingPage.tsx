@@ -10,6 +10,11 @@ import {
 } from "react-icons/fa";
 import { FaBrain } from "react-icons/fa6";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
+import {
+  updateModal,
+  updateModalContent,
+} from "../../../redux/slices/AppEntrySlice";
+import { store } from "../../../redux/Store";
 
 const offer = [
   {
@@ -62,12 +67,14 @@ const ConsultingPage: React.FC = () => {
 
       {/* Hero Section */}
       <div className="software-main">
-        <div className="software-main-content">
-          <h1 className="software-header"> Tech Consulting Services</h1>
-          <p>
-            Drive innovation, solve complex challenges, and build smarter with
-            strategic guidance from D’roid Technologies.
-          </p>
+        <div className="wrapper">
+          <div className="software-main-content">
+            <h1 className="software-header"> Tech Consulting Services</h1>
+            <p>
+              Drive innovation, solve complex challenges, and build smarter with
+              strategic guidance from D’roid Technologies.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -86,7 +93,21 @@ const ConsultingPage: React.FC = () => {
               title={phase.title}
               description={phase.description}
               icon={phase.icon}
-              url="{phase.url}"
+              // url="{phase.url}"
+              onClick={() => {
+                store.dispatch(updateModal(true));
+                store.dispatch(
+                  updateModalContent({
+                    appTitle: phase.title,
+                    appBody: (
+                      <>
+                        <span>{phase.description}</span>
+                        {/* <ContactSection /> */}
+                      </>
+                    ),
+                  })
+                );
+              }}
               className="process-card"
             />
           ))}

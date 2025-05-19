@@ -226,7 +226,7 @@ const FrontendDevelopmentPage: React.FC = () => {
         <div className="soft-dev-content">
           {ourProcess.map((phase, index) => (
             <CoreValueCardTwo
-            //   pressable={true}
+              //   pressable={true}
               key={index}
               title={phase.title}
               description={phase.description}
@@ -259,7 +259,7 @@ const FrontendDevelopmentPage: React.FC = () => {
         >
           Pricing
         </span>
-        <div className="soft-dev-content">
+        <div className="group">
           {pricingPlans.map((plan, idx) => (
             <PricingCard
               key={idx}
