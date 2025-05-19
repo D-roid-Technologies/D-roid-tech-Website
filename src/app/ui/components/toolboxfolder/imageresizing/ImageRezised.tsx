@@ -1,6 +1,7 @@
 // ImageResizer.tsx
 import React, { useState, useRef, useCallback, ChangeEvent } from "react";
 import "../imageresizing/ImageRezised.css";
+import { IoMdImages } from "react-icons/io";
 
 interface ResizedImage {
   width: number;
@@ -289,6 +290,8 @@ const ImageRezised: React.FC<ImageResizerProps> = ({
     document.body.removeChild(link);
   };
 
+  const ImageIcon = IoMdImages as unknown as React.FC;
+
   return (
     <div className="image-resizer">
       <h2>Image Resizer</h2>
@@ -313,7 +316,10 @@ const ImageRezised: React.FC<ImageResizerProps> = ({
 
         {!originalImage && (
           <div className="drop-message">
-            <div className="icon">📁</div>
+            <div className="icon">
+              {/* <IoMdImages /> */}
+              <ImageIcon />
+            </div>
             <p>Drag & drop an image here or click to browse</p>
             <p className="supported-formats">Supports JPG, PNG, GIF, WebP</p>
           </div>

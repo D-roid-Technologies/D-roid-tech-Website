@@ -63,6 +63,7 @@ import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescri
 import Partners from "../ui/components/partners/Partners";
 import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
 import ImageCompress from "../ui/components/toolboxfolder/imagecompress/ImageCompress";
+import CropTool from "../ui/pages/toolboxpage/croptool/CropTool";
 
 // Define an enum for all route paths
 
@@ -91,6 +92,7 @@ export enum RoutePaths {
   WordCounter = "/toolbox/wordconter",
   ToolImageResizer = "/toolbox/imageresizing",
   ImageCompressor = "/toolbox/imagecompressor",
+  CropTool = "/toolbox/croptool",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -208,6 +210,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.ColorPicker} element={<ColorPicker />} />
       <Route path={RoutePaths.WordCounter} element={<WordCounter />} />
       <Route path={RoutePaths.ImageCompressor} element={<ImageCompress />} />
+      <Route path={RoutePaths.CropTool} element={<CropTool />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
