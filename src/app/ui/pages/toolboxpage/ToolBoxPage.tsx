@@ -34,7 +34,7 @@ const tools = [
     description: "Reduce file size while maintaining quality",
     icon: FaImages({ size: 24 }),
     category: "Image Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/imagecompressor",
   },
   {
     title: "Crop Tool",

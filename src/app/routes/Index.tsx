@@ -62,6 +62,7 @@ import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/Ba
 import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescriptionPage";
 import Partners from "../ui/components/partners/Partners";
 import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
+import ImageCompress from "../ui/components/toolboxfolder/imagecompress/ImageCompress";
 
 // Define an enum for all route paths
 
@@ -89,6 +90,7 @@ export enum RoutePaths {
   ColorPicker = "/toolbox/colorPicker",
   WordCounter = "/toolbox/wordconter",
   ToolImageResizer = "/toolbox/imageresizing",
+  ImageCompressor = "/toolbox/imagecompressor",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -143,8 +145,8 @@ export enum RoutePaths {
   ToolColorConverter = "ToolColorConverter", // Existing Routes
 
   // Software Developemnets Pages
-  FrontendDevelopmentPage = '/software-development/front-end',
-  BackendDevelopment = '/software-development/back-end'
+  FrontendDevelopmentPage = "/software-development/front-end",
+  BackendDevelopment = "/software-development/back-end",
 }
 
 interface DropdownItem {
@@ -205,6 +207,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.ColorConverter} element={<ColorConverter />} />
       <Route path={RoutePaths.ColorPicker} element={<ColorPicker />} />
       <Route path={RoutePaths.WordCounter} element={<WordCounter />} />
+      <Route path={RoutePaths.ImageCompressor} element={<ImageCompress />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
@@ -225,7 +228,10 @@ const Index: React.FunctionComponent = () => {
       {/* Existing Routes */}
       <Route path={RoutePaths.Contact} element={<Contact />} />
       <Route path={RoutePaths.TrainingPage} element={<Training />} />
-      <Route path={RoutePaths.TrainingDescriptionPage} element={<TrainingDescriptionPage />} />
+      <Route
+        path={RoutePaths.TrainingDescriptionPage}
+        element={<TrainingDescriptionPage />}
+      />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
       <Route path={RoutePaths.Staff} element={<Staff />} />
@@ -261,8 +267,14 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
       <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
-      <Route path={RoutePaths.FrontendDevelopmentPage} element={<FrontendDevelopmentPage />} />
-      <Route path={RoutePaths.BackendDevelopment} element={<BackendDevelopment />} />
+      <Route
+        path={RoutePaths.FrontendDevelopmentPage}
+        element={<FrontendDevelopmentPage />}
+      />
+      <Route
+        path={RoutePaths.BackendDevelopment}
+        element={<BackendDevelopment />}
+      />
       {/* Private Routes */}
       <Route
         path={RoutePaths.DashBoard}
