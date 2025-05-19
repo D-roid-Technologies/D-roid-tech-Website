@@ -62,6 +62,9 @@ import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/Ba
 import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescriptionPage";
 import Partners from "../ui/components/partners/Partners";
 import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
+import DatabaseAndCloud from "../ui/pages/softwareDevelopment/SoftwarePages/DatabaseAndCloud";
+import CrossplatformApp from "../ui/pages/softwareDevelopment/SoftwarePages/CrossplatformApp";
+import TaskSchedulerPage from "../ui/pages/schedule/TaskSchedulerPage";
 
 // Define an enum for all route paths
 
@@ -92,6 +95,9 @@ export enum RoutePaths {
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
+
+  //
+  TaskScheduler = "/schedules/task-scheduler",
 
   // Parent "More" route
   More = "/more",
@@ -143,8 +149,10 @@ export enum RoutePaths {
   ToolColorConverter = "ToolColorConverter", // Existing Routes
 
   // Software Developemnets Pages
-  FrontendDevelopmentPage = '/software-development/front-end',
-  BackendDevelopment = '/software-development/back-end'
+  FrontendDevelopmentPage = "/software-development/front-end",
+  BackendDevelopment = "/software-development/back-end",
+  CrossPlatformApps = "/software-development/cross-platform-apps",
+  DatabaseAndCloud = "/software-development/database-and-cloud",
 }
 
 interface DropdownItem {
@@ -212,6 +220,10 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.ScientificCalculate}
         element={<ScienceCalculate />}
       />
+      <Route
+        path={RoutePaths.TaskScheduler}
+        element={<TaskSchedulerPage />}
+      />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       <Route path={RoutePaths.Muzik} element={<Muzik />} />
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
@@ -225,7 +237,10 @@ const Index: React.FunctionComponent = () => {
       {/* Existing Routes */}
       <Route path={RoutePaths.Contact} element={<Contact />} />
       <Route path={RoutePaths.TrainingPage} element={<Training />} />
-      <Route path={RoutePaths.TrainingDescriptionPage} element={<TrainingDescriptionPage />} />
+      <Route
+        path={RoutePaths.TrainingDescriptionPage}
+        element={<TrainingDescriptionPage />}
+      />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
       <Route path={RoutePaths.Staff} element={<Staff />} />
@@ -261,8 +276,27 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
       <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
-      <Route path={RoutePaths.FrontendDevelopmentPage} element={<FrontendDevelopmentPage />} />
-      <Route path={RoutePaths.BackendDevelopment} element={<BackendDevelopment />} />
+      <Route
+        path={RoutePaths.FrontendDevelopmentPage}
+        element={<FrontendDevelopmentPage />}
+      />
+      <Route
+        path={RoutePaths.BackendDevelopment}
+        element={<BackendDevelopment />}
+      />
+      <Route
+        path={RoutePaths.BackendDevelopment}
+        element={<BackendDevelopment />}
+      />
+      <Route
+        path={RoutePaths.DatabaseAndCloud}
+        element={<DatabaseAndCloud />}
+      />
+      <Route
+        path={RoutePaths.CrossPlatformApps}
+        element={<CrossplatformApp />}
+      />
+
       {/* Private Routes */}
       <Route
         path={RoutePaths.DashBoard}

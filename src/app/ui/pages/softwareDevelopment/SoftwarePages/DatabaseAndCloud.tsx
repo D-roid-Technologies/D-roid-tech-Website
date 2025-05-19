@@ -15,7 +15,7 @@ import {
 } from "../../../../redux/slices/AppEntrySlice";
 import ContactSection from "../../contact/ContactSection/ContactSection";
 
-const BackendDevelopment: React.FC = () => {
+const DatabaseAndCloud: React.FC = () => {
   const navigate = useNavigate();
 
   const devPhases = [
@@ -167,7 +167,7 @@ const BackendDevelopment: React.FC = () => {
                 ← Back
               </button>
             </div>
-            <h1 className="software-header">Back-End Development Services</h1>
+            <h1 className="software-header">Database And Cloud Services</h1>
             <p>
               We design and develop modern, responsive, and scalable front-end
               interfaces tailored to your users' needs.
@@ -310,4 +310,4 @@ const BackendDevelopment: React.FC = () => {
   );
 };
 
-export default BackendDevelopment;
+export default DatabaseAndCloud;
