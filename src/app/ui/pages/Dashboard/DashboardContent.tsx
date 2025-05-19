@@ -15,6 +15,13 @@ import { authService } from '../../../redux/configuration/auth.service';
 import SignInOut from './SignInOut';
 import StaffPay from './StaffPay';
 import WelcomePage from './WelcomePage';
+import Onboarding from './Onboarding';
+import Tasks from './Tasks';
+import Announcements from './Announcements';
+import SayIt from './SayIt';
+import Training from '../training/Training';
+import Progression from './Progressions';
+import Trainings from './Trainings';
 
 const DashboardContent: React.FunctionComponent = () => {
   const navigate = useNavigate();
@@ -278,29 +285,20 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Announcements':
         return (
           <Section title="Announcements">
-            {announcements.map((announcement) => (
-              <div key={announcement.id} style={{ marginBottom: '15px' }}>
-                <h4 style={{ color: '#071D6A' }}>{announcement.title}</h4>
-                <p>{announcement.message}</p>
-              </div>
-            ))}
+            <Announcements />
           </Section>
         );
       case 'Say It':
         return (
           <Section title="Say It">
             <p>Share your thoughts and feedback here.</p>
+            <SayIt />
           </Section>
         );
       case 'Tasks':
         return (
           <Section title="Tasks">
-            {tasks.map((task) => (
-              <div key={task.id} style={{ marginBottom: '10px' }}>
-                <p style={{ fontWeight: '600' }}>{task.name}</p>
-                <p style={{ color: getTaskColor(task.status) }}>{task.status}</p>
-              </div>
-            ))}
+            <Tasks />
           </Section>
         );
       case 'Payslips':
@@ -314,18 +312,21 @@ const DashboardContent: React.FunctionComponent = () => {
         return (
           <Section title="Onboarding">
             <p>Complete your onboarding tasks.</p>
+            <Onboarding />
           </Section>
         );
       case 'Training':
         return (
           <Section title="Training">
             <p>Access your training materials here.</p>
+            <Trainings />
           </Section>
         );
       case 'Progressions':
         return (
           <Section title="Progressions">
             <p>Track your professional progress here.</p>
+            <Progression />
           </Section>
         );
       case 'Resource':
