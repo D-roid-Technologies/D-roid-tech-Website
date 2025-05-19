@@ -68,7 +68,7 @@ const tools = [
     description: "Beautify and validate JSON code",
     icon: LuFileJson({ size: 24 }),
     category: "Developer Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/jsonformatter",
   },
   {
     title: "UUID Generator",
