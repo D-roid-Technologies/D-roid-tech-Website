@@ -75,14 +75,14 @@ const tools = [
     description: "Generate unique identifiers for development",
     icon: GiPowerGenerator({ size: 24 }),
     category: "Developer Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/uuidgenerator",
   },
   {
     title: "Base64 Encoder/Decoder",
     description: "Encode or decode base64 strings",
     icon: SiLetsencrypt({ size: 24 }),
     category: "Developer Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/encoderbasetool",
   },
 ];
 
