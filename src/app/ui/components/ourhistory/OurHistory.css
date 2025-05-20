@@ -2,7 +2,8 @@
   /* max-width: 1250px; */
   margin: 0 auto;
   padding: 4rem 2rem;
-  background: linear-gradient(to bottom right, #0a1232, #000d41);
+  background-color: #030617;
+  /* background: linear-gradient(to bottom right, #0a1232, #000d41); */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   color: #ffffff;
   font-family: "Inter", sans-serif;

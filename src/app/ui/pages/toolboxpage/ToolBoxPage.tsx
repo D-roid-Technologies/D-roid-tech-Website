@@ -18,8 +18,7 @@ const tools = [
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
     icon: FaCompressArrowsAlt({ size: 24 }),
     category: "Image Tools",
-    // link: RoutePaths.ToolImageResizer,
-    link: "/calculator/scientific",
+    link: "/toolbox/imageresizing",
   },
   {
     title: "Color Converter",
@@ -34,14 +33,14 @@ const tools = [
     description: "Reduce file size while maintaining quality",
     icon: FaImages({ size: 24 }),
     category: "Image Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/imagecompressor",
   },
   {
     title: "Crop Tool",
     description: "Trim or cut images to focus on specific parts",
     icon: BiSolidCrop({ size: 24 }),
     category: "Image Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/croptool",
   },
   {
     title: "Color Picker",
@@ -69,7 +68,7 @@ const tools = [
     description: "Beautify and validate JSON code",
     icon: LuFileJson({ size: 24 }),
     category: "Developer Tools",
-    link: "/calculator/scientific",
+    link: "/toolbox/jsonformatter",
   },
   {
     title: "UUID Generator",

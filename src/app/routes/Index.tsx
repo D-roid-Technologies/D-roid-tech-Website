@@ -62,6 +62,9 @@ import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/Ba
 import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescriptionPage";
 import Partners from "../ui/components/partners/Partners";
 import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
+import ImageCompress from "../ui/components/toolboxfolder/imagecompress/ImageCompress";
+import CropTool from "../ui/pages/toolboxpage/croptool/CropTool";
+import JsonFormating from "../ui/pages/toolboxpage/jsonformat/JsonFormating";
 import DatabaseAndCloud from "../ui/pages/softwareDevelopment/SoftwarePages/DatabaseAndCloud";
 import CrossplatformApp from "../ui/pages/softwareDevelopment/SoftwarePages/CrossplatformApp";
 import TaskSchedulerPage from "../ui/pages/schedule/TaskSchedulerPage";
@@ -92,6 +95,9 @@ export enum RoutePaths {
   ColorPicker = "/toolbox/colorPicker",
   WordCounter = "/toolbox/wordconter",
   ToolImageResizer = "/toolbox/imageresizing",
+  ImageCompressor = "/toolbox/imagecompressor",
+  CropTool = "/toolbox/croptool",
+  JsonFomat = "/toolbox/jsonformatter",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -213,6 +219,9 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.ColorConverter} element={<ColorConverter />} />
       <Route path={RoutePaths.ColorPicker} element={<ColorPicker />} />
       <Route path={RoutePaths.WordCounter} element={<WordCounter />} />
+      <Route path={RoutePaths.ImageCompressor} element={<ImageCompress />} />
+      <Route path={RoutePaths.CropTool} element={<CropTool />} />
+      <Route path={RoutePaths.JsonFomat} element={<JsonFormating />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
@@ -220,10 +229,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.ScientificCalculate}
         element={<ScienceCalculate />}
       />
-      <Route
-        path={RoutePaths.TaskScheduler}
-        element={<TaskSchedulerPage />}
-      />
+      <Route path={RoutePaths.TaskScheduler} element={<TaskSchedulerPage />} />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       <Route path={RoutePaths.Muzik} element={<Muzik />} />
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
