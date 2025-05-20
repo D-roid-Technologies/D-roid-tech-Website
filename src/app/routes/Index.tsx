@@ -68,6 +68,8 @@ import JsonFormating from "../ui/pages/toolboxpage/jsonformat/JsonFormating";
 import DatabaseAndCloud from "../ui/pages/softwareDevelopment/SoftwarePages/DatabaseAndCloud";
 import CrossplatformApp from "../ui/pages/softwareDevelopment/SoftwarePages/CrossplatformApp";
 import TaskSchedulerPage from "../ui/pages/schedule/TaskSchedulerPage";
+import UUIDGenerator from "../ui/pages/toolboxpage/uuidgenerator/UuidGenerator";
+import Base64Tool from "../ui/pages/toolboxpage/Encoder/Encoder";
 
 // Define an enum for all route paths
 
@@ -98,6 +100,8 @@ export enum RoutePaths {
   ImageCompressor = "/toolbox/imagecompressor",
   CropTool = "/toolbox/croptool",
   JsonFomat = "/toolbox/jsonformatter",
+  UuidGenerator = "/toolbox/uuidgenerator",
+  Encoder = "/toolbox/encoderbasetool",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -222,6 +226,8 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.ImageCompressor} element={<ImageCompress />} />
       <Route path={RoutePaths.CropTool} element={<CropTool />} />
       <Route path={RoutePaths.JsonFomat} element={<JsonFormating />} />
+      <Route path={RoutePaths.UuidGenerator} element={<UUIDGenerator />} />
+      <Route path={RoutePaths.Encoder} element={<Base64Tool />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
