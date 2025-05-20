@@ -65,6 +65,9 @@ import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
 import ImageCompress from "../ui/components/toolboxfolder/imagecompress/ImageCompress";
 import CropTool from "../ui/pages/toolboxpage/croptool/CropTool";
 import JsonFormating from "../ui/pages/toolboxpage/jsonformat/JsonFormating";
+import DatabaseAndCloud from "../ui/pages/softwareDevelopment/SoftwarePages/DatabaseAndCloud";
+import CrossplatformApp from "../ui/pages/softwareDevelopment/SoftwarePages/CrossplatformApp";
+import TaskSchedulerPage from "../ui/pages/schedule/TaskSchedulerPage";
 
 // Define an enum for all route paths
 
@@ -98,6 +101,9 @@ export enum RoutePaths {
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
+
+  //
+  TaskScheduler = "/schedules/task-scheduler",
 
   // Parent "More" route
   More = "/more",
@@ -151,6 +157,8 @@ export enum RoutePaths {
   // Software Developemnets Pages
   FrontendDevelopmentPage = "/software-development/front-end",
   BackendDevelopment = "/software-development/back-end",
+  CrossPlatformApps = "/software-development/cross-platform-apps",
+  DatabaseAndCloud = "/software-development/database-and-cloud",
 }
 
 interface DropdownItem {
@@ -221,6 +229,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.ScientificCalculate}
         element={<ScienceCalculate />}
       />
+      <Route path={RoutePaths.TaskScheduler} element={<TaskSchedulerPage />} />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       <Route path={RoutePaths.Muzik} element={<Muzik />} />
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
@@ -281,6 +290,19 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.BackendDevelopment}
         element={<BackendDevelopment />}
       />
+      <Route
+        path={RoutePaths.BackendDevelopment}
+        element={<BackendDevelopment />}
+      />
+      <Route
+        path={RoutePaths.DatabaseAndCloud}
+        element={<DatabaseAndCloud />}
+      />
+      <Route
+        path={RoutePaths.CrossPlatformApps}
+        element={<CrossplatformApp />}
+      />
+
       {/* Private Routes */}
       <Route
         path={RoutePaths.DashBoard}
