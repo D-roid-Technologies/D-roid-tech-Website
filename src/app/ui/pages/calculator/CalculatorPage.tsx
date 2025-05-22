@@ -12,14 +12,15 @@ const CalculatorPage = () => {
       description:
         "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
       icon: FaCalculator({ size: 24 }),
-      link: RoutePaths.ScientificCalculate,
+      // link: RoutePaths.ScientificCalculate,
+      link: "/calculators/sciencecalculate",
     },
     {
       title: "BMI Calculator",
       description:
         "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
       icon: GiCalculator({ size: 24 }),
-      link: "/calculator/scientific",
+      link: "/calculators/bmicalcute",
     },
   ];
   return (

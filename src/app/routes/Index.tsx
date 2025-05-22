@@ -70,6 +70,7 @@ import CrossplatformApp from "../ui/pages/softwareDevelopment/SoftwarePages/Cros
 import TaskSchedulerPage from "../ui/pages/schedule/TaskSchedulerPage";
 import UUIDGenerator from "../ui/pages/toolboxpage/uuidgenerator/UuidGenerator";
 import Base64Tool from "../ui/pages/toolboxpage/Encoder/Encoder";
+import BMICalculator from "../ui/pages/calculator/sciencecalculate/bmicalculator/BMICalculator";
 
 // Define an enum for all route paths
 
@@ -105,6 +106,7 @@ export enum RoutePaths {
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
+  BMICalculator = "/calculators/bmicalcute",
 
   //
   TaskScheduler = "/schedules/task-scheduler",
@@ -235,6 +237,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.ScientificCalculate}
         element={<ScienceCalculate />}
       />
+      <Route path={RoutePaths.BMICalculator} element={<BMICalculator />} />
       <Route path={RoutePaths.TaskScheduler} element={<TaskSchedulerPage />} />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       <Route path={RoutePaths.Muzik} element={<Muzik />} />
