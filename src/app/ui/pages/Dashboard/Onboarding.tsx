@@ -3,12 +3,16 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/Store';
 import { UserType } from '../../../utils/Types';
 import DocumentUploadUI from './DocumentUploadUI';
+import Leave from './Leave';
 import PreferencesUI from './PreferencesUI';
 
-const onboardingSteps = ['Personal Info', 'Bank Info', 'Documents', 'Preferences'];
+const onboardingSteps = ['Personal Info', 'Bank Info', 'Documents', 'Leave'];
 
 const Onboarding: React.FC = () => {
   const userDetails = useSelector((state: RootState) => state.user);
+  const staffGrossPay = useSelector((state: RootState) => state.SignInO.staffGrossPay);
+  const staffPosition = useSelector((state: RootState) => state.SignInO.staffPosition);
+  const staffTax = useSelector((state: RootState) => state.SignInO.staffTax);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<UserType | null>(null);
 
@@ -29,29 +33,8 @@ const Onboarding: React.FC = () => {
       case 0:
         return (
           <>
-            <h2 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem' }}>Personal Information</h2>
-            {['firstName', 'lastName', 'middleName', 'phone', 'gender', 'dateOfBirth', 'streetNumber', 'streetName', 'city', 'state', 'country'].map((field) => (
-              <input
-                key={field}
-                name={field}
-                type="text"
-                placeholder={field.replace(/([A-Z])/g, ' $1')}
-                value={(formData as any)[field] || ''}
-                onChange={handleInputChange}
-                style={{
-                  padding: '0.75rem',
-                  borderRadius: '0.5rem',
-                  border: '1px solid #D1D5DB',
-                  width: '100%',
-                  marginBottom: '0.75rem',
-                  fontSize: '0.875rem',
-                }}
-              />
-            ))}
-            <select
-              name="educationalLevel"
-              value={formData.educationalLevel || ''}
-              onChange={handleInputChange}
+            <h2 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem', color: "#000000" }}>Personal Information</h2>
+            <p
               style={{
                 padding: '0.75rem',
                 borderRadius: '0.5rem',
@@ -59,22 +42,45 @@ const Onboarding: React.FC = () => {
                 width: '100%',
                 marginBottom: '0.75rem',
                 fontSize: '0.875rem',
+                color: "#000000"
               }}
             >
-              <option value="">Select Educational Level</option>
-              <option value="High School">High School</option>
-              <option value="Undergraduate">Undergraduate</option>
-              <option value="Graduate">Graduate</option>
-              <option value="Postgraduate">Postgraduate</option>
-            </select>
+              Your Position: {staffPosition}
+            </p>
+            <p
+              style={{
+                padding: '0.75rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #D1D5DB',
+                width: '100%',
+                marginBottom: '0.75rem',
+                fontSize: '0.875rem',
+                color: "#000000"
+              }}
+            >
+              Your Monthly Gross Pay: {staffGrossPay}
+            </p>
+            <p
+              style={{
+                padding: '0.75rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #D1D5DB',
+                width: '100%',
+                marginBottom: '0.75rem',
+                fontSize: '0.875rem',
+                color: "#000000"
+              }}
+            >
+              Your Monthly Tax: {staffTax}
+            </p>
           </>
         );
 
       case 1:
         return (
           <>
-            <h2 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem' }}>Bank Information</h2>
-            {['bankName', 'accountNumber', 'accountName'].map((field) => (
+            <h2 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem', color: "#000000" }}>Bank Information</h2>
+            {['BankName', 'AccountNumber', 'AccountName'].map((field) => (
               <input
                 key={field}
                 name={field}
@@ -97,9 +103,13 @@ const Onboarding: React.FC = () => {
 
       case 2:
         return <DocumentUploadUI />;
-
       case 3:
-        return <PreferencesUI user={formData} onChange={setFormData} />;
+        return (
+          <div>
+            <h2 style={{ fontSize: '1.125rem', fontWeight: 600, marginBottom: '1rem', color: "#000000" }}>Leave Information</h2>
+            <Leave />
+          </div>
+        );
 
       default:
         return null;
@@ -136,7 +146,7 @@ const Onboarding: React.FC = () => {
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Staff Onboarding</h1>
+        <span style={{ color: "#6B7280" }}>Complete your onboarding tasks.</span>
         <span style={{ fontSize: '0.875rem', color: '#6B7280' }}>
           Step {currentStep + 1} of {onboardingSteps.length}
         </span>
@@ -149,9 +159,9 @@ const Onboarding: React.FC = () => {
               key={index}
               onClick={() => setCurrentStep(index)}
               style={{
-                padding: '0.25rem 0.75rem',
+                padding: '12px',
                 borderRadius: '9999px',
-                backgroundColor: currentStep === index ? '#1D4ED8' : '#E5E7EB',
+                backgroundColor: currentStep === index ? '#071D6A' : '#E5E7EB',
                 color: currentStep === index ? '#FFFFFF' : '#4B5563',
                 border: 'none',
                 cursor: 'pointer',
@@ -164,7 +174,7 @@ const Onboarding: React.FC = () => {
         {renderStep()}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      {/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <button
           onClick={handleBack}
           disabled={currentStep === 0}
@@ -209,7 +219,7 @@ const Onboarding: React.FC = () => {
             Next
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

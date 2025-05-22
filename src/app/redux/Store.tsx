@@ -12,6 +12,7 @@ import { userSlice } from "./slices/User"; // make sure the casing matches!
 import { locationSlice } from './slices/Location';
 import { allUsersSlice } from './slices/AllUserSlice';
 import { signInAndOutSlice } from './slices/SignInAndOutSlice';
+import { payslipSlice } from './slices/paySlipSlice';
 
 const persistConfig = {
   key: 'root',
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   location: locationSlice.reducer,
   allUsers: allUsersSlice.reducer,
   SignInO: signInAndOutSlice.reducer,
+  payslip: payslipSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

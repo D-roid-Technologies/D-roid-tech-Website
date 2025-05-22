@@ -52,33 +52,13 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({ user, onChange 
                     <p style={{ color: "#000000" }}>Enable Two-Factor Authentication (2FA)</p>
                 </label>
                 <small style={{ color: "#666", alignSelf: "flex-start" }}>
-                    Adds an extra layer of security using a code from your phone when signing in.
-                </small>
-
-                {/* Security Question */}
-                <select
-                    name="securityQuestion"
-                    value={securitySettings.securityQuestion}
-                    onChange={handleChange}
-                >
-                    <option value="">Select Security Question</option>
-                    <option value="mother_maiden">What is your mother's maiden name?</option>
-                    <option value="first_pet">What was your first pet’s name?</option>
-                    <option value="birth_city">What city were you born in?</option>
-                </select>
-                <input
-                    type="text"
-                    name="securityAnswer"
-                    placeholder="Security Answer"
-                    value={securitySettings.securityAnswer}
-                    onChange={handleChange}
-                />
-                <small style={{ color: "#666", alignSelf: "flex-start" }}>
-                    Used to verify your identity if you lose access to your account.
+                    Enchance your D'roid One Account with better security.
                 </small>
 
                 {/* Login Alerts */}
+
                 <label style={{ display: "flex", justifyContent: "flex-start", gap: 10, alignItems: "center" }}>
+
                     <input
                         type="checkbox"
                         name="loginAlerts"
@@ -90,6 +70,7 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({ user, onChange 
                 <small style={{ color: "#666", alignSelf: "flex-start" }}>
                     Receive email notifications when your account is accessed from a new device.
                 </small>
+
 
                 <button
                     onClick={handleSubmit}

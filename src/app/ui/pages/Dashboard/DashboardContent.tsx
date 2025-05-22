@@ -145,13 +145,13 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Schedules':
         return (
           <Section title="Schedules">
-            <p>Manage and view your working schedules.</p>
+            <p style={{ color: "#000000" }}>Manage and view your working schedules.</p>
           </Section>
         );
       case 'Tool Box':
         return (
           <Section title="Tool Box">
-            <p>Access various tools for your tasks.</p>
+            <p style={{ color: "#000000" }}>Access various tools for your tasks.</p>
           </Section>
         );
       case 'Calculate':
@@ -290,8 +290,8 @@ const DashboardContent: React.FunctionComponent = () => {
         );
       case 'Say It':
         return (
-          <Section title="Say It">
-            <p>Share your thoughts and feedback here.</p>
+          <Section title="Contact us">
+            <p style={{ color: "#000000" }}>Share your thoughts and feedback here.</p>
             <SayIt />
           </Section>
         );
@@ -311,21 +311,20 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Onboarding':
         return (
           <Section title="Onboarding">
-            <p>Complete your onboarding tasks.</p>
             <Onboarding />
           </Section>
         );
       case 'Training':
         return (
           <Section title="Training">
-            <p>Access your training materials here.</p>
+            <p style={{ color: "#000000" }}>Access your training materials here.</p>
             <Trainings />
           </Section>
         );
       case 'Progressions':
         return (
           <Section title="Progressions">
-            <p>Track your professional progress here.</p>
+            <p style={{ color: "#000000" }}>Track your professional progress here.</p>
             <Progression />
           </Section>
         );
@@ -339,7 +338,7 @@ const DashboardContent: React.FunctionComponent = () => {
       default:
         return (
           <Section title="Dashboard">
-            <p>Welcome to your dashboard.</p>
+            <p style={{ color: "#000000" }}>Welcome to your dashboard.</p>
           </Section>
         );
     }

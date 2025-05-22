@@ -3,7 +3,8 @@ import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, g
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
-import { setSignInAndOutData } from "../slices/SignInAndOutSlice";
+import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
+import { setGpay, setPosition, setSignInAndOutData, setTpay } from "../slices/SignInAndOutSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
@@ -186,6 +187,14 @@ export async function getUserDocByUniqueId(uniqueId: string) {
     return docSnap;
 }
 
+export function calculateTaxPercentage(grossPay: number, tax: number): number {
+    if (grossPay === 0) {
+        throw new Error("Gross pay cannot be zero.");
+    }
+    const percentage = (tax / grossPay) * 100;
+    return parseFloat(percentage.toFixed(2));
+}
+
 const addDaysToDate = (dateInput: string, daysToAdd: number) => {
     const initialDate = new Date(dateInput);
 
@@ -306,6 +315,9 @@ export class AuthService {
                     },
                 },
                 staff: {
+                    staffGrossPay: "",
+                    staffTax: "",
+                    staffPosition: "",
                     staffSignInAndOut: []
                 },
                 forms: {
@@ -574,9 +586,15 @@ export class AuthService {
             const updatedSnapshot = await getDoc(userDocRef);
             const updatedData = updatedSnapshot.data();
             const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
+            const updatedStaffGpay = updatedData?.staff?.staffGrossPay || "";
+            const updatedStaffTax = updatedData?.staff?.staffTax || "";
+            const updatedStaffPosition = updatedData?.staff?.staffPosition || "";
 
             // Dispatch to Redux
             store.dispatch(setSignInAndOutData(updatedEntries));
+            store.dispatch(setGpay(updatedStaffGpay));
+            store.dispatch(setTpay(updatedStaffTax));
+            store.dispatch(setPosition(updatedStaffPosition));
 
             toast.success(`${entry.type} recorded at ${entry.timestamp}`, {
                 style: { background: '#4BB543', color: '#fff' },
@@ -591,6 +609,69 @@ export class AuthService {
             return null;
         }
     }
+
+    async updateStaffPayslip(payslip: PaySlip) {
+        try {
+            const currentUser = auth.currentUser;
+
+            if (!currentUser) {
+                toast.error('No authenticated user found.', {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return null;
+            }
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, 'droidaccount', userId);
+            const userSnapshot = await getDoc(userDocRef);
+
+            if (!userSnapshot.exists()) {
+                toast.error('User document not found.', {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return null;
+            }
+
+            const data = userSnapshot.data();
+            const existingPayslips = data?.payslips?.paySlip || [];
+
+            // ✅ Check if a payslip for this month already exists
+            const duplicate = existingPayslips.some(
+                (item: PaySlip) => item.payPeriod.monthOfPay === payslip.payPeriod.monthOfPay
+            );
+
+            if (duplicate) {
+                toast.error(`Payslip for ${payslip.payPeriod.monthOfPay} already exists.`, {
+                    style: { background: '#faad14', color: '#fff' },
+                });
+                return null;
+            }
+
+            // ✅ Proceed to update
+            await updateDoc(userDocRef, {
+                'payslips.paySlip': arrayUnion(payslip),
+            });
+
+            const updatedSnapshot = await getDoc(userDocRef);
+            const updatedData = updatedSnapshot.data();
+            const updatedPayslips = updatedData?.payslips?.paySlip || [];
+
+            store.dispatch(setPayslipData(updatedPayslips));
+
+            toast.success(`Payslip for ${payslip.payPeriod.monthOfPay} updated successfully.`, {
+                style: { background: '#4BB543', color: '#fff' },
+            });
+
+            return payslip;
+        } catch (error: any) {
+            toast.error(`Error updating payslip: ${error.message}`, {
+                style: { background: '#ff4d4f', color: '#fff' },
+            });
+            return null;
+        }
+    }
+
+
 
 
 

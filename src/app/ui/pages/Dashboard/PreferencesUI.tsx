@@ -33,9 +33,26 @@ const PreferencesUI: React.FC<PreferencesUIProps> = ({ user, onChange }) => {
 
             <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginTop: "20px" }}>
                 {/* Language */}
-                <label style={{ color: "#000000" }}>
-                    Preferred Language: {" "}
-                    <select name="language" value={preferences.language} onChange={handleChange}>
+                <label
+                    style={{
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '1px solid #ccc',
+                        fontSize: '14px',
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        color: "#000000",
+                        backgroundColor: "#ffffff"
+                    }}>
+                    <p>Preferred Language:</p>
+                    <select name="language" value={preferences.language} onChange={handleChange}
+                        style={{
+                            padding: '12px',
+                            borderRadius: '8px',
+                            border: '1px solid #ccc',
+                            fontSize: '14px',
+                        }}>
                         <option value="English">English</option>
                         <option value="French">French</option>
                         <option value="Spanish">Spanish</option>
@@ -43,9 +60,26 @@ const PreferencesUI: React.FC<PreferencesUIProps> = ({ user, onChange }) => {
                 </label>
 
                 {/* Theme */}
-                <label style={{ color: "#000000" }}>
-                    Theme Mode: {" "}
-                    <select name="theme" value={preferences.theme} onChange={handleChange}>
+                <label
+                    style={{
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '1px solid #ccc',
+                        fontSize: '14px',
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        color: "#000000",
+                        backgroundColor: "#ffffff"
+                    }}>
+                    <p>Theme Mode:</p>
+                    <select name="theme" value={preferences.theme} onChange={handleChange}
+                        style={{
+                            padding: '12px',
+                            borderRadius: '8px',
+                            border: '1px solid #ccc',
+                            fontSize: '14px',
+                        }}>
                         <option value="light">Light</option>
                         <option value="dark">Dark</option>
                         <option value="system">System Default</option>
@@ -53,12 +87,29 @@ const PreferencesUI: React.FC<PreferencesUIProps> = ({ user, onChange }) => {
                 </label>
 
                 {/* Notification Preference */}
-                <label style={{ color: "#000000" }}>
-                    Notification Preference: {" "}
+                <label
+                    style={{
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '1px solid #ccc',
+                        fontSize: '14px',
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        color: "#000000",
+                        backgroundColor: "#ffffff"
+                    }}>
+                    <p>Notification Preference:</p>
                     <select
                         name="notificationPreference"
                         value={preferences.notificationPreference}
                         onChange={handleChange}
+                        style={{
+                            padding: '12px',
+                            borderRadius: '8px',
+                            border: '1px solid #ccc',
+                            fontSize: '14px',
+                        }}
                     >
                         <option value="email">Email</option>
                         <option value="sms">SMS</option>
@@ -67,14 +118,31 @@ const PreferencesUI: React.FC<PreferencesUIProps> = ({ user, onChange }) => {
                 </label>
 
                 {/* Time Zone */}
-                <label style={{ color: "#000000" }}>
-                    Time Zone: {" "}
+                <label
+                    style={{
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '1px solid #ccc',
+                        fontSize: '14px',
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        color: "#000000",
+                        backgroundColor: "#ffffff"
+                    }}>
+                    <p>Time Zone:</p>
                     <input
                         type="text"
                         name="timeZone"
                         placeholder="e.g. GMT+1, PST, IST"
                         value={preferences.timeZone}
                         onChange={handleChange}
+                        style={{
+                            padding: '12px',
+                            borderRadius: '8px',
+                            border: '1px solid #ccc',
+                            fontSize: '14px',
+                        }}
                     />
                 </label>
 

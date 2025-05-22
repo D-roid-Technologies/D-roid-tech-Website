@@ -55,7 +55,14 @@ const DocumentUploadUI: React.FC = () => {
                             type="file"
                             accept=".pdf,.jpg,.jpeg,.png"
                             onChange={(e) => handleFileChange(e, field.name)}
-                            style={{ color: "#000000", }}
+                            style={{
+                                padding: '12px',
+                                borderRadius: '8px',
+                                border: '1px solid #ccc',
+                                backgroundColor: '#f0f0f0',
+                                fontSize: '14px',
+                                color: "#000000",
+                            }}
                         />
                     </div>
                 ))}

@@ -1,25 +1,24 @@
 import React from 'react';
 
 type Milestone = {
-    id: number;
     title: string;
     achieved: boolean;
 };
 
 const milestones: Milestone[] = [
-    { id: 1, title: 'Onboarding Complete', achieved: true },
-    { id: 2, title: 'First Week Review', achieved: true },
-    { id: 3, title: 'First Month Review', achieved: false },
-    { id: 4, title: 'Training Completed', achieved: false },
+    { title: 'Onboarding Process', achieved: true },
+    { title: 'First Week Review', achieved: true },
+    { title: 'First Month Review', achieved: false },
+    { title: 'Training Completed', achieved: false },
 ];
 
 const Progression: React.FC = () => {
     return (
         <div style={{ maxWidth: '768px', margin: '0 auto', padding: '24px' }}>
-            <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '24px' }}>Progression</h1>
-            {milestones.map(m => (
+            {/* <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '24px' }}>Progression</h1> */}
+            {milestones.map((m, i) => (
                 <div
-                    key={m.id}
+                    key={i}
                     style={{
                         padding: '16px',
                         borderRadius: '8px',

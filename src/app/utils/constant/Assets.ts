@@ -223,11 +223,11 @@ export const Assets = {
     darksubstitute: "#FBCC34",
   },
   text: {
-    companyName: "D'roid Technologies International",
-    companyShortName: "D'roid Technologies",
-    companyInitials: "DTI",
+    companyName: "D'roid Technologies Ltd",
+    companyShortName: "D'roid",
+    companyInitials: "DT",
     modalTitle: "This is the Modal Heading.",
     modalBody: "This is the Body.",
-    appVersion: "v3.5",
+    appVersion: "v3.9",
   },
 };

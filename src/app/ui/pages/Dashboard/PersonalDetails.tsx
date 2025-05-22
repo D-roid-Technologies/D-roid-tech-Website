@@ -41,7 +41,7 @@ const PersonalDetails: React.FunctionComponent = () => {
     };
 
     const rightMenuItems = [
-        { title: "Documents", content: "Here are your documents.", icon: <i className="fas fa-file-alt"></i> },
+        // { title: "Documents", content: "Here are your documents.", icon: <i className="fas fa-file-alt"></i> },
         { title: "Security", content: "Manage your security settings.", icon: <i className="fas fa-shield-alt"></i> },
         { title: "Preferences", content: "Set your personal preferences.", icon: <i className="fas fa-cog"></i> },
     ];
@@ -54,8 +54,6 @@ const PersonalDetails: React.FunctionComponent = () => {
 
     const renderSelectedComponent = () => {
         switch (selectedMenuItem?.title) {
-            case 'Documents':
-                return <DocumentUploadUI />;
             case 'Security':
                 return <SecuritySettingsUI user={formData} onChange={setFormData} />;
             case 'Preferences':
@@ -119,179 +117,6 @@ const PersonalDetails: React.FunctionComponent = () => {
                     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)'
                 }}>
                     {selectedMenuItem === null && formData ? (
-                        // <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                        //     {/* Photo Upload */}
-                        //     {photoPreview ? (
-                        //         <img
-                        //             src={photoPreview}
-                        //             alt="Preview"
-                        //             style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px' }}
-                        //         />
-                        //     ) : (<>
-                        //         <p style={{ color: "#000000" }}>Select Profile Photo</p>
-                        //     </>)}
-                        //     <input
-                        //         type="file"
-                        //         accept="image/*"
-                        //         onChange={handlePhotoChange}
-                        //         style={{ fontSize: '14px' }}
-                        //     />
-
-                        //     {/* Editable fields */}
-                        //     {[
-                        //         { label: 'First Name', name: 'firstName' },
-                        //         { label: 'Last Name', name: 'lastName' },
-                        //         { label: 'Middle Name', name: 'middleName' },
-                        //         { label: 'Phone', name: 'phone' },
-                        //         { label: 'Gender', name: 'gender' },
-                        //         { label: 'Date of Birth', name: 'dateOfBirth' },
-                        //     ].map(field => (
-                        //         <input
-                        //             key={field.name}
-                        //             name={field.name}
-                        //             type="text"
-                        //             placeholder={field.label}
-                        //             value={(formData as any)[field.name]}
-                        //             onChange={handleInputChange}
-                        //             style={{
-                        //                 padding: '12px',
-                        //                 borderRadius: '8px',
-                        //                 border: '1px solid #ccc',
-                        //                 fontSize: '14px'
-                        //             }}
-                        //         />
-                        //     ))}
-
-                        //     {/* Disability Type */}
-                        //     <select
-                        //         name="disabilityType"
-                        //         value={(formData as any).disabilityType || ''}
-                        //         onChange={handleInputChange}
-                        //         style={{
-                        //             padding: '12px',
-                        //             borderRadius: '8px',
-                        //             border: '1px solid #ccc',
-                        //             fontSize: '14px'
-                        //         }}
-                        //     >
-                        //         <option value="">Select Disability Type</option>
-                        //         <option value="None">None</option>
-                        //         <option value="Visual">Visual</option>
-                        //         <option value="Hearing">Hearing</option>
-                        //         <option value="Motor">Motor</option>
-                        //         <option value="Cognitive">Cognitive</option>
-                        //     </select>
-
-                        //     {/* Educational Level */}
-                        //     <select
-                        //         name="educationalLevel"
-                        //         value={(formData as any).educationalLevel || ''}
-                        //         onChange={handleInputChange}
-                        //         style={{
-                        //             padding: '12px',
-                        //             borderRadius: '8px',
-                        //             border: '1px solid #ccc',
-                        //             fontSize: '14px'
-                        //         }}
-                        //     >
-                        //         <option value="">Select Educational Level</option>
-                        //         <option value="High School">High School</option>
-                        //         <option value="Undergraduate">Undergraduate</option>
-                        //         <option value="Graduate">Graduate</option>
-                        //         <option value="Postgraduate">Postgraduate</option>
-                        //     </select>
-
-                        //     {/* Security Question */}
-                        //     <select
-                        //         name="securityQuestion"
-                        //         value={(formData as any).securityQuestion || ''}
-                        //         onChange={handleInputChange}
-                        //         style={{
-                        //             padding: '12px',
-                        //             borderRadius: '8px',
-                        //             border: '1px solid #ccc',
-                        //             fontSize: '14px'
-                        //         }}
-                        //     >
-                        //         <option value="">Select Security Question</option>
-                        //         <option value="mother_maiden">What is your mother's maiden name?</option>
-                        //         <option value="first_pet">What was your first pet’s name?</option>
-                        //         <option value="birth_city">What city were you born in?</option>
-                        //     </select>
-
-                        //     {/* Security Answer */}
-                        //     <input
-                        //         type="text"
-                        //         name="securityAnswer"
-                        //         placeholder="Security Answer"
-                        //         value={(formData as any).securityAnswer || ''}
-                        //         onChange={handleInputChange}
-                        //         style={{
-                        //             padding: '12px',
-                        //             borderRadius: '8px',
-                        //             border: '1px solid #ccc',
-                        //             fontSize: '14px'
-                        //         }}
-                        //     />
-
-                        //     {/* Referral Name (auto-generated) */}
-                        //     <input
-                        //         type="text"
-                        //         value={formData.referralName}
-                        //         disabled
-                        //         placeholder="Referral Name"
-                        //         style={{
-                        //             padding: '12px',
-                        //             borderRadius: '8px',
-                        //             border: '1px solid #ccc',
-                        //             backgroundColor: '#f0f0f0',
-                        //             fontSize: '14px'
-                        //         }}
-                        //     />
-
-                        //     {/* Disabled fields */}
-                        //     {[
-                        //         { label: 'User Type', name: 'userType' },
-                        //         { label: 'Unique ID', name: 'uniqueId' },
-                        //         { label: 'Email', name: 'email' },
-                        //         { label: 'Disability', name: 'disability', format: (val: boolean) => val ? "Yes" : "No" },
-                        //         { label: 'Agree to Policy', name: 'agreeToPolicy', format: (val: boolean) => val ? "Yes" : "No" },
-                        //     ].map(field => (
-                        //         <input
-                        //             key={field.name}
-                        //             type="text"
-                        //             placeholder={field.label}
-                        //             value={field.format ? field.format((formData as any)[field.name]) : (formData as any)[field.name]}
-                        //             disabled
-                        //             style={{
-                        //                 padding: '12px',
-                        //                 borderRadius: '8px',
-                        //                 border: '1px solid #ccc',
-                        //                 backgroundColor: '#f0f0f0',
-                        //                 fontSize: '14px'
-                        //             }}
-                        //         />
-                        //     ))}
-
-                        //     <button
-                        //         type="submit"
-                        //         style={{
-                        //             marginTop: '20px',
-                        //             padding: '12px',
-                        //             backgroundColor: '#071D6A',
-                        //             color: 'white',
-                        //             border: 'none',
-                        //             borderRadius: '8px',
-                        //             fontSize: '16px',
-                        //             fontWeight: 'bold',
-                        //             cursor: 'pointer',
-                        //         }}
-                        //         onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#05205C'}
-                        //         onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#071D6A'}
-                        //     >
-                        //         Update Information
-                        //     </button>
-                        // </form>
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                             {/* Photo Upload */}
                             {photoPreview ? (
@@ -307,7 +132,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 type="file"
                                 accept="image/*"
                                 onChange={handlePhotoChange}
-                                style={{ fontSize: '14px' }}
+                                style={{ fontSize: '14px', color: "#000000" }}
                             />
 
                             {/* Editable fields */}
