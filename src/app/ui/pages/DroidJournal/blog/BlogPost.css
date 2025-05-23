@@ -1,0 +1,17 @@
+.blog-post-container {
+  background: #fff;
+}
+
+.blog-info h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #0a0a23;
+  margin: 1rem 0;
+}
+
+.meta-info p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.3;
+  font-weight: bold;
+}
