@@ -17,6 +17,7 @@ const SignInOut: React.FC = () => {
 
     const user = useSelector((state: RootState) => state.user);
     const userLogs = useSelector((state: RootState) => state.SignInO.entries as Entry[]);
+    console.log(userLogs)
 
     useEffect(() => {
         setEmail(user.email);
@@ -42,7 +43,7 @@ const SignInOut: React.FC = () => {
         const entry: Entry = {
             email,
             employeeId,
-            timestamp: new Date().toISOString(),
+            timestamp: new Date().toLocaleString(),
             type: isSigningIn ? 'Sign In' : 'Sign Out',
         };
 
@@ -52,7 +53,7 @@ const SignInOut: React.FC = () => {
 
             const templateParams = {
                 name: `${user.firstName} ${user.lastName}`,
-                title: `You have ${entry.type} on your D'roid One Account.`,
+                title: `You have ${entry.type} on your D'roid One Account on ${entry.timestamp}`,
                 email: user.email,
             };
 

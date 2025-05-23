@@ -298,6 +298,7 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Tasks':
         return (
           <Section title="Tasks">
+            <p style={{ color: "#000000" }}>See all list of all tasks here.</p>
             <Tasks />
           </Section>
         );

@@ -164,6 +164,79 @@ const getCurrentDateTime = () => {
     };
 }
 
+type LogEntry = {
+    email: string;
+    employeeId?: string;
+    timestamp: string;
+    type: 'Sign In' | 'Sign Out';
+    note?: string;
+};
+
+function parseDate(timestamp: string): Date {
+    // Handle both ISO strings and 'DD/MM/YYYY, HH:mm:ss' format
+    const isoDate = Date.parse(timestamp);
+    if (!isNaN(isoDate)) return new Date(isoDate);
+
+    // Handle manually formatted date
+    const [datePart, timePart] = timestamp.split(', ');
+    const [day, month, year] = datePart.split('/');
+    return new Date(`${year}-${month}-${day}T${timePart}`);
+}
+
+export function calculateNetSalary(logs: LogEntry[], grossSalary: number): number {
+    const dailyDurations: Record<string, number> = {};
+    const now = new Date();
+    const currentMonth = now.getMonth(); // 0-indexed
+    const currentYear = now.getFullYear();
+
+    const normalizedLogs = logs.map(log => ({
+        ...log,
+        date: parseDate(log.timestamp),
+    }));
+
+    const logsByDay: Record<string, { type: 'Sign In' | 'Sign Out'; date: Date }[]> = {};
+
+    for (const log of normalizedLogs) {
+        if (
+            log.date.getMonth() === currentMonth &&
+            log.date.getFullYear() === currentYear
+        ) {
+            const key = log.date.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+            if (!logsByDay[key]) logsByDay[key] = [];
+            logsByDay[key].push({ type: log.type, date: log.date });
+        }
+    }
+
+    for (const date in logsByDay) {
+        const events = logsByDay[date].sort((a, b) => a.date.getTime() - b.date.getTime());
+        let totalHours = 0;
+        for (let i = 0; i < events.length - 1; i += 2) {
+            if (events[i].type === "Sign In" && events[i + 1]?.type === "Sign Out") {
+                const duration = (events[i + 1].date.getTime() - events[i].date.getTime()) / (1000 * 60 * 60);
+                totalHours += duration;
+            }
+        }
+        dailyDurations[date] = totalHours;
+    }
+
+    const qualifyingDays = Object.values(dailyDurations).filter(h => h >= 6.5).length;
+    if (qualifyingDays >= 28) return grossSalary;
+
+    // New deduction rule: ₦0.005 for every 40 minutes (0.6667 hours) missed
+    let totalDeduction = 0;
+
+    for (const hours of Object.values(dailyDurations)) {
+        if (hours < 6.5) {
+            const shortfall = 6.5 - hours;
+            const deductionUnits = Math.floor(shortfall / (2 / 3)); // 2/3 hour = 40 minutes
+            totalDeduction += deductionUnits * 0.005;
+        }
+    }
+
+    const netSalary = grossSalary - totalDeduction;
+    return parseFloat(netSalary.toFixed(2));
+}
+
 export async function getUserDocByUniqueId(uniqueId: string) {
     const currentUser = auth.currentUser;
 
@@ -315,9 +388,28 @@ export class AuthService {
                     },
                 },
                 staff: {
-                    staffGrossPay: "",
-                    staffTax: "",
-                    staffPosition: "",
+                    staffDetails: {
+                        staffGrossPay: "",
+                        staffTax: "",
+                        staffPosition: "",
+                        staffBank: "",
+                        staffAccountNmber: "",
+                        staffAccountName: ""
+                    },
+                    staffDoc: {
+                        nationalId: "",
+                        proofOfAddress: "",
+                        secSchCertificate: "",
+                        uniCertificate: "",
+                        birthCertificate: "",
+                        medicalDoc: "",
+                        signatre: "",
+                        pasport: "",
+                        marriageCert: "",
+                        nyscCert: "",
+                        utilityBill: "",
+                    },
+                    staffLeave: [],
                     staffSignInAndOut: []
                 },
                 forms: {
@@ -340,9 +432,6 @@ export class AuthService {
                 },
                 announcements: {
                     notifications: []
-                },
-                sayit: {
-                    sayIt: []
                 },
                 tasks: {
                     task: []

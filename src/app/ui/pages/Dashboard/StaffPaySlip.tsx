@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { authService, calculateTaxPercentage } from '../../../redux/configuration/auth.service';
+import { authService, calculateNetSalary, calculateTaxPercentage } from '../../../redux/configuration/auth.service';
 import { PaySlip } from '../../../redux/slices/paySlipSlice';
 import { RootState } from '../../../redux/Store';
 import emailjs from 'emailjs-com';
+import { Entry } from '../../../redux/slices/SignInAndOutSlice';
 
 interface PaySlipProps {
     employeeName: string;
@@ -62,11 +63,13 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
     const [message, setMessage] = useState('');
     const payslips = useSelector((state: RootState) => state.payslip.payslips);
     const user = useSelector((state: RootState) => state.user);
+    const userLogs = useSelector((state: RootState) => state.SignInO.entries as Entry[]);
 
     useEffect(() => {
         const today = new Date();
         // if (today.getDate() === 8) {
         setShowGenerateButton(true);
+        console.log(calculateNetSalary(userLogs, 70000))
         // }
     }, []);
 
@@ -180,7 +183,7 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
                     <p><strong>Employee ID:</strong> {employeeId}</p>
                     <p><strong>Date of Creation:</strong> {formatDateLong(currentMonthDate)}</p>
                     <p><strong>Period of Payment:</strong> 9th {formatMonth(payPeriodStart)} to 8th {formatMonth(payPeriodEnd)}</p>
-                    <p><strong>Leave:</strong> 1 week for the month of {formatMonth(previousMonth)} {previousMonth.getFullYear()}</p>
+                    <p><strong>Leave:</strong> {"6 Days"} for the month of {formatMonth(previousMonth)} {previousMonth.getFullYear()}</p>
                 </section>
 
                 <section style={styles.section}>
@@ -188,7 +191,7 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
                     <ul>
                         <li>Absent from meetings: {payslip.deductions.meetingAbsence.toFixed(2)}</li>
                         <li>Completion of Tasks: {payslip.deductions.taskCompletion.toFixed(2)}</li>
-                        <li>Absent in Signing in and Out: {payslip.deductions.signInAndOut.toFixed(2)}</li>
+                        <li>Absent Signing in: {payslip.deductions.signInAndOut.toFixed(2)}</li>
                     </ul>
                 </section>
 

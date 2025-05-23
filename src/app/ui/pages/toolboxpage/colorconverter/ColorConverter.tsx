@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../../../components/navbar/NavBar";
 import ColorConv from "../../../components/toolboxfolder/Colorconv/ColorConv";
 
 const ColorConverter: React.FC = () => {
