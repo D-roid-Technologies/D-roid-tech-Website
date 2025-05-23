@@ -30,95 +30,14 @@ const Blog: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "The Future of AI in Web Development",
-      excerpt:
-        "Discover how artificial intelligence is revolutionizing the way we build modern web applications.",
-      date: "June 10, 2023",
-      author: "Alex Johnson",
-      authorAvatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      category: "Technology",
-      readTime: "8 min read",
-      image:
-        "https://images.unsplash.com/photo-1677442135136-760c813a743e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Mastering React Performance Optimization",
-      excerpt:
-        "Advanced techniques to make your React applications lightning fast and efficient.",
-      date: "June 5, 2023",
-      author: "Sam Wilson",
-      authorAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      category: "Programming",
-      readTime: "12 min read",
-      image:
-        "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Design Systems for Developers",
-      excerpt:
-        "How to implement and maintain design systems that scale with your product.",
-      date: "May 28, 2023",
-      author: "Emma Davis",
-      authorAvatar: "https://randomuser.me/api/portraits/women/63.jpg",
-      category: "Design",
-      readTime: "9 min read",
-      image:
-        "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: 4,
-      title: "TypeScript Best Practices in 2023",
-      excerpt:
-        "The definitive guide to writing clean, maintainable TypeScript code.",
-      date: "May 20, 2023",
-      author: "Michael Chen",
-      authorAvatar: "https://randomuser.me/api/portraits/men/75.jpg",
-      category: "Programming",
-      readTime: "10 min read",
-      image:
-        "https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: 5,
-      title: "The Psychology of Color in UI Design",
-      excerpt:
-        "How color choices impact user behavior and perception of your product.",
-      date: "May 15, 2023",
-      author: "Lisa Rodriguez",
-      authorAvatar: "https://randomuser.me/api/portraits/women/82.jpg",
-      category: "Design",
-      readTime: "7 min read",
-      image:
-        "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: 6,
-      title: "Building Scalable Microservices",
-      excerpt:
-        "Architecture patterns for creating resilient and scalable microservices.",
-      date: "May 10, 2023",
-      author: "David Kim",
-      authorAvatar: "https://randomuser.me/api/portraits/men/22.jpg",
-      category: "Architecture",
-      readTime: "14 min read",
-      image:
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    },
-  ];
 
   const projects = [
     {
       id: "1",
       title: "Events",
       status: "In Communication",
-      descriptionUrl: "/projects/blockchain-logistics",
+      // descriptionUrl: "/projects/blockchain-logistics",
+      descriptionUrl: `${RoutePaths.Blog}/events`,
       summary:
         "At D'roid, we transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.",
       startDate: "2025-05-01",
@@ -133,13 +52,15 @@ const Blog: React.FC = () => {
       id: "2",
       title: "Tech News",
       status: "Ongoing",
-      descriptionUrl: "https://kcity-c8580.web.app/",
+      // descriptionUrl: "https://kcity-c8580.web.app/",
+      descriptionUrl: `${RoutePaths.Blog}/tech-news`,
       summary:
         "Empower your Learning Journey with Knowledge City Whether you're a student, educator, or professional, our platform is designed to deliver an engaging and seamless learning experience.",
       startDate: "2023-01-10",
       client: "Rectail Education Board.",
       team: ["Alice Johnson", "Daniel Okafor", "Wei Lin"],
-      imageUrl: Assets.images.tecch,
+      imageUrl:
+        "https://cdn.prod.website-files.com/60dea2341adbe2c3648a27e6/656804feaf393aa82e16f83a_Tech%20news.png",
       category: "News",
       price: "",
       author: "D'roid",
@@ -148,8 +69,7 @@ const Blog: React.FC = () => {
       id: "3",
       title: "Business News",
       status: "Completed",
-      descriptionUrl:
-        "https://play.google.com/store/apps/details?id=com.app.ecobank&hl=en_GB",
+      descriptionUrl: `${RoutePaths.Blog}/business-news`,
       summary:
         "The revamped and enhanced Ecobank Mobile app makes it super easy to bank on the go 24/7. Manage your everyday banking needs anywhere anytime directly from your mobile device. Manage your account, send money, make payments and get help from the Ecobank mobile app in all 33 African countries where Ecobank is present.",
       startDate: "2023-03-03",
@@ -185,7 +105,11 @@ const Blog: React.FC = () => {
             <span className="hero-line highlight">Journal</span>
           </h1>
           <p className="hero-subtitle">
-            Your premier source for everything happening in the world of D’roid Technologies and beyond. From exclusive behind-the-scenes access to our latest events and product launches, to curated insights into the fast-evolving tech industry and strategic business trends—this journal keeps you informed, inspired, and ahead of the curve.
+            Your premier source for everything happening in the world of D’roid
+            Technologies and beyond. From exclusive behind-the-scenes access to
+            our latest events and product launches, to curated insights into the
+            fast-evolving tech industry and strategic business trends—this
+            journal keeps you informed, inspired, and ahead of the curve.
           </p>
         </div>
         <div className="hero-image">
@@ -209,7 +133,9 @@ const Blog: React.FC = () => {
           </div>
           <h1>Our Categories</h1>
           <p>
-            Whether you're a client, developer, entrepreneur, or simply tech-curious, The D’roid Journal delivers thought-provoking content designed to connect innovation with impact.
+            Whether you're a client, developer, entrepreneur, or simply
+            tech-curious, The D’roid Journal delivers thought-provoking content
+            designed to connect innovation with impact.
           </p>
           <div className="group">
             {projects.map((product, index) => (
@@ -220,7 +146,7 @@ const Blog: React.FC = () => {
                   price={product.price}
                   title={product.title}
                   author={product.author}
-                  descriptionUrl={product.summary}
+                  descriptionUrl={product.descriptionUrl}
                   summary={product.summary}
                   startDate={""}
                   client={""}

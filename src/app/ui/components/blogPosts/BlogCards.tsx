@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./BlogCards.css";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
 interface BlogPost {
   id: number;
@@ -13,27 +13,30 @@ interface BlogPost {
   readTime?: string;
   image: string;
   featured?: boolean;
-  readMoreLink: string; 
+  readMoreLink: string;
 }
 
 interface BlogCardProps {
-  posts: BlogPost[];
+  posts: BlogPost[]; // Required prop
 }
 
 const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
   const [visiblePosts, setVisiblePosts] = useState<number>(4);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
+  // Get unique categories
   const categories = [
     "All",
     ...Array.from(new Set(posts.map((post) => post.category))),
   ];
 
+  // Filter posts by active category
   const filteredPosts =
     activeCategory === "All"
       ? posts
       : posts.filter((post) => post.category === activeCategory);
 
+  // Slice posts to show based on visiblePosts count
   const postsToShow = filteredPosts.slice(0, visiblePosts);
 
   const handleLoadMore = () => {
@@ -44,7 +47,7 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
 
   return (
     <section className="blog-posts-section">
-      <div className="category-filters">
+      {/* <div className="category-filters">
         {categories.map((category) => (
           <button
             key={category}
@@ -59,7 +62,7 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
             {category}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <div className="blog-posts-grid">
         {postsToShow.map((post) => (
@@ -71,9 +74,6 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
             <div className="blog-card-content">
               <div className="blog-card-meta">
                 <span className="blog-card-date">{post.date}</span>
-                {/* {post.readTime && (
-                  <span className="blog-card-read-time">{post.readTime}</span>
-                )} */}
               </div>
               <h3 className="blog-card-title">{post.title}</h3>
               <p className="blog-card-excerpt">{post.excerpt}</p>
