@@ -71,6 +71,7 @@ import TaskSchedulerPage from "../ui/pages/schedule/TaskSchedulerPage";
 import UUIDGenerator from "../ui/pages/toolboxpage/uuidgenerator/UuidGenerator";
 import Base64Tool from "../ui/pages/toolboxpage/Encoder/Encoder";
 import BMICalculator from "../ui/pages/calculator/sciencecalculate/bmicalculator/BMICalculator";
+import BlogPost from "../ui/pages/DroidJournal/blog/BlogPost";
 
 // Define an enum for all route paths
 
@@ -117,6 +118,7 @@ export enum RoutePaths {
 
   // More Routes (nested under /more)
   Blog = `/more/blog`,
+  BlogPost = `/more/blog/:slug`,
   Products = "/more/products",
   JoinOurCommunity = "/auth/join-our-community",
   Signup = "/auth/signup",
@@ -247,6 +249,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.More}>
         <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
         <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
+        <Route path={RoutePaths.BlogPost} element={<BlogPost />} />
         <Route path={RoutePaths.Products} element={<Products />} />
       </Route>
       {/* Existing Routes */}

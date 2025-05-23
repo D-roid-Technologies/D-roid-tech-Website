@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Add this
 import { Project } from "../../../utils/Types";
 import "./ProductCard.css";
 
@@ -11,7 +11,6 @@ interface ProductCardProps {
   author: string;
   summary: string;
   descriptionUrl: string;
-
 }
 
 const ProductCard: React.FC<Project> = ({
@@ -22,23 +21,29 @@ const ProductCard: React.FC<Project> = ({
   author,
   summary,
   descriptionUrl,
-  isBtn = false
+  isBtn = false,
 }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate(); // Initialize navigate
 
   return (
     <div className="product-card">
       <div className="card-image">
         <img src={imageUrl} alt={title} />
-        {isBtn === false ? (<button
-          onClick={() => window.open(`${descriptionUrl}`, '_blank')}
-          className="see-product-btn">See Product
-        </button>) : (<a
-          href={descriptionUrl}
-          className="see-product-btn"
-        >
-          Let's dive in...
-        </a>)}
+        {isBtn === false ? (
+          <button
+            onClick={() => window.open(`${descriptionUrl}`, "_blank")}
+            className="see-product-btn"
+          >
+            See Product
+          </button>
+        ) : (
+          <button
+            onClick={() => navigate(descriptionUrl)} // Use navigate here
+            className="see-product-btn"
+          >
+            Let's dive in...
+          </button>
+        )}
       </div>
       <div className="card-content">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
