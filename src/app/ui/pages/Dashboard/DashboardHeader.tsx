@@ -43,7 +43,7 @@ const DashboardHeader: React.FC = () => {
                     }}
                 >
 
-                    {`${userDetails.firstName[0]}${userDetails.lastName[0]}`}
+                    {`${userDetails.initials}`}
                 </div>
             </div>
 

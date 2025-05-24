@@ -531,6 +531,8 @@ export class AuthService {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const userDocRef = doc(collection(db, "droidaccount"), userCredential.user.uid);
             const userDocSnap = await getDoc(userDocRef);
+            const updatedData = userDocSnap.data();
+            console.log(updatedData)
 
             if (userDocSnap.exists()) {
                 const fetchedUserData = userDocSnap.data();
@@ -549,7 +551,29 @@ export class AuthService {
                     );
                 }
 
+                const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
+                const updatedStaffDetails = {
+                    staffGrossPay: updatedData?.staff?.staffDetails?.staffGrossPay || "",
+                    staffTax: updatedData?.staff?.staffDetails?.staffTax || "",
+                    staffPosition: updatedData?.staff?.staffDetails?.staffPosition || "",
+                    staffBank: updatedData?.staff?.staffDetails?.staffBank || "",
+                    staffAccountNmber: updatedData?.staff?.staffDetails?.staffAccountNmber || "",
+                    staffAccountName: updatedData?.staff?.staffDetails?.staffAccountName || "",
+                };
+                const updatedStaffDocuments = updatedData?.staff?.staffDoc || {};
+                const updatedStaffLeave = updatedData?.staff?.staffLeave || [];
+                const updatedPayslips = updatedData?.payslips?.paySlip || [];
+                // const updatedOnboardingDetails = {
+                //     ...updatedData.staffDetails,
+                //     ...partialDetails,
+                // };
+
                 // Store and proceed
+                store.dispatch(setPayslipData(updatedPayslips));
+                store.dispatch(setSignInAndOutData(updatedEntries));
+                store.dispatch(setStaffDetails(updatedStaffDetails));
+                store.dispatch(setStaffDocuments(updatedStaffDocuments));
+                store.dispatch(setStaffLeave(updatedStaffLeave));
                 store.dispatch(setUser({ ...primaryInformation, role: primaryInformation.role }));
 
                 toast.success(`We have successfully logged you into your account.`, {
