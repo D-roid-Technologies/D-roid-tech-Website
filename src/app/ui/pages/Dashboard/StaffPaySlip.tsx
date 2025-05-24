@@ -16,7 +16,9 @@ interface PaySlipProps {
     city: string;
     state: string;
     country: string;
-    deductions: number;
+    totalDeductions: number;
+    netSalary: number;
+    GSalary: number;
     taxesPercent: number;
     todayMonth: number;
 }
@@ -48,28 +50,29 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
     sName,
     city,
     state,
-    deductions,
+    totalDeductions,
+    netSalary,
+    GSalary,
     country,
 }) => {
 
     const { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd } = getCurrentDateInfo();
     const currentMonth = new Date().toLocaleString('default', { month: 'long' });
-    const staffGrossPay = useSelector((state: RootState) => state.SignInO.staffGrossPay);
-    const staffPosition = useSelector((state: RootState) => state.SignInO.staffPosition);
-    const staffTax = useSelector((state: RootState) => state.SignInO.staffTax);
+    const staffGrossPay = useSelector((state: RootState) => state.SignInO.staffDetails.staffGrossPay);
+    const staffPosition = useSelector((state: RootState) => state.SignInO.staffDetails.staffPosition);
+    const staffTax = useSelector((state: RootState) => state.SignInO.staffDetails.staffTax);
 
     const [showGenerateButton, setShowGenerateButton] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const payslips = useSelector((state: RootState) => state.payslip.payslips);
     const user = useSelector((state: RootState) => state.user);
-    const userLogs = useSelector((state: RootState) => state.SignInO.entries as Entry[]);
 
     useEffect(() => {
         const today = new Date();
         // if (today.getDate() === 8) {
         setShowGenerateButton(true);
-        console.log(calculateNetSalary(userLogs, 70000))
+
         // }
     }, []);
 
@@ -84,23 +87,20 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
             country,
         },
         payPeriod: {
-            payPeriodStart: payPeriodStart.toISOString(),
-            payPeriodEnd: payPeriodEnd.toISOString(),
+            payPeriodStart: payPeriodStart.toLocaleString(),
+            payPeriodEnd: payPeriodEnd.toLocaleString(),
             monthPaid: formatMonth(payPeriodStart),
             monthOfPay: formatMonth(payPeriodEnd),
             todayMonth: formatMonth(currentMonthDate),
         },
-        // grossPay: Number(staffGrossPay),
-        grossPay: 90000.46,
+        grossPay: Number(staffGrossPay),
         taxes: {
-            // amount: Number(staffTax),
-            amount: 1633.33,
-            // percentage: calculateTaxPercentage(Number(staffGrossPay), Number(staffTax)),
-            percentage: calculateTaxPercentage(90000.46, 1633.33),
+            amount: Number(staffTax),
+            percentage: calculateTaxPercentage(Number(staffGrossPay), Number(staffTax)),
         },
-        netPay: 60366.67,
+        netPay: Number(staffGrossPay) - Number(staffTax) - totalDeductions,
         deductions: {
-            totalDeductions: deductions,
+            totalDeductions: totalDeductions,
             meetingAbsence: 0.0,
             taskCompletion: 0.0,
             signInAndOut: 0.0,
@@ -187,11 +187,11 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
                 </section>
 
                 <section style={styles.section}>
-                    <h3 style={styles.subHeader}>Deductions ₦{payslip.deductions.totalDeductions.toFixed(2)}</h3>
+                    <h3 style={styles.subHeader}>Deductions</h3>
                     <ul>
                         <li>Absent from meetings: {payslip.deductions.meetingAbsence.toFixed(2)}</li>
                         <li>Completion of Tasks: {payslip.deductions.taskCompletion.toFixed(2)}</li>
-                        <li>Absent Signing in: {payslip.deductions.signInAndOut.toFixed(2)}</li>
+                        <li>Absent Signing in: {payslip.deductions.totalDeductions.toFixed(2)}</li>
                     </ul>
                 </section>
 

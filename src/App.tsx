@@ -44,7 +44,8 @@ function AppContent() {
 
   useEffect(() => {
     if (user.isLoggedIn === true) {
-      console.log("User exists", user);
+      console.log("User exists");
+      // console.log("User exists", user);
     } else {
       console.log("No user exists");
     }

@@ -1,25 +1,67 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
 export type Entry = {
     email: string;
     employeeId?: string;
     timestamp: string;
     type: 'Sign In' | 'Sign Out';
     note?: string;
-}
+};
+
+export type StaffDetails = {
+    staffGrossPay: string;
+    staffTax: string;
+    staffPosition: string;
+    staffBank: string;
+    staffAccountNmber: string;
+    staffAccountName: string;
+};
+
+type StaffDocuments = {
+    nationalId: string;
+    proofOfAddress: string;
+    secSchCertificate: string;
+    uniCertificate: string;
+    birthCertificate: string;
+    medicalDoc: string;
+    signatre: string;
+    pasport: string;
+    marriageCert: string;
+    nyscCert: string;
+    utilityBill: string;
+};
+
 type SignInAndOutState = {
-    entries: Entry[];
-    staffGrossPay: string,
-    staffTax: string,
-    staffPosition: string
+    staffDetails: StaffDetails;
+    staffDoc: StaffDocuments;
+    staffLeave: any[]; // Define a specific type if available
+    staffSignInAndOut: Entry[];
 };
 
 const initialState: SignInAndOutState = {
-    entries: [],
-    staffGrossPay: "",
-    staffTax: "",
-    staffPosition: "",
+    staffDetails: {
+        staffGrossPay: "",
+        staffTax: "",
+        staffPosition: "",
+        staffBank: "",
+        staffAccountNmber: "",
+        staffAccountName: ""
+    },
+    staffDoc: {
+        nationalId: "",
+        proofOfAddress: "",
+        secSchCertificate: "",
+        uniCertificate: "",
+        birthCertificate: "",
+        medicalDoc: "",
+        signatre: "",
+        pasport: "",
+        marriageCert: "",
+        nyscCert: "",
+        utilityBill: ""
+    },
+    staffLeave: [],
+    staffSignInAndOut: []
 };
 
 export const signInAndOutSlice = createSlice({
@@ -27,19 +69,25 @@ export const signInAndOutSlice = createSlice({
     initialState,
     reducers: {
         setSignInAndOutData(state, action: PayloadAction<Entry[]>) {
-            state.entries = action.payload;
+            state.staffSignInAndOut = action.payload;
         },
-        setGpay(state, action) {
-            state.staffGrossPay = action.payload
+        setStaffDetails(state, action: PayloadAction<Partial<StaffDetails>>) {
+            state.staffDetails = { ...state.staffDetails, ...action.payload };
         },
-        setTpay(state, action) {
-            state.staffTax = action.payload
+        setStaffDocuments(state, action: PayloadAction<Partial<StaffDocuments>>) {
+            state.staffDoc = { ...state.staffDoc, ...action.payload };
         },
-        setPosition(state, action) {
-            state.staffPosition = action.payload
+        setStaffLeave(state, action: PayloadAction<any[]>) {
+            state.staffLeave = action.payload;
         }
-    },
+    }
 });
 
-export const { setSignInAndOutData, setGpay, setTpay, setPosition } = signInAndOutSlice.actions;
+export const {
+    setSignInAndOutData,
+    setStaffDetails,
+    setStaffDocuments,
+    setStaffLeave
+} = signInAndOutSlice.actions;
+
 export default signInAndOutSlice.reducer;

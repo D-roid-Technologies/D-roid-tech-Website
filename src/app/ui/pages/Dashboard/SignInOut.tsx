@@ -16,8 +16,8 @@ const SignInOut: React.FC = () => {
     const [isSigningIn, setIsSigningIn] = useState(true);
 
     const user = useSelector((state: RootState) => state.user);
-    const userLogs = useSelector((state: RootState) => state.SignInO.entries as Entry[]);
-    console.log(userLogs)
+    const userLogs = useSelector((state: RootState) => state.SignInO.staffSignInAndOut as Entry[]);
+    // console.log(userLogs)
 
     useEffect(() => {
         setEmail(user.email);
