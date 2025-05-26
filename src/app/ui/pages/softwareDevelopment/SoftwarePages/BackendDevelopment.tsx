@@ -226,7 +226,7 @@ const BackendDevelopment: React.FC = () => {
         <div className="soft-dev-content">
           {ourProcess.map((phase, index) => (
             <CoreValueCardTwo
-              //   pressable={true}
+              pressable={true}
               key={index}
               title={phase.title}
               description={phase.description}

@@ -74,6 +74,7 @@ export enum RoutePaths {
   Home = "/",
   AboutUs = "/aboutus",
   Careers = "/careers",
+  Pricing = "/more/pricing",
   StartProjectPage = "/StartProjectPage",
 
   // Services Routes
@@ -116,6 +117,7 @@ export enum RoutePaths {
   Blog = `/more/blog`,
   BlogPost = `/more/blog/:slug`,
   Products = "/more/products",
+  // Pricing = "/more/pricing",
   JoinOurCommunity = "/auth/join-our-community",
   Signup = "/auth/signup",
 
@@ -163,6 +165,7 @@ export enum RoutePaths {
   BackendDevelopment = "/software-development/back-end",
   CrossPlatformApps = "/software-development/cross-platform-apps",
   DatabaseAndCloud = "/software-development/database-and-cloud",
+  // PricingPage = "PricingPage",
 }
 
 interface DropdownItem {
@@ -193,7 +196,7 @@ export const dropdownItems: DropdownItems = {
   more: [
     { title: "D'roid Journal", link: RoutePaths.Blog },
     { title: "Products", link: RoutePaths.Products },
-    { title: "Pricing", link: RoutePaths.Products },
+    { title: "Pricing", link: RoutePaths.Pricing },
     { title: "Partners", link: RoutePaths.Partners },
     { title: "Contact", link: RoutePaths.Contact },
     { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
@@ -231,7 +234,10 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.JsonFomat} element={<JsonFormating />} />
       <Route path={RoutePaths.UuidGenerator} element={<UUIDGenerator />} />
       <Route path={RoutePaths.Encoder} element={<Base64Tool />} />
-      <Route path={RoutePaths.ResumerAnalyser} element={<ResumeAnalyzerPage />} />
+      <Route
+        path={RoutePaths.ResumerAnalyser}
+        element={<ResumeAnalyzerPage />}
+      />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
