@@ -53,7 +53,7 @@ const Blog: React.FC = () => {
       title: "Tech News",
       status: "Ongoing",
       // descriptionUrl: "https://kcity-c8580.web.app/",
-      descriptionUrl: `${RoutePaths.Blog}/tech-news`,
+      descriptionUrl: `${RoutePaths.Blog}/tech`,
       summary:
         "Empower your Learning Journey with Knowledge City Whether you're a student, educator, or professional, our platform is designed to deliver an engaging and seamless learning experience.",
       startDate: "2023-01-10",
@@ -69,7 +69,7 @@ const Blog: React.FC = () => {
       id: "3",
       title: "Business News",
       status: "Completed",
-      descriptionUrl: `${RoutePaths.Blog}/business-news`,
+      descriptionUrl: `${RoutePaths.Blog}/business`,
       summary:
         "The revamped and enhanced Ecobank Mobile app makes it super easy to bank on the go 24/7. Manage your everyday banking needs anywhere anytime directly from your mobile device. Manage your account, send money, make payments and get help from the Ecobank mobile app in all 33 African countries where Ecobank is present.",
       startDate: "2023-03-03",

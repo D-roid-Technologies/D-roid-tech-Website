@@ -66,6 +66,7 @@ import UUIDGenerator from "../ui/pages/toolboxpage/uuidgenerator/UuidGenerator";
 import Base64Tool from "../ui/pages/toolboxpage/Encoder/Encoder";
 import BMICalculator from "../ui/pages/calculator/sciencecalculate/bmicalculator/BMICalculator";
 import BlogPost from "../ui/pages/DroidJournal/blog/BlogPost";
+import BlogPostView from "../ui/pages/DroidJournal/blog/BlogPostView";
 import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
 
 // Define an enum for all route paths
@@ -247,6 +248,18 @@ const Index: React.FunctionComponent = () => {
         <Route index element={<Navigate to={RoutePaths.Blog} replace />} />
         <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
         <Route path={RoutePaths.BlogPost} element={<BlogPost />} />
+        <Route
+          path={`${RoutePaths.Blog}/events/:title`}
+          element={<BlogPostView />}
+        />
+        <Route
+          path={`${RoutePaths.Blog}/tech/:title`}
+          element={<BlogPostView />}
+        />
+        <Route
+          path={`${RoutePaths.Blog}/business/:title`}
+          element={<BlogPostView />}
+        />
         <Route path={RoutePaths.Products} element={<Products />} />
       </Route>
       {/* Existing Routes */}
