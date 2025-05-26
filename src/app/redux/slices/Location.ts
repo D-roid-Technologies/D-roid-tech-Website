@@ -40,7 +40,7 @@ export const locationSlice = createSlice({
             state.postcode = action.payload.postcode;
             state.principalSubdivision = action.payload.principalSubdivision;
             state.principalSubdivisionCode = action.payload.principalSubdivisionCode;
-            console.log(state.city, state.postcode)
+            // console.log(state.city, state.postcode)
         }
     }
 

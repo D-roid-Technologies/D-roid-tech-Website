@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
-import { FaCompressArrowsAlt, FaPalette, FaImages } from "react-icons/fa";
+import { FaCompressArrowsAlt, FaPalette, FaImages, FaCodeBranch, FaUserTie, FaStamp, FaMagic, FaFilePdf } from "react-icons/fa";
 import { BiSolidCrop } from "react-icons/bi";
 import { CgColorPicker } from "react-icons/cg";
 import { FaFileWord } from "react-icons/fa6";
@@ -84,7 +84,51 @@ const tools = [
     category: "Developer Tools",
     link: "/toolbox/encoderbasetool",
   },
+
+  // === Premium Tools ===
+
+  {
+    title: "AI Background Remover",
+    description: "Automatically remove backgrounds from images using AI with high precision.",
+    icon: FaMagic({ size: 24 }),
+    category: "Image Tools",
+    link: "/toolbox/backgroundremover",
+    isPremium: true,
+  },
+  {
+    title: "Advanced PDF Editor",
+    description: "Merge, split, sign, and annotate PDFs with advanced editing options.",
+    icon: FaFilePdf({ size: 24 }),
+    category: "Document Tools",
+    link: "/toolbox/pdfeditor",
+    isPremium: true,
+  },
+  {
+    title: "Resume & CV Analyzer",
+    description: "Analyze and score your resume against industry standards and job descriptions.",
+    icon: FaUserTie({ size: 24 }),
+    category: "Career Tools",
+    link: "/toolbox/resumeanalyzer",
+    isPremium: true,
+  },
+  {
+    title: "Code Complexity Analyzer",
+    description: "Detect and measure code complexity, maintainability, and hotspots in your codebase.",
+    icon: FaCodeBranch({ size: 24 }),
+    category: "Developer Tools",
+    link: "/toolbox/codeanalyzer",
+    isPremium: true,
+  },
+  {
+    title: "Bulk Image Watermarker",
+    description: "Apply watermarks to multiple images at once for branding and copyright protection.",
+    icon: FaStamp({ size: 24 }),
+    category: "Image Tools",
+    link: "/toolbox/bulkwatermarker",
+    isPremium: true,
+  },
 ];
+
 
 const ToolBoxPage: React.FunctionComponent = () => {
   return (

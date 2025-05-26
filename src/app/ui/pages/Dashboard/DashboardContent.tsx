@@ -26,12 +26,14 @@ import Trainings from './Trainings';
 const DashboardContent: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
+  const staffDetails = useSelector((state: RootState) => state.SignInO.staffDetails);
   // const location: LocationState = useSelector((state: RootState) => state.location);
   const isUserStaff = userDetails.userType === 'Staff';
   const isUserRole = userDetails.role === 'Superadmin';
   const [input, setInput] = useState('');
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | { title: string; content: string; icon: JSX.Element }>(null);
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const grossPay = parseFloat(staffDetails?.staffGrossPay ?? '0');
 
   // console.log(isUserRole)
 
@@ -99,8 +101,13 @@ const DashboardContent: React.FunctionComponent = () => {
   ];
 
 
+
   const handleClear = () => {
     setInput('');
+  }
+
+  const handleShowPayslip = () => {
+
   }
 
   const handleButtonClick = (value: string) => {
@@ -298,14 +305,24 @@ const DashboardContent: React.FunctionComponent = () => {
       case 'Tasks':
         return (
           <Section title="Tasks">
+            <p style={{ color: "#000000" }}>See all list of all tasks here.</p>
             <Tasks />
           </Section>
         );
+
       case 'Payslips':
         return (
           <Section title="Payslips">
-            <p style={{ color: "#000000" }}>View your salary payslips here.</p>
-            <StaffPay />
+            {grossPay > 0 ? (
+              <>
+                <p style={{ color: "#000000" }}>View your salary payslips here.</p>
+                <StaffPay />
+              </>
+            ) : (
+              <p style={{ color: "#ff4d4f" }}>
+                Gross pay data is missing or zero — please complete onboarding first.
+              </p>
+            )}
           </Section>
         );
       case 'Onboarding':

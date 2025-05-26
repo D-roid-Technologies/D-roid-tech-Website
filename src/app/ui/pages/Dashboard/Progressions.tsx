@@ -2,15 +2,44 @@ import React from 'react';
 
 type Milestone = {
     title: string;
+    fromPosition: string | null;
+    toPosition: string;
     achieved: boolean;
-};
-
-const milestones: Milestone[] = [
-    { title: 'Onboarding Process', achieved: true },
-    { title: 'First Week Review', achieved: true },
-    { title: 'First Month Review', achieved: false },
-    { title: 'Training Completed', achieved: false },
-];
+  };
+  
+  const milestones: Milestone[] = [
+    {
+      title: 'Employed as Intern',
+      fromPosition: null,
+      toPosition: 'Intern',
+      achieved: true,
+    },
+    {
+      title: 'Promoted to Junior Developer',
+      fromPosition: 'Intern',
+      toPosition: 'Junior Developer',
+      achieved: true,
+    },
+    {
+      title: 'Promoted to Mid-Level Developer',
+      fromPosition: 'Junior Developer',
+      toPosition: 'Mid-Level Developer',
+      achieved: false,
+    },
+    {
+      title: 'Promoted to Senior Developer',
+      fromPosition: 'Mid-Level Developer',
+      toPosition: 'Senior Developer',
+      achieved: false,
+    },
+    {
+      title: 'Promoted to Team Lead',
+      fromPosition: 'Senior Developer',
+      toPosition: 'Team Lead',
+      achieved: false,
+    },
+  ];
+  
 
 const Progression: React.FC = () => {
     return (

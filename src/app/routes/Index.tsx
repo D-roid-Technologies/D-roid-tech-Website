@@ -1,11 +1,10 @@
 // Importing all dependencies first
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 // Importing all the pages/components
 import Home from "../ui/pages/home/Home";
 import AboutUs from "../ui/pages/aboutus/AboutUs";
-import Animation from "../ui/pages/animations/Animation";
 import Contact from "../ui/pages/contact/Contact";
 import Training from "../ui/pages/training/Training";
 import Equipments from "../ui/pages/equipments/Equipments";
@@ -17,10 +16,8 @@ import Services from "../ui/pages/home/services/Services";
 import NotFound from "../ui/pages/notfound/NotFound";
 import Software from "../ui/pages/software/Software";
 import PrivacyPolicy from "../ui/pages/privacy/PrivacyPolicy";
-import TakeTest from "../ui/pages/taketest/TakeTest";
 import TrainingPrograms from "../ui/pages/training/trainingprograms/TrainingPrograms";
 import Details from "../ui/pages/details/Details";
-import AI from "../ui/pages/AI/AI";
 import Website from "../ui/pages/website/Website";
 import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
 import KnowledgeCityDetails from "../ui/pages/animations/knowledgecitydetailspage/KnowledgeCityDetails";
@@ -48,11 +45,9 @@ import ForgotPassword from "../ui/pages/ForgotPassword/ForgotPassword";
 import MemberLogin from "../ui/pages/memberLogin/MemberLogin";
 import TermsAndConditions from "../ui/pages/termsandcondition/TermsAndCondition";
 import Dashboard from "../ui/pages/Dashboard/Dashboard";
-import DroidPhonesPage from "../ui/pages/mobile/DroidPhonesPage";
 import ScienceCalculate from "../ui/pages/calculator/sciencecalculate/ScienceCalculate";
 import ImageResizer from "../ui/pages/toolboxpage/imageresizer/ImageResizer";
 import DroidLanding from "../ui/pages/mobile/DroidLanding";
-import Blog from "../ui/pages/DroidJournal/Blog";
 import ColorConverter from "../ui/pages/toolboxpage/colorconverter/ColorConverter";
 import FrontendDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwarePages/FrontendDevelopmentPage";
 import ProtectedRoute from "./ProtectedRoutes";
@@ -60,7 +55,6 @@ import ColorPicker from "../ui/components/toolboxfolder/colorPicker/ColorPicker"
 import WordCounter from "../ui/components/toolboxfolder/WordCounter/WordCounter";
 import BackendDevelopment from "../ui/pages/softwareDevelopment/SoftwarePages/BackendDevelopment";
 import TrainingDescriptionPage from "../ui/pages/trainingPrograms/TrainingDescriptionPage";
-import Partners from "../ui/components/partners/Partners";
 import PartnersPage from "../ui/pages/partnerPage/PartnersPage";
 import ImageCompress from "../ui/components/toolboxfolder/imagecompress/ImageCompress";
 import CropTool from "../ui/pages/toolboxpage/croptool/CropTool";
@@ -72,6 +66,7 @@ import UUIDGenerator from "../ui/pages/toolboxpage/uuidgenerator/UuidGenerator";
 import Base64Tool from "../ui/pages/toolboxpage/Encoder/Encoder";
 import BMICalculator from "../ui/pages/calculator/sciencecalculate/bmicalculator/BMICalculator";
 import BlogPost from "../ui/pages/DroidJournal/blog/BlogPost";
+import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
 
 // Define an enum for all route paths
 
@@ -104,6 +99,7 @@ export enum RoutePaths {
   JsonFomat = "/toolbox/jsonformatter",
   UuidGenerator = "/toolbox/uuidgenerator",
   Encoder = "/toolbox/encoderbasetool",
+  ResumerAnalyser = "/toolbox/resumeanalyzer",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -235,6 +231,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.JsonFomat} element={<JsonFormating />} />
       <Route path={RoutePaths.UuidGenerator} element={<UUIDGenerator />} />
       <Route path={RoutePaths.Encoder} element={<Base64Tool />} />
+      <Route path={RoutePaths.ResumerAnalyser} element={<ResumeAnalyzerPage />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />

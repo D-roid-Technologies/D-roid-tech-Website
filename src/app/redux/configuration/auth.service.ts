@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, UserType } from "../../utils/Types";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
-import { setGpay, setPosition, setSignInAndOutData, setTpay } from "../slices/SignInAndOutSlice";
+import { setSignInAndOutData, setStaffDetails, setStaffDocuments, setStaffLeave, StaffDetails } from "../slices/SignInAndOutSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
@@ -164,6 +164,100 @@ const getCurrentDateTime = () => {
     };
 }
 
+type LogEntry = {
+    email: string;
+    employeeId?: string;
+    timestamp: string;
+    type: 'Sign In' | 'Sign Out';
+    note?: string;
+};
+
+function parseDate(timestamp: string): Date {
+    // Handle both ISO strings and 'DD/MM/YYYY, HH:mm:ss' format
+    const isoDate = Date.parse(timestamp);
+    if (!isNaN(isoDate)) return new Date(isoDate);
+
+    // Handle manually formatted date
+    const [datePart, timePart] = timestamp.split(', ');
+    const [day, month, year] = datePart.split('/');
+    return new Date(`${year}-${month}-${day}T${timePart}`);
+}
+
+export function calculateNetSalary(
+    logs: LogEntry[],
+    grossSalary: number
+): { netSalary: number; grossSalary: number; totalDeductions: number } {
+    if (!grossSalary || grossSalary <= 0) {
+        toast.error(`Gross pay cannot be zero or negative - Fill up form in Onboarding first 🚫`, {
+            style: { background: '#ff4d4f', color: '#fff' },
+        });
+
+        return {
+            netSalary: 0,
+            grossSalary: 0,
+            totalDeductions: 0,
+        };
+    }
+
+    const dailyDurations: Record<string, number> = {};
+    const now = new Date();
+    const currentMonth = now.getMonth(); // 0-indexed
+    const currentYear = now.getFullYear();
+
+    const normalizedLogs = logs.map(log => ({
+        ...log,
+        date: parseDate(log.timestamp),
+    }));
+
+    const logsByDay: Record<string, { type: 'Sign In' | 'Sign Out'; date: Date }[]> = {};
+
+    for (const log of normalizedLogs) {
+        if (
+            log.date.getMonth() === currentMonth &&
+            log.date.getFullYear() === currentYear
+        ) {
+            const key = log.date.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+            if (!logsByDay[key]) logsByDay[key] = [];
+            logsByDay[key].push({ type: log.type, date: log.date });
+        }
+    }
+
+    for (const date in logsByDay) {
+        const events = logsByDay[date].sort((a, b) => a.date.getTime() - b.date.getTime());
+        let totalHours = 0;
+        for (let i = 0; i < events.length - 1; i += 2) {
+            if (events[i].type === "Sign In" && events[i + 1]?.type === "Sign Out") {
+                const duration =
+                    (events[i + 1].date.getTime() - events[i].date.getTime()) / (1000 * 60 * 60);
+                totalHours += duration;
+            }
+        }
+        dailyDurations[date] = totalHours;
+    }
+
+    const qualifyingDays = Object.values(dailyDurations).filter(h => h >= 6.5).length;
+    let totalDeduction = 0;
+
+    if (qualifyingDays < 28) {
+        for (const hours of Object.values(dailyDurations)) {
+            if (hours < 6.5) {
+                const shortfall = 6.5 - hours;
+                const deductionUnits = Math.floor(shortfall / (2 / 3)); // 2/3 hour = 40 minutes
+                totalDeduction += deductionUnits * 0.005;
+            }
+        }
+    }
+
+    const netSalary = parseFloat((grossSalary - totalDeduction).toFixed(2));
+    return {
+        netSalary,
+        grossSalary,
+        totalDeductions: parseFloat(totalDeduction.toFixed(2)),
+    };
+}
+
+
+
 export async function getUserDocByUniqueId(uniqueId: string) {
     const currentUser = auth.currentUser;
 
@@ -315,9 +409,28 @@ export class AuthService {
                     },
                 },
                 staff: {
-                    staffGrossPay: "",
-                    staffTax: "",
-                    staffPosition: "",
+                    staffDetails: {
+                        staffGrossPay: "",
+                        staffTax: "",
+                        staffPosition: "",
+                        staffBank: "",
+                        staffAccountNmber: "",
+                        staffAccountName: ""
+                    },
+                    staffDoc: {
+                        nationalId: "",
+                        proofOfAddress: "",
+                        secSchCertificate: "",
+                        uniCertificate: "",
+                        birthCertificate: "",
+                        medicalDoc: "",
+                        signatre: "",
+                        pasport: "",
+                        marriageCert: "",
+                        nyscCert: "",
+                        utilityBill: "",
+                    },
+                    staffLeave: [],
                     staffSignInAndOut: []
                 },
                 forms: {
@@ -340,9 +453,6 @@ export class AuthService {
                 },
                 announcements: {
                     notifications: []
-                },
-                sayit: {
-                    sayIt: []
                 },
                 tasks: {
                     task: []
@@ -421,6 +531,8 @@ export class AuthService {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const userDocRef = doc(collection(db, "droidaccount"), userCredential.user.uid);
             const userDocSnap = await getDoc(userDocRef);
+            const updatedData = userDocSnap.data();
+            console.log(updatedData)
 
             if (userDocSnap.exists()) {
                 const fetchedUserData = userDocSnap.data();
@@ -439,7 +551,29 @@ export class AuthService {
                     );
                 }
 
+                const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
+                const updatedStaffDetails = {
+                    staffGrossPay: updatedData?.staff?.staffDetails?.staffGrossPay || "",
+                    staffTax: updatedData?.staff?.staffDetails?.staffTax || "",
+                    staffPosition: updatedData?.staff?.staffDetails?.staffPosition || "",
+                    staffBank: updatedData?.staff?.staffDetails?.staffBank || "",
+                    staffAccountNmber: updatedData?.staff?.staffDetails?.staffAccountNmber || "",
+                    staffAccountName: updatedData?.staff?.staffDetails?.staffAccountName || "",
+                };
+                const updatedStaffDocuments = updatedData?.staff?.staffDoc || {};
+                const updatedStaffLeave = updatedData?.staff?.staffLeave || [];
+                const updatedPayslips = updatedData?.payslips?.paySlip || [];
+                // const updatedOnboardingDetails = {
+                //     ...updatedData.staffDetails,
+                //     ...partialDetails,
+                // };
+
                 // Store and proceed
+                store.dispatch(setPayslipData(updatedPayslips));
+                store.dispatch(setSignInAndOutData(updatedEntries));
+                store.dispatch(setStaffDetails(updatedStaffDetails));
+                store.dispatch(setStaffDocuments(updatedStaffDocuments));
+                store.dispatch(setStaffLeave(updatedStaffLeave));
                 store.dispatch(setUser({ ...primaryInformation, role: primaryInformation.role }));
 
                 toast.success(`We have successfully logged you into your account.`, {
@@ -586,15 +720,22 @@ export class AuthService {
             const updatedSnapshot = await getDoc(userDocRef);
             const updatedData = updatedSnapshot.data();
             const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
-            const updatedStaffGpay = updatedData?.staff?.staffGrossPay || "";
-            const updatedStaffTax = updatedData?.staff?.staffTax || "";
-            const updatedStaffPosition = updatedData?.staff?.staffPosition || "";
+            const updatedStaffDetails = {
+                staffGrossPay: updatedData?.staff?.staffDetails?.staffGrossPay || "",
+                staffTax: updatedData?.staff?.staffDetails?.staffTax || "",
+                staffPosition: updatedData?.staff?.staffDetails?.staffPosition || "",
+                staffBank: updatedData?.staff?.staffDetails?.staffBank || "",
+                staffAccountNmber: updatedData?.staff?.staffDetails?.staffAccountNmber || "",
+                staffAccountName: updatedData?.staff?.staffDetails?.staffAccountName || "",
+            };
+            const updatedStaffDocuments = updatedData?.staff?.staffDoc || {};
+            const updatedStaffLeave = updatedData?.staff?.staffLeave || [];
 
             // Dispatch to Redux
             store.dispatch(setSignInAndOutData(updatedEntries));
-            store.dispatch(setGpay(updatedStaffGpay));
-            store.dispatch(setTpay(updatedStaffTax));
-            store.dispatch(setPosition(updatedStaffPosition));
+            store.dispatch(setStaffDetails(updatedStaffDetails));
+            store.dispatch(setStaffDocuments(updatedStaffDocuments));
+            store.dispatch(setStaffLeave(updatedStaffLeave));
 
             toast.success(`${entry.type} recorded at ${entry.timestamp}`, {
                 style: { background: '#4BB543', color: '#fff' },
@@ -668,6 +809,53 @@ export class AuthService {
                 style: { background: '#ff4d4f', color: '#fff' },
             });
             return null;
+        }
+    }
+
+    async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
+        try {
+            const currentUser = auth.currentUser;
+
+            if (!currentUser) {
+                toast.error("User not authenticated", {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return;
+            }
+
+            const userId = currentUser.uid;
+            const staffDocRef = doc(db, "droidaccount", userId);
+            const staffSnapshot = await getDoc(staffDocRef);
+
+            if (!staffSnapshot.exists()) {
+                toast.error("Staff record not found", {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return;
+            }
+
+            const currentData = staffSnapshot.data();
+            const updatedDetails = {
+                ...currentData.staffDetails,
+                ...partialDetails,
+            };
+
+            await updateDoc(staffDocRef, {
+                'staff.staffDetails': updatedDetails,
+            });
+
+            // ✅ Update Redux state
+            store.dispatch(setStaffDetails(updatedDetails));
+
+            toast.success("Staff details updated successfully", {
+                style: { background: '#4BB543', color: '#fff' },
+            });
+
+        } catch (error: any) {
+            console.error("Error updating staff details:", error.message);
+            toast.error("Failed to update staff details", {
+                style: { background: '#ff4d4f', color: '#fff' },
+            });
         }
     }
 
