@@ -68,6 +68,7 @@ import BMICalculator from "../ui/pages/calculator/sciencecalculate/bmicalculator
 import BlogPost from "../ui/pages/DroidJournal/blog/BlogPost";
 import BlogPostView from "../ui/pages/DroidJournal/blog/BlogPostView";
 import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
+import PricingPage from "../ui/pages/pricingpage/PricingPage";
 
 // Define an enum for all route paths
 
@@ -117,6 +118,7 @@ export enum RoutePaths {
   Blog = `/more/blog`,
   BlogPost = `/more/blog/:slug`,
   Products = "/more/products",
+  Pricing = "/more/pricing",
   JoinOurCommunity = "/auth/join-our-community",
   Signup = "/auth/signup",
 
@@ -164,6 +166,7 @@ export enum RoutePaths {
   BackendDevelopment = "/software-development/back-end",
   CrossPlatformApps = "/software-development/cross-platform-apps",
   DatabaseAndCloud = "/software-development/database-and-cloud",
+  // PricingPage = "PricingPage",
 }
 
 interface DropdownItem {
@@ -194,6 +197,9 @@ export const dropdownItems: DropdownItems = {
   more: [
     { title: "D'roid Journal", link: RoutePaths.Blog },
     { title: "Products", link: RoutePaths.Products },
+    { title: "Pricing", link: RoutePaths.Pricing },
+    { title: "Partners", link: RoutePaths.Partners },
+    { title: "Contact", link: RoutePaths.Contact },
     { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
   ],
 };
@@ -229,7 +235,10 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.JsonFomat} element={<JsonFormating />} />
       <Route path={RoutePaths.UuidGenerator} element={<UUIDGenerator />} />
       <Route path={RoutePaths.Encoder} element={<Base64Tool />} />
-      <Route path={RoutePaths.ResumerAnalyser} element={<ResumeAnalyzerPage />} />
+      <Route
+        path={RoutePaths.ResumerAnalyser}
+        element={<ResumeAnalyzerPage />}
+      />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
@@ -261,6 +270,7 @@ const Index: React.FunctionComponent = () => {
           element={<BlogPostView />}
         />
         <Route path={RoutePaths.Products} element={<Products />} />
+        <Route path={RoutePaths.Pricing} element={<PricingPage />} />
       </Route>
       {/* Existing Routes */}
       <Route path={RoutePaths.Contact} element={<Contact />} />
@@ -296,14 +306,14 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.KnowledgeCityDetails}
         element={<KnowledgeCityDetails />}
       />
-      <Route path={RoutePaths.CashBasket} element={<Cashbasket />} />
-      <Route path={RoutePaths.Dome} element={<Dome />} />
+      {/* <Route path={RoutePaths.CashBasket} element={<Cashbasket />} /> */}
+      {/* <Route path={RoutePaths.Dome} element={<Dome />} /> */}
       {/* Website Routes */}
       <Route path={RoutePaths.Website} element={<Website />} />
-      <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
+      {/* <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
-      <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
+      <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} /> */}
       <Route
         path={RoutePaths.FrontendDevelopmentPage}
         element={<FrontendDevelopmentPage />}
