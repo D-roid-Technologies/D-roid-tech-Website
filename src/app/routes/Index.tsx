@@ -67,6 +67,7 @@ import Base64Tool from "../ui/pages/toolboxpage/Encoder/Encoder";
 import BMICalculator from "../ui/pages/calculator/sciencecalculate/bmicalculator/BMICalculator";
 import BlogPost from "../ui/pages/DroidJournal/blog/BlogPost";
 import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
+import PricingPage from "../ui/pages/pricingpage/PricingPage";
 
 // Define an enum for all route paths
 
@@ -74,7 +75,6 @@ export enum RoutePaths {
   Home = "/",
   AboutUs = "/aboutus",
   Careers = "/careers",
-  Pricing = "/more/pricing",
   StartProjectPage = "/StartProjectPage",
 
   // Services Routes
@@ -117,7 +117,7 @@ export enum RoutePaths {
   Blog = `/more/blog`,
   BlogPost = `/more/blog/:slug`,
   Products = "/more/products",
-  // Pricing = "/more/pricing",
+  Pricing = "/more/pricing",
   JoinOurCommunity = "/auth/join-our-community",
   Signup = "/auth/signup",
 
@@ -257,6 +257,7 @@ const Index: React.FunctionComponent = () => {
         <Route path={RoutePaths.Blog} element={<DroidJournalPage />} />
         <Route path={RoutePaths.BlogPost} element={<BlogPost />} />
         <Route path={RoutePaths.Products} element={<Products />} />
+        <Route path={RoutePaths.Pricing} element={<PricingPage />} />
       </Route>
       {/* Existing Routes */}
       <Route path={RoutePaths.Contact} element={<Contact />} />
@@ -292,14 +293,14 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.KnowledgeCityDetails}
         element={<KnowledgeCityDetails />}
       />
-      <Route path={RoutePaths.CashBasket} element={<Cashbasket />} />
-      <Route path={RoutePaths.Dome} element={<Dome />} />
+      {/* <Route path={RoutePaths.CashBasket} element={<Cashbasket />} /> */}
+      {/* <Route path={RoutePaths.Dome} element={<Dome />} /> */}
       {/* Website Routes */}
       <Route path={RoutePaths.Website} element={<Website />} />
-      <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
+      {/* <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
-      <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} />
+      <Route path={RoutePaths.WebFoarm} element={<WebFoarm />} /> */}
       <Route
         path={RoutePaths.FrontendDevelopmentPage}
         element={<FrontendDevelopmentPage />}
