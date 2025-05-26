@@ -1,0 +1,24 @@
+.blog-post-view {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.blog-post-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.blog-post-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.blog-post-excerpt {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #444;
+}
