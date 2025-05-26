@@ -16,6 +16,7 @@ import {
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
 import ContactSoftware from "../contact/ContactSection/ContactSoftware";
+import { useNavigate } from "react-router-dom";
 
 const devPhases = [
   {
@@ -23,6 +24,7 @@ const devPhases = [
     description:
       "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
     icon: FaAccessibleIcon({ size: 24 }),
+    url: "",
   },
   {
     title: "Design & Prototyping",
@@ -85,6 +87,17 @@ const technologies = [
 ];
 
 const SoftwareDevelopmentPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleTechnologyClick = (tech: {
+    title?: string;
+    description?: string;
+    imageSrc?: any;
+    url: any;
+  }) => {
+    navigate(tech.url);
+  };
+
   return (
     <div>
       <NavBar />
@@ -112,14 +125,20 @@ const SoftwareDevelopmentPage: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {technologies.map((tech, index) => (
-            <CoreValueCardTwo
+            <div
               key={index}
-              title={tech.title}
-              description={tech.description}
-              imageSrc={tech.imageSrc}
-              url={tech.url}
-              className="process-card"
-            />
+              onClick={() => handleTechnologyClick(tech)}
+              style={{ cursor: "pointer" }}
+            >
+              <CoreValueCardTwo
+                key={index}
+                title={tech.title}
+                description={tech.description}
+                imageSrc={tech.imageSrc}
+                url={tech.url}
+                className="process-card"
+              />
+            </div>
           ))}
         </div>
       </div>

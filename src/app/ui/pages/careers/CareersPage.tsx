@@ -2,6 +2,9 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
+import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
+import { useNavigate } from "react-router-dom";
+import JobCard from "../../components/career/Career";
 
 type Job = {
   title: string;
@@ -16,30 +19,62 @@ const openings: Job[] = [
     title: "Frontend Developer",
     type: "Full-Time",
     location: "Remote / Lagos",
-    description: "We're looking for a skilled React developer with solid UI/UX understanding and passion for clean code.",
+    description:
+      "We're looking for a skilled React developer with solid UI/UX understanding and passion for clean code.",
     url: "/careers/frontend-developer",
   },
   {
     title: "Backend Developer",
     type: "Full-Time",
     location: "Remote",
-    description: "Join our backend team building scalable APIs with Node.js and cloud functions.",
+    description:
+      "Join our backend team building scalable APIs with Node.js and cloud functions.",
     url: "/careers/backend-developer",
   },
   {
     title: "UI/UX Designer",
     type: "Contract / Full-Time",
     location: "Remote",
-    description: "Design intuitive, beautiful experiences using Figma and collaborate closely with engineers.",
+    description:
+      "Design intuitive, beautiful experiences using Figma and collaborate closely with engineers.",
     url: "/careers/ui-ux-designer",
   },
 ];
 
+const coreValues = [
+  {
+    title: "Innovation",
+    description: "We're constantly experimenting and pushing boundaries.",
+    imageSrc: "",
+  },
+  {
+    title: "Remote-First",
+    description:
+      "Work where you thrive—we support async and flexible schedules.",
+    imageSrc: "",
+  },
+  {
+    title: "Growth",
+    description: "We invest in continuous learning and personal development.",
+    imageSrc: "",
+  },
+];
+
 const CareersPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleTechnologyClick = (tech: {
+    title?: string;
+    description?: string;
+    imageSrc?: any;
+    url: any;
+  }) => {
+    navigate(tech.url);
+  };
+
   return (
     <div>
       <NavBar />
-
       {/* Hero */}
       <div
         style={{
@@ -57,57 +92,112 @@ const CareersPage: React.FC = () => {
             Careers at D'roid
           </h1>
           <p style={{ fontSize: "1.25rem", color: "#eee", maxWidth: "500px" }}>
-            We’re building the future of digital experiences—and we want you on the team.
+            We're building the future of digital experiences—and we want you on
+            the team.
           </p>
         </div>
       </div>
-
       {/* Open Roles */}
-      <div className="wrapper" style={{ padding: "40px" }}>
-        <h2 style={{ marginBottom: "30px" }}>Open Positions</h2>
+      <div className="wrapper" style={{ padding: "40px 60px" }}>
+        <div style={{ marginBottom: "40px" }}>
+          <span
+            className="soft-dev-header title_span"
+            style={{ background: "#e2e8f0" }}
+          >
+            Open Positions
+          </span>
+          {/* <h2
+            style={{
+              fontSize: "2.5rem",
+              fontWeight: "800",
+              color: "#1f2937",
+              marginBottom: "8px",
+            }}
+          >
+            Open Positions
+          </h2> */}
+          <p
+            style={{ color: "#6b7280", fontSize: "1.1rem", marginTop: "1rem" }}
+          >
+            Join our team and help us build the future of digital experiences
+          </p>
+        </div>
+
         {openings.length > 0 ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+              gap: "24px",
+              maxWidth: "1200px",
+              margin: "0 auto",
+            }}
+          >
             {openings.map((job, index) => (
-              <div
+              <JobCard
                 key={index}
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                  padding: "20px",
-                  backgroundColor: "#fff",
-                }}
-              >
-                <h3 style={{ fontSize: "1.5rem", fontWeight: "600" }}>{job.title}</h3>
-                <p style={{ color: "#555" }}>{job.description}</p>
-                <div style={{ display: "flex", gap: "20px", marginTop: "10px", fontSize: "0.95rem" }}>
-                  <span>{job.type}</span>
-                  <span>{job.location}</span>
-                </div>
-                <a
-                  href={job.url}
-                  style={{ color: "#007bff", marginTop: "10px", display: "inline-block" }}
-                >
-                  View Details →
-                </a>
-              </div>
+                title={job.title}
+                type={job.type}
+                location={job.location}
+                description={job.description}
+                url={job.url}
+                onClick={() => handleTechnologyClick(job)}
+                className="job-opening-card"
+              />
             ))}
           </div>
         ) : (
-          <p>No open roles at the moment. Check back soon!</p>
+          <div
+            style={{
+              textAlign: "center",
+              padding: "60px 20px",
+              backgroundColor: "#f9fafb",
+              borderRadius: "12px",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            <div style={{ fontSize: "3rem", marginBottom: "16px" }}>🚀</div>
+            <h3
+              style={{
+                fontSize: "1.5rem",
+                color: "#1f2937",
+                marginBottom: "8px",
+              }}
+            >
+              No open roles at the moment
+            </h3>
+            <p style={{ color: "#6b7280", fontSize: "1.1rem" }}>
+              But we're always growing! Check back soon or reach out to us
+              directly.
+            </p>
+          </div>
         )}
       </div>
-
       {/* Values Section (Optional) */}
       <div className="wrapper" style={{ padding: "40px" }}>
-        <h2 style={{ marginBottom: "30px" }}>What We Value</h2>
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#e2e8f0" }}
+        >
+          What We Value
+        </span>
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
             gap: "30px",
+            marginTop: "1rem",
           }}
         >
-          <CoreValueCard
+          {coreValues.map((value, index) => (
+            <CoreValueCardTwo
+              key={index}
+              title={value.title}
+              description={value.description}
+              imageSrc={value.imageSrc}
+            />
+          ))}
+          {/* <CoreValueCard
             title="Innovation"
             description="We're constantly experimenting and pushing boundaries."
             imageSrc=""
@@ -121,10 +211,9 @@ const CareersPage: React.FC = () => {
             title="Growth"
             description="We invest in continuous learning and personal development."
             imageSrc=""
-          />
+          /> */}
         </div>
       </div>
-
       {/* Call to Action */}
       <div
         style={{
@@ -155,7 +244,8 @@ const CareersPage: React.FC = () => {
         >
           Get in Touch
         </a>
-      </div>
+      </div>{" "}
+      mm
     </div>
   );
 };
