@@ -197,6 +197,9 @@ export const dropdownItems: DropdownItems = {
   more: [
     { title: "D'roid Journal", link: RoutePaths.Blog },
     { title: "Products", link: RoutePaths.Products },
+    { title: "Pricing", link: RoutePaths.Products },
+    { title: "Partners", link: RoutePaths.Partners },
+    { title: "Contact", link: RoutePaths.Contact },
     { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
   ],
 };
