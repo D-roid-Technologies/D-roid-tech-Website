@@ -164,16 +164,15 @@ const AnimationDescriptionPage: React.FC = () => {
   const navigate = useNavigate();
   const { storyId } = useParams<{ storyId: string }>();
 
+  console.log(storyId)
+
   // Get the story data based on the URL parameter or default to brothers
   const storyKey = storyId || "brothers";
   const storyData = storiesData[storyKey];
 
-  // If story not found, show error or redirect
-  // If story not found, show error or redirect
   if (!storyData) {
     return (
       <div>
-        <NavBar />
         <div
           className="wrapper"
           style={{ padding: "2rem 0", textAlign: "center" }}
@@ -239,7 +238,7 @@ const AnimationDescriptionPage: React.FC = () => {
         }
       }
     >
-      <NavBar />
+      {/* <NavBar /> */}
 
       {/* Header Section */}
       <div

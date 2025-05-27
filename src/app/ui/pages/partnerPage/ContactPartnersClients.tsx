@@ -56,20 +56,26 @@ const ContactPartnersClients: React.FunctionComponent = () => {
       name: `${formData.contactPerson}`,
       title: `Thank you for contacting D'roid Technologies Ltd.
 
-Reference Number: ${referenceNumber}
+        Reference Number: ${referenceNumber}
 
-We’ve received your inquiry from ${formData.organizationName}, located in ${formData.location}.
-Partnership Type: ${formData.partnershipType}
-Business Size: ${formData.businessSize}
-Interests: ${interestList}
-Website: ${formData.website}
-Phone: ${formData.phone}
-How you heard about us: ${formData.heardFrom}
+        We’ve received your inquiry from ${formData.organizationName} and your company is located in ${formData.location}.
 
-Message: "${formData.message}"
+        Here are your details:
+        Partnership Title: ${formData.title}
+        Cantact Person: ${formData.contactPerson}
+        Partnership Type: ${formData.partnershipType}
+        Business Size: ${formData.businessSize}
 
-Our team will review and get in touch within 3 business days.
-We look forward to exploring a strong collaboration.`,
+        Interests: ${interestList}
+        Website: ${formData.website}
+        Phone: ${formData.phone}
+        How you heard about us: ${formData.heardFrom}
+        Your Interest areas: ${formData.interestAreas}
+
+        Message: "${formData.message}"
+
+        Our team will review and get in touch within 3 business days.
+        We look forward to exploring a strong collaboration.`,
       email: formData.email,
     };
 
