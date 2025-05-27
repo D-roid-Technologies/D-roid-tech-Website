@@ -169,29 +169,26 @@ const AnimationDescriptionPage: React.FC = () => {
   const storyData = storiesData[storyKey];
 
   // If story not found, show error or redirect
+  // If story not found, show error or redirect
   if (!storyData) {
     return (
-      <div style={{ minHeight: "100vh", backgroundColor: "#ffffff" }}>
+      <div>
         <NavBar />
-        <div style={{ padding: "2rem", textAlign: "center", color: "#333333" }}>
-          <h1
-            style={{ color: "#071d6a", fontSize: "2rem", marginBottom: "1rem" }}
-          >
-            Story Not Found
-          </h1>
-          <p style={{ fontSize: "1.1rem", marginBottom: "2rem" }}>
-            The requested story could not be found.
-          </p>
+        <div
+          className="wrapper"
+          style={{ padding: "2rem 0", textAlign: "center" }}
+        >
+          <h1>Story Not Found</h1>
+          <p>The requested story could not be found.</p>
           <button
             onClick={() => navigate("/animation")}
             style={{
-              padding: "12px 24px",
+              padding: "10px 16px",
               backgroundColor: "#071d6a",
               color: "#fff",
               border: "none",
-              borderRadius: "6px",
+              borderRadius: "4px",
               cursor: "pointer",
-              fontSize: "1rem",
             }}
           >
             ← Back to Stories
@@ -200,14 +197,47 @@ const AnimationDescriptionPage: React.FC = () => {
       </div>
     );
   }
+  //   if (!storyData) {
+  //     return (
+  //       <div>
+  //         <NavBar />
+  //         <div style={{ padding: "2rem", textAlign: "center", color: "#333333" }}>
+  //           <h1
+  //             style={{ color: "#071d6a", fontSize: "2rem", marginBottom: "1rem" }}
+  //           >
+  //             Story Not Found
+  //           </h1>
+  //           <p style={{ fontSize: "1.1rem", marginBottom: "2rem" }}>
+  //             The requested story could not be found.
+  //           </p>
+  //           <button
+  //             onClick={() => navigate("/animation")}
+  //             style={{
+  //               padding: "12px 24px",
+  //               backgroundColor: "#071d6a",
+  //               color: "#fff",
+  //               border: "none",
+  //               borderRadius: "6px",
+  //               cursor: "pointer",
+  //               fontSize: "1rem",
+  //             }}
+  //           >
+  //             ← Back to Stories
+  //           </button>
+  //         </div>
+  //       </div>
+  //     );
+  //   }
 
   return (
     <div
-      style={{
-        minHeight: "100vh",
-        // backgroundColor: "#ffffff",
-        color: "#333333",
-      }}
+      style={
+        {
+          // minHeight: "100vh",
+          // backgroundColor: "#ffffff",
+          // color: "#333333",
+        }
+      }
     >
       <NavBar />
 
