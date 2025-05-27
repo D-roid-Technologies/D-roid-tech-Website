@@ -69,6 +69,7 @@ import BlogPost from "../ui/pages/DroidJournal/blog/BlogPost";
 import BlogPostView from "../ui/pages/DroidJournal/blog/BlogPostView";
 import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
 import PricingPage from "../ui/pages/pricingpage/PricingPage";
+import CareerDescriptionPage from "../ui/pages/careers/CareerDescriptionPage";
 
 // Define an enum for all route paths
 
@@ -76,6 +77,7 @@ export enum RoutePaths {
   Home = "/",
   AboutUs = "/aboutus",
   Careers = "/careers",
+  CareersDescriptionPage = "/careers/description",
   StartProjectPage = "/StartProjectPage",
 
   // Services Routes
@@ -211,6 +213,10 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.Home} element={<Home />} />
       <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
       <Route path={RoutePaths.Careers} element={<CareersPage />} />
+      <Route
+        path={RoutePaths.CareersDescriptionPage}
+        element={<CareerDescriptionPage />}
+      />
       <Route
         path={RoutePaths.StartProjectPage}
         element={<StartProjectPage />}
