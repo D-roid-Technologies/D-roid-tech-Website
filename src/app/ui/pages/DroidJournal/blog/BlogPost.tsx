@@ -3,8 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./BlogPost.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import Navbar from "../../../components/navbar/NavBar";
-import BlogCards from "../../../components/blogPosts/BlogCards";
 import TechBlog from "./tech/TechBlog";
+import BusinessBlog from "./business/BusinessBlog";
+import EventBlog from "./events-/EventBlog";
 
 interface BlogPostData {
   id: string;
@@ -17,7 +18,7 @@ interface BlogPostData {
 }
 
 const BlogPost: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();   
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
   const blogPosts: BlogPostData[] = [
@@ -25,36 +26,31 @@ const BlogPost: React.FC = () => {
       id: "1",
       slug: "events",
       title: "Events",
-      summary:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum nobis, quis aut pariatur dolorum ex?",
+      summary: "Latest events and conferences",
       imageUrl: Assets.images.events,
       category: "Activities",
       author: "D'roid",
     },
     {
       id: "2",
-      slug: "tech-news",
+      slug: "tech",
       title: "Tech News",
-      summary:
-        "Empower your Learning Journey with Knowledge City Whether you're a student, educator, or professional, our platform is designed to deliver an engaging and seamless learning experience.",
-      imageUrl:
-        "https://cdn.prod.website-files.com/60dea2341adbe2c3648a27e6/656804feaf393aa82e16f83a_Tech%20news.png",
-      category: "News",
+      summary: "Latest technology news and updates",
+      imageUrl: Assets.images.tech,
+      category: "Technology",
       author: "D'roid",
     },
     {
       id: "3",
-      slug: "business-news",
+      slug: "business",
       title: "Business News",
-      summary:
-        "The revamped and enhanced Ecobank Mobile app makes it super easy to bank on the go 24/7. Manage your everyday banking needs anywhere anytime directly from your mobile device. Manage your account, send money, make payments and get help from the Ecobank mobile app in all 33 African countries where Ecobank is present.",
+      summary: "Business trends and financial news",
       imageUrl: Assets.images.business,
-      category: "News",
-      author: "Eco Bank",
+      category: "Business",
+      author: "D'roid",
     },
   ];
 
-  // Find post by slug (case insensitive)
   const post = blogPosts.find(
     (p) => p.slug.toLowerCase() === slug?.toLowerCase()
   );
@@ -68,18 +64,23 @@ const BlogPost: React.FC = () => {
     );
   }
 
+  const renderComponent = () => {
+    switch (post.slug.toLowerCase()) {
+      case "tech":
+        return <TechBlog />;
+      case "business":
+        return <BusinessBlog />;
+      case "events":
+        return <EventBlog />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div>
       <Navbar className="scrolled" />
       <div className="blog-post-container">
-        {/* <div className="blog-post-header">
-          <h1>{post.title}</h1>
-          <div className="meta-info">
-            <span className="category">{post.category}</span>
-            <span className="author">By {post.author}</span>
-          </div>
-        </div> */}
-
         <div className="wrapper">
           <div className="group justify-content-center">
             <div
@@ -99,17 +100,7 @@ const BlogPost: React.FC = () => {
           </div>
         </div>
 
-        <div className="wrapper">
-            <TechBlog />
-          {/* <img src={post.imageUrl} alt={post.title} className="featured-image" /> */}
-          {/* <p className="summary">{post.summary}</p> */}
-
-          {/* Add more content sections as needed */}
-          <div className="full-content">
-            {/* This would be your full blog content */}
-            {/* You might want to add a separate 'content' field in your data */}
-          </div>
-        </div>
+        <div className="wrapper">{renderComponent()}</div>
       </div>
     </div>
   );
