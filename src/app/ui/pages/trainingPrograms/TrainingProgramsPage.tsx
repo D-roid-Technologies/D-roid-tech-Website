@@ -24,7 +24,7 @@ const programs = [
     gallery: [
       "/images/frontend/1.jpg",
       "/images/frontend/2.jpg",
-      "/images/frontend/3.jpg"
+      "/images/frontend/3.jpg",
     ],
   },
   {
@@ -46,7 +46,7 @@ const programs = [
     gallery: [
       "/images/backend/1.jpg",
       "/images/backend/2.jpg",
-      "/images/backend/3.jpg"
+      "/images/backend/3.jpg",
     ],
   },
   {
@@ -65,11 +65,7 @@ const programs = [
       "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
     benefits:
       "Build a professional design portfolio. Learn from working designers with real-world insights. Access exclusive design communities and job leads.",
-    gallery: [
-      "/images/uiux/1.jpg",
-      "/images/uiux/2.jpg",
-      "/images/uiux/3.jpg"
-    ],
+    gallery: ["/images/uiux/1.jpg", "/images/uiux/2.jpg", "/images/uiux/3.jpg"],
   },
   {
     title: "Fullstack Engineering",
@@ -90,7 +86,7 @@ const programs = [
     gallery: [
       "/images/fullstack/1.jpg",
       "/images/fullstack/2.jpg",
-      "/images/fullstack/3.jpg"
+      "/images/fullstack/3.jpg",
     ],
   },
   {
@@ -112,7 +108,7 @@ const programs = [
     gallery: [
       "/images/python/1.jpg",
       "/images/python/2.jpg",
-      "/images/python/3.jpg"
+      "/images/python/3.jpg",
     ],
   },
   {
@@ -134,13 +130,10 @@ const programs = [
     gallery: [
       "/images/careers/1.jpg",
       "/images/careers/2.jpg",
-      "/images/careers/3.jpg"
+      "/images/careers/3.jpg",
     ],
   },
 ];
-
-
-
 
 const TrainingProgramsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -170,7 +163,10 @@ const TrainingProgramsPage: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {programs.map((prog, index) => (
-            <div key={index} onClick={() => navigate("/training/description", { state: prog })}>
+            <div
+              key={index}
+              onClick={() => navigate("/training/description", { state: prog })}
+            >
               <CoreValueCardTwo
                 title={prog.title}
                 description={prog.summary}
