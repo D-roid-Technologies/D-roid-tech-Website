@@ -26,7 +26,7 @@ const ProductCard: React.FC<Project> = ({
   const navigate = useNavigate(); // Initialize navigate
 
   return (
-    <div className="product-card">
+    <div className="product-card" style={{ marginTop: "35px" }}>
       <div className="card-image">
         <img src={imageUrl} alt={title} />
         {isBtn === false ? (

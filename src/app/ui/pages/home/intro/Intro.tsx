@@ -4,7 +4,6 @@ import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
 import { RoutePaths } from "../../../../routes/Index";
-import KnowledgeCity from "../../knowledgecityApp/KnowledgeCity";
 
 interface Counters {
   satisfaction: number;
@@ -121,7 +120,7 @@ const Intro: React.FC = () => {
               <div className="block-12 block-md-2" />
               <div
                 className="block-12 block-md-5 image_con"
-                style={{ textAlign: "center" }}
+               
               >
                 <img src={Assets.images.lightBulb} alt="Light Bulb" />
               </div>
@@ -133,7 +132,7 @@ const Intro: React.FC = () => {
             className="wrapper"
             style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
           >
-            <span className="title_span" style={{ marginLeft: "20px" }}>
+            <span className="title_span value_t">
               CORE VALUES
             </span>
 

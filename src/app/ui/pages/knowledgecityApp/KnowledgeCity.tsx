@@ -7,16 +7,10 @@ import { Assets } from "../../../utils/constant/Assets";
 const KnowledgeCity: React.FC = () => {
   return (
     <div
-      style={{
-        background: "#0B1437",
-        height: "300px",
-        marginTop: "160px",
-        marginBottom: "150px",
-      }}
-      className="wrapper"
+      className="wrapper app-wrapper"
     >
       <div className="group">
-        <div className="block-12 block-md-5" style={{ textAlign: "center" }}>
+        <div className="block-12 block-md-5 hide-small" style={{ textAlign: "center" }}>
           <img style={{ marginTop: "-15%" }} src={Assets.images.KMapp} alt="" />
         </div>
         <div

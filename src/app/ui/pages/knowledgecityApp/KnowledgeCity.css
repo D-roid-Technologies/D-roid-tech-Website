@@ -2,6 +2,12 @@
   display: flex;
   gap: 30px;
 }
+.app-wrapper {
+  margin-top: 160px;
+  height: 300px;
+  margin-bottom: 150px;
+  background-color: #0b1437;
+}
 .app_sec {
   margin-top: -110px;
 }
@@ -30,4 +36,21 @@
   padding: auto;
   /* color: white; */
   text-decoration: none;
+}
+
+@media screen and (max-width: 630px) {
+  .hide-small {
+    display: none !important;
+  }
+  .app-wrapper {
+    height: auto;
+    padding: 30px;
+  }
+  .app_sec {
+    margin-top: 0;
+    padding: 25px;
+  }
+  .app_sec h1 {
+    line-height: 60px;
+  }
 }

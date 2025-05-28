@@ -31,6 +31,11 @@
   padding: 0 1rem;
 }
 
+.testimonial-header h2 {
+  color: #111724;
+  font-size: 4rem;
+  font-weight: 900;
+}
 .section-subtitle {
   display: block;
   font-size: 0.875rem;
@@ -152,10 +157,11 @@
 }
 
 .nav-arrow {
-  background: none;
+  background: rgba(0, 115, 230, 0.1);
+
   border: none;
   cursor: pointer;
-  color: #0073e6;
+  color: #0073e6 !important;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -213,6 +219,10 @@
 }
 
 @media (max-width: 480px) {
+  .testimonial-header h2 {
+    font-size: 3rem;
+    line-height: 50px;
+  }
   .testimonial-section {
     padding: 3rem 1rem;
   }

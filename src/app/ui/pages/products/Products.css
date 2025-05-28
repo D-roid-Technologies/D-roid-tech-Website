@@ -14,10 +14,19 @@
   color: #efecfe;
   font-size: 16px;
   /* font-weight: 900; */
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 .product_title {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 630px) {
+  .product_sec h1 {
+    color: #efecfe;
+    font-size: 3rem;
+    line-height: 60px;
+    margin-bottom: 30px;
+  }
 }

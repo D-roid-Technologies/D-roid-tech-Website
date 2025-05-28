@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Testimonial.css";
 import { Assets } from "../../../utils/constant/Assets";
+import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 
 interface TestimonialData {
   id: number;
@@ -17,7 +18,6 @@ const Testimonial: React.FC = () => {
   const [touchEnd, setTouchEnd] = useState<number>(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Array of testimonial objects, each typed with the TestimonialData interface
   const testimonials: TestimonialData[] = [
     {
       id: 1,
@@ -87,12 +87,7 @@ const Testimonial: React.FC = () => {
         <br />
         <br />
         <br />
-        <h2
-          style={{ color: "#111724", fontSize: "4rem", fontWeight: "900" }}
-          className="section-title"
-        >
-          What Our customers Say
-        </h2>
+        <h2 className="section-title">What Our customers Say</h2>
       </div>
 
       <div
@@ -139,15 +134,7 @@ const Testimonial: React.FC = () => {
           onClick={prevSlide}
           aria-label="Previous testimonial"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 18L9 12L15 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          {/* <IoMdArrowDropleft /> */}
         </button>
         <div className="slide-counter">
           {/* <span className="current-slide">{currentSlide + 1}</span>
@@ -159,15 +146,7 @@ const Testimonial: React.FC = () => {
           onClick={nextSlide}
           aria-label="Next testimonial"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 18L15 12L9 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          {/* <IoMdArrowDropright /> */}
         </button>
       </div>
     </section>
