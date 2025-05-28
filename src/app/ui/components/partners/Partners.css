@@ -149,3 +149,17 @@
     max-height: 80px;
   }
 }
+@media (max-width: 630px) {
+  .partners-h1 {
+    font-size: 3rem;
+    line-height: 60px;
+    margin-top: 30px;
+  }
+  .partners-text {
+    margin-top: -30px;
+    margin-bottom: 40px;
+  }
+  .partners-logo-wrapper {
+    border: none !important;
+  }
+}

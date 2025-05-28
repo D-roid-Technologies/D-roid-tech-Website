@@ -129,6 +129,7 @@
   background-color: #fff;
   z-index: 999;
   display: flex;
+  padding: 35px;
   flex-direction: column;
   justify-content: center;
   /* align-items: start; */
