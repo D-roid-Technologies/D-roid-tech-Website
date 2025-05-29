@@ -253,7 +253,6 @@ const CareersPage: React.FC = () => {
                   location={job.location}
                   description={job.description}
                   url={job.url}
-                  // onClick={() => handleTechnologyClick(job)}
                   className="job-opening-card"
                 />
               </div>
