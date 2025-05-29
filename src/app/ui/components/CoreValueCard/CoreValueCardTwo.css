@@ -32,7 +32,7 @@
   margin-bottom: 16px;
   padding-top: 24px;
   padding-left: 24px;
-  color: #5a5858;
+  color: #2d3559;
   font-size: 48px;
   display: flex;
   align-items: center;
@@ -115,7 +115,7 @@
   display: inline-block;
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: #2c8e47;
+  background-color: #081d67;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -124,7 +124,7 @@
 }
 
 .launch-button:hover {
-  background-color: #95e692;
+  background-color: #2e4dbd;
 }
 
 /* Responsive adjustments */
