@@ -318,7 +318,7 @@ const ConsultingPage: React.FC = () => {
       {/* Testimonials or Case Study */}
       <div
         style={{
-          backgroundColor: "#f5f7fa",
+          // backgroundColor: "#f5f7fa",
           padding: "50px 20px",
         }}
       >
