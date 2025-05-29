@@ -378,9 +378,17 @@ const Contact: React.FC = () => {
       <div className="contact-container">
         {/* FAQ Section */}
         <section className="faq-section">
-          <div className="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about our services</p>
+          <div className="testimonial-header">
+            <span
+              className="title_span"
+              style={{ textTransform: "uppercase", backgroundColor: "#fff" }}
+            >
+              FAQ'S
+            </span>
+            <br />
+            <br />
+            <br />
+            <h2 className="section-title">Frequently Asked Question's</h2>
           </div>
 
           <div className="faq-list">

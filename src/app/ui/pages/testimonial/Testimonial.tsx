@@ -134,7 +134,7 @@ const Testimonial: React.FC = () => {
           onClick={prevSlide}
           aria-label="Previous testimonial"
         >
-          {/* <IoMdArrowDropleft /> */}
+          <IoMdArrowDropleft />
         </button>
         <div className="slide-counter">
           {/* <span className="current-slide">{currentSlide + 1}</span>
@@ -146,7 +146,7 @@ const Testimonial: React.FC = () => {
           onClick={nextSlide}
           aria-label="Next testimonial"
         >
-          {/* <IoMdArrowDropright /> */}
+          <IoMdArrowDropright />
         </button>
       </div>
     </section>
