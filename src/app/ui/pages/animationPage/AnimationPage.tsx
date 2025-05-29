@@ -49,7 +49,7 @@ const stories: Story[] = [
     thumbnail: Assets.images.brothers,
     url: "/stories/brothers",
     description:
-      "A deeply moving animated tale that explores the unbreakable bond between siblings in the face of unimaginable adversity. When a devastating enemy invasion tears through their homeland, two young brothers are violently separated during the chaos of evacuation.",
+      "A deeply moving animated tale that explores the unbreakable bond between siblings in the face of unimaginable adversity. ",
     synopsis:
       "Brothers is a deeply moving animated tale that explores the unbreakable bond between siblings in the face of unimaginable adversity. When a devastating enemy invasion tears through their homeland, two young brothers are violently separated during the chaos of evacuation. What follows is a parallel journey of survival, growth, and the enduring power of family love that transcends physical distance.",
     storyArc:
@@ -76,7 +76,7 @@ const stories: Story[] = [
     thumbnail: Assets.images.cityboys || Assets.images.cityboys || "",
     url: "/stories/city-boys",
     description:
-      "A razor-sharp examination of modern urban culture through the lens of young men consumed by the pursuit of wealth, status, and material success. Set against the backdrop of a glittering metropolis, this animated exploration reveals the hidden costs of living in a world where your worth is measured by your wallet.",
+      "A razor-sharp examination of modern urban culture through the lens of young men consumed by the pursuit of wealth, status, and material success.",
     synopsis:
       "City Boys offers a razor-sharp examination of modern urban culture through the lens of young men consumed by the pursuit of wealth, status, and material success. Set against the backdrop of a glittering metropolis, this animated exploration reveals the hidden costs of living in a world where your worth is measured by your wallet.",
     storyArc:
@@ -113,7 +113,7 @@ const stories: Story[] = [
     thumbnail: Assets.images.immaclate || Assets.images.immaclate || "",
     url: "/stories/immaculate",
     description:
-      "A powerful animated story about an African woman living with sickle cell disease. Despite facing constant challenges and societal stigma, she embodies resilience and strength, working to inspire others while fighting for awareness and acceptance in a world that doesn't understand her struggles.",
+      "A powerful animated story about an African woman living with sickle cell disease. ",
     synopsis:
       "Immaculate tells the inspiring true-to-life story of Amara, a young African woman living with sickle cell disease. This powerful animated feature chronicles her journey from childhood through adulthood, showcasing not just her medical struggles but her transformation into an advocate, educator, and symbol of hope for others facing similar challenges.",
     storyArc:
@@ -152,7 +152,7 @@ const stories: Story[] = [
     thumbnail: Assets.images.warriors || "",
     url: "/stories/warriors",
     description:
-      "An epic animated saga about a powerful clan that rises to become the strongest force on the planet through determination and unity. Their journey explores themes of loyalty, sacrifice, and perseverance as they prove that nothing is impossible when a community unites with shared purpose.",
+      "An epic animated saga about a powerful clan that rises to become the strongest force on the planet through determination and unity.",
     synopsis:
       "Warriors presents an epic saga of the Ketu clan, a people who rise from the ashes of near-extinction to become the most formidable force on their world. This isn't just a story of physical strength, but of spiritual fortitude, community bonds, and the power of unified purpose in the face of seemingly impossible odds.",
     storyArc:
@@ -246,6 +246,9 @@ const AnimationPage: React.FC = () => {
               onClick={() =>
                 navigate("/animation/description", { state: story })
               }
+              style={{
+                cursor: "pointer",
+              }}
             >
               <CoreValueCardTwo
                 title={story.title}

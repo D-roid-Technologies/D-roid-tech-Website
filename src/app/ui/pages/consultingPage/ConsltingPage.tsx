@@ -20,44 +20,98 @@ const offer = [
   {
     title: "Tech Stack Evaluation & Recommendation",
     description:
-      "We analyze your current technology and recommend optimal solutions aligned with your business goals.",
+      "We conduct deep-dive audits of your existing technology landscape, analyzing performance metrics, cost efficiency, and future scalability. Our experts provide actionable recommendations with ROI projections, migration timelines, and risk assessments.",
     icon: FaSearch({ size: 24 }),
     url: "",
+    duration: "2-4 weeks",
+    deliverables: [
+      "Comprehensive tech audit report",
+      "Stack comparison matrix",
+      "Migration roadmap",
+      "Cost-benefit analysis",
+    ],
+    businessImpact:
+      "Reduce technical debt by 60% and improve system performance by 40%",
   },
   {
     title: "Digital Transformation Roadmapping",
     description:
-      "We create a strategic plan to modernize your technology infrastructure and processes.",
+      "We craft comprehensive digital transformation strategies that align cutting-edge technology with your business objectives. From legacy system modernization to cloud migration and process automation.",
     icon: FaRocket({ size: 24 }),
     url: "",
+    duration: "3-6 weeks",
+    deliverables: [
+      "Digital maturity assessment",
+      "Transformation roadmap",
+      "Technology blueprint",
+      "Change management plan",
+    ],
+    businessImpact:
+      "Accelerate time-to-market by 50% and reduce operational costs by 30%",
   },
   {
     title: "CTO-as-a-Service for Startups",
     description:
-      "We provide on-demand technical leadership to guide your startup's technology decisions.",
+      "Access seasoned technical leadership without the full-time commitment. Our fractional CTOs bring 15+ years of experience scaling startups from MVP to IPO.",
     icon: FaBrain({ size: 24 }),
     url: "",
+    duration: "Ongoing engagement",
+    deliverables: [
+      "Technical strategy documentation",
+      "Team hiring roadmap",
+      "Architecture decisions",
+      "Investor pitch support",
+    ],
+    businessImpact:
+      "Save $200K+ annually vs. full-time CTO hire while gaining enterprise-level expertise",
   },
   {
     title: "Security & Infrastructure Review",
     description:
-      "We evaluate your systems for vulnerabilities and recommend improvements to strengthen security.",
+      "Our cybersecurity experts perform comprehensive penetration testing, vulnerability assessments, and compliance audits across your entire digital infrastructure.",
     icon: FaLock({ size: 24 }),
     url: "",
+    duration: "1-3 weeks",
+    deliverables: [
+      "Security assessment report",
+      "Penetration test results",
+      "Compliance gap analysis",
+      "Remediation action plan",
+    ],
+    businessImpact:
+      "Prevent potential data breaches that cost companies $4.45M on average",
   },
   {
     title: "Scalability & Performance Optimization",
     description:
-      "We identify bottlenecks and implement solutions to improve system performance and scalability.",
+      "We identify performance bottlenecks through advanced monitoring and load testing, then implement targeted optimizations that can handle 10x traffic growth. ",
     icon: FaChartLine({ size: 24 }),
     url: "",
+    duration: "2-8 weeks",
+    deliverables: [
+      "Performance audit report",
+      "Load testing results",
+      "Optimization implementation",
+      "Monitoring dashboard setup",
+    ],
+    businessImpact:
+      "Improve application response time by 70% and support 10x user growth without infrastructure overhaul",
   },
   {
     title: "Custom Software Strategy & Architecture",
     description:
-      "We design tailored software solutions that address your unique business challenges.",
+      "We design enterprise-grade software architectures tailored to your unique business processes and growth projections. From microservices and API-first designs to event-driven architectures.",
     icon: FaPuzzlePiece({ size: 24 }),
     url: "",
+    duration: "4-12 weeks",
+    deliverables: [
+      "System architecture blueprint",
+      "API design specifications",
+      "Database schema design",
+      "Integration strategy",
+    ],
+    businessImpact:
+      "Reduce development time by 40% and maintenance costs by 50% through optimal architecture",
   },
 ];
 const ConsultingPage: React.FC = () => {
@@ -72,7 +126,7 @@ const ConsultingPage: React.FC = () => {
             <h1 className="software-header"> Tech Consulting Services</h1>
             <p>
               Drive innovation, solve complex challenges, and build smarter with
-              strategic guidance from D’roid Technologies.
+              strategic guidance from D'roid Technologies.
             </p>
           </div>
         </div>
@@ -100,10 +154,119 @@ const ConsultingPage: React.FC = () => {
                   updateModalContent({
                     appTitle: phase.title,
                     appBody: (
-                      <>
-                        <span>{phase.description}</span>
-                        {/* <ContactSection /> */}
-                      </>
+                      <div style={{ padding: "20px" }}>
+                        <div style={{ marginBottom: "24px" }}>
+                          <h3
+                            style={{
+                              fontSize: "1.1rem",
+                              fontWeight: "600",
+                              color: "#374151",
+                              marginBottom: "12px",
+                            }}
+                          >
+                            Overview
+                          </h3>
+                          <p
+                            style={{
+                              color: "#4B5563",
+                              lineHeight: "1.6",
+                              fontSize: "0.95rem",
+                            }}
+                          >
+                            {phase.description}
+                          </p>
+                        </div>
+
+                        <div style={{ marginBottom: "24px" }}>
+                          <h3
+                            style={{
+                              fontSize: "1.1rem",
+                              fontWeight: "600",
+                              color: "#374151",
+                              marginBottom: "12px",
+                            }}
+                          >
+                            Deliverables
+                          </h3>
+                          <ul
+                            style={{
+                              listStyle: "none",
+                              padding: 0,
+                              margin: 0,
+                            }}
+                          >
+                            {phase.deliverables.map((item, idx) => (
+                              <li
+                                key={idx}
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  marginBottom: "8px",
+                                  color: "#4B5563",
+                                  fontSize: "0.95rem",
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    color: "#071d6a",
+                                    marginRight: "8px",
+                                    fontSize: "1.2rem",
+                                  }}
+                                >
+                                  •
+                                </span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div
+                          style={{
+                            backgroundColor: "#F3F4F6",
+                            padding: "16px",
+                            borderRadius: "8px",
+                            borderLeft: "4px solid #071d6a",
+                          }}
+                        >
+                          <h3
+                            style={{
+                              fontSize: "1.1rem",
+                              fontWeight: "600",
+                              color: "#374151",
+                              marginBottom: "8px",
+                            }}
+                          >
+                            Business Impact
+                          </h3>
+                          <p
+                            style={{
+                              color: "#4B5563",
+                              fontSize: "0.95rem",
+                              margin: 0,
+                            }}
+                          >
+                            {phase.businessImpact}
+                          </p>
+                        </div>
+                        {/* cta */}
+                        <div
+                          style={{
+                            marginTop: "20px",
+                          }}
+                          className="cta-container"
+                        >
+                          <h3>Ready to transform your tech strategy?</h3>
+                          <p>Contact us to schedule a free consultation.</p>
+                          <div
+                            style={{
+                              marginTop: "30px",
+                            }}
+                          >
+                            <button>Schedule a Free Consultation</button>
+                          </div>
+                        </div>
+                      </div>
                     ),
                   })
                 );
@@ -133,7 +296,7 @@ const ConsultingPage: React.FC = () => {
             margin: "0 auto 30px",
           }}
         >
-          Whether you’re scaling, transforming, or launching — we’ll help you
+          Whether you're scaling, transforming, or launching — we'll help you
           make the right moves.
         </p>
         <a
