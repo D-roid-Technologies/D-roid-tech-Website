@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ResumeAnalyzerPage: React.FC = () => {
+const BackgroundRemover: React.FC = () => {
   const navigate = useNavigate();
   const handleBack = () => {
     // Navigate back functionality
@@ -9,9 +9,8 @@ const ResumeAnalyzerPage: React.FC = () => {
   };
 
   const handleJoinCommunity = () => {
-    // Navigate to join community page
     console.log("Redirecting to join community page...");
-    // In a real app, this would navigate to the join community page
+
     // alert("Redirecting to join community page...");
     navigate("/auth/join-our-community");
   };
@@ -34,12 +33,13 @@ const ResumeAnalyzerPage: React.FC = () => {
               ← Back to toolbox
             </button>
           </div>
-          <h1 className="software-header">Resume & CV Analyzer</h1>
+          <h1 className="software-header">AI Background Remover</h1>
           <p>
-            Upload your resume or CV and get instant feedback on structure,
-            keyword optimization, readability, and formatting. Ideal for job
-            seekers who want to improve their chances with ATS (Applicant
-            Tracking Systems) and recruiters.
+            Upload any image and automatically remove the background in seconds
+            using AI-powered technology. Perfect for creating
+            professional-looking photos for profiles, e-commerce, marketing
+            materials, or graphic design without the need for manual editing or
+            advanced software.
           </p>
         </div>
       </div>
@@ -169,46 +169,4 @@ const ResumeAnalyzerPage: React.FC = () => {
   );
 };
 
-export default ResumeAnalyzerPage;
-
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import ResumeAnalyzer from "./ResumeAnalyzer";
-
-// const ResumeAnalyzerPage: React.FC = () => {
-//     const navigate = useNavigate();
-
-//     return (
-//         <div>
-//             <div className="software-main">
-//                 <div className="software-main-content">
-//                     <div style={{ margin: "1rem 0" }}>
-//                         <button
-//                             onClick={() => navigate(-1)}
-//                             style={{
-//                                 padding: "10px 16px",
-//                                 backgroundColor: "blue",
-//                                 border: "1px solid #000000",
-//                                 borderRadius: "4px",
-//                                 cursor: "pointer"
-//                             }}
-//                         >
-//                             ← Back
-//                         </button>
-//                     </div>
-//                     <h1 className="software-header">Resume & CV Analyzer</h1>
-//                     <p>
-//                         Upload your resume or CV and get instant feedback on structure,
-//                         keyword optimization, readability, and formatting. Ideal for job
-//                         seekers who want to improve their chances with ATS (Applicant
-//                         Tracking Systems) and recruiters.
-//                     </p>
-//                 </div>
-//             </div>
-//             {/* Resume Analyzer Tool */}
-//             <ResumeAnalyzer />
-//         </div>
-//     );
-// };
-
-// export default ResumeAnalyzerPage;
+export default BackgroundRemover;

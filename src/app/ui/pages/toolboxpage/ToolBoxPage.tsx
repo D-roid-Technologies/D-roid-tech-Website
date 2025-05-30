@@ -1,6 +1,15 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
-import { FaCompressArrowsAlt, FaPalette, FaImages, FaCodeBranch, FaUserTie, FaStamp, FaMagic, FaFilePdf } from "react-icons/fa";
+import {
+  FaCompressArrowsAlt,
+  FaPalette,
+  FaImages,
+  FaCodeBranch,
+  FaUserTie,
+  FaStamp,
+  FaMagic,
+  FaFilePdf,
+} from "react-icons/fa";
 import { BiSolidCrop } from "react-icons/bi";
 import { CgColorPicker } from "react-icons/cg";
 import { FaFileWord } from "react-icons/fa6";
@@ -89,15 +98,17 @@ const tools = [
 
   {
     title: "AI Background Remover",
-    description: "Automatically remove backgrounds from images using AI with high precision.",
+    description:
+      "Automatically remove backgrounds from images using AI with high precision.",
     icon: FaMagic({ size: 24 }),
     category: "Image Tools",
-    link: "/toolbox/backgroundremover",
+    link: "/toolbox/ai-background-remover",
     isPremium: true,
   },
   {
     title: "Advanced PDF Editor",
-    description: "Merge, split, sign, and annotate PDFs with advanced editing options.",
+    description:
+      "Merge, split, sign, and annotate PDFs with advanced editing options.",
     icon: FaFilePdf({ size: 24 }),
     category: "Document Tools",
     link: "/toolbox/pdfeditor",
@@ -105,7 +116,8 @@ const tools = [
   },
   {
     title: "Resume & CV Analyzer",
-    description: "Analyze and score your resume against industry standards and job descriptions.",
+    description:
+      "Analyze and score your resume against industry standards and job descriptions.",
     icon: FaUserTie({ size: 24 }),
     category: "Career Tools",
     link: "/toolbox/resumeanalyzer",
@@ -113,7 +125,8 @@ const tools = [
   },
   {
     title: "Code Complexity Analyzer",
-    description: "Detect and measure code complexity, maintainability, and hotspots in your codebase.",
+    description:
+      "Detect and measure code complexity, maintainability, and hotspots in your codebase.",
     icon: FaCodeBranch({ size: 24 }),
     category: "Developer Tools",
     link: "/toolbox/codeanalyzer",
@@ -121,14 +134,14 @@ const tools = [
   },
   {
     title: "Bulk Image Watermarker",
-    description: "Apply watermarks to multiple images at once for branding and copyright protection.",
+    description:
+      "Apply watermarks to multiple images at once for branding and copyright protection.",
     icon: FaStamp({ size: 24 }),
     category: "Image Tools",
     link: "/toolbox/bulkwatermarker",
     isPremium: true,
   },
 ];
-
 
 const ToolBoxPage: React.FunctionComponent = () => {
   return (

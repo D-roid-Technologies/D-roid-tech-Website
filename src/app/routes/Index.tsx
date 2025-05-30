@@ -71,6 +71,7 @@ import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
 import PricingPage from "../ui/pages/pricingpage/PricingPage";
 import CareerDescriptionPage from "../ui/pages/careers/CareerDescriptionPage";
 import AnimationDescriptionPage from "../ui/pages/animationPage/AnimationDescriptionPage";
+import BackgroundRemover from "../ui/pages/backgroundremover/BackgroundRemover";
 
 // Define an enum for all route paths
 
@@ -106,6 +107,7 @@ export enum RoutePaths {
   UuidGenerator = "/toolbox/uuidgenerator",
   Encoder = "/toolbox/encoderbasetool",
   ResumerAnalyser = "/toolbox/resumeanalyzer",
+  AiBackgroundRemover = "/toolbox/ai-background-remover",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -251,6 +253,10 @@ const Index: React.FunctionComponent = () => {
       <Route
         path={RoutePaths.ResumerAnalyser}
         element={<ResumeAnalyzerPage />}
+      />
+      <Route
+        path={RoutePaths.AiBackgroundRemover}
+        element={<BackgroundRemover />}
       />
 
       {/* Calculators */}
