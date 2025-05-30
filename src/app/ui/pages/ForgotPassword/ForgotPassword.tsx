@@ -36,6 +36,7 @@ const ForgotPassword: React.FunctionComponent = () => {
         <a href="/" className={styles.backLink}>
           <FaArrowLeft style={{ marginRight: "8px" }} /> Back to Login
         </a>
+        <br />
         <h1 className={styles.heading}>Forgot Password?</h1>
       </div>
 
