@@ -114,6 +114,10 @@
   transition: color 0.3s ease;
 }
 
+.mobile-menu-button:hover {
+  background: none !important;
+}
+
 .navbar.scrolled .mobile-menu-button,
 .navbar:hover .mobile-menu-button {
   color: #000;
@@ -275,7 +279,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #000 !important; 
+  color: #000 !important;
   font-size: 18.5px;
   font-weight: 700;
   /* padding: 15px 0; */
@@ -288,7 +292,7 @@
 }
 
 .mobile-dropdown-menu li {
-    padding: 5px 10px;
+  padding: 5px 10px;
 }
 
 .mobile-dropdown-menu a {
