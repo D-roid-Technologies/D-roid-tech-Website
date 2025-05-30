@@ -166,7 +166,7 @@ export const businessPosts: BlogPost[] = [
 export const eventsPosts: BlogPost[] = [
   {
     id: 9,
-    title: "Annual Developer Conference 2023 Recap",
+    title: "Code Verse Tech Confrence",
     excerpt:
       "Highlights and key takeaways from this year's premier developer event.",
     date: "June 15, 2023",
@@ -184,7 +184,41 @@ export const eventsPosts: BlogPost[] = [
   },
   {
     id: 10,
-    title: "Upcoming Web Development Workshops",
+    title: "Front-End Engineering Training",
+    excerpt:
+      "Don't miss these hands-on learning opportunities happening next month.",
+    date: "May 30, 2023",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image:
+      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    readMoreLink: generateBlogLink(
+      "events",
+      "Upcoming Web Development Workshops"
+    ),
+  },
+  {
+    id: 11,
+    title: "Clash of Kings - Chess Tournament",
+    excerpt:
+      "Don't miss these hands-on learning opportunities happening next month.",
+    date: "May 30, 2023",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image:
+      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    readMoreLink: generateBlogLink(
+      "events",
+      "Upcoming Web Development Workshops"
+    ),
+  },
+  {
+    id: 12,
+    title: "Rapid Training Conference",
     excerpt:
       "Don't miss these hands-on learning opportunities happening next month.",
     date: "May 30, 2023",

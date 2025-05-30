@@ -268,11 +268,11 @@ const SignUp: React.FunctionComponent = () => {
           name: updatedFormData.firstName + " " + updatedFormData.lastName,
           title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
   
-  Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
-  
-  At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
-  
-  We look forward to achieving great things together`,
+          Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
+          
+          At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
+          
+          We look forward to achieving great things together`,
           email: updatedFormData.email,
         };
 
