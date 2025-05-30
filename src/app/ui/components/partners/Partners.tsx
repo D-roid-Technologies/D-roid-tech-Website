@@ -10,7 +10,7 @@ const logos = [
     alt: "Intel",
   },
   {
-    src: "https://scontent.fabb1-3.fna.fbcdn.net/v/t39.30808-6/308408317_466190838885107_7274109674455319942_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFRgJFQUXo1IFQuhlPmIQxiY3F9WU9q0DVjcX1ZT2rQNWof_8Y68-K1s2yt1xOVirgAklPPdDdXFaN4m1QGKh3S&_nc_ohc=srOYWLUShJ4Q7kNvwFkczzM&_nc_oc=Adl6RKedSs0CLmF0bASaE4Z8DXgkHudoZ79QO1tK2rem9ILGRBUcexvwpsO78NuHlkI&_nc_zt=23&_nc_ht=scontent.fabb1-3.fna&_nc_gid=OXHHRU8LryTtjw8UfCPZeg&oh=00_AfJdP67I2YFQNQQguDkZ2PJEH-lIiMG0YkVRKiIt8OLQvA&oe=68293F02",
+    src: "https://scontent.fabb1-3.fna.fbcdn.net/v/t39.30808-6/482061783_606221468910755_5206625059538571548_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGcjHvelv2d4oRMBVBF4-suddCY58qEaJx10JjnyoRonIC_zk29MjdqNhtFwP3QkNm7Xl7RRGbwbKxsnsJedoeO&_nc_ohc=y5bfg8hAhXwQ7kNvwH59oBe&_nc_oc=AdmnEb_04hxYVJy90lnMOiTV1lwIRgYnSU0mJsF0CdCJ_cUFsGfq1YMn414i4BkNZWA&_nc_zt=23&_nc_ht=scontent.fabb1-3.fna&_nc_gid=BB0z1PhdNnILpELn8hQMVA&oh=00_AfK1xrIJN8MPvuy9dARkXpDNGlqNQOJspUFh6bbywHH-hg&oe=683F592F",
     alt: "Leadpac Foundation",
   },
   {
@@ -71,7 +71,14 @@ const Partners: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", gap: "20px", marginTop: "30px", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+                marginTop: "30px",
+                justifyContent: "center",
+              }}
+            >
               <a
                 href={RoutePaths.Partners}
                 style={{ backgroundColor: "#000000", color: "#ffffff" }}
@@ -81,7 +88,6 @@ const Partners: React.FC = () => {
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
