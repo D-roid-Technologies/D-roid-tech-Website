@@ -20,6 +20,10 @@ import emailjs from "emailjs-com";
 const Contact: React.FC = () => {
   const navigate = useNavigate();
 
+  const SERVICE_ID = "service_o1jbklr";
+  const TEMPLATE_ID = "template_p8h58ur";
+  const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
+
   // Form states
   const [formData, setFormData] = useState({
     name: "",
@@ -68,10 +72,10 @@ const Contact: React.FC = () => {
       See details below:
       Phone Number: ${formData.phone},
 
-      Message: ${formdata.message}.
+      Message: ${formData.message}.
 
       Our team will review and get back to you in three working days`,
-      email: updatedFormData.email,
+      email: formData.email,
     };
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
@@ -215,7 +219,7 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <form className="contact-form" onSubmit={handleContactSubmit}>
-            <h2>Send Us a Message</h2>
+            <h2>Send us a Message</h2>
 
             <div className="form-group">
               <label htmlFor="subject">Subject</label>
