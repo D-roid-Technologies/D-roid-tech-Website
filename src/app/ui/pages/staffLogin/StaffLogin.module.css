@@ -1,0 +1,157 @@
+/*  */
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #f9f9f9;
+  flex-direction: row;
+}
+
+.leftPane {
+  flex: 1;
+  background-color: #071d6a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.backLink {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.usersIcon {
+  font-size: 120px;
+  color: #ffffff;
+}
+
+.rightPane {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  position: relative;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #071d6a;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #bab8b8;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #f9f9f9;
+}
+
+.errorText {
+  color: #ff6f61;
+  font-size: 12px;
+}
+
+.submitButton {
+  background-color: #479be8;
+  color: #ffffff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.forgotPassword {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.forgotPassword a {
+  color: #479be8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftPane,
+  .rightPane {
+    flex: none;
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .usersIcon {
+    font-size: 80px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 630px) {
+  .inputField,
+  .submitButton {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .submitButton {
+    padding: 10px 16px;
+  }
+
+  .backLink {
+    font-size: 16px;
+  }
+
+  .usersIcon {
+    font-size: 60px;
+  }
+}
