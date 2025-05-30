@@ -111,7 +111,7 @@ const tools = [
       "Merge, split, sign, and annotate PDFs with advanced editing options.",
     icon: FaFilePdf({ size: 24 }),
     category: "Document Tools",
-    link: "/toolbox/pdfeditor",
+    link: "/toolbox/advanced-pdf-editor",
     isPremium: true,
   },
   {
@@ -129,7 +129,7 @@ const tools = [
       "Detect and measure code complexity, maintainability, and hotspots in your codebase.",
     icon: FaCodeBranch({ size: 24 }),
     category: "Developer Tools",
-    link: "/toolbox/codeanalyzer",
+    link: "/toolbox/code-complexity",
     isPremium: true,
   },
   {
@@ -138,7 +138,7 @@ const tools = [
       "Apply watermarks to multiple images at once for branding and copyright protection.",
     icon: FaStamp({ size: 24 }),
     category: "Image Tools",
-    link: "/toolbox/bulkwatermarker",
+    link: "/toolbox/bulk-image",
     isPremium: true,
   },
 ];
