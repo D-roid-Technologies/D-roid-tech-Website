@@ -1,0 +1,182 @@
+/* Layout Blocks */
+.leftBlock {
+  background-color: #071d6a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  align-items: center;
+  position: relative;
+}
+
+.rightBlock {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  position: relative;
+}
+
+/* Navigation Links */
+.backLink {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.backIcon {
+  margin-right: 8px;
+}
+
+.topLeftLinks,
+.topRightLinks {
+  position: absolute;
+  top: 20px;
+}
+
+.topLeftLinks {
+  left: 24px;
+}
+
+.topRightLinks {
+  right: 24px;
+}
+
+.loginLink {
+  color: #479be8;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Text Content */
+.header {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #071d6a;
+  font-weight: 800;
+}
+
+.subtext {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #bab8b8;
+}
+
+/* Form Styles */
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.input,
+.selectInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #f9f9f9;
+  font-size: 1rem;
+}
+
+.selectInput {
+  color: #bab8b8;
+}
+
+.input:focus,
+.selectInput:focus {
+  outline: none;
+  border-color: #071d6a;
+}
+
+.errorText {
+  color: #ff6f61;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.errorTextFull {
+  color: #ff6f61;
+  font-size: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.policyRow {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.policyLabel {
+  font-size: 14px;
+  color: #bab8b8;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.checkbox {
+  margin-right: 8px;
+}
+
+.link {
+  color: #479be8;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.submitButton {
+  background-color: #479be8;
+  color: #ffffff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #071d6a;
+}
+
+.heroIcon {
+  font-size: 120px;
+  color: #ffffff;
+}
+
+@media (max-width: 630px) {
+  .heroIcon {
+    font-size: 60px;
+  }
+
+  .topLeftLinks {
+    left: 30px;
+  }
+  .topRightLinks {
+    right: 30px;
+  }
+  .header {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+  .subtext {
+    font-size: 16px;
+  }
+  .rightBlock {
+    padding: 50px 40px;
+  }
+}
+@media (max-width: 1024px) {
+  .heroIcon {
+    font-size: 80px;
+  }
+}
