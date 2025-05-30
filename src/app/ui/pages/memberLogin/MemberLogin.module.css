@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #f9f9f9;
+  flex-direction: row;
+}
+
+.left {
+  flex: 1;
+  background-color: #071d6a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.icon {
+  font-size: 120px;
+  color: #ffffff;
+}
+
+.backLink {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #071d6a;
+  font-weight: 800;
+}
+
+.subtext {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #bab8b8;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #f9f9f9;
+}
+
+.error {
+  color: #ff6f61;
+  font-size: 12px;
+}
+
+.button {
+  background-color: #479be8;
+  color: #ffffff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #071d6a;
+}
+
+.forgotPasswordLink {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.link {
+  color: #479be8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    flex: none;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .icon {
+    font-size: 80px;
+  }
+}
