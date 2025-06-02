@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ResumeAnalyzerPage: React.FC = () => {
+const BulkImage: React.FC = () => {
   const navigate = useNavigate();
   const handleBack = () => {
     // Navigate back functionality
@@ -34,12 +34,12 @@ const ResumeAnalyzerPage: React.FC = () => {
               ← Back to toolbox
             </button>
           </div>
-          <h1 className="software-header">Resume & CV Analyzer</h1>
+          <h1 className="software-header">Bulk Image Watermarker</h1>
           <p>
-            Upload your resume or CV and get instant feedback on structure,
-            keyword optimization, readability, and formatting. Ideal for job
-            seekers who want to improve their chances with ATS (Applicant
-            Tracking Systems) and recruiters.
+            Upload multiple images and automatically apply custom watermarks in
+            one go. Ideal for photographers, content creators, and businesses
+            looking to protect their visual content, maintain brand identity,
+            and save time with efficient batch processing.
           </p>
         </div>
       </div>
@@ -169,46 +169,4 @@ const ResumeAnalyzerPage: React.FC = () => {
   );
 };
 
-export default ResumeAnalyzerPage;
-
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import ResumeAnalyzer from "./ResumeAnalyzer";
-
-// const ResumeAnalyzerPage: React.FC = () => {
-//     const navigate = useNavigate();
-
-//     return (
-//         <div>
-//             <div className="software-main">
-//                 <div className="software-main-content">
-//                     <div style={{ margin: "1rem 0" }}>
-//                         <button
-//                             onClick={() => navigate(-1)}
-//                             style={{
-//                                 padding: "10px 16px",
-//                                 backgroundColor: "blue",
-//                                 border: "1px solid #000000",
-//                                 borderRadius: "4px",
-//                                 cursor: "pointer"
-//                             }}
-//                         >
-//                             ← Back
-//                         </button>
-//                     </div>
-//                     <h1 className="software-header">Resume & CV Analyzer</h1>
-//                     <p>
-//                         Upload your resume or CV and get instant feedback on structure,
-//                         keyword optimization, readability, and formatting. Ideal for job
-//                         seekers who want to improve their chances with ATS (Applicant
-//                         Tracking Systems) and recruiters.
-//                     </p>
-//                 </div>
-//             </div>
-//             {/* Resume Analyzer Tool */}
-//             <ResumeAnalyzer />
-//         </div>
-//     );
-// };
-
-// export default ResumeAnalyzerPage;
+export default BulkImage;

@@ -1,4 +1,26 @@
 /* OurTeam.css */
+
+.software-main {
+  background-image: url(../../../images//png/blue-gradient-slant-bg.png);
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+}
+
+.software-header {
+  font-size: 4rem;
+  color: #ffffff;
+  font-weight: 800;
+}
+.software-main-content p {
+  font-size: 1.25rem;
+  color: #eee;
+  max-width: 550px;
+}
+
 .our-team-container {
   position: relative;
   width: 100%;

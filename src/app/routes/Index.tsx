@@ -71,6 +71,10 @@ import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
 import PricingPage from "../ui/pages/pricingpage/PricingPage";
 import CareerDescriptionPage from "../ui/pages/careers/CareerDescriptionPage";
 import AnimationDescriptionPage from "../ui/pages/animationPage/AnimationDescriptionPage";
+import BackgroundRemover from "../ui/pages/backgroundremover/BackgroundRemover";
+import PdfEditor from "../ui/pages/pdfeditor/PdfEditor";
+import CodeComplexity from "../ui/pages/codecomplexity/CodeComplexity";
+import BulkImage from "../ui/pages/bulkimage/BulkImage";
 
 // Define an enum for all route paths
 
@@ -106,6 +110,10 @@ export enum RoutePaths {
   UuidGenerator = "/toolbox/uuidgenerator",
   Encoder = "/toolbox/encoderbasetool",
   ResumerAnalyser = "/toolbox/resumeanalyzer",
+  AiBackgroundRemover = "/toolbox/ai-background-remover",
+  AdvancedPdfEditor = "/toolbox/advanced-pdf-editor",
+  CodeComplexity = "/toolbox/code-complexity",
+  BulkImage = "/toolbox/bulk-image",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -252,6 +260,13 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.ResumerAnalyser}
         element={<ResumeAnalyzerPage />}
       />
+      <Route
+        path={RoutePaths.AiBackgroundRemover}
+        element={<BackgroundRemover />}
+      />
+      <Route path={RoutePaths.AdvancedPdfEditor} element={<PdfEditor />} />
+      <Route path={RoutePaths.CodeComplexity} element={<CodeComplexity />} />
+      <Route path={RoutePaths.BulkImage} element={<BulkImage />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
