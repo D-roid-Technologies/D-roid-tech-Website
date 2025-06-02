@@ -36,37 +36,37 @@ const Footer: React.FC = () => {
     {
       title: "Company",
       links: [
-        { name: "About", href: "#" },
-        { name: "Careers", href: "#" },
-        { name: "Brand Center", href: "#" },
-        { name: "Blog", href: "#" },
+        { name: "About", href: "/aboutus" },
+        { name: "Careers", href: "/careers" },
+        // { name: "Brand Center", href: "#" },
+        { name: "Blog", href: "/more/blog" },
       ],
     },
     {
       title: "Help Center",
       links: [
-        { name: "Discord", href: "#" },
-        { name: "Twitter", href: "#" },
-        { name: "FAQ", href: "#" },
-        { name: "Contact Us", href: "#" },
+        // { name: "Discord", href: "#" },
+        { name: "Twitter", href: "https://x.com/technologi73683" },
+        { name: "FAQ", href: "/contact#faq" },
+        { name: "Contact Us", href: "/contact" },
       ],
     },
     {
       title: "Legal",
       links: [
         { name: "Privacy Policy", href: "/privacy-policy" },
-        { name: "Licensing", href: "#" },
-        { name: "Terms", href: "#" },
+        // { name: "Licensing", href: "#" },
+        { name: "Terms", href: "/terms-and-condition" },
       ],
     },
   ];
 
   const socialLinks: SocialLink[] = [
-    { name: "Facebook", href: "#", icon: <FaFacebook /> },
-    { name: "Twitter", href: "#", icon: <FaXTwitter /> },
-    { name: "Instagram", href: "#", icon: <FaInstagramSquare /> },
-    { name: "LinkedIn", href: "#", icon: <FaLinkedin /> },
-    { name: "GitHub", href: "#", icon: <FaGithub /> },
+    { name: "Facebook", href: "https://www.facebook.com/droidtechltd/?locale=eo_EO", icon: <FaFacebook /> },
+    { name: "Twitter", href: "https://x.com/technologi73683", icon: <FaXTwitter /> },
+    { name: "Instagram", href: "https://www.instagram.com/droidtechn/", icon: <FaInstagramSquare /> },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/d-roid-technologies-international/", icon: <FaLinkedin /> },
+    { name: "GitHub", href: "https://github.com/D-roid-Technologies", icon: <FaGithub /> },
   ];
 
   return (

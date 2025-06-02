@@ -17,9 +17,16 @@ const programs = [
     tools: ["HTML", "CSS", "JavaScript", "React", "Git"],
     mode: "Online",
     url: "",
-    howToApply:
-      "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
-    benefits:
+    howToApply: [
+  "Read through the description.",
+  { label: "Join our community", href: "/community" },
+  "Register your account as a member.",
+  "After registration, take down your unique ID.",
+  "Go back to the training form, fill in all required fields, and click on submit.",
+]
+,
+
+      benefits:
       "Gain real-world coding experience through hands-on projects. Build a strong foundation for frontend development roles. Receive mentorship from industry professionals and access to a network of alumni and job opportunities.",
     gallery: [
       "/images/frontend/1.jpg",
