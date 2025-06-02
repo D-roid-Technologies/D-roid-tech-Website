@@ -5,6 +5,9 @@ import CoreValueCard from "../../components/CoreValueCard/CoreValueCard";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
 import JobCard from "../../components/career/Career";
+import styles from "./CareersPage.module.css";
+import bannerStyles from "../../components/global-styles/Banner.module.css";
+import "../../components/liteGrid@v1.0/lite-grid.css";
 
 type Job = {
   title: string;
@@ -185,28 +188,21 @@ const CareersPage: React.FC = () => {
       <NavBar />
       {/* Hero */}
       <div
+        className={bannerStyles.bannerWrapper}
         style={{
           backgroundImage: `url(${Assets.images.homeBannerSlideTwo})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "50vh",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "60px",
         }}
       >
-        <div>
-          <h1 style={{ fontSize: "4rem", color: "#fff", fontWeight: 800 }}>
-            Careers at D'roid
-          </h1>
-          <p style={{ fontSize: "1.25rem", color: "#eee", maxWidth: "500px" }}>
+        <div className={bannerStyles.bannerContent}>
+          <h1>Careers at D'roid</h1>
+          <p>
             We're building the future of digital experiences—and we want you on
             the team.
           </p>
         </div>
       </div>
       {/* Open Roles */}
-      <div className="wrapper" style={{ padding: "40px 60px" }}>
+      <div className="wrapper" style={{ padding: "20px" }}>
         <div style={{ marginBottom: "40px" }}>
           <span
             className="soft-dev-header title_span"
@@ -232,30 +228,18 @@ const CareersPage: React.FC = () => {
         </div>
 
         {openings.length > 0 ? (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-              gap: "24px",
-              maxWidth: "1200px",
-              margin: "0 auto",
-            }}
-          >
+          <div className={styles.jobListingSection}>
             {openings.map((job, index) => (
-              <div
+              <JobCard
                 key={index}
                 onClick={() => navigate("/careers/description", { state: job })}
-              >
-                <JobCard
-                  key={index}
-                  title={job.title}
-                  type={job.type}
-                  location={job.location}
-                  description={job.description}
-                  url={job.url}
-                  className="job-opening-card"
-                />
-              </div>
+                title={job.title}
+                type={job.type}
+                location={job.location}
+                className="block"
+                description={job.description}
+                url={job.url}
+              />
             ))}
           </div>
         ) : (
@@ -286,7 +270,7 @@ const CareersPage: React.FC = () => {
         )}
       </div>
       {/* Values Section (Optional) */}
-      <div className="wrapper" style={{ padding: "40px" }}>
+      <div className="wrapper" style={{ padding: "10px" }}>
         <span
           className="soft-dev-header title_span"
           style={{ background: "#e2e8f0" }}

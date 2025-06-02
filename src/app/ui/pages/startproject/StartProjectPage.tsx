@@ -22,6 +22,8 @@ import { SiMysql, SiTypescript } from "react-icons/si";
 import { title } from "process";
 import ProjectSection from "../../components/startprojectcomponent/ProjectSection";
 import { RoutePaths } from "../../../routes/Index";
+import bannerStyles from "../../components/global-styles/Banner.module.css";
+import contactStlyes from "./StartProjectContactForm.module.css";
 
 type Tool = {
   name: string;
@@ -147,56 +149,26 @@ const StartProjectPage: React.FC = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "70vh",
-          alignItems: "center",
-          // justifyContent: "center",
-          display: "flex",
-          paddingLeft: "60px",
         }}
-      // className="slide-content"
+        className={bannerStyles.bannerWrapper}
+        // className="slide-content"
       >
-        <div>
-          <h1
-            style={{
-              fontSize: "4rem",
-              fontWeight: "900",
-              marginBottom: "20px",
-              textShadow: "rgba(0, 0, 0, 0.5)",
-              color: "#ffffff",
-            }}
-          >
-            Start a Project With Us
-          </h1>
-          <p
-            style={{
-              fontSize: "1.5rem",
-              lineHeight: "1.6",
-              textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
-              color: "#ffffff",
-            }}
-          >
-            Kick start your next big idea with D'roid Technologies.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "20px",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+        <div className={bannerStyles.bannerContent}>
+          <h1>Start a Project With Us</h1>
+          <p>Kick start your next big idea with D'roid Technologies.</p>
+          <div className={bannerStyles.buttonGroupWrapper}>
+            <div className={bannerStyles.buttonRow}>
               <a
                 href="/start-a-project"
-                style={{ backgroundColor: "#fff", color: "#071d6a" }}
-                className="navbar-cta"
+                className={`${bannerStyles.navbarCta}`}
               >
                 Schedule an Appointment
               </a>
             </div>
-            <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+            <div className={bannerStyles.buttonRow}>
               <a
                 href={RoutePaths.Contact}
-                style={{ backgroundColor: "#fff", color: "#071d6a" }}
-                className="navbar-cta"
+                className={`${bannerStyles.navbarCta}`}
               >
                 Contact Us
               </a>
@@ -249,73 +221,77 @@ const StartProjectPage: React.FC = () => {
       </div>
 
       {/* Section 4: Contact Form */}
-      <div>
+      <div className={contactStlyes.contactSection}>
         <h2>Contact Us</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            {/* Use our droid input */}
-            <DroidInput
-              name="fullName"
-              type="text"
-              placeholder={"First Last"}
-              width={""}
-              border={""}
-              padding={"10px 0"}
-              color={""}
-              borderRadius={""}
-              backgroundColor={""}
-              onChange={handleChange}
-              value={form.fullName}
-              variant="filled"
-            //   startAdornment={<CiBrightnessDown />}
-            />
-          </div>
+        <div className={contactStlyes.contactWrapper}>
+          <form onSubmit={handleSubmit} className={contactStlyes.contactForm}>
+            <div className={contactStlyes.formGroup}>
+              <DroidInput
+                name="fullName"
+                type="text"
+                placeholder="First Last"
+                onChange={handleChange}
+                value={form.fullName}
+                variant="filled"
+              />
+            </div>
 
-          <div>
-            <label>Title</label>
-            <input
-              type="text"
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-            />
-            {errors.title && <p>{errors.title}</p>}
-          </div>
+            <div className={contactStlyes.formGroup}>
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+              />
+              {errors.title && (
+                <p className={contactStlyes.errorText}>{errors.title}</p>
+              )}
+            </div>
 
-          <div>
-            <label>Message</label>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-            />
-            {errors.message && <p>{errors.message}</p>}
-          </div>
+            <div className={contactStlyes.formGroup}>
+              <label htmlFor="message">Message</label>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+              />
+              {errors.message && (
+                <p className={contactStlyes.errorText}>{errors.message}</p>
+              )}
+            </div>
 
-          <div>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-            />
-            {errors.email && <p>{errors.email}</p>}
-          </div>
+            <div className={contactStlyes.formGroup}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+              />
+              {errors.email && (
+                <p className={contactStlyes.errorText}>{errors.email}</p>
+              )}
+            </div>
 
-          <div>
-            <label>Phone Number</label>
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-            />
-            {errors.phone && <p>{errors.phone}</p>}
-          </div>
+            <div className={contactStlyes.formGroup}>
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+              />
+              {errors.phone && (
+                <p className={contactStlyes.errorText}>{errors.phone}</p>
+              )}
+            </div>
 
-          <button type="submit">Submit</button>
-        </form>
+            <button type="submit" className={contactStlyes.submitButton}>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
