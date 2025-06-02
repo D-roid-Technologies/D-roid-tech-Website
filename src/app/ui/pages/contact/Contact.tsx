@@ -1,6 +1,7 @@
 //@ts-nocheck
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "../contact/Contact.css";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -57,6 +58,16 @@ export const handleContactSubmit = (e: React.FormEvent) => {
   );
 };
 const Contact: React.FC = () => {
+const location = useLocation();
+   useEffect(() => {
+    if (location.hash === "#faq") {
+      const faqSection = document.getElementById("faq");
+      if (faqSection) {
+        faqSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   const navigate = useNavigate();
 
   const SERVICE_ID = "service_o1jbklr";
@@ -393,7 +404,7 @@ const Contact: React.FC = () => {
       )}
       <div className="contact-container">
         {/* FAQ Section */}
-        <section className="faq-section">
+        <section className="faq-section" id="faq">
           <div className="testimonial-header">
             <span
               className="title_span"
@@ -407,7 +418,7 @@ const Contact: React.FC = () => {
             <h2 className="section-title">Frequently Asked Question's</h2>
           </div>
 
-          <div className="faq-list">
+          <div className="faq-list" >
             {faqs.map((faq, index) => (
               <div
                 key={index}

@@ -122,7 +122,7 @@ const Intro: React.FC = () => {
                 className="block-12 block-md-5 image_con"
                
               >
-                <img src={Assets.images.lightBulb} alt="Light Bulb" />
+                <img className="" src={Assets.images.lightBulb} alt="Light Bulb" />
               </div>
             </div>
           </div>
