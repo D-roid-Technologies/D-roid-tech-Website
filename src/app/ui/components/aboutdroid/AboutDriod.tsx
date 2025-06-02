@@ -4,9 +4,9 @@ import "../aboutdroid/AboutDriod.css";
 
 const AboutDroid: React.FC = () => {
   return (
-    <div className="software-main">
-      <div className="software-main-content">
-        <h1 className="software-header">About D'roid</h1>
+    <div className="us-main">
+      <div className="us-main-content">
+        <h1 className="us-header">About D'roid</h1>
         <p>
           We believe technology should not only advance but also empower, making
           lives easier, businesses smarter, and communities stronger.

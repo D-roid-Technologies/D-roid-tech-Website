@@ -87,7 +87,7 @@ const AboutUs: React.FunctionComponent = () => {
                 <h2 className="core-value-vision-header-small">Integrity</h2>
                 <p
                   className="about-histoy-details"
-                  style={{ color: Assets.colors.flat }}
+                  // style={{ color: Assets.colors.flat }}
                 >
                   At D'roid Technologies, integrity is the cornerstone of our
                   operations. We are committed to conducting our business with
@@ -100,7 +100,7 @@ const AboutUs: React.FunctionComponent = () => {
                 <h2 className="core-value-vision-header-small">Innovation</h2>
                 <p
                   className="about-histoy-details"
-                  style={{ color: Assets.colors.flat }}
+                  // style={{ color: Assets.colors.flat }}
                 >
                   At D'roid Technologies, innovation is at the heart of
                   everything we do. We are committed to pushing the boundaries
@@ -115,7 +115,7 @@ const AboutUs: React.FunctionComponent = () => {
                 </h2>
                 <p
                   className="about-histoy-details"
-                  style={{ color: Assets.colors.flat }}
+                  // style={{ color: Assets.colors.flat }}
                 >
                   At D'roid Technologies, our customers are at the heart of
                   everything we do. We are dedicated to understanding and
@@ -147,14 +147,14 @@ const AboutUs: React.FunctionComponent = () => {
                       <ul className="social">
                         <li>
                           {item.socials?.linkedin && (
-                            <a href={item.socials.linkedin}>
+                            <a href={item.socials.linkedin} target="_blank">
                               <FaLinkedin className="icon-s" />
                             </a>
                           )}
                         </li>
                         <li>
                           {item.socials?.twitter && (
-                            <a href={item.socials.twitter}>
+                            <a href={item.socials.twitter} target="_blank">
                               <FaXTwitter className="icon-s" />
                             </a>
                           )}

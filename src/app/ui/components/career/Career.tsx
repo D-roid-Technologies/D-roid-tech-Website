@@ -1,4 +1,5 @@
 import React from "react";
+import "../liteGrid@v1.0/lite-grid.css";
 
 interface JobCardProps {
   title: string;
@@ -27,7 +28,7 @@ const JobCard: React.FC<JobCardProps> = ({
         backgroundColor: "#fff",
         border: "1px solid #e5e7eb",
         borderRadius: "12px",
-        padding: "24px",
+        padding: "20px",
         cursor: "pointer",
         transition: "all 0.3s ease",
         boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",

@@ -1,17 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ResumeAnalyzerPage: React.FC = () => {
+const PdfEditor: React.FC = () => {
   const navigate = useNavigate();
   const handleBack = () => {
-    // Navigate back functionality
     window.history.back();
   };
 
   const handleJoinCommunity = () => {
-    // Navigate to join community page
     console.log("Redirecting to join community page...");
-    // In a real app, this would navigate to the join community page
     // alert("Redirecting to join community page...");
     navigate("/auth/join-our-community");
   };
@@ -34,12 +31,12 @@ const ResumeAnalyzerPage: React.FC = () => {
               ← Back to toolbox
             </button>
           </div>
-          <h1 className="software-header">Resume & CV Analyzer</h1>
+          <h1 className="software-header">Advanced PDF Editor</h1>
           <p>
-            Upload your resume or CV and get instant feedback on structure,
-            keyword optimization, readability, and formatting. Ideal for job
-            seekers who want to improve their chances with ATS (Applicant
-            Tracking Systems) and recruiters.
+            Upload any PDF document and easily edit text, images, and layout
+            directly within your browser. Ideal for professionals, students, and
+            teams who need to make quick adjustments, fill out forms, or
+            annotate PDFs without the need for complex software.
           </p>
         </div>
       </div>
@@ -169,46 +166,4 @@ const ResumeAnalyzerPage: React.FC = () => {
   );
 };
 
-export default ResumeAnalyzerPage;
-
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import ResumeAnalyzer from "./ResumeAnalyzer";
-
-// const ResumeAnalyzerPage: React.FC = () => {
-//     const navigate = useNavigate();
-
-//     return (
-//         <div>
-//             <div className="software-main">
-//                 <div className="software-main-content">
-//                     <div style={{ margin: "1rem 0" }}>
-//                         <button
-//                             onClick={() => navigate(-1)}
-//                             style={{
-//                                 padding: "10px 16px",
-//                                 backgroundColor: "blue",
-//                                 border: "1px solid #000000",
-//                                 borderRadius: "4px",
-//                                 cursor: "pointer"
-//                             }}
-//                         >
-//                             ← Back
-//                         </button>
-//                     </div>
-//                     <h1 className="software-header">Resume & CV Analyzer</h1>
-//                     <p>
-//                         Upload your resume or CV and get instant feedback on structure,
-//                         keyword optimization, readability, and formatting. Ideal for job
-//                         seekers who want to improve their chances with ATS (Applicant
-//                         Tracking Systems) and recruiters.
-//                     </p>
-//                 </div>
-//             </div>
-//             {/* Resume Analyzer Tool */}
-//             <ResumeAnalyzer />
-//         </div>
-//     );
-// };
-
-// export default ResumeAnalyzerPage;
+export default PdfEditor;
