@@ -6,7 +6,7 @@ import { Assets } from "../../../utils/constant/Assets";
 import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
-import Flag from "react-world-flags";  // Import Flag component
+import Flag from "react-world-flags"; // Import Flag component
 import { dropdownItems, RoutePaths } from "../../../routes/Index";
 
 interface NavBarProps {
@@ -48,8 +48,9 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
   return (
     <nav
-      className={`navbar ${className || ""} ${isScrolled || isHovered ? "scrolled" : ""
-        }`}
+      className={`navbar ${className || ""} ${
+        isScrolled || isHovered ? "scrolled" : ""
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -176,8 +177,9 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-services" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-services" ? "active" : ""
+            }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -206,8 +208,9 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             )}
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-resources" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-resources" ? "active" : ""
+            }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -241,8 +244,9 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             </a>
           </li>
           <li
-            className={`mobile-dropdown ${activeDropdown === "mobile-more" ? "active" : ""
-              }`}
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-more" ? "active" : ""
+            }`}
           >
             <div
               className="mobile-dropdown-title"
@@ -271,6 +275,20 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
             )}
           </li>
         </ul>
+        <center>
+          <a
+            href={RoutePaths.StartProjectPage}
+            className="navbar-cta"
+            style={{
+              width: "250px",
+              textAlign: "center",
+              marginTop: "30px",
+              color: "#fff",
+            }}
+          >
+            Start a project
+          </a>
+        </center>
         <div className="social-icons">
           <a href="#">
             <FaFacebook />
