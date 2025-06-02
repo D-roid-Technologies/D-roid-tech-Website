@@ -45,7 +45,7 @@ const CareerDescriptionPage: React.FC = () => {
         </div>
       </div>
       {/* Details Section */}
-      <div className="wrapper" style={{ padding: "2rem 0" }}>
+      <div className="wrapper" style={{ padding: "2rem" }}>
         <h2 style={{ color: "#000000" }}>Program Overview</h2>
         <p style={{ color: "#000000" }}>{openings.description}</p>
 
