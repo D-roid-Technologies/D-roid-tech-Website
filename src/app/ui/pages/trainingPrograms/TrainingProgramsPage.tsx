@@ -19,7 +19,7 @@ const programs = [
     url: "",
     howToApply: [
   "Read through the description.",
-  { label: "Join our community", href: "/community" },
+  { label: "Join our community", href: "/auth/join-our-community" },
   "Register your account as a member.",
   "After registration, take down your unique ID.",
   "Go back to the training form, fill in all required fields, and click on submit.",
