@@ -30,7 +30,6 @@ const Blog: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   const projects = [
     {
       id: "1",
@@ -96,7 +95,7 @@ const Blog: React.FC = () => {
           <h1
             style={{
               color: "rgb(17, 23, 36)",
-              fontSize: "5rem",
+              fontSize: "4rem",
               fontWeight: "900",
             }}
           >

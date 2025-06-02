@@ -202,7 +202,7 @@ export const DATA = {
     },
 
     {
-      image: require("../../images/png/princewill-image-two.jpeg"),
+      image: require("../../images/png/Livinus.jpg"),
       name: "Livinus Ekene",
       designation: "Frontend Developer",
       socials: {
