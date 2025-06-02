@@ -166,6 +166,7 @@
   height: 48px;
   border-radius: 50%;
   display: flex;
+  font-weight: bolder;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
