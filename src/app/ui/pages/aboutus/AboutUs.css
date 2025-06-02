@@ -44,6 +44,7 @@
   font-family: "Rubik";
   text-align: justify;
   line-height: 30px;
+  color: #e0e6ed;
 }
 .about-history-details-div {
   padding: 70px 30px;
@@ -120,14 +121,14 @@
   margin-bottom: 1.2em;
   line-height: 10px;
   font-size: 1.7rem;
-  color: #282a94;
+  color: #e0e6ed;
   font-family: "Rubik";
   margin-top: 10px;
 }
 .core-value-icons {
-  font-size: 40px;
+  font-size: 80px;
   font-weight: 700;
-  color: #282a94;
+  color: #4dd0e1;
 }
 
 .core-value-vision-box {

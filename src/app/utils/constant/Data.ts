@@ -191,15 +191,6 @@ export const DATA = {
   ],
 
   droidStaff: [
-    // {
-    //   image: require("../../images/png/uzo-onyekwelu.jpeg"),
-    //   name: "Uzochukwu Felix",
-    //   designation: "Frontend Developer",
-    //   socials: {
-    //     linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
-    //     twitter: "",
-    //   },
-    // },
     {
       image: require("../../images/png/stella-eneh-two.jpg"),
       name: "Stella Eneh",
@@ -210,43 +201,53 @@ export const DATA = {
       },
     },
 
+    {
+      image: require("../../images/png/princewill-image-two.jpeg"),
+      name: "Livinus Ekene",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin:
+          "https://www.linkedin.com/in/ugwuja-livinus-ekene-frontenddeveloper/",
+        twitter: "https://x.com/livinusonyenso ",
+      },
+    },
+    {
+      image: require("../../images/png/Rebecca.jpg"),
+      name: "Rebecca Ebianga",
+      designation: "Executive Assistant",
+      socials: {
+        linkedin:
+          "https://www.linkedin.com/in/rebeccaebianga?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: " ",
+      },
+    },
     // {
-    //   image: require("../../images/png/princewill-image-two.jpeg"),
-    //   name: "Princewill Godwin",
+    //   image: require("../../images/png/"),
+    //   name: "Faith Ojumola",
     //   designation: "Product Designer",
     //   socials: {
-    //     linkedin: "http://www.linkedin.com/in/princewill-godwin-uiuxdesigner",
-    //     twitter: "https://x.com/princewill1_g ",
-    //   },
-    // },
-    // {
-    //   image: require("../../images/png/Amarachi-image-resize.jpg"),
-    //   name: "Amarachi Abams",
-    //   designation: "Product Designer",
-    //   socials: {
-    //     linkedin: "http://www.linkedin.com/in/amarachiabams",
-    //     twitter: "https://x.com/Zibah_grafix?t=CH87kJA3wKHtvYLATLtApw&s=09 ",
-    //   },
-    // },
-    // {
-    //   image: require("../../images/png/chisom-iwuh-image.jpeg"),
-    //   name: "Chisom Iwuh",
-    //   designation: "Product Designer",
-    //   socials: {
-    //     linkedin: "https://www.linkedin.com/in/iwuh-chisom-884905218/",
+    //     linkedin: "",
     //     twitter: "",
     //   },
     // },
     // {
-    //   image: require("../../images/png/chidinmma.jpg"),
-    //   name: "Chidinma Okoli",
-    //   designation: "Digital Maketer",
+    //   image: require("../../images/png/"),
+    //   name: "Richard",
+    //   designation: "Frontend Developer",
     //   socials: {
-    //     linkedin:
-    //       "https://www.linkedin.com/in/chidinma-okoli-16b24832a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    //     twitter: "https://x.com/NightB80193?t=8niahHpoo5TpZDZcGm2bmQ&s=09 ",
+    //     linkedin: "",
+    //     twitter: "",
     //   },
     // },
+    {
+      image: require("../../images/png/Philip.jpg"),
+      name: "Philip Ogboh",
+      designation: "Frontend Developer",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/philipogboh/",
+        twitter: "https://x.com/OgbohPhilip ",
+      },
+    },
   ],
 };
 

@@ -1,19 +1,29 @@
-.software-main {
-  background-image: url(../../../images//png/blue-gradient-slant-bg.png);
+.us-main {
+  background-image: url(../../../images//png/aboutgroupimage.jpg);
   background-size: cover;
   background-position: center;
-  height: 60vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   padding-left: 60px;
 }
+/* .us-main {
+  background-image: url(../../../images//png/aboutgroupimage.jpg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+} */
 
-.software-header {
+.us-header {
   font-size: 4rem;
   color: #ffffff;
   font-weight: 800;
 }
-.software-main-content p {
+.us-main-content p {
   font-size: 1.25rem;
   color: #eee;
   max-width: 550px;
