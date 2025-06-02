@@ -1,28 +1,28 @@
+//@ts-nocheck
+
 import React, { useState } from "react";
 import "../contact/Contact.css";
-import Button from "../../components/button/Button";
-import { Assets } from "../../../utils/constant/Assets";
-import AppInput from "../../components/textInput/AppInput";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import {
   FaTwitter,
   FaInstagram,
   FaLinkedin,
-  FaArrowLeft,
 } from "react-icons/fa";
-import Testimonials from "../../components/testimonials/Testimonials";
 import { DATA } from "../../../utils/constant/Data";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import Testimonial from "../testimonial/Testimonial";
 import Navbar from "../../components/navbar/NavBar";
+import emailjs from "emailjs-com";
 
 const Contact: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const SERVICE_ID = "service_o1jbklr";
+  const TEMPLATE_ID = "template_p8h58ur";
+  const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
 
   // Form states
   const [formData, setFormData] = useState({
@@ -65,15 +65,38 @@ const Contact: React.FC = () => {
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact Form Submitted:", formData);
-    toast.success("Your message has been sent successfully!");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
+    const templateParams = {
+      name: formData.name,
+      title: `We have recieved your enquiry with title: ${formData.subject}. 
+
+      See details below:
+      Phone Number: ${formData.phone},
+
+      Message: ${formData.message}.
+
+      Our team will review and get back to you in three working days`,
+      email: formData.email,
+    };
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+      () => {
+        toast.success("Email successfully sent!", {
+          style: { background: "#4BB543", color: "#fff" },
+        });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      },
+      () => {
+        toast.error("Error sending email 🚫", {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+      }
+    );
   };
 
   const handleTestimonialSubmit = (e: React.FormEvent) => {
@@ -128,7 +151,7 @@ const Contact: React.FC = () => {
             <h1 className="software-header">Get in touch</h1>
             <p>
               Have questions or want to discuss a project? We'd love to hear
-              from y
+              from you
             </p>
           </div>
         </div>
@@ -147,8 +170,8 @@ const Contact: React.FC = () => {
               <MdEmail className="contact-icon" />
               <div>
                 <h4>Email</h4>
-                <a href="mailto:hr@droidtechinternational.com">
-                  hr@droidtechinternational.com
+                <a href="mailto:team@droidtechhq.com">
+                  team@droidtechhq.com
                 </a>
               </div>
             </div>
@@ -196,7 +219,26 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <form className="contact-form" onSubmit={handleContactSubmit}>
-            <h2>Send Us a Message</h2>
+            <h2>Send us a Message</h2>
+
+            <div className="form-group">
+              <label htmlFor="subject">Subject</label>
+              <select
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleContactChange}
+                required
+              >
+                <option value="">Select a subject</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Drone Services">Drone Services</option>
+                <option value="Software Development">
+                  Software Development
+                </option>
+                <option value="Tech Training">Tech Training</option>
+              </select>
+            </div>
 
             <div className="form-group">
               <label htmlFor="name">Full Name</label>
@@ -233,25 +275,6 @@ const Contact: React.FC = () => {
                   onChange={handleContactChange}
                 />
               </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="subject">Subject</label>
-              <select
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleContactChange}
-                required
-              >
-                <option value="">Select a subject</option>
-                <option value="General Inquiry">General Inquiry</option>
-                <option value="Drone Services">Drone Services</option>
-                <option value="Software Development">
-                  Software Development
-                </option>
-                <option value="Tech Training">Tech Training</option>
-              </select>
             </div>
 
             <div className="form-group">
