@@ -99,7 +99,7 @@ const TermsAndConditions: React.FunctionComponent = () => {
 
                 <h2 style={{ fontSize: '24px', color: '#071D6A' }}>Contact Us</h2>
                 <p className='terms__paragraph'>
-                    If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:support@droid.com" style={{ color: '#479BE8' }}>support@droid.com</a>.
+                    If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:team@droidtechhq.com" style={{ color: '#479BE8' }}>team@droidtechhq.com</a>.
                 </p>
             </div>
         </div>

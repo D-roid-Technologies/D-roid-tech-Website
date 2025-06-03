@@ -59,7 +59,7 @@ const PrivacyPolicy: React.FunctionComponent = () => {
       >
         <h2 className="privacy-subheading">Introduction</h2>
         <p className="privacy-description">
-          D'roid Technologies International ("we", "our", "us") is committed to
+          D'roid Technologies Ltd ("we", "our", "us") is committed to
           protecting and respecting your privacy. This Privacy Policy outlines
           the types of information we collect from you, how we use it, and the
           measures we take to protect it. By using our services, you agree to
@@ -232,12 +232,12 @@ const PrivacyPolicy: React.FunctionComponent = () => {
           <ul className="privacy-item">
             <li>
               By email:{" "}
-              <a href="mailto:support@droid.com" style={{ color: "#479BE8" }}>
-                support@droid.com
+              <a href="mailto:team@droidtechhq.com" style={{ color: "#479BE8" }}>
+                team@droidtechhq.com
               </a>
             </li>
-            <li>By phone: [Insert Contact Phone Number]</li>
-            <li>By WhatsApp: [Insert Contact Address]</li>
+            <li>By phone: (+234) 09165275635</li>
+            <li>By WhatsApp: (+234) 09165275635</li>
           </ul>
         </p>
         <div style={{ marginTop: "20px" }}>

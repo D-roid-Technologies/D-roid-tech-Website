@@ -105,7 +105,7 @@ const Section: React.FunctionComponent = () => {
           <div className="approach">
             <p className="our-approach"> Our Approach</p>
             <p className="approach-details">
-              At D'roid Technologies International, we take a collaborative
+              At D'roid Technologies Ltd, we take a collaborative
               approach to software development. We work closely with our clients
               to gain a deep understanding of the business needs and goals, and
               we use that knowledge to develope tailored solutions that meet
@@ -404,7 +404,7 @@ const Section: React.FunctionComponent = () => {
                     throw new Error("Function not implemented.");
                   }}
                   style={{ background: "#fff", color: "#071d69" }}
-                  // href="/taketest"
+                // href="/taketest"
                 >
                   <FaApple
                     style={{ color: "#071d69" }}
@@ -441,7 +441,7 @@ const Section: React.FunctionComponent = () => {
                     throw new Error("Function not implemented.");
                   }}
                   style={{ background: "#fff", color: "#071d69" }}
-                  // href="/taketest"
+                // href="/taketest"
                 >
                   <IoLogoGooglePlaystore
                     style={{ color: "#071d69" }}
@@ -459,8 +459,8 @@ const Section: React.FunctionComponent = () => {
               src={Assets.images.knowledgeCityMobileApp}
               alt="knowledge city img"
               className="m-app-image"
-              // width={600}
-              // height={200}
+            // width={600}
+            // height={200}
             />
           </div>
           {/* </div> */}

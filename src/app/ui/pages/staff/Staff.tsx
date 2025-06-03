@@ -73,7 +73,7 @@ const Staff: React.FunctionComponent<any> = () => {
           <img src={Assets.images.companyLogo} alt="" width={60} height={60} />
           <h2 className="staff-header">STAFF LOGIN</h2>
           <p className="staff-p">
-            Hello, are you a Staff of D'roid Technologies International?
+            Hello, are you a Staff of D'roid Technologies Ltd?
           </p>
           <p className="staff-p">
             Type in your company's 6 digit code to Login.
