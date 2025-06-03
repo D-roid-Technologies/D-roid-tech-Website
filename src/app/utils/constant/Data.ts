@@ -218,7 +218,7 @@ export const DATA = {
       socials: {
         linkedin:
           "https://www.linkedin.com/in/rebeccaebianga?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        twitter: " ",
+        twitter: "https://x.com/RebeccaEbianga?t=D-cGUwlZer3VEPZoVc3yFw&s=09",
       },
     },
     // {

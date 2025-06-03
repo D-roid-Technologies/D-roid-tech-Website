@@ -29,7 +29,7 @@ const Home: React.FunctionComponent = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 style={{ fontSize: "3rem", fontWeight: "900" }}>
+            <h2 >
               D'roid Companion
             </h2>
             <p>
