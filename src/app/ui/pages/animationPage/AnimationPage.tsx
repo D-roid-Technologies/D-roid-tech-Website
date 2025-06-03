@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
+import bannerStyles from "../../components/global-styles/Banner.module.css";
 
 export interface Story {
   id: string;
@@ -188,10 +189,6 @@ const stories: Story[] = [
 const AnimationPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleStoryClick = (story: Story) => {
-    navigate(story.url);
-  };
-
   return (
     <div>
       <NavBar />
@@ -200,31 +197,15 @@ const AnimationPage: React.FC = () => {
       <div
         style={{
           backgroundImage: `url(${Assets.images.homeBannerSlideThree})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "60vh",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "60px",
         }}
+        className={bannerStyles.bannerWrapper}
       >
-        <div className="wrapper">
-          <div>
-            <h1 style={{ fontSize: "4rem", color: "#fff", fontWeight: 800 }}>
-              Animation & Short Stories
-            </h1>
-            <p
-              style={{
-                fontSize: "1.25rem",
-                color: "#eee",
-                maxWidth: "600px",
-                marginTop: "1rem",
-              }}
-            >
-              Original stories told through motion, creativity, and a dash of
-              code. Brought to you by the storytellers at D'roid.
-            </p>
-          </div>
+        <div className={bannerStyles.bannerContent}>
+          <h1>Animation & Short Stories</h1>
+          <p>
+            Original stories told through motion, creativity, and a dash of
+            code. Brought to you by the storytellers at D'roid.
+          </p>
         </div>
       </div>
 
@@ -251,7 +232,6 @@ const AnimationPage: React.FC = () => {
                 title={story.title}
                 description={story.description}
                 imageSrc={story.thumbnail}
-                url={story.url}
                 className="process-card"
               />
             </div>

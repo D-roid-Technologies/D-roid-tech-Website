@@ -10,6 +10,9 @@
 
 .bannerContent {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bannerContent h1 {
@@ -28,6 +31,10 @@
   .bannerWrapper {
     text-align: left;
     padding: 40px;
+  }
+  .bannerContent {
+    align-items: start;
+    margin-left: 50px;
   }
   .bannerContent h1 {
     font-size: 3rem;

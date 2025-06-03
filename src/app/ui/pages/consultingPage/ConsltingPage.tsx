@@ -263,7 +263,21 @@ const ConsultingPage: React.FC = () => {
                               marginTop: "30px",
                             }}
                           >
-                            <button>Schedule a Free Consultation</button>
+                            <a
+                              style={{
+                                backgroundColor: "#071d6a",
+                                display: "block",
+                                color: "#fff",
+                                padding: "12px 28px",
+                                fontWeight: "600",
+                                borderRadius: "6px",
+                                fontSize: "14px",
+                                textDecoration: "none",
+                              }}
+                              href="/contact"
+                            >
+                              Schedule a Free Consultation
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -286,7 +300,7 @@ const ConsultingPage: React.FC = () => {
           textAlign: "center",
         }}
       >
-        <h2 style={{ fontSize: "2.2rem", marginBottom: "15px" }}>
+        <h2 style={{ fontSize: "2rem", marginBottom: "15px" }}>
           Need expert guidance for your tech journey?
         </h2>
         <p
@@ -300,7 +314,7 @@ const ConsultingPage: React.FC = () => {
           make the right moves.
         </p>
         <a
-          href="/start-a-project"
+          href="/contact"
           style={{
             backgroundColor: "#fff",
             color: "#071d6a",
@@ -327,6 +341,7 @@ const ConsultingPage: React.FC = () => {
             fontSize: "2rem",
             textAlign: "center",
             marginBottom: "30px",
+            color: "#071d6a",
           }}
         >
           Success Stories
@@ -345,7 +360,9 @@ const ConsultingPage: React.FC = () => {
               borderRadius: "10px",
             }}
           >
-            <h3 style={{ fontSize: "1.25rem", fontWeight: 700 }}>
+            <h3
+              style={{ fontSize: "1.25rem", fontWeight: 700, color: "#071d6a" }}
+            >
               Logistics Startup Transformation
             </h3>
             <p style={{ color: "#555" }}>
@@ -360,7 +377,9 @@ const ConsultingPage: React.FC = () => {
               borderRadius: "10px",
             }}
           >
-            <h3 style={{ fontSize: "1.25rem", fontWeight: 700 }}>
+            <h3
+              style={{ fontSize: "1.25rem", fontWeight: 700, color: "#071d6a" }}
+            >
               Legacy App Modernization
             </h3>
             <p style={{ color: "#555" }}>

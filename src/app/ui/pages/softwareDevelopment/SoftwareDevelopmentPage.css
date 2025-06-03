@@ -34,7 +34,7 @@
   padding-bottom: 10px;
 }
 .soft-wrapper {
-  padding: 40px;
+  padding: 40px 0px;
 }
 .soft-dev-content {
   display: grid;
@@ -53,8 +53,22 @@
   font-size: 2rem;
   margin-bottom: 10px;
 }
+.soft-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
 .soft-cta p {
   font-size: 1.1rem;
+}
+
+@media (max-width: 767px) {
+  .soft-cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .soft-cta p {
+    font-size: 1rem;
+  }
 }
 .soft-cta-button {
   margin-top: 20px;

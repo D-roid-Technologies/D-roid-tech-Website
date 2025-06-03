@@ -44,7 +44,7 @@ const openings: Job[] = [
     mode: "Remote / Lagos",
     type: "Full-Time",
     location: "Remote / Lagos",
-    url: "/careers/frontend-developer",
+    url: "/careers/description",
     howToApply:
       "1. Review the job requirements and responsibilities.\n2. Navigate to our [Careers] page.\n3. Click on 'Apply Now' for the Frontend Developer position.\n4. Upload your resume and portfolio.\n5. Complete the application form with your details.\n6. Submit your application and we'll be in touch within 5 business days.",
     benefits:
@@ -79,7 +79,7 @@ const openings: Job[] = [
     mode: "Remote",
     type: "Full-Time",
     location: "Remote",
-    url: "/careers/backend-developer",
+    url: "/careers/description",
     howToApply:
       "1. Review the technical requirements and job scope.\n2. Visit our [Careers] section.\n3. Select the Backend Developer position.\n4. Submit your resume along with links to your GitHub profile.\n5. Complete our technical assessment.\n6. Successful candidates will be contacted for technical interviews.",
     benefits:
@@ -113,7 +113,7 @@ const openings: Job[] = [
     mode: "Remote",
     type: "Contract / Full-Time",
     location: "Remote",
-    url: "/careers/ui-ux-designer",
+    url: "/careers/description",
     howToApply:
       "1. Study our current product design and user experience.\n2. Go to our [Careers] page.\n3. Click on the UI/UX Designer opening.\n4. Upload your resume and portfolio showcasing your best work.\n5. Include a brief cover letter explaining your design philosophy.\n6. Complete the application form and submit for review.",
     benefits:

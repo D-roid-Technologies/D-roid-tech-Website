@@ -4,12 +4,10 @@
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  
 }
 
 .software-main {
   background-color: #f9f9f9;
-  padding: 2rem 0;
 }
 
 .software-main-content {
@@ -32,7 +30,6 @@
 .software-header {
   font-size: 2rem;
   font-weight: bold;
- 
 }
 
 .software-summary {
@@ -61,7 +58,6 @@
 .section-text {
   color: #000;
   line-height: 1.6;
-  
 }
 
 .program-list {
