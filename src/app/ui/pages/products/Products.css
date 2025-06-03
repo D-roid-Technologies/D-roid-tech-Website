@@ -6,7 +6,7 @@
 }
 .product_sec h1 {
   color: #efecfe;
-  font-size: 5rem;
+  font-size: 2.8rem;
   font-weight: 900;
   margin-top: -20px;
 }
@@ -25,7 +25,7 @@
 @media screen and (max-width: 630px) {
   .product_sec h1 {
     color: #efecfe;
-    font-size: 3rem;
+    font-size: 1.1rem;
     line-height: 60px;
     margin-bottom: 30px;
   }

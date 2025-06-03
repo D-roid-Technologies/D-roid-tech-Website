@@ -98,6 +98,17 @@
 
 /* Small screens (phones) */
 @media (max-width: 767px) {
+  .us-main{
+    padding-top: 15px;
+    height: 32vh;
+    background-repeat: no-repeat;
+  
+  }
+
+ .us-header{
+      font-size: 45px;
+      padding-top: 1rem;
+ }
   .software-main {
     flex-direction: column;
     justify-content: center;

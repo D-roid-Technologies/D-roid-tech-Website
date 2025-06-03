@@ -1354,6 +1354,7 @@
 .image-fluid {
   max-width: 100%;
   height: auto;
+  padding-top: 1rem;
 }
 
 /* PADDING AND MARGIN  */

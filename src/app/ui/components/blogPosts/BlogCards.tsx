@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./BlogCards.css";
 import { Link } from "react-router-dom";
 
@@ -29,6 +29,7 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
     "All",
     ...Array.from(new Set(posts.map((post) => post.category))),
   ];
+
 
   // Filter posts by active category
   const filteredPosts =

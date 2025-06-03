@@ -224,6 +224,7 @@ body {
 .cta-content h2 {
   font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 1rem;
+  font-weight: 900;
 }
 
 .cta-content p {
@@ -256,3 +257,8 @@ body {
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+   .cta-content h2 {
+    font-size: 2rem;
+  }}

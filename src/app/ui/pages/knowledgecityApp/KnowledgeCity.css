@@ -52,5 +52,7 @@
   }
   .app_sec h1 {
     line-height: 60px;
+        font-size: 1.8rem;
+
   }
 }
