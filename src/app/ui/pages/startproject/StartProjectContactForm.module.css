@@ -6,12 +6,8 @@
 .contactWrapper {
   max-width: 650px;
   margin: 0 auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
-.contactSection h2 {
+.contactSection > h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #071d6a;

@@ -4,11 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../contact/Contact.css";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
-import {
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { DATA } from "../../../utils/constant/Data";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,6 +14,49 @@ import Testimonial from "../testimonial/Testimonial";
 import Navbar from "../../components/navbar/NavBar";
 import emailjs from "emailjs-com";
 
+export const handleContactChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+) => {
+  const { name, value } = e.target;
+  setFormData((prev) => ({ ...prev, [name]: value }));
+};
+export const handleContactSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  const templateParams = {
+    name: formData.name,
+    title: `We have recieved your enquiry with title: ${formData.subject}. 
+
+    See details below:
+    Phone Number: ${formData.phone},
+
+    Message: ${formData.message}.
+
+    Our team will review and get back to you in three working days`,
+    email: formData.email,
+  };
+
+  emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+    () => {
+      toast.success("Email successfully sent!", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    },
+    () => {
+      toast.error("Error sending email 🚫", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    }
+  );
+};
 const Contact: React.FC = () => {
 const location = useLocation();
    useEffect(() => {
@@ -34,7 +73,7 @@ const location = useLocation();
   const SERVICE_ID = "service_o1jbklr";
   const TEMPLATE_ID = "template_p8h58ur";
   const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
-
+  
   // Form states
   const [formData, setFormData] = useState({
     name: "",
@@ -56,14 +95,6 @@ const location = useLocation();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   // Form handlers
-  const handleContactChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleTestimonialChange = (
     e: React.ChangeEvent<
@@ -72,42 +103,6 @@ const location = useLocation();
   ) => {
     const { name, value } = e.target;
     setTestimonialData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const templateParams = {
-      name: formData.name,
-      title: `We have recieved your enquiry with title: ${formData.subject}. 
-
-      See details below:
-      Phone Number: ${formData.phone},
-
-      Message: ${formData.message}.
-
-      Our team will review and get back to you in three working days`,
-      email: formData.email,
-    };
-
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
-      () => {
-        toast.success("Email successfully sent!", {
-          style: { background: "#4BB543", color: "#fff" },
-        });
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        });
-      },
-      () => {
-        toast.error("Error sending email 🚫", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-      }
-    );
   };
 
   const handleTestimonialSubmit = (e: React.FormEvent) => {
@@ -181,9 +176,7 @@ const location = useLocation();
               <MdEmail className="contact-icon" />
               <div>
                 <h4>Email</h4>
-                <a href="mailto:team@droidtechhq.com">
-                  team@droidtechhq.com
-                </a>
+                <a href="mailto:team@droidtechhq.com">team@droidtechhq.com</a>
               </div>
             </div>
 
