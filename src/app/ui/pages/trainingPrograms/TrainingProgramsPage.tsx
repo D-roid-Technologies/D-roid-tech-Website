@@ -18,15 +18,13 @@ const programs = [
     mode: "Online",
     url: "",
     howToApply: [
-  "Read through the description.",
-  { label: "Join our community", href: "/auth/join-our-community" },
-  "Register your account as a member.",
-  "After registration, take down your unique ID.",
-  "Go back to the training form, fill in all required fields, and click on submit.",
-]
-,
-
-      benefits:
+      "Read through the description.",
+      { label: "Join our community", href: "/auth/join-our-community" },
+      "Register your account as a member.",
+      "After registration, take down your unique ID.",
+      "Go back to the training form, fill in all required fields, and click on submit.",
+    ],
+    benefits:
       "Gain real-world coding experience through hands-on projects. Build a strong foundation for frontend development roles. Receive mentorship from industry professionals and access to a network of alumni and job opportunities.",
     gallery: [
       "/images/frontend/1.jpg",
@@ -46,8 +44,9 @@ const programs = [
     tools: ["Node.js", "Express", "MongoDB", "JWT"],
     mode: "Hybrid",
     url: "",
-    howToApply:
+    howToApply: [
       "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
+    ],
     benefits:
       "Understand the complete flow of data in a web application. Build secure and scalable APIs. Become proficient in the most in-demand backend technologies with career-ready skills.",
     gallery: [
@@ -68,8 +67,9 @@ const programs = [
     tools: ["Figma", "Adobe XD", "Miro", "Notion"],
     mode: "Online",
     url: "",
-    howToApply:
+    howToApply: [
       "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
+    ],
     benefits:
       "Build a professional design portfolio. Learn from working designers with real-world insights. Access exclusive design communities and job leads.",
     gallery: ["/images/uiux/1.jpg", "/images/uiux/2.jpg", "/images/uiux/3.jpg"],
@@ -86,8 +86,9 @@ const programs = [
     tools: ["React", "Node.js", "Express", "MongoDB", "Git"],
     mode: "Hybrid",
     url: "",
-    howToApply:
+    howToApply: [
       "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
+    ],
     benefits:
       "Become a versatile developer capable of building complete applications. Get career coaching and support with job applications. Participate in a capstone project reviewed by industry mentors.",
     gallery: [
@@ -108,8 +109,9 @@ const programs = [
     tools: ["Python", "Pandas", "Jupyter", "NumPy"],
     mode: "Online",
     url: "",
-    howToApply:
+    howToApply: [
       "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
+    ],
     benefits:
       "Start your tech journey with one of the easiest yet powerful languages. Learn to clean, analyze, and visualize data. Use skills that can open doors in tech, science, finance, and automation.",
     gallery: [
@@ -130,8 +132,9 @@ const programs = [
     tools: ["Career Planning", "Soft Skills", "Interview Prep"],
     mode: "In-Person",
     url: "",
-    howToApply:
+    howToApply: [
       "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
+    ],
     benefits:
       "Clarify your career goals and personal brand. Gain confidence in interviews and networking. Get personalized mentorship and job-seeking strategies.",
     gallery: [

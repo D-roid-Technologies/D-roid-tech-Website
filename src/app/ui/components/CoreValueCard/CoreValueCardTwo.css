@@ -136,11 +136,6 @@
   .tech-grid {
     grid-template-columns: 1fr;
   }
-
-  .core-value-card {
-    padding: 20px;
-  }
-
   .core-value-card-icon-icon {
     width: 100px;
     height: 65px;
