@@ -1,0 +1,205 @@
+/* WelcomePage.css */
+
+.welcome-container {
+  color: #1f2937;
+  padding: 40px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f9fafb;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.welcome-section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-heading {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.welcome-paragraph {
+  font-size: 18px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.welcome-list {
+  font-size: 18px;
+  color: #374151;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.welcome-list-item {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.welcome-list-item strong {
+  color: #111827;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .welcome-container {
+    padding: 30px 16px;
+    max-width: 100%;
+  }
+
+  .welcome-section {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+
+  .welcome-heading {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .welcome-paragraph {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .welcome-list {
+    font-size: 16px;
+    padding-left: 16px;
+  }
+
+  .welcome-list-item {
+    margin-bottom: 8px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .welcome-container {
+    padding: 20px 12px;
+  }
+
+  .welcome-section {
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+  }
+
+  .welcome-heading {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .welcome-paragraph {
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .welcome-list {
+    font-size: 15px;
+    padding-left: 12px;
+  }
+
+  .welcome-list-item {
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+}
+
+/* Large screen styles */
+@media (min-width: 1200px) {
+  .welcome-container {
+    padding: 50px 30px;
+    max-width: 900px;
+  }
+
+  .welcome-section {
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+
+  .welcome-heading {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .welcome-paragraph {
+    font-size: 19px;
+    margin-bottom: 16px;
+  }
+
+  .welcome-list {
+    font-size: 19px;
+  }
+
+  .welcome-list-item {
+    margin-bottom: 12px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .welcome-container {
+    padding: 16px 8px;
+  }
+
+  .welcome-section {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .welcome-heading {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .welcome-paragraph {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .welcome-list {
+    font-size: 14px;
+    padding-left: 10px;
+  }
+
+  .welcome-list-item {
+    margin-bottom: 4px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .welcome-container {
+    background-color: white;
+    box-shadow: none;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .welcome-section {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+    break-inside: avoid;
+  }
+
+  .welcome-section:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

@@ -168,7 +168,8 @@ const StartProjectPage: React.FC = () => {
           <div className={bannerStyles.buttonGroupWrapper}>
             <div className={bannerStyles.buttonRow}>
               <a
-                href="/start-a-project"
+                href="https://calendly.com/droidtechint"
+                target="_blank"
                 className={`${bannerStyles.navbarCta}`}
               >
                 Schedule an Appointment
