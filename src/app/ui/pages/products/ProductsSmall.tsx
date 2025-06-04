@@ -8,6 +8,8 @@ import { RoutePaths } from "../../../routes/Index";
 
 const ProductsSmall: React.FC = () => {
     const projects = useSelector((state: RootState) => state.projects.projects);
+    
+
     return (
         <section className="product_sec">
             <div className="wrapper">
@@ -32,7 +34,7 @@ const ProductsSmall: React.FC = () => {
                                 price={product.price}
                                 title={product.title}
                                 author={product.author}
-                                descriptionUrl={product.summary}
+                                descriptionUrl={product.descriptionUrl}
                                 summary={product.summary}
                                 startDate=""
                                 client=""
