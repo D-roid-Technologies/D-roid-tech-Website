@@ -54,7 +54,7 @@ const Products: React.FC = () => {
                   price={product.price}
                   title={product.title}
                   author={product.author}
-                  descriptionUrl={product.summary}
+                  descriptionUrl={product.descriptionUrl}
                   summary={product.summary}
                   startDate=""
                   client=""
