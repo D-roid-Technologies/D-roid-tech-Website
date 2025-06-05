@@ -339,26 +339,28 @@ const TaskScheduler: React.FC = () => {
       </div>
 
       <div className="date-navigation">
-        <button onClick={() => navigateDate("prev")}>&lt;</button>
-        <h2>
-          {view === "day" &&
-            currentDate.toLocaleDateString(undefined, {
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-            })}
-          {view === "week" &&
-            `Week of ${currentDate.toLocaleDateString(undefined, {
-              month: "short",
-              day: "numeric",
-            })}`}
-          {view === "month" &&
-            currentDate.toLocaleDateString(undefined, {
-              month: "long",
-              year: "numeric",
-            })}
-        </h2>
-        <button onClick={() => navigateDate("next")}>&gt;</button>
+        <div>
+          <button onClick={() => navigateDate("prev")}>&lt;</button>
+          <h2>
+            {view === "day" &&
+              currentDate.toLocaleDateString(undefined, {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+              })}
+            {view === "week" &&
+              `Week of ${currentDate.toLocaleDateString(undefined, {
+                month: "short",
+                day: "numeric",
+              })}`}
+            {view === "month" &&
+              currentDate.toLocaleDateString(undefined, {
+                month: "long",
+                year: "numeric",
+              })}
+          </h2>
+          <button onClick={() => navigateDate("next")}>&gt;</button>
+        </div>
         <button onClick={() => navigateDate("today")} className="today-btn">
           Today
         </button>
@@ -386,7 +388,9 @@ const TaskScheduler: React.FC = () => {
             )
           )}
         </div>
-        <button className="add_task" onClick={addTask}>Add Task</button>
+        <button className="add_task" onClick={addTask}>
+          Add Task
+        </button>
       </div>
 
       <div className="scheduler-view">

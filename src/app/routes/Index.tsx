@@ -35,6 +35,7 @@ import TrainingProgramsPage from "../ui/pages/trainingPrograms/TrainingProgramsP
 import ToolBoxPage from "../ui/pages/toolboxpage/ToolBoxPage";
 import CalculatorPage from "../ui/pages/calculator/CalculatorPage";
 import SchedulePage from "../ui/pages/schedule/SchedulePage";
+import UnderDevelopmentPage from "../ui/pages/underDevelopment/UnderDevelopmentPage";
 import Muzik from "../ui/pages/muzik/Muzik";
 import KnowledgeCity from "../ui/pages/animations/knowledgecity/KnowledgeCity";
 import DroidJournalPage from "../ui/pages/DroidJournal/DroidJournalPage";
@@ -90,6 +91,7 @@ export enum RoutePaths {
   SoftwareDevelopment = "/software-development",
   Training = "/training",
   Animation = "/animation",
+  UnderDevelopment = "/under-development",
   AnimationDescriptionPage = "/animation/description",
   Consulting = "/consulting",
 
@@ -240,6 +242,10 @@ const Index: React.FunctionComponent = () => {
         element={<SoftwareDevelopmentPage />}
       />
       <Route path={RoutePaths.Training} element={<TrainingProgramsPage />} />
+      <Route
+        path={RoutePaths.UnderDevelopment}
+        element={<UnderDevelopmentPage />}
+      />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
       <Route
         path={RoutePaths.AnimationDescriptionPage}
