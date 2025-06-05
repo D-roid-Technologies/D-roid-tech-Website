@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../redux/Store";
-import { LocationState, UserType } from "../../../utils/Types";
+import { UserType } from "../../../utils/Types";
 import {
   FaUser,
   FaTasks,
@@ -17,10 +17,6 @@ import {
   FaToolbox,
   FaCalculator,
 } from "react-icons/fa";
-import { signOut } from "firebase/auth";
-import { auth } from "../../../../firebase";
-import { RoutePaths } from "../../../routes/Index";
-import Section from "./Section";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import PersonalDetails from "./PersonalDetails";
 import AllUsers from "./users/AllUsers";
@@ -32,30 +28,52 @@ import Onboarding from "./Onboarding";
 import Tasks from "./Tasks";
 import Announcements from "./Announcements";
 import SayIt from "./SayIt";
-import Training from "../training/Training";
-import Progression from "./Progressions";
 import Trainings from "./Trainings";
-import "./DashboardContent.css";
+import Progression from "./Progressions";
+import styles from "./DashboardContent.module.css";
+import Section from "./Section";
 
-const DashboardContent: React.FunctionComponent = () => {
+interface DashboardContentProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DashboardContent: React.FC<DashboardContentProps> = ({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}) => {
   const navigate = useNavigate();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
   );
-  // const location: LocationState = useSelector((state: RootState) => state.location);
-  const isUserStaff = userDetails.userType === "Staff";
-  const isUserRole = userDetails.role === "Superadmin";
-  const [input, setInput] = useState("");
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
     title: string;
     content: string;
     icon: JSX.Element;
   }>(null);
+  const [input, setInput] = useState("");
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const grossPay = parseFloat(staffDetails?.staffGrossPay ?? "0");
 
-  // console.log(isUserRole)
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      if (window.innerWidth > 768) {
+        setIsSidebarOpen(true);
+      } else {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setIsSidebarOpen]);
+
+  const isUserStaff = userDetails.userType === "Staff";
+  const isUserRole = userDetails.role === "Superadmin";
 
   const menuItems = [
     ...(isUserRole ? [{ label: "Users", icon: FaUser }] : []),
@@ -67,7 +85,6 @@ const DashboardContent: React.FunctionComponent = () => {
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-          // Only if userType === 'staff'
           { label: "Tasks", icon: FaTasks },
           { label: "Payslips", icon: FaFileInvoiceDollar },
           { label: "Onboarding", icon: FaUserPlus },
@@ -80,15 +97,16 @@ const DashboardContent: React.FunctionComponent = () => {
 
   const handleMenuClick = (label: string) => {
     setSelectedMenu(label);
+    if (windowWidth <= 768) {
+      setIsSidebarOpen(false);
+    }
   };
 
   const handleSignOut = async () => {
     await authService
       .handleUserSignout()
-      .then(() => {
-        navigate(RoutePaths.JoinOurCommunity);
-      })
-      .catch((err) => {});
+      .then(() => navigate("/auth/join-our-community"))
+      .catch((err) => console.error(err));
   };
 
   const rightMenuItems = [
@@ -174,8 +192,7 @@ const DashboardContent: React.FunctionComponent = () => {
     if (!selectedMenu) {
       return (
         <>
-          {/* Staff Tasks */}
-          <Section title="Welcome to your D’roid One Account">
+          <Section title="Welcome to your D'roid One Account">
             <WelcomePage />
           </Section>
         </>
@@ -259,7 +276,6 @@ const DashboardContent: React.FunctionComponent = () => {
               </select>
             </div>
 
-            {/* Main content area */}
             <div
               style={{
                 display: "flex",
@@ -280,7 +296,6 @@ const DashboardContent: React.FunctionComponent = () => {
                 }}
               >
                 {selectedMenuItem === null ? (
-                  // Scientific Calculator Component
                   <div
                     style={{
                       display: "flex",
@@ -404,7 +419,6 @@ const DashboardContent: React.FunctionComponent = () => {
             <Tasks />
           </Section>
         );
-
       case "Payslips":
         return (
           <Section title="Payslips">
@@ -466,156 +480,62 @@ const DashboardContent: React.FunctionComponent = () => {
   };
 
   return (
-    // <div>{renderContent()}</div>
-    <div className="dashboard-content-container">
-      {/* Left Section */}
-      <div
-        style={{
-          width: "30%",
-          height: "80vh", // 🔥 Full height of the screen
-          backgroundColor: "#FFFFFF",
-          padding: "20px",
-          borderRadius: "10px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between", // Keeps sign out button at the bottom
-        }}
+    <div className={styles.dashboardContainer}>
+      <aside
+        className={`${styles.sidebar} ${
+          isSidebarOpen ? styles.sidebarOpen : ""
+        }`}
       >
-        <div>
-          <h3 style={{ color: "#071D6A", fontWeight: "900", fontSize: "30px" }}>
+        <div className={styles.userInfo}>
+          <h3>
             Welcome, {userDetails.firstName} {userDetails.lastName}
           </h3>
-          <p style={{ color: "#000000" }}>{userDetails.email}</p>
-
-          <div
-            style={{
-              marginTop: "30px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <p style={{ color: "#000000" }}>{userDetails.userType} Account</p>
-            <p style={{ color: "#000000" }}>
-              <strong>ID:</strong> {userDetails.uniqueId}
-            </p>
-          </div>
-
-          {/* Button List */}
-          <div
-            style={{
-              marginTop: "40px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-              maxHeight: "300px",
-              overflowY: "auto",
-              paddingRight: "8px",
-            }}
-          >
-            {menuItems.map((item) => (
-              <div
-                key={item.label}
-                onClick={() => handleMenuClick(item.label)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "12px 16px",
-                  backgroundColor: "#F5F5F5",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  transition: "background-color 0.3s",
-                }}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#e0e0e0")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#F5F5F5")
-                }
-              >
-                {/* @ts-ignore */}
-                <item.icon style={{ marginRight: "10px", color: "#071D6A" }} />
-                <span style={{ fontWeight: 600, color: "#333" }}>
-                  {item.label}
-                </span>
-              </div>
-            ))}
+          <p>{userDetails.email}</p>
+          <div className={styles.userMeta}>
+            <span>{userDetails.userType} Account</span>
+            <span>
+              <span style={{ fontWeight: "700" }}>ID: </span>
+              {userDetails.uniqueId}
+            </span>
           </div>
         </div>
 
-        {/* Sign Out Button */}
-        <button
-          onClick={handleSignOut}
-          style={{
-            marginTop: "20px",
-            padding: "12px 16px",
-            backgroundColor: "#DC3545",
-            color: "#FFFFFF",
-            fontWeight: "700",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            transition: "background-color 0.3s",
-            width: "100%",
-          }}
-          onMouseOver={(e) =>
-            (e.currentTarget.style.backgroundColor = "#c82333")
-          }
-          onMouseOut={(e) =>
-            (e.currentTarget.style.backgroundColor = "#DC3545")
-          }
-        >
+        <nav className={styles.sidebarNav}>
+          {menuItems.map((item) => (
+            <button
+              key={item.label}
+              className={`${styles.navItem} ${
+                selectedMenu === item.label ? styles.navItemActive : ""
+              }`}
+              onClick={() => handleMenuClick(item.label)}
+            >
+              <item.icon className={styles.navIcon} />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+        <br />
+        <br />
+
+        <button className={styles.signOutButton} onClick={handleSignOut}>
           Sign Out
         </button>
-      </div>
-      {/* Right Section */}
-      <div
-        style={{
-          flex: "1",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          height: "80vh",
-        }}
-      >
-        {/* Back Button */}
+      </aside>
+
+      <main className={styles.mainContent}>
         {selectedMenu && (
           <button
+            className={styles.backButton}
             onClick={() => setSelectedMenu(null)}
-            style={{
-              backgroundColor: "#071D6A",
-              color: "#FFFFFF",
-              border: "none",
-              padding: "10px 20px",
-              borderRadius: "8px",
-              marginBottom: "10px",
-              width: "fit-content",
-              cursor: "pointer",
-            }}
           >
-            {/* @ts-ignore */}
-            <IoMdArrowRoundBack style={{ marginRight: "8px" }} />
+            <IoMdArrowRoundBack />
             Back
           </button>
         )}
-
         {renderContent()}
-      </div>
+      </main>
     </div>
   );
 };
 
-const getTaskColor = (status: string) => {
-  switch (status) {
-    case "Completed":
-      return "#28A745";
-    case "Ongoing":
-      return "#FFC107";
-    case "Not Started":
-      return "#DC3545";
-    default:
-      return "#6C757D";
-  }
-};
 export default DashboardContent;
