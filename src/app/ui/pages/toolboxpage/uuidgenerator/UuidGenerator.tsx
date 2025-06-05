@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { FaArrowsRotate } from "react-icons/fa6";
+import { FiCopy } from "react-icons/fi";
+import { IoCopy } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const UUIDGenerator: React.FC = () => {
@@ -65,16 +68,33 @@ const UUIDGenerator: React.FC = () => {
         </h2>
 
         <div style={styles.uuidDisplay}>
-          <code style={{ wordBreak: "break-all" }}>{uuid}</code>
+          <code style={{ wordBreak: "break-all", color: "#071D6A" }}>
+            {uuid}
+          </code>
         </div>
 
         <div style={styles.buttonGroup}>
-          <button onClick={handleGenerate} style={styles.actionButton}>
-            🔄 Generate New
+          <button
+            onClick={handleGenerate}
+            style={{
+              ...styles.actionButton,
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <FaArrowsRotate /> Generate New
           </button>
-          <button onClick={handleCopy} style={styles.actionButton}>
-            📋 Copy UUID
-            {/* <MdOutlineContentCopy /> Copy UUID */}
+          <button
+            onClick={handleCopy}
+            style={{
+              ...styles.actionButton,
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <IoCopy /> Copy UUID
           </button>
         </div>
       </div>
