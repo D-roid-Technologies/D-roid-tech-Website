@@ -6,6 +6,7 @@ import { RootState } from '../../../redux/Store';
 import { UserType } from '../../../utils/Types';
 import DocumentUploadUI from './DocumentUploadUI';
 import Leave from './Leave';
+import './Onboarding.css'; // Assuming you have a CSS file for styles
 
 const onboardingSteps = ['View Info', 'Personal Info', 'Documents', 'Leave'];
 
@@ -103,7 +104,7 @@ const Onboarding: React.FC = () => {
       </div>
 
       <div>
-        <div style={stepsStyle}>
+        <div className='stepsStyle'>
           {onboardingSteps.map((step, index) => (
             <button
               key={index}
@@ -173,13 +174,6 @@ const headerStyle = {
   marginBottom: '1.5rem',
 };
 
-const stepsStyle = {
-  display: 'flex',
-  gap: '1rem',
-  fontSize: '0.875rem',
-  fontWeight: 500,
-  marginBottom: '1rem',
-};
 
 const InfoField = ({ label, value }: { label: string; value: string }) => (
   <p style={{

@@ -62,6 +62,7 @@ const DocumentUploadUI: React.FC = () => {
                                 backgroundColor: '#f0f0f0',
                                 fontSize: '14px',
                                 color: "#000000",
+                                width: '100%',	
                             }}
                         />
                     </div>
