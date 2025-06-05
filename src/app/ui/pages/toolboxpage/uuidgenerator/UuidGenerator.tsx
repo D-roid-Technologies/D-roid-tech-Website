@@ -51,7 +51,7 @@ const UUIDGenerator: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">UUID Generator</h1>

@@ -30,7 +30,7 @@ const BackgroundRemover: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back to toolbox
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">AI Background Remover</h1>

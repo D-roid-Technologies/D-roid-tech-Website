@@ -28,7 +28,7 @@ const PdfEditor: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back to toolbox
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">Advanced PDF Editor</h1>

@@ -22,12 +22,12 @@ const ImageResizer = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
-          <h1 className="software-header"> Droid Image Resizer</h1>
+          <h1 className="software-header"> Image Resizer</h1>
           <p>
-            Droid image Resizer is a fast and user-friendly tool designed to
+            Image Resizer is a fast and user-friendly tool designed to
             quickly adjust the dimensions of your images without compromising
             quality.
           </p>

@@ -56,7 +56,7 @@ const CropTool: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">Image Crop Tool</h1>
@@ -151,6 +151,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   fileInput: {
     marginBottom: "1.5rem",
+    color: "#000000"
   },
   outputGroup: {
     display: "flex",

@@ -22,7 +22,7 @@ const ResumeAnalyzerPage: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back to toolbox
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">Currency Converter</h1>
