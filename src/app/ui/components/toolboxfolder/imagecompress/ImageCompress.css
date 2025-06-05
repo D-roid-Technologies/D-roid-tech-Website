@@ -1,0 +1,438 @@
+.img-compressor-wrapper * {
+  box-sizing: border-box;
+}
+
+.img-compressor-wrapper {
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
+}
+
+.img-compressor-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header Section */
+.img-compressor-header {
+  padding: 2rem 0;
+  color: white;
+}
+
+.img-compressor-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.img-compressor-back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.img-compressor-header-content {
+  text-align: center;
+}
+
+.img-compressor-main-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(45deg, #fff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.img-compressor-main-desc {
+  font-size: 1.125rem;
+  margin: 0;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Main Content */
+.img-compressor-main {
+  padding: 2rem 0 4rem 0;
+}
+
+.img-compressor-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.img-compressor-card-header {
+  padding: 2rem 2rem 1rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.img-compressor-card-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.img-compressor-card-subtitle {
+  color: #64748b;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Upload Section */
+.img-compressor-upload-section {
+  padding: 2rem;
+}
+
+.img-compressor-upload-area {
+  position: relative;
+  border: 2px dashed #cbd5e1;
+  border-radius: 0.75rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+}
+
+.img-compressor-upload-area:hover {
+  border-color: #667eea;
+  background: #f1f5f9;
+}
+
+.img-compressor-file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.img-compressor-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.img-compressor-upload-icon {
+  font-size: 3rem;
+  color: grey;
+}
+
+.img-compressor-upload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.img-compressor-upload-primary {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.img-compressor-upload-secondary {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.img-compressor-upload-formats {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+/* File Info */
+.img-compressor-file-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f1f5f9;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.img-compressor-file-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-compressor-file-name {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 0.875rem;
+}
+
+.img-compressor-file-size {
+  font-size: 0.75rem;
+  color: #64748b;
+  background: #e2e8f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Loading Section */
+.img-compressor-loading {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+.img-compressor-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #f1f5f9;
+  border-top: 3px solid grey;
+  border-radius: 50%;
+  animation: img-compressor-spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+@keyframes img-compressor-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.img-compressor-loading-text {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Result Section */
+.img-compressor-result {
+  border-top: 1px solid #f1f5f9;
+  padding: 2rem;
+}
+
+.img-compressor-result-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.img-compressor-result-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.img-compressor-preview {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.img-compressor-preview-img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.img-compressor-download {
+  text-align: center;
+}
+
+.img-compressor-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background-color: ghostwhite;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.img-compressor-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .img-compressor-container {
+    padding: 0 0.75rem;
+  }
+
+  .img-compressor-main-title {
+    font-size: 2rem;
+  }
+
+  .img-compressor-main-desc {
+    font-size: 1rem;
+  }
+
+  .img-compressor-card {
+    margin: 0 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .img-compressor-card-header {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+
+  .img-compressor-card-title {
+    font-size: 1.5rem;
+  }
+
+  .img-compressor-upload-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .img-compressor-upload-area {
+    padding: 2rem 1rem;
+  }
+
+  .img-compressor-upload-icon {
+    font-size: 2.5rem;
+  }
+
+  .img-compressor-upload-primary {
+    font-size: 1rem;
+  }
+
+  .img-compressor-result {
+    padding: 1.5rem 1rem;
+  }
+
+  .img-compressor-file-details {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .img-compressor-header {
+    padding: 1rem 0;
+  }
+
+  .img-compressor-main-title {
+    font-size: 1.75rem;
+  }
+
+  .img-compressor-main-desc {
+    font-size: 0.875rem;
+  }
+
+  .img-compressor-back-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .img-compressor-upload-area {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .img-compressor-upload-text {
+    gap: 0.125rem;
+  }
+
+  .img-compressor-upload-primary {
+    font-size: 0.875rem;
+  }
+
+  .img-compressor-upload-secondary {
+    font-size: 0.75rem;
+  }
+
+  .img-compressor-download-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .img-compressor-card {
+    background: #1e293b;
+    color: white;
+  }
+
+  .img-compressor-card-title {
+    color: white;
+  }
+
+  .img-compressor-card-subtitle {
+    color: #94a3b8;
+  }
+
+  .img-compressor-upload-area {
+    background: #334155;
+    border-color: #475569;
+  }
+
+  .img-compressor-upload-area:hover {
+    background: #475569;
+  }
+
+  .img-compressor-upload-primary {
+    color: white;
+  }
+
+  .img-compressor-file-info {
+    background: #334155;
+    border-color: #475569;
+  }
+
+  .img-compressor-file-name {
+    color: white;
+  }
+
+  .img-compressor-loading-text {
+    color: #94a3b8;
+  }
+
+  .img-compressor-result-title {
+    color: white;
+  }
+}
+
+/* Print styles */
+@media print {
+  .img-compressor-wrapper {
+    background: white;
+  }
+
+  .img-compressor-back-btn,
+  .img-compressor-download-btn {
+    display: none;
+  }
+}

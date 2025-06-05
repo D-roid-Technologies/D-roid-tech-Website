@@ -215,9 +215,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Schedules":
         return (
           <Section title="Schedules">
-            <p style={{ color: "#000000" }}>
-              Manage and view your working schedules.
-            </p>
+            <p style={{ color: "#000000" }}>Manage and view your schedules.</p>
           </Section>
         );
       case "Tool Box":
