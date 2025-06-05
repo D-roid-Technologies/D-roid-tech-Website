@@ -267,7 +267,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background-color: ghostwhite;
+  background-color: rgb(118, 118, 252);
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   color: white;
   text-decoration: none;
