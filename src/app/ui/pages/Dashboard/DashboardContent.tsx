@@ -32,6 +32,7 @@ import Trainings from "./Trainings";
 import Progression from "./Progressions";
 import styles from "./DashboardContent.module.css";
 import Section from "./Section";
+import TaskScheduler from "../schedule/TaskScheduler";
 
 interface DashboardContentProps {
   isSidebarOpen: boolean;
@@ -218,6 +219,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <p style={{ color: "#000000" }}>
               Manage and view your working schedules.
             </p>
+            <div style={{ marginTop: "20px" }}>
+              <TaskScheduler />
+            </div>
           </Section>
         );
       case "Tool Box":

@@ -3,7 +3,6 @@ button {
 .task-scheduler {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .scheduler-header {
@@ -12,6 +11,16 @@ button {
   align-items: center;
   margin-bottom: 20px;
   color: #111724;
+}
+
+@media (max-width: 768px) {
+  .scheduler-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .scheduler-header h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .view-controls {
@@ -44,11 +53,23 @@ button {
   background: #071d6a;
 }
 
+@media (max-width: 768px) {
+  .date-navigation {
+    flex-direction: column;
+  }
+}
+.date-navigation div {
+  display: flex;
+  align-items: center;
+}
 .date-navigation button {
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
+}
+.date-navigation h2 {
+  font-size: 1rem;
 }
 .date-navigation button:hover {
   background: #071d6a !important;
@@ -67,6 +88,11 @@ button {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .task-input {
+    flex-direction: column;
+  }
 }
 
 .task-input input {
