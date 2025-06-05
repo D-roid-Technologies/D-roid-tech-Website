@@ -13,7 +13,7 @@ interface CoreValueCardProps {
   pressable?: boolean;
 }
 
-const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
+const CoreValueCardThree: React.FC<CoreValueCardProps> = ({
   title,
   description,
   imageSrc,
@@ -34,7 +34,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <h3 className="core-value-card-title">{title}</h3>
         <p className="core-value-card-description">{description}</p>
 
-        {pressable === false ? (
+        {/* {pressable === false ? (
           <div className="mt-3">
             <a
               onClick={onClick}
@@ -50,7 +50,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
               Read more →
             </button>
           </div>
-        )}
+        )} */}
 
         {link && (
           <div className="mt-2">
@@ -64,4 +64,4 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
   );
 };
 
-export default CoreValueCardTwo;
+export default CoreValueCardThree;

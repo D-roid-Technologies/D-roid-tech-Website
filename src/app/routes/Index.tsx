@@ -75,6 +75,7 @@ import BackgroundRemover from "../ui/pages/backgroundremover/BackgroundRemover";
 import PdfEditor from "../ui/pages/pdfeditor/PdfEditor";
 import CodeComplexity from "../ui/pages/codecomplexity/CodeComplexity";
 import BulkImage from "../ui/pages/bulkimage/BulkImage";
+import CurrencyConverter from "../ui/pages/toolboxpage/currencyconverter/CurrencyConverter";
 
 // Define an enum for all route paths
 
@@ -114,6 +115,8 @@ export enum RoutePaths {
   AdvancedPdfEditor = "/toolbox/advanced-pdf-editor",
   CodeComplexity = "/toolbox/code-complexity",
   BulkImage = "/toolbox/bulk-image",
+  CurrencyConvert = "/toolbox/currency-converter",
+  Base64Tool = "/toolbox/base64-tool",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -251,6 +254,10 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.ColorConverter} element={<ColorConverter />} />
       <Route path={RoutePaths.ColorPicker} element={<ColorPicker />} />
       <Route path={RoutePaths.WordCounter} element={<WordCounter />} />
+      <Route
+        path={RoutePaths.CurrencyConvert}
+        element={<CurrencyConverter />}
+      />
       <Route path={RoutePaths.ImageCompressor} element={<ImageCompress />} />
       <Route path={RoutePaths.CropTool} element={<CropTool />} />
       <Route path={RoutePaths.JsonFomat} element={<JsonFormating />} />
