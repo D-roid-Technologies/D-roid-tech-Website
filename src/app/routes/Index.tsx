@@ -77,6 +77,9 @@ import PdfEditor from "../ui/pages/pdfeditor/PdfEditor";
 import CodeComplexity from "../ui/pages/codecomplexity/CodeComplexity";
 import BulkImage from "../ui/pages/bulkimage/BulkImage";
 import CurrencyConverter from "../ui/pages/toolboxpage/currencyconverter/CurrencyConverter";
+import { userInfo } from "os";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/Store";
 
 // Define an enum for all route paths
 
@@ -222,10 +225,11 @@ export const dropdownItems: DropdownItems = {
 };
 
 const Index: React.FunctionComponent = () => {
+  const userId = useSelector((state: RootState) => state.user.uniqueId)
   return (
     // <BrowserRouter>
     <Routes>
-      <Route path={RoutePaths.Home} element={<Home />} />
+      <Route path={RoutePaths.Home} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <Home />} />
       <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
       <Route path={RoutePaths.Careers} element={<CareersPage />} />
       <Route
@@ -333,10 +337,10 @@ const Index: React.FunctionComponent = () => {
       />
       <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
       <Route path={RoutePaths.Services} element={<Services />} />
-      <Route path={RoutePaths.JoinOurCommunity} element={<SignUp />} />
-      <Route path={RoutePaths.StaffLogin} element={<StaffLogin />} />
+      <Route path={RoutePaths.JoinOurCommunity} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <SignUp />} />
+      <Route path={RoutePaths.StaffLogin} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <StaffLogin />} />
       <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
-      <Route path={RoutePaths.MemberLogin} element={<MemberLogin />} />
+      <Route path={RoutePaths.MemberLogin} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <MemberLogin />} />
       <Route path={RoutePaths.MobilePhone} element={<DroidLanding />} />
       <Route
         path={RoutePaths.TermsAndCondition}

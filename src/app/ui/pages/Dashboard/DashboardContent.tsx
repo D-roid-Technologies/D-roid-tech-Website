@@ -86,13 +86,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-          { label: "Tasks", icon: FaTasks },
-          { label: "Payslips", icon: FaFileInvoiceDollar },
-          { label: "Onboarding", icon: FaUserPlus },
-          { label: "Training", icon: FaChalkboardTeacher },
-          { label: "Progressions", icon: FaChartLine },
-          { label: "Resource", icon: FaBookOpen },
-        ]
+        { label: "Tasks", icon: FaTasks },
+        { label: "Payslips", icon: FaFileInvoiceDollar },
+        { label: "Onboarding", icon: FaUserPlus },
+        { label: "Training", icon: FaChalkboardTeacher },
+        { label: "Progressions", icon: FaChartLine },
+        { label: "Resource", icon: FaBookOpen },
+      ]
       : []),
   ];
 
@@ -175,7 +175,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     setInput("");
   };
 
-  const handleShowPayslip = () => {};
+  const handleShowPayslip = () => { };
 
   const handleButtonClick = (value: string) => {
     if (value === "=") {
@@ -486,9 +486,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${
-          isSidebarOpen ? styles.sidebarOpen : ""
-        }`}
+        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
+          }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -508,11 +507,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${
-                selectedMenu === item.label ? styles.navItemActive : ""
-              }`}
+              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
+                }`}
               onClick={() => handleMenuClick(item.label)}
             >
+              {/* @ts-ignore */}
               <item.icon className={styles.navIcon} />
               <span>{item.label}</span>
             </button>
@@ -532,6 +531,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             className={styles.backButton}
             onClick={() => setSelectedMenu(null)}
           >
+            {/* @ts-ignore */}
             <IoMdArrowRoundBack />
             Back
           </button>

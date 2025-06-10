@@ -499,7 +499,203 @@ export class AuthService {
     //         return null;
     //     }
     // }
-    async handleUserRegistration(userData: UserType, locationData: LocationState) {
+    // async handleUserRegistration(userData: UserType, locationData: LocationState) {
+    //     try {
+    //         const res = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+    //         const user = res.user;
+    //         const currentDateTime = getCurrentDateTime();
+
+    //         await updateProfile(user, {
+    //             displayName: `${userData.firstName} ${userData.lastName}`,
+    //         });
+
+    //         const userDocRef = doc(collection(db, "droidaccount"), user.uid);
+
+    //         const droidAccount = {
+    //             user: {
+    //                 primaryInformation: {
+    //                     firstName: userData.firstName,
+    //                     lastName: userData.lastName,
+    //                     initials: `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
+    //                     userType: userData.userType,
+    //                     uniqueId: userData.uniqueId,
+    //                     email: userData.email,
+    //                     agreeToPolicy: userData.agreeToPolicy,
+    //                     isLoggedIn: true,
+    //                     agreedToTerms: true,
+    //                     middleName: "",
+    //                     phone: "",
+    //                     gender: "",
+    //                     dateOfBirth: "",
+    //                     disability: false,
+    //                     disabilityType: "",
+    //                     photoUrl: "",
+    //                     educationalLevel: "",
+    //                     referralName: "",
+    //                     secondaryEmail: "",
+    //                     securityQuestion: "",
+    //                     securityAnswer: "",
+    //                     verifiedEmail: false,
+    //                     verifyPhoneNumber: false,
+    //                     twoFactorSettings: false,
+    //                     password: "",
+    //                     role: "",
+    //                     streetNumber: "",
+    //                     streetName: "",
+    //                     city: "",
+    //                     state: "",
+    //                     country: ""
+    //                 },
+    //                 location: {
+    //                     locationFromDevice: locationData,
+    //                     currentdateTime: currentDateTime,
+    //                 },
+    //             },
+    //             knowledgeCity: {
+    //                 kCoin: {
+    //                     amount: 0,
+    //                     storeCardDetails: false,
+    //                     mineCoins: {
+    //                         numberOfReferals: 0,
+    //                         numberOfAdsWatched: 0,
+    //                     },
+    //                 },
+    //                 courses: {},
+    //                 notifications: {},
+    //                 schedules: {},
+    //                 diaries: [
+    //                     {
+    //                         diaryTitle: "The Diary Platform",
+    //                         description: "Tell us your thoughts",
+    //                         startDate: currentDateTime.formattedDateTime,
+    //                         endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
+    //                     },
+    //                 ],
+    //                 lunchBox: {
+    //                     events: [
+    //                         {
+    //                             eventTitle: "D'roid Technologies - Chess Marathon",
+    //                             description: "The Chess Marathon of the year",
+    //                             imageLink: "",
+    //                             attendees: 0,
+    //                             createdTime: currentDateTime.time,
+    //                             createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+    //                         },
+    //                     ],
+    //                     jobs: [
+    //                         {
+    //                             jobTitle: "Front-End Developer - React Js",
+    //                             description: "We are looking for a front end developer in React Js",
+    //                             imageLink: "",
+    //                             peopleApplied: 0,
+    //                             createdTime: currentDateTime.time,
+    //                             createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+    //                         },
+    //                     ],
+    //                 },
+    //             },
+    //             staff: {
+    //                 staffDetails: {
+    //                     staffGrossPay: "",
+    //                     staffTax: "",
+    //                     staffPosition: "",
+    //                     staffBank: "",
+    //                     staffAccountNmber: "",
+    //                     staffAccountName: ""
+    //                 },
+    //                 staffDoc: {
+    //                     nationalId: "",
+    //                     proofOfAddress: "",
+    //                     secSchCertificate: "",
+    //                     uniCertificate: "",
+    //                     birthCertificate: "",
+    //                     medicalDoc: "",
+    //                     signatre: "",
+    //                     pasport: "",
+    //                     marriageCert: "",
+    //                     nyscCert: "",
+    //                     utilityBill: "",
+    //                 },
+    //                 staffLeave: [],
+    //                 staffSignInAndOut: []
+    //             },
+    //             forms: {
+    //                 userForms: []
+    //             },
+    //             toolBox: {
+    //                 toolBoxInfo: []
+    //             },
+    //             muzik: {
+    //                 muzikData: []
+    //             },
+    //             calculate: {
+    //                 calculators: []
+    //             },
+    //             schedules: {
+    //                 schedule: []
+    //             },
+    //             nerves: {
+    //                 items: []
+    //             },
+    //             announcements: {
+    //                 notifications: []
+    //             },
+    //             tasks: {
+    //                 task: []
+    //             },
+    //             payslips: {
+    //                 paySlip: []
+    //             },
+    //             onboarding: {
+    //                 onboarding: []
+    //             },
+    //             training: {
+    //                 trainings: []
+    //             },
+    //             progression: {
+    //                 progressions: []
+    //             },
+    //             resources: {
+    //                 resorceses: []
+    //             },
+    //         };
+
+    //         await setDoc(userDocRef, droidAccount);
+    //         const userSnapshot = await getDoc(userDocRef);
+
+    //         if (userSnapshot.exists()) {
+    //             const fetchedUserData = userSnapshot.data();
+    //             const primaryInformation = fetchedUserData.user.primaryInformation;
+
+    //             store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
+
+    //             // ✅ Send email only after DB is confirmed written
+    //             await sendEmailVerification(user);
+
+    //             toast.success(`Your D'roid Account has been successfully created`, {
+    //                 style: { background: '#4BB543', color: '#fff' },
+    //             });
+    //         } else {
+    //             toast.error('User Information does not exist 🚫', {
+    //                 style: { background: '#ff4d4f', color: '#fff' },
+    //             });
+    //         }
+
+    //         return res;
+    //     } catch (error: any) {
+    //         toast.error(`Error creating your D'roid Account 🚫`, {
+    //             style: { background: '#ff4d4f', color: '#fff' },
+    //         });
+    //         console.error(`Error creating your D'roid Account:`, error.message);
+    //         return null;
+    //     }
+    // };
+
+    async handleUserRegistration(
+        userData: UserType,
+        locationData: LocationState,
+        redirectTo?: string // ✅ Optional param
+    ) {
         try {
             const res = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
             const user = res.user;
@@ -619,45 +815,19 @@ export class AuthService {
                     staffLeave: [],
                     staffSignInAndOut: []
                 },
-                forms: {
-                    userForms: []
-                },
-                toolBox: {
-                    toolBoxInfo: []
-                },
-                muzik: {
-                    muzikData: []
-                },
-                calculate: {
-                    calculators: []
-                },
-                schedules: {
-                    schedule: []
-                },
-                nerves: {
-                    items: []
-                },
-                announcements: {
-                    notifications: []
-                },
-                tasks: {
-                    task: []
-                },
-                payslips: {
-                    paySlip: []
-                },
-                onboarding: {
-                    onboarding: []
-                },
-                training: {
-                    trainings: []
-                },
-                progression: {
-                    progressions: []
-                },
-                resources: {
-                    resorceses: []
-                },
+                forms: { userForms: [] },
+                toolBox: { toolBoxInfo: [] },
+                muzik: { muzikData: [] },
+                calculate: { calculators: [] },
+                schedules: { schedule: [] },
+                nerves: { items: [] },
+                announcements: { notifications: [] },
+                tasks: { task: [] },
+                payslips: { paySlip: [] },
+                onboarding: { onboarding: [] },
+                training: { trainings: [] },
+                progression: { progressions: [] },
+                resources: { resorceses: [] },
             };
 
             await setDoc(userDocRef, droidAccount);
@@ -669,12 +839,21 @@ export class AuthService {
 
                 store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
 
-                // ✅ Send email only after DB is confirmed written
                 await sendEmailVerification(user);
 
                 toast.success(`Your D'roid Account has been successfully created`, {
                     style: { background: '#4BB543', color: '#fff' },
                 });
+
+                // ✅ Secure redirect
+                const isSafeRedirect = redirectTo && redirectTo.startsWith("https://");
+                if (isSafeRedirect) {
+                    window.location.href = redirectTo;
+                } else {
+                    // Optional: fallback to internal dashboard
+                    window.location.href = "/auth/dashboard";
+                }
+
             } else {
                 toast.error('User Information does not exist 🚫', {
                     style: { background: '#ff4d4f', color: '#fff' },
@@ -682,14 +861,15 @@ export class AuthService {
             }
 
             return res;
+
         } catch (error: any) {
             toast.error(`Error creating your D'roid Account 🚫`, {
                 style: { background: '#ff4d4f', color: '#fff' },
             });
-            // console.error(`Error creating your D'roid Account:`, error.message);
+            console.error(`Error creating your D'roid Account:`, error.message);
             return null;
         }
-    };
+    }
 
     async getAllUsersFromFirestore() {
         try {
