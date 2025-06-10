@@ -206,10 +206,10 @@ export const dropdownItems: DropdownItems = {
   ],
   resources: [
     { title: "Toolbox", link: RoutePaths.Toolbox },
-    { title: "Calculate", link: RoutePaths.Calculators },
-    { title: "Schedules", link: RoutePaths.Schedules },
-    { title: "Muzik", link: RoutePaths.Muzik },
-    { title: "Knowledge City", link: RoutePaths.KnowledgeCity },
+    { title: "Calculate", link: RoutePaths.UnderDevelopment },
+    { title: "Schedules", link: RoutePaths.UnderDevelopment },
+    { title: "Muzik", link: RoutePaths.UnderDevelopment },
+    { title: "Knowledge City", link: RoutePaths.UnderDevelopment },
   ],
   more: [
     { title: "D'roid Journal", link: RoutePaths.Blog },
