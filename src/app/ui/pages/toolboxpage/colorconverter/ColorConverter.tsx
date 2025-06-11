@@ -19,7 +19,7 @@ const ColorConverter: React.FC = () => {
                 cursor: "pointer"
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">Color Converter</h1>

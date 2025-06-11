@@ -66,7 +66,7 @@ const Base64Tool: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">Base64 Encoder / Decoder</h1>

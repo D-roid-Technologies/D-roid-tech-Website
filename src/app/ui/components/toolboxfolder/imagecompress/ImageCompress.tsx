@@ -85,7 +85,7 @@ const ImageCompress: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">Image Compressor</h1>

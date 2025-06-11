@@ -24,7 +24,7 @@ const JsonFormating = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to ToolBox
             </button>
           </div>
           <h1 className="software-header">JSON Formatter</h1>

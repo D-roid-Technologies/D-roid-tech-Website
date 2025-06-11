@@ -16,6 +16,11 @@ import {
   FaBookOpen,
   FaToolbox,
   FaCalculator,
+  FaCodeBranch,
+  FaStamp,
+  FaUserTie,
+  FaFilePdf,
+  FaMagic,
 } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import PersonalDetails from "./PersonalDetails";
@@ -33,6 +38,92 @@ import Progression from "./Progressions";
 import styles from "./DashboardContent.module.css";
 import Section from "./Section";
 import TaskScheduler from "../schedule/TaskScheduler";
+import CurrencyConverter from "../toolboxpage/currencyconverter/CurrencyConverter";
+import ResumeAnalyzer from "../resumeAnalyser/ResumeAnalyzer";
+import { BsCurrencyExchange } from "react-icons/bs";
+import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
+import { GiCalculator } from "react-icons/gi";
+import Calculate from "../calculator/Calculate";
+import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
+import Bmi from "../calculator/Bmi";
+
+const tools = [
+  {
+    title: "Currency Converter",
+    description:
+      "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
+    icon: BsCurrencyExchange({ size: 24 }),
+    category: "Calculation Tools",
+    link: "/toolbox/currency-converter",
+  },
+  {
+    title: "AI Background Remover",
+    description:
+      "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
+    icon: FaMagic({ size: 24 }),
+    category: "Image Tools",
+    link: "/toolbox/ai-background-remover",
+    isPremium: true,
+  },
+  {
+    title: "Advanced PDF Editor",
+    description:
+      "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
+    icon: FaFilePdf({ size: 24 }),
+    category: "Document Tools",
+    link: "/toolbox/advanced-pdf-editor",
+    isPremium: true,
+  },
+  {
+    title: "Resume & CV Analyzer",
+    description:
+      "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
+    icon: FaUserTie({ size: 24 }),
+    category: "Career Tools",
+    link: "/toolbox/resumeanalyzer",
+    isPremium: true,
+  },
+  {
+    title: "Code Complexity Analyzer",
+    description:
+      "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
+    icon: FaCodeBranch({ size: 24 }),
+    category: "Developer Tools",
+    link: "/toolbox/code-complexity",
+    isPremium: true,
+  },
+  {
+    title: "Bulk Image Watermarker",
+    description:
+      "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
+    icon: FaStamp({ size: 24 }),
+    category: "Image Tools",
+    link: "/toolbox/bulk-image",
+    isPremium: true,
+  },
+];
+
+const calculators = [
+  {
+    title: "OhmsLawCalculator",
+    content: "Calculate voltage, current, and resistance using Ohm's Law.",
+  },
+
+  {
+    title: "Scientific Calculator",
+    description:
+      "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
+    icon: FaCalculator({ size: 24 }),
+    link: "/calculators/sciencecalculate",
+  },
+  {
+    title: "BMI Calculator",
+    description:
+      "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
+    icon: GiCalculator({ size: 24 }),
+    link: "/calculators/bmicalcute",
+  },
+];
 
 interface DashboardContentProps {
   isSidebarOpen: boolean;
@@ -166,8 +257,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       content: "Calculate voltage, current, and resistance using Ohm's Law.",
     },
     {
-      title: "BMICalculator",
-      content: "Calculate your Body Mass Index (BMI).",
+      title: "Scientific Calculator",
+      description:
+        "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
+      icon: FaCalculator({ size: 24 }),
+      link: "/calculators/sciencecalculate",
+    },
+    {
+      title: "BMI Calculator",
+      description:
+        "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
+      icon: GiCalculator({ size: 24 }),
+      link: "/calculators/bmicalcute",
     },
   ];
 
@@ -227,9 +328,23 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Tool Box":
         return (
           <Section title="Tool Box">
-            <p style={{ color: "#000000" }}>
+            <p style={{ color: "#000000", marginBottom: "20px" }}>
               Access various tools for your tasks.
             </p>
+            <div>
+              <div className="soft-dev-content">
+                {tools.map((tech, index) => (
+                  <CoreValueCardThree
+                    key={index}
+                    title={tech.title}
+                    description={tech.description}
+                    icon={tech.icon}
+                    link={tech.link}
+                    className="process-card"
+                  />
+                ))}
+              </div>
+            </div>
           </Section>
         );
       case "Calculate":
@@ -242,9 +357,16 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 alignItems: "center",
                 flexWrap: "wrap",
                 gap: "10px",
+                marginBottom: "50px",
               }}
             >
-              <p style={{ fontSize: "16px", fontWeight: "500" }}>
+              <p
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  color: "#000000",
+                }}
+              >
                 Perform calculations using our tools.
               </p>
               <select
@@ -279,125 +401,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 ))}
               </select>
             </div>
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-                marginTop: "20px",
-                maxWidth: "400px",
-              }}
-            >
-              <div
-                style={{
-                  minHeight: "400px",
-                  padding: "30px",
-                  border: "1px solid #e0e0e0",
-                  borderRadius: "12px",
-                  backgroundColor: "#fafafa",
-                  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.05)",
-                }}
-              >
-                {selectedMenuItem === null ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      gap: "20px",
-                    }}
-                  >
-                    <input
-                      type="text"
-                      value={input}
-                      readOnly
-                      style={{
-                        width: "100%",
-                        padding: "15px",
-                        fontSize: "20px",
-                        textAlign: "right",
-                        border: "1px solid #ccc",
-                        borderRadius: "8px",
-                        backgroundColor: "#fff",
-                      }}
-                    />
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
-                        gap: "10px",
-                        width: "100%",
-                      }}
-                    >
-                      {[
-                        "7",
-                        "8",
-                        "9",
-                        "/",
-                        "4",
-                        "5",
-                        "6",
-                        "*",
-                        "1",
-                        "2",
-                        "3",
-                        "-",
-                        "0",
-                        ".",
-                        "=",
-                        "+",
-                      ].map((item) => (
-                        <button
-                          key={item}
-                          onClick={() => handleButtonClick(item)}
-                          style={{
-                            padding: "15px",
-                            fontSize: "18px",
-                            borderRadius: "8px",
-                            border: "1px solid #ccc",
-                            backgroundColor: "#ffffff",
-                            cursor: "pointer",
-                            transition: "background-color 0.3s",
-                          }}
-                          onMouseOver={(e) =>
-                            (e.currentTarget.style.backgroundColor = "#f0f0f0")
-                          }
-                          onMouseOut={(e) =>
-                            (e.currentTarget.style.backgroundColor = "#ffffff")
-                          }
-                        >
-                          {item}
-                        </button>
-                      ))}
-                      <button
-                        onClick={handleClear}
-                        style={{
-                          gridColumn: "span 4",
-                          padding: "15px",
-                          fontSize: "18px",
-                          backgroundColor: "#e74c3c",
-                          color: "white",
-                          border: "none",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        Clear
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div style={{ textAlign: "center", marginTop: "50px" }}>
-                    <h3 style={{ fontSize: "22px", marginBottom: "10px" }}>
-                      {selectedMenuItem?.title}
-                    </h3>
-                    <p style={{ fontSize: "16px", color: "#666" }}>
-                      {selectedMenuItem?.content}
-                    </p>
-                  </div>
-                )}
-              </div>
+            <div>
+              <Calculate />
+              <ScientificCalculator />
+              <Bmi />
             </div>
           </Section>
         );

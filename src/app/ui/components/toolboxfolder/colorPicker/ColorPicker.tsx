@@ -77,7 +77,7 @@ const ColorPicker: React.FC = () => {
                                 cursor: "pointer"
                             }}
                         >
-                            ← Back
+                            ← Back to ToolBox
                         </button>
                     </div>
                     <h1 className="software-header">Color Picker</h1>

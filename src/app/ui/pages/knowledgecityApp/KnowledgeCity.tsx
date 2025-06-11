@@ -8,6 +8,7 @@ const KnowledgeCity: React.FC = () => {
   return (
     <div
       className="wrapper app-wrapper"
+      style={{ marginTop: 160, marginBottom: 160 }}
     >
       <div className="group">
         <div className="block-12 block-md-5 hide-small" style={{ textAlign: "center" }}>

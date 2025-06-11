@@ -39,7 +39,7 @@ const WordCounter: React.FC = () => {
                                 cursor: "pointer"
                             }}
                         >
-                            ← Back
+                            ← Back to ToolBox
                         </button>
                     </div>
                     <h1 className="software-header">Word Counter</h1>
