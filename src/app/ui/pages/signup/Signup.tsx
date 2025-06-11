@@ -369,8 +369,71 @@ const SignUp: React.FunctionComponent = () => {
   //   }
   // };
 
-  const [searchParams] = useSearchParams(); // get query params
-  const redirectToParam = searchParams.get("redirectTo") ?? undefined;
+  // const [searchParams] = useSearchParams(); // get query params
+  // const redirectToParam = searchParams.get("redirectTo") ?? undefined;
+  // console.log(redirectToParam)
+
+  // const handleSubmit = async (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+
+  //   let generatedId = formData.uniqueId;
+
+  //   if (formData.userType.trim().toLowerCase() !== "staff") {
+  //     generatedId = generateUniqueId(formData.userType.trim());
+
+  //     if (!generatedId) {
+  //       toast.error("Invalid user type — could not generate ID. 🚫", {
+  //         style: { background: "#ff4d4f", color: "#fff" },
+  //       });
+  //       return;
+  //     }
+  //   }
+
+  //   const updatedFormData = {
+  //     ...formData,
+  //     uniqueId: generatedId,
+  //   };
+
+  //   setText("Creating your D'roid Account");
+
+  //   try {
+  //     // ✅ Pass redirectTo param into registration function
+  //     const result = await authService.handleUserRegistration(updatedFormData, userLocation, redirectToParam);
+
+  //     if (!result) throw new Error("User registration failed.");
+
+  //     const templateParams = {
+  //       name: `${updatedFormData.firstName} ${updatedFormData.lastName}`,
+  //       title: `Welcome to D'roid Technologies Ltd...`, // trim for brevity
+  //       email: updatedFormData.email,
+  //     };
+
+  //     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+  //       () => {
+  //         toast.success("Email successfully sent!", {
+  //           style: { background: "#4BB543", color: "#fff" },
+  //         });
+  //       },
+  //       () => {
+  //         toast.error("Error sending email 🚫", {
+  //           style: { background: "#ff4d4f", color: "#fff" },
+  //         });
+  //       }
+  //     );
+
+  //     // ✅ Fallback only if no redirectTo was specified
+  //     if (!redirectToParam) {
+  //       setTimeout(() => {
+  //         navigate(RoutePaths.DashBoard);
+  //       }, 5000);
+  //     }
+
+  //   } catch (error: any) {
+  //     setText("Sign Up");
+  //     setFormErrors({ ...formErrors, email: error.message });
+  //   }
+  // };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -398,7 +461,7 @@ const SignUp: React.FunctionComponent = () => {
 
     try {
       // ✅ Pass redirectTo param into registration function
-      const result = await authService.handleUserRegistration(updatedFormData, userLocation, redirectToParam);
+      const result = await authService.handleUserRegistration(updatedFormData, userLocation);
 
       if (!result) throw new Error("User registration failed.");
 
@@ -422,11 +485,11 @@ const SignUp: React.FunctionComponent = () => {
       );
 
       // ✅ Fallback only if no redirectTo was specified
-      if (!redirectToParam) {
+      // if (!redirectToParam) {
         setTimeout(() => {
           navigate(RoutePaths.DashBoard);
         }, 5000);
-      }
+      // }
 
     } catch (error: any) {
       setText("Sign Up");
