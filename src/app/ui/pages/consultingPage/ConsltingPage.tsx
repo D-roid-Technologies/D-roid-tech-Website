@@ -227,6 +227,7 @@ const ConsultingPage: React.FC = () => {
                             padding: "16px",
                             borderRadius: "8px",
                             borderLeft: "4px solid #071d6a",
+                            maxWidth: "fit-content",
                           }}
                         >
                           <h3
@@ -266,13 +267,15 @@ const ConsultingPage: React.FC = () => {
                             <a
                               style={{
                                 backgroundColor: "#071d6a",
-                                display: "block",
+                                display: "flex",
                                 color: "#fff",
                                 padding: "12px 28px",
                                 fontWeight: "600",
                                 borderRadius: "6px",
                                 fontSize: "14px",
                                 textDecoration: "none",
+                                textAlign: "center",
+                                maxWidth: "fit-content",
                               }}
                               href="/contact"
                             >

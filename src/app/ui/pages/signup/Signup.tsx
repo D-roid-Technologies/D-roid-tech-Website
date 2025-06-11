@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaUsers, FaArrowLeft } from "react-icons/fa";
 import { RoutePaths } from "../../../routes/Index";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { RootState, store } from "../../../redux/Store";
 import { addLocation } from "../../../redux/slices/Location";
 import { useSelector } from "react-redux";
@@ -299,22 +299,154 @@ const SignUp: React.FunctionComponent = () => {
   //     });
   // };
 
+  // const handleSubmit = async (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+
+  //   let generatedId = formData.uniqueId;
+
+  //   // ✅ Only generate ID if user is NOT staff
+  //   if (formData.userType.trim().toLowerCase() !== "staff") {
+  //     generatedId = generateUniqueId(formData.userType.trim());
+
+  //     if (!generatedId) {
+  //       toast.error("Invalid user type — could not generate ID. 🚫", {
+  //         style: {
+  //           background: "#ff4d4f",
+  //           color: "#fff",
+  //         },
+  //       });
+  //       return;
+  //     }
+  //   }
+
+  //   const updatedFormData = {
+  //     ...formData,
+  //     uniqueId: generatedId,
+  //   };
+
+  //   setText("Creating your D'roid Account");
+
+  //   try {
+  //     const result = await authService.handleUserRegistration(updatedFormData, userLocation);
+
+  //     if (!result) {
+  //       throw new Error("User registration failed.");
+  //     }
+
+  //     const templateParams = {
+  //       name: `${updatedFormData.firstName} ${updatedFormData.lastName}`,
+  //       title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
+    
+  //       Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
+        
+  //       At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
+        
+  //       We look forward to achieving great things together`,
+  //       email: updatedFormData.email,
+  //     };
+
+  //     // ✅ Send welcome email only after successful DB registration
+  //     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+  //       () => {
+  //         toast.success("Email successfully sent!", {
+  //           style: { background: "#4BB543", color: "#fff" },
+  //         });
+  //       },
+  //       () => {
+  //         toast.error("Error sending email 🚫", {
+  //           style: { background: "#ff4d4f", color: "#fff" },
+  //         });
+  //       }
+  //     );
+
+  //     setTimeout(() => {
+  //       navigate(RoutePaths.DashBoard);
+  //     }, 5000);
+  //   } catch (error: any) {
+  //     setText("Sign Up");
+  //     setFormErrors({ ...formErrors, email: error.message });
+  //   }
+  // };
+
+  // const [searchParams] = useSearchParams(); // get query params
+  // const redirectToParam = searchParams.get("redirectTo") ?? undefined;
+  // console.log(redirectToParam)
+
+  // const handleSubmit = async (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+
+  //   let generatedId = formData.uniqueId;
+
+  //   if (formData.userType.trim().toLowerCase() !== "staff") {
+  //     generatedId = generateUniqueId(formData.userType.trim());
+
+  //     if (!generatedId) {
+  //       toast.error("Invalid user type — could not generate ID. 🚫", {
+  //         style: { background: "#ff4d4f", color: "#fff" },
+  //       });
+  //       return;
+  //     }
+  //   }
+
+  //   const updatedFormData = {
+  //     ...formData,
+  //     uniqueId: generatedId,
+  //   };
+
+  //   setText("Creating your D'roid Account");
+
+  //   try {
+  //     // ✅ Pass redirectTo param into registration function
+  //     const result = await authService.handleUserRegistration(updatedFormData, userLocation, redirectToParam);
+
+  //     if (!result) throw new Error("User registration failed.");
+
+  //     const templateParams = {
+  //       name: `${updatedFormData.firstName} ${updatedFormData.lastName}`,
+  //       title: `Welcome to D'roid Technologies Ltd...`, // trim for brevity
+  //       email: updatedFormData.email,
+  //     };
+
+  //     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+  //       () => {
+  //         toast.success("Email successfully sent!", {
+  //           style: { background: "#4BB543", color: "#fff" },
+  //         });
+  //       },
+  //       () => {
+  //         toast.error("Error sending email 🚫", {
+  //           style: { background: "#ff4d4f", color: "#fff" },
+  //         });
+  //       }
+  //     );
+
+  //     // ✅ Fallback only if no redirectTo was specified
+  //     if (!redirectToParam) {
+  //       setTimeout(() => {
+  //         navigate(RoutePaths.DashBoard);
+  //       }, 5000);
+  //     }
+
+  //   } catch (error: any) {
+  //     setText("Sign Up");
+  //     setFormErrors({ ...formErrors, email: error.message });
+  //   }
+  // };
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!validate()) return;
 
     let generatedId = formData.uniqueId;
 
-    // ✅ Only generate ID if user is NOT staff
     if (formData.userType.trim().toLowerCase() !== "staff") {
       generatedId = generateUniqueId(formData.userType.trim());
 
       if (!generatedId) {
         toast.error("Invalid user type — could not generate ID. 🚫", {
-          style: {
-            background: "#ff4d4f",
-            color: "#fff",
-          },
+          style: { background: "#ff4d4f", color: "#fff" },
         });
         return;
       }
@@ -328,25 +460,17 @@ const SignUp: React.FunctionComponent = () => {
     setText("Creating your D'roid Account");
 
     try {
+      // ✅ Pass redirectTo param into registration function
       const result = await authService.handleUserRegistration(updatedFormData, userLocation);
 
-      if (!result) {
-        throw new Error("User registration failed.");
-      }
+      if (!result) throw new Error("User registration failed.");
 
       const templateParams = {
         name: `${updatedFormData.firstName} ${updatedFormData.lastName}`,
-        title: `Welcome to D'roid Technologies Ltd. We are thrilled to have you join our community. 
-    
-        Please confirm your account by clicking on the verification link we sent to your email. For your security, remember never to share your password with anyone.
-        
-        At D'roid Technologies, we value innovation, creativity and freedom. If you have any questions or need assistance, don't hesitate to reach out - we're here to help.
-        
-        We look forward to achieving great things together`,
+        title: `Welcome to D'roid Technologies Ltd...`, // trim for brevity
         email: updatedFormData.email,
       };
 
-      // ✅ Send welcome email only after successful DB registration
       emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
         () => {
           toast.success("Email successfully sent!", {
@@ -360,9 +484,13 @@ const SignUp: React.FunctionComponent = () => {
         }
       );
 
-      setTimeout(() => {
-        navigate(RoutePaths.DashBoard);
-      }, 5000);
+      // ✅ Fallback only if no redirectTo was specified
+      // if (!redirectToParam) {
+        setTimeout(() => {
+          navigate(RoutePaths.DashBoard);
+        }, 5000);
+      // }
+
     } catch (error: any) {
       setText("Sign Up");
       setFormErrors({ ...formErrors, email: error.message });

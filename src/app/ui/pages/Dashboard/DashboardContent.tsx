@@ -43,10 +43,70 @@ import ResumeAnalyzer from "../resumeAnalyser/ResumeAnalyzer";
 import { BsCurrencyExchange } from "react-icons/bs";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
 import { GiCalculator } from "react-icons/gi";
+import { SlCalculator } from "react-icons/sl";
+import { TbCalculator, TbMicroscope } from "react-icons/tb";
 import Calculate from "../calculator/Calculate";
 import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
 import Bmi from "../calculator/Bmi";
+import { LuCalculator } from "react-icons/lu";
+import BackgroundRemover from "../backgroundremover/BackgroundRemover";
+import ToolsCard from "../../components/CoreValueCard/ToolsCard";
 
+// const tools = [
+//   {
+//     title: "Currency Converter",
+//     description:
+//       "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
+//     icon: BsCurrencyExchange({ size: 24 }),
+//     category: "Calculation Tools",
+//     link: "/toolbox/currency-converter",
+//   },
+//   {
+//     title: "AI Background Remover",
+//     description:
+//       "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
+//     icon: FaMagic({ size: 24 }),
+//     category: "Image Tools",
+//     link: "/toolbox/ai-background-remover",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Advanced PDF Editor",
+//     description:
+//       "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
+//     icon: FaFilePdf({ size: 24 }),
+//     category: "Document Tools",
+//     link: "/toolbox/advanced-pdf-editor",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Resume & CV Analyzer",
+//     description:
+//       "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
+//     icon: FaUserTie({ size: 24 }),
+//     category: "Career Tools",
+//     link: "",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Code Complexity Analyzer",
+//     description:
+//       "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
+//     icon: FaCodeBranch({ size: 24 }),
+//     category: "Developer Tools",
+//     link: "",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Bulk Image Watermarker",
+//     description:
+//       "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
+//     icon: FaStamp({ size: 24 }),
+//     category: "Image Tools",
+//     link: "",
+//     isPremium: true,
+//   },
+// ];
 const tools = [
   {
     title: "Currency Converter",
@@ -54,6 +114,7 @@ const tools = [
       "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
     icon: BsCurrencyExchange({ size: 24 }),
     category: "Calculation Tools",
+    component: "CurrencyConverter", // Add component identifier
     link: "/toolbox/currency-converter",
   },
   {
@@ -62,6 +123,7 @@ const tools = [
       "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
     icon: FaMagic({ size: 24 }),
     category: "Image Tools",
+    component: "BackgroundRemover", // Add component identifier
     link: "/toolbox/ai-background-remover",
     isPremium: true,
   },
@@ -71,6 +133,7 @@ const tools = [
       "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
     icon: FaFilePdf({ size: 24 }),
     category: "Document Tools",
+    component: "PDFEditor", // Add component identifier
     link: "/toolbox/advanced-pdf-editor",
     isPremium: true,
   },
@@ -80,7 +143,8 @@ const tools = [
       "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
     icon: FaUserTie({ size: 24 }),
     category: "Career Tools",
-    link: "/toolbox/resumeanalyzer",
+    component: "ResumeAnalyzer", // Add component identifier
+    link: "",
     isPremium: true,
   },
   {
@@ -89,7 +153,8 @@ const tools = [
       "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
     icon: FaCodeBranch({ size: 24 }),
     category: "Developer Tools",
-    link: "/toolbox/code-complexity",
+    component: "CodeComplexityAnalyzer",
+    link: "",
     isPremium: true,
   },
   {
@@ -98,31 +163,45 @@ const tools = [
       "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
     icon: FaStamp({ size: 24 }),
     category: "Image Tools",
-    link: "/toolbox/bulk-image",
+    component: "BulkImageWatermarker",
+    link: "",
     isPremium: true,
   },
 ];
 
 const calculators = [
   {
-    title: "OhmsLawCalculator",
-    content: "Calculate voltage, current, and resistance using Ohm's Law.",
+    title: "Calculator",
+    description:
+      "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
+    icon: TbCalculator({ size: 24 }),
+    link: "",
   },
-
   {
     title: "Scientific Calculator",
     description:
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
-    icon: FaCalculator({ size: 24 }),
-    link: "/calculators/sciencecalculate",
+    icon: GiCalculator({ size: 24 }),
+    link: "",
   },
   {
     title: "BMI Calculator",
     description:
       "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
-    icon: GiCalculator({ size: 24 }),
-    link: "/calculators/bmicalcute",
+    icon: TbMicroscope({ size: 24 }),
+    link: "",
   },
+  {
+    title: "OhmsLawCalculator",
+    description:
+      "Easily calculate voltage (V), current (I), or resistance (R) using the fundamental principles of Ohm's Law. This intuitive tool allows you to input any two known values and instantly compute the third.",
+    icon: FaCalculator({ size: 24 }),
+    link: "",
+  },
+  // {
+  //   title: "OhmsLawCalculator",
+  //   content: "Calculate voltage, current, and resistance using Ohm's Law.",
+  // },
 ];
 
 interface DashboardContentProps {
@@ -135,6 +214,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   setIsSidebarOpen,
 }) => {
   const navigate = useNavigate();
+
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
@@ -148,6 +228,31 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const grossPay = parseFloat(staffDetails?.staffGrossPay ?? "0");
+
+  //Toools
+  // Add state for active tool
+  const [activeTool, setActiveTool] = useState<string | null>(null);
+
+  // Update the handleLaunchTool function
+  const handleLaunchTool = (toolComponent: string) => {
+    setActiveTool(toolComponent);
+  };
+
+  // Create a function to render the active tool component
+  const renderToolComponent = () => {
+    switch (activeTool) {
+      case "CurrencyConverter":
+        return <CurrencyConverter onClose={() => setActiveTool(null)} />;
+      case "ResumeAnalyzer":
+        return <ResumeAnalyzer onClose={() => setActiveTool(null)} />;
+      case "BackgroundRemover":
+        return <BackgroundRemover onClose={() => setActiveTool(null)} />;
+      case "PDFEditor":
+        return <PDFEditor onClose={() => setActiveTool(null)} />;
+      default:
+        return null;
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -331,20 +436,61 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <p style={{ color: "#000000", marginBottom: "20px" }}>
               Access various tools for your tasks.
             </p>
-            <div>
-              <div className="soft-dev-content">
-                {tools.map((tech, index) => (
-                  <CoreValueCardThree
-                    key={index}
-                    title={tech.title}
-                    description={tech.description}
-                    icon={tech.icon}
-                    link={tech.link}
-                    className="process-card"
-                  />
-                ))}
+            {activeTool ? (
+              // Render the active tool component
+              <div>
+                <button
+                  onClick={() => setActiveTool(null)}
+                  style={{
+                    marginBottom: "20px",
+                    padding: "8px 16px",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    color: "#333",
+                  }}
+                >
+                  ← Back to Tools
+                </button>
+                {renderToolComponent()}
               </div>
-            </div>
+            ) : (
+              // Render the tools grid
+              <>
+                <div className="soft-dev-content">
+                  {tools.map((tech, index) => (
+                    <ToolsCard
+                      key={index}
+                      title={tech.title}
+                      description={tech.description}
+                      icon={tech.icon}
+                      link={tech.link}
+                      onLaunch={
+                        tech.component
+                          ? () => handleLaunchTool(tech.component)
+                          : undefined
+                      }
+                      className="process-card"
+                    />
+                    // <CoreValueCardThree
+                    //   key={index}
+                    //   title={tech.title}
+                    //   description={tech.description}
+                    //   icon={tech.icon}
+                    //   link={tech.link}
+                    //   onLaunch={
+                    //     tech.component
+                    //       ? () => handleLaunchTool(tech.component)
+                    //       : undefined
+                    //   }
+                    //   className="process-card"
+                    // />
+                  ))}
+                </div>
+              </>
+            )}
+            {/* </Section> */}
           </Section>
         );
       case "Calculate":
@@ -401,11 +547,23 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 ))}
               </select>
             </div>
-            <div>
+            <div className="soft-dev-content">
+              {calculators.map((tech, index) => (
+                <CoreValueCardThree
+                  key={index}
+                  title={tech.title}
+                  description={tech.description}
+                  icon={tech.icon}
+                  link={tech.link}
+                  className="process-card"
+                />
+              ))}
+            </div>
+            {/* <div>
               <Calculate />
               <ScientificCalculator />
               <Bmi />
-            </div>
+            </div> */}
           </Section>
         );
       case "Announcements":
@@ -520,6 +678,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               }`}
               onClick={() => handleMenuClick(item.label)}
             >
+              {/* @ts-ignore */}
               <item.icon className={styles.navIcon} />
               <span>{item.label}</span>
             </button>
@@ -539,6 +698,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             className={styles.backButton}
             onClick={() => setSelectedMenu(null)}
           >
+            {/* @ts-ignore */}
             <IoMdArrowRoundBack />
             Back
           </button>

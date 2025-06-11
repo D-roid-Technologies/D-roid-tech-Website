@@ -34,6 +34,7 @@ const ForgotPassword: React.FunctionComponent = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <a href="/" className={styles.backLink}>
+          {/* @ts-ignore */}
           <FaArrowLeft style={{ marginRight: "8px" }} /> Back to Login
         </a>
         <br />
