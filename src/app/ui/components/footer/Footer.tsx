@@ -70,7 +70,10 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="footer">
+    <footer className="footer-wrapper">
+    <div  className="footer">
+
+   
       <div className="footer-container">
         <div className="footer-brand">
           <h2 className="footer-logo">D'roid Technologies Ltd</h2>
@@ -114,6 +117,7 @@ const Footer: React.FC = () => {
           &copy; {new Date().getFullYear()} D'roid Technologies Ltd. All rights reserved.
         </p>
       </div>
+       </div>
     </footer>
   );
 };

@@ -24,6 +24,10 @@ body {
   overflow-x: hidden; /* Prevent horizontal scroll caused by extra width */
 }
 
+.ParentContainer{
+  padding: 0 7px 0 7px;
+}
+
 /* CONTENT */
 .home-main {
   display: flex;
