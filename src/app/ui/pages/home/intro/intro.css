@@ -1,6 +1,6 @@
 .intro {
   background: #fff;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
   /* justify-content: center;
   align-items: center; */
 }
@@ -33,6 +33,7 @@
 }
 
 .color_bg {
+  width: 101%;
   background: #171818;
   /* background: #242627; */
   border-radius: 3px;
@@ -81,6 +82,7 @@
   font-size: 14px;
 }
 .core_value img {
+ 
   margin-bottom: 10px;
   width: 90px;
   height: auto;
@@ -95,13 +97,36 @@
   /* z-index: 99999; */
 }
 
+.team_image_home {
+  background-image: url('../../../../images/png/team.jpg'); 
+  background-size: cover;        
+  background-position: center;    
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: 100%;               
+  height: 500px;                  
+  border-radius: 8px;     
+  margin-top: 60px; 
+}
+
+
 .team_sec .team_decs {
-  /* width: 100%; */
-  /* height: 400px; */
+  width: 100%;
+  height: 400px;
   background: #fff;
-  padding: 40px;
+  padding: 40px 0px 40px 0px;
   margin-top: 100px;
   text-align: center;
+}
+.title_span_value_text{
+  text-align: center;
+}
+
+.core_value-items{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 
 .value_t {
@@ -168,4 +193,10 @@
   .core_value p {
     font-size: 0.8rem;
   } */
+}
+
+@media screen and (max-width : 767px){
+  .color_bg .image_con img{
+    width: 250px
+  }
 }

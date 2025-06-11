@@ -1,8 +1,12 @@
 /* Footer.css */
+.footer-wrapper{
+  padding: 10px 7px 0px 7px;
+
+}
 .footer {
   background-color: #1a1a1a;
   color: #ffffff;
-  padding: 2rem 0 0;
+  padding: 10px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
