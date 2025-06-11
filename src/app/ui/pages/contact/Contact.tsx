@@ -99,11 +99,25 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="software-main">
         <div className="wrapper">
           <div className="software-main-content">
-            <div style={{ margin: "1rem 0" }}></div>
+            <div style={{ margin: "1rem 0" }}>
+              <button
+                onClick={() => navigate(-1)}
+                style={{
+                  padding: "10px 16px",
+                  backgroundColor: "#071D6A",
+                  color: "#fff",
+                  border: "1px solid #000000",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                ← Back
+              </button>
+            </div>
             <h1 className="software-header">Get in touch</h1>
             <p>
               Have questions or want to discuss a project? We'd love to hear

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PricingCalculator from "./PricingCalclator";
 
 const PricingPage: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <div className="software-main">
@@ -25,8 +25,16 @@ const PricingPage: React.FC = () => {
               </button>
             </div>
             <h1 className="software-header">Pricing Calculator</h1>
-            <p style={{ fontSize: "16px", lineHeight: "1.5", marginBottom: "1.5rem" }}>
-              Use our calculator below to estimate your total cost based on selected services, quantity, and additional factors like discounts or taxes.
+            <p
+              style={{
+                fontSize: "16px",
+                lineHeight: "1.5",
+                marginBottom: "1.5rem",
+              }}
+            >
+              Use our calculator below to estimate your total cost based on
+              selected services, quantity, and additional factors like discounts
+              or taxes.
             </p>
           </div>
         </div>

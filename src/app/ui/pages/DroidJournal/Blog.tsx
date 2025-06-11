@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import ProductCard from "../../components/productcard/ProductCard";
 import { RoutePaths } from "../../../routes/Index";
+import { useNavigate } from "react-router-dom";
 
 interface BlogPost {
   id: number;
@@ -29,6 +30,8 @@ const Blog: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navigate = useNavigate();
 
   const projects = [
     {
@@ -90,6 +93,23 @@ const Blog: React.FC = () => {
             D'ROID BLOG
           </span>
         </center> */}
+      <div
+        style={{ marginBottom: "-80px", marginLeft: "65px", marginTop: "50px" }}
+      >
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            padding: "10px 16px",
+            backgroundColor: "#071D6A",
+            color: "#fff",
+            border: "1px solid #000000",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          ← Back
+        </button>
+      </div>
       <section className="blog-hero">
         <div className="hero-content">
           <h1
