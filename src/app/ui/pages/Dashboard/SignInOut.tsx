@@ -23,8 +23,16 @@ const SignInOut: React.FC = () => {
         setEmail(user.email);
         setEmployeeId(user.uniqueId);
         setIsSigningIn(!getLastStatus());
-        setLogs(userLogs); // Use redux logs
+        setLogs(userLogs);
     }, [user.email, user.uniqueId, userLogs]);
+
+    // ✅ Automatically sign out if offline
+    useEffect(() => {
+        if (!navigator.onLine) {
+            toast.error("You're offline. Automatically signing out.");
+            setIsSigningIn(false); // switch to Sign Out
+        }
+    }, []);
 
     const getLastStatus = () => {
         if (logs.length === 0) return false;
@@ -35,8 +43,25 @@ const SignInOut: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        if (!navigator.onLine) {
+            toast.error("You must be online to sign in or out.");
+            return;
+        }
+
         if (email !== user.email || employeeId !== user.uniqueId) {
             toast.error('Email or ID does not match your account.');
+            return;
+        }
+
+        // ✅ Prevent duplicate sign in without sign out
+        if (isSigningIn && getLastStatus()) {
+            toast.error("You're already signed in. Please sign out first.");
+            return;
+        }
+
+        // ✅ Prevent duplicate sign out without sign in
+        if (!isSigningIn && !getLastStatus()) {
+            toast.error("You're already signed out. Please sign in first.");
             return;
         }
 
@@ -64,6 +89,7 @@ const SignInOut: React.FC = () => {
         }
     };
 
+
     const getWorkedHoursData = () => {
         const dailyData: { [key: string]: number } = {};
         const formatString = 'dd/MM/yyyy, HH:mm:ss';
@@ -81,7 +107,6 @@ const SignInOut: React.FC = () => {
                 : parse(outTimestamp, formatString, new Date());
 
             if (isNaN(inTime.getTime()) || isNaN(outTime.getTime())) {
-                // Skip invalid dates
                 continue;
             }
 
@@ -100,9 +125,7 @@ const SignInOut: React.FC = () => {
                 {getLastStatus() ? '🟢 Signed In' : '🔴 Signed Out'}
             </h2>
 
-            {/* Side-by-side layout */}
             <div style={styles.flexContainer}>
-                {/* Form */}
                 <form onSubmit={handleSubmit} style={styles.form}>
                     <input
                         style={styles.input}
@@ -142,7 +165,6 @@ const SignInOut: React.FC = () => {
                     </button>
                 </form>
 
-                {/* Chart */}
                 <div style={styles.chartContainer}>
                     <h3 style={{ color: "#000000" }}>Hours Worked</h3>
                     <ResponsiveContainer width="100%" height={300}>
@@ -156,7 +178,6 @@ const SignInOut: React.FC = () => {
                 </div>
             </div>
 
-            {/* Table for Logs */}
             <div style={styles.logTableContainer}>
                 <h3 style={{ color: "#000000" }}>Sign In/Out Logs</h3>
                 <div style={styles.tableWrapper}>
