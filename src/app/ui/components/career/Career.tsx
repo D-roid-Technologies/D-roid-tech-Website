@@ -128,7 +128,7 @@ const JobCard: React.FC<JobCardProps> = ({
         </span>
 
         {/* Optional: Add apply button */}
-        <button
+        {/* <button
           style={{
             backgroundColor: "#071d6a",
             color: "#fff",
@@ -146,14 +146,9 @@ const JobCard: React.FC<JobCardProps> = ({
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = "#071d6a";
           }}
-          // onClick={(e) => {
-          //   e.stopPropagation(); // Prevent card click when button is clicked
-          //   // Handle apply action here
-          //   window.open(url, "_blank");
-          // }}
         >
           Apply Now
-        </button>
+        </button> */}
       </div>
 
       {/* Corner decoration */}

@@ -337,7 +337,7 @@ const Index: React.FunctionComponent = () => {
       />
       <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
       <Route path={RoutePaths.Services} element={<Services />} />
-      <Route path={RoutePaths.JoinOurCommunity} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <SignUp />} />
+      <Route path={RoutePaths.JoinOurCommunity} element={ <SignUp />} />
       <Route path={RoutePaths.StaffLogin} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <StaffLogin />} />
       <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
       <Route path={RoutePaths.MemberLogin} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <MemberLogin />} />
