@@ -12,8 +12,8 @@
 .bannerContent {
   width: 100%;
   display: flex;
+  margin-block: auto;
   flex-direction: column;
-  align-items: center;
 }
 
 .bannerContent h1 {

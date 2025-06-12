@@ -13,7 +13,7 @@ const SchedulePage: React.FunctionComponent = () => {
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis maxime ab nesciunt, ea minima deleniti! lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis maxime ab nesciunt, ea minima deleniti! Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis",
       icon: MdOutlineEmojiEvents({ size: 24 }),
-      link: RoutePaths.ScientificCalculate,
+      link: "/under-development",
     },
     {
       title: "Tasks Scheduler",
