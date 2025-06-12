@@ -4,6 +4,7 @@
   color: #1e293b;
   font-family: "Courier New", monospace;
   position: relative;
+  flex-direction: column;
   overflow: hidden;
   display: flex;
   align-items: center;
