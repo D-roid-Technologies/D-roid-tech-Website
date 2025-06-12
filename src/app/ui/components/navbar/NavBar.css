@@ -216,7 +216,7 @@
   gap: 40px;
   bottom: 15px;
   position: fixed;
-  width: 100%;
+  width: 78.5%;
 }
 
 .social-icons a {
@@ -280,7 +280,7 @@
   justify-content: space-between;
   align-items: center;
   color: #000 !important;
-  font-size: 18.5px;
+  font-size: 20px;
   font-weight: 700;
   /* padding: 15px 0; */
   cursor: pointer;

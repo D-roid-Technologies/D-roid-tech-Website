@@ -9,6 +9,7 @@ import NavBar from "../../components/navbar/NavBar";
 import ContactSoftware from "../contact/ContactSection/ContactSoftware";
 import ContactPartnersClients from "./ContactPartnersClients";
 import styles from "../../components/global-styles/Banner.module.css";
+import { useNavigate } from "react-router-dom";
 
 const logos = [
   {
@@ -43,9 +44,10 @@ const logos = [
 ];
 
 const PartnersClients: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <NavBar />
       {/* Hero Section */}
       <div
         className={styles.bannerWrapper}
@@ -53,6 +55,21 @@ const PartnersClients: React.FC = () => {
           backgroundImage: `url(${Assets.images.homeBannerSlideTwo})`,
         }}
       >
+        <div style={{ margin: "1rem 0 0 3rem" }}>
+          <button
+            onClick={() => navigate(-1)}
+            style={{
+              padding: "10px 16px",
+              backgroundColor: "#071D6A",
+              color: "#fff",
+              border: "1px solid #000000",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            ← Back
+          </button>
+        </div>
         <div className={styles.bannerContent}>
           <h1>Partners & Clients</h1>
           <p>
