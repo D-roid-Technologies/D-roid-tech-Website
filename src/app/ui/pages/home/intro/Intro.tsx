@@ -130,7 +130,7 @@ const Intro: React.FC = () => {
           {/* Core Values Section */}
           <div
             className="wrapper"
-            style={{  marginTop: "24px", marginBottom: "20px" }}
+            style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
           >
             <span className="title_span value_t">
               CORE VALUES
@@ -188,8 +188,14 @@ const Intro: React.FC = () => {
           </div>
         </div>
 
-        <div className="team_image_home">
-         
+        <div className="group justify-content-center">
+          <div className="block-12 block-md-10">
+            <img
+              src={Assets.images.tech}
+              alt="Team"
+              className="team_image image-fluid"
+            />
+          </div>
         </div>
       </div>
     </>
