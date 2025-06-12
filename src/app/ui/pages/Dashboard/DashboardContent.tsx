@@ -39,7 +39,6 @@ import styles from "./DashboardContent.module.css";
 import Section from "./Section";
 import TaskScheduler from "../schedule/TaskScheduler";
 import CurrencyConverter from "../toolboxpage/currencyconverter/CurrencyConverter";
-import ResumeAnalyzer from "../resumeAnalyser/ResumeAnalyzer";
 import { BsCurrencyExchange } from "react-icons/bs";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
 import { GiCalculator } from "react-icons/gi";
@@ -51,6 +50,9 @@ import Bmi from "../calculator/Bmi";
 import { LuCalculator } from "react-icons/lu";
 import BackgroundRemover from "../backgroundremover/BackgroundRemover";
 import ToolsCard from "../../components/CoreValueCard/ToolsCard";
+import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
+import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
+import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 
 // const tools = [
 //   {
@@ -207,6 +209,7 @@ const calculators = [
 interface DashboardContentProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose?: () => void;
 }
 
 const DashboardContent: React.FC<DashboardContentProps> = ({
@@ -238,17 +241,43 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     setActiveTool(toolComponent);
   };
 
+  // Create a function to handle closing tools
+  const handleCloseTool = () => {
+    setActiveTool(null);
+  };
+  // // Add state for active tool
+  // const [activeTool, setActiveTool] = useState<string | null>(null);
+
+  // // Update the handleLaunchTool function
+  // const handleLaunchTool = (toolComponent: string) => {
+  //   setActiveTool(toolComponent);
+  // };
+
   // Create a function to render the active tool component
+  // const renderToolComponent = () => {
+  //   switch (activeTool) {
+  //     case "CurrencyConverter":
+  //       return <CurrencyConverter onClose={() => setActiveTool(null)} />;
+  //     case "ResumeAnalyzer":
+  //       return <ResumeAnalyzing onClose={() => setActiveTool(null)} />;
+  //     case "BackgroundRemover":
+  //       return <BackgroundRemove onClose={() => setActiveTool(null)} />;
+  //     case "PDFEditor":
+  //       return <PdfEdit onClose={() => setActiveTool(null)} />;
+  //     default:
+  //       return null;
+  //   }
+  // };
   const renderToolComponent = () => {
     switch (activeTool) {
       case "CurrencyConverter":
-        return <CurrencyConverter onClose={() => setActiveTool(null)} />;
+        return <CurrencyConverter onClose={handleCloseTool} />;
       case "ResumeAnalyzer":
-        return <ResumeAnalyzer onClose={() => setActiveTool(null)} />;
+        return <ResumeAnalyzing onClose={handleCloseTool} />;
       case "BackgroundRemover":
-        return <BackgroundRemover onClose={() => setActiveTool(null)} />;
+        return <BackgroundRemove onClose={handleCloseTool} />;
       case "PDFEditor":
-        return <PDFEditor onClose={() => setActiveTool(null)} />;
+        return <PdfEdit onClose={handleCloseTool} />;
       default:
         return null;
     }
