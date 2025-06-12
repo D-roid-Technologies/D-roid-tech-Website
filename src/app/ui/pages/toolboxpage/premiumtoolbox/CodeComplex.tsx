@@ -1,6 +1,10 @@
 import React from "react";
 
-const CodeComplex = () => {
+interface ComponentProps {
+  onClose: () => void;
+}
+
+const CodeComplex: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return <div style={{ color: "#333" }}> CodeComplex</div>;
 };
 

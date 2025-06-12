@@ -50,7 +50,7 @@ const ToolsCard: React.FC<CoreValueCardThreeProps> = ({
           className="launch-button"
           disabled={!onLaunch && !link}
           style={{
-            backgroundColor: onLaunch ? "#4CAF50" : "#007BFF",
+            backgroundColor: onLaunch ? "#081d67" : "#007BFF",
             color: "#fff",
             padding: "10px 20px",
             border: "none",

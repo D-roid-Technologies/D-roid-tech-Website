@@ -1,6 +1,10 @@
 import React from "react";
 
-const ImageMark = () => {
+interface ComponentProps {
+  onClose: () => void;
+}
+
+const ImageMark: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return <div style={{ color: "#333" }}> ImageMark</div>;
 };
 

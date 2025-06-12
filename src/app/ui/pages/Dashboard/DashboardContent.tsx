@@ -48,69 +48,14 @@ import Calculate from "../calculator/Calculate";
 import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
 import Bmi from "../calculator/Bmi";
 import { LuCalculator } from "react-icons/lu";
-import BackgroundRemover from "../backgroundremover/BackgroundRemover";
 import ToolsCard from "../../components/CoreValueCard/ToolsCard";
-// import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
 import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
+import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
+import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 
-// const tools = [
-//   {
-//     title: "Currency Converter",
-//     description:
-//       "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
-//     icon: BsCurrencyExchange({ size: 24 }),
-//     category: "Calculation Tools",
-//     link: "/toolbox/currency-converter",
-//   },
-//   {
-//     title: "AI Background Remover",
-//     description:
-//       "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
-//     icon: FaMagic({ size: 24 }),
-//     category: "Image Tools",
-//     link: "/toolbox/ai-background-remover",
-//     isPremium: true,
-//   },
-//   {
-//     title: "Advanced PDF Editor",
-//     description:
-//       "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
-//     icon: FaFilePdf({ size: 24 }),
-//     category: "Document Tools",
-//     link: "/toolbox/advanced-pdf-editor",
-//     isPremium: true,
-//   },
-//   {
-//     title: "Resume & CV Analyzer",
-//     description:
-//       "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
-//     icon: FaUserTie({ size: 24 }),
-//     category: "Career Tools",
-//     link: "",
-//     isPremium: true,
-//   },
-//   {
-//     title: "Code Complexity Analyzer",
-//     description:
-//       "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
-//     icon: FaCodeBranch({ size: 24 }),
-//     category: "Developer Tools",
-//     link: "",
-//     isPremium: true,
-//   },
-//   {
-//     title: "Bulk Image Watermarker",
-//     description:
-//       "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
-//     icon: FaStamp({ size: 24 }),
-//     category: "Image Tools",
-//     link: "",
-//     isPremium: true,
-//   },
-// ];
 const tools = [
   {
     title: "Currency Converter",
@@ -119,7 +64,7 @@ const tools = [
     icon: BsCurrencyExchange({ size: 24 }),
     category: "Calculation Tools",
     component: "CurrencyConverter", // Add component identifier
-    link: "/toolbox/currency-converter",
+    link: "",
   },
   {
     title: "AI Background Remover",
@@ -128,7 +73,7 @@ const tools = [
     icon: FaMagic({ size: 24 }),
     category: "Image Tools",
     component: "BackgroundRemover", // Add component identifier
-    link: "/toolbox/ai-background-remover",
+    link: "",
     isPremium: true,
   },
   {
@@ -138,7 +83,7 @@ const tools = [
     icon: FaFilePdf({ size: 24 }),
     category: "Document Tools",
     component: "PDFEditor", // Add component identifier
-    link: "/toolbox/advanced-pdf-editor",
+    link: "",
     isPremium: true,
   },
   {
@@ -247,13 +192,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const handleCloseTool = () => {
     setActiveTool(null);
   };
-  // // Add state for active tool
-  // const [activeTool, setActiveTool] = useState<string | null>(null);
-
-  // // Update the handleLaunchTool function
-  // const handleLaunchTool = (toolComponent: string) => {
-  //   setActiveTool(toolComponent);
-  // };
 
   // Create a function to render the active tool component
   const renderToolComponent = () => {
@@ -266,6 +204,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return <BackgroundRemove onClose={handleCloseTool} />;
       case "PDFEditor":
         return <PdfEdit onClose={handleCloseTool} />;
+      case "CodeComplexityAnalyzer":
+        return <CodeComplex onClose={handleCloseTool} />;
+      case "BulkImageWatermarker":
+        return <ImageMark onClose={handleCloseTool} />;
+
       default:
         return null;
     }
