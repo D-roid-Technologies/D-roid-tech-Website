@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const Bmi: React.FC = () => {
+interface ComponentProps {
+  onClose: () => void;
+}
+
+const Bmi: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const navigate = useNavigate();

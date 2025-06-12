@@ -55,6 +55,7 @@ import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
+import OhmslawCalculator from "../calculator/OhmslawCalculator";
 
 const tools = [
   {
@@ -124,6 +125,7 @@ const calculators = [
     description:
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
     icon: TbCalculator({ size: 24 }),
+    component: "Calculate", // Add component identifier
     link: "",
   },
   {
@@ -131,6 +133,7 @@ const calculators = [
     description:
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
     icon: GiCalculator({ size: 24 }),
+    component: "ScientificCalculator", // Add component identifier
     link: "",
   },
   {
@@ -138,6 +141,7 @@ const calculators = [
     description:
       "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
     icon: TbMicroscope({ size: 24 }),
+    component: "Bmi", // Add component identifier
     link: "",
   },
   {
@@ -145,6 +149,7 @@ const calculators = [
     description:
       "Easily calculate voltage (V), current (I), or resistance (R) using the fundamental principles of Ohm's Law. This intuitive tool allows you to input any two known values and instantly compute the third.",
     icon: FaCalculator({ size: 24 }),
+    component: "OhmslawCalculator", // Add component identifier
     link: "",
   },
   // {
@@ -178,6 +183,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const grossPay = parseFloat(staffDetails?.staffGrossPay ?? "0");
+  const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
 
   //Toools
   // Add state for active tool
@@ -208,6 +214,34 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return <CodeComplex onClose={handleCloseTool} />;
       case "BulkImageWatermarker":
         return <ImageMark onClose={handleCloseTool} />;
+
+      default:
+        return null;
+    }
+  };
+
+  //Calculator
+  // Update the handleLaunchTool function
+  const handleLaunchCalculator = (calculatorComponent: string) => {
+    setActiveCalculator(calculatorComponent);
+  };
+
+  // Create a function to handle closing tools
+  const handleCloseCalculator = () => {
+    setActiveCalculator(null);
+  };
+
+  // Create a function to render the active tool component
+  const renderCalculatorComponent = () => {
+    switch (activeCalculator) {
+      case "Calculate":
+        return <Calculate onClose={handleCloseCalculator} />;
+      case "ScientificCalculator":
+        return <ScientificCalculator onClose={handleCloseCalculator} />;
+      case "Bmi":
+        return <Bmi onClose={handleCloseCalculator} />;
+      case "OhmslawCalculator":
+        return <OhmslawCalculator onClose={handleCloseCalculator} />;
 
       default:
         return null;
@@ -433,24 +467,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                       }
                       className="process-card"
                     />
-                    // <CoreValueCardThree
-                    //   key={index}
-                    //   title={tech.title}
-                    //   description={tech.description}
-                    //   icon={tech.icon}
-                    //   link={tech.link}
-                    //   onLaunch={
-                    //     tech.component
-                    //       ? () => handleLaunchTool(tech.component)
-                    //       : undefined
-                    //   }
-                    //   className="process-card"
-                    // />
                   ))}
                 </div>
               </>
             )}
-            {/* </Section> */}
           </Section>
         );
       case "Calculate":
@@ -507,7 +527,48 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 ))}
               </select>
             </div>
-            <div className="soft-dev-content">
+            {activeCalculator ? (
+              // Render the active tool component
+              <div>
+                <button
+                  onClick={() => setActiveCalculator(null)}
+                  style={{
+                    marginBottom: "20px",
+                    padding: "8px 16px",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    color: "#333",
+                  }}
+                >
+                  ← Back to Tools
+                </button>
+                {renderCalculatorComponent()}
+              </div>
+            ) : (
+              // Render the tools grid
+              <>
+                <div className="soft-dev-content">
+                  {calculators.map((tech, index) => (
+                    <ToolsCard
+                      key={index}
+                      title={tech.title}
+                      description={tech.description}
+                      icon={tech.icon}
+                      link={tech.link}
+                      onLaunch={
+                        tech.component
+                          ? () => handleLaunchCalculator(tech.component)
+                          : undefined
+                      }
+                      className="process-card"
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+            {/* <div className="soft-dev-content">
               {calculators.map((tech, index) => (
                 <CoreValueCardThree
                   key={index}
@@ -518,7 +579,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                   className="process-card"
                 />
               ))}
-            </div>
+            </div> */}
             {/* <div>
               <Calculate />
               <ScientificCalculator />
