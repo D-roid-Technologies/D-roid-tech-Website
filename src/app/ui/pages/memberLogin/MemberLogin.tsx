@@ -60,7 +60,7 @@ const MemberLogin = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <a href={RoutePaths.JoinOurCommunity} className={styles.backLink}>
-          <FaArrowLeft style={{ marginRight: "8px" }} /> Back to Home
+          <FaArrowLeft style={{ marginRight: "8px" }} /> Back to Sign Up
         </a>
         <FaUser className={styles.icon} />
       </div>
