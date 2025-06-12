@@ -1357,6 +1357,14 @@
   padding-top: 1rem;
 }
 
+@media (max-width: 768px) {
+  .image-fluid {
+    max-width: 120%;
+    margin-left: -2rem;
+    padding: 0;
+  }
+}
+
 /* PADDING AND MARGIN  */
 .m-0 {
   margin: 0 !important;

@@ -136,7 +136,7 @@ const Intro: React.FC = () => {
               CORE VALUES
             </span>
 
-            <div className="group mt-4">
+            <div className="group mt-4 core_value_cards">
               <CoreValueCard
                 imageSrc={Assets.images.trustImg}
                 title="Integrity"
@@ -163,12 +163,12 @@ const Intro: React.FC = () => {
             OUR TEAM
           </span>
         </center>
-        <div className="group justify-content-center">
+        <div className="group justify-content-center team_decs_container">
           <div className="block-12 block-md-8 team_decs">
             <h1 style={{ color: "#111724" }}>
               Join <span style={{ color: "#071d6a" }}>the team</span>
             </h1>
-            <p className="mb-5" style={{ color: "#111724" }}>
+            <p className="mb-5 join-team_paragraph" style={{ color: "#111724" }}>
               Are you passionate about Technology and Innovation? Join us for a
               6-month Software Development Training and become a full-time staff
               member at D'roid Technologies. Work on exciting projects, grow
@@ -189,7 +189,7 @@ const Intro: React.FC = () => {
         </div>
 
         <div className="group justify-content-center">
-          <div className="block-12 block-md-10">
+          <div className="block-12 block-md-10 team_image_container">
             <img
               src={Assets.images.tech}
               alt="Team"

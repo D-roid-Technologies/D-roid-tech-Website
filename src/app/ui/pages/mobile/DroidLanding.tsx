@@ -274,7 +274,7 @@ const DroidLanding = () => {
                 </motion.div>
                 <motion.div className="spec-item" variants={specsItemVariants}>
                   <span className="spec-name">OS:</span>
-                  <span className="spec-value">DroidOS 3.0 (Android 13)</span>
+                  <span className="spec-value"> D'roidOS 3.0 (Android 13)</span>
                 </motion.div>
               </motion.div>
             </motion.div>
