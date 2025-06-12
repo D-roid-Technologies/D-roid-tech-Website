@@ -50,6 +50,7 @@ import Bmi from "../calculator/Bmi";
 import { LuCalculator } from "react-icons/lu";
 import BackgroundRemover from "../backgroundremover/BackgroundRemover";
 import ToolsCard from "../../components/CoreValueCard/ToolsCard";
+// import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
 import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
@@ -255,20 +256,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   // };
 
   // Create a function to render the active tool component
-  // const renderToolComponent = () => {
-  //   switch (activeTool) {
-  //     case "CurrencyConverter":
-  //       return <CurrencyConverter onClose={() => setActiveTool(null)} />;
-  //     case "ResumeAnalyzer":
-  //       return <ResumeAnalyzing onClose={() => setActiveTool(null)} />;
-  //     case "BackgroundRemover":
-  //       return <BackgroundRemove onClose={() => setActiveTool(null)} />;
-  //     case "PDFEditor":
-  //       return <PdfEdit onClose={() => setActiveTool(null)} />;
-  //     default:
-  //       return null;
-  //   }
-  // };
   const renderToolComponent = () => {
     switch (activeTool) {
       case "CurrencyConverter":
@@ -605,9 +592,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Say It":
         return (
           <Section title="Contact us">
-            <p style={{ color: "#000000" }}>
+            {/* <p style={{ color: "#000000" }}>
               Share your thoughts and feedback here.
-            </p>
+            </p> */}
             <SayIt />
           </Section>
         );
