@@ -5,7 +5,7 @@ interface ComponentProps {
 }
 
 const PdfEdit: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  return <div>PdfEdit</div>;
+  return <div style={{ color: "#333" }}>PdfEdit</div>;
 };
 
 export default PdfEdit;

@@ -5,7 +5,7 @@ interface ComponentProps {
 }
 
 const CurrencyConvert: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  return <div>CurrencyConvert</div>;
+  return <div style={{ color: "#333" }}>CurrencyConvert</div>;
 };
 
 export default CurrencyConvert;
