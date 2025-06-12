@@ -667,26 +667,27 @@ export class AuthService {
                 const fetchedUserData = userSnapshot.data();
                 const primaryInformation = fetchedUserData.user.primaryInformation;
 
-                store.dispatch(setUser({ ...primaryInformation, role: fetchedUserData.user.primaryInformation.role }));
+                store.dispatch(setUser({ ...primaryInformation }));
 
-                // ✅ Send email only after DB is confirmed written
                 await sendEmailVerification(user);
+                await signOut(auth); // Prevent implicit navigation
 
                 toast.success(`Your D'roid Account has been successfully created`, {
-                    style: { background: '#4BB543', color: '#fff' },
+                    style: { background: "#4BB543", color: "#fff" },
                 });
-            } else {
-                toast.error('User Information does not exist 🚫', {
-                    style: { background: '#ff4d4f', color: '#fff' },
-                });
-            }
 
-            return res;
+                return { success: true };
+            } else {
+                toast.error("User Information does not exist 🚫", {
+                    style: { background: "#ff4d4f", color: "#fff" },
+                });
+                return null;
+            }
         } catch (error: any) {
+            console.error("Error during registration:", error);
             toast.error(`Error creating your D'roid Account 🚫`, {
-                style: { background: '#ff4d4f', color: '#fff' },
+                style: { background: "#ff4d4f", color: "#fff" },
             });
-            console.error(`Error creating your D'roid Account:`, error.message);
             return null;
         }
     };
