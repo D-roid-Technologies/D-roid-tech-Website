@@ -25,7 +25,11 @@ import {
 
 import { GiCalculator } from "react-icons/gi";
 
-const Calculate = () => {
+interface ComponentProps {
+  onClose: () => void;
+}
+
+const Calculate: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const navigate = useNavigate();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(

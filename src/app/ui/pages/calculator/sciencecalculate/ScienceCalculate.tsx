@@ -21,6 +21,7 @@ const ScienceCalculate = () => {
       {/* Items */}
 
       {/* scientific calculator */}
+      {/* <ScientificCalculator /> */}
       <ScientificCalculator />
     </div>
   );
