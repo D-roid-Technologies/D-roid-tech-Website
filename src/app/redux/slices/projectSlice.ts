@@ -105,7 +105,7 @@ const initialState: ProjectState = {
     // },
     // {
     //   id: "7",
-    //   title: "@droid-tech/react-droidinput",
+    //   title: "@-tech/react-droidinput",
     //   status: "Ongoing",
     //   descriptionUrl: "/projects/health-wellness-app",
     //   summary:
