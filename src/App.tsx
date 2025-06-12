@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { UserType } from "./app/utils/Types";
 import { BrowserRouter } from 'react-router-dom';
-import ScrollToTop from "./app/ui/components/ScrollToTop/ScrollToTop";
 
 function AppContent() {
   const user: UserType = useSelector((state: RootState) => state.user);
@@ -67,7 +66,6 @@ function AppContent() {
       )}
       <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
-      <ScrollToTop/>
         <AppEntry />
       </BrowserRouter>
     </>

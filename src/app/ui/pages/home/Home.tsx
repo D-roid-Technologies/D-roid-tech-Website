@@ -18,7 +18,7 @@ const Home: React.FunctionComponent = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   return (
-    <div className="ParentContainer">
+    <div>
       <NavBar />
       <CompanyCarousel />
       <Intro />
