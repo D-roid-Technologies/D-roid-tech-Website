@@ -126,32 +126,6 @@ const openings: Job[] = [
   },
 ];
 
-//   {
-//     title: "Frontend Developer",
-//     type: "Full-Time",
-//     location: "Remote / Lagos",
-//     description:
-//       "We're looking for a skilled React developer with solid UI/UX understanding and passion for clean code.",
-//     url: "/careers/frontend-developer",
-//   },
-//   {
-//     title: "Backend Developer",
-//     type: "Full-Time",
-//     location: "Remote",
-//     description:
-//       "Join our backend team building scalable APIs with Node.js and cloud functions.",
-//     url: "/careers/backend-developer",
-//   },
-//   {
-//     title: "UI/UX Designer",
-//     type: "Contract / Full-Time",
-//     location: "Remote",
-//     description:
-//       "Design intuitive, beautiful experiences using Figma and collaborate closely with engineers.",
-//     url: "/careers/ui-ux-designer",
-//   },
-// ];
-
 const coreValues = [
   {
     title: "Innovation",
@@ -203,7 +177,7 @@ const CareersPage: React.FC = () => {
       </div>
       {/* Open Roles */}
       <div className="wrapper" style={{ padding: "20px" }}>
-        <div style={{ marginBottom: "40px" }}>
+        <div style={{ marginBottom: "40px", marginTop: "20px" }}>
           <span
             className="soft-dev-header title_span"
             style={{ background: "#e2e8f0" }}
@@ -270,7 +244,10 @@ const CareersPage: React.FC = () => {
         )}
       </div>
       {/* Values Section (Optional) */}
-      <div className="wrapper" style={{ padding: "10px" }}>
+      <div
+        className="wrapper"
+        style={{ padding: "10px", marginTop: "40px", marginBottom: "40px" }}
+      >
         <span
           className="soft-dev-header title_span"
           style={{ background: "#e2e8f0" }}
@@ -340,8 +317,7 @@ const CareersPage: React.FC = () => {
         >
           Get in Touch
         </a>
-      </div>{" "}
-      mm
+      </div>
     </div>
   );
 };
