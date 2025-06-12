@@ -53,6 +53,7 @@ import ToolsCard from "../../components/CoreValueCard/ToolsCard";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
 import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
+import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 
 // const tools = [
 //   {
@@ -271,7 +272,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const renderToolComponent = () => {
     switch (activeTool) {
       case "CurrencyConverter":
-        return <CurrencyConverter onClose={handleCloseTool} />;
+        return <CurrencyConvert onClose={handleCloseTool} />;
       case "ResumeAnalyzer":
         return <ResumeAnalyzing onClose={handleCloseTool} />;
       case "BackgroundRemover":

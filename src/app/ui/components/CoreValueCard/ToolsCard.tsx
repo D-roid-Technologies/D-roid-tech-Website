@@ -4,7 +4,7 @@ interface CoreValueCardThreeProps {
   title: string;
   description: string;
   imageSrc?: string;
-  icon: JSX.Element;
+  icon?: React.ReactNode;
   link?: string;
   className?: string;
   onLaunch?: () => void;
