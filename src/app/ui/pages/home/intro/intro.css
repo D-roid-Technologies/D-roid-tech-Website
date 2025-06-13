@@ -133,8 +133,8 @@
     width: 250px;
   }
   .color_bg {
-    width: 134%;
-    margin-left: -48px;
+    width: 135%;
+    margin-left: -49px;
   }
   .color_bg span {
     display: flex;
@@ -150,33 +150,32 @@
     text-align: center;
   }
 
-  .join-team_intro{
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: "Segoe UI", sans-serif;
-  line-height: 1.7;
-  color: #333;
+  .join-team_intro {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    line-height: 1.7;
+    color: #333;
   }
-  
-.join-team_paragraph {
-  margin-bottom: 16px;
-  text-align: left;
-  margin-left: 1rem
-}
-.core_value_cards  {
-      margin-left: -3rem !important;
 
-}
+  .join-team_paragraph {
+    margin-bottom: 16px;
+    text-align: left;
+    margin-left: 1rem;
+  }
+  .core_value_cards {
+    margin-left: -3rem !important;
+  }
 
-.team_decs_container {
-  width: 119%;
-  margin-left: -2rem !important;
-}
+  .team_decs_container {
+    width: 119%;
+    margin-left: -2rem !important;
+  }
 
-.team_image_container{
-  width: 100%;
-}
+  .team_image_container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 630px) {

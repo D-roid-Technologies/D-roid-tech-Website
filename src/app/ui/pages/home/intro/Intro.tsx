@@ -56,7 +56,7 @@ const Intro: React.FC = () => {
 
       setCounters({
         satisfaction: parseFloat((progress * 99.9).toFixed(1)),
-        projects: Math.floor(progress * 32),
+        projects: Math.floor(progress * 13),
         years: Math.floor(progress * 5),
         countries: Math.floor(progress * 2),
       });
@@ -66,7 +66,7 @@ const Intro: React.FC = () => {
       } else {
         setCounters({
           satisfaction: 99.9,
-          projects: 32,
+          projects: 14,
           years: 5,
           countries: 2,
         });
