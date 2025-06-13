@@ -568,23 +568,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 </div>
               </>
             )}
-            {/* <div className="soft-dev-content">
-              {calculators.map((tech, index) => (
-                <CoreValueCardThree
-                  key={index}
-                  title={tech.title}
-                  description={tech.description}
-                  icon={tech.icon}
-                  link={tech.link}
-                  className="process-card"
-                />
-              ))}
-            </div> */}
-            {/* <div>
-              <Calculate />
-              <ScientificCalculator />
-              <Bmi />
-            </div> */}
           </Section>
         );
       case "Announcements":
