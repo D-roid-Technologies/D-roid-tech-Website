@@ -55,7 +55,7 @@ const BMICalculator: React.FC = () => {
                 cursor: "pointer",
               }}
             >
-              ← Back
+              ← Back to Calculators
             </button>
           </div>
           <h1 className="software-header">BMI Calculator</h1>
