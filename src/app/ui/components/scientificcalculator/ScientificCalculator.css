@@ -22,18 +22,19 @@
 .calculator-wrapper {
   font-family: var(--button-font);
   background-color: #f0f2f5;
-  /* background-color: blue; */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 50px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .calculator-container {
   outline: none;
   width: 100%;
   max-width: 480px;
+  min-width: 320px;
 }
 
 .calculator {
@@ -44,9 +45,31 @@
   width: 100%;
 }
 
+.calculator-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .display {
   background-color: var(--secondary-color);
-  padding: 20px;
+  padding: 15px 20px;
   color: var(--text-color);
   text-align: right;
   position: relative;
@@ -64,11 +87,14 @@
 .mode-indicator {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .memory-indicator {
   opacity: 0.5;
   transition: opacity 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .memory-indicator.active {
@@ -78,11 +104,12 @@
 
 .angle-mode {
   cursor: pointer;
-  padding: 2px 6px;
+  padding: 4px 8px;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
   font-size: 12px;
   font-weight: 500;
+  transition: background-color 0.2s ease;
 }
 
 .angle-mode:hover {
@@ -91,10 +118,11 @@
 
 .history-toggle {
   cursor: pointer;
-  padding: 2px 8px;
+  padding: 4px 8px;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
   transition: background-color 0.2s ease;
+  font-size: 16px;
 }
 
 .history-toggle:hover {
@@ -103,27 +131,26 @@
 
 .display-main {
   font-family: var(--display-font);
-  font-size: 36px;
+  font-size: clamp(24px, 8vw, 36px);
   font-weight: 700;
   margin-top: 5px;
   overflow-x: auto;
   white-space: nowrap;
   padding-bottom: 5px;
-  /* For scrolling if the number gets too long */
-  -ms-overflow-style: none; /* Internet Explorer and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .display-main::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  display: none;
 }
 
 .history-panel {
   background-color: var(--secondary-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-color);
-  padding: 10px;
-  max-height: 150px;
+  padding: 10px 15px;
+  max-height: clamp(120px, 20vh, 200px);
   overflow-y: auto;
 }
 
@@ -139,6 +166,7 @@
 .history-header h3 {
   font-size: 14px;
   font-weight: 500;
+  margin: 0;
 }
 
 .history-header button {
@@ -147,22 +175,25 @@
   color: var(--accent-color);
   cursor: pointer;
   font-size: 12px;
-  padding: 2px 5px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: background-color 0.2s;
 }
 
 .history-header button:hover {
-  text-decoration: underline;
+  background-color: rgba(75, 123, 236, 0.1);
 }
 
 .history-list {
   font-family: var(--display-font);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .history-item {
-  padding: 4px 0;
+  padding: 6px 0;
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  word-break: break-all;
 }
 
 .history-item:last-child {
@@ -171,42 +202,43 @@
 
 .history-empty {
   text-align: center;
-  padding: 10px;
+  padding: 15px;
   color: rgba(255, 255, 255, 0.5);
   font-style: italic;
+  font-size: 14px;
 }
 
 .keypad {
-  padding: 15px;
+  padding: 12px;
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 8px;
 }
 
 .memory-keys {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 8px;
+  grid-gap: 6px;
   margin-bottom: 8px;
 }
 
 .function-keys {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 8px;
-  margin-bottom: 10px;
+  grid-gap: 6px;
+  margin-bottom: 8px;
 }
 
 .scientific-keys {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 8px;
-  margin-bottom: 10px;
+  grid-gap: 6px;
+  margin-bottom: 8px;
 }
 
 .main-keypad {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 8px;
+  grid-gap: 6px;
 }
 
 button {
@@ -215,11 +247,16 @@ button {
   border-radius: 5px;
   color: var(--text-color);
   font-family: var(--button-font);
-  font-size: 16px;
-  padding: 12px 0;
+  font-size: clamp(12px, 3.5vw, 16px);
+  padding: clamp(8px, 2.5vh, 12px) 4px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   user-select: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
 }
 
 button:hover {
@@ -266,27 +303,6 @@ button.active {
   color: white;
 }
 
-/* Responsive styling */
-@media (max-width: 500px) {
-  .calculator-container {
-    width: 100%;
-  }
-
-  .display-main {
-    font-size: 28px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 10px 0;
-  }
-
-  .function-keys,
-  .scientific-keys {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 /* Keyframe animations */
 @keyframes buttonPress {
   0% {
@@ -302,4 +318,256 @@ button.active {
 
 .keypad button:active {
   animation: buttonPress 0.2s ease;
+}
+
+/* Extra Small Devices (phones, 320px to 480px) */
+@media (max-width: 480px) {
+  .calculator-wrapper {
+    padding: 15px;
+    align-items: flex-start;
+    padding-top: 30px;
+    min-height: 80vh;
+  }
+
+  .calculator-container {
+    max-width: 100%;
+  }
+
+  .display {
+    padding: 12px 15px;
+  }
+
+  .display-top {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .angle-mode,
+  .history-toggle {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .keypad {
+    padding: 8px;
+    grid-gap: 6px;
+  }
+
+  .memory-keys,
+  .function-keys,
+  .scientific-keys {
+    grid-gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .main-keypad {
+    grid-gap: 4px;
+  }
+
+  button {
+    min-height: 40px;
+    font-size: 14px;
+    padding: 8px 2px;
+    border-radius: 4px;
+  }
+
+  .memory-keys button {
+    font-size: 12px;
+    padding: 6px 2px;
+    min-height: 35px;
+  }
+
+  .function-keys button,
+  .scientific-keys button {
+    font-size: 12px;
+    padding: 6px 2px;
+    min-height: 35px;
+  }
+
+  .history-panel {
+    padding: 8px 12px;
+    max-height: 100px;
+  }
+
+  .history-item {
+    font-size: 11px;
+    padding: 4px 0;
+  }
+}
+
+/* Small Devices (small tablets, 481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .calculator-wrapper {
+    padding: 15px;
+  }
+
+  .calculator-container {
+    max-width: 420px;
+  }
+
+  button {
+    font-size: 15px;
+    min-height: 42px;
+  }
+
+  .memory-keys button,
+  .function-keys button,
+  .scientific-keys button {
+    font-size: 13px;
+    min-height: 38px;
+  }
+}
+
+/* Medium Devices (tablets, 769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .calculator-wrapper {
+    padding: 20px;
+  }
+
+  .calculator-container {
+    max-width: 450px;
+  }
+
+  button {
+    font-size: 16px;
+    min-height: 44px;
+  }
+}
+
+/* Large Devices (desktops, 1025px and up) */
+@media (min-width: 1025px) {
+  .calculator-wrapper {
+    padding: 30px;
+  }
+
+  .calculator-container {
+    max-width: 480px;
+  }
+
+  button {
+    font-size: 16px;
+    min-height: 46px;
+    padding: 12px 6px;
+  }
+
+  .keypad {
+    padding: 15px;
+    grid-gap: 10px;
+  }
+
+  .memory-keys,
+  .function-keys,
+  .scientific-keys {
+    grid-gap: 8px;
+  }
+
+  .main-keypad {
+    grid-gap: 8px;
+  }
+}
+
+/* Landscape orientation adjustments for small screens */
+@media (max-height: 600px) and (orientation: landscape) {
+  .calculator-wrapper {
+    align-items: flex-start;
+    padding: 5px;
+    min-height: auto;
+  }
+
+  .display {
+    padding: 8px 15px;
+  }
+
+  .display-main {
+    font-size: 24px;
+  }
+
+  .history-panel {
+    max-height: 80px;
+  }
+
+  .keypad {
+    padding: 6px;
+  }
+
+  button {
+    min-height: 32px;
+    padding: 4px 2px;
+    font-size: 12px;
+  }
+
+  .memory-keys button,
+  .function-keys button,
+  .scientific-keys button {
+    min-height: 28px;
+    font-size: 11px;
+  }
+}
+
+/* Very small screens (under 360px width) */
+@media (max-width: 360px) {
+  .function-keys,
+  .scientific-keys {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .memory-keys {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  button {
+    min-height: 36px;
+    font-size: 12px;
+  }
+
+  .memory-keys button,
+  .function-keys button,
+  .scientific-keys button {
+    min-height: 32px;
+    font-size: 10px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1400px) {
+  .calculator-container {
+    max-width: 520px;
+  }
+
+  .display-main {
+    font-size: 40px;
+  }
+
+  button {
+    font-size: 18px;
+    min-height: 50px;
+    padding: 14px 8px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  button {
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Dark mode support for systems that prefer it */
+@media (prefers-color-scheme: dark) {
+  .calculator-wrapper {
+    /* background-color: #1a1a1a; */
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .angle-mode,
+  .history-toggle {
+    transition: none;
+  }
+
+  .keypad button:active {
+    animation: none;
+  }
 }
