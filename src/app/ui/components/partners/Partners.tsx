@@ -6,11 +6,11 @@ import { RoutePaths } from "../../../routes/Index";
 
 const logos = [
   {
-    src: "https://images.seeklogo.com/logo-png/27/2/intel-logo-png_seeklogo-270869.png",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/intel-logo-png_seeklogo-270869_feydqy.png",
     alt: "Intel",
   },
   {
-    src: "https://scontent.fabb1-3.fna.fbcdn.net/v/t39.30808-6/482061783_606221468910755_5206625059538571548_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGcjHvelv2d4oRMBVBF4-suddCY58qEaJx10JjnyoRonIC_zk29MjdqNhtFwP3QkNm7Xl7RRGbwbKxsnsJedoeO&_nc_ohc=y5bfg8hAhXwQ7kNvwH59oBe&_nc_oc=AdmnEb_04hxYVJy90lnMOiTV1lwIRgYnSU0mJsF0CdCJ_cUFsGfq1YMn414i4BkNZWA&_nc_zt=23&_nc_ht=scontent.fabb1-3.fna&_nc_gid=BB0z1PhdNnILpELn8hQMVA&oh=00_AfK1xrIJN8MPvuy9dARkXpDNGlqNQOJspUFh6bbywHH-hg&oe=683F592F",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749808980/308408317_466190838885107_7274109674455319942_n_l8alqw.jpg",	
     alt: "Leadpac Foundation",
   },
   {
@@ -18,21 +18,21 @@ const logos = [
     alt: "Cisco Partner",
   },
   {
-    src: "https://seeklogo.com/images/C/cisco-logo-FE0AB16DCF-seeklogo.com.png",
-    alt: "Cisco Duplicate",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/cisco-logo-png_seeklogo-273963_liu70o.png",
+    alt: "Cisco Logo",
   },
   {
-    src: "https://infobeans.com/wp-content/uploads/2023/08/msft-gold-partner.png",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/msft-gold-partner_dmqk3r.png",
     alt: "Microsoft",
   },
 
   {
-    src: "https://static.vecteezy.com/system/resources/previews/000/585/690/non_2x/business-clock-logo-template-vector-icon.jpg",
+    src:"https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/business-clock-logo-template-vector-icon_xbkosm.jpg",
     alt: "Clock Logo",
   },
   {
-    src: "https://faan.gov.ng/wp-content/uploads/2023/03/Faan.logo_.png",
-    alt: "Clock Logo",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/Faan.logo__qpc4bh.png",
+    alt: "Faan.logo",
   },
 ];
 
