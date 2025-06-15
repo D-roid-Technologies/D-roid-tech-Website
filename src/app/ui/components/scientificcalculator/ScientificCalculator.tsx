@@ -13,7 +13,11 @@ interface CalculatorState {
   showSecondary: boolean;
 }
 
-const ScientificCalculator: React.FC = () => {
+interface ComponentProps {
+  onClose?: () => void; // Made optional
+}
+
+const ScientificCalculator: React.FC<ComponentProps> = ({ onClose }) => {
   const [state, setState] = useState<CalculatorState>({
     displayValue: "0",
     previousValue: null,
@@ -355,6 +359,14 @@ const ScientificCalculator: React.FC = () => {
         onKeyDown={handleKeyDown}
       >
         <div className="calculator">
+          {onClose && (
+            <div className="calculator-header">
+              <button className="close-button" onClick={onClose}>
+                ✕
+              </button>
+            </div>
+          )}
+
           <div className="display">
             <div className="display-top">
               <div className="mode-indicator">

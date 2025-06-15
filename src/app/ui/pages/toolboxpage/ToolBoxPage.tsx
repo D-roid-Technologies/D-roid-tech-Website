@@ -52,7 +52,7 @@ const tools = [
       "Trim or cut images to focus on specific parts with precision cropping tools for perfect composition and framing results.",
     icon: BiSolidCrop({ size: 24 }),
     category: "Image Tools",
-    link: "/under-development",
+    link: "/toolbox/croptool",
   },
   {
     title: "Color Picker",

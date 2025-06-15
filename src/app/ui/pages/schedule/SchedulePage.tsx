@@ -11,16 +11,16 @@ const SchedulePage: React.FunctionComponent = () => {
     {
       title: "Events",
       description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis maxime ab nesciunt, ea minima deleniti! lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis maxime ab nesciunt, ea minima deleniti! Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis",
+        "Stay connected and inspired with our dynamic lineup of events, from insightful workshops and hands-on demos to networking sessions and product launches. Whether you're looking to learn, collaborate, or celebrate innovation, our events bring together bright minds and fresh ideas to spark meaningful connections and growth. Join us and be part of something impactful.",
       icon: MdOutlineEmojiEvents({ size: 24 }),
-      link: RoutePaths.ScientificCalculate,
+      link: "/under-development",
     },
     {
       title: "Tasks Scheduler",
       description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis maxime ab nesciunt, ea minima deleniti!",
+        "Stay organized and boost productivity with our intuitive Task Scheduler. Effortlessly plan, prioritize, and manage your daily activities to ensure nothing slips through the cracks. Whether you're tracking deadlines, setting reminders, or coordinating team tasks, our scheduler helps you stay focused and in control.",
       icon: FaTasks({ size: 24 }),
-      link: "/schedules/task-scheduler",
+      link: "/under-development",
     },
   ];
   return (

@@ -1,18 +1,18 @@
-// src/redux/Store.ts
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import storage from 'redux-persist/lib/storage';
 import { DimensionSlice } from "./slices/Dimension";
 import { AppEntrySlice } from "./slices/AppEntrySlice";
 import themeReducer from "./slices/ThemeSlice";
 import { ContactSlice } from "./slices/ContactSlice";
 import { TestimonialSlice } from "./slices/TestimonialSlice";
 import { projectSlice } from "./slices/projectSlice";
-import { userSlice } from "./slices/User"; // make sure the casing matches!
+import { userSlice } from "./slices/User";
 import { locationSlice } from './slices/Location';
 import { allUsersSlice } from './slices/AllUserSlice';
 import { signInAndOutSlice } from './slices/SignInAndOutSlice';
 import { payslipSlice } from './slices/paySlipSlice';
+import { affiliatedAppsSlice } from './slices/affiliatedAppsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
   allUsers: allUsersSlice.reducer,
   SignInO: signInAndOutSlice.reducer,
   payslip: payslipSlice.reducer,
+  connectedApps: affiliatedAppsSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

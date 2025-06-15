@@ -209,8 +209,8 @@ export const dropdownItems: DropdownItems = {
   ],
   resources: [
     { title: "Toolbox", link: RoutePaths.Toolbox },
-    { title: "Calculate", link: RoutePaths.UnderDevelopment },
-    { title: "Schedules", link: RoutePaths.UnderDevelopment },
+    { title: "Calculate", link: RoutePaths.Calculators },
+    { title: "Schedules", link: RoutePaths.Schedules },
     { title: "Muzik", link: RoutePaths.UnderDevelopment },
     { title: "Knowledge City", link: RoutePaths.UnderDevelopment },
   ],
@@ -337,7 +337,7 @@ const Index: React.FunctionComponent = () => {
       />
       <Route path={RoutePaths.CourseDetail} element={<CourseDetail />} />
       <Route path={RoutePaths.Services} element={<Services />} />
-      <Route path={RoutePaths.JoinOurCommunity} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <SignUp />} />
+      <Route path={RoutePaths.JoinOurCommunity} element={ <SignUp />} />
       <Route path={RoutePaths.StaffLogin} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <StaffLogin />} />
       <Route path={RoutePaths.ForgotPassword} element={<ForgotPassword />} />
       <Route path={RoutePaths.MemberLogin} element={userId !== "" ? <Navigate to={RoutePaths.DashBoard} replace /> : <MemberLogin />} />

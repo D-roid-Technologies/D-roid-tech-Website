@@ -41,27 +41,6 @@ export default function UnderDevelopmentPage() {
 
   return (
     <>
-      <div
-        style={{
-          margin: "40px 20px -60px 50px",
-          zIndex: 999,
-          position: "sticky",
-        }}
-      >
-        <button
-          onClick={() => router(-1)}
-          style={{
-            padding: "10px 16px",
-            backgroundColor: "#071D6A",
-            color: "#fff",
-            border: "1px solid #000000",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          ← Back
-        </button>
-      </div>
       <div className={styles.container}>
         <div className={styles.background}>
           <div className={styles.grid}></div>

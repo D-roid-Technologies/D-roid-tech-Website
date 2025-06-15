@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { authService } from '../../../redux/configuration/auth.service';
 import { RootState } from '../../../redux/Store';
 import { UserType } from '../../../utils/Types';
+import AffiliatedApps from './AffiliatedApps';
 import DocumentUploadUI from './DocumentUploadUI';
 import PreferencesUI from './PreferencesUI';
 import SecuritySettingsUI from './SecuritySettingsUI';
@@ -41,7 +42,7 @@ const PersonalDetails: React.FunctionComponent = () => {
     };
 
     const rightMenuItems = [
-        // { title: "Documents", content: "Here are your documents.", icon: <i className="fas fa-file-alt"></i> },
+        { title: "Affiliated Apps", content: "Control and Manage all connected D'roid One Apps.", icon: <i className="fas fa-file-alt"></i> },
         { title: "Security", content: "Manage your security settings.", icon: <i className="fas fa-shield-alt"></i> },
         { title: "Preferences", content: "Set your personal preferences.", icon: <i className="fas fa-cog"></i> },
     ];
@@ -58,6 +59,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                 return <SecuritySettingsUI user={formData} onChange={setFormData} />;
             case 'Preferences':
                 return <PreferencesUI user={formData} onChange={setFormData} />;
+            case 'Affiliated Apps':
+                return <AffiliatedApps />;
             default:
                 return null;
         }

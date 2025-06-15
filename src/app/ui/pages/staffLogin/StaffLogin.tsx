@@ -67,7 +67,7 @@ const StaffLogin: React.FC<any> = () => {
       {/* Left Side */}
       <div className={styles.leftPane}>
         <a href={RoutePaths.JoinOurCommunity} className={styles.backLink}>
-          <FaArrowLeft className={styles.icon} /> Back to Home
+          <FaArrowLeft className={styles.icon} /> Back to Sign Up
         </a>
         <FaUsers className={styles.usersIcon} />
       </div>

@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const BMICalculator: React.FC = () => {
+interface ComponentProps {
+  onClose: () => void;
+}
+
+const Bmi: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const navigate = useNavigate();
@@ -42,30 +46,6 @@ const BMICalculator: React.FC = () => {
 
   return (
     <>
-      <div className="software-main">
-        <div className="software-main-content">
-          <div style={{ margin: "1rem 0" }}>
-            <button
-              onClick={() => navigate(-1)}
-              style={{
-                padding: "10px 16px",
-                backgroundColor: "blue",
-                border: "1px solid #000000",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
-            >
-              ← Back to Calculators
-            </button>
-          </div>
-          <h1 className="software-header">BMI Calculator</h1>
-          <p>
-            A real-time Body Mass Index (BMI) calculator. Ideal for tracking
-            your health metrics quickly and effectively.
-          </p>
-        </div>
-      </div>
-
       <div style={styles.container}>
         <h2 style={{ color: "#071D6A", fontWeight: "900" }}>
           Calculate Your BMI
@@ -114,8 +94,8 @@ const OutputRow: React.FC<{
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    maxWidth: "600px",
-    margin: "2rem auto",
+    maxWidth: "700px",
+    // margin: "2rem auto",
     padding: "2rem",
     backgroundColor: "#f8f9fa",
     borderRadius: "10px",
@@ -156,4 +136,4 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
-export default BMICalculator;
+export default Bmi;
