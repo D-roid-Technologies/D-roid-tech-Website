@@ -34,9 +34,12 @@
 .navbar-logo img {
   height: 40px;
   width: auto;
+  
   z-index: 1001;
   transition: all 0.3s ease;
 }
+
+
 
 /* Desktop Navigation Links */
 .desktop-nav-links {
@@ -197,6 +200,7 @@
 
   .navbar-logo img {
     height: 27px;
+    
   }
 }
 

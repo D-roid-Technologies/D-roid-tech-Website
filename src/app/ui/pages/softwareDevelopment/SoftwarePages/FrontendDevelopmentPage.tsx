@@ -5,6 +5,17 @@ import {
   FaPencilRuler,
   FaServer,
 } from "react-icons/fa";
+import { TbApiApp } from "react-icons/tb";
+import { BiWorld } from "react-icons/bi";
+import { MdFactCheck } from "react-icons/md";
+import { GrDocumentPerformance } from "react-icons/gr";
+import { MdPersonSearch } from "react-icons/md";
+
+import { BiCloudUpload } from "react-icons/bi";
+import { FcSupport } from "react-icons/fc";
+
+
+
 import CoreValueCardTwo from "../../../components/CoreValueCard/CoreValueCardTwo";
 import PricingCard from "../../../components/pricingCard/PricingCard";
 import { useNavigate } from "react-router-dom";
@@ -49,7 +60,7 @@ const FrontendDevelopmentPage: React.FC = () => {
       title: "Performance Optimization",
       description:
         "Performance Optimization in front-end development is the strategic enhancement of a website or application’s speed, responsiveness, and overall efficiency to deliver a seamless user experience across all devices and networks. At D’roid Technologies, we focus on minimizing load times, reducing render-blocking resources, optimizing assets (such as images and scripts), leveraging caching, and implementing lazy loading. We utilize modern performance auditing tools like Google Lighthouse and Core Web Vitals to identify bottlenecks and continuously fine-tune the front-end architecture. By optimizing how data is fetched and rendered, and ensuring efficient use of client-side resources, we help clients retain users, improve SEO rankings, and increase overall engagement.",
-      icon: FaServer({ size: 40 }),
+      icon: GrDocumentPerformance({ size: 40 }),
       url: "",
       summary:
         "We enhance your digital product’s speed and responsiveness to deliver fast, smooth, and reliable experiences for every user.",
@@ -58,7 +69,7 @@ const FrontendDevelopmentPage: React.FC = () => {
       title: "API Integration & State Management",
       description:
         "At D'roid Technologies, API integration and state management are pivotal components of our front-end architecture. We seamlessly connect your front-end interfaces with powerful back-end services, third-party platforms, or internal APIs to ensure real-time data flow and interactivity. Using robust libraries like Redux, Zustand, or React Query, we manage application state with precision—delivering a smooth, responsive, and consistent user experience across all views. Our focus is on efficiency, scalability, and clean architecture, so your application not only looks great but performs reliably as it grows.",
-      icon: FaServer({ size: 40 }),
+      icon: TbApiApp({ size: 50 }),
       url: "",
       summary:
         "We expertly integrate APIs and manage application state to deliver fast, dynamic, and scalable user experiences.",
@@ -67,7 +78,7 @@ const FrontendDevelopmentPage: React.FC = () => {
       title: "Cross-Browser Compatibility",
       description:
         "Cross-Browser Compatibility ensures that your website or web application delivers a consistent, seamless experience across all major web browsers—such as Chrome, Firefox, Safari, Edge, and Opera—regardless of their rendering engines or version differences. At D’roid Technologies, we rigorously test our front-end code using real devices and modern automation tools to identify and fix inconsistencies in layout, functionality, and performance. We implement standardized best practices and polyfills where necessary to maintain visual integrity and interactivity across platforms. This attention to detail ensures that all users, regardless of browser preference, enjoy a high-quality and reliable interface.",
-      icon: FaServer({ size: 40 }),
+      icon: BiWorld({ size: 40 }),
       url: "",
       summary:
         "We ensure your website looks and functions flawlessly across all modern browsers, delivering a uniform experience to every user.",
@@ -79,7 +90,7 @@ const FrontendDevelopmentPage: React.FC = () => {
       title: "1. Consultation",
       description:
         "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
-      icon: FaAccessibleIcon({ size: 40 }),
+      icon: MdPersonSearch({ size: 40 }),
     },
     {
       title: "2. Wireframing & UI Design",
@@ -99,21 +110,21 @@ const FrontendDevelopmentPage: React.FC = () => {
       title: "4. Testing",
       description:
         "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: FaServer({ size: 40 }),
+      icon: MdFactCheck({ size: 40 }),
       url: "",
     },
     {
       title: "5. Deployment",
       description:
         "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: FaServer({ size: 40 }),
+      icon: BiCloudUpload({ size: 40 }),
       url: "",
     },
     {
       title: "6. Support",
       description:
         "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: FaServer({ size: 40 }),
+      icon: FcSupport({ size: 40 }),
       url: "",
     },
   ];
