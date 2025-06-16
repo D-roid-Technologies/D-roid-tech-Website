@@ -19,22 +19,20 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [userCountry, setUserCountry] = useState<string>("");
-    const [isScrolledLogo, setIsScrolledLogo] = useState(false);
+  const [isScrolledLogo, setIsScrolledLogo] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   // Scroll effect
   useEffect(() => {
-    console.log('>>>>>>>>>>>>>>>>>>>>',Assets.images.companyLogoAltTwo)
-    console.log('>>>>>>>>>>>>>>>>>>>>',Assets.images)
-
     const handleScrollLogo = () => {
       const scrollTop = window.scrollY;
       setIsScrolledLogo(scrollTop > 0); // true when user scrolls down
     };
 
-    window.addEventListener('scroll', handleScrollLogo);
+    window.addEventListener("scroll", handleScrollLogo);
 
     // Clean up the event listener
-    return () => window.removeEventListener('scroll', handleScrollLogo);
+    return () => window.removeEventListener("scroll", handleScrollLogo);
   }, []);
 
   // Extract country code from user's locale
@@ -56,8 +54,6 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
 
   // Handle scroll event
   useEffect(() => {
-
-
     const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -76,10 +72,26 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         setActiveDropdown(null);
       }}
     >
-      <div className="navbar-container">
-        <a href="/" className="navbar-logo">
+      <div className="navbar-container"
+        onMouseEnter={() => setIsLogoHovered(true)}
+          onMouseLeave={() => setIsLogoHovered(false)}
+      >
+        <a
+          href="/"
+          className="navbar-logo"
+        
+        >
           {/* <img src={Assets.images.companyLogoTwoAlt} alt="D-roidTech Logo" /> */}
-          <img src={isScrolledLogo ? Assets.images.companyLogoTwoAlt : Assets.images.companyLogoAltTwo} alt="D-roidTech Logo" />
+          <img
+            src={
+              isLogoHovered
+                ? Assets.images.companyLogoTwoAlt
+                : isScrolledLogo
+                ? Assets.images.companyLogoTwoAlt
+                : Assets.images.companyLogoAltTwoWhite
+            }
+            alt="D-roidTech Logo"
+          />
         </a>
 
         <div className="desktop-nav-links">

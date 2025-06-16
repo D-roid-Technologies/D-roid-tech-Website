@@ -4,7 +4,7 @@ export const Assets = {
     companyLogoTwo: require("../../images/png/company-logo-two.png"),
     companyLogoTwoAlt: require("../../images/png/logo-alt.png"),
     companyLogoAlt: require("../../images/png/company-logo-alt.png"),
-    companyLogoAltTwo: require("../../images/png/company-logo-alt_white.png"),
+    companyLogoAltTwoWhite: require("../../images/png/company-logo-alt_white.png"),
     // companyLogo: require("../../images/png/droidLogo.png"),
     companyBanner: require("../../images/png/droid banner.png"),
     lightBulb: require("../../images/png/light-bulb.png"),

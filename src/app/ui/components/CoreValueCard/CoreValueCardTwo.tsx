@@ -41,7 +41,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
               href={url || undefined}
               className="custom-link"
             >
-              Read more →
+              Explore
             </a>
           </div>
         ) : (
