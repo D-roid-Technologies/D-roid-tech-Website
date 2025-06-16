@@ -13,11 +13,11 @@ import { useNavigate } from "react-router-dom";
 
 const logos = [
   {
-    src: "https://images.seeklogo.com/logo-png/27/2/intel-logo-png_seeklogo-270869.png",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/intel-logo-png_seeklogo-270869_feydqy.png",
     alt: "Intel",
   },
   {
-    src: "https://scontent.fabb1-3.fna.fbcdn.net/v/t39.30808-6/308408317_466190838885107_7274109674455319942_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFRgJFQUXo1IFQuhlPmIQxiY3F9WU9q0DVjcX1ZT2rQNWof_8Y68-K1s2yt1xOVirgAklPPdDdXFaN4m1QGKh3S&_nc_ohc=srOYWLUShJ4Q7kNvwFkczzM&_nc_oc=Adl6RKedSs0CLmF0bASaE4Z8DXgkHudoZ79QO1tK2rem9ILGRBUcexvwpsO78NuHlkI&_nc_zt=23&_nc_ht=scontent.fabb1-3.fna&_nc_gid=OXHHRU8LryTtjw8UfCPZeg&oh=00_AfJdP67I2YFQNQQguDkZ2PJEH-lIiMG0YkVRKiIt8OLQvA&oe=68293F02",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749808980/308408317_466190838885107_7274109674455319942_n_l8alqw.jpg",	
     alt: "Leadpac Foundation",
   },
   {
@@ -25,21 +25,21 @@ const logos = [
     alt: "Cisco Partner",
   },
   {
-    src: "https://seeklogo.com/images/C/cisco-logo-FE0AB16DCF-seeklogo.com.png",
-    alt: "Cisco Duplicate",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/cisco-logo-png_seeklogo-273963_liu70o.png",
+    alt: "Cisco Logo",
   },
   {
-    src: "https://infobeans.com/wp-content/uploads/2023/08/msft-gold-partner.png",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/msft-gold-partner_dmqk3r.png",
     alt: "Microsoft",
   },
 
   {
-    src: "https://static.vecteezy.com/system/resources/previews/000/585/690/non_2x/business-clock-logo-template-vector-icon.jpg",
+    src:"https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/business-clock-logo-template-vector-icon_xbkosm.jpg",
     alt: "Clock Logo",
   },
   {
-    src: "https://faan.gov.ng/wp-content/uploads/2023/03/Faan.logo_.png",
-    alt: "Clock Logo",
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/Faan.logo__qpc4bh.png",
+    alt: "Faan.logo",
   },
 ];
 
@@ -238,7 +238,7 @@ const PartnersClients: React.FC = () => {
       </section>
 
       {/* Gallery Section */}
-      <div style={{ padding: "3rem 2rem", backgroundColor: "#fff" }}>
+      {/* <div style={{ padding: "3rem 2rem", backgroundColor: "#fff" }}>
         <h2
           style={{
             textAlign: "center",
@@ -268,7 +268,7 @@ const PartnersClients: React.FC = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
