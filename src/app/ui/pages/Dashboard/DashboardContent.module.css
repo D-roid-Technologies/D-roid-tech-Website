@@ -47,6 +47,7 @@
 .navItem {
   display: flex;
   width: 100%;
+  justify-content: start;
   margin-top: 17px;
   align-items: center;
   padding: 12px 16px;
