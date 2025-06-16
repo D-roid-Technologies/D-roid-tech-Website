@@ -70,6 +70,7 @@ const AboutUs: React.FunctionComponent = () => {
                       imageSrc={tech.imageSrc}
                       icon={tech.icon}
                       className="process-card"
+                      readmore={false}
                     />
                   ))}
                 </div>
