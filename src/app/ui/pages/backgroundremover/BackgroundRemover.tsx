@@ -127,6 +127,7 @@ const BackgroundRemover: React.FC = () => {
             boxShadow: "0 4px 12px rgba(255,107,53,0.3)",
             textTransform: "none",
             letterSpacing: "0.025em",
+            margin: "0 auto",
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.backgroundColor = "grey";

@@ -155,7 +155,7 @@ const Contact: React.FC = () => {
             <div className="contact-method">
               <MdLocationOn className="contact-icon" />
               <div>
-                <h4>Office</h4>
+                <h4>Head Office</h4>
                 <p>Warri, Delta State, Nigeria</p>
               </div>
             </div>

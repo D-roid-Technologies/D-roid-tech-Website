@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 :root {
   --primary: #071d6a;
@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--text);
   background-color: var(--bg);
   overflow-x: hidden;
@@ -70,7 +70,7 @@ body {
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 500;
   margin-bottom: 2rem;
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 .hero-content p {
@@ -118,7 +118,7 @@ button {
 
 .cta-secondary {
   background-color: transparent;
-  color: var(--primary);
+  color: var(--primary-dark);
   border: 2px solid var(--primary);
 }
 
@@ -148,15 +148,28 @@ button {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(58, 134, 255, 0.3) 0%, rgba(58, 134, 255, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(58, 134, 255, 0.3) 0%,
+    rgba(58, 134, 255, 0) 70%
+  );
   z-index: 1;
   animation: pulse 4s infinite ease-in-out;
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  50% { transform: scale(1.1); opacity: 0.9; }
-  100% { transform: scale(0.9); opacity: 0.7; }
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
 }
 
 /* Features Section */
@@ -177,7 +190,7 @@ button {
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   display: block;
   width: 80px;
   height: 4px;
@@ -324,7 +337,7 @@ button {
 
 .review-author {
   font-weight: 600;
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 /* CTA Section */
@@ -338,18 +351,22 @@ button {
 }
 
 .cta-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==");
   opacity: 0.3;
 }
 
 .cta-content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
 }
 
@@ -374,33 +391,33 @@ button {
     text-align: center;
     gap: 60px;
   }
-  
+
   .hero-phone {
     order: -1;
     margin-bottom: 0;
   }
-  
+
   .hero-cta {
     justify-content: center;
   }
-  
+
   .specs-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .specs-image {
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
   }
-  
+
   .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .hero-content p {
     max-width: 600px;
   }
@@ -410,30 +427,30 @@ button {
   .hero-section {
     padding: 80px 0;
   }
-  
+
   .features-section,
   .specs-section,
   .reviews-section {
     padding: 80px 0;
   }
-  
+
   .cta-section {
     padding: 80px 0;
   }
-  
+
   .specs-grid {
     gap: 30px;
   }
-  
+
   .phone-img {
     max-width: 250px;
   }
-  
+
   .spec-item {
     flex-direction: column;
     gap: 5px;
   }
-  
+
   .spec-name {
     min-width: auto;
   }
@@ -443,35 +460,35 @@ button {
   .hero-section {
     padding: 60px 0;
   }
-  
+
   .features-section,
   .specs-section,
   .reviews-section {
     padding: 60px 0;
   }
-  
+
   .cta-section {
     padding: 60px 0;
   }
-  
+
   .hero-cta {
     flex-direction: column;
     width: 100%;
   }
-  
-  .cta-primary, 
+
+  .cta-primary,
   .cta-secondary {
     width: 100%;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .phone-img {
     max-width: 220px;
   }
-  
+
   .phone-glow {
     width: 250px;
     height: 250px;

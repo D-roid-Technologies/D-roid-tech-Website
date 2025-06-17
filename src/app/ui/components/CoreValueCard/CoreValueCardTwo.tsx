@@ -11,6 +11,7 @@ interface CoreValueCardProps {
   link?: string;
   onClick?: (e: any) => void;
   pressable?: boolean;
+  readmore?: boolean;
 }
 
 const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
@@ -23,6 +24,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
   link,
   onClick,
   pressable = false,
+  readmore = true,
 }) => {
   return (
     <div className={`core-value-card ${className}`}>
@@ -34,23 +36,24 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <h3 className="core-value-card-title">{title}</h3>
         <p className="core-value-card-description">{description}</p>
 
-        {pressable === false ? (
-          <div className="mt-3">
-            <a
-              onClick={onClick}
-              href={url || undefined}
-              className="custom-link"
-            >
-              Read more →
-            </a>
-          </div>
-        ) : (
-          <div className="mt-3">
-            <button className="desktop-cta" onClick={onClick}>
-              Read more →
-            </button>
-          </div>
-        )}
+        {readmore &&
+          (pressable === false ? (
+            <div className="mt-3">
+              <a
+                onClick={onClick}
+                href={url || undefined}
+                className="custom-link"
+              >
+                Read more →
+              </a>
+            </div>
+          ) : (
+            <div className="mt-3">
+              <button className="desktop-cta" onClick={onClick}>
+                Read more →
+              </button>
+            </div>
+          ))}
 
         {link && (
           <div className="mt-2">
