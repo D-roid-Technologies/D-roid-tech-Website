@@ -50,7 +50,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
           ) : (
             <div className="mt-3">
               <button className="desktop-cta" onClick={onClick}>
-                Read more →
+                Explore
               </button>
             </div>
           ))}

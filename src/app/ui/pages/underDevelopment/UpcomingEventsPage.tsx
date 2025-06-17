@@ -5,17 +5,17 @@ import styles from "./under-development.module.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/NavBar";
 
-export default function UnderDevelopmentPage() {
+export default function UpcomingEventsPage() {
   const [dots, setDots] = useState("");
   const [currentMessage, setCurrentMessage] = useState(0);
   const router = useNavigate();
 
   const messages = [
-    "Calibrating neural networks",
-    "Optimizing quantum processors",
-    "Synchronizing droid protocols",
-    "Compiling advanced algorithms",
-    "Initializing feature modules",
+    "Preparing event infrastructure",
+    "Synchronizing event schedules",
+    "Loading event details",
+    "Updating event calendar",
+    "Finalizing event logistics",
   ];
 
   // Animated dots effect
@@ -48,29 +48,29 @@ export default function UnderDevelopmentPage() {
         </div>
 
         <div className={styles.content}>
-
           <div className={styles.mainMessage}>
-            <h1 className={styles.title}>🔧 FEATURE UNDER CONSTRUCTION 🔧</h1>
+            <h1 className={styles.title}>🎉 UPCOMING EVENTS 🎉</h1>
 
             <div className={styles.statusDisplay}>
               <div className={styles.statusLine}>
                 <span className={styles.label}>STATUS:</span>
-                <span className={styles.status}>DEVELOPMENT IN PROGRESS</span>
+                <span className={styles.status}>EVENTS COMING SOON</span>
               </div>
               <div className={styles.statusLine}>
-                <span className={styles.label}>PROGRESS:</span>
+                <span className={styles.label}>LAUNCH:</span>
                 <div className={styles.progressBar}>
                   <div className={styles.progressFill}></div>
                 </div>
-                <span className={styles.percentage}>73%</span>
+                <span className={styles.percentage}>Coming Soon</span>
               </div>
             </div>
 
             <div className={styles.description}>
               <p>
-                Our engineers are working around the clock to bring you this
-                amazing feature! While they're busy buildling UIs and debugging
-                algorithms, why not explore the other incredible capabilities?
+                We're excited to announce that our events platform is under
+                development! Soon you'll be able to discover and register for
+                our upcoming tech workshops, hackathons, and networking events.
+                Stay tuned for more updates!
               </p>
             </div>
 
