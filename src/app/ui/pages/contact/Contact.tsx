@@ -148,7 +148,7 @@ const Contact: React.FC = () => {
               <MdPhone className="contact-icon" />
               <div>
                 <h4>Phone</h4>
-                <a href="tel:+2348133992410">+234 813 399 2410</a>
+                <a href="tel:+2349165275635">+234 916 527 5635</a>
               </div>
             </div>
 
