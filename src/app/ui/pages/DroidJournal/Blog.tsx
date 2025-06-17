@@ -94,7 +94,7 @@ const Blog: React.FC = () => {
           </span>
         </center> */}
       <div
-        style={{ marginBottom: "-80px", marginLeft: "65px", marginTop: "50px" }}
+        style={{ marginBottom: "-80px", marginLeft: "40px", marginTop: "50px" }}
       >
         <button
           onClick={() => navigate(-1)}
@@ -112,13 +112,7 @@ const Blog: React.FC = () => {
       </div>
       <section className="blog-hero">
         <div className="hero-content">
-          <h1
-            style={{
-              color: "rgb(17, 23, 36)",
-              fontSize: "4rem",
-              fontWeight: "900",
-            }}
-          >
+          <h1>
             <span className="hero-line">The D'roid </span>
             {/* <span className="hero-line">Future of</span> */}
             <span className="hero-line highlight">Journal</span>

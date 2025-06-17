@@ -80,6 +80,7 @@ import CurrencyConverter from "../ui/pages/toolboxpage/currencyconverter/Currenc
 import { userInfo } from "os";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/Store";
+import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage";
 
 // Define an enum for all route paths
 
@@ -95,6 +96,7 @@ export enum RoutePaths {
   Training = "/training",
   Animation = "/animation",
   UnderDevelopment = "/under-development",
+  UpcomingEvents = "/upcoming-events",
   AnimationDescriptionPage = "/animation/description",
   Consulting = "/consulting",
 
@@ -258,6 +260,10 @@ const Index: React.FunctionComponent = () => {
       <Route
         path={RoutePaths.UnderDevelopment}
         element={<UnderDevelopmentPage />}
+      />
+      <Route
+        path={RoutePaths.UpcomingEvents}
+        element={<UpcomingEventsPage />}
       />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
       <Route
