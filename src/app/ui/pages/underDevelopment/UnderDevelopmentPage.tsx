@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./under-development.module.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/NavBar";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 export default function UnderDevelopmentPage() {
   const [dots, setDots] = useState("");
@@ -78,8 +79,9 @@ export default function UnderDevelopmentPage() {
               <button
                 className={styles.primaryButton}
                 onClick={() => router(-1)}
+                title="Go Back"
               >
-                Return
+                <FaLongArrowAltLeft size={30}/>
               </button>
             </div>
           </div>
