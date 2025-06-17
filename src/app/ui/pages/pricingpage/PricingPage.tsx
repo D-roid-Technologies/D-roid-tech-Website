@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import PricingCalculator from "./PricingCalclator";
 
+
 const PricingPage: React.FC = () => {
   const navigate = useNavigate();
   return (
