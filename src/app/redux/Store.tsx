@@ -1,6 +1,6 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { DimensionSlice } from "./slices/Dimension";
 import { AppEntrySlice } from "./slices/AppEntrySlice";
 import themeReducer from "./slices/ThemeSlice";
@@ -15,11 +15,12 @@ import { payslipSlice } from "./slices/paySlipSlice";
 import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
 import tasksReducer from "./slices/tasksSlice";
 import announcementsReducer from "./slices/Annoucements";
+import { trainingSlice } from './slices/TrainingsSlice';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
-  whitelist: ["user"], // only persist user slice
+  whitelist: ['user'], // only persist user slice
 };
 
 const rootReducer = combineReducers({
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   connectedApps: affiliatedAppsSlice.reducer,
   tasks: tasksReducer,
   announcements: announcementsReducer,
+  trainings : trainingSlice.reducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -54,3 +56,4 @@ export const persistor = persistStore(store);
 // Types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
