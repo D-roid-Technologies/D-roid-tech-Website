@@ -28,57 +28,57 @@ const CrossplatformApp: React.FC = () => {
 
   const devPhases = [
     {
-      title: "Responsive Web Design (Mobile-first)",
+      title: "React Native Development",
       description:
-        "Responsive Web Design (Mobile-first) is a strategic approach to front-end development that prioritizes the design and functionality of digital interfaces for mobile devices before scaling up to tablets and desktops. At D’roid Technologies, we begin by crafting intuitive, performance-optimized layouts tailored for smaller screens, ensuring that essential content and interactions are both accessible and visually engaging on mobile devices. This methodology not only aligns with modern user behavior—where mobile browsing dominates—but also adheres to search engine best practices like Google's mobile-first indexing. As screen size increases, the design is progressively enhanced to take advantage of additional space and features, resulting in a seamless and consistent user experience across all devices.",
-      icon: FaAccessibleIcon({ size: 40 }),
+        "At D'roid Technologies, we specialize in building high-performance cross-platform mobile applications using React Native. Our team leverages the power of JavaScript and React to create native-like experiences for both iOS and Android platforms. We implement best practices in component architecture, state management, and performance optimization to ensure your app delivers a smooth, responsive experience across all devices. From complex animations to native module integration, we create mobile solutions that feel truly native while maintaining the efficiency of cross-platform development.",
+      icon: FaCode({ size: 40 }),
       summary:
-        "Mobile-first responsive design ensures your website delivers a fast, accessible, and visually polished experience on every screen size, starting from smartphones upward.",
+        "We build high-performance mobile applications using React Native, delivering native-like experiences across iOS and Android platforms.",
     },
     {
-      title: "React, Vue, Angular Development",
+      title: "Flutter Development",
       description:
-        "Our team excels in crafting robust, high-performance front-end solutions using modern JavaScript frameworks such as React, Vue, and Angular. Each framework serves a unique purpose—React offers unparalleled component reusability and flexibility for dynamic UIs, Vue provides a lightweight yet powerful approach to progressive enhancement, and Angular delivers enterprise-grade tooling and structure ideal for complex applications. We help clients choose the right framework based on their project needs, scalability requirements, and long-term maintainability goals. Our developers adhere to best practices such as component-based architecture, efficient state management, and modular code organization to ensure your frontend is fast, responsive, and future-ready.",
+        "Our Flutter development services harness the power of Dart to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. We leverage Flutter's rich widget library and hot reload feature to rapidly develop and iterate on your application. Our team ensures your app maintains consistent design language and performance across all platforms while taking advantage of platform-specific features when needed. We focus on creating smooth animations, responsive layouts, and efficient state management to deliver an exceptional user experience.",
       icon: FaPencilRuler({ size: 40 }),
       url: "",
       summary:
-        "We build scalable, high-performing front-end interfaces using React, Vue, or Angular—tailored to your business goals and user experience expectations.",
+        "We create beautiful, high-performance applications using Flutter that work seamlessly across multiple platforms from a single codebase.",
     },
     {
-      title: "Custom UI/UX Implementation",
+      title: "Hybrid App Development",
       description:
-        "Custom UI/UX Implementation at D’roid Technologies focuses on translating unique brand identities and user needs into immersive, intuitive interfaces. Our team meticulously crafts visual and interactive elements that not only align with your business goals but also ensure fluid, user-centric experiences across all platforms. We integrate design systems, motion patterns, accessibility best practices, and performance optimizations into a seamless front-end build. Every pixel and interaction is tailored—from custom component libraries to dynamic theming—to reflect your brand’s personality while enhancing usability and engagement. The result is a digital experience that feels both elegant and effortless for every user.",
-      icon: FaCode({ size: 40 }),
+        "Our hybrid app development approach combines the best of web and native technologies to create efficient, cost-effective mobile solutions. Using frameworks like Ionic or Capacitor, we build applications that can be deployed across multiple platforms while maintaining access to native device features. We focus on optimizing performance, implementing responsive design patterns, and ensuring smooth integration with device hardware. Our hybrid solutions provide a balance between development efficiency and native-like user experience.",
+      icon: BiWorld({ size: 40 }),
       url: "",
       summary:
-        "We design and build tailored user interfaces that blend innovation with usability to deliver exceptional user experiences.",
+        "We develop efficient hybrid applications that combine web technologies with native features for optimal cross-platform performance.",
+    },
+    {
+      title: "Cross-Platform UI/UX Design",
+      description:
+        "Cross-platform UI/UX design is crucial for delivering consistent, engaging user experiences across different devices and platforms. Our team creates adaptive design systems that maintain visual consistency while respecting platform-specific design guidelines. We implement responsive layouts, platform-specific navigation patterns, and touch-friendly interfaces that work seamlessly across iOS, Android, and web platforms. Our design approach ensures your app feels native on each platform while maintaining a cohesive brand identity.",
+      icon: FaAccessibleIcon({ size: 40 }),
+      url: "",
+      summary:
+        "We design adaptive, platform-aware interfaces that deliver consistent, engaging experiences across all devices and platforms.",
+    },
+    {
+      title: "Native Module Integration",
+      description:
+        "Native module integration is essential for accessing platform-specific features and optimizing performance. Our team specializes in bridging the gap between cross-platform code and native functionality. We develop custom native modules for features like camera access, push notifications, biometric authentication, and hardware-specific optimizations. Our integration approach ensures your app can leverage the full power of each platform while maintaining the efficiency of cross-platform development.",
+      icon: TbApiApp({ size: 40 }),
+      url: "",
+      summary:
+        "We seamlessly integrate native modules and platform-specific features to enhance your cross-platform application's capabilities.",
     },
     {
       title: "Performance Optimization",
       description:
-        "Performance Optimization in front-end development is the strategic enhancement of a website or application’s speed, responsiveness, and overall efficiency to deliver a seamless user experience across all devices and networks. At D’roid Technologies, we focus on minimizing load times, reducing render-blocking resources, optimizing assets (such as images and scripts), leveraging caching, and implementing lazy loading. We utilize modern performance auditing tools like Google Lighthouse and Core Web Vitals to identify bottlenecks and continuously fine-tune the front-end architecture. By optimizing how data is fetched and rendered, and ensuring efficient use of client-side resources, we help clients retain users, improve SEO rankings, and increase overall engagement.",
+        "Performance optimization is critical for delivering smooth, responsive cross-platform applications. Our team implements advanced optimization techniques including lazy loading, memory management, and efficient state handling. We focus on reducing bundle size, optimizing asset loading, and implementing efficient caching strategies. Regular performance profiling and optimization ensure your app maintains high performance across all target platforms and devices, providing users with a seamless experience regardless of their device capabilities.",
       icon: GrDocumentPerformance({ size: 40 }),
       url: "",
       summary:
-        "We enhance your digital product’s speed and responsiveness to deliver fast, smooth, and reliable experiences for every user.",
-    },
-    {
-      title: "API Integration & State Management",
-      description:
-        "At D'roid Technologies, API integration and state management are pivotal components of our front-end architecture. We seamlessly connect your front-end interfaces with powerful back-end services, third-party platforms, or internal APIs to ensure real-time data flow and interactivity. Using robust libraries like Redux, Zustand, or React Query, we manage application state with precision—delivering a smooth, responsive, and consistent user experience across all views. Our focus is on efficiency, scalability, and clean architecture, so your application not only looks great but performs reliably as it grows.",
-      icon: TbApiApp({ size: 40 }),
-      url: "",
-      summary:
-        "We expertly integrate APIs and manage application state to deliver fast, dynamic, and scalable user experiences.",
-    },
-    {
-      title: "Cross-Browser Compatibility",
-      description:
-        "Cross-Browser Compatibility ensures that your website or web application delivers a consistent, seamless experience across all major web browsers—such as Chrome, Firefox, Safari, Edge, and Opera—regardless of their rendering engines or version differences. At D’roid Technologies, we rigorously test our front-end code using real devices and modern automation tools to identify and fix inconsistencies in layout, functionality, and performance. We implement standardized best practices and polyfills where necessary to maintain visual integrity and interactivity across platforms. This attention to detail ensures that all users, regardless of browser preference, enjoy a high-quality and reliable interface.",
-      icon: BiWorld({ size: 40 }),
-      url: "",
-      summary:
-        "We ensure your website looks and functions flawlessly across all modern browsers, delivering a uniform experience to every user.",
+        "We optimize application performance to ensure smooth, responsive experiences across all platforms and devices.",
     },
   ];
 
@@ -177,8 +177,8 @@ const CrossplatformApp: React.FC = () => {
             </div>
             <h1 className="software-header">Cross-Platform Apps Services</h1>
             <p>
-              We design and develop modern, responsive, and scalable front-end
-              interfaces tailored to your users' needs.
+              React Native & hybrid mobile solutions to reach iOS and Android
+              users seamlessly.
             </p>
           </div>
         </div>
