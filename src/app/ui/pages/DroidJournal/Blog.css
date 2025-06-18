@@ -90,11 +90,18 @@
   padding-right: 0;
   margin-bottom: 3rem;
 }
-
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgb(17, 23, 36);
+}
 @media (min-width: 992px) {
   .hero-content {
     padding-right: 4rem;
     margin-bottom: 0;
+  }
+  .hero-content h1 {
+    font-size: 4rem;
   }
 }
 

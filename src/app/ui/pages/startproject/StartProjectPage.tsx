@@ -216,16 +216,65 @@ const StartProjectPage: React.FC = () => {
         <span className="title_span" style={{ marginLeft: "20px" }}>
           TOOLS WE USE
         </span>
-        {/* Take out these br's and use margin bottom instead on he div below */}
         <br />
         <br />
-        <div className="group mt-4">
-          {tools.map((tool) => (
-            <CoreValueCard
-              imageSrc={tool.icon}
-              title={tool.name}
-              description={tool.desc}
-            />
+        <div
+          className="group mt-4"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: "20px",
+            padding: "0 20px",
+          }}
+        >
+          {tools.map((tool, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: "8px",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                padding: "20px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                transition: "transform 0.3s ease",
+                cursor: "pointer",
+                "&:hover": {
+                  transform: "translateY(-5px)",
+                },
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "4rem",
+                  marginBottom: "6px",
+                  color: Assets.colors.primary,
+                }}
+              >
+                {tool.icon}
+              </div>
+              <h3
+                style={{
+                  fontSize: "1.5rem",
+                  marginBottom: "10px",
+                  color: Assets.colors.primary,
+                  textAlign: "center",
+                }}
+              >
+                {tool.name}
+              </h3>
+              <p
+                style={{
+                  textAlign: "left",
+                  fontSize: "0.8rem",
+                  color: "#666",
+                  lineHeight: "1.5",
+                }}
+              >
+                {tool.desc}
+              </p>
+            </div>
           ))}
         </div>
       </div>

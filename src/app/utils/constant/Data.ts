@@ -194,7 +194,8 @@ export const DATA = {
     {
       image: require("../../images/png/stella-eneh-two.jpg"),
       name: "Stella Eneh",
-      designation: "Frontend Developer",
+      // designation: "Frontend Developer",
+      designation: "Engineering",
       socials: {
         linkedin: "https://www.linkedin.com/in/stella-eneh/",
         twitter: "https://twitter.com/StellaEneh_",
@@ -204,7 +205,8 @@ export const DATA = {
     {
       image: require("../../images/png/Livinus.jpg"),
       name: "Livinus Ekene",
-      designation: "Frontend Developer",
+      // designation: "Frontend Developer",
+      designation: "Engineering",
       socials: {
         linkedin:
           "https://www.linkedin.com/in/ugwuja-livinus-ekene-frontenddeveloper/",
@@ -242,7 +244,8 @@ export const DATA = {
     {
       image: require("../../images/png/Philip.jpg"),
       name: "Philip Ogboh",
-      designation: "Frontend Developer",
+      // designation: "Frontend Developer",
+      designation: "Engineering",
       socials: {
         linkedin: "https://www.linkedin.com/in/philipogboh/",
         twitter: "https://x.com/OgbohPhilip ",
