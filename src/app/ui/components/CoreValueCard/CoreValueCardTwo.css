@@ -29,7 +29,7 @@
 .core-value-card-icon-icon {
   width: 120px;
   height: 80px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   padding-top: 24px;
   padding-left: 24px;
   color: #2d3559;
@@ -45,8 +45,8 @@
 }
 
 .core-value-card-icon-icon * {
-  width: 48px !important;
-  height: 48px !important;
+  width: 25px !important;
+  height: 25px !important;
 }
 
 .core-value-card-title {

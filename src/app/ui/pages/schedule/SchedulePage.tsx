@@ -13,7 +13,7 @@ const SchedulePage: React.FunctionComponent = () => {
       description:
         "Stay connected and inspired with our dynamic lineup of events, from insightful workshops and hands-on demos to networking sessions and product launches. Whether you're looking to learn, collaborate, or celebrate innovation, our events bring together bright minds and fresh ideas to spark meaningful connections and growth. Join us and be part of something impactful.",
       icon: MdOutlineEmojiEvents({ size: 24 }),
-      link: "/under-development",
+      link: "/upcoming-events",
     },
     {
       title: "Tasks Scheduler",

@@ -13,9 +13,6 @@ import { BiCloudUpload } from "react-icons/bi";
 import { FcSupport } from "react-icons/fc";
 import { MdPersonSearch } from "react-icons/md";
 
-
-
-
 import CoreValueCardTwo from "../../../components/CoreValueCard/CoreValueCardTwo";
 import PricingCard from "../../../components/pricingCard/PricingCard";
 import { useNavigate } from "react-router-dom";
@@ -31,57 +28,57 @@ const BackendDevelopment: React.FC = () => {
 
   const devPhases = [
     {
-      title: "Responsive Web Design (Mobile-first)",
+      title: "Node.js & Express Development",
       description:
-        "Responsive Web Design (Mobile-first) is a strategic approach to front-end development that prioritizes the design and functionality of digital interfaces for mobile devices before scaling up to tablets and desktops. At D’roid Technologies, we begin by crafting intuitive, performance-optimized layouts tailored for smaller screens, ensuring that essential content and interactions are both accessible and visually engaging on mobile devices. This methodology not only aligns with modern user behavior—where mobile browsing dominates—but also adheres to search engine best practices like Google's mobile-first indexing. As screen size increases, the design is progressively enhanced to take advantage of additional space and features, resulting in a seamless and consistent user experience across all devices.",
-      icon: FaAccessibleIcon({ size: 40 }),
+        "At D'roid Technologies, we specialize in building robust and scalable backend applications using Node.js and Express. Our team leverages the power of JavaScript on the server-side to create high-performance APIs, real-time applications, and microservices. We implement best practices in asynchronous programming, error handling, and middleware integration to ensure your backend is both powerful and maintainable. From RESTful APIs to WebSocket implementations, we create backend solutions that can handle high traffic loads while maintaining optimal performance.",
+      icon: FaServer({ size: 40 }),
       summary:
-        "Mobile-first responsive design ensures your website delivers a fast, accessible, and visually polished experience on every screen size, starting from smartphones upward.",
+        "We build scalable and efficient backend applications using Node.js and Express, delivering high-performance APIs and real-time solutions.",
     },
     {
-      title: "React, Vue, Angular Development",
+      title: "Python Backend Development",
       description:
-        "Our team excels in crafting robust, high-performance front-end solutions using modern JavaScript frameworks such as React, Vue, and Angular. Each framework serves a unique purpose—React offers unparalleled component reusability and flexibility for dynamic UIs, Vue provides a lightweight yet powerful approach to progressive enhancement, and Angular delivers enterprise-grade tooling and structure ideal for complex applications. We help clients choose the right framework based on their project needs, scalability requirements, and long-term maintainability goals. Our developers adhere to best practices such as component-based architecture, efficient state management, and modular code organization to ensure your frontend is fast, responsive, and future-ready.",
-      icon: FaPencilRuler({ size: 40 }),
-      url: "",
-      summary:
-        "We build scalable, high-performing front-end interfaces using React, Vue, or Angular—tailored to your business goals and user experience expectations.",
-    },
-    {
-      title: "Custom UI/UX Implementation",
-      description:
-        "Custom UI/UX Implementation at D’roid Technologies focuses on translating unique brand identities and user needs into immersive, intuitive interfaces. Our team meticulously crafts visual and interactive elements that not only align with your business goals but also ensure fluid, user-centric experiences across all platforms. We integrate design systems, motion patterns, accessibility best practices, and performance optimizations into a seamless front-end build. Every pixel and interaction is tailored—from custom component libraries to dynamic theming—to reflect your brand’s personality while enhancing usability and engagement. The result is a digital experience that feels both elegant and effortless for every user.",
+        "Our Python backend development services harness the versatility and power of Python frameworks like Django and Flask to create sophisticated backend systems. We develop secure, scalable, and maintainable applications that can handle complex business logic, data processing, and API integrations. Whether you need a full-featured web application with Django's built-in admin interface or a lightweight API with Flask, our team ensures your Python backend is optimized for performance and security.",
       icon: FaCode({ size: 40 }),
       url: "",
       summary:
-        "We design and build tailored user interfaces that blend innovation with usability to deliver exceptional user experiences.",
+        "We create powerful and secure backend systems using Python frameworks, tailored to your specific business requirements.",
     },
     {
-      title: "Performance Optimization",
+      title: "Database Design & Optimization",
       description:
-        "Performance Optimization in front-end development is the strategic enhancement of a website or application’s speed, responsiveness, and overall efficiency to deliver a seamless user experience across all devices and networks. At D’roid Technologies, we focus on minimizing load times, reducing render-blocking resources, optimizing assets (such as images and scripts), leveraging caching, and implementing lazy loading. We utilize modern performance auditing tools like Google Lighthouse and Core Web Vitals to identify bottlenecks and continuously fine-tune the front-end architecture. By optimizing how data is fetched and rendered, and ensuring efficient use of client-side resources, we help clients retain users, improve SEO rankings, and increase overall engagement.",
+        "Database design and optimization is a critical component of our backend development services. We work with both SQL (PostgreSQL, MySQL) and NoSQL (MongoDB, Redis) databases to create efficient data storage solutions. Our team focuses on proper schema design, query optimization, indexing strategies, and caching mechanisms to ensure your database performs optimally under any load. We implement best practices in data modeling, normalization, and security to protect your valuable information while maintaining fast access times.",
       icon: GrDocumentPerformance({ size: 40 }),
       url: "",
       summary:
-        "We enhance your digital product’s speed and responsiveness to deliver fast, smooth, and reliable experiences for every user.",
+        "We design and optimize database architectures that ensure fast, secure, and scalable data management for your applications.",
     },
     {
-      title: "API Integration & State Management",
+      title: "API Development & Integration",
       description:
-        "At D'roid Technologies, API integration and state management are pivotal components of our front-end architecture. We seamlessly connect your front-end interfaces with powerful back-end services, third-party platforms, or internal APIs to ensure real-time data flow and interactivity. Using robust libraries like Redux, Zustand, or React Query, we manage application state with precision—delivering a smooth, responsive, and consistent user experience across all views. Our focus is on efficiency, scalability, and clean architecture, so your application not only looks great but performs reliably as it grows.",
+        "Our API development and integration services focus on creating robust, well-documented, and secure APIs that serve as the backbone of your application. We design RESTful and GraphQL APIs that follow industry best practices and standards. Our team ensures proper authentication, rate limiting, error handling, and versioning while maintaining comprehensive API documentation. We also specialize in integrating third-party APIs and services, ensuring seamless communication between different systems and platforms.",
       icon: TbApiApp({ size: 40 }),
       url: "",
       summary:
-        "We expertly integrate APIs and manage application state to deliver fast, dynamic, and scalable user experiences.",
+        "We develop secure, scalable, and well-documented APIs that enable seamless integration between different systems and services.",
     },
     {
-      title: "Cross-Browser Compatibility",
+      title: "Cloud Infrastructure & Deployment",
       description:
-        "Cross-Browser Compatibility ensures that your website or web application delivers a consistent, seamless experience across all major web browsers—such as Chrome, Firefox, Safari, Edge, and Opera—regardless of their rendering engines or version differences. At D’roid Technologies, we rigorously test our front-end code using real devices and modern automation tools to identify and fix inconsistencies in layout, functionality, and performance. We implement standardized best practices and polyfills where necessary to maintain visual integrity and interactivity across platforms. This attention to detail ensures that all users, regardless of browser preference, enjoy a high-quality and reliable interface.",
-      icon: BiWorld({ size: 40 }),
+        "We provide comprehensive cloud infrastructure and deployment services using leading cloud providers like AWS, Azure, and Google Cloud. Our team designs scalable and resilient cloud architectures, implements containerization with Docker and Kubernetes, and sets up CI/CD pipelines for automated deployment. We ensure your backend services are properly configured for high availability, load balancing, and auto-scaling while maintaining security best practices and cost optimization.",
+      icon: BiCloudUpload({ size: 40 }),
       url: "",
       summary:
-        "We ensure your website looks and functions flawlessly across all modern browsers, delivering a uniform experience to every user.",
+        "We design and implement cloud infrastructure that ensures your backend services are scalable, secure, and highly available.",
+    },
+    {
+      title: "Security & Performance Optimization",
+      description:
+        "Security and performance optimization are fundamental to our backend development approach. We implement robust security measures including authentication, authorization, data encryption, and protection against common vulnerabilities. Our performance optimization strategies include code profiling, caching implementation, load balancing, and database query optimization. We conduct regular security audits and performance testing to ensure your backend remains secure and efficient as it scales.",
+      icon: MdFactCheck({ size: 40 }),
+      url: "",
+      summary:
+        "We implement comprehensive security measures and performance optimizations to ensure your backend is both secure and efficient.",
     },
   ];
 
@@ -180,8 +177,7 @@ const BackendDevelopment: React.FC = () => {
             </div>
             <h1 className="software-header">Back-End Development Services</h1>
             <p>
-              We design and develop modern, responsive, and scalable front-end
-              interfaces tailored to your users' needs.
+              Powerful APIs and logic using Node.js, Express, Python, and more.
             </p>
           </div>
         </div>
