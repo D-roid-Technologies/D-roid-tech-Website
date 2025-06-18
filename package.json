@@ -3,6 +3,9 @@
   "version": "3.6.8",
   "private": true,
   "dependencies": {
+    "@babel/parser": "^7.27.5",
+    "@babel/traverse": "^7.27.4",
+    "@babel/types": "^7.27.6",
     "@droid-tech/react-droidinput": "^0.1.0",
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.17.0",

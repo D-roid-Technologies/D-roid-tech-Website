@@ -14,6 +14,7 @@ import { signInAndOutSlice } from "./slices/SignInAndOutSlice";
 import { payslipSlice } from "./slices/paySlipSlice";
 import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
 import tasksReducer from "./slices/tasksSlice";
+import announcementsReducer from "./slices/Annoucements";
 
 const persistConfig = {
   key: "root",
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   payslip: payslipSlice.reducer,
   connectedApps: affiliatedAppsSlice.reducer,
   tasks: tasksReducer,
+  announcements: announcementsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
