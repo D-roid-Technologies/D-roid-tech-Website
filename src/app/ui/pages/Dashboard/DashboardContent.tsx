@@ -50,12 +50,13 @@ import Bmi from "../calculator/Bmi";
 import { LuCalculator } from "react-icons/lu";
 import ToolsCard from "../../components/CoreValueCard/ToolsCard";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
-import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
+// import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 import OhmslawCalculator from "../calculator/OhmslawCalculator";
+import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 
 const tools = [
   {
@@ -73,7 +74,7 @@ const tools = [
       "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
     icon: FaMagic({ size: 24 }),
     category: "Image Tools",
-    component: "BackgroundRemover", // Add component identifier
+    component: "BackgroundRemove", // Add component identifier
     link: "",
     isPremium: true,
   },
@@ -206,7 +207,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return <CurrencyConvert onClose={handleCloseTool} />;
       case "ResumeAnalyzer":
         return <ResumeAnalyzing onClose={handleCloseTool} />;
-      case "BackgroundRemover":
+      case "BackgroundRemove":
         return <BackgroundRemove onClose={handleCloseTool} />;
       case "PDFEditor":
         return <PdfEdit onClose={handleCloseTool} />;

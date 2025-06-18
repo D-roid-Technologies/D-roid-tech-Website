@@ -1,0 +1,21 @@
+ .discount-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 12px 0;
+
+}
+
+
+
+
+
+/* @media screen and (max-width: 768px) {
+  .discount-input-container {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  
+  }
+  
+} */
