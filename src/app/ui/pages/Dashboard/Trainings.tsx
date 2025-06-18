@@ -87,7 +87,9 @@ const Trainings: React.FC = () => {
       >
         {training.title}
       </h3>
-      <p>{training.description}</p>
+<p style={{ fontSize: "16px", color: "rgb(75, 85, 99)", margin: "8px 0px" }}>
+  {training.description}
+</p>
       <p style={{ fontSize: "13px", color: "#6B7280" }}>
         {training.completed
           ? `Completed on: ${training.completedDate}`
