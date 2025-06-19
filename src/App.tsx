@@ -68,8 +68,9 @@ function AppContent() {
       )}
       <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
-      <ScrollToTop />
+      <ScrollToTop/>
         <AppEntry />
+       
       </BrowserRouter>
     </>
   );
