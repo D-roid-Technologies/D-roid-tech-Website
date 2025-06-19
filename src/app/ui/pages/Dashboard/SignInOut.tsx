@@ -225,7 +225,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     maxWidth: "1000px",
     margin: "2rem auto",
-    padding: "2rem",
+    padding: "1.2rem",
     background: "#fff",
     borderRadius: "12px",
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
@@ -245,7 +245,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
-    minWidth: "280px",
   },
   input: {
     padding: "12px",
