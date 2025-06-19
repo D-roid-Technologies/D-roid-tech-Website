@@ -76,7 +76,7 @@ const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     };
     reader.readAsDataURL(file);
   };
-
+  // Commentttttttttttttttttt
   const simulateAIProcessing = async (): Promise<string> => {
     const stages = [
       "Analyzing image...",
@@ -190,6 +190,127 @@ const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       fileInputRef.current.value = "";
     }
   };
+
+  // const simulateAIProcessing = async (): Promise<string> => {
+  //   const stages = [
+  //     "Analyzing image...",
+  //     "Detecting objects...",
+  //     "Identifying background...",
+  //     "Processing edges...",
+  //     "Removing background...",
+  //     "Finalizing image...",
+  //   ];
+
+  //   for (let i = 0; i < stages.length; i++) {
+  //     setProcessing((prev) => ({
+  //       ...prev,
+  //       stage: stages[i],
+  //       progress: ((i + 1) / stages.length) * 100,
+  //     }));
+
+  //     await new Promise((resolve) =>
+  //       setTimeout(resolve, 800 + Math.random() * 400)
+  //     );
+  //   }
+
+  //   return new Promise((resolve) => {
+  //     if (!originalImageRef.current) {
+  //       resolve(originalImage!);
+  //       return;
+  //     }
+
+  //     const canvas = document.createElement("canvas");
+  //     const ctx = canvas.getContext("2d");
+  //     const img = originalImageRef.current;
+
+  //     canvas.width = img.naturalWidth;
+  //     canvas.height = img.naturalHeight;
+
+  //     if (ctx) {
+  //       ctx.drawImage(img, 0, 0);
+  //       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  //       const data = imageData.data;
+
+  //       // Sample multiple edge points for better background detection
+  //       const samplePoints = [
+  //         [0, 0], // top-left
+  //         [canvas.width - 1, 0], // top-right
+  //         [0, canvas.height - 1], // bottom-left
+  //         [canvas.width - 1, canvas.height - 1], // bottom-right
+  //         [Math.floor(canvas.width / 2), 0], // top-center
+  //         [Math.floor(canvas.width / 2), canvas.height - 1], // bottom-center
+  //         [0, Math.floor(canvas.height / 2)], // left-center
+  //         [canvas.width - 1, Math.floor(canvas.height / 2)], // right-center
+  //       ];
+
+  //       // Get background colors from sample points
+  //       const backgroundColors = samplePoints.map(([x, y]) => {
+  //         const index = (y * canvas.width + x) * 4;
+  //         return [data[index], data[index + 1], data[index + 2]];
+  //       });
+
+  //       // Improved background removal with edge detection
+  //       for (let y = 0; y < canvas.height; y++) {
+  //         for (let x = 0; x < canvas.width; x++) {
+  //           const index = (y * canvas.width + x) * 4;
+  //           const r = data[index];
+  //           const g = data[index + 1];
+  //           const b = data[index + 2];
+
+  //           // Check if pixel is close to any background color
+  //           let isBackground = false;
+  //           const threshold = 120; // Increased threshold for better results
+
+  //           for (const bgColor of backgroundColors) {
+  //             const colorDistance = Math.sqrt(
+  //               Math.pow(r - bgColor[0], 2) +
+  //                 Math.pow(g - bgColor[1], 2) +
+  //                 Math.pow(b - bgColor[2], 2)
+  //             );
+
+  //             // Additional check for edge pixels (more likely to be background)
+  //             const isEdgePixel =
+  //               x < 20 ||
+  //               x > canvas.width - 20 ||
+  //               y < 20 ||
+  //               y > canvas.height - 20;
+
+  //             const adjustedThreshold = isEdgePixel
+  //               ? threshold * 1.5
+  //               : threshold;
+
+  //             if (colorDistance < adjustedThreshold) {
+  //               isBackground = true;
+  //               break;
+  //             }
+  //           }
+
+  //           // Apply gradient transparency near edges for smoother result
+  //           if (isBackground) {
+  //             const edgeDistance = Math.min(
+  //               x,
+  //               y,
+  //               canvas.width - x,
+  //               canvas.height - y
+  //             );
+
+  //             if (edgeDistance < 10) {
+  //               // Gradient transparency near edges
+  //               data[index + 3] = Math.max(0, (edgeDistance / 10) * 255);
+  //             } else {
+  //               // Full transparency for clear background areas
+  //               data[index + 3] = 0;
+  //             }
+  //           }
+  //         }
+  //       }
+
+  //       ctx.putImageData(imageData, 0, 0);
+  //     }
+
+  //     resolve(canvas.toDataURL("image/png"));
+  //   });
+  // };
 
   return (
     <div className="airbg-container">
