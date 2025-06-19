@@ -25,6 +25,7 @@
     "framer-motion": "^12.9.7",
     "gsap": "^3.13.0",
     "keen-slider": "^6.8.6",
+    "lucide-react": "^0.518.0",
     "node-cron": "^4.0.5",
     "nodemailer": "^7.0.3",
     "postcss-cli": "^11.0.0",
