@@ -1,430 +1,119 @@
-/* * {
-  box-sizing: border-box;
-} */
+/* AIBackgroundRemover.css */
 
-.airbg-container {
-  max-width: 1200px;
+/* Base styles */
+.ai-remover-container {
+  width: 100%;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-}
-
-.airbg-header {
+  padding: 2rem 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  margin-bottom: 40px;
-  padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
 }
 
-.airbg-header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.airbg-header-icon {
-  width: 48px;
-  height: 48px;
-  color: #ffffff;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-}
-
-.airbg-title {
-  font-size: 2.5rem;
+.ai-remover-title {
+  font-size: 2rem;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 
-.airbg-subtitle {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-  max-width: 500px;
-}
-
-.airbg-main {
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-bottom: 40px;
-}
-
-.airbg-upload-zone {
-  padding: 80px 40px;
-  text-align: center;
-  border: 3px dashed #e1e5e9;
-  margin: 40px;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: #fafbfc;
-  position: relative;
-}
-
-.airbg-upload-zone:hover,
-.airbg-drag-active {
-  border-color: #667eea;
-  background: #f8f9ff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
-}
-
-.airbg-upload-icon {
-  width: 64px;
-  height: 64px;
-  color: #667eea;
-  margin-bottom: 24px;
-}
-
-.airbg-upload-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin: 0 0 8px 0;
-}
-
-.airbg-upload-text {
-  font-size: 1rem;
-  color: #718096;
-  margin: 0 0 24px 0;
-}
-
-.airbg-upload-formats {
+.ai-remover-upload-section {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ai-remover-preview,
+.ai-remover-result {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: 0.875rem;
-  color: #a0aec0;
 }
 
-.airbg-file-input {
-  display: none;
-}
-
-.airbg-editor {
-  padding: 40px;
-}
-
-.airbg-editor-header {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 32px;
-}
-
-.airbg-reset-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background: #f7fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  color: #4a5568;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.airbg-reset-btn:hover {
-  background: #edf2f7;
-  border-color: #cbd5e0;
-}
-
-.airbg-image-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 32px;
-}
-
-.airbg-image-panel {
-  background: #f8f9fa;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #e9ecef;
-}
-
-.airbg-panel-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #e9ecef;
-  font-weight: 600;
-  color: #495057;
-  font-size: 0.875rem;
-}
-
-.airbg-image-container {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  position: relative;
-}
-
-.airbg-transparent-bg {
-  background-image: linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
-    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
-    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-}
-
-.airbg-image {
+.ai-remover-image {
   max-width: 100%;
-  max-height: 400px;
+  width: 100%;
+  height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.airbg-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  color: #9ca3af;
-  text-align: center;
-}
-
-.airbg-placeholder-icon {
-  width: 48px;
-  height: 48px;
-  opacity: 0.5;
-}
-
-.airbg-processing {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-  max-width: 300px;
-}
-
-.airbg-spinner {
-  width: 48px;
-  height: 48px;
-  color: #667eea;
-  animation: airbg-spin 1s linear infinite;
-}
-
-@keyframes airbg-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.airbg-progress-info {
-  width: 100%;
-  text-align: center;
-}
-
-.airbg-progress-text {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-bottom: 12px;
-  font-weight: 500;
-}
-
-.airbg-progress-bar {
-  width: 100%;
-  height: 6px;
-  background: #e5e7eb;
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.airbg-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 3px;
-  transition: width 0.3s ease;
-}
-
-.airbg-progress-percent {
-  font-size: 0.75rem;
-  color: #9ca3af;
-  font-weight: 600;
-}
-
-.airbg-actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.airbg-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 32px;
+.ai-remover-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #4a90e2;
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.ai-remover-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.ai-remover-button:hover:not(:disabled) {
+  background-color: #357ab8;
+}
+
+.ai-remover-download {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1.4rem;
+  background-color: #28a745;
+  color: #fff;
   text-decoration: none;
-  min-width: 200px;
-  justify-content: center;
-}
-
-.airbg-btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.airbg-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-}
-
-.airbg-btn-success {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
-}
-
-.airbg-btn-success:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(72, 187, 120, 0.6);
-}
-
-.airbg-error {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 24px;
-  background: #fed7d7;
-  color: #c53030;
-  border-radius: 8px;
-  margin: 20px 40px;
+  border-radius: 5px;
   font-weight: 500;
-  border: 1px solid #feb2b2;
+  transition: background-color 0.3s ease;
 }
 
-.airbg-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
+.ai-remover-download:hover {
+  background-color: #218838;
 }
 
-.airbg-feature {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 32px 24px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.airbg-feature:hover {
-  transform: translateY(-4px);
-}
-
-.airbg-feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
-}
-
-.airbg-feature h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0 0 12px 0;
-}
-
-.airbg-feature p {
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .airbg-container {
-    padding: 16px;
-  }
-
-  .airbg-title {
-    font-size: 2rem;
-  }
-
-  .airbg-image-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .airbg-editor {
-    padding: 24px;
-  }
-
-  .airbg-upload-zone {
-    padding: 40px 24px;
-    margin: 24px;
-  }
-
-  .airbg-upload-formats {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .airbg-btn {
-    min-width: auto;
-    width: 100%;
-  }
-
-  .airbg-actions {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .airbg-header {
-    padding: 24px 16px;
-  }
-
-  .airbg-title {
+/* Medium screens: tablets and small laptops */
+@media screen and (max-width: 768px) {
+  .ai-remover-title {
     font-size: 1.75rem;
   }
 
-  .airbg-subtitle {
+  .ai-remover-button,
+  .ai-remover-download {
+    width: 100%;
     font-size: 1rem;
   }
+}
 
-  .airbg-upload-zone {
-    padding: 32px 16px;
-    margin: 16px;
+/* Small screens: phones */
+@media screen and (max-width: 480px) {
+  .ai-remover-title {
+    font-size: 1.5rem;
   }
 
-  .airbg-upload-icon {
-    width: 48px;
-    height: 48px;
+  .ai-remover-button,
+  .ai-remover-download {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.65rem 1rem;
   }
 
-  .airbg-upload-title {
-    font-size: 1.25rem;
+  .ai-remover-container {
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Very large screens */
+@media screen and (min-width: 1200px) {
+  .ai-remover-container {
+    padding: 3rem;
+  }
+
+  .ai-remover-title {
+    font-size: 2.25rem;
   }
 }
