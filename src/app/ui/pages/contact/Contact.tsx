@@ -74,7 +74,7 @@ const Contact: React.FC = () => {
     {
       question: "What services do you offer?",
       answer:
-        "We offer software development, drone services, tech training, animation creation, and equipment setup.",
+        "We offer Software Development, Tech Training, Animation Creation, and Consultancy.",
     },
     {
       question: "How can I get a quote for my project?",
@@ -84,12 +84,12 @@ const Contact: React.FC = () => {
     {
       question: "Do you offer support after project completion?",
       answer:
-        "Yes, we provide 3 months of free support for all our projects, with optional extended support packages available.",
+        "Yes, we provide 1 months of free support for all our projects, with optional extended support packages available.",
     },
     {
       question: "What are your working hours?",
       answer:
-        "Our office is open Monday to Friday from 9am to 5pm WAT. We respond to emails and messages 24/7.",
+        "Our office is open Monday to Friday from 9am to 5pm WAT. We respond to emails and messages during these times.",
     },
   ];
 

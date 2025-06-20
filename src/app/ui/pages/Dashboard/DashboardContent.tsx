@@ -270,20 +270,20 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const menuItems = [
     ...(isUserRole ? [{ label: "Users", icon: FaUser }] : []),
     { label: "Personal Details", icon: FaUser },
-    { label: "Schedules", icon: FaCalendarAlt },
+    // { label: "Schedules", icon: FaCalendarAlt },
     { label: "Tool Box", icon: FaToolbox },
     { label: "Calculate", icon: FaCalculator },
     { label: "Announcements", icon: FaBullhorn },
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-          { label: "Tasks", icon: FaTasks },
-          { label: "Payslips", icon: FaFileInvoiceDollar },
-          { label: "Onboarding", icon: FaUserPlus },
-          { label: "Training", icon: FaChalkboardTeacher },
-          { label: "Progressions", icon: FaChartLine },
-          { label: "Resource", icon: FaBookOpen },
-        ]
+        { label: "Tasks", icon: FaTasks },
+        { label: "Payslips", icon: FaFileInvoiceDollar },
+        { label: "Onboarding", icon: FaUserPlus },
+        { label: "Training", icon: FaChalkboardTeacher },
+        { label: "Progressions", icon: FaChartLine },
+        { label: "Resource", icon: FaBookOpen },
+      ]
       : []),
   ];
 
@@ -324,32 +324,32 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     },
   ];
 
-  const tasks = [
-    { id: 1, name: "Task 1", status: "Completed" },
-    { id: 2, name: "Task 2", status: "Ongoing" },
-    { id: 3, name: "Task 3", status: "Not Started" },
-  ];
+  // const tasks = [
+  //   { id: 1, name: "Task 1", status: "Completed" },
+  //   { id: 2, name: "Task 2", status: "Ongoing" },
+  //   { id: 3, name: "Task 3", status: "Not Started" },
+  // ];
 
-  const announcements = [
-    {
-      id: 1,
-      title: "New Staff Training",
-      message: "Mandatory training next week",
-    },
-    {
-      id: 2,
-      title: "Office Closed",
-      message: "Office will be closed on Friday for a holiday",
-    },
-  ];
+  // const announcements = [
+  //   {
+  //     id: 1,
+  //     title: "New Staff Training",
+  //     message: "Mandatory training next week",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Office Closed",
+  //     message: "Office will be closed on Friday for a holiday",
+  //   },
+  // ];
 
-  const schedule = {
-    workingDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    leave: {
-      approved: ["Monday", "Wednesday"],
-      awaiting: ["Friday"],
-    },
-  };
+  // const schedule = {
+  //   workingDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+  //   leave: {
+  //     approved: ["Monday", "Wednesday"],
+  //     awaiting: ["Friday"],
+  //   },
+  // };
 
   const calculateItems = [
     {
@@ -372,23 +372,23 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     },
   ];
 
-  const handleClear = () => {
-    setInput("");
-  };
+  // const handleClear = () => {
+  //   setInput("");
+  // };
 
-  const handleShowPayslip = () => {};
+  // const handleShowPayslip = () => {};
 
-  const handleButtonClick = (value: string) => {
-    if (value === "=") {
-      try {
-        setInput(eval(input).toString());
-      } catch {
-        setInput("Error");
-      }
-    } else {
-      setInput((prev) => prev + value);
-    }
-  };
+  // const handleButtonClick = (value: string) => {
+  //   if (value === "=") {
+  //     try {
+  //       setInput(eval(input).toString());
+  //     } catch {
+  //       setInput("Error");
+  //     }
+  //   } else {
+  //     setInput((prev) => prev + value);
+  //   }
+  // };
 
   const renderContent = () => {
     if (!selectedMenu) {
@@ -412,6 +412,70 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Personal Details">
             <PersonalDetails />
+          </Section>
+        );
+      case "Announcements":
+        return (
+          <Section title="Announcements">
+            <Announcements />
+          </Section>
+        );
+      case "Tasks":
+        return (
+          <Section title="Tasks">
+            <p style={{ color: "#000000" }}>See all list of all tasks here.</p>
+            <Tasks />
+          </Section>
+        );
+      case "Payslips":
+        return (
+          <Section title="Payslips">
+            {grossPay > 0 ? (
+              <>
+                <p style={{ color: "#000000" }}>
+                  View your salary payslips here.
+                </p>
+                <StaffPay />
+              </>
+            ) : (
+              <p style={{ color: "#ff4d4f" }}>
+                Gross pay data is missing or zero — please complete onboarding
+                first.
+              </p>
+            )}
+          </Section>
+        );
+      case "Onboarding":
+        return (
+          <Section title="Onboarding">
+            <Onboarding />
+          </Section>
+        );
+      case "Training":
+        return (
+          <Section title="Training">
+            <p style={{ color: "#000000" }}>
+              Access your training materials here.
+            </p>
+            <Trainings />
+          </Section>
+        );
+      case "Progressions":
+        return (
+          <Section title="Progressions">
+            <p style={{ color: "#000000" }}>
+              Track your professional progress here.
+            </p>
+            <Progression />
+          </Section>
+        );
+      case "Resource":
+        return (
+          <Section title="Resource">
+            <p style={{ color: "#000000" }}>
+              Browse useful resources and documents.
+            </p>
+            <SignInOut />
           </Section>
         );
       case "Schedules":
@@ -571,77 +635,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             )}
           </Section>
         );
-      case "Announcements":
-        return (
-          <Section title="Announcements">
-            <Announcements />
-          </Section>
-        );
       case "Say It":
         return (
           <Section title="Contact us">
             {/* <p style={{ color: "#000000" }}>
-              Share your thoughts and feedback here.
-            </p> */}
+                Share your thoughts and feedback here.
+              </p> */}
             <SayIt />
-          </Section>
-        );
-      case "Tasks":
-        return (
-          <Section title="Tasks">
-            <p style={{ color: "#000000" }}>See all list of all tasks here.</p>
-            <Tasks />
-          </Section>
-        );
-      case "Payslips":
-        return (
-          <Section title="Payslips">
-            {grossPay > 0 ? (
-              <>
-                <p style={{ color: "#000000" }}>
-                  View your salary payslips here.
-                </p>
-                <StaffPay />
-              </>
-            ) : (
-              <p style={{ color: "#ff4d4f" }}>
-                Gross pay data is missing or zero — please complete onboarding
-                first.
-              </p>
-            )}
-          </Section>
-        );
-      case "Onboarding":
-        return (
-          <Section title="Onboarding">
-            <Onboarding />
-          </Section>
-        );
-      case "Training":
-        return (
-          <Section title="Training">
-            <p style={{ color: "#000000" }}>
-              Access your training materials here.
-            </p>
-            <Trainings />
-          </Section>
-        );
-      case "Progressions":
-        return (
-          <Section title="Progressions">
-            <p style={{ color: "#000000" }}>
-              Track your professional progress here.
-            </p>
-            <Progression />
-          </Section>
-        );
-      case "Resource":
-        return (
-          <Section title="Resource">
-            <p style={{ color: "#000000" }}>
-              Browse useful resources and documents.
-            </p>
-            <SignInOut />
           </Section>
         );
       default:
@@ -656,9 +656,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${
-          isSidebarOpen ? styles.sidebarOpen : ""
-        }`}
+        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
+          }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -678,9 +677,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${
-                selectedMenu === item.label ? styles.navItemActive : ""
-              }`}
+              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
+                }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}

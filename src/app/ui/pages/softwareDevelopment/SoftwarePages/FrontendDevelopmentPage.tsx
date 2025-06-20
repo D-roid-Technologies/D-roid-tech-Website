@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import {
   FaAccessibleIcon,
   FaCode,
@@ -26,6 +26,19 @@ import {
 } from "../../../../redux/slices/AppEntrySlice";
 import ContactSection from "../../contact/ContactSection/ContactSection";
 
+interface PricingItem {
+  label: string;
+  range: string;
+}
+
+interface ProcessStep {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  url?: string;
+  pricing?: PricingItem[];  // optional
+}
+
 const FrontendDevelopmentPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -33,7 +46,7 @@ const FrontendDevelopmentPage: React.FC = () => {
     {
       title: "Responsive Web Design (Mobile-first)",
       description:
-        "Responsive Web Design (Mobile-first) is a strategic approach to front-end development that prioritizes the design and functionality of digital interfaces for mobile devices before scaling up to tablets and desktops. At D’roid Technologies, we begin by crafting intuitive, performance-optimized layouts tailored for smaller screens, ensuring that essential content and interactions are both accessible and visually engaging on mobile devices. This methodology not only aligns with modern user behavior—where mobile browsing dominates—but also adheres to search engine best practices like Google's mobile-first indexing. As screen size increases, the design is progressively enhanced to take advantage of additional space and features, resulting in a seamless and consistent user experience across all devices.",
+        "Responsive Web Design (Mobile-First) is a strategic front-end development methodology that places mobile usability at the core of the design process. At D’roid Technologies, we start by creating streamlined, performance-optimized layouts specifically for smaller screens—smartphones and other handheld devices—where clarity, speed, and intuitive interaction matter most. By focusing first on the mobile experience, we ensure that essential content, navigation, and functionality are easily accessible and visually engaging, even on the most constrained displays. This approach is rooted in modern digital behavior, where mobile browsing has overtaken desktop usage, and it aligns seamlessly with search engine standards, particularly Google’s mobile-first indexing, which prioritizes mobile-optimized sites in search rankings. As the user’s screen size increases—from mobile to tablet to desktop—the interface is progressively enhanced. This means additional features, layout refinements, and interactive elements are layered in to take advantage of the extra real estate, without compromising performance or usability. The result is a seamless, device-agnostic user experience—whether someone is accessing your site from a smartphone on the go or a large desktop monitor at the office. With mobile-first responsive design, D’roid Technologies delivers solutions that are not only future-ready but also aligned with user expectations, business goals, and the evolving standards of the web.",
       icon: FaAccessibleIcon({ size: 40 }),
       summary:
         "Mobile-first responsive design ensures your website delivers a fast, accessible, and visually polished experience on every screen size, starting from smartphones upward.",
@@ -85,48 +98,83 @@ const FrontendDevelopmentPage: React.FC = () => {
     },
   ];
 
+
   const ourProcess = [
     {
       title: "1. Consultation",
       description:
-        "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
+        "We work closely with you to deeply understand your goals, target users, and specific requirements—because every great product begins with intentional discovery. Through collaborative workshops, stakeholder interviews, and user research, we uncover insights that shape the foundation of your product strategy. This discovery phase allows us to identify opportunities, clarify challenges, and align on a shared vision before a single line of code is written. By investing time upfront to define the “why” behind the project, we ensure that every decision—from design to development—is purposeful, user-centered, and aligned with your business objectives. The result? A product that’s not only technically sound, but also meaningful, intuitive, and built to create real impact.",
       icon: MdPersonSearch({ size: 40 }),
+      pricing: [
+        { label: "Hourly Consultation", range: "₦20,000 – ₦50,000" },
+        { label: "Half-Day Session (4 hrs)", range: "₦70,000 – ₦150,000" },
+        { label: "Full-Day Session (8 hrs)", range: "₦150,000 – ₦300,000" },
+        { label: "Project-Based Advisory", range: "₦300,000 – ₦2,000,000+" },
+        { label: "Monthly Retainer – Lite", range: "₦200,000 – ₦400,000/month" },
+        { label: "Monthly Retainer – Standard", range: "₦500,000 – ₦1,000,000/month" },
+        { label: "Monthly Retainer – Enterprise", range: "₦1,200,000 – ₦2,500,000+/month" }
+      ],
+      url: "",
+      summary: "We collaborate closely with you to understand your goals, users, and requirements through workshops, interviews, and research."
     },
     {
       title: "2. Wireframing & UI Design",
       description:
-        "Our UI/UX experts create sleek interfaces and clickable prototypes to bring ideas to life—before writing code.",
+        "Our UI/UX experts craft intuitive, elegant, and user-centered interfaces that bridge your business goals and the needs of your users. We begin with low-fidelity wireframes to map out structure and user flow, followed by high-fidelity UI designs and interactive prototypes that demonstrate exactly how your product will look and feel. This phase helps validate ideas early, gather stakeholder feedback, and reduce development waste by clarifying design intent before any code is written. Every design decision is backed by usability principles, ensuring a seamless, accessible, and conversion-friendly experience across all screen sizes.",
       icon: FaPencilRuler({ size: 40 }),
+      pricing: [
+        { label: "Low-Fidelity Wireframes", range: "₦150,000 – ₦300,000" },
+        { label: "High-Fidelity UI Design (Web App)", range: "₦300,000 – ₦800,000" },
+        { label: "High-Fidelity UI Design (Mobile App)", range: "₦350,000 – ₦900,000" },
+        { label: "Clickable Prototype (Figma/InVision)", range: "₦150,000 – ₦400,000" },
+        { label: "Design System / UI Kit", range: "₦250,000 – ₦700,000" }
+      ],
       url: "",
+      summary: "We create intuitive, elegant interfaces starting with low-fidelity wireframes to map user flow, then progress to high-fidelity UI designs and interactive prototypes."
     },
     {
       title: "3. Development",
+      summary:
+        "We transform designs into scalable, maintainable software using clean code and agile practices.",
       description:
-        "We build clean, scalable code using modern frameworks and run extensive testing to ensure quality.",
+        "Our skilled developers turn designs and plans into fully functional, scalable, and maintainable software. Using agile methodologies, we write clean, efficient code while integrating necessary backend and frontend technologies. Throughout development, we conduct regular code reviews, implement best practices, and ensure robust testing to deliver a high-quality product on time. We focus on performance, security, and seamless integration with third-party services to meet your business needs.",
       icon: FaCode({ size: 40 }),
+      pricing: [
+        { label: "Frontend Development", range: "₦500,000 – ₦1,200,000" },
+        { label: "Backend Development", range: "₦600,000 – ₦1,500,000" },
+        { label: "Fullstack Development", range: "₦1,000,000 – ₦2,500,000" },
+        { label: "API Integration & Development", range: "₦300,000 – ₦800,000" }
+      ],
       url: "",
     },
     {
-      title: "4. Testing",
+      title: "4. Deployment",
       description:
-        "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: MdFactCheck({ size: 40 }),
-      url: "",
-    },
-    {
-      title: "5. Deployment",
-      description:
-        "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
+        "We manage end-to-end deployment to ensure your product launches smoothly and reliably. From configuring servers and setting up CI/CD pipelines to managing domains, SSL, and hosting environments—we handle all technical steps for a production-ready launch. We also ensure scalability, uptime monitoring, and rollback strategies are in place to support future growth and changes.",
       icon: BiCloudUpload({ size: 40 }),
+      pricing: [
+        { label: "Basic Web App Deployment", range: "₦100,000 – ₦250,000" },
+        { label: "CI/CD Pipeline Setup", range: "₦250,000 – ₦600,000" },
+        { label: "Cloud Deployment (AWS, Vercel, etc.)", range: "₦300,000 – ₦750,000" },
+        { label: "Custom Domain & SSL Configuration", range: "₦50,000 – ₦150,000" }
+      ],
       url: "",
+      summary: "We ensure a smooth, secure, and reliable product launch by managing all technical deployment steps, including server setup, CI/CD pipelines, domain configuration, and ongoing scalability."
+
     },
     {
-      title: "6. Support",
+      title: "5. Support",
       description:
-        "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
+        "After launch, we continue to provide technical support, feature enhancements, bug fixes, and performance optimization. Our support packages are designed to ensure your product remains secure, up-to-date, and fully functional as your needs evolve. We offer flexible monthly retainers tailored to your support level—ranging from basic maintenance to full-scale technical partnership.",
       icon: FcSupport({ size: 40 }),
+      pricing: [
+        { label: "Basic Maintenance (Bug Fixes & Monitoring)", range: "₦100,000 – ₦250,000/month" },
+        { label: "Standard Support (Includes Minor Features)", range: "₦300,000 – ₦600,000/month" },
+        { label: "Full Support + Dev Retainer", range: "₦700,000 – ₦1,500,000+/month" }
+      ],
       url: "",
-    },
+      summary: "We handle the entire deployment process to ensure a smooth, reliable product launch. This includes server configuration, setting up CI/CD pipelines, managing domains and SSL certificates, and optimizing hosting environments."
+    }
   ];
 
   const pricingPlans = [
@@ -156,6 +204,7 @@ const FrontendDevelopmentPage: React.FC = () => {
       ],
     },
   ];
+  const selectedPhaseIndex = 0;
 
   return (
     <div>
@@ -215,12 +264,20 @@ const FrontendDevelopmentPage: React.FC = () => {
                     appTitle: phase.title,
                     appBody: (
                       <>
-                        <span>{phase.description}</span>
-                        <ContactSection />
+                        <p className="mb-4">{phase.description}</p>
+                        <div className="space-y-2">
+                          {/* {ourProcess.pricing.map((item: { label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; range: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
+                            <div key={index} className="flex justify-between border-b pb-1">
+                              <span className="font-medium">{item.label}</span>
+                              <span className="text-gray-600">{item.range}</span>
+                            </div>
+                          ))} */}
+                        </div>
                       </>
                     ),
                   })
                 );
+
               }}
             />
           ))}
@@ -240,7 +297,7 @@ const FrontendDevelopmentPage: React.FC = () => {
               //   pressable={true}
               key={index}
               title={phase.title}
-              description={phase.description}
+              description={phase.summary}
               icon={phase.icon}
               //   url="{tech.url}"
               className="process-card"
@@ -251,8 +308,19 @@ const FrontendDevelopmentPage: React.FC = () => {
                     appTitle: phase.title,
                     appBody: (
                       <>
-                        <span>{phase.description}</span>
-                        {/* <ContactSection /> */}
+                        {/* <h3 className="text-xl font-semibold mb-2">{ourProcess[selectedPhaseIndex].title}</h3> */}
+                        <p className="mb-4">{ourProcess[selectedPhaseIndex].summary}</p>
+
+                        {ourProcess[selectedPhaseIndex].pricing && (
+                          <div className="space-y-2">
+                            {ourProcess[selectedPhaseIndex].pricing.map((item, idx) => (
+                              <div key={idx} className="flex justify-between border-b pb-1">
+                                <span className="font-medium">{item.label}</span>
+                                <span className="text-gray-600">{item.range}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </>
                     ),
                   })
@@ -263,7 +331,7 @@ const FrontendDevelopmentPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="wrapper soft-wrapper">
+      {/* <div className="wrapper soft-wrapper">
         <span
           className="soft-dev-header title_span"
           style={{ background: "#e2e8f0" }}
@@ -280,7 +348,7 @@ const FrontendDevelopmentPage: React.FC = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* <section style={{ marginTop: "3rem" }}>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: 600 }}>Contact Us</h2>

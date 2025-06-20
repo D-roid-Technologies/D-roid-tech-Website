@@ -37,6 +37,7 @@ export interface Story {
     leadershipSacrifice?: string;
     visualSpectacle?: string;
   };
+  stories: object[]
 }
 
 const stories: Story[] = [
@@ -66,6 +67,14 @@ const stories: Story[] = [
       "The animation employs a distinctive art style that shifts between warm, golden memories of home and the stark, muted tones of their separated worlds. Character expressions are rendered with exceptional detail, capturing subtle emotions that drive the narrative forward. The reunion sequence features some of the most breathtaking animation work, using symbolism and visual metaphors to represent the invisible threads that connect family.",
     targetAudience:
       "While suitable for viewers 12 and above, Brothers resonates most powerfully with adults who understand the complexities of loss, separation, and the sacrifices made for family. The story doesn't shy away from difficult emotions but handles them with sensitivity and hope.",
+    stories: [
+      {
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+      },
+      {
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
+      }
+    ]
   },
   {
     id: "cityBoys",
@@ -102,21 +111,31 @@ const stories: Story[] = [
         "Incorporates social media aesthetics with characters breaking the fourth wall through phone screens and digital interfaces.",
       culturalRelevance:
         "Addresses contemporary issues like cryptocurrency volatility, influencer culture, and the gig economy's impact on traditional career paths.",
+
     },
+    stories: [
+      {
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+      },
+      {
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
+      }
+    ]
+
   },
   {
-    id: "immaculate",
-    title: "Immaculate",
+    id: "Resilience",
+    title: "Resilience",
     genre: "Biographical Drama / Medical",
     runtime: "42 minutes",
     releaseDate: "January 20, 2025",
     category: "Animated Documentary-Style Feature",
     thumbnail: Assets.images.immaclate || Assets.images.immaclate || "",
-    url: "/stories/immaculate",
+    url: "/stories/Resilience",
     description:
       "A powerful animated story about an African woman living with sickle cell disease. ",
     synopsis:
-      "Immaculate tells the inspiring true-to-life story of Amara, a young African woman living with sickle cell disease. This powerful animated feature chronicles her journey from childhood through adulthood, showcasing not just her medical struggles but her transformation into an advocate, educator, and symbol of hope for others facing similar challenges.",
+      "Resilience tells the inspiring true-to-life story of Amara, a young African woman living with sickle cell disease. This powerful animated feature chronicles her journey from childhood through adulthood, showcasing not just her medical struggles but her transformation into an advocate, educator, and symbol of hope for others facing similar challenges.",
     storyArc:
       "Amara's character arc spans two decades, showing her evolution from a confused child who doesn't understand why she's different, to a teenager struggling with identity and limitations, and finally to a confident woman who embraces her condition as part of her strength rather than just her struggle.",
     themes: [
@@ -142,6 +161,14 @@ const stories: Story[] = [
       impactAdvocacy:
         "Serves as advocacy tool with end credits featuring real patients and resources, developed in consultation with sickle cell organizations worldwide.",
     },
+    stories: [
+      {
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+      },
+      {
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
+      }
+    ]
   },
   {
     id: "warriors",
@@ -183,6 +210,14 @@ const stories: Story[] = [
       visualSpectacle:
         "Epic-scale animation with complex battle choreography, realistic character design with stylized action, and spiritual connection visualized through subtle effects.",
     },
+    stories: [
+      {
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+      },
+      {
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
+      }
+    ]
   },
 ];
 
