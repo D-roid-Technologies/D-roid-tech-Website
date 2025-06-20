@@ -1,0 +1,126 @@
+[33mf5a16d9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/livinus[m[33m, [m[1;31morigin/feat/livinus[m[33m)[m fix: resolved merge conflict in Store.tsx
+[33m8d7fba3[m feat: add trainings slice with initial state, actions, and reducer logic
+[33mba65d17[m[33m ([m[1;31morigin/dev-redesign[m[33m, [m[1;32mdev-redesign[m[33m)[m Merge pull request #172 from D-roid-Technologies/redesign-s
+[33m207280b[m[33m ([m[1;31morigin/redesign-s[m[33m)[m pulled from dev
+[33md8f582e[m Merge pull request #170 from D-roid-Technologies/philipbranch
+[33m1db1bc5[m updated
+[33m4bd7880[m pulled from dev
+[33mc6a77fa[m[33m ([m[1;31morigin/philipbranch[m[33m)[m redux slice created for tasks in dashboard
+[33mae58cdf[m Merge pull request #169 from D-roid-Technologies/feat/livinus
+[33mcf255a1[m fix: UI adjustments on UnderDevelopment and Pricing pages
+[33m0a21cfa[m Merge pull request #168 from D-roid-Technologies/redesign
+[33m7fde839[m[33m ([m[1;31morigin/redesign[m[33m)[m Converted tools we use items to card and adjusted the font size of the header on the contact form
+[33m7b05743[m Merge pull request #167 from D-roid-Technologies/philipbranch
+[33m40bb90f[m tasks 11,17,18 fixed
+[33mef5da5f[m pulled from dev
+[33m3e43456[m updates from branch
+[33m2c8488a[m Merge pull request #166 from D-roid-Technologies/philipbranch
+[33m6ce4268[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-App into philipbranch
+[33m9190a7d[m fixes from checklist(4,5,7,8,9,12,14,15)
+[33m80d8046[m Merge pull request #165 from D-roid-Technologies/feat/livinus
+[33m80e9097[m UI updates across multiple sections
+[33mda80dd0[m Merge branch 'dev-redesign' into feat/livinus
+[33mb5750c4[m FontSize,logo size adjusted
+[33m425e6ab[m Merge pull request #164 from D-roid-Technologies/redesign
+[33m2a8a0b1[m fixed dashboard link alignment
+[33meb02bfe[m Merge branch 'dev-redesign' into redesign
+[33md75deed[m update to user registration -
+[33m492d642[m updated crop tool app
+[33m9848311[m Merge pull request #163 from D-roid-Technologies/feat/livinus
+[33me278d48[m Merge branch 'dev-redesign' into feat/livinus
+[33m2faf951[m Merge pull request #161 from D-roid-Technologies/philipbranch
+[33m016deb7[m fix: resolved layout and image issue
+[33mba667d1[m effected corrections
+[33m558fdd9[m Merge pull request #160 from D-roid-Technologies/redesign-s
+[33m60d0925[m updated
+[33m1c19579[m updated calculator responsiveness
+[33m13dec6e[m updated color converter tool
+[33m73a144d[m worked on staff sign in -
+[33m3b4e9d3[m worked on staff sign in
+[33m4fbe45d[m Merge pull request #159 from D-roid-Technologies/feat/livinus
+[33m41e6879[m fix: adjust partner image, logo color, spelling, scroll behavior, and mobile padding on homepage
+[33m5b76a02[m Merge pull request #158 from D-roid-Technologies/redesign-s
+[33mcf58bcc[m pulled from dev branch
+[33m1541ef9[m updated dashboard calculate content
+[33m3b2efff[m Merge pull request #157 from D-roid-Technologies/philipbranch
+[33m87621e3[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-App into philipbranch
+[33m7bff88c[m effected corrections
+[33m43fe12c[m Merge pull request #156 from D-roid-Technologies/redesign-s
+[33ma911e36[m pulled from dev-redesign
+[33mec134d3[m updated tools
+[33m3a8efb7[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-Website into dev-redesign
+[33m5040697[m worked on sign up
+[33m8b34306[m updated dashboard tools
+[33mc2bffbc[m Merge pull request #155 from D-roid-Technologies/philipbranch
+[33mab9d482[m updated tools
+[33m336d899[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-App into philipbranch
+[33mffd7db7[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-App into philipbranch
+[33mcf4f15f[m effected corrections
+[33m6d905d8[m Merge pull request #153 from D-roid-Technologies/redesign
+[33m1e3b736[m pulled from dev
+[33md526db5[m updated dev-redesign branch
+[33m3d76c3d[m Merge branch 'dev-redesign' into redesign
+[33mcd417ba[m pulled from dev after reverting
+[33mf599c13[m Merge pull request #152 from D-roid-Technologies/revert-150-feat/livinus
+[33mdeb5de8[m[33m ([m[1;31morigin/revert-150-feat/livinus[m[33m)[m Revert "fix homepage: adjust image size, icon size, uniform padding, and scro…"
+[33m8c56c94[m Change nav bar on more pages to back button,Fix mobile menu links and dropdown trigger link font size, Add the contact form on the dashboard say it section, Centerize nav bar items across all device screen size
+[33mda93a8a[m Merge pull request #150 from D-roid-Technologies/feat/livinus
+[33m28393f6[m Merge pull request #149 from D-roid-Technologies/philipbranch
+[33m023ca67[m updated dashboard tools
+[33ma90b581[m fix homepage: adjust image size, icon size, uniform padding, and scroll to top on load
+[33m4c13449[m Dashboard - Turn all the information into card
+[33m08acb5c[m updated tool page
+[33md1ba2d3[m App Completed - front page modified ---c
+[33m4b10976[m App Completed - front page modified ---
+[33mc993100[m Merge pull request #148 from D-roid-Technologies/philipbranch
+[33m9693dac[m connected under-development pages
+[33m0b7f1d9[m updated
+[33md84fff2[m added home page
+[33m1c901b2[m Merge pull request #147 from D-roid-Technologies/redesign-s
+[33m67090fe[m updated currency converter page
+[33mc3b157a[m Merge pull request #146 from D-roid-Technologies/philipbranch
+[33mfa90135[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-App into philipbranch
+[33md23384f[m Merge pull request #145 from D-roid-Technologies/feat/livinus
+[33m4734f79[m schedule and under-development pages
+[33me882f83[m fix: text styling in announcement, tab layout in onboarding, and input responsiveness in document
+[33mfe43aee[m saving changes
+[33m89857d1[m Merge pull request #144 from D-roid-Technologies/redesign-s
+[33m8e53f76[m updated
+[33mb6db905[m updated tools
+[33mf587a7a[m pulled from dev-redesign branch
+[33mebf4504[m update
+[33m1bb3205[m Merge pull request #143 from D-roid-Technologies/redesign
+[33m2913ee5[m completed droid one dashboard responsiveness
+[33m80ccca6[m Merge pull request #142 from D-roid-Technologies/redesign-s
+[33ma58191b[m updated dashbord content responsiveness
+[33m159847a[m pulled from dev
+[33med1d06d[m updated
+[33m6ced9ba[m Merge pull request #141 from D-roid-Technologies/feat/livinus
+[33me00b613[m fixed typo error in projects descriptionUrl
+[33m66d19ea[m update to responsiveness
+[33mcb498ec[m Merge pull request #140 from D-roid-Technologies/feat/livinus
+[33mf4c7d1e[m improve responsiveness for homepage, About Us, Droid Journal, and subpages
+[33m7e2ff0a[m Merge pull request #139 from D-roid-Technologies/philipbranch
+[33m0ad221d[m mobile view adjustments
+[33m8dbe8ac[m Merge pull request #138 from D-roid-Technologies/philipbranch
+[33md2c3277[m Merge branch 'dev-redesign' of https://github.com/D-roid-Technologies/D-roid-tech-App into philipbranch
+[33md448853[m fixed contact on Start project, and job details page
+[33mee6a0b1[m Merge pull request #137 from D-roid-Technologies/feat/livinus
+[33m3136cc1[m Merge branch 'dev-redesign' into feat/livinus
+[33md4c24b9[m added join community href Link
+[33me4d4c10[m Merge pull request #136 from D-roid-Technologies/redesign-s
+[33maf2c9fb[m Fixed footer,Terms and Conditions and description page
+[33m38ddb35[m pulled from dev
+[33m8c0c9ef[m updated and pulled from dev
+[33m0859db1[m Merge pull request #135 from D-roid-Technologies/philipbranch
+[33m75af823[m mobile responsi eness
+[33m9aa6c1b[m updated about us page
+[33me8189fd[m Merge pull request #134 from D-roid-Technologies/redesign
+[33m11ddd73[m edit to home page and nav component
+[33m3652a89[m pulled from dev
+[33md0beb05[m Fixed email contact --
+[33m4c70623[m Fixed email contact
+[33m5993e4d[m pulled from dev
+[33m8e59ac3[m Merge pull request #133 from D-roid-Technologies/feat/livinus
+[33m95add73[m improve privacy-policy page
+[33m1f

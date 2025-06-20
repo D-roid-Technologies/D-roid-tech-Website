@@ -9,9 +9,9 @@ import { FaTasks } from "react-icons/fa";
 const SchedulePage: React.FunctionComponent = () => {
   const schedules = [
     {
-      title: "Events",
+      title: "Calendar",
       description:
-        "Stay connected and inspired with our dynamic lineup of events, from insightful workshops and hands-on demos to networking sessions and product launches. Whether you're looking to learn, collaborate, or celebrate innovation, our events bring together bright minds and fresh ideas to spark meaningful connections and growth. Join us and be part of something impactful.",
+        "Stay organized and ahead with our smart, intuitive calendar. From upcoming events and project deadlines to team meetings and personal reminders, our calendar keeps everything in one place—clear, connected, and customizable. Whether you're planning your week or coordinating with your team, it's your go-to tool for staying on track and in sync. Plan with purpose. Stay in control. Make every day count.",
       icon: MdOutlineEmojiEvents({ size: 24 }),
       link: "/upcoming-events",
     },
