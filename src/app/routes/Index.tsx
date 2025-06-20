@@ -104,7 +104,7 @@ export enum RoutePaths {
   Toolbox = "/toolbox",
   Calculators = "/calculators",
   Schedules = "/schedules",
-  Muzik = "/muzik",
+  // Muzik = "/muzik",
   KnowledgeCity = "/knowledge-city",
 
   // toolbox routes
@@ -309,7 +309,7 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.BMICalculator} element={<BMICalculator />} />
       <Route path={RoutePaths.TaskScheduler} element={<TaskSchedulerPage />} />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
-      <Route path={RoutePaths.Muzik} element={<Muzik />} />
+      {/* <Route path={RoutePaths.Muzik} element={<Muzik />} /> */}
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />
       <Route path={RoutePaths.Partners} element={<PartnersPage />} />
       {/* Grouped More Routes */}
