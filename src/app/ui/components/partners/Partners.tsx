@@ -5,35 +5,43 @@ import { Assets } from "../../../utils/constant/Assets";
 import { RoutePaths } from "../../../routes/Index";
 
 const logos = [
+  // {
+  //   src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/intel-logo-png_seeklogo-270869_feydqy.png",
+  //   alt: "Intel",
+  // },
   {
-    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/intel-logo-png_seeklogo-270869_feydqy.png",
-    alt: "Intel",
-  },
-  {
-    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749808980/308408317_466190838885107_7274109674455319942_n_l8alqw.jpg",	
+    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749808980/308408317_466190838885107_7274109674455319942_n_l8alqw.jpg",
     alt: "Leadpac Foundation",
   },
   {
-    src: Assets.images.logo5,
-    alt: "Cisco Partner",
+    src: Assets.images.obiebele,
+    alt: "Obi Ebele",
   },
   {
-    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/cisco-logo-png_seeklogo-273963_liu70o.png",
-    alt: "Cisco Logo",
+    src: Assets.images.ntejeMedia,
+    alt: "Nteje Media TV",
   },
-  {
-    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/msft-gold-partner_dmqk3r.png",
-    alt: "Microsoft",
-  },
+  // {
+  //   src: Assets.images.logo5,
+  //   alt: "Cisco Partner",
+  // },
+  // {
+  //   src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809184/cisco-logo-png_seeklogo-273963_liu70o.png",
+  //   alt: "Cisco Logo",
+  // },
+  // {
+  //   src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/msft-gold-partner_dmqk3r.png",
+  //   alt: "Microsoft",
+  // },
 
-  {
-    src:"https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/business-clock-logo-template-vector-icon_xbkosm.jpg",
-    alt: "Clock Logo",
-  },
-  {
-    src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/Faan.logo__qpc4bh.png",
-    alt: "Faan.logo",
-  },
+  // {
+  //   src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/business-clock-logo-template-vector-icon_xbkosm.jpg",
+  //   alt: "Clock Logo",
+  // },
+  // {
+  //   src: "https://res.cloudinary.com/dikhomv7m/image/upload/v1749809185/Faan.logo__qpc4bh.png",
+  //   alt: "Faan.logo",
+  // },
 ];
 
 const Partners: React.FC = () => {
@@ -76,7 +84,7 @@ const Partners: React.FC = () => {
                 display: "flex",
                 gap: "20px",
                 marginTop: "30px",
-                justifyContent: "center",
+                justifyContent: "center ",
               }}
             >
               <a

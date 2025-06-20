@@ -35,6 +35,11 @@ export const Assets = {
     logo3: require("../../images/png/logo-3.png"),
     logo4: require("../../images/png/logo-4.png"),
     logo5: require("../../images/png/logo-5.png"),
+    obiebele: require("../../images/png/ObiEbele.jpg"),
+    ntejeMedia: require("../../images/png/NTEJE MEDIA TV.png"),
+    sanwoPay: require("../../images/png/sanwopay.jpg"),
+    ecobank: require("../../images/png/ecobank.png"),
+    accessbank: require("../../images/png/accessbank.png"),
 
     // what we do images
     softwareWhatWeDo: require("../../images/png/software-what-we-do.png"),

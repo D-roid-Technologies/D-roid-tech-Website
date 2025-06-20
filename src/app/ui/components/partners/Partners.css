@@ -12,10 +12,6 @@
   flex-wrap: wrap;
 }
 
-.partners-left {
-  margin-top: 9%;
-}
-
 .partners-subtitle {
   display: inline-block;
   padding: 0.4rem 1rem;
@@ -28,7 +24,7 @@
 }
 
 .partners-h1 {
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-weight: 900;
   color: #0a0a23;
   margin: 1rem 0;
@@ -149,9 +145,9 @@
     max-height: 80px;
   }
 }
-@media (max-width: 630px) {
+@media (max-width: 768px) {
   .partners-h1 {
-    font-size: 1.6rem;
+    font-size: 2rem;
     line-height: 60px;
     margin-top: 30px;
   }

@@ -39,7 +39,7 @@ const Blog: React.FC = () => {
       title: "Events",
       status: "In Communication",
       // descriptionUrl: "/projects/blockchain-logistics",
-      descriptionUrl: `${RoutePaths.UnderDevelopment}`,
+      descriptionUrl: `${RoutePaths.Blog}/events`,
       summary:
         "At D'roid, we transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.",
       startDate: "2025-05-01",
@@ -93,25 +93,12 @@ const Blog: React.FC = () => {
             D'ROID BLOG
           </span>
         </center> */}
-      <div
-        style={{ marginBottom: "-80px", marginLeft: "40px", marginTop: "50px" }}
-      >
-        <button
-          onClick={() => navigate(-1)}
-          style={{
-            padding: "10px 16px",
-            backgroundColor: "#071D6A",
-            color: "#fff",
-            border: "1px solid #000000",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          ← Back
-        </button>
-      </div>
+
+      <button onClick={() => navigate(-1)} className="back-btn">
+        ← Back
+      </button>
       <section className="blog-hero">
-        <div className="hero-content">
+        <div className="blog-hero-content">
           <h1>
             <span className="hero-line">The D'roid </span>
             {/* <span className="hero-line">Future of</span> */}
