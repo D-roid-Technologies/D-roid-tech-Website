@@ -19,7 +19,7 @@ import "../../components/liteGrid@v1.0/lite-grid.css";
 import Management from "../../components/staffandmanagement/Management";
 import AboutDroid from "../../components/aboutdroid/AboutDriod";
 import OurHistory from "../../components/ourhistory/OurHistory";
-import OurJourney from "../../components/ourjourney/OurJourney";
+// import OurJourney from "../../components/ourjourney/OurJourney";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { FaBullseye } from "react-icons/fa";
 import { GiNightVision } from "react-icons/gi";
@@ -52,9 +52,9 @@ const AboutUs: React.FunctionComponent = () => {
       <div className="our-historyy">
         <OurHistory />
       </div>
-      <div className="our-historyy">
+      {/* <div className="our-historyy">
         <OurJourney />
-      </div>
+      </div> */}
 
       <div>
         <div className="about-main">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./PricingCalclator.css";
+import { formatToNaira } from "../../../utils/currencyUtils";
 
 type Service = {
   category: string;
@@ -10,34 +11,34 @@ const services: Service[] = [
   {
     category: "Software Development",
     options: [
-      { name: "Frontend Development", price: 1000 },
-      { name: "Backend Development", price: 1200 },
-      { name: "Database & Cloud", price: 800 },
-      { name: "Cross-Platform Apps", price: 1500 },
+      { name: "Frontend Development", price: 1500000 },
+      { name: "Backend Development", price: 1800000 },
+      { name: "Database & Cloud", price: 1200000 },
+      { name: "Cross-Platform Apps", price: 2250000 },
     ],
   },
   {
     category: "Tech Training",
     options: [
-      { name: "Frontend Training", price: 600 },
-      { name: "Backend Training", price: 700 },
-      { name: "Fullstack Bootcamp", price: 900 },
+      { name: "Frontend Training", price: 1650000 },
+      { name: "Backend Training", price: 1050000 },
+      { name: "Fullstack Bootcamp", price: 1350000 },
     ],
   },
   {
     category: "Animation Creation",
     options: [
-      { name: "Character Modelling", price: 1100 },
-      { name: "3D Animation", price: 1400 },
-      { name: "Motion Graphics", price: 1000 },
+      { name: "Character Modelling", price: 1650000 },
+      { name: "3D Animation", price: 2100000 },
+      { name: "Motion Graphics", price: 1500000 },
     ],
   },
   {
     category: "Tech Consultant Services",
     options: [
-      { name: "Architecture Review", price: 1300 },
-      { name: "Cloud Strategy", price: 1200 },
-      { name: "Security Audit", price: 1000 },
+      { name: "Architecture Review", price: 1950000 },
+      { name: "Cloud Strategy", price: 1800000 },
+      { name: "Security Audit", price: 1500000 },
     ],
   },
 ];
@@ -72,6 +73,10 @@ const PricingCalculator: React.FC = () => {
     const discounted = subtotal - subtotal * (disc / 100);
     const taxed = discounted + discounted * (tax / 100);
     setTotal(taxed);
+
+ 
+
+
   };
 
   return (
@@ -84,7 +89,7 @@ const PricingCalculator: React.FC = () => {
           {service.options.map((option) => (
             <div key={option.name} style={styles.serviceRow}>
               <label style={styles.label}>
-                {option.name} (${option.price})
+                {option.name} ({formatToNaira(option.price)})
               </label>
               <input
                 type="number"
@@ -140,7 +145,7 @@ const PricingCalculator: React.FC = () => {
             color: "#000000",
           }}
         >
-          Total Estimated Cost: ${total.toFixed(2)}
+          Total Estimated Cost: {formatToNaira(Number(total.toFixed(2)))}
         </div>
       )}
     </div>
