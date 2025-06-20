@@ -100,7 +100,7 @@ const BlogPost: React.FC = () => {
           </div>
         </div>
 
-        <div className="wrapper">{renderComponent()}</div>
+        <div className="">{renderComponent()}</div>
       </div>
     </div>
   );

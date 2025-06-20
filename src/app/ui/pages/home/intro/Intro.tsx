@@ -79,7 +79,7 @@ const Intro: React.FC = () => {
   return (
     <>
       <section className="intro" ref={introRef}>
-        <div className="wrapper">
+        <div className="wrapper counter_section">
           <div className="group">
             <CounterBlock
               value={counters.satisfaction}
@@ -99,60 +99,56 @@ const Intro: React.FC = () => {
         </div>
 
         {/* What we do section */}
-        <div className="wrapper mt-5">
-          <div className="color_bg">
-            <span>WHAT WE DO</span>
-            <div className="group">
-              <div className="block-12 block-md-5 text_con">
-                <h1>we turn your ideas into reality</h1>
-                <div
-                  style={{ display: "flex", gap: "20px", marginTop: "30px" }}
+
+        <div className="color_bg">
+          <span>WHAT WE DO</span>
+          <div className="what_we_do_container">
+            <div className="block-12 block-md-5 text_con">
+              <h1>we turn your ideas into reality</h1>
+              <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
+                <a
+                  href={RoutePaths.JoinOurCommunity}
+                  style={{ backgroundColor: "#fff", color: "#071d6a" }}
+                  className="navbar-cta"
                 >
-                  <a
-                    href={RoutePaths.JoinOurCommunity}
-                    style={{ backgroundColor: "#fff", color: "#071d6a" }}
-                    className="navbar-cta"
-                  >
-                    Join Our Community
-                  </a>
-                </div>
+                  Join Our Community
+                </a>
               </div>
-              <div className="block-12 block-md-2" />
-              <div
-                className="block-12 block-md-5 image_con"
-               
-              >
-                <img className="" src={Assets.images.lightBulb} alt="Light Bulb" />
-              </div>
+            </div>
+            <div className="block-12 block-md-2" />
+            <div className="block-12 block-md-5 image_con">
+              <img
+                className=""
+                src={Assets.images.lightBulb}
+                alt="Light Bulb"
+              />
             </div>
           </div>
+        </div>
 
-          {/* Core Values Section */}
-          <div
-            className="wrapper"
-            style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
-          >
-            <span className="title_span value_t">
-              CORE VALUES
-            </span>
+        {/* Core Values Section */}
+        <div
+          className="wrapper"
+          style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
+        >
+          <span className="title_span value_t">CORE VALUES</span>
 
-            <div className="group mt-4 core_value_cards">
-              <CoreValueCard
-                imageSrc={Assets.images.trustImg}
-                title="Integrity"
-                description="At D'roid Technologies, integrity is the cornerstone of our operations. We are committed to conducting our business with the highest ethical standards, ensuring transparency, honesty, and accountability in all our interactions."
-              />
-              <CoreValueCard
-                imageSrc={Assets.images.innovationImg}
-                title="Innovation"
-                description="At D'roid Technologies, innovation is at the heart of everything we do. We are committed to pushing the boundaries of technology to deliver groundbreaking solutions that drive progress and create new opportunities."
-              />
-              <CoreValueCard
-                imageSrc={Assets.images.customerImg}
-                title="Customer focus"
-                description="We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence."
-              />
-            </div>
+          <div className="group mt-4 core_value_cards">
+            <CoreValueCard
+              imageSrc={Assets.images.trustImg}
+              title="Integrity"
+              description="At D'roid Technologies, integrity is the cornerstone of our operations. We are committed to conducting our business with the highest ethical standards, ensuring transparency, honesty, and accountability in all our interactions."
+            />
+            <CoreValueCard
+              imageSrc={Assets.images.innovationImg}
+              title="Innovation"
+              description="At D'roid Technologies, innovation is at the heart of everything we do. We are committed to pushing the boundaries of technology to deliver groundbreaking solutions that drive progress and create new opportunities."
+            />
+            <CoreValueCard
+              imageSrc={Assets.images.customerImg}
+              title="Customer focus"
+              description="We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence."
+            />
           </div>
         </div>
       </section>
@@ -163,12 +159,15 @@ const Intro: React.FC = () => {
             OUR TEAM
           </span>
         </center>
-        <div className="group justify-content-center team_decs_container">
+        <div className="team_decs_container group justify-content-center">
           <div className="block-12 block-md-8 team_decs">
             <h1 style={{ color: "#111724" }}>
               Join <span style={{ color: "#071d6a" }}>the team</span>
             </h1>
-            <p className="mb-5 join-team_paragraph" style={{ color: "#111724" }}>
+            <p
+              className="mb-5 join-team_paragraph"
+              style={{ color: "#111724" }}
+            >
               Are you passionate about Technology and Innovation? Join us for a
               6-month Software Development Training and become a full-time staff
               member at D'roid Technologies. Work on exciting projects, grow
@@ -190,11 +189,7 @@ const Intro: React.FC = () => {
 
         <div className="group justify-content-center">
           <div className="block-12 block-md-10 team_image_container">
-            <img
-              src={Assets.images.tech}
-              alt="Team"
-              className="team_image image-fluid"
-            />
+            <img src={Assets.images.tech} alt="Team" className="team_image" />
           </div>
         </div>
       </div>

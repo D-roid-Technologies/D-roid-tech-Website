@@ -1,5 +1,10 @@
-import React from "react";
+"use client";
+
+import type React from "react";
+import { useState, useMemo } from "react";
 import NavBar from "../../components/navbar/NavBar";
+import SearchBar from "../../components/search/SearchBar";
+import SearchFilters from "../../components/search/SearchFilters";
 import {
   FaCompressArrowsAlt,
   FaPalette,
@@ -17,8 +22,6 @@ import { BsCurrencyExchange } from "react-icons/bs";
 import { LuFileJson } from "react-icons/lu";
 import { GiPowerGenerator } from "react-icons/gi";
 import { SiLetsencrypt } from "react-icons/si";
-// import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
-import { RoutePaths } from "../../../routes/Index";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
 
 const tools = [
@@ -67,6 +70,7 @@ const tools = [
     description:
       "Count words, characters, paragraphs, and reading time with detailed statistics for content analysis and optimization.",
     icon: FaFileWord({ size: 24 }),
+    category: "Text Tools",
     link: "/toolbox/wordconter",
   },
   {
@@ -101,82 +105,6 @@ const tools = [
     category: "Developer Tools",
     link: "/toolbox/encoderbasetool",
   },
-  // {
-  //   title: "Image Resizing",
-  //   description:
-  //     "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
-  //   icon: FaCompressArrowsAlt({ size: 24 }),
-  //   category: "Image Tools",
-  //   link: "/toolbox/imageresizing",
-  // },
-  // {
-  //   title: "Color Converter",
-  //   description:
-  //     "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
-  //   icon: FaPalette({ size: 24 }),
-  //   category: "Color Tools",
-  //   link: "/toolbox/colorconverter",
-  // },
-  // {
-  //   title: "Image Compressor",
-  //   description:
-  //     "Smart compression algorithms reduce file sizes up to 90% without noticeable quality loss, using advanced techniques that preserve visual clarity while optimizing storage and faster web loading.",
-  //   icon: FaImages({ size: 24 }),
-  //   category: "Image Tools",
-  //   link: "/toolbox/imagecompressor",
-  // },
-  // {
-  //   title: "Crop Tool",
-  //   description: "Trim or cut images to focus on specific parts",
-  //   icon: BiSolidCrop({ size: 24 }),
-  //   category: "Image Tools",
-  //   link: "/toolbox/croptool",
-  // },
-  // {
-  //   title: "Color Picker",
-  //   description:
-  //     "Select and copy hex/RGB/HSV codes from a color palette or screen",
-  //   icon: CgColorPicker({ size: 24 }),
-  //   category: "Color Tools",
-  //   link: "/toolbox/colorPicker",
-  // },
-  // {
-  //   title: "Word Counter",
-  //   description: "Count words, characters, and paragraphs",
-  //   icon: FaFileWord({ size: 24 }),
-  //   link: "/toolbox/wordconter",
-  // },
-  // {
-  //   title: "Currency Converter",
-  //   description: "Get real-time conversion rates for global currencies",
-  //   icon: BsCurrencyExchange({ size: 24 }),
-  //   category: "Calculation Tools",
-  //   link: "/calculator/scientific",
-  // },
-  // {
-  //   title: "JSON Formatter",
-  //   description: "Beautify and validate JSON code",
-  //   icon: LuFileJson({ size: 24 }),
-  //   category: "Developer Tools",
-  //   link: "/toolbox/jsonformatter",
-  // },
-  // {
-  //   title: "UUID Generator",
-  //   description: "Generate unique identifiers for development",
-  //   icon: GiPowerGenerator({ size: 24 }),
-  //   category: "Developer Tools",
-  //   link: "/toolbox/uuidgenerator",
-  // },
-  // {
-  //   title: "Base64 Encoder/Decoder",
-  //   description: "Encode or decode base64 strings",
-  //   icon: SiLetsencrypt({ size: 24 }),
-  //   category: "Developer Tools",
-  //   link: "/toolbox/encoderbasetool",
-  // },
-
-  // === Premium Tools ===
-
   {
     title: "AI Background Remover",
     description:
@@ -222,54 +150,37 @@ const tools = [
     link: "/toolbox/bulk-image",
     isPremium: true,
   },
-  // {
-  //   title: "AI Background Remover",
-  //   description:
-  //     "Automatically remove backgrounds from images using AI with high precision.",
-  //   icon: FaMagic({ size: 24 }),
-  //   category: "Image Tools",
-  //   link: "/toolbox/ai-background-remover",
-  //   isPremium: true,
-  // },
-  // {
-  //   title: "Advanced PDF Editor",
-  //   description:
-  //     "Merge, split, sign, and annotate PDFs with advanced editing options.",
-  //   icon: FaFilePdf({ size: 24 }),
-  //   category: "Document Tools",
-  //   link: "/toolbox/advanced-pdf-editor",
-  //   isPremium: true,
-  // },
-  // {
-  //   title: "Resume & CV Analyzer",
-  //   description:
-  //     "Analyze and score your resume against industry standards and job descriptions.",
-  //   icon: FaUserTie({ size: 24 }),
-  //   category: "Career Tools",
-  //   link: "/toolbox/resumeanalyzer",
-  //   isPremium: true,
-  // },
-  // {
-  //   title: "Code Complexity Analyzer",
-  //   description:
-  //     "Detect and measure code complexity, maintainability, and hotspots in your codebase.",
-  //   icon: FaCodeBranch({ size: 24 }),
-  //   category: "Developer Tools",
-  //   link: "/toolbox/code-complexity",
-  //   isPremium: true,
-  // },
-  // {
-  //   title: "Bulk Image Watermarker",
-  //   description:
-  //     "Apply watermarks to multiple images at once for branding and copyright protection.",
-  //   icon: FaStamp({ size: 24 }),
-  //   category: "Image Tools",
-  //   link: "/toolbox/bulk-image",
-  //   isPremium: true,
-  // },
 ];
 
 const ToolBoxPage: React.FunctionComponent = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showPremiumOnly, setShowPremiumOnly] = useState(false);
+
+  // Get unique categories
+  const categories = useMemo(() => {
+    const categoryArr = tools.map((tool) => tool.category);
+    return categoryArr
+      .filter((cat, i) => categoryArr.indexOf(cat) === i)
+      .sort();
+  }, []);
+
+  // Filter tools based on search query, category, and premium status
+  const filteredTools = useMemo(() => {
+    return tools.filter((tool) => {
+      const matchesSearch = tool.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+
+      const matchesCategory =
+        selectedCategory === "All" || tool.category === selectedCategory;
+
+      const matchesPremium = !showPremiumOnly || tool.isPremium;
+
+      return matchesSearch && matchesCategory && matchesPremium;
+    });
+  }, [searchQuery, selectedCategory, showPremiumOnly]);
+
   return (
     <div>
       <NavBar />
@@ -284,7 +195,10 @@ const ToolBoxPage: React.FunctionComponent = () => {
           </p>
         </div>
       </div>
-      {/* Items */}
+
+      {/* Search Section */}
+
+      {/* Tools Grid */}
       <div className="wrapper soft-wrapper">
         <span
           className="soft-dev-header title_span"
@@ -292,18 +206,62 @@ const ToolBoxPage: React.FunctionComponent = () => {
         >
           Tool collection
         </span>
-        <div className="soft-dev-content">
-          {tools.map((tech, index) => (
-            <CoreValueCardThree
-              key={index}
-              title={tech.title}
-              description={tech.description}
-              icon={tech.icon}
-              link={tech.link}
-              className="process-card"
-            />
-          ))}
+        <div className="" style={{ paddingTop: "2rem", paddingBottom: "1rem" }}>
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search tools by name, description, or category..."
+            className="mb-6"
+          />
+
+          <SearchFilters
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            showPremiumOnly={showPremiumOnly}
+            onPremiumToggle={setShowPremiumOnly}
+          />
+
+          {/* Results Count */}
+          <div className="text-center">
+            <p className="text-gray-600">
+              {filteredTools.length === tools.length
+                ? `Showing all ${tools.length} tools`
+                : `Found ${filteredTools.length} of ${tools.length} tools`}
+            </p>
+          </div>
         </div>
+
+        {filteredTools.length > 0 ? (
+          <div className="soft-dev-content">
+            {filteredTools.map((tech, index) => (
+              <CoreValueCardThree
+                key={`${tech.title}-${index}`}
+                title={tech.title}
+                description={tech.description}
+                icon={tech.icon}
+                link={tech.link}
+                className="process-card"
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg mb-4">
+              No tools found matching your criteria
+            </p>
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedCategory("All");
+                setShowPremiumOnly(false);
+              }}
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Clear All Filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
