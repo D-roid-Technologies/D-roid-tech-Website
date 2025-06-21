@@ -226,22 +226,47 @@ const PersonalDetails: React.FunctionComponent = () => {
                             )}
 
                             {/* Security Question */}
-                            <select
-                                name="securityQuestion"
-                                value={(formData as any).securityQuestion || ''}
-                                onChange={handleInputChange}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <option value="">Select Security Question</option>
-                                <option value="mother_maiden">What is your mother's maiden name?</option>
-                                <option value="first_pet">What was your first pet’s name?</option>
-                                <option value="birth_city">What city were you born in?</option>
-                            </select>
+                            <div style={{ position: 'relative', width: '100%' }}>
+                                <select
+                                    name="securityQuestion"
+                                    value={(formData as any).securityQuestion || ''}
+                                    onChange={handleInputChange}
+                                    style={{
+                                        appearance: 'none', // hides native arrow
+                                        WebkitAppearance: 'none',
+                                        MozAppearance: 'none',
+                                        width: '100%',
+                                        padding: '12px 40px 12px 16px',
+                                        borderRadius: '8px',
+                                        border: '1px solid #ccc',
+                                        fontSize: '14px',
+                                        backgroundColor: '#fff',
+                                        color: '#333',
+                                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    <option value="">Select Security Question</option>
+                                    <option value="mother_maiden">What is your mother's maiden name?</option>
+                                    <option value="first_pet">What was your first pet’s name?</option>
+                                    <option value="birth_city">What city were you born in?</option>
+                                </select>
+
+                                {/* Custom dropdown arrow */}
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        right: '16px',
+                                        pointerEvents: 'none',
+                                        transform: 'translateY(-50%)',
+                                        color: '#666',
+                                    }}
+                                >
+                                    ▼
+                                </div>
+                            </div>
+
 
                             {/* Security Answer */}
                             <input

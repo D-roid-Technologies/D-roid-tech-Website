@@ -10,6 +10,12 @@ interface Slide {
 
 const slides: Slide[] = [
   {
+    title: "Company Management Portal",
+    description:
+      "A centralized platform designed to streamline and manage all aspects of your organization's operations.",
+    bgImage: Assets.images.homeBannerSlideOne,
+  },
+  {
     title: "Innovative Tech Solutions",
     description:
       "We deliver cutting-edge technology solutions tailored to your business needs.",
@@ -17,13 +23,13 @@ const slides: Slide[] = [
   },
   {
     title: "Trusted By Industry Leaders",
-    description: "Partnering with Fortune 500 companies to startups.",
+    description: "Partnering with Fortune 500 companies down to startups.",
     bgImage: Assets.images.homeBannerSlideTwo,
   },
   {
-    title: "Future-Ready Development",
+    title: "Digital Workbench",
     description:
-      "Our forward-thinking approach ensures your systems evolve with technology.",
+      "A smart workspace for tools you use every day.",
     bgImage: Assets.images.homeBannerSlideThree,
   },
 ];

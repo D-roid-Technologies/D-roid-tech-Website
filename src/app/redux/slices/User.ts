@@ -32,7 +32,10 @@ const initialState: UserType = {
   streetName: "",
   city: "",
   state: "",
-  country: ""
+  country: "",
+  organisationalType: "",
+  isCompanyRegistered: "",
+  dateOfRegistration: ""
 };
 
 export const userSlice = createSlice({

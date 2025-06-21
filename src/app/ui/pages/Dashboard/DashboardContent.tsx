@@ -61,6 +61,8 @@ import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 import OhmslawCalculator from "../calculator/OhmslawCalculator";
 import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
+import { FaWallet } from "react-icons/fa6";
+import ClassRoom from "./ClassRoom";
 
 const tools = [
   {
@@ -271,17 +273,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const isUserStaff = userDetails.userType === "Staff";
   const isUserRole = userDetails.role === "Superadmin";
   const userType = userDetails.userType;
+  const orgType = userDetails.organisationalType?.toLowerCase() as "school" | "business" | "ngo" | undefined;
 
   const organizationType: "school" | "business" | "ngo" = "school";
 
-  const orgSpecificItems = {
+  const orgSpecificItems: Record<"school" | "business" | "ngo", { label: string; icon: any }[]> = {
     school: [
       { label: "Classroom", icon: FaChalkboard },
-      { label: "Students", icon: FaUsers },
+      // { label: "Students", icon: FaUsers },
       { label: "Staffs", icon: FaUsers },
-      { label: "Grades", icon: FaChartLine },
-      { label: "Timetable", icon: FaCalendarAlt },
+      // { label: "Grades", icon: FaChartLine },
       { label: "Library", icon: FaBookOpen },
+      { label: "Finance", icon: FaWallet },
     ],
     business: [
       { label: "Departments", icon: FaBriefcase },
@@ -296,6 +299,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       { label: "Outreach", icon: FaBullhorn },
       { label: "Impact", icon: FaHeart },
       { label: "Partners", icon: FaUsers },
+      { label: "Groups", icon: FaUsers },
     ],
   };
 
@@ -314,7 +318,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       label: "Personal Details",
       icon: FaUser
     },
-    ...(userType === "Organisation" ? (orgSpecificItems[organizationType] || []) : []),
+    ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
+      ? orgSpecificItems[orgType]
+      : []),
     { label: "Schedules", icon: FaCalendarAlt },
     { label: "Tool Box", icon: FaToolbox },
     { label: "Calculate", icon: FaCalculator },
@@ -645,6 +651,15 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <SayIt />
           </Section>
         );
+      case "Classroom":
+        return (
+          <Section title="Your Class Room">
+            {/* <p style={{ color: "#000000" }}>
+                Share your thoughts and feedback here.
+              </p> */}
+            <ClassRoom />
+          </Section>
+        );
       default:
         return (
           <Section title="Dashboard">
@@ -662,7 +677,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       >
         <div className={styles.userInfo}>
           <h3>
-            Welcome, {userDetails.firstName} {userDetails.lastName}
+            Hello, {userDetails.firstName} {userDetails.lastName}
           </h3>
           <p>{userDetails.email}</p>
           <div className={styles.userMeta}>

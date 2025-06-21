@@ -1,4 +1,6 @@
 import type React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import {
   GraduationCapIcon,
@@ -25,6 +27,8 @@ import {
 import "./WelcomePage.css";
 
 const WelcomePage: React.FC = () => {
+  const userDetails = useSelector((state: RootState) => state.user);
+
   const whatWeDoItems = [
     {
       icon: <GraduationCapIcon />,
@@ -154,13 +158,20 @@ const WelcomePage: React.FC = () => {
     <div className="welcome-container">
       {/* First section stays as original */}
       <section className="welcome-intro-section">
-        <h2 className="welcome-intro-heading">What is D'roid One?</h2>
+        {/* <h2 className="welcome-intro-heading">What is D'roid One?</h2> */}
         <p className="welcome-intro-paragraph">
           The <strong>D'roid One Account</strong> is your personalized gateway
-          into the D'roid Technologies ecosystem—designed to unify learning,
-          work, productivity, entertainment, and community in one seamless
+          into the D'roid Technologies ecosystem, designed to unify learning,
+          work, productivity and community in one seamless
           digital experience.
         </p>
+
+        {userDetails.userType !== "Staff" && (
+          <p className="welcome-intro-paragraph" style={{ marginTop: 20 }}>
+            We are glad to have you here with us. There are a number of things you can do with our platform to
+            speed up your daily routine. It is a pride that we can help you make you day better.
+          </p>
+        )}
       </section>
 
       {/* What We Do Section */}

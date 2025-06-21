@@ -38,6 +38,9 @@ export type UserType = {
   city: string,
   state: string,
   country: string,
+  organisationalType: string,
+  isCompanyRegistered: string,
+  dateOfRegistration: string
 };
 
 
