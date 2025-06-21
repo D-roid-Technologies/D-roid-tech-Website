@@ -904,7 +904,7 @@ export class AuthService {
             const userDocRef = doc(collection(db, "droidaccount"), userCredential.user.uid);
             const userDocSnap = await getDoc(userDocRef);
             const updatedData = userDocSnap.data();
-            console.log(updatedData)
+            // console.log(updatedData)
 
             if (userDocSnap.exists()) {
                 const fetchedUserData = userDocSnap.data();

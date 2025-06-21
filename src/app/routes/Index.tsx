@@ -81,6 +81,7 @@ import { userInfo } from "os";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/Store";
 import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage";
+import CalenderPage from "../ui/pages/schedule/CalenderPage";
 
 // Define an enum for all route paths
 
@@ -131,6 +132,7 @@ export enum RoutePaths {
 
   //
   TaskScheduler = "/schedules/task-scheduler",
+  Calender = "/schedules/calender",
 
   // Parent "More" route
   More = "/more",
@@ -308,6 +310,7 @@ const Index: React.FunctionComponent = () => {
       />
       <Route path={RoutePaths.BMICalculator} element={<BMICalculator />} />
       <Route path={RoutePaths.TaskScheduler} element={<TaskSchedulerPage />} />
+      <Route path={RoutePaths.Calender} element={<CalenderPage />} />
       <Route path={RoutePaths.Schedules} element={<SchedulePage />} />
       {/* <Route path={RoutePaths.Muzik} element={<Muzik />} /> */}
       <Route path={RoutePaths.KnowledgeCity} element={<KnowledgeCity />} />

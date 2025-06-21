@@ -21,6 +21,15 @@ import {
   FaUserTie,
   FaFilePdf,
   FaMagic,
+  FaSchool,
+  FaBusinessTime,
+  FaHandsHelping,
+  FaChalkboard,
+  FaBriefcase,
+  FaUsers,
+  FaFolderOpen,
+  FaHeart,
+  FaDonate,
 } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import PersonalDetails from "./PersonalDetails";
@@ -38,19 +47,14 @@ import Progression from "./Progressions";
 import styles from "./DashboardContent.module.css";
 import Section from "./Section";
 import TaskScheduler from "../schedule/TaskScheduler";
-import CurrencyConverter from "../toolboxpage/currencyconverter/CurrencyConverter";
 import { BsCurrencyExchange } from "react-icons/bs";
-import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
 import { GiCalculator } from "react-icons/gi";
-import { SlCalculator } from "react-icons/sl";
 import { TbCalculator, TbMicroscope } from "react-icons/tb";
 import Calculate from "../calculator/Calculate";
 import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
 import Bmi from "../calculator/Bmi";
-import { LuCalculator } from "react-icons/lu";
 import ToolsCard from "../../components/CoreValueCard/ToolsCard";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
-// import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
@@ -266,11 +270,52 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   const isUserStaff = userDetails.userType === "Staff";
   const isUserRole = userDetails.role === "Superadmin";
+  const userType = userDetails.userType;
+
+  const organizationType: "school" | "business" | "ngo" = "school";
+
+  const orgSpecificItems = {
+    school: [
+      { label: "Classroom", icon: FaChalkboard },
+      { label: "Students", icon: FaUsers },
+      { label: "Staffs", icon: FaUsers },
+      { label: "Grades", icon: FaChartLine },
+      { label: "Timetable", icon: FaCalendarAlt },
+      { label: "Library", icon: FaBookOpen },
+    ],
+    business: [
+      { label: "Departments", icon: FaBriefcase },
+      { label: "Projects", icon: FaFolderOpen },
+      { label: "Clients", icon: FaUsers },
+      { label: "Finance", icon: FaFileInvoiceDollar },
+      { label: "Reports", icon: FaChartLine },
+    ],
+    ngo: [
+      { label: "Volunteers", icon: FaHandsHelping },
+      { label: "Donations", icon: FaDonate },
+      { label: "Outreach", icon: FaBullhorn },
+      { label: "Impact", icon: FaHeart },
+      { label: "Partners", icon: FaUsers },
+    ],
+  };
 
   const menuItems = [
     ...(isUserRole ? [{ label: "Users", icon: FaUser }] : []),
-    { label: "Personal Details", icon: FaUser },
-    // { label: "Schedules", icon: FaCalendarAlt },
+    // {
+    //   label:
+    //     userType === "Staff"
+    //       ? "Staff Details"
+    //       : userType === "Member"
+    //         ? "Member Details"
+    //         : "Organisation Details",
+    //   icon: FaUser
+    // },
+    {
+      label: "Personal Details",
+      icon: FaUser
+    },
+    ...(userType === "Organisation" ? (orgSpecificItems[organizationType] || []) : []),
+    { label: "Schedules", icon: FaCalendarAlt },
     { label: "Tool Box", icon: FaToolbox },
     { label: "Calculate", icon: FaCalculator },
     { label: "Announcements", icon: FaBullhorn },
@@ -324,33 +369,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     },
   ];
 
-  // const tasks = [
-  //   { id: 1, name: "Task 1", status: "Completed" },
-  //   { id: 2, name: "Task 2", status: "Ongoing" },
-  //   { id: 3, name: "Task 3", status: "Not Started" },
-  // ];
-
-  // const announcements = [
-  //   {
-  //     id: 1,
-  //     title: "New Staff Training",
-  //     message: "Mandatory training next week",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Office Closed",
-  //     message: "Office will be closed on Friday for a holiday",
-  //   },
-  // ];
-
-  // const schedule = {
-  //   workingDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-  //   leave: {
-  //     approved: ["Monday", "Wednesday"],
-  //     awaiting: ["Friday"],
-  //   },
-  // };
-
   const calculateItems = [
     {
       title: "OhmsLawCalculator",
@@ -372,24 +390,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     },
   ];
 
-  // const handleClear = () => {
-  //   setInput("");
-  // };
-
-  // const handleShowPayslip = () => {};
-
-  // const handleButtonClick = (value: string) => {
-  //   if (value === "=") {
-  //     try {
-  //       setInput(eval(input).toString());
-  //     } catch {
-  //       setInput("Error");
-  //     }
-  //   } else {
-  //     setInput((prev) => prev + value);
-  //   }
-  // };
-
   const renderContent = () => {
     if (!selectedMenu) {
       return (
@@ -409,6 +409,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           </Section>
         );
       case "Personal Details":
+
         return (
           <Section title="Personal Details">
             <PersonalDetails />
