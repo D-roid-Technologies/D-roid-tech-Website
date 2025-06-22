@@ -63,6 +63,9 @@ import OhmslawCalculator from "../calculator/OhmslawCalculator";
 import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
 import { FaWallet } from "react-icons/fa6";
 import ClassRoom from "./ClassRoom";
+import Staffs from "./Staffs";
+import Library from "./Library";
+import Finance from "./Finance";
 
 const tools = [
   {
@@ -654,10 +657,25 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Classroom":
         return (
           <Section title="Your Class Room">
-            {/* <p style={{ color: "#000000" }}>
-                Share your thoughts and feedback here.
-              </p> */}
             <ClassRoom />
+          </Section>
+        );
+      case "Staffs":
+        return (
+          <Section title="Your Staffs">
+            <Staffs />
+          </Section>
+        );
+      case "Library":
+        return (
+          <Section title="Your Library">
+            <Library />
+          </Section>
+        );
+      case "Finance":
+        return (
+          <Section title="Your Finance">
+            <Finance />
           </Section>
         );
       default:

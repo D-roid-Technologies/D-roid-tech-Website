@@ -3,11 +3,14 @@ import React, { useState } from 'react'
 import { FaChalkboardTeacher, FaUserGraduate, } from 'react-icons/fa';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { DashboardCard } from '../../components/dashboard-card/DashboardCard';
+import CreateClassForm from './CreateClassForm';
 import styles from "./DashboardContent.module.css";
 
 const ClassRoom: React.FC = () => {
     const [showContentMain, setShowContentMain] = useState<boolean>(true);
     const [showContent, setShowContent] = useState<boolean>(false);
+    const [showClassesContent, setShowClassesContent] = useState<boolean>(false);
+    const [showInnerContent, setShowInnerContent] = useState<boolean>(false);
     const [showTitle, setShowTitle] = useState<string>('');
     const [showDesc, setShowDesc] = useState<string>('');
 
@@ -25,24 +28,6 @@ const ClassRoom: React.FC = () => {
             description:
                 "Organize and manage structured learning sessions. Create, schedule, and track classes with ease. Ideal for schools, training organizations, or professional development teams.",
         },
-        // {
-        //     icon: <UsersIcon />,
-        //     title: "Community Engagement",
-        //     description:
-        //         "Join discussions, events, diaries, and announcements to stay connected.",
-        // },
-        // {
-        //     icon: <PaletteIcon />,
-        //     title: "Creative + Tech Tools",
-        //     description:
-        //         "Explore music, tools, resources, and calculators to boost your creativity.",
-        // },
-        // {
-        //     icon: <BriefcaseIcon />,
-        //     title: "Opportunity Hub",
-        //     description:
-        //         "Find job listings, events, and challenges through LunchBox.",
-        // },
     ];
 
     const classes = [
@@ -60,24 +45,57 @@ const ClassRoom: React.FC = () => {
             description:
                 "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
         },
-        // {
-        //     icon: <UsersIcon />,
-        //     title: "Internal Exams",
-        //     description:
-        //         "Join discussions, events, diaries, and announcements to stay connected.",
-        // },
-        // {
-        //     icon: <PaletteIcon />,
-        //     title: "Creative + Tech Tools",
-        //     description:
-        //         "Explore music, tools, resources, and calculators to boost your creativity.",
-        // },
-        // {
-        //     icon: <BriefcaseIcon />,
-        //     title: "Opportunity Hub",
-        //     description:
-        //         "Find job listings, events, and challenges through LunchBox.",
-        // },
+    ];
+    const students = [
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "All Students",
+            description:
+                "Access and manage every class in your organization, including enrolled students, assigned instructors, class schedules, and academic progress—all in one place.",
+        },
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "Add Students",
+            description:
+                "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+        },
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "Fees",
+            description:
+                "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+        },
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "Progression",
+            description:
+                "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+        },
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "Attendance",
+            description:
+                "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+        },
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "Exams and Records",
+            description:
+                "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+        },
+        {
+            // @ts-ignore
+            icon: <FaChalkboardTeacher />,
+            title: "Grades",
+            description:
+                "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+        },
     ];
     return (
         <div>
@@ -90,7 +108,8 @@ const ClassRoom: React.FC = () => {
                                 <div style={{ cursor: "pointer" }} onClick={() => {
                                     // alert(`${item.title}`) 
                                     setShowContent(true);
-                                    setShowContentMain(false)
+                                    setShowContentMain(false);
+                                    setShowInnerContent(true);
                                     setShowTitle(`${item.title}`)
                                     setShowDesc(`${item.description}`)
                                 }}>
@@ -105,7 +124,7 @@ const ClassRoom: React.FC = () => {
                         </>
                     )}
                 </div>
-                {showContent && (
+                {showContent && showTitle === "Classes" && (
                     <>
                         <button
                             className={styles.backButton}
@@ -114,33 +133,85 @@ const ClassRoom: React.FC = () => {
                                 setShowContentMain(true)
                             }}
                         >
-                            {/* @ts-ignore */}
-                            {/* <IoMdArrowRoundBack /> */}
                             Back to Classroom
                         </button>
                         <div>
                             <h3 style={{ color: "#000000" }}>{showTitle}</h3>
                             <p style={{ color: "#000000" }}>{showDesc}</p>
-                            <div className="cards-grid cards-grid-3">
-                                {classes.map((item, index) => (
-                                    <div style={{ cursor: "pointer" }} onClick={() => {
-                                        // alert(`${item.title}`) 
-                                        // setShowContent(true);
-                                        // setShowContentMain(false)
-                                        // setShowTitle(`${item.title}`)
-                                        // setShowDesc(`${item.description}`)
-                                    }}>
-                                        <DashboardCard
-                                            key={index}
-                                            icon={item.icon}
-                                            title={item.title}
-                                            description={item.description}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                            {/* <p style={{ color: "#000000" }}>This is the show content</p> */}
+                            {showInnerContent && (
+                                <div className="cards-grid cards-grid-3">
+                                    {classes.map((item, index) => (
+                                        <div style={{ cursor: "pointer" }} onClick={() => {
+                                            // alert(`${item.title}`) 
+                                            setShowContent(false);
+                                            setShowClassesContent(true)
+                                            setShowTitle(`${item.title}`)
+                                            setShowDesc(`${item.description}`)
+                                        }}>
+                                            <DashboardCard
+                                                key={index}
+                                                icon={item.icon}
+                                                title={item.title}
+                                                description={item.description}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
+                    </>
+                )}
+                {showContent && showTitle === "Students" && (
+                    <>
+                        <button
+                            className={styles.backButton}
+                            onClick={() => {
+                                setShowContent(false);
+                                setShowInnerContent(false);
+                                setShowContentMain(true)
+                            }}
+                        >
+                            Back to Classroom
+                        </button>
+                        <div>
+                            <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+                            <p style={{ color: "#000000" }}>{showDesc}</p>
+                            {showInnerContent && (
+                                <div className="cards-grid cards-grid-3">
+                                    {students.map((item, index) => (
+                                        <div style={{ cursor: "pointer" }} onClick={() => {
+                                            setShowInnerContent(false);
+                                            setShowTitle(`${item.title}`)
+                                            setShowDesc(`${item.description}`)
+                                        }}>
+                                            <DashboardCard
+                                                key={index}
+                                                icon={item.icon}
+                                                title={item.title}
+                                                description={item.description}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </>
+                )}
+                {showClassesContent && (
+                    <>
+                        <button
+                            className={styles.backButton}
+                            onClick={() => {
+                                setShowContent(false);
+                                setShowContentMain(true);
+                                setShowClassesContent(false)
+                            }}
+                        >
+                            Back to Classroom
+                        </button>
+                        <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+                        <p style={{ color: "#000000", marginBottom: 25 }}>{showDesc}</p>
+                        <CreateClassForm />
                     </>
                 )}
             </section>
