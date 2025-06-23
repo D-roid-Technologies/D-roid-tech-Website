@@ -64,3 +64,7 @@ export const convertToCurrency = async (amount: number): Promise<string> => {
     return formatter.format(amount);
   }
 };
+
+export const formatToNaira = (amount: number): string => {
+  return `₦${amount.toLocaleString("en-NG")}`;
+};

@@ -253,6 +253,9 @@ const SignUp: React.FunctionComponent = () => {
     const updatedFormData = {
       ...formData,
       uniqueId: generatedId,
+      organisationalType: "",
+      isCompanyRegistered: "",
+      dateOfRegistration: ""
     };
 
     setText("Creating your D'roid Account...");

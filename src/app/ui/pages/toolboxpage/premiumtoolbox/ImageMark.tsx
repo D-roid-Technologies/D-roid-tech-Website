@@ -1,5 +1,5 @@
 import React from "react";
-import { WatermarkingTool } from "../../watermarking-tool";
+import { WatermarkingTool } from "../watermarking-tool/index";
 
 
 interface ComponentProps {

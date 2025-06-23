@@ -19,6 +19,7 @@
     "axios": "^1.7.2",
     "cropperjs": "^2.0.0",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "emailjs-com": "^3.2.0",
     "firebase": "^11.6.1",

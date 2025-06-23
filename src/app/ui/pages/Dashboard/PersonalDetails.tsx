@@ -10,6 +10,7 @@ import SecuritySettingsUI from './SecuritySettingsUI';
 
 const PersonalDetails: React.FunctionComponent = () => {
     const userDetails: UserType = useSelector((state: RootState) => state.user);
+    const userType = userDetails.userType;
     const [formData, setFormData] = useState<UserType | null>(null);
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
     const [selectedMenuItem, setSelectedMenuItem] = useState<null | { title: string; content: string; icon: JSX.Element }>(null);
@@ -119,6 +120,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                     backgroundColor: '#fafafa',
                     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)'
                 }}>
+
                     {selectedMenuItem === null && formData ? (
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                             {/* Photo Upload */}
@@ -128,9 +130,9 @@ const PersonalDetails: React.FunctionComponent = () => {
                                     alt="Preview"
                                     style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px' }}
                                 />
-                            ) : (<>
+                            ) : (
                                 <p style={{ color: "#000000" }}>Select Profile Photo</p>
-                            </>)}
+                            )}
                             <input
                                 type="file"
                                 accept="image/*"
@@ -138,26 +140,39 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 style={{ fontSize: '14px', color: "#000000" }}
                             />
 
-                            {/* Editable fields */}
+                            {/* Editable fields - Show or hide based on userType */}
                             {[
                                 { label: 'First Name', name: 'firstName' },
                                 { label: 'Last Name', name: 'lastName' },
-                                { label: 'Middle Name', name: 'middleName' },
+                                // Only show these if NOT organisation user
+                                ...(userType !== "Organisation"
+                                    ? [
+                                        { label: 'Middle Name', name: 'middleName' },
+                                        { label: 'Gender', name: 'gender' },
+                                        { label: 'Date of Birth', name: 'dateOfBirth' },
+                                    ]
+                                    : []),
                                 { label: 'Phone', name: 'phone' },
-                                { label: 'Gender', name: 'gender' },
-                                { label: 'Date of Birth', name: 'dateOfBirth' },
                                 { label: 'Street Number', name: 'streetNumber' },
                                 { label: 'Street Name', name: 'streetName' },
                                 { label: 'City', name: 'city' },
                                 { label: 'State', name: 'state' },
                                 { label: 'Country', name: 'country' },
+                                // Show organisation-specific fields only if userType === "Organisation"
+                                ...(userType === "Organisation"
+                                    ? [
+                                        { label: 'Organisational Type("school" | "business" | "ngo")', name: 'organisationalType' },
+                                        { label: 'Is Company Registered(Yes/No)', name: 'isCompanyRegistered' },
+                                        { label: 'Date of Registration', name: 'dateOfRegistration' },
+                                    ]
+                                    : []),
                             ].map(field => (
                                 <input
                                     key={field.name}
                                     name={field.name}
                                     type="text"
                                     placeholder={field.label}
-                                    value={(formData as any)[field.name]}
+                                    value={(formData as any)[field.name] || ''}
                                     onChange={handleInputChange}
                                     style={{
                                         padding: '12px',
@@ -168,62 +183,90 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 />
                             ))}
 
-                            {/* Disability Type */}
-                            <select
-                                name="disabilityType"
-                                value={(formData as any).disabilityType || ''}
-                                onChange={handleInputChange}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <option value="">Select Disability Type</option>
-                                <option value="None">None</option>
-                                <option value="Visual">Visual</option>
-                                <option value="Hearing">Hearing</option>
-                                <option value="Motor">Motor</option>
-                                <option value="Cognitive">Cognitive</option>
-                            </select>
+                            {/* Disability Type & Educational Level - hide if organisation */}
+                            {userType !== "Organisation" && (
+                                <>
+                                    <select
+                                        name="disabilityType"
+                                        value={(formData as any).disabilityType || ''}
+                                        onChange={handleInputChange}
+                                        style={{
+                                            padding: '12px',
+                                            borderRadius: '8px',
+                                            border: '1px solid #ccc',
+                                            fontSize: '14px'
+                                        }}
+                                    >
+                                        <option value="">Select Disability Type</option>
+                                        <option value="None">None</option>
+                                        <option value="Visual">Visual</option>
+                                        <option value="Hearing">Hearing</option>
+                                        <option value="Motor">Motor</option>
+                                        <option value="Cognitive">Cognitive</option>
+                                    </select>
 
-                            {/* Educational Level */}
-                            <select
-                                name="educationalLevel"
-                                value={(formData as any).educationalLevel || ''}
-                                onChange={handleInputChange}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <option value="">Select Educational Level</option>
-                                <option value="High School">High School</option>
-                                <option value="Undergraduate">Undergraduate</option>
-                                <option value="Graduate">Graduate</option>
-                                <option value="Postgraduate">Postgraduate</option>
-                            </select>
+                                    <select
+                                        name="educationalLevel"
+                                        value={(formData as any).educationalLevel || ''}
+                                        onChange={handleInputChange}
+                                        style={{
+                                            padding: '12px',
+                                            borderRadius: '8px',
+                                            border: '1px solid #ccc',
+                                            fontSize: '14px'
+                                        }}
+                                    >
+                                        <option value="">Select Educational Level</option>
+                                        <option value="High School">High School</option>
+                                        <option value="Undergraduate">Undergraduate</option>
+                                        <option value="Graduate">Graduate</option>
+                                        <option value="Postgraduate">Postgraduate</option>
+                                    </select>
+                                </>
+                            )}
 
                             {/* Security Question */}
-                            <select
-                                name="securityQuestion"
-                                value={(formData as any).securityQuestion || ''}
-                                onChange={handleInputChange}
-                                style={{
-                                    padding: '12px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #ccc',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <option value="">Select Security Question</option>
-                                <option value="mother_maiden">What is your mother's maiden name?</option>
-                                <option value="first_pet">What was your first pet’s name?</option>
-                                <option value="birth_city">What city were you born in?</option>
-                            </select>
+                            <div style={{ position: 'relative', width: '100%' }}>
+                                <select
+                                    name="securityQuestion"
+                                    value={(formData as any).securityQuestion || ''}
+                                    onChange={handleInputChange}
+                                    style={{
+                                        appearance: 'none', // hides native arrow
+                                        WebkitAppearance: 'none',
+                                        MozAppearance: 'none',
+                                        width: '100%',
+                                        padding: '12px 40px 12px 16px',
+                                        borderRadius: '8px',
+                                        border: '1px solid #ccc',
+                                        fontSize: '14px',
+                                        backgroundColor: '#fff',
+                                        color: '#333',
+                                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    <option value="">Select Security Question</option>
+                                    <option value="mother_maiden">What is your mother's maiden name?</option>
+                                    <option value="first_pet">What was your first pet’s name?</option>
+                                    <option value="birth_city">What city were you born in?</option>
+                                </select>
+
+                                {/* Custom dropdown arrow */}
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        right: '16px',
+                                        pointerEvents: 'none',
+                                        transform: 'translateY(-50%)',
+                                        color: '#666',
+                                    }}
+                                >
+                                    ▼
+                                </div>
+                            </div>
+
 
                             {/* Security Answer */}
                             <input
@@ -260,8 +303,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                                 { label: 'User Type', name: 'userType' },
                                 { label: 'Unique ID', name: 'uniqueId' },
                                 { label: 'Email', name: 'email' },
-                                { label: 'Disability', name: 'disability', format: (val: boolean) => val ? "Yes" : "No" },
-                                { label: 'Agree to Policy', name: 'agreeToPolicy', format: (val: boolean) => val ? "Yes" : "No" },
+                                { label: 'Disability', name: 'disability', format: (val: boolean) => (val ? "Yes" : "No") },
+                                { label: 'Agree to Policy', name: 'agreeToPolicy', format: (val: boolean) => (val ? "Yes" : "No") },
                             ].map(field => (
                                 <input
                                     key={field.name}
@@ -292,8 +335,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                                     fontWeight: 'bold',
                                     cursor: 'pointer',
                                 }}
-                                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#05205C'}
-                                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#071D6A'}
+                                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#05205C')}
+                                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#071D6A')}
                             >
                                 Update Information
                             </button>
@@ -303,6 +346,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                             {renderSelectedComponent()}
                         </div>
                     )}
+
                 </div>
             </div>
         </div>
