@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../redux/Store";
+import ScheduleTool from "./ScheduleTool";
 
 const TaskScheduler: React.FC = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const TaskScheduler: React.FC = () => {
       {/* Access Restriction Notice */}
       {userLoggedIn === true ? (
         <div>
-          <p>The user is logged in</p>
+          <ScheduleTool/>
         </div>
       ) : (<div
         style={{
