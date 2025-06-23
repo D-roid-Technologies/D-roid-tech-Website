@@ -66,6 +66,7 @@ import ClassRoom from "./ClassRoom";
 import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
+import SchedulePage from "../schedule/SchedulePage";
 
 const tools = [
   {
@@ -496,6 +497,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             </p>
             <div style={{ marginTop: "20px" }}>
               <TaskScheduler />
+              
             </div>
           </Section>
         );
