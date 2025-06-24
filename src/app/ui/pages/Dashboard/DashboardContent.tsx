@@ -67,8 +67,9 @@ import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
 import SchedulePage from "../schedule/SchedulePage";
+import { tools } from "../toolboxpage/ToolBoxItems";
 
-const tools = [
+const tools1 = [
   {
     title: "Currency Converter",
     description:
@@ -505,7 +506,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Tool Box">
             <p style={{ color: "#000000", marginBottom: "20px" }}>
-              Access various tools for your tasks.
+              Access various tools for your tasks
             </p>
             {activeTool ? (
               // Render the active tool component
