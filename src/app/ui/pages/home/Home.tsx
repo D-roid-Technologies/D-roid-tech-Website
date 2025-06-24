@@ -23,15 +23,39 @@ const Home: React.FunctionComponent = () => {
       <CompanyCarousel />
       <Intro />
       <ProductsSmall />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Company Management Portal</h2>
+            <p>
+              A centralized platform designed to streamline and manage all
+              aspects of your organization's operations.
+            </p>
+            <button className="cta-primary" onClick={() => navigate("/mobile")}>
+              See More
+            </button>
+          </div>
+        </div>
+      </section>
       <KnowledgeCity />
+
       <Partners />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Digital Workbench</h2>
+            <p>A smart workspace for tools you use every day.</p>
+            <button className="cta-primary" onClick={() => navigate("/mobile")}>
+              See More
+            </button>
+          </div>
+        </div>
+      </section>
       <Testimonial />
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 >
-              D'roid Companion
-            </h2>
+            <h2>D'roid Companion</h2>
             <p>
               Experience technology that adapts to your lifestyle. The D'roid
               Companion is more than just a phone — it's your creative

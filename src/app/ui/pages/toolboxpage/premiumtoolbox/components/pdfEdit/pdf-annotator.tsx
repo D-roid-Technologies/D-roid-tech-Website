@@ -432,9 +432,6 @@ const PDFAnnotator: React.FC<PDFAnnotatorProps> = ({ selectedFile }) => {
         <div className="pdf-container">
           <PDFViewer
             pdfFile={selectedFile}
-            onPageRender={handlePageRender}
-            scale={scale}
-            pageNumber={currentPage}
           />
           <canvas
             ref={overlayCanvasRef}
