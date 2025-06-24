@@ -223,8 +223,8 @@ const ToolBoxPage: React.FunctionComponent = () => {
           />
 
           {/* Results Count */}
-          <div className="text-center">
-            <p className="text-gray-600">
+          <div style={{ textAlign: "center" }}>
+            <p style={{ color: "black" }}>
               {filteredTools.length === tools.length
                 ? `Showing all ${tools.length} tools`
                 : `Found ${filteredTools.length} of ${tools.length} tools`}
@@ -246,8 +246,8 @@ const ToolBoxPage: React.FunctionComponent = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg mb-4">
+          <div style={{ textAlign: "center", padding: "8px" }}>
+            <p style={{ marginBottom: "8px", color: "#071d6a" }}>
               No tools found matching your criteria
             </p>
             <button
@@ -256,7 +256,13 @@ const ToolBoxPage: React.FunctionComponent = () => {
                 setSelectedCategory("All");
                 setShowPremiumOnly(false);
               }}
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              style={{
+                backgroundColor: "#071d6a",
+                color: "white",
+                fontSize: "14px",
+                padding: "1rem",
+                marginInline: "auto",
+              }}
             >
               Clear All Filters
             </button>
