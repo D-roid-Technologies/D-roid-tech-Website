@@ -174,7 +174,9 @@ const AnimationDescriptionPage: React.FC = () => {
         <div className={styles.actionBox}>
           <h3>Experience {storyData.title}</h3>
           <div className={styles.actionButtons}>
-            <button className={styles.watchBtn}>Watch Animation</button>
+            <button className={styles.watchBtn} disabled>
+              Watch Animation
+            </button>
             <button className={styles.readBtn}>Read Story</button>
           </div>
         </div>

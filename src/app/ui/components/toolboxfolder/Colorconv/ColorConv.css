@@ -110,7 +110,7 @@
 
 .color-converter__swap-btn {
   padding: 0.75rem;
-  background: #2563eb;
+  background: rgb(214, 207, 207);
   color: white;
   border: none;
   border-radius: 0.75rem;
