@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { RootState } from "../../../redux/Store";
 import TrainingApplicationForm from "../trainingPrograms/TrainingApplicationform";
 
 const CareerDescriptionPage: React.FC = () => {
@@ -8,6 +11,7 @@ const CareerDescriptionPage: React.FC = () => {
   const openings = location.state;
 
   const [showForm, setShowForm] = useState(false);
+  const isUserLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
 
   if (!openings) {
     return (
@@ -36,7 +40,7 @@ const CareerDescriptionPage: React.FC = () => {
                   cursor: "pointer",
                 }}
               >
-                ← Back
+                ← Back to Careers
               </button>
             </div>
             <h1 className="software-header">{openings.title}</h1>
@@ -47,10 +51,10 @@ const CareerDescriptionPage: React.FC = () => {
       {/* Details Section */}
       <div className="wrapper" style={{ padding: "2rem" }}>
         <h2 style={{ color: "#000000" }}>Program Overview</h2>
-        <p style={{ color: "#000000" }}>{openings.description}</p>
+        <p style={{ color: "#000000", marginBottom: 20 }}>{openings.description}</p>
 
         <h3 style={{ color: "#000000" }}>Details</h3>
-        <ul style={{ color: "#000000" }}>
+        <ul style={{ color: "#000000", marginBottom: 20 }}>
           <li>
             <strong>Duration:</strong> {openings.duration}
           </li>
@@ -66,30 +70,30 @@ const CareerDescriptionPage: React.FC = () => {
         </ul>
 
         <h3 style={{ color: "#000000" }}>How to Apply</h3>
-        <p style={{ color: "#000000" }}>{openings.howToApply}</p>
+        <p style={{ color: "#000000", marginBottom: 20 }}>{openings.howToApply}</p>
 
         <h3 style={{ color: "#000000" }}>Your Benefits</h3>
-        <p style={{ color: "#000000" }}>{openings.benefits}</p>
+        <p style={{ color: "#000000", marginBottom: 20 }}>{openings.benefits}</p>
 
         {/* Apply Now Button */}
         {!showForm && (
-          <button
-            onClick={() => setShowForm(true)}
-            style={{
-              marginTop: "1rem",
-              padding: "10px 20px",
-              background: "#071d6a",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
+          <button onClick={() => {
+            if (!isUserLoggedIn) {
+              toast.error('Please log in or sign up.', {
+                style: {
+                  background: '#ff4d4f',
+                  color: '#fff',
+                },
+              });
+              setTimeout(() => {
+                navigate("/auth/join-our-community")
+              }, 3000)
+            }
+          }} className="apply-button">
             Apply Now
           </button>
         )}
 
-        {/* Show form when button is clicked */}
         {showForm && (
           <div style={{ marginTop: "2rem" }}>
             <TrainingApplicationForm programTitle={openings.title} />
