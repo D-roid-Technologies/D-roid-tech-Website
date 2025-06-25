@@ -25,6 +25,7 @@
     "firebase": "^11.6.1",
     "framer-motion": "^12.9.7",
     "gsap": "^3.13.0",
+    "html2pdf.js": "^0.10.3",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.518.0",
     "node-cron": "^4.0.5",
