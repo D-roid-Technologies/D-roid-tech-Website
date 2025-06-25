@@ -6,6 +6,7 @@ import "../../pages/softwareDevelopment/SoftwareDevelopmentPage.css";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import {
   FaAccessibleIcon,
+  FaCcDiscover,
   FaCode,
   FaPencilRuler,
   FaServer,
@@ -17,34 +18,66 @@ import {
 } from "../../../redux/slices/AppEntrySlice";
 import ContactSoftware from "../contact/ContactSection/ContactSoftware";
 import { useNavigate } from "react-router-dom";
+import SoftwareService from "./SoftwareService";
+import { TbBusinessplan } from "react-icons/tb";
+import { SiCssdesignawards, SiProtonvpn, SiTestcafe } from "react-icons/si";
+import { GrHostMaintenance } from "react-icons/gr";
 
 const devPhases = [
   {
-    title: "Discovery & Planning",
+    title: "Discovery",
     description:
       "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
-    icon: FaAccessibleIcon({ size: 24 }),
+    icon: FaCcDiscover({ size: 24 }),
     url: "",
   },
   {
-    title: "Design & Prototyping",
+    title: "Planning",
+    description:
+      "We create a detailed roadmap, defining features, timelines, and resources needed to bring your vision to life.",
+    icon: TbBusinessplan({ size: 24 }),
+    url: "",
+  },
+  {
+    title: "Design",
     description:
       "Our UI/UX experts create sleek interfaces and clickable prototypes to bring ideas to life—before writing code.",
-    icon: FaPencilRuler({ size: 24 }),
+    icon: SiCssdesignawards({ size: 24 }),
     url: "",
   },
   {
-    title: "Development & Testing",
+    title: "Prototyping",
+    description:
+      "We build interactive prototypes to validate concepts and gather feedback, ensuring we’re on the right track.",
+    icon: SiProtonvpn({ size: 24 }),
+    url: "",
+  },
+  {
+    title: "Development",
     description:
       "We build clean, scalable code using modern frameworks and run extensive testing to ensure quality.",
     icon: FaCode({ size: 24 }),
     url: "",
   },
   {
-    title: "Deployment & Maintenance",
+    title: "Testing",
+    description:
+      "Thorough QA testing to catch bugs, ensure performance, and validate functionality across devices and platforms.",
+    icon: SiTestcafe({ size: 24 }),
+    url: "",
+  },
+  {
+    title: "Deployment ",
     description:
       "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
     icon: FaServer({ size: 24 }),
+    url: "",
+  },
+  {
+    title: "Maintenance",
+    description:
+      "Ongoing support to ensure your software remains secure, up-to-date, and optimized for performance.",
+    icon: GrHostMaintenance({ size: 24 }),
     url: "",
   },
 ];
@@ -109,10 +142,18 @@ const SoftwareDevelopmentPage: React.FC = () => {
             <h1 className="software-header">Software Development</h1>
             <p>
               We build scalable, performant, and user-focused software tailored
-              to your business needs—from concept to launch.
+              to your business needs from concept to launch.
             </p>
           </div>
         </div>
+      </div>
+
+      {/* software service bullet point */}
+      <div
+        className="soft-ser"
+        style={{ marginTop: "60px", marginBottom: "60px" }}
+      >
+        <SoftwareService />
       </div>
 
       {/* What We Build */}
@@ -146,8 +187,8 @@ const SoftwareDevelopmentPage: React.FC = () => {
       <div className="soft-cta" style={{ marginBottom: "60px" }}>
         <h2 className="cta-header">Ready to build something great?</h2>
         <p>
-          Whether it’s an app, platform, or SaaS—you bring the idea, we’ll build
-          the solution.
+          From apps to platforms and SaaS products — you provide the vision, we
+          deliver the solution.
         </p>
         <button
           className="soft-cta-button"
@@ -172,43 +213,45 @@ const SoftwareDevelopmentPage: React.FC = () => {
             );
           }}
         >
-          Start a Project →
+          Start a Project
         </button>
       </div>
 
       {/* Approach Section */}
-      <div className="wrapper soft-wrapper">
-        <span
-          className="soft-dev-header title_span"
-          style={{ background: "#e2e8f0" }}
-        >
-          Our Development Process
-        </span>
-        <div className="soft-dev-content">
-          {devPhases.map((phase, index) => (
-            <CoreValueCardTwo
-              key={index}
-              title={phase.title}
-              description={phase.description}
-              icon={phase.icon}
-              // url="{tech.url}"
-              onClick={() => {
-                store.dispatch(updateModal(true));
-                store.dispatch(
-                  updateModalContent({
-                    appTitle: phase.title,
-                    appBody: (
-                      <>
-                        <span>{phase.description}</span>
-                        {/* <ContactSection /> */}
-                      </>
-                    ),
-                  })
-                );
-              }}
-              className="process-card"
-            />
-          ))}
+      <div className="bg-color-gradient">
+        <div className="wrapper soft-wrapper ">
+          <span
+            className="soft-dev-header title_span"
+            style={{ background: "#e2e8f0" }}
+          >
+            Our Development Process
+          </span>
+          <div className="soft-dev-content">
+            {devPhases.map((phase, index) => (
+              <CoreValueCardTwo
+                key={index}
+                title={phase.title}
+                description={phase.description}
+                icon={phase.icon}
+                // url="{tech.url}"
+                onClick={() => {
+                  store.dispatch(updateModal(true));
+                  store.dispatch(
+                    updateModalContent({
+                      appTitle: phase.title,
+                      appBody: (
+                        <>
+                          <span>{phase.description}</span>
+                          {/* <ContactSection /> */}
+                        </>
+                      ),
+                    })
+                  );
+                }}
+                className="process-card"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

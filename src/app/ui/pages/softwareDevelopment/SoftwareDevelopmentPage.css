@@ -18,6 +18,36 @@
   padding-left: 60px;
 } */
 
+.bg-color-gradient {
+  /* background: linear-gradient(180deg, #f8f6ff 0%, #ffffff 100%); */
+  background: linear-gradient(180deg, #faf9ff 0%, #8191fd 100%);
+  /* background: radial-gradient(
+    circle at 20% 50%,
+    #120a8f 0%,
+    #000000 50%,
+    #0f4c75 100%
+  ); */
+  /*background: linear-gradient(
+    45deg,
+    #ff6b6b,
+    #4ecdc4,
+    #45b7d1,
+    #96ceb4,
+    #feca57
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite; */
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  /* background: linear-gradient(
+    45deg,
+    #0f172a 0%,
+    #1e293b 25%,
+    #334155 50%,
+    #475569 100%
+  ); */
+  /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); */
+}
+
 .us-header {
   font-size: 4rem;
   color: #ffffff;
@@ -44,7 +74,11 @@
 /* call to action */
 .soft-cta {
   background-color: #071d6a;
-  padding: 50px;
+  /* background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+    linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+  background-size: 200px 200px; */
+
+  padding: 100px;
   text-align: center;
   color: #ffffff;
   margin-top: 60px;
@@ -75,7 +109,7 @@
   }
 }
 .soft-cta-button {
-  margin-top: 20px;
+  margin-top: 40px;
   display: inline-block;
   background-color: #ffffff;
   color: #071d6a;
