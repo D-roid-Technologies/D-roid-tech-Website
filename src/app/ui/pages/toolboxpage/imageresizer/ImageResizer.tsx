@@ -2,8 +2,10 @@ import React from "react";
 import NavBar from "../../../components/navbar/NavBar";
 import ImageRezised from "../../../components/toolboxfolder/imageresizing/ImageRezised";
 import { useNavigate } from "react-router-dom";
+import { ToolProps } from "../../../../utils/Types";
 
-const ImageResizer = () => {
+
+const ImageResizer = ({ onClose }: ToolProps) => {
   const navigate = useNavigate();
   return (
     <div>

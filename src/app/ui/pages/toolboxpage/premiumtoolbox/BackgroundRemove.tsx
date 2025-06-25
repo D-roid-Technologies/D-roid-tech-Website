@@ -1,349 +1,299 @@
-import React, { useState, useRef, useCallback } from "react";
-import { MdOutlineCropFree } from "react-icons/md";
-import { BsCloudUpload } from "react-icons/bs";
-import { RxCrossCircled } from "react-icons/rx";
-import { CiImageOn, CiSaveDown2 } from "react-icons/ci";
-import { BiLoaderAlt } from "react-icons/bi";
-import { IoExitOutline } from "react-icons/io5";
-import "./BackgroundRemove.css";
+"use client"
+
+import React from "react"
+import { useState, useRef, useCallback } from "react"
+import {
+  Upload,
+  X,
+  ImageIcon,
+  Download,
+  Loader2,
+  RotateCcw,
+  Settings,
+  ChevronDown,
+  Zap,
+  Key,
+  ExternalLink,
+} from "lucide-react"
+import "./BackgroundRemove.css"
 
 interface ProcessingState {
-  isProcessing: boolean;
-  progress: number;
-  stage: string;
+  isProcessing: boolean
+  progress: number
+  stage: string
 }
 
-interface ComponentProps {
-  onClose: () => void;
+interface BackgroundRemoverProps {
+  onClose?: () => void
 }
 
-const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const [originalImage, setOriginalImage] = useState<string | null>(null);
-  const [processedImage, setProcessedImage] = useState<string | null>(null);
-  const [dragActive, setDragActive] = useState(false);
+const BackgroundRemove: React.FC<BackgroundRemoverProps> = ({ onClose }) => {
+  const [originalImage, setOriginalImage] = useState<string | null>(null)
+  const [processedImage, setProcessedImage] = useState<string | null>(null)
+  const [dragActive, setDragActive] = useState(false)
   const [processing, setProcessing] = useState<ProcessingState>({
     isProcessing: false,
     progress: 0,
     stage: "",
-  });
-  const [error, setError] = useState<string | null>(null);
+  })
+  const [error, setError] = useState<string | null>(null)
+  const [outputFormat, setOutputFormat] = useState<"png" | "webp" | "jpeg">("png")
+  const [outputQuality, setOutputQuality] = useState<number>(0.9)
+  const [showSettings, setShowSettings] = useState<boolean>(false)
+  const [apiKey, setApiKey] = useState<string>("")
+  const [showApiKeyInput, setShowApiKeyInput] = useState<boolean>(false)
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const originalImageRef = useRef<HTMLImageElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const originalImageRef = useRef<HTMLImageElement>(null)
 
   const handleDrag = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
     if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
+      setDragActive(true)
     } else if (e.type === "dragleave") {
-      setDragActive(false);
+      setDragActive(false)
     }
-  }, []);
+  }, [])
 
   const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
+    e.preventDefault()
+    e.stopPropagation()
+    setDragActive(false)
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFile(e.dataTransfer.files[0]);
+      handleFile(e.dataTransfer.files[0])
     }
-  }, []);
+  }, [])
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      handleFile(e.target.files[0]);
+      handleFile(e.target.files[0])
     }
-  };
+  }
 
   const handleFile = (file: File) => {
     if (!file.type.startsWith("image/")) {
-      setError("Please select a valid image file");
-      return;
+      setError("Please select a valid image file")
+      return
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      setError("File size must be less than 10MB");
-      return;
+    if (file.size > 12 * 1024 * 1024) {
+      setError("File size must be less than 12MB for Remove.bg")
+      return
     }
 
-    setError(null);
-    const reader = new FileReader();
+    setError(null)
+    const reader = new FileReader()
     reader.onload = (e) => {
-      setOriginalImage(e.target?.result as string);
-      setProcessedImage(null);
-    };
-    reader.readAsDataURL(file);
-  };
+      setOriginalImage(e.target?.result as string)
+      setProcessedImage(null)
+    }
+    reader.readAsDataURL(file)
+  }
 
-  const simulateAIProcessing = async (): Promise<string> => {
-    const stages = [
-      "Analyzing image...",
-      "Detecting objects...",
-      "Identifying background...",
-      "Processing edges...",
-      "Removing background...",
-      "Finalizing image...",
-    ];
+  // Convert data URL to blob
+  const dataURLtoBlob = (dataURL: string): Blob => {
+    const arr = dataURL.split(",")
+    const mime = arr[0].match(/:(.*?);/)![1]
+    const bstr = atob(arr[1])
+    let n = bstr.length
+    const u8arr = new Uint8Array(n)
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n)
+    }
+    return new Blob([u8arr], { type: mime })
+  }
 
-    for (let i = 0; i < stages.length; i++) {
-      setProcessing((prev) => ({
-        ...prev,
-        stage: stages[i],
-        progress: ((i + 1) / stages.length) * 100,
-      }));
-
-      await new Promise((resolve) =>
-        setTimeout(resolve, 800 + Math.random() * 400)
-      );
+  // Remove.bg API integration
+  const removeBackgroundWithRemoveBg = async (imageBlob: Blob): Promise<string> => {
+    if (!apiKey.trim()) {
+      throw new Error("Please enter your Remove.bg API key in settings")
     }
 
-    // Simulate background removal by creating a canvas
-    return new Promise((resolve) => {
-      if (!originalImageRef.current) {
-        resolve(originalImage!);
-        return;
+    const formData = new FormData()
+    formData.append("image_file", imageBlob)
+    formData.append("size", "auto")
+
+    setProcessing((prev) => ({ ...prev, stage: "Uploading to D'roid.bg...", progress: 20 }))
+
+    const response = await fetch("https://api.remove.bg/v1.0/removebg", {
+      method: "POST",
+      headers: {
+        "X-Api-Key": apiKey.trim(),
+      },
+      body: formData,
+    })
+
+    setProcessing((prev) => ({ ...prev, stage: "Processing with AI...", progress: 60 }))
+
+    if (!response.ok) {
+      if (response.status === 402) {
+        throw new Error("D'roid.bg: Insufficient credits. Please check your account.")
+      } else if (response.status === 403) {
+        throw new Error("D'roid.bg: Invalid API key. Please check your API key.")
+      } else if (response.status === 400) {
+        throw new Error("D'roid.bg: Invalid image format or size.")
+      } else {
+        throw new Error(`D'roid.bg API error: ${response.status} - ${response.statusText}`)
       }
+    }
 
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      const img = originalImageRef.current;
+    setProcessing((prev) => ({ ...prev, stage: "Downloading result...", progress: 80 }))
 
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
+    const blob = await response.blob()
+    return URL.createObjectURL(blob)
+  }
 
-      if (ctx) {
-        // Draw the original image
-        ctx.drawImage(img, 0, 0);
+  // Convert image format
+  const convertImageFormat = async (imageUrl: string, format: string, quality: number): Promise<string> => {
+    return new Promise((resolve) => {
+      const img = new Image()
+      img.crossOrigin = "anonymous"
+      img.onload = () => {
+        const canvas = document.createElement("canvas")
+        const ctx = canvas.getContext("2d")!
 
-        // Get image data
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
+        canvas.width = img.width
+        canvas.height = img.height
 
-        // Simple background removal simulation (remove pixels similar to corners)
-        const cornerColor = [data[0], data[1], data[2]];
-        const threshold = 100;
-
-        for (let i = 0; i < data.length; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-
-          const diff = Math.sqrt(
-            Math.pow(r - cornerColor[0], 2) +
-              Math.pow(g - cornerColor[1], 2) +
-              Math.pow(b - cornerColor[2], 2)
-          );
-
-          if (diff < threshold) {
-            data[i + 3] = 0; // Make transparent
-          }
+        if (format === "jpeg") {
+          // Add white background for JPEG
+          ctx.fillStyle = "#ffffff"
+          ctx.fillRect(0, 0, canvas.width, canvas.height)
         }
 
-        ctx.putImageData(imageData, 0, 0);
+        ctx.drawImage(img, 0, 0)
+
+        const mimeType = format === "jpeg" ? "image/jpeg" : `image/${format}`
+        const dataUrl = canvas.toDataURL(mimeType, quality)
+        resolve(dataUrl)
       }
+      img.src = imageUrl
+    })
+  }
 
-      resolve(canvas.toDataURL("image/png"));
-    });
-  };
-
+  // Main processing function
   const processImage = async () => {
-    if (!originalImage) return;
+    if (!originalImage) return
+
+    if (!apiKey.trim()) {
+      setError("Please enter your Remove.bg API key in the settings panel")
+      setShowSettings(true)
+      return
+    }
 
     setProcessing({
       isProcessing: true,
       progress: 0,
-      stage: "Initializing...",
-    });
+      stage: "Preparing image...",
+    })
 
     try {
-      const result = await simulateAIProcessing();
-      setProcessedImage(result);
+      // Convert image to blob for API upload
+      const imageBlob = dataURLtoBlob(originalImage)
+
+      // Process with Remove.bg
+      let result = await removeBackgroundWithRemoveBg(imageBlob)
+
+      // Convert to desired format if needed
+      if (outputFormat !== "png") {
+        setProcessing((prev) => ({ ...prev, stage: "Converting format...", progress: 90 }))
+        result = await convertImageFormat(result, outputFormat, outputQuality)
+      }
+
+      setProcessing((prev) => ({ ...prev, stage: "Complete!", progress: 100 }))
+      setProcessedImage(result)
     } catch (err) {
-      setError("Failed to process image. Please try again.");
+      const errorMessage = err instanceof Error ? err.message : "Failed to process image"
+      setError(errorMessage)
+      console.error("Processing error:", err)
     } finally {
       setProcessing({
         isProcessing: false,
         progress: 0,
         stage: "",
-      });
+      })
     }
-  };
+  }
 
   const downloadImage = () => {
-    if (!processedImage) return;
+    if (!processedImage) return
 
-    const link = document.createElement("a");
-    link.href = processedImage;
-    link.download = "background-removed.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+    const link = document.createElement("a")
+    link.href = processedImage
+    const formatExtension = outputFormat === "jpeg" ? "jpg" : outputFormat
+    link.download = `background-removed-${Date.now()}.${formatExtension}`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   const resetImages = () => {
-    setOriginalImage(null);
-    setProcessedImage(null);
-    setError(null);
+    setOriginalImage(null)
+    setProcessedImage(null)
+    setError(null)
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      fileInputRef.current.value = ""
     }
-  };
+  }
 
-  // NEW SIMULATE
+  const saveApiKey = () => {
+    if (apiKey.trim()) {
+      localStorage.setItem("removebg_api_key", apiKey.trim())
+      setShowApiKeyInput(false)
+      setError(null)
+    }
+  }
 
-  // const simulateAIProcessing = async (): Promise<string> => {
-  //   const stages = [
-  //     "Analyzing image...",
-  //     "Detecting objects...",
-  //     "Identifying background...",
-  //     "Processing edges...",
-  //     "Removing background...",
-  //     "Finalizing image...",
-  //   ];
-
-  //   for (let i = 0; i < stages.length; i++) {
-  //     setProcessing((prev) => ({
-  //       ...prev,
-  //       stage: stages[i],
-  //       progress: ((i + 1) / stages.length) * 100,
-  //     }));
-
-  //     await new Promise((resolve) =>
-  //       setTimeout(resolve, 800 + Math.random() * 400)
-  //     );
-  //   }
-
-  //   return new Promise((resolve) => {
-  //     if (!originalImageRef.current) {
-  //       resolve(originalImage!);
-  //       return;
-  //     }
-
-  //     const canvas = document.createElement("canvas");
-  //     const ctx = canvas.getContext("2d");
-  //     const img = originalImageRef.current;
-
-  //     canvas.width = img.naturalWidth;
-  //     canvas.height = img.naturalHeight;
-
-  //     if (ctx) {
-  //       ctx.drawImage(img, 0, 0);
-  //       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  //       const data = imageData.data;
-
-  //       // Sample multiple edge points for better background detection
-  //       const samplePoints = [
-  //         [0, 0], // top-left
-  //         [canvas.width - 1, 0], // top-right
-  //         [0, canvas.height - 1], // bottom-left
-  //         [canvas.width - 1, canvas.height - 1], // bottom-right
-  //         [Math.floor(canvas.width / 2), 0], // top-center
-  //         [Math.floor(canvas.width / 2), canvas.height - 1], // bottom-center
-  //         [0, Math.floor(canvas.height / 2)], // left-center
-  //         [canvas.width - 1, Math.floor(canvas.height / 2)], // right-center
-  //       ];
-
-  //       // Get background colors from sample points
-  //       const backgroundColors = samplePoints.map(([x, y]) => {
-  //         const index = (y * canvas.width + x) * 4;
-  //         return [data[index], data[index + 1], data[index + 2]];
-  //       });
-
-  //       // Improved background removal with edge detection
-  //       for (let y = 0; y < canvas.height; y++) {
-  //         for (let x = 0; x < canvas.width; x++) {
-  //           const index = (y * canvas.width + x) * 4;
-  //           const r = data[index];
-  //           const g = data[index + 1];
-  //           const b = data[index + 2];
-
-  //           // Check if pixel is close to any background color
-  //           let isBackground = false;
-  //           const threshold = 120; // Increased threshold for better results
-
-  //           for (const bgColor of backgroundColors) {
-  //             const colorDistance = Math.sqrt(
-  //               Math.pow(r - bgColor[0], 2) +
-  //                 Math.pow(g - bgColor[1], 2) +
-  //                 Math.pow(b - bgColor[2], 2)
-  //             );
-
-  //             // Additional check for edge pixels (more likely to be background)
-  //             const isEdgePixel =
-  //               x < 20 ||
-  //               x > canvas.width - 20 ||
-  //               y < 20 ||
-  //               y > canvas.height - 20;
-
-  //             const adjustedThreshold = isEdgePixel
-  //               ? threshold * 1.5
-  //               : threshold;
-
-  //             if (colorDistance < adjustedThreshold) {
-  //               isBackground = true;
-  //               break;
-  //             }
-  //           }
-
-  //           // Apply gradient transparency near edges for smoother result
-  //           if (isBackground) {
-  //             const edgeDistance = Math.min(
-  //               x,
-  //               y,
-  //               canvas.width - x,
-  //               canvas.height - y
-  //             );
-
-  //             if (edgeDistance < 10) {
-  //               // Gradient transparency near edges
-  //               data[index + 3] = Math.max(0, (edgeDistance / 10) * 255);
-  //             } else {
-  //               // Full transparency for clear background areas
-  //               data[index + 3] = 0;
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //       ctx.putImageData(imageData, 0, 0);
-  //     }
-
-  //     resolve(canvas.toDataURL("image/png"));
-  //   });
-  // };
+  // Load API key from localStorage on component mount
+  React.useEffect(() => {
+    const savedApiKey = localStorage.getItem("removebg_api_key")
+    if (savedApiKey) {
+      setApiKey(savedApiKey)
+    } else {
+      // Set the provided API key as default
+      setApiKey("1pMdn4xEsgg8T4rrWtcX91Eu")
+      localStorage.setItem("removebg_api_key", "1pMdn4xEsgg8T4rrWtcX91Eu")
+    }
+  }, [])
 
   return (
     <div className="airbg-container">
       <div className="airbg-header">
         <div className="airbg-header-content">
-          <MdOutlineCropFree className="airbg-header-icon" />
-          <h1 className="airbg-title">AI Background Remover</h1>
-          <p className="airbg-subtitle">
-            Remove backgrounds from your images instantly using AI
-          </p>
+          <ImageIcon className="airbg-header-icon" />
+          <h1 className="airbg-title">D'roid.bg Background Remover</h1>
+          <p className="airbg-subtitle">Professional background removal using advanced AI technology</p>
+          {apiKey && (
+            <div className="airbg-api-status">
+              <Zap size={16} />
+              D'roid.bg API Connected - Ready to process!
+            </div>
+          )}
         </div>
       </div>
 
       <div className="airbg-main">
         {!originalImage ? (
           <div
-            className={`airbg-upload-zone ${
-              dragActive ? "airbg-drag-active" : ""
-            }`}
+            className={`airbg-upload-zone ${dragActive ? "airbg-drag-active" : ""}`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current?.click()}
           >
-            <BsCloudUpload className="airbg-upload-icon" />
+            <Upload className="airbg-upload-icon" />
             <h3 className="airbg-upload-title">Drop your image here</h3>
             <p className="airbg-upload-text">or click to browse files</p>
             <div className="airbg-upload-formats">
               <span>Supports: JPG, PNG, WEBP</span>
-              <span>Max size: 10MB</span>
+              <span>Max size: 12MB</span>
+            </div>
+            <div className="airbg-removebg-note">
+              <Zap size={16} />
+              <span>Powered by D'roid.bg • Advanced AI Processing</span>
             </div>
             <input
               ref={fileInputRef}
@@ -357,61 +307,135 @@ const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           <div className="airbg-editor">
             <div className="airbg-editor-header">
               <button onClick={resetImages} className="airbg-reset-btn">
-                <RxCrossCircled size={16} />
+                <RotateCcw size={16} />
                 Start Over
               </button>
+            </div>
+
+            <div className="airbg-settings-panel">
+              <button onClick={() => setShowSettings(!showSettings)} className="airbg-settings-toggle">
+                <Settings size={16} />
+                API & Output Settings
+                <ChevronDown size={16} className={showSettings ? "rotate-180" : ""} />
+              </button>
+
+              {showSettings && (
+                <div className="airbg-settings-content">
+                  <div className="airbg-setting-group">
+                    <label className="airbg-setting-label">D'roid.bg API Key</label>
+                    {!showApiKeyInput && apiKey ? (
+                      <div className="airbg-api-key-display">
+                        <div className="airbg-api-key-masked">
+                          <Key size={16} />
+                          <span>API Key: ••••••••{apiKey.slice(-4)}</span>
+                          <button onClick={() => setShowApiKeyInput(true)} className="airbg-change-key-btn">
+                            Change
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="airbg-api-key-input">
+                        <input
+                          type="password"
+                          value={apiKey}
+                          onChange={(e) => setApiKey(e.target.value)}
+                          placeholder="Enter your Remove.bg API key"
+                          className="airbg-setting-input"
+                        />
+                        <button onClick={saveApiKey} className="airbg-save-key-btn">
+                          Save
+                        </button>
+                      </div>
+                    )}
+                    <div className="airbg-api-help">
+                      <ExternalLink size={14} />
+                      <span>Powered by advanced AI technology for professional results</span>
+                    </div>
+                  </div>
+
+                  <div className="airbg-setting-group">
+                    <label className="airbg-setting-label">Output Format</label>
+                    <select
+                      value={outputFormat}
+                      onChange={(e) => setOutputFormat(e.target.value as "png" | "webp" | "jpeg")}
+                      className="airbg-setting-select"
+                    >
+                      <option value="png">PNG (Lossless, Transparent)</option>
+                      <option value="webp">WebP (Modern, Smaller Size)</option>
+                      <option value="jpeg">JPEG (Smallest Size, No Transparency)</option>
+                    </select>
+                  </div>
+
+                  {(outputFormat === "webp" || outputFormat === "jpeg") && (
+                    <div className="airbg-setting-group">
+                      <label className="airbg-setting-label">Quality: {Math.round(outputQuality * 100)}%</label>
+                      <input
+                        type="range"
+                        min="0.1"
+                        max="1"
+                        step="0.1"
+                        value={outputQuality}
+                        onChange={(e) => setOutputQuality(Number.parseFloat(e.target.value))}
+                        className="airbg-setting-slider"
+                      />
+                      <div className="airbg-quality-labels">
+                        <span>Lower Size</span>
+                        <span>Higher Quality</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {outputFormat === "jpeg" && (
+                    <div className="airbg-setting-note">
+                      <X size={14} />
+                      Note: JPEG format doesn't support transparency. Background will be white.
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="airbg-image-grid">
               <div className="airbg-image-panel">
                 <div className="airbg-panel-header">
-                  <CiImageOn size={16} />
+                  <ImageIcon size={16} />
                   <span>Original</span>
                 </div>
                 <div className="airbg-image-container">
                   <img
                     ref={originalImageRef}
-                    src={originalImage}
+                    src={originalImage || "/placeholder.svg"}
                     alt="Original"
                     className="airbg-image"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>
 
               <div className="airbg-image-panel">
                 <div className="airbg-panel-header">
-                  <MdOutlineCropFree size={16} />
+                  <Zap size={16} />
                   <span>Background Removed</span>
                 </div>
                 <div className="airbg-image-container airbg-transparent-bg">
                   {processing.isProcessing ? (
                     <div className="airbg-processing">
-                      <BiLoaderAlt className="airbg-spinner" />
+                      <Loader2 className="airbg-spinner" />
                       <div className="airbg-progress-info">
-                        <div className="airbg-progress-text">
-                          {processing.stage}
-                        </div>
+                        <div className="airbg-progress-text">{processing.stage}</div>
                         <div className="airbg-progress-bar">
-                          <div
-                            className="airbg-progress-fill"
-                            style={{ width: `${processing.progress}%` }}
-                          />
+                          <div className="airbg-progress-fill" style={{ width: `${processing.progress}%` }} />
                         </div>
-                        <div className="airbg-progress-percent">
-                          {Math.round(processing.progress)}%
-                        </div>
+                        <div className="airbg-progress-percent">{Math.round(processing.progress)}%</div>
                       </div>
                     </div>
                   ) : processedImage ? (
-                    <img
-                      src={processedImage}
-                      alt="Processed"
-                      className="airbg-image"
-                    />
+                    <img src={processedImage || "/placeholder.svg"} alt="Processed" className="airbg-image" />
                   ) : (
                     <div className="airbg-placeholder">
-                      <CiImageOn className="airbg-placeholder-icon" />
+                      <Zap className="airbg-placeholder-icon" />
                       <p>Click "Remove Background" to process</p>
+                      <p className="airbg-placeholder-subtext">Powered by D'roid.bg AI</p>
                     </div>
                   )}
                 </div>
@@ -423,18 +447,16 @@ const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 <button
                   onClick={processImage}
                   className="airbg-btn airbg-btn-primary"
+                  disabled={processing.isProcessing || !apiKey.trim()}
                 >
-                  <MdOutlineCropFree size={18} />
-                  Remove Background
+                  <Zap size={18} />
+                  Remove Background with D'roid.bg
                 </button>
               )}
 
               {processedImage && (
-                <button
-                  onClick={downloadImage}
-                  className="airbg-btn airbg-btn-success"
-                >
-                  <CiSaveDown2 size={18} />
+                <button onClick={downloadImage} className="airbg-btn airbg-btn-success">
+                  <Download size={18} />
                   Download Result
                 </button>
               )}
@@ -444,7 +466,7 @@ const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
         {error && (
           <div className="airbg-error">
-            <IoExitOutline size={16} />
+            <X size={16} />
             {error}
           </div>
         )}
@@ -452,23 +474,23 @@ const BackgroundRemove: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
       <div className="airbg-features">
         <div className="airbg-feature">
-          <div className="airbg-feature-icon">🎯</div>
-          <h3>Precise Detection</h3>
-          <p>Advanced AI accurately identifies and removes backgrounds</p>
+          <div className="airbg-feature-icon">🏆</div>
+          <h3>Industry Leading</h3>
+          <p>Remove.bg is the most trusted background removal service used by millions</p>
         </div>
         <div className="airbg-feature">
           <div className="airbg-feature-icon">⚡</div>
           <h3>Lightning Fast</h3>
-          <p>Process images in seconds with our optimized algorithms</p>
+          <p>Professional results in seconds with cloud-powered AI processing</p>
         </div>
         <div className="airbg-feature">
-          <div className="airbg-feature-icon">📱</div>
-          <h3>Any Device</h3>
-          <p>Works perfectly on desktop, tablet, and mobile devices</p>
+          <div className="airbg-feature-icon">🎯</div>
+          <h3>Perfect Quality</h3>
+          <p>Precise edge detection and subject preservation for flawless results</p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BackgroundRemove;
+export default BackgroundRemove

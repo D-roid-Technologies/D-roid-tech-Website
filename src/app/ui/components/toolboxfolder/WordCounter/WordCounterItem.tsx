@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import WordCounterItem from "./WordCounterItem";
+import { ToolProps } from "../../../../utils/Types";
 
-const WordCounter: React.FC = () => {
+
+const WordCounterItem: React.FC = ({ onClose }: ToolProps) => {
     const [text, setText] = useState("");
     const navigate = useNavigate();
 
@@ -27,31 +28,24 @@ const WordCounter: React.FC = () => {
 
     return (
         <>
-            <div className="software-main">
-                <div className="software-main-content">
-                    <div style={{ margin: "1rem 0" }}>
-                        <button
-                            onClick={() => navigate(-1)}
-                            style={{
-                                padding: "10px 16px",
-                                backgroundColor: "blue",
-                                border: "1px solid #000000",
-                                borderRadius: "4px",
-                                cursor: "pointer"
-                            }}
-                        >
-                            ← Back to ToolBox
-                        </button>
-                    </div>
+           
 
-                    <h1 className="software-header">Word Counter</h1>
-                    <p>
-                        A real-time word, character, and space counting tool. Perfect for writers, students, and developers needing quick insights into their text.
-                    </p>
+            <div style={styles.container}>
+                <h2 style={{ color: "#071D6A", fontWeight: "900" }}>Simple Word Counter</h2>
+
+                <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Type or paste your text here..."
+                    style={styles.textarea}
+                />
+
+                <div style={styles.outputGroup}>
+                    <OutputRow label="Words" value={wordCount} onCopy={handleCopy} />
+                    <OutputRow label="Characters" value={charCount} onCopy={handleCopy} />
+                    <OutputRow label="Spaces" value={spaceCount} onCopy={handleCopy} />
                 </div>
             </div>
-
-            <WordCounterItem/>
         </>
     );
 };
@@ -115,4 +109,4 @@ const styles: { [key: string]: React.CSSProperties } = {
     },
 };
 
-export default WordCounter;
+export default WordCounterItem;

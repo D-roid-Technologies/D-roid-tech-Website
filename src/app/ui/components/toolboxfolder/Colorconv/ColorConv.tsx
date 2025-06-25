@@ -4,10 +4,11 @@ import "../Colorconv/ColorConv.css";
 import { BsPalette2 } from "react-icons/bs";
 import { FiCheckCircle, FiRefreshCw } from "react-icons/fi";
 import { IoCopyOutline } from "react-icons/io5";
+import { ToolProps } from "../../../../utils/Types";
 
 type Format = "hex" | "rgb" | "hsl";
 
-const ColorConv: React.FC = () => {
+const ColorConv: React.FC = ({ onClose }: ToolProps) => {
   const [from, setFrom] = useState<Format>("hex");
   const [to, setTo] = useState<Format>("rgb");
   const [input, setInput] = useState("#3b82f6");

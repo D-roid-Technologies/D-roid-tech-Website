@@ -23,8 +23,152 @@ import { LuFileJson } from "react-icons/lu";
 import { GiPowerGenerator } from "react-icons/gi";
 import { SiLetsencrypt } from "react-icons/si";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
+import ColorConverter from "./colorconverter/ColorConverter";
 
 export const tools = [
+  {
+    title: "Image Resizing",
+    description:
+      "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
+    icon: FaCompressArrowsAlt({ size: 24 }),
+    component: "ImageResizing",
+    category: "Image Tools",
+    link: "/toolbox/imageresizing",
+  },
+  {
+    title: "Color Converter",
+    description:
+      "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration.",
+    icon: FaPalette({ size: 24 }),
+    component: "ColorConverter",
+    category: "Color Tools",
+    link: "./colorconverter/ColorConverter",
+  },
+  {
+    title: "Image Compressor",
+    description:
+      "Smart compression reduces file sizes up to 90% without quality loss.",
+    icon: FaImages({ size: 24 }),
+    component: "ImageCompressor",
+    category: "Image Tools",
+    link: "/toolbox/imagecompressor",
+  },
+  {
+    title: "Crop Tool",
+    description:
+      "Trim or cut images to focus on specific parts with precision.",
+    icon: BiSolidCrop({ size: 24 }),
+    component: "CropTool",
+    category: "Image Tools",
+    link: "/toolbox/croptool",
+  },
+  {
+    title: "Color Picker",
+    description:
+      "Select and copy hex/RGB/HSV codes from screen or palette.",
+    icon: CgColorPicker({ size: 24 }),
+    component: "ColorPicker",
+    category: "Color Tools",
+    link: "/toolbox/colorPicker",
+  },
+  {
+    title: "Word Counter",
+    description:
+      "Count words, characters, paragraphs, and reading time.",
+    icon: FaFileWord({ size: 24 }),
+    component: "WordCounter",
+    category: "Text Tools",
+    link: "/toolbox/wordcounter",
+  },
+  {
+    title: "Currency Converter",
+    description:
+      "Get real-time conversion rates for global currencies.",
+    icon: BsCurrencyExchange({ size: 24 }),
+    component: "CurrencyConverter", // 👈 used in switch
+    category: "Calculation Tools",
+    link: "/toolbox/currency-converter",
+  },
+  {
+    title: "JSON Formatter",
+    description:
+      "Beautify and format JSON with syntax highlighting.",
+    icon: LuFileJson({ size: 24 }),
+    component: "JsonFormatter",
+    category: "Developer Tools",
+    link: "/toolbox/jsonformatter",
+  },
+  {
+    title: "UUID Generator",
+    description:
+      "Generate UUIDs for development with bulk options.",
+    icon: GiPowerGenerator({ size: 24 }),
+    component: "UUIDGenerator",
+    category: "Developer Tools",
+    link: "/toolbox/uuidgenerator",
+  },
+  {
+    title: "Base64 Encoder/Decoder",
+    description:
+      "Encode or decode base64 for secure data handling.",
+    icon: SiLetsencrypt({ size: 24 }),
+    component: "Base64EncoderDecoder",
+    category: "Developer Tools",
+    link: "/toolbox/encoderbasetool",
+  },
+  {
+    title: "AI Background Remover",
+    description:
+      "Remove backgrounds from images using AI precision.",
+    icon: FaMagic({ size: 24 }),
+    component: "BackgroundRemove", 
+    category: "Image Tools",
+    link: "/toolbox/ai-background-remover",
+    isPremium: true,
+  },
+  {
+    title: "Advanced PDF Editor",
+    description:
+      "Merge, split, sign, and annotate PDFs with advanced tools.",
+    icon: FaFilePdf({ size: 24 }),
+    component: "PDFEditor", 
+    category: "Document Tools",
+    link: "/toolbox/advanced-pdf-editor",
+    isPremium: true,
+  },
+  {
+    title: "Resume & CV Analyzer",
+    description:
+      "Analyze and score your resume with AI feedback.",
+    icon: FaUserTie({ size: 24 }),
+    component: "ResumeAnalyzer", 
+    category: "Career Tools",
+    link: "/toolbox/resumeanalyzer",
+    isPremium: true,
+  },
+  {
+    title: "Code Complexity Analyzer",
+    description:
+      "Detect code complexity and hotspots in your codebase.",
+    icon: FaCodeBranch({ size: 24 }),
+    component: "CodeComplexityAnalyzer", 
+    category: "Developer Tools",
+    link: "/toolbox/code-complexity",
+    isPremium: true,
+  },
+  {
+    title: "Bulk Image Watermarker",
+    description:
+      "Add watermarks to multiple images for branding/copyright.",
+    icon: FaStamp({ size: 24 }),
+    component: "BulkImageWatermarker", 
+    category: "Image Tools",
+    link: "/toolbox/bulk-image",
+    isPremium: true,
+  },
+];
+
+export const tool = [
   {
     title: "Image Resizing",
     description:
@@ -42,7 +186,7 @@ export const tools = [
     icon: FaPalette({ size: 24 }),
     category: "Color Tools",
      component: "ColorConverter",
-    link: "/toolbox/colorconverter",
+    link: "./colorconverter/ColorConverter",
   },
   {
     title: "Image Compressor",

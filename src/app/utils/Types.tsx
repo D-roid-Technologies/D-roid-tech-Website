@@ -241,3 +241,7 @@ export type LocationState = {
   principalSubdivision: string;
   principalSubdivisionCode: string;
 }
+
+export type ToolProps = {
+  onClose?: () => void;
+};

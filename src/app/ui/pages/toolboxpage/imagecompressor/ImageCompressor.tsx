@@ -1,8 +1,9 @@
 import React from "react";
 import NavBar from "../../../components/navbar/NavBar";
 import ImageCompress from "../../../components/toolboxfolder/imagecompress/ImageCompress";
+import { ToolProps } from "../../../../utils/Types";
 
-const ImageCompressor = () => {
+const ImageCompressor = ({onClose} :ToolProps ) => {
   return (
     <div>
       <NavBar />

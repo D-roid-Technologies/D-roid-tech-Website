@@ -6,8 +6,9 @@ import toast from "react-hot-toast";
 import { IoMdDownload, IoMdArrowBack, IoMdCloudUpload } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import "./ImageCompress.css";
+import { ToolProps } from "../../../../utils/Types";
 
-const ImageCompress: React.FC = () => {
+const ImageCompress: React.FC = ({ onClose }: ToolProps) => {
   const [image, setImage] = useState<File | null>(null);
   const [compressedUrl, setCompressedUrl] = useState<string | null>(null);
   const [isCompressing, setIsCompressing] = useState<boolean>(false);

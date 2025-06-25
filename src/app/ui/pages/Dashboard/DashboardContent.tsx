@@ -62,76 +62,89 @@ import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 import OhmslawCalculator from "../calculator/OhmslawCalculator";
 import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
+import ImageResizer from "../toolboxpage/imageresizer/ImageResizer";
+import ImageCompressor from "../toolboxpage/imagecompressor/ImageCompressor";
+import CropTool from "../toolboxpage/croptool/CropTool";
+import ColorPicker from "../../components/toolboxfolder/colorPicker/ColorPicker";
+import WordCounter from "../../components/toolboxfolder/WordCounter/WordCounter";
+import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater";
+import UUIDGenerator from "../toolboxpage/uuidgenerator/UuidGenerator";
+import Base64Tool from "../toolboxpage/Encoder/Encoder";
 import { FaWallet } from "react-icons/fa6";
 import ClassRoom from "./ClassRoom";
 import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
 import SchedulePage from "../schedule/SchedulePage";
-import { tools } from "../toolboxpage/ToolBoxItems";
+import { tool } from "../toolboxpage/ToolBoxItems";
 import CareersDashboard from "./CareersDashboard";
+import ColorConv from "../../components/toolboxfolder/Colorconv/ColorConv";
+import ImageCompress from "../../components/toolboxfolder/imagecompress/ImageCompress";
+import WordCounterItem from "../../components/toolboxfolder/WordCounter/WordCounterItem";
+import UuidGeneratorItem from "../toolboxpage/uuidgenerator/UuidGeneratorItem";
+import EncoderItem from "../toolboxpage/Encoder/EncoderItem";
 
-const tools1 = [
-  {
-    title: "Currency Converter",
-    description:
-      "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
-    icon: BsCurrencyExchange({ size: 24 }),
-    category: "Calculation Tools",
-    component: "CurrencyConverter", // Add component identifier
-    link: "",
-  },
-  {
-    title: "AI Background Remover",
-    description:
-      "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
-    icon: FaMagic({ size: 24 }),
-    category: "Image Tools",
-    component: "BackgroundRemove", // Add component identifier
-    link: "",
-    isPremium: true,
-  },
-  {
-    title: "Advanced PDF Editor",
-    description:
-      "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
-    icon: FaFilePdf({ size: 24 }),
-    category: "Document Tools",
-    component: "PDFEditor", // Add component identifier
-    link: "",
-    isPremium: true,
-  },
-  {
-    title: "Resume & CV Analyzer",
-    description:
-      "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
-    icon: FaUserTie({ size: 24 }),
-    category: "Career Tools",
-    component: "ResumeAnalyzer", // Add component identifier
-    link: "",
-    isPremium: true,
-  },
-  {
-    title: "Code Complexity Analyzer",
-    description:
-      "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
-    icon: FaCodeBranch({ size: 24 }),
-    category: "Developer Tools",
-    component: "CodeComplexityAnalyzer",
-    link: "",
-    isPremium: true,
-  },
-  {
-    title: "Bulk Image Watermarker",
-    description:
-      "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
-    icon: FaStamp({ size: 24 }),
-    category: "Image Tools",
-    component: "BulkImageWatermarker",
-    link: "",
-    isPremium: true,
-  },
-];
+// const tools = [
+//   {
+//     title: "Currency Converter",
+//     description:
+//       "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
+//     icon: BsCurrencyExchange({ size: 24 }),
+//     category: "Calculation Tools",
+//     component: "CurrencyConverter", // Add component identifier
+//     link: "",
+//   },
+//   {
+//     title: "AI Background Remover",
+//     description:
+//       "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
+//     icon: FaMagic({ size: 24 }),
+//     category: "Image Tools",
+//     component: "BackgroundRemove", // Add component identifier
+//     link: "",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Advanced PDF Editor",
+//     description:
+//       "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
+//     icon: FaFilePdf({ size: 24 }),
+//     category: "Document Tools",
+//     component: "PDFEditor", // Add component identifier
+//     link: "",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Resume & CV Analyzer",
+//     description:
+//       "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
+//     icon: FaUserTie({ size: 24 }),
+//     category: "Career Tools",
+//     component: "ResumeAnalyzer", // Add component identifier
+//     link: "",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Code Complexity Analyzer",
+//     description:
+//       "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
+//     icon: FaCodeBranch({ size: 24 }),
+//     category: "Developer Tools",
+//     component: "CodeComplexityAnalyzer",
+//     link: "",
+//     isPremium: true,
+//   },
+//   {
+//     title: "Bulk Image Watermarker",
+//     description:
+//       "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
+//     icon: FaStamp({ size: 24 }),
+//     category: "Image Tools",
+//     component: "BulkImageWatermarker",
+//     link: "",
+//     isPremium: true,
+//   },
+// ];
 
 const calculators = [
   {
@@ -214,25 +227,63 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   };
 
   // Create a function to render the active tool component
-  const renderToolComponent = () => {
-    switch (activeTool) {
-      case "CurrencyConverter":
-        return <CurrencyConvert onClose={handleCloseTool} />;
-      case "ResumeAnalyzer":
-        return <ResumeAnalyzing onClose={handleCloseTool} />;
-      case "BackgroundRemove":
-        return <BackgroundRemove onClose={handleCloseTool} />;
-      case "PDFEditor":
-        return <PdfEdit onClose={handleCloseTool} />;
-      case "CodeComplexityAnalyzer":
-        return <CodeComplex onClose={handleCloseTool} />;
-      case "BulkImageWatermarker":
-        return <ImageMark onClose={handleCloseTool} />;
+  // const renderToolComponent = () => {
+  //   switch (activeTool) {
+  //     case "CurrencyConverter":
+  //       return <CurrencyConvert onClose={handleCloseTool} />;
+  //     case "ResumeAnalyzer":
+  //       return <ResumeAnalyzing onClose={handleCloseTool} />;
+  //     case "BackgroundRemove":
+  //       return <BackgroundRemove onClose={handleCloseTool} />;
+  //     case "PDFEditor":
+  //       return <PdfEdit onClose={handleCloseTool} />;
+  //     case "CodeComplexityAnalyzer":
+  //       return <CodeComplex onClose={handleCloseTool} />;
+  //     case "BulkImageWatermarker":
+  //       return <ImageMark onClose={handleCloseTool} />;
 
-      default:
-        return null;
-    }
-  };
+  //     default:
+  //       return null;
+  //   }
+  // };
+
+  const renderToolComponent = () => {
+  switch (activeTool) {
+    case "ImageResizing":
+      return <ImageResizer onClose={handleCloseTool}  />;  //working
+    case "ColorConverter": 
+      return <ColorConv  />; //working but onClose={handleCloseTool} is not
+    case "ImageCompressor":
+      return <ImageCompress/>; ////Not working but onClose={handleCloseTool} is not
+    case "CropTool":
+      return <CropTool />;////Not working 
+    case "ColorPicker":
+      return <ColorPicker  />;////Not working 
+    case "WordCounter":
+      return <WordCounterItem/>; //working but onClose={handleCloseTool} is not
+    case "CurrencyConverter":
+      return <CurrencyConvert onClose={handleCloseTool} />; //working but No item
+    case "JsonFormatter":
+      return <JsonFormatter  />; // working
+    case "UUIDGenerator":
+      return <UuidGeneratorItem/>;
+    case "Base64EncoderDecoder":
+      return <EncoderItem />;
+    case "BackgroundRemove":
+      return <BackgroundRemove onClose={handleCloseTool} />;
+    case "PDFEditor":
+      return <PdfEdit onClose={handleCloseTool} />;
+    case "ResumeAnalyzer":
+      return <ResumeAnalyzing onClose={handleCloseTool} />;
+    case "CodeComplexityAnalyzer":
+      return <CodeComplex onClose={handleCloseTool} />;
+    case "BulkImageWatermarker":
+      return <ImageMark onClose={handleCloseTool} />;
+    default:
+      return <p>Select a tool to get started.</p>;
+  }
+};
+
 
   //Calculator
   // Update the handleLaunchTool function
@@ -535,7 +586,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               // Render the tools grid
               <>
                 <div className="soft-dev-content">
-                  {tools.map((tech, index) => (
+                  {tool.map((tech, index) => (
                     <ToolsCard
                       key={index}
                       title={tech.title}
