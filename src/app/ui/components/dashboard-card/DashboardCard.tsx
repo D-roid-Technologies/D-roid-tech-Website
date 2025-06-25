@@ -2,7 +2,7 @@ import type React from "react"
 import "./DashboardCard.css"
 
 interface DashboardCardProps {
-  icon: React.ReactNode
+  icon?: React.ReactNode
   title: string
   description: string
 }
