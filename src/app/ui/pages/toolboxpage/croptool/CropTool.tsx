@@ -5,8 +5,9 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ReactCrop, { Crop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import { ToolProps } from "../../../../utils/Types";
 
-const CropTool: React.FC = () => {
+const CropTool: React.FC = ({onClose} : ToolProps) => {
   const [src, setSrc] = useState<string | null>(null);
   const [crop, setCrop] = useState<Crop>({ unit: "%", width: 50, aspect: 1 });
   const [completedCrop, setCompletedCrop] = useState<Crop | null>(null);
