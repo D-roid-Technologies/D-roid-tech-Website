@@ -15,7 +15,7 @@ import {
   Key,
   ExternalLink,
 } from "lucide-react"
-import "./BackgroundRemove.css"
+import "./BackgroundRemover.css"
 
 interface ProcessingState {
   isProcessing: boolean
