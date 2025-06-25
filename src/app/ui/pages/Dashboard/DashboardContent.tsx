@@ -30,6 +30,7 @@ import {
   FaFolderOpen,
   FaHeart,
   FaDonate,
+  FaServicestack,
 } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import PersonalDetails from "./PersonalDetails";
@@ -67,6 +68,7 @@ import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
 import SchedulePage from "../schedule/SchedulePage";
+import CareersDashboard from "./CareersDashboard";
 
 const tools = [
   {
@@ -325,6 +327,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
       ? orgSpecificItems[orgType]
       : []),
+    { label: "Services", icon: FaServicestack },
+    { label: "Careers", icon: FaBriefcase },
     { label: "Schedules", icon: FaCalendarAlt },
     { label: "Tool Box", icon: FaToolbox },
     { label: "Calculate", icon: FaCalculator },
@@ -497,7 +501,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             </p>
             <div style={{ marginTop: "20px" }}>
               <TaskScheduler />
-              
+
             </div>
           </Section>
         );
@@ -672,6 +676,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Your Library">
             <Library />
+          </Section>
+        );
+      case "Services":
+        return (
+          <Section title="Your Services">
+            <Finance />
+          </Section>
+        );
+      case "Careers":
+        return (
+          <Section title="Your Careers">
+            <CareersDashboard />
           </Section>
         );
       case "Finance":

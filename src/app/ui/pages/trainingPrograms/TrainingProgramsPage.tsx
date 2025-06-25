@@ -6,142 +6,117 @@ import { useNavigate } from "react-router-dom";
 
 const programs = [
   {
-    title: "Frontend Development Bootcamp",
-    subTitle: "Build stunning websites from scratch.",
+    title: "The Frontend Developer Training",
+    subTitle: "Master the art of building stunning, responsive web interfaces from scratch",
     summary:
-      "Learn HTML, CSS, JavaScript, React, and responsive design from the ground up. Perfect for beginners and those looking to switch careers.",
-    duration: "12 weeks",
+      "A practical, project-based training program designed to equip you with the core skills and tools needed for modern frontend development using HTML, CSS, JavaScript, and popular frameworks like React.",
+    duration: "24 weeks",
     description:
-      "This bootcamp is designed to take you from zero to a confident frontend developer. You'll master the building blocks of the web: HTML for content structure, CSS for layout and design, and JavaScript for interactivity. You'll then dive into React, the most popular JavaScript framework, to build complex and scalable user interfaces. The course emphasizes hands-on projects, version control with Git, and responsive design principles to ensure your sites work across all devices.",
-    level: "Beginner",
-    tools: ["HTML", "CSS", "JavaScript", "React", "Git"],
-    mode: "Online",
+      "The Frontend Development Training program is a comprehensive course designed for aspiring developers, career switchers, or anyone looking to strengthen their web development skills. \nYou’ll learn how to build interactive, accessible, and mobile-friendly websites using industry-standard technologies and tools. Through hands-on projects, real-world examples, and personalized mentorship, you’ll gain the confidence and experience to take on frontend roles in professional environments. This training covers everything from basic web structure to advanced concepts like component-based development, API integration, responsive design, state management, and performance optimization. Whether you’re aiming to work freelance, join a tech team, or build your own product, this course gives you the practical knowledge and portfolio to succeed.",
+    level: "Beginner to Intermediate (No prior coding experience required, but basic computer skills are assumed)",
+    tools: ["HTML5 / CSS3 / JavaScript (ES6+)", "Git & GitHub", "Visual Studio Code", "Chrome DevTools", "React.js", "Tailwind CSS", "API Integration (REST)", "Figma (for UI interpretation)"],
+    mode: ["Online (self-paced or instructor-led)", "Optional live Q&A sessions", "Project-based assessments", "Slack/Discord support community", "Certificate upon completion"],
     url: "",
     howToApply: [
-      "Read through the description.",
-      { label: "Join our community", href: "/auth/join-our-community" },
-      "Register your account as a member.",
-      "After registration, take down your unique ID.",
-      "Go back to the training form, fill in all required fields, and click on submit.",
+      "Visit our application page at www.droidtechhq.com/training",
+      "Select the Frontend Developer",
+      "Read through the entire page",
+      { label: "Register to Begin your Training", href: "/auth/join-our-community" },
+      "On your Dashboard, go to carrers",
+      "Select 'The Frontend Developer Training'",
+      "Fill out the registration form with your details",
+      "Choose your learning track (self-paced or live)",
+      "Make Payment",
+      "Receive your onboarding email and start building!",
     ],
     benefits:
-      "Gain real-world coding experience through hands-on projects. Build a strong foundation for frontend development roles. Receive mentorship from industry professionals and access to a network of alumni and job opportunities.",
+      [
+        "Learn in-demand frontend skills from industry professionals",
+        "Build a job-ready portfolio with real projects",
+        "Flexible learning: study at your own pace",
+        "Access to community support and mentorship",
+        "Certificate of completion to showcase your skills",
+        "Lifetime access to Udemy/Pluralsight",
+        "CV and Cover Letter Optimiation",
+        "Job Assistance",
+      ],
     gallery: [
       "/images/frontend/1.jpg",
       "/images/frontend/2.jpg",
       "/images/frontend/3.jpg",
     ],
+    price: [
+      "Self Paced Track: ₦1,689,599.00",
+      "Instructor-led track: ₦2,370,299.00",
+      "Scholarships and group discounts may be available."
+    ],
+    learn: [
+      "Digital Skills: Basic computing, Microsoft Office, web design, social media marketing",
+      "Creative Skills: Graphic design, photography, video editing",
+      "Technical Skills: Electrical repairs, plumbing, auto mechanics",
+      "Artisan Skills: Tailoring, baking, soap making, beadwork",
+      "Entrepreneurship: Branding, pricing, marketing, business setup basics",
+    ],
+    trainer: ["Ekendilichukwu Okoli", { label: "Visit Ekene's Website", href: "www.ekenedilichukwu.com" },]
   },
   {
-    title: "Backend Engineering with Node.js",
-    subTitle: "Power the web with scalable backend services.",
+    title: "Skill Acquisition Training",
+    subTitle: "Empowering Individuals with Practical, Job-Ready Skills for a Competitive World",
     summary:
-      "Master server-side development with Node.js, Express, RESTful APIs, databases, and authentication.",
-    duration: "10 weeks",
-    description:
-      "In this program, you’ll learn how to build powerful server-side applications using Node.js and Express. You'll explore the architecture of modern backend systems, dive into RESTful API development, and connect applications to databases like MongoDB. You’ll also gain practical experience with authentication, middleware, and error handling. This course focuses on real-world backend challenges, scalability, and how backend services power fullstack applications.",
-    level: "Intermediate",
-    tools: ["Node.js", "Express", "MongoDB", "JWT"],
-    mode: "Hybrid",
-    url: "",
-    howToApply: [
-      "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
-    ],
-    benefits:
-      "Understand the complete flow of data in a web application. Build secure and scalable APIs. Become proficient in the most in-demand backend technologies with career-ready skills.",
-    gallery: [
-      "/images/backend/1.jpg",
-      "/images/backend/2.jpg",
-      "/images/backend/3.jpg",
-    ],
-  },
-  {
-    title: "UI/UX Design Essentials",
-    subTitle: "Design experiences users love.",
-    summary:
-      "Understand the principles of great design, prototyping with Figma, user research, and design systems.",
-    duration: "8 weeks",
-    description:
-      "This course provides a foundational understanding of User Interface (UI) and User Experience (UX) design. You’ll start with design thinking and user research, then move into wireframing and high-fidelity mockups using Figma and Adobe XD. The course emphasizes usability, accessibility, and mobile-first design. By the end, you'll be able to build interactive prototypes, conduct user testing, and create cohesive design systems for scalable product development.",
-    level: "Beginner to Intermediate",
-    tools: ["Figma", "Adobe XD", "Miro", "Notion"],
-    mode: "Online",
-    url: "",
-    howToApply: [
-      "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
-    ],
-    benefits:
-      "Build a professional design portfolio. Learn from working designers with real-world insights. Access exclusive design communities and job leads.",
-    gallery: ["/images/uiux/1.jpg", "/images/uiux/2.jpg", "/images/uiux/3.jpg"],
-  },
-  {
-    title: "Fullstack Engineering",
-    subTitle: "Become a complete web developer.",
-    summary:
-      "Become a job-ready developer by learning both frontend and backend technologies, including React, Node, and databases.",
-    duration: "16 weeks",
-    description:
-      "This comprehensive fullstack course equips you with both client-side and server-side skills. You'll begin with frontend development using HTML, CSS, JavaScript, and React. Then you'll transition to backend technologies including Node.js, Express, and MongoDB. You'll learn how to build full-featured applications from scratch, manage API calls, handle user authentication, and deploy your applications to the web. It’s an ideal path for those looking to become versatile software developers.",
-    level: "Intermediate",
-    tools: ["React", "Node.js", "Express", "MongoDB", "Git"],
-    mode: "Hybrid",
-    url: "",
-    howToApply: [
-      "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
-    ],
-    benefits:
-      "Become a versatile developer capable of building complete applications. Get career coaching and support with job applications. Participate in a capstone project reviewed by industry mentors.",
-    gallery: [
-      "/images/fullstack/1.jpg",
-      "/images/fullstack/2.jpg",
-      "/images/fullstack/3.jpg",
-    ],
-  },
-  {
-    title: "Data & Python for Beginners",
-    subTitle: "Step into tech with Python and data basics.",
-    summary:
-      "Get introduced to programming and data analysis using Python—perfect for those curious about tech, AI, or automation.",
-    duration: "6 weeks",
-    description:
-      "This beginner-friendly course introduces you to the fundamentals of programming using Python. You’ll learn variables, loops, conditionals, and functions before moving into data handling with libraries like Pandas and NumPy. The course also covers basic data analysis and visualization using Jupyter Notebooks. It's an ideal entry point for aspiring data scientists, analysts, or anyone interested in automation and AI.",
-    level: "Beginner",
-    tools: ["Python", "Pandas", "Jupyter", "NumPy"],
-    mode: "Online",
-    url: "",
-    howToApply: [
-      "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
-    ],
-    benefits:
-      "Start your tech journey with one of the easiest yet powerful languages. Learn to clean, analyze, and visualize data. Use skills that can open doors in tech, science, finance, and automation.",
-    gallery: [
-      "/images/python/1.jpg",
-      "/images/python/2.jpg",
-      "/images/python/3.jpg",
-    ],
-  },
-  {
-    title: "Crafted Careers",
-    subTitle: "Skills for sustainable careers.",
-    summary:
-      "A training designed to empower individuals with practical job-ready skills that can lead to meaningful and sustainable careers.",
+      "A hands-on training program designed to equip learners with in-demand practical skills across various industries, helping them become self-reliant, employable, and future-ready.",
     duration: "4 weeks",
     description:
-      "Crafted Careers focuses on career empowerment by teaching you how to align your passions with job opportunities. You'll work on personal branding, resume writing, LinkedIn optimization, and interview strategies. Soft skills like communication, teamwork, and time management are emphasized, alongside job search techniques and mock interviews. By the end, you'll have a clear action plan and the confidence to pursue your career goals.",
-    level: "All levels",
-    tools: ["Career Planning", "Soft Skills", "Interview Prep"],
-    mode: "In-Person",
+      [
+        "Skill Acquisition Training is a comprehensive, instructor-led program tailored to individuals looking to build practical expertise in technical and non-technical fields. Whether you're a student, a job seeker, or an entrepreneur, this program offers real-world skills that can lead directly to employment or self-employment.",
+        "The course covers a range of disciplines including digital literacy, coding, graphic design, tailoring, electrical work, plumbing, baking, and more—depending on the participant’s interest and local industry needs. Our expert instructors provide step-by-step guidance through theory, demonstration, and hands-on practice.",
+        "The program emphasizes self-sufficiency, critical thinking, and problem-solving. By the end of the training, participants will not only acquire core skills but also understand how to apply them in real-world scenarios, including how to market themselves or start a small business."
+      ],
+    level: "Beginner to Intermediate (No prior experience required)",
+    tools: ["Computers and internet (for digital skills)", "SSewing machines (for tailoring)", "Basic electrical tools (for electrical training)", "Software tools like Adobe Photoshop, VS Code, Microsoft Office", "Raw materials and toolkits for practical hands-on sessions"],
+    mode: ["Hybrid: In-person practicals with optional online theory sessions", "Flexible schedule: Weekday/weekend options available", "Group or individual formats available"],
     url: "",
     howToApply: [
-      "1. Read through the description.\n2. Navigate to the [Join our community] page.\n3. Register your account as a member.\n4. After registration, take down your unique ID.\n5. Go back to the training form, fill in all required fields, and click on submit.",
+      "Visit our application page at www.droidtechhq.com/training",
+      "Select the Skill Acquisition Training",
+      "Read through the entire page",
+      { label: "Register to Begin your Training", href: "/auth/join-our-community" },
+      "On your Dashboard, go to carrers",
+      "Select 'Skill Acquisition Training'",
+      "Fill out the registration form with your details",
+      "Choose your learning track (self-paced or live)",
+      "Make Payment",
+      "Receive your onboarding email and start building!",
     ],
     benefits:
-      "Clarify your career goals and personal brand. Gain confidence in interviews and networking. Get personalized mentorship and job-seeking strategies.",
+      [
+        "Learn job-ready and income-generating skills",
+        "Certification upon completion",
+        "Access to mentorship and career support",
+        "Tools and starter kits may be provided for some tracks",
+        "Opportunity to join a growing alumni network and referral programs",
+        "Boost confidence and self-sufficiency",
+      ],
     gallery: [
-      "/images/careers/1.jpg",
-      "/images/careers/2.jpg",
-      "/images/careers/3.jpg",
+      "/images/frontend/1.jpg",
+      "/images/frontend/2.jpg",
+      "/images/frontend/3.jpg",
     ],
+    price: [
+      "Starting from ₦210,835.07 – ₦1,054,175.34 (depending on skill track and materials required)",
+      "Scholarships and group discounts may be available."
+    ],
+    learn: [
+      "Structure and style web pages using HTML & CSS",
+      "Write interactive web logic with modern JavaScript",
+      "Build single-page applications with React",
+      "Create responsive layouts for desktop and mobile",
+      "Use APIs to fetch and display dynamic data",
+      "Follow best practices in code organization and accessibility",
+      "Version control with Git and deploy your work online",
+      "Debug and optimize performance in the browser",
+      "Collaborate using design tools and developer handoff methods"
+    ],
+    trainer: ["Ekendilichukwu Okoli", { label: "Visit Ekene's Website", href: "https://www.ekenedilichukwu.com" },]
   },
 ];
 
