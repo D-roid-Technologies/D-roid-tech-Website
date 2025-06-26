@@ -24,6 +24,8 @@ import { SiCssdesignawards, SiProtonvpn, SiTestcafe } from "react-icons/si";
 import { GrHostMaintenance } from "react-icons/gr";
 import ProductsSmall from "../products/ProductsSmall";
 import Testimonial from "../testimonial/Testimonial";
+import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
+import SoftwarePricingCard from "./SoftwarePricingCard";
 
 const devPhases = [
   {
@@ -173,7 +175,8 @@ const SoftwareDevelopmentPage: React.FC = () => {
               onClick={() => handleTechnologyClick(tech)}
               style={{ cursor: "pointer" }}
             >
-              <CoreValueCardTwo
+              {/* <CoreValueCardTwo */}
+              <NoReadMoreCard
                 key={index}
                 title={tech.title}
                 description={tech.description}
@@ -263,6 +266,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
       </div>
       {/* testimonial */}
       <Testimonial />
+      <SoftwarePricingCard />
     </div>
   );
 };
