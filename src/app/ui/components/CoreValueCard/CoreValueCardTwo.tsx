@@ -36,24 +36,20 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <h3 className="core-value-card-title">{title}</h3>
         <p className="core-value-card-description">{description}</p>
 
-        {readmore &&
-          (pressable === false ? (
-            <div className="mt-3">
-              <a
-                onClick={onClick}
-                href={url || undefined}
-                className="custom-link"
-              >
-                Read more →
-              </a>
-            </div>
-          ) : (
-            <div className="mt-3">
-              <button className="desktop-cta" onClick={onClick}>
-                Explore
-              </button>
-            </div>
-          ))}
+        {(link || onClick) && (
+  <div className="mt-3">
+    {link ? (
+      <a href={link} className="launch-button">
+        Launch
+      </a>
+    ) : (
+      <button className="launch-button" onClick={onClick}>
+        Launch
+      </button>
+    )}
+  </div>
+)}
+
 
         {link && (
           <div className="mt-2">

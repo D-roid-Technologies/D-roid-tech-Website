@@ -1,56 +1,9 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import EncoderItem from "./EncoderItem";
 
 const Base64Tool: React.FC = () => {
-  const [text, setText] = useState("");
-  const [encoded, setEncoded] = useState("");
-  const [decoded, setDecoded] = useState("");
   const navigate = useNavigate();
-
-  const handleEncode = () => {
-    try {
-      const encodedText = btoa(text);
-      setEncoded(encodedText);
-      toast.success("Text encoded successfully!", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
-    } catch {
-      toast.error("Encoding failed!", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
-    }
-  };
-
-  const handleDecode = () => {
-    try {
-      const decodedText = atob(text);
-      setDecoded(decodedText);
-      toast.success("Text decoded successfully!", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
-    } catch {
-      toast.error("Decoding failed!", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
-    }
-  };
-
-  const handleCopy = (label: string, value: string) => {
-    navigator.clipboard
-      .writeText(value)
-      .then(() => {
-        toast.success(`${label} copied to clipboard!`, {
-          style: { background: "#4BB543", color: "#fff" },
-        });
-      })
-      .catch(() => {
-        toast.error(`Failed to copy ${label}`, {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-      });
-  };
 
   return (
     <>
@@ -77,11 +30,9 @@ const Base64Tool: React.FC = () => {
           </p>
         </div>
       </div>
-<EncoderItem/>
-    
+      <EncoderItem />
     </>
   );
 };
-
 
 export default Base64Tool;

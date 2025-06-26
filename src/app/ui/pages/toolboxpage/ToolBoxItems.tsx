@@ -25,7 +25,7 @@ import { SiLetsencrypt } from "react-icons/si";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
 import ColorConverter from "./colorconverter/ColorConverter";
 
-export const tools = [
+export const Alltools = [
   {
     title: "Image Resizing",
     description:
@@ -168,13 +168,13 @@ export const tools = [
   },
 ];
 
-export const tool = [
+export const tools = [
   {
     title: "Image Resizing",
     description:
       "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
     icon: FaCompressArrowsAlt({ size: 24 }),
-    component: "BackgroundRemove",
+    component: "ImageResizing",
     category: "Image Tools",
     link: "/toolbox/imageresizing",
 
