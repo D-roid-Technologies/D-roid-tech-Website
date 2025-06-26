@@ -25,11 +25,9 @@ const ScheduleTool: React.FunctionComponent = () => {
   ];
   return (
     <div>
-   
       {/* Hero */}
-     
+
       <div className="wrapper soft-wrapper">
-        
         <div className="soft-dev-content">
           {schedules.map((tech, index) => (
             <CoreValueCardTwo

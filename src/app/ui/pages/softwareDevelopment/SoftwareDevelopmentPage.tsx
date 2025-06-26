@@ -22,6 +22,10 @@ import SoftwareService from "./SoftwareService";
 import { TbBusinessplan } from "react-icons/tb";
 import { SiCssdesignawards, SiProtonvpn, SiTestcafe } from "react-icons/si";
 import { GrHostMaintenance } from "react-icons/gr";
+import ProductsSmall from "../products/ProductsSmall";
+import Testimonial from "../testimonial/Testimonial";
+import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
+import SoftwarePricingCard from "./SoftwarePricingCard";
 
 const devPhases = [
   {
@@ -171,7 +175,8 @@ const SoftwareDevelopmentPage: React.FC = () => {
               onClick={() => handleTechnologyClick(tech)}
               style={{ cursor: "pointer" }}
             >
-              <CoreValueCardTwo
+              {/* <CoreValueCardTwo */}
+              <NoReadMoreCard
                 key={index}
                 title={tech.title}
                 description={tech.description}
@@ -183,8 +188,13 @@ const SoftwareDevelopmentPage: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Project */}
+      <div>
+        <ProductsSmall />
+      </div>
       {/* Call to Action */}
-      <div className="soft-cta" style={{ marginBottom: "60px" }}>
+      <div className="soft-cta">
         <h2 className="cta-header">Ready to build something great?</h2>
         <p>
           From apps to platforms and SaaS products — you provide the vision, we
@@ -254,6 +264,9 @@ const SoftwareDevelopmentPage: React.FC = () => {
           </div>
         </div>
       </div>
+      {/* testimonial */}
+      <Testimonial />
+      <SoftwarePricingCard />
     </div>
   );
 };

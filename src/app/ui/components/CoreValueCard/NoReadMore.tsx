@@ -14,7 +14,7 @@ interface CoreValueCardProps {
   readmore?: boolean;
 }
 
-const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
+const NoReadMoreCard: React.FC<CoreValueCardProps> = ({
   title,
   description,
   imageSrc,
@@ -36,7 +36,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <h3 className="core-value-card-title">{title}</h3>
         <p className="core-value-card-description">{description}</p>
 
-        {readmore &&
+        {/* {readmore &&
           (pressable === false ? (
             <div className="mt-3">
               <a
@@ -53,7 +53,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
                 Explore
               </button>
             </div>
-          ))}
+          ))} */}
 
         {link && (
           <div className="mt-2">
@@ -67,4 +67,4 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
   );
 };
 
-export default CoreValueCardTwo;
+export default NoReadMoreCard;

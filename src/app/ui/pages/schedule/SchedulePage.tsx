@@ -5,6 +5,7 @@ import { RoutePaths } from "../../../routes/Index";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
+import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
 
 const SchedulePage: React.FunctionComponent = () => {
   const schedules = [
@@ -48,7 +49,7 @@ const SchedulePage: React.FunctionComponent = () => {
         </span>
         <div className="soft-dev-content">
           {schedules.map((tech, index) => (
-            <CoreValueCardTwo
+            <NoReadMoreCard
               key={index}
               title={tech.title}
               description={tech.description}
