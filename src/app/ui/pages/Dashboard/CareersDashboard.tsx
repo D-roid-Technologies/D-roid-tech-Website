@@ -94,7 +94,7 @@ const CareersDashboard: React.FunctionComponent = () => {
                                 }}>
                                     <DashboardCard
                                         key={index}
-                                        // icon={item.icon}
+                                        icon={item.icon}
                                         title={item.title}
                                         description={item.description}
                                     />
