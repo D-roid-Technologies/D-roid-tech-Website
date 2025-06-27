@@ -3,12 +3,17 @@ import {
   FaAccessibleIcon,
   FaCode,
   FaPencilRuler,
+  FaReact,
   FaServer,
 } from "react-icons/fa";
 import { TbApiApp } from "react-icons/tb";
 import { BiWorld } from "react-icons/bi";
-import { MdFactCheck } from "react-icons/md";
-import { GrDocumentPerformance } from "react-icons/gr";
+import {
+  MdFactCheck,
+  MdOutlineDeveloperMode,
+  MdOutlineSupportAgent,
+} from "react-icons/md";
+import { GrDocumentPerformance, GrIntegration } from "react-icons/gr";
 import { MdPersonSearch } from "react-icons/md";
 
 import { BiCloudUpload } from "react-icons/bi";
@@ -22,6 +27,11 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import ContactSection from "../../contact/ContactSection/ContactSection";
+import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
+import { SiAntdesign, SiConsul } from "react-icons/si";
+import { LiaNetworkWiredSolid } from "react-icons/lia";
+import { FaFlutter } from "react-icons/fa6";
+import { IoIosApps } from "react-icons/io";
 
 const CrossplatformApp: React.FC = () => {
   const navigate = useNavigate();
@@ -31,7 +41,7 @@ const CrossplatformApp: React.FC = () => {
       title: "React Native Development",
       description:
         "At D'roid Technologies, we specialize in building high-performance cross-platform mobile applications using React Native. Our team leverages the power of JavaScript and React to create native-like experiences for both iOS and Android platforms. We implement best practices in component architecture, state management, and performance optimization to ensure your app delivers a smooth, responsive experience across all devices. From complex animations to native module integration, we create mobile solutions that feel truly native while maintaining the efficiency of cross-platform development.",
-      icon: FaCode({ size: 40 }),
+      icon: FaReact({ size: 40 }),
       summary:
         "We build high-performance mobile applications using React Native, delivering native-like experiences across iOS and Android platforms.",
     },
@@ -39,7 +49,7 @@ const CrossplatformApp: React.FC = () => {
       title: "Flutter Development",
       description:
         "Our Flutter development services harness the power of Dart to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. We leverage Flutter's rich widget library and hot reload feature to rapidly develop and iterate on your application. Our team ensures your app maintains consistent design language and performance across all platforms while taking advantage of platform-specific features when needed. We focus on creating smooth animations, responsive layouts, and efficient state management to deliver an exceptional user experience.",
-      icon: FaPencilRuler({ size: 40 }),
+      icon: FaFlutter({ size: 40 }),
       url: "",
       summary:
         "We create beautiful, high-performance applications using Flutter that work seamlessly across multiple platforms from a single codebase.",
@@ -48,7 +58,7 @@ const CrossplatformApp: React.FC = () => {
       title: "Hybrid App Development",
       description:
         "Our hybrid app development approach combines the best of web and native technologies to create efficient, cost-effective mobile solutions. Using frameworks like Ionic or Capacitor, we build applications that can be deployed across multiple platforms while maintaining access to native device features. We focus on optimizing performance, implementing responsive design patterns, and ensuring smooth integration with device hardware. Our hybrid solutions provide a balance between development efficiency and native-like user experience.",
-      icon: BiWorld({ size: 40 }),
+      icon: IoIosApps({ size: 40 }),
       url: "",
       summary:
         "We develop efficient hybrid applications that combine web technologies with native features for optimal cross-platform performance.",
@@ -57,7 +67,7 @@ const CrossplatformApp: React.FC = () => {
       title: "Cross-Platform UI/UX Design",
       description:
         "Cross-platform UI/UX design is crucial for delivering consistent, engaging user experiences across different devices and platforms. Our team creates adaptive design systems that maintain visual consistency while respecting platform-specific design guidelines. We implement responsive layouts, platform-specific navigation patterns, and touch-friendly interfaces that work seamlessly across iOS, Android, and web platforms. Our design approach ensures your app feels native on each platform while maintaining a cohesive brand identity.",
-      icon: FaAccessibleIcon({ size: 40 }),
+      icon: SiAntdesign({ size: 40 }),
       url: "",
       summary:
         "We design adaptive, platform-aware interfaces that deliver consistent, engaging experiences across all devices and platforms.",
@@ -66,7 +76,7 @@ const CrossplatformApp: React.FC = () => {
       title: "Native Module Integration",
       description:
         "Native module integration is essential for accessing platform-specific features and optimizing performance. Our team specializes in bridging the gap between cross-platform code and native functionality. We develop custom native modules for features like camera access, push notifications, biometric authentication, and hardware-specific optimizations. Our integration approach ensures your app can leverage the full power of each platform while maintaining the efficiency of cross-platform development.",
-      icon: TbApiApp({ size: 40 }),
+      icon: GrIntegration({ size: 40 }),
       url: "",
       summary:
         "We seamlessly integrate native modules and platform-specific features to enhance your cross-platform application's capabilities.",
@@ -87,20 +97,20 @@ const CrossplatformApp: React.FC = () => {
       title: "1. Consultation",
       description:
         "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
-      icon: MdPersonSearch({ size: 40 }),
+      icon: SiConsul({ size: 40 }),
     },
     {
       title: "2. Wireframing & UI Design",
       description:
         "Our UI/UX experts create sleek interfaces and clickable prototypes to bring ideas to life—before writing code.",
-      icon: FaPencilRuler({ size: 40 }),
+      icon: LiaNetworkWiredSolid({ size: 40 }),
       url: "",
     },
     {
       title: "3. Development",
       description:
         "We build clean, scalable code using modern frameworks and run extensive testing to ensure quality.",
-      icon: FaCode({ size: 40 }),
+      icon: MdOutlineDeveloperMode({ size: 40 }),
       url: "",
     },
     {
@@ -121,7 +131,7 @@ const CrossplatformApp: React.FC = () => {
       title: "6. Support",
       description:
         "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: FcSupport({ size: 40 }),
+      icon: MdOutlineSupportAgent({ size: 40 }),
       url: "",
     },
   ];
@@ -197,13 +207,11 @@ const CrossplatformApp: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {devPhases.map((phase, index) => (
-            <CoreValueCardTwo
-              pressable={true}
+            <NewwebsiteCard
               key={index}
               title={phase.title}
               description={phase.summary}
               icon={phase.icon}
-              url="{tech.url}"
               className="process-card"
               onClick={() => {
                 store.dispatch(updateModal(true));
@@ -233,13 +241,11 @@ const CrossplatformApp: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {ourProcess.map((phase, index) => (
-            <CoreValueCardTwo
-              //   pressable={true}
+            <NewwebsiteCard
               key={index}
               title={phase.title}
               description={phase.description}
               icon={phase.icon}
-              //   url="{tech.url}"
               className="process-card"
               onClick={() => {
                 store.dispatch(updateModal(true));
@@ -260,7 +266,7 @@ const CrossplatformApp: React.FC = () => {
         </div>
       </div>
 
-      <div className="wrapper soft-wrapper">
+      {/* <div className="wrapper soft-wrapper">
         <span
           className="soft-dev-header title_span"
           style={{ background: "#e2e8f0" }}
@@ -277,43 +283,7 @@ const CrossplatformApp: React.FC = () => {
             />
           ))}
         </div>
-      </div>
-
-      {/* <section style={{ marginTop: "3rem" }}>
-                <h2 style={{ fontSize: "1.5rem", fontWeight: 600 }}>Contact Us</h2>
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
-                    <input
-                        type="text"
-                        name="fullName"
-                        placeholder="Full Name"
-                        required
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        style={{ padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        style={{ padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
-                    />
-                    <textarea
-                        name="projectDetails"
-                        placeholder="Tell us about your project..."
-                        rows={5}
-                        required
-                        value={formData.projectDetails}
-                        onChange={handleChange}
-                        style={{ padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
-                    />
-                    <button type="submit" style={{ padding: "12px", backgroundColor: "#000", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer" }}>
-                        Send Request
-                    </button>
-                </form>
-            </section> */}
+      </div> */}
     </div>
   );
 };

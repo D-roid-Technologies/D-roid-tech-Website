@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import {
   FaAccessibleIcon,
   FaCode,
+  FaDatabase,
+  FaNode,
   FaPencilRuler,
+  FaPython,
   FaServer,
 } from "react-icons/fa";
 import { TbApiApp } from "react-icons/tb";
 import { BiWorld } from "react-icons/bi";
 import { GrDocumentPerformance } from "react-icons/gr";
-import { MdFactCheck } from "react-icons/md";
+import {
+  MdFactCheck,
+  MdOutlineDeveloperMode,
+  MdOutlineSupportAgent,
+} from "react-icons/md";
 import { BiCloudUpload } from "react-icons/bi";
 import { FcSupport } from "react-icons/fc";
 import { MdPersonSearch } from "react-icons/md";
@@ -22,6 +29,9 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import ContactSection from "../../contact/ContactSection/ContactSection";
+import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
+import { SiConsul } from "react-icons/si";
+import { LiaNetworkWiredSolid } from "react-icons/lia";
 
 const BackendDevelopment: React.FC = () => {
   const navigate = useNavigate();
@@ -31,7 +41,7 @@ const BackendDevelopment: React.FC = () => {
       title: "Node.js & Express Development",
       description:
         "At D'roid Technologies, we specialize in building robust and scalable backend applications using Node.js and Express. Our team leverages the power of JavaScript on the server-side to create high-performance APIs, real-time applications, and microservices. We implement best practices in asynchronous programming, error handling, and middleware integration to ensure your backend is both powerful and maintainable. From RESTful APIs to WebSocket implementations, we create backend solutions that can handle high traffic loads while maintaining optimal performance.",
-      icon: FaServer({ size: 40 }),
+      icon: FaNode({ size: 40 }),
       summary:
         "We build scalable and efficient backend applications using Node.js and Express, delivering high-performance APIs and real-time solutions.",
     },
@@ -39,7 +49,7 @@ const BackendDevelopment: React.FC = () => {
       title: "Python Backend Development",
       description:
         "Our Python backend development services harness the versatility and power of Python frameworks like Django and Flask to create sophisticated backend systems. We develop secure, scalable, and maintainable applications that can handle complex business logic, data processing, and API integrations. Whether you need a full-featured web application with Django's built-in admin interface or a lightweight API with Flask, our team ensures your Python backend is optimized for performance and security.",
-      icon: FaCode({ size: 40 }),
+      icon: FaPython({ size: 40 }),
       url: "",
       summary:
         "We create powerful and secure backend systems using Python frameworks, tailored to your specific business requirements.",
@@ -48,7 +58,7 @@ const BackendDevelopment: React.FC = () => {
       title: "Database Design & Optimization",
       description:
         "Database design and optimization is a critical component of our backend development services. We work with both SQL (PostgreSQL, MySQL) and NoSQL (MongoDB, Redis) databases to create efficient data storage solutions. Our team focuses on proper schema design, query optimization, indexing strategies, and caching mechanisms to ensure your database performs optimally under any load. We implement best practices in data modeling, normalization, and security to protect your valuable information while maintaining fast access times.",
-      icon: GrDocumentPerformance({ size: 40 }),
+      icon: FaDatabase({ size: 40 }),
       url: "",
       summary:
         "We design and optimize database architectures that ensure fast, secure, and scalable data management for your applications.",
@@ -87,20 +97,20 @@ const BackendDevelopment: React.FC = () => {
       title: "1. Consultation",
       description:
         "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
-      icon: MdPersonSearch({ size: 40 }),
+      icon: SiConsul({ size: 40 }),
     },
     {
       title: "2. Wireframing & UI Design",
       description:
         "Our UI/UX experts create sleek interfaces and clickable prototypes to bring ideas to life—before writing code.",
-      icon: FaPencilRuler({ size: 40 }),
+      icon: LiaNetworkWiredSolid({ size: 40 }),
       url: "",
     },
     {
       title: "3. Development",
       description:
         "We build clean, scalable code using modern frameworks and run extensive testing to ensure quality.",
-      icon: FaCode({ size: 40 }),
+      icon: MdOutlineDeveloperMode({ size: 40 }),
       url: "",
     },
     {
@@ -121,7 +131,7 @@ const BackendDevelopment: React.FC = () => {
       title: "6. Support",
       description:
         "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: FcSupport({ size: 40 }),
+      icon: MdOutlineSupportAgent({ size: 40 }),
       url: "",
     },
   ];
@@ -196,13 +206,14 @@ const BackendDevelopment: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {devPhases.map((phase, index) => (
-            <CoreValueCardTwo
-              pressable={true}
+            // <CoreValueCardTwo
+            <NewwebsiteCard
+              // pressable={true}
               key={index}
               title={phase.title}
               description={phase.summary}
               icon={phase.icon}
-              url="{tech.url}"
+              // url="{tech.url}"
               className="process-card"
               onClick={() => {
                 store.dispatch(updateModal(true));
@@ -232,8 +243,9 @@ const BackendDevelopment: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {ourProcess.map((phase, index) => (
-            <CoreValueCardTwo
-              pressable={true}
+            // <CoreValueCardTwo
+            <NewwebsiteCard
+              // pressable={true}
               key={index}
               title={phase.title}
               description={phase.description}
@@ -259,7 +271,7 @@ const BackendDevelopment: React.FC = () => {
         </div>
       </div>
 
-      <div className="wrapper soft-wrapper">
+      {/* <div className="wrapper soft-wrapper">
         <span
           className="soft-dev-header title_span"
           style={{ background: "#e2e8f0" }}
@@ -276,7 +288,7 @@ const BackendDevelopment: React.FC = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* <section style={{ marginTop: "3rem" }}>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: 600 }}>Contact Us</h2>

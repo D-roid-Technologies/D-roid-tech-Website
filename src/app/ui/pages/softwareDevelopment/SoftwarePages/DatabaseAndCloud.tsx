@@ -8,7 +8,11 @@ import {
 import { TbApiApp } from "react-icons/tb";
 import { BiWorld } from "react-icons/bi";
 import { GrDocumentPerformance } from "react-icons/gr";
-import { MdPersonSearch } from "react-icons/md";
+import {
+  MdOutlineDeveloperMode,
+  MdOutlineSupportAgent,
+  MdPersonSearch,
+} from "react-icons/md";
 
 import { MdFactCheck } from "react-icons/md";
 import { BiCloudUpload } from "react-icons/bi";
@@ -22,6 +26,9 @@ import {
   updateModalContent,
 } from "../../../../redux/slices/AppEntrySlice";
 import ContactSection from "../../contact/ContactSection/ContactSection";
+import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
+import { SiConsul } from "react-icons/si";
+import { LiaNetworkWiredSolid } from "react-icons/lia";
 
 const DatabaseAndCloud: React.FC = () => {
   const navigate = useNavigate();
@@ -87,20 +94,20 @@ const DatabaseAndCloud: React.FC = () => {
       title: "1. Consultation",
       description:
         "We work with you to understand goals, users, and requirements. Every great product starts with deep discovery.",
-      icon: MdPersonSearch({ size: 40 }),
+      icon: SiConsul({ size: 40 }),
     },
     {
       title: "2. Wireframing & UI Design",
       description:
         "Our UI/UX experts create sleek interfaces and clickable prototypes to bring ideas to life—before writing code.",
-      icon: FaPencilRuler({ size: 40 }),
+      icon: LiaNetworkWiredSolid({ size: 40 }),
       url: "",
     },
     {
       title: "3. Development",
       description:
         "We build clean, scalable code using modern frameworks and run extensive testing to ensure quality.",
-      icon: FaCode({ size: 40 }),
+      icon: MdOutlineDeveloperMode({ size: 40 }),
       url: "",
     },
     {
@@ -121,7 +128,7 @@ const DatabaseAndCloud: React.FC = () => {
       title: "6. Support",
       description:
         "From launch to future upgrades, we handle hosting, monitoring, and long-term support.",
-      icon: FcSupport({ size: 40 }),
+      icon: MdOutlineSupportAgent({ size: 40 }),
       url: "",
     },
   ];
@@ -197,13 +204,14 @@ const DatabaseAndCloud: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {devPhases.map((phase, index) => (
-            <CoreValueCardTwo
-              pressable={true}
+            // <CoreValueCardTwo
+            <NewwebsiteCard
+              // pressable={true}
               key={index}
               title={phase.title}
               description={phase.summary}
               icon={phase.icon}
-              url="{tech.url}"
+              // url="{tech.url}"
               className="process-card"
               onClick={() => {
                 store.dispatch(updateModal(true));
@@ -233,7 +241,8 @@ const DatabaseAndCloud: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {ourProcess.map((phase, index) => (
-            <CoreValueCardTwo
+            // <CoreValueCardTwo
+            <NewwebsiteCard
               //   pressable={true}
               key={index}
               title={phase.title}
@@ -260,7 +269,7 @@ const DatabaseAndCloud: React.FC = () => {
         </div>
       </div>
 
-      <div className="wrapper soft-wrapper">
+      {/* <div className="wrapper soft-wrapper">
         <span
           className="soft-dev-header title_span"
           style={{ background: "#e2e8f0" }}
@@ -277,43 +286,7 @@ const DatabaseAndCloud: React.FC = () => {
             />
           ))}
         </div>
-      </div>
-
-      {/* <section style={{ marginTop: "3rem" }}>
-                <h2 style={{ fontSize: "1.5rem", fontWeight: 600 }}>Contact Us</h2>
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
-                    <input
-                        type="text"
-                        name="fullName"
-                        placeholder="Full Name"
-                        required
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        style={{ padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        style={{ padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
-                    />
-                    <textarea
-                        name="projectDetails"
-                        placeholder="Tell us about your project..."
-                        rows={5}
-                        required
-                        value={formData.projectDetails}
-                        onChange={handleChange}
-                        style={{ padding: "10px", borderRadius: "6px", border: "1px solid #ccc" }}
-                    />
-                    <button type="submit" style={{ padding: "12px", backgroundColor: "#000", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer" }}>
-                        Send Request
-                    </button>
-                </form>
-            </section> */}
+      </div> */}
     </div>
   );
 };
