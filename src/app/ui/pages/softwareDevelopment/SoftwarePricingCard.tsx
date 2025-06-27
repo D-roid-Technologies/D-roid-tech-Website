@@ -37,7 +37,7 @@ const SoftwarePricingCard: React.FC = () => {
         { text: "Priority support", included: false },
         { text: "Custom branding", included: false },
       ],
-      buttonText: "Start Free Trial",
+      buttonText: "Get Started",
     },
     {
       name: "Pro",
@@ -76,7 +76,7 @@ const SoftwarePricingCard: React.FC = () => {
         { text: "Advanced security features", included: true },
         { text: "Custom branding & white-label", included: true },
       ],
-      buttonText: "Contact Sales",
+      buttonText: "Get Started",
     },
   ];
 
@@ -163,7 +163,7 @@ const SoftwarePricingCard: React.FC = () => {
 
         <div className="techsoft-pricing__footer">
           <p className="techsoft-pricing__footer-text">
-            All plans include 14-day free trial • No setup fees • Cancel anytime
+            Innovative software development tailored to your business needs.
           </p>
         </div>
       </div>

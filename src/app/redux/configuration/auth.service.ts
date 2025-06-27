@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile, User } from "firebase/auth";
 import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
@@ -256,8 +256,6 @@ export function calculateNetSalary(
     };
 }
 
-
-
 export async function getUserDocByUniqueId(uniqueId: string) {
     const currentUser = auth.currentUser;
 
@@ -307,6 +305,22 @@ const addDaysToDate = (dateInput: string, daysToAdd: number) => {
 
     return newDate;
 }
+
+function getCurrentUser(): Promise<User> {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            (user) => {
+                unsubscribe();
+                if (user) resolve(user);
+                else reject(new Error("User not authenticated"));
+            },
+            reject
+        );
+    });
+}
+
+
 
 export class AuthService {
     // async handleUserRegistration(userData: UserType, locationData: LocationState) {
@@ -1184,52 +1198,92 @@ export class AuthService {
         }
     }
 
+    // async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
+    //     try {
+    //         onAuthStateChanged(auth, async (currentUser) => {
+    //             if (!currentUser) {
+    //                 toast.error("User not authenticated", {
+    //                     style: { background: "#ff4d4f", color: "#fff" },
+    //                 });
+    //                 return;
+    //             }
+
+    //             const userId = currentUser.uid;
+    //             const staffDocRef = doc(db, "droidaccount", userId);
+    //             const staffSnapshot = await getDoc(staffDocRef);
+
+    //             if (!staffSnapshot.exists()) {
+    //                 toast.error("Staff record not found", {
+    //                     style: { background: "#ff4d4f", color: "#fff" },
+    //                 });
+    //                 return;
+    //             }
+
+    //             const currentData = staffSnapshot.data();
+    //             const updatedDetails = {
+    //                 ...currentData?.staff?.staffDetails,
+    //                 ...partialDetails,
+    //             };
+
+    //             await updateDoc(staffDocRef, {
+    //                 "staff.staffDetails": updatedDetails,
+    //             });
+
+    //             // ✅ Update Redux state
+    //             store.dispatch(setStaffDetails(updatedDetails));
+
+    //             toast.success("Staff details updated successfully", {
+    //                 style: { background: "#4BB543", color: "#fff" },
+    //             });
+    //         });
+    //     } catch (error: any) {
+    //         console.error("Error updating staff details:", error.message);
+    //         toast.error("Failed to update staff details", {
+    //             style: { background: "#ff4d4f", color: "#fff" },
+    //         });
+    //     }
+    // }
+
     async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
         try {
-            const currentUser = auth.currentUser;
+            console.log(auth.currentUser); // ✅ for debugging
 
-            if (!currentUser) {
-                toast.error("User not authenticated", {
-                    style: { background: '#ff4d4f', color: '#fff' },
-                });
-                return;
-            }
-
+            const currentUser = await getCurrentUser();
             const userId = currentUser.uid;
+
             const staffDocRef = doc(db, "droidaccount", userId);
             const staffSnapshot = await getDoc(staffDocRef);
 
             if (!staffSnapshot.exists()) {
                 toast.error("Staff record not found", {
-                    style: { background: '#ff4d4f', color: '#fff' },
+                    style: { background: "#ff4d4f", color: "#fff" },
                 });
                 return;
             }
 
             const currentData = staffSnapshot.data();
             const updatedDetails = {
-                ...currentData.staffDetails,
+                ...currentData?.staff?.staffDetails,
                 ...partialDetails,
             };
 
             await updateDoc(staffDocRef, {
-                'staff.staffDetails': updatedDetails,
+                "staff.staffDetails": updatedDetails,
             });
 
-            // ✅ Update Redux state
             store.dispatch(setStaffDetails(updatedDetails));
 
             toast.success("Staff details updated successfully", {
-                style: { background: '#4BB543', color: '#fff' },
+                style: { background: "#4BB543", color: "#fff" },
             });
-
         } catch (error: any) {
-            console.error("Error updating staff details:", error.message);
-            toast.error("Failed to update staff details", {
-                style: { background: '#ff4d4f', color: '#fff' },
+            console.error("Error updating staff details:", error?.message || error);
+            toast.error(error?.message || "Failed to update staff details", {
+                style: { background: "#ff4d4f", color: "#fff" },
             });
         }
     }
+
 
 
 
