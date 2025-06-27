@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, createRef } from "react";
 import { useSelector } from "react-redux";
 import {
   authService,
@@ -157,7 +157,6 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
         templateParams,
         "hcj3DsJ8MfNfUrE8J"
       );
-      handleDownload();
     } catch (error) {
       console.error(error);
       setMessage("Error generating payslip. Please try again.");
@@ -167,6 +166,8 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
   };
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [filteredPayslips, setFilteredPayslips] = useState<PaySlip[]>([]);
+  // Add refs for each payslip card
+  const payslipRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const filtered = payslips.filter(
@@ -174,23 +175,40 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
         p.payPeriod.monthOfPay.toLowerCase() === selectedMonth.toLowerCase()
     );
     setFilteredPayslips(filtered);
+    // Update refs array length
+    payslipRefs.current = filtered.map((_, i) => payslipRefs.current[i] || null);
   }, [selectedMonth, payslips]);
 
   const allMonths = Array.from(
     new Set(payslips.map((p) => p.payPeriod.monthOfPay))
   );
 
-  const handleDownload = () => {
-    if (contentRef.current) {
+  // const handleDownload = () => {
+  //   if (contentRef.current) {
+  //     const opt = {
+  //       margin: 0.5,
+  //       filename: "payslip.pdf",
+  //       image: { type: "jpeg", quality: 0.98 },
+  //       html2canvas: { scale: 2, useCORS: true },
+  //       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+  //     };
+
+  //     html2pdf().set(opt).from(contentRef.current).save();
+  //   }
+  // };
+
+  // Download handler for filtered payslips
+  const handleDownloadFiltered = (index: number) => {
+    const ref = payslipRefs.current[index];
+    if (ref) {
       const opt = {
         margin: 0.5,
-        filename: "payslip.pdf",
+        filename: `payslip_${filteredPayslips[index].employeeDetails.employeeName}_${filteredPayslips[index].payPeriod.monthOfPay}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
       };
-
-      html2pdf().set(opt).from(contentRef.current).save();
+      html2pdf().set(opt).from(ref).save();
     }
   };
 
@@ -212,7 +230,7 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
           </div>
           <div>
             <p>
-              <strong>D’roid Technologies Ltd</strong>
+              <strong>D'roid Technologies Ltd</strong>
             </p>
             <p>17 John Street</p>
             <p>Warri, Delta State</p>
@@ -225,7 +243,7 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
         </p>
 
         <h2 style={styles.header}>
-          YOUR PAY SLIP FROM D’ROID TECHNOLOGIES LTD
+          YOUR PAY SLIP FROM D'ROID TECHNOLOGIES LTD
         </h2>
         <p>
           You will be paid on the 9th of {formatMonth(currentMonthDate)}{" "}
@@ -394,117 +412,157 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
 
         {filteredPayslips.length > 0 ? (
           filteredPayslips.map((payslip, index) => (
-            <div key={index} style={styles.card}>
-              {/* Employee Info */}
-              <div style={styles.section}>
-                <h4>Employee Info</h4>
+            <div
+              key={index}
+              ref={el => payslipRefs.current[index] = el}
+              style={styles.container}
+            >
+              {/* Letter Block */}
+              <div style={styles.letterBlock}>
+                <div>
+                  <p>
+                    <strong>{payslip.employeeDetails.employeeName}</strong>
+                  </p>
+                  <p>
+                    {payslip.employeeDetails.sNumber}, {payslip.employeeDetails.sName}
+                  </p>
+                  <p>
+                    {payslip.employeeDetails.city}, {payslip.employeeDetails.state} State
+                  </p>
+                  <p>{payslip.employeeDetails.country}</p>
+                </div>
+                <div>
+                  <p>
+                    <strong>D'roid Technologies Ltd</strong>
+                  </p>
+                  <p>17 John Street</p>
+                  <p>Warri, Delta State</p>
+                </div>
+              </div>
+
+              <p style={{ marginTop: 20 }}>{formatDateLong(new Date(payslip.payPeriod.todayMonth + ' 1, ' + new Date().getFullYear()))}</p>
+              <p>
+                <strong>Dear {payslip.employeeDetails.employeeName.split(" ")[0]},</strong>
+              </p>
+
+              <h2 style={styles.header}>
+                YOUR PAY SLIP FROM D'ROID TECHNOLOGIES LTD
+              </h2>
+              <p>
+                You will be paid on the 9th of {payslip.payPeriod.todayMonth} {new Date().getFullYear()} for the month of {payslip.payPeriod.monthPaid} {new Date().getFullYear()}. Find below all the necessary information.
+              </p>
+
+              <section style={styles.section}>
+                <h3 style={styles.subHeader}>Employee & Pay Info</h3>
                 <p>
                   <strong>Name:</strong> {payslip.employeeDetails.employeeName}
                 </p>
                 <p>
-                  <strong>ID:</strong> {payslip.employeeDetails.employeeId}
+                  <strong>Employee ID:</strong> {payslip.employeeDetails.employeeId}
                 </p>
                 <p>
-                  <strong>S Number:</strong> {payslip.employeeDetails.sNumber}
+                  <strong>Date of Creation:</strong> {formatDateLong(new Date(payslip.payPeriod.todayMonth + ' 1, ' + new Date().getFullYear()))}
                 </p>
                 <p>
-                  <strong>S Name:</strong> {payslip.employeeDetails.sName}
+                  <strong>Period of Payment:</strong> 9th {payslip.payPeriod.monthPaid} to 8th {payslip.payPeriod.monthOfPay}
                 </p>
                 <p>
-                  <strong>Location:</strong> {payslip.employeeDetails.city},{" "}
-                  {payslip.employeeDetails.state},{" "}
-                  {payslip.employeeDetails.country}
+                  <strong>Leave:</strong> 6 Days for the month of {payslip.payPeriod.monthPaid} {new Date().getFullYear()}
                 </p>
+              </section>
+
+              <section style={styles.section}>
+                <h3 style={styles.subHeader}>Deductions</h3>
+                <ul>
+                  <li>
+                    Absent from meetings: {payslip.deductions.meetingAbsence.toFixed(2)}
+                  </li>
+                  <li>
+                    Completion of Tasks: {payslip.deductions.taskCompletion.toFixed(2)}
+                  </li>
+                  <li>
+                    Absent Signing in: {payslip.deductions.totalDeductions.toFixed(2)}
+                  </li>
+                </ul>
+              </section>
+
+              <section style={styles.section}>
+                <h3 style={styles.subHeader}>Additional Payments ₦
+                  {payslip.additionalPayments.healthInsurance +
+                    payslip.additionalPayments.hotelAccommodation +
+                    payslip.additionalPayments.miscellaneous +
+                    payslip.additionalPayments.healthInsurance +
+                    payslip.additionalPayments.pension +
+                    payslip.additionalPayments.transportation}
+                </h3>
+                <ul>
+                  <li>
+                    Extra days worked: {payslip.additionalPayments.extraDaysWorked}
+                  </li>
+                  <li>Pension: {payslip.additionalPayments.pension.toFixed(2)}</li>
+                  <li>
+                    Health Insurance: {payslip.additionalPayments.healthInsurance.toFixed(2)}
+                  </li>
+                  <li>
+                    Miscellaneous: {payslip.additionalPayments.miscellaneous.toFixed(2)}
+                  </li>
+                  <li>
+                    Transportation: {payslip.additionalPayments.transportation.toFixed(2)}
+                  </li>
+                  <li>
+                    Hotel Accommodation: {payslip.additionalPayments.hotelAccommodation.toFixed(2)}
+                  </li>
+                </ul>
+              </section>
+
+              <section style={styles.section}>
+                <h3 style={styles.subHeader}>Pay Breakdown</h3>
+                <table style={styles.table}>
+                  <tbody>
+                    <tr>
+                      <td style={styles.label}>Gross Pay</td>
+                      <td style={styles.value}>₦{payslip.grossPay.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                      <td style={styles.label}>Taxes({payslip.taxes.percentage}%)</td>
+                      <td style={styles.value}>-₦{payslip.taxes.amount.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                      <td style={styles.label}>Deductions</td>
+                      <td style={styles.value}>-₦{payslip.deductions.totalDeductions.toFixed(2)}</td>
+                    </tr>
+                    <tr style={{ borderTop: "3px solid #222" }}>
+                      <td style={{ ...styles.label, fontWeight: "bold", fontSize: 18 }}>
+                        Net Pay
+                      </td>
+                      <td style={{ ...styles.value, fontWeight: "bold", fontSize: 18 }}>
+                        ₦{payslip.netPay.toFixed(2)}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <div style={{ marginTop: 30, textAlign: "center" }}>
+                <button
+                  onClick={() => handleDownloadFiltered(index)}
+                  style={{
+                    padding: "10px 22px",
+                    backgroundColor: "#27ae60",
+                    color: "#fff",
+                    fontSize: 15,
+                    border: "none",
+                    borderRadius: 6,
+                    cursor: "pointer",
+                  }}
+                >
+                  Download Payslip
+                </button>
               </div>
 
-              {/* Pay Period */}
-              <div style={{ marginBottom: "10px" }}>
-                <h4>Pay Period</h4>
-                <p>
-                  <strong>Start:</strong> {payslip.payPeriod.payPeriodStart}
-                </p>
-                <p>
-                  <strong>End:</strong> {payslip.payPeriod.payPeriodEnd}
-                </p>
-                <p>
-                  <strong>Month Paid:</strong> {payslip.payPeriod.monthPaid}
-                </p>
-                <p>
-                  <strong>Month of Pay:</strong> {payslip.payPeriod.monthOfPay}
-                </p>
-                <p>
-                  <strong>Today Month:</strong> {payslip.payPeriod.todayMonth}
-                </p>
-              </div>
-
-              {/* Pay Summary */}
-              <div style={styles.section}>
-                <h4>Pay Summary</h4>
-                <p>
-                  <strong>Gross Pay:</strong> ₦{payslip.grossPay.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Tax:</strong> ₦{payslip.taxes.amount.toFixed(2)} (
-                  {payslip.taxes.percentage}%)
-                </p>
-                <p>
-                  <strong>Net Pay:</strong> ₦{payslip.netPay.toFixed(2)}
-                </p>
-              </div>
-
-              {/* Deductions */}
-              <div style={styles.section}>
-                <h4>Deductions</h4>
-                <p>
-                  <strong>Total:</strong> ₦
-                  {payslip.deductions.totalDeductions.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Meeting Absence:</strong> ₦
-                  {payslip.deductions.meetingAbsence.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Task Completion:</strong> ₦
-                  {payslip.deductions.taskCompletion.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Sign In/Out:</strong> ₦
-                  {payslip.deductions.signInAndOut.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Others:</strong> ₦
-                  {payslip.deductions.others.toFixed(2)}
-                </p>
-              </div>
-
-              {/* Additional Payments */}
-              <div style={styles.section}>
-                <h4>Additional Payments</h4>
-                <p>
-                  <strong>Extra Days Worked:</strong> ₦
-                  {payslip.additionalPayments.extraDaysWorked.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Pension:</strong> ₦
-                  {payslip.additionalPayments.pension.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Health Insurance:</strong> ₦
-                  {payslip.additionalPayments.healthInsurance.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Miscellaneous:</strong> ₦
-                  {payslip.additionalPayments.miscellaneous.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Transportation:</strong> ₦
-                  {payslip.additionalPayments.transportation.toFixed(2)}
-                </p>
-                <p>
-                  <strong>Hotel Accommodation:</strong> ₦
-                  {payslip.additionalPayments.hotelAccommodation.toFixed(2)}
-                </p>
-              </div>
+              <p style={styles.footer}>
+                This is a computer-generated pay slip and does not require a signature.
+              </p>
             </div>
           ))
         ) : (

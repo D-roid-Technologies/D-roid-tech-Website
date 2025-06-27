@@ -85,14 +85,16 @@ const Onboarding: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    await authService.updateStaffOnboardingDetails(formDataNew);
+  }
 
-    try {
-      // Call the service with a partial update
-      await authService.updateStaffOnboardingDetails(formDataNew);
-    } catch (error) {
-      console.error("Submission failed:", error);
-    }
-  };
+  //   try {
+  //     // Call the service with a partial update
+
+  //   } catch (error) {
+  //     console.error("Submission failed:", error);
+  //   }
+  // };
 
   return (
     <div style={containerStyle}>

@@ -9,29 +9,34 @@ import { UserType } from "./app/utils/Types";
 import { BrowserRouter } from 'react-router-dom';
 import { SiR } from "react-icons/si";
 import ScrollToTop from "./app/ui/components/ScrollToTop/ScrollToTop";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
 function AppContent() {
   const user: UserType = useSelector((state: RootState) => state.user);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const [authReady, setAuthReady] = useState<boolean>(false); // <-- new state
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setAuthReady(true); // <-- Firebase is ready (even if user is null)
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const handleOnline = () => {
       setIsOnline(true);
       toast.success('Back Online 🎉', {
-        style: {
-          background: '#4BB543',
-          color: '#fff',
-        },
+        style: { background: '#4BB543', color: '#fff' },
       });
     };
 
     const handleOffline = () => {
       setIsOnline(false);
       toast.error('No Internet Connection 🚫', {
-        style: {
-          background: '#ff4d4f',
-          color: '#fff',
-        },
+        style: { background: '#ff4d4f', color: '#fff' },
       });
     };
 
@@ -45,13 +50,17 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (user.isLoggedIn === true) {
+    if (user.isLoggedIn) {
       console.log("User exists");
-      // console.log("User exists", user);
     } else {
       console.log("No user exists");
     }
   }, [user]);
+
+  if (!authReady) {
+    // You can return a loading spinner here
+    return <div style={{ padding: "2rem", textAlign: "center" }}>Loading...</div>;
+  }
 
   return (
     <>
@@ -68,9 +77,8 @@ function AppContent() {
       )}
       <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
-      <ScrollToTop/>
+        <ScrollToTop />
         <AppEntry />
-       
       </BrowserRouter>
     </>
   );

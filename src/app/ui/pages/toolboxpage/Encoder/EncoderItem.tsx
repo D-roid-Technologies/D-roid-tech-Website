@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 const EncoderItem: React.FC = () => {
   const [text, setText] = useState("");

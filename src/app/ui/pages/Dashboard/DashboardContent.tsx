@@ -47,11 +47,8 @@ import Trainings from "./Trainings";
 import Progression from "./Progressions";
 import styles from "./DashboardContent.module.css";
 import Section from "./Section";
-import TaskScheduler from "../schedule/TaskScheduler";
-import { BsCurrencyExchange } from "react-icons/bs";
 import { GiCalculator } from "react-icons/gi";
 import { TbCalculator, TbMicroscope } from "react-icons/tb";
-import Calculate from "../calculator/Calculate";
 import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
 import Bmi from "../calculator/Bmi";
 import ToolsCard from "../../components/CoreValueCard/ToolsCard";
@@ -61,28 +58,24 @@ import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 import OhmslawCalculator from "../calculator/OhmslawCalculator";
-import BackgroundRemove from "../toolboxpage/premiumtoolbox/BackgroundRemove";
-import ImageResizer from "../toolboxpage/imageresizer/ImageResizer";
-import ImageCompressor from "../toolboxpage/imagecompressor/ImageCompressor";
-import CropTool from "../toolboxpage/croptool/CropTool";
-import ColorPicker from "../../components/toolboxfolder/colorPicker/ColorPicker";
-import WordCounter from "../../components/toolboxfolder/WordCounter/WordCounter";
 import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater";
-import UUIDGenerator from "../toolboxpage/uuidgenerator/UuidGenerator";
-import Base64Tool from "../toolboxpage/Encoder/Encoder";
 import { FaWallet } from "react-icons/fa6";
 import ClassRoom from "./ClassRoom";
 import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
-import SchedulePage from "../schedule/SchedulePage";
-import { tool } from "../toolboxpage/ToolBoxItems";
 import CareersDashboard from "./CareersDashboard";
 import ColorConv from "../../components/toolboxfolder/Colorconv/ColorConv";
-import ImageCompress from "../../components/toolboxfolder/imagecompress/ImageCompress";
 import WordCounterItem from "../../components/toolboxfolder/WordCounter/WordCounterItem";
 import UuidGeneratorItem from "../toolboxpage/uuidgenerator/UuidGeneratorItem";
 import EncoderItem from "../toolboxpage/Encoder/EncoderItem";
+import { Alltools } from "../toolboxpage/ToolBoxItems";
+import ImageRezised from "../../components/toolboxfolder/imageresizing/ImageRezised";
+import ImageCompressItem from "../../components/toolboxfolder/imagecompress/ImageCompressItem";
+import CropToolItem from "../toolboxpage/croptool/CropToolItem";
+import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPickerItem";
+import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem";
+import AdminScheduleTool from "../schedule/AdminScheduleTool";
 
 // const tools = [
 //   {
@@ -147,14 +140,14 @@ import EncoderItem from "../toolboxpage/Encoder/EncoderItem";
 // ];
 
 const calculators = [
-  {
-    title: "Calculator",
-    description:
-      "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
-    icon: TbCalculator({ size: 24 }),
-    component: "Calculate", // Add component identifier
-    link: "",
-  },
+  // {
+  //   title: "Calculator",
+  //   description:
+  //     "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
+  //   icon: TbCalculator({ size: 24 }),
+  //   component: "Calculate", // Add component identifier
+  //   link: "",
+  // },
   {
     title: "Scientific Calculator",
     description:
@@ -250,15 +243,15 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const renderToolComponent = () => {
   switch (activeTool) {
     case "ImageResizing":
-      return <ImageResizer onClose={handleCloseTool}  />;  //working
+      return <ImageRezised /> //working but onClose={handleCloseTool}
     case "ColorConverter": 
       return <ColorConv  />; //working but onClose={handleCloseTool} is not
     case "ImageCompressor":
-      return <ImageCompress/>; ////Not working but onClose={handleCloseTool} is not
+      return <ImageCompressItem/>;//// working but onClose={handleCloseTool} is not
     case "CropTool":
-      return <CropTool />;////Not working 
+      return <CropToolItem/>;
     case "ColorPicker":
-      return <ColorPicker  />;////Not working 
+      return <ColorPickerItem/> ;////Not working 
     case "WordCounter":
       return <WordCounterItem/>; //working but onClose={handleCloseTool} is not
     case "CurrencyConverter":
@@ -270,7 +263,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     case "Base64EncoderDecoder":
       return <EncoderItem />;
     case "BackgroundRemove":
-      return <BackgroundRemove onClose={handleCloseTool} />;
+      return <BackgroundRemoverItem onClose={handleCloseTool}/>
     case "PDFEditor":
       return <PdfEdit onClose={handleCloseTool} />;
     case "ResumeAnalyzer":
@@ -299,8 +292,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   // Create a function to render the active tool component
   const renderCalculatorComponent = () => {
     switch (activeCalculator) {
-      case "Calculate":
-        return <Calculate onClose={handleCloseCalculator} />;
+      // case "Calculate":
+      //   return <Calculate onClose={handleCloseCalculator} />;
       case "ScientificCalculator":
         return <ScientificCalculator onClose={handleCloseCalculator} />;
       case "Bmi":
@@ -551,8 +544,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <p style={{ color: "#000000" }}>
               Manage and view your working schedules.
             </p>
-            <div style={{ marginTop: "20px" }}>
-              <TaskScheduler />
+            
+            <div style={{ marginTop: "10px" }}>
+              <AdminScheduleTool/>
 
             </div>
           </Section>
@@ -586,7 +580,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               // Render the tools grid
               <>
                 <div className="soft-dev-content">
-                  {tool.map((tech, index) => (
+                  {Alltools.map((tech, index) => (
                     <ToolsCard
                       key={index}
                       title={tech.title}
@@ -628,7 +622,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               >
                 Perform calculations using our tools.
               </p>
-              <select
+              {/* <select
                 onChange={(e) => {
                   const selectedTitle = e.target.value;
                   if (selectedTitle === "Scientific Calculator") {
@@ -658,7 +652,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                     {item.title}
                   </option>
                 ))}
-              </select>
+              </select> */}
             </div>
             {activeCalculator ? (
               // Render the active tool component
