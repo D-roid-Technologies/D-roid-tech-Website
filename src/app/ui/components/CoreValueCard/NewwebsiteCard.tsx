@@ -43,7 +43,7 @@ export function NewwebsiteCard({
         className || ""
       }`}
       onClick={handleCardClick}
-      style={{ cursor: url || link ? "pointer" : "default" }}
+      //   style={{ cursor: url || link ? "pointer" : "default" }}
     >
       <div className="card-content">
         <div className="card-icon-containers">
