@@ -1,13 +1,19 @@
-import type React from "react"
-import "./DashboardCard.css"
+import type React from "react";
+import "./DashboardCard.css";
 
 interface DashboardCardProps {
-  icon?: React.ReactNode
-  title: string
-  description: string
+  icon?: React.ReactNode;
+  title: string;
+  description: string;
+  buttonLabel?: string;
 }
 
-export function DashboardCard({ icon, title, description }: DashboardCardProps) {
+export function DashboardCard({
+  icon,
+  title,
+  description,
+  buttonLabel,
+}: DashboardCardProps) {
   return (
     <div className="dashboard-card">
       <div className="card-content">
@@ -18,7 +24,8 @@ export function DashboardCard({ icon, title, description }: DashboardCardProps) 
           <h3 className="card-title">{title}</h3>
           <p className="card-description">{description}</p>
         </div>
+        {buttonLabel && <button className="card-button">{buttonLabel}</button>}
       </div>
     </div>
-  )
+  );
 }

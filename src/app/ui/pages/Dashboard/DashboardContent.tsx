@@ -76,6 +76,7 @@ import CropToolItem from "../toolboxpage/croptool/CropToolItem";
 import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPickerItem";
 import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem";
 import AdminScheduleTool from "../schedule/AdminScheduleTool";
+import ServicesItems from "./Services";
 
 // const tools = [
 //   {
@@ -727,7 +728,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Services":
         return (
           <Section title="Your Services">
-            <Finance />
+            {/* <Finance /> */}
+           <ServicesItems/>
+
           </Section>
         );
       case "Careers":
