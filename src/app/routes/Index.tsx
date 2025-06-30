@@ -71,7 +71,7 @@ import BlogPostView from "../ui/pages/DroidJournal/blog/BlogPostView";
 import ResumeAnalyzerPage from "../ui/pages/resumeAnalyser/ResumeAnalyser";
 import PricingPage from "../ui/pages/pricingpage/PricingPage";
 import CareerDescriptionPage from "../ui/pages/careers/CareerDescriptionPage";
-import AnimationDescriptionPage from "../ui/pages/animationPage/AnimationDescriptionPage";
+import AnimationDescriptionPage from "../ui/pages/animationPage/AnimationPage";
 import BackgroundRemover from "../ui/pages/backgroundremover/BackgroundRemover";
 import PdfEditor from "../ui/pages/pdfeditor/PdfEditor";
 import CodeComplexity from "../ui/pages/codecomplexity/CodeComplexity";

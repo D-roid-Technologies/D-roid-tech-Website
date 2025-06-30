@@ -54,6 +54,14 @@ const ServicesItems: React.FC = () => {
   const [activeTrainingComponent, setActiveTrainingComponent] =
     useState<JSX.Element | null>(null);
 
+  const [showAnimation, setShowAnimation] = useState(false);
+  const [selectedAnimationItems, setSelectedAnimationItems] = useState<any[]>(
+    []
+  );
+
+const [showConsulting, setShowConsulting] = useState(false);
+const [selectedConsultingItems, setSelectedConsultingItems] = useState<any[]>([]);
+
   const whatWeDoItems = [
     {
       // @ts-ignore
@@ -352,6 +360,73 @@ const ServicesItems: React.FC = () => {
     },
   ];
 
+  const animationItems = [
+    {
+      icon: <GiFilmProjector />,
+      title: "Brothers",
+      description:
+        "A story of loyalty and courage among siblings facing adversity.",
+    },
+    {
+      icon: <GiFilmProjector />,
+      title: "Cityboy",
+      description:
+        "An animated journey of a boy discovering life in a bustling city.",
+    },
+    {
+      icon: <GiFilmProjector />,
+      title: "Resilience",
+      description:
+        "An inspiring tale of bouncing back after life’s challenges.",
+    },
+    {
+      icon: <GiFilmProjector />,
+      title: "Warriors",
+      description:
+        "Animated chronicles of warriors defending honor and justice.",
+    },
+  ];
+
+  const consultingItems = [
+  {
+    icon: <MdFactCheck />,
+    title: "Tech Stack Evaluation & Recommendation",
+    description:
+      "We assess your current technology stack and recommend best-fit tools, frameworks, and platforms tailored to your business needs.",
+  },
+  {
+    icon: <FaPencilRuler />,
+    title: "Digital Transformation Roadmapping",
+    description:
+      "We help organizations build a practical and scalable roadmap for transitioning their processes and products into digital systems.",
+  },
+  {
+    icon: <FaServer />,
+    title: "CTO-as-a-Service for Startups",
+    description:
+      "For early-stage startups, we offer expert guidance in shaping technology strategy, architecture, and team development.",
+  },
+  {
+    icon: <FaAccessibleIcon />,
+    title: "Security & Infrastructure Review",
+    description:
+      "We perform a thorough audit of your infrastructure, identifying vulnerabilities and offering remediation strategies for long-term resilience.",
+  },
+  {
+    icon: <GrDocumentPerformance />,
+    title: "Scalability & Performance Optimization",
+    description:
+      "We analyze and enhance the performance of your systems to ensure they scale efficiently with growing traffic and usage.",
+  },
+  {
+    icon: <FaCode />,
+    title: "Custom Software Strategy & Architecture",
+    description:
+      "We design custom software strategies with scalable and maintainable architecture tailored to your long-term goals.",
+  },
+];
+
+
   return (
     <div>
       <section className="welcome-section">
@@ -375,6 +450,16 @@ const ServicesItems: React.FC = () => {
                       setShowContentMain(false);
                       setShowTitle(item.title);
                       setSelectedTraining(trainingPrograms);
+                    } else if (selectedTitle === "Animation / Short Stories") {
+                      setShowAnimation(true);
+                      setShowContentMain(false);
+                      setShowTitle(item.title);
+                      setSelectedAnimationItems(animationItems);
+                    }  else if (selectedTitle === "Consulting") {
+                      setShowConsulting(true);
+                      setShowContentMain(false);
+                      setShowTitle(item.title);
+                      setSelectedConsultingItems(consultingItems);
                     } else {
                       setShowContent(false);
                       setShowContentMain(false);
@@ -403,7 +488,7 @@ const ServicesItems: React.FC = () => {
             >
               {/* @ts-ignore */}
               {/* <IoMdArrowRoundBack /> */}
-              Back 
+              Back
             </button>
             <div>
               <h3 style={{ color: "#000000" }}>{showTitle}</h3>
@@ -463,7 +548,7 @@ const ServicesItems: React.FC = () => {
                 setSelectedTechStack([]);
               }}
             >
-              Back 
+              Back
             </button>
 
             <div className="cards-grid cards-grid-3">
@@ -484,56 +569,110 @@ const ServicesItems: React.FC = () => {
         )}
 
         {showTrainingCards && (
+          <>
+            <button
+              className={styles.backButton}
+              onClick={() => {
+                setShowTrainingCards(false);
+                setShowContentMain(true);
+              }}
+            >
+              Back
+            </button>
+            <div className="cards-grid cards-grid-3">
+              {selectedTraining.map((item, index) => (
+                <div
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                  onClick={() => {
+                    setShowTrainingCards(false);
+                    setShowTrainingDescription(true);
+
+                    if (item.title === "Frontend Developer Training") {
+                      setActiveTrainingComponent(
+                        <TrainingDescriptionData program="frontend" />
+                      );
+                    } else if (item.title === "Skill Acquisition Training") {
+                      setActiveTrainingComponent(
+                        <TrainingDescriptionData program="skill" />
+                      );
+                    }
+                  }}
+                >
+                  <DashboardCard
+                    icon={item.icon}
+                    title={item.title}
+                    description={item.description}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {showTrainingDescription && (
+          <>
+            <button
+              className={styles.backButton}
+              onClick={() => {
+                setShowTrainingDescription(false);
+                setShowTrainingCards(true);
+                setActiveTrainingComponent(null);
+              }}
+            >
+              Back to Trainings
+            </button>
+            {activeTrainingComponent}
+          </>
+        )}
+
+        {showAnimation && (
   <>
     <button
       className={styles.backButton}
       onClick={() => {
-        setShowTrainingCards(false);
+        setShowAnimation(false);
         setShowContentMain(true);
+        setSelectedAnimationItems([]);
       }}
     >
-      Back 
+      Back
     </button>
     <div className="cards-grid cards-grid-3">
-      {selectedTraining.map((item, index) => (
-        <div
-          style={{ cursor: "pointer" }}
+      {selectedAnimationItems.map((item, index) => (
+        <DashboardCard
           key={index}
-          onClick={() => {
-            setShowTrainingCards(false);
-            setShowTrainingDescription(true);
-
-            if (item.title === "Frontend Developer Training") {
-              setActiveTrainingComponent(<TrainingDescriptionData program="frontend" />);
-            } else if (item.title === "Skill Acquisition Training") {
-              setActiveTrainingComponent(<TrainingDescriptionData program="skill" />);
-            }
-          }}
-        >
-          <DashboardCard
-            icon={item.icon}
-            title={item.title}
-            description={item.description}
-          />
-        </div>
+          icon={item.icon}
+          title={item.title}
+          description={item.description}
+        />
       ))}
     </div>
   </>
 )}
 
-{showTrainingDescription && (
+{showConsulting && (
   <>
     <button
       className={styles.backButton}
       onClick={() => {
-        setShowTrainingDescription(false);
-        setShowTrainingCards(true);
-        setActiveTrainingComponent(null);
+        setShowConsulting(false);
+        setShowContentMain(true);
+        setSelectedConsultingItems([]);
       }}
     >
-      Back to Trainings
+      Back
     </button>
-    {activeTrainingComponent}
+    <div className="cards-grid cards-grid-3">
+      {selectedConsultingItems.map((item, index) => (
+        <DashboardCard
+          key={index}
+          icon={item.icon}
+          title={item.title}
+          description={item.description}
+        />
+      ))}
+    </div>
   </>
 )}
 
