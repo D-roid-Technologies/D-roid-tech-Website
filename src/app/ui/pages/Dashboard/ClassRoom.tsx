@@ -28,6 +28,7 @@ const ClassRoom: React.FC = () => {
   const [showInnerContent, setShowInnerContent] = useState<boolean>(false);
   const [showTitle, setShowTitle] = useState<string>("");
   const [showDesc, setShowDesc] = useState<string>("");
+  const [selectedClassItem, setSelectedClassItem] = useState<string>("");
 
   const whatWeDoItems = [
     {
@@ -222,6 +223,7 @@ const ClassRoom: React.FC = () => {
           </>
         )}
         {showClassesContent && (
+          // {/* {showClassesContent && selectedClassItem === "Create Class" && ( */}
           <>
             <button
               className={styles.backButton}

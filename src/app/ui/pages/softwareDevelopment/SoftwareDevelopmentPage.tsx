@@ -26,6 +26,7 @@ import ProductsSmall from "../products/ProductsSmall";
 import Testimonial from "../testimonial/Testimonial";
 import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
 import SoftwarePricingCard from "./SoftwarePricingCard";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 
 const devPhases = [
   {
@@ -168,7 +169,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
         >
           What We Build
         </span>
-        <div className="soft-dev-content">
+        <div className="soft-dev-content" style={{ cursor: "pointer" }}>
           {technologies.map((tech, index) => (
             <div
               key={index}
@@ -236,14 +237,13 @@ const SoftwareDevelopmentPage: React.FC = () => {
           >
             Our Development Process
           </span>
-          <div className="soft-dev-content">
+          <div className="soft-dev-content" style={{ cursor: "pointer" }}>
             {devPhases.map((phase, index) => (
-              <CoreValueCardTwo
+              <NewwebsiteCard
                 key={index}
                 title={phase.title}
                 description={phase.description}
                 icon={phase.icon}
-                // url="{tech.url}"
                 onClick={() => {
                   store.dispatch(updateModal(true));
                   store.dispatch(
