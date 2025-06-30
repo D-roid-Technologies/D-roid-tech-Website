@@ -204,7 +204,7 @@ const BackendDevelopment: React.FC = () => {
         >
           What We Offer
         </span>
-        <div className="soft-dev-content">
+        <div className="soft-dev-content" style={{ cursor: "pointer" }}>
           {devPhases.map((phase, index) => (
             // <CoreValueCardTwo
             <NewwebsiteCard
@@ -241,7 +241,7 @@ const BackendDevelopment: React.FC = () => {
         >
           Our Process
         </span>
-        <div className="soft-dev-content">
+        <div className="soft-dev-content" style={{ cursor: "pointer" }}>
           {ourProcess.map((phase, index) => (
             // <CoreValueCardTwo
             <NewwebsiteCard

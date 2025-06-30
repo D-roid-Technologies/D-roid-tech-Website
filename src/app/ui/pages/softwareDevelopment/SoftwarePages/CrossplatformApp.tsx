@@ -205,7 +205,7 @@ const CrossplatformApp: React.FC = () => {
         >
           What We Offer
         </span>
-        <div className="soft-dev-content">
+        <div className="soft-dev-content" style={{ cursor: "pointer" }}>
           {devPhases.map((phase, index) => (
             <NewwebsiteCard
               key={index}
@@ -239,7 +239,7 @@ const CrossplatformApp: React.FC = () => {
         >
           Our Process
         </span>
-        <div className="soft-dev-content">
+        <div className="soft-dev-content" style={{ cursor: "pointer" }}>
           {ourProcess.map((phase, index) => (
             <NewwebsiteCard
               key={index}
