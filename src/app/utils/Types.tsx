@@ -291,12 +291,13 @@ export type Task = {
   id: string;
   title: string;
   description: string;
+  type?: 'task' | 'event' | 'appointment' | 'reminder' | 'habit' | 'note';
   status: 'pending' | 'in_progress' | 'completed' | 'cancelled' | 'archived' | 'on_hold' | 'reopened';
   priority: 'low' | 'medium' | 'high' | 'urgent' | 'critical';
-  category?: string; // e.g., 'bug', 'feature', 'research'
-  projectId?: string;
-  boardColumn?: string; // e.g., 'To Do', 'In Progress', 'Done'
-  sprintId?: string;
+  category?: string; // e.g., 'work', 'personal', 'health', 'study', 'finance', etc.
+  groupId?: string; // formerly 'projectId', can be a project, list, or team
+  boardColumn?: string; // e.g., 'To Do', 'Doing', 'Done'
+  phaseId?: string; // formerly 'sprintId', generalized
   parentTaskId?: string;
   subtasks?: Task[];
   dependencies?: string[];
@@ -311,12 +312,12 @@ export type Task = {
   estimatedHours?: number;
   actualHours?: number;
   startDate?: string;
-  dueDate?: string;
+  endDate?: string; // formerly dueDate, more neutral
   completedAt?: string;
   reminderAt?: string;
   recurring?: boolean;
   recurrencePattern?: 'daily' | 'weekly' | 'monthly' | 'custom';
-  customRecurrenceRule?: string; // e.g., iCal RRULE string
+  customRecurrenceRule?: string; // iCal RRULE string
   location?: {
     address?: string;
     latitude?: number;
@@ -325,7 +326,7 @@ export type Task = {
   isPrivate?: boolean;
   isBlocked?: boolean;
   blockReason?: string;
-  score?: number; // e.g., story points, or impact score
+  score?: number; // for prioritization or impact
   feedback?: string;
   linkedResources?: {
     title: string;
@@ -337,3 +338,4 @@ export type Task = {
   dateModified?: string;
   dateDeleted?: string;
 };
+
