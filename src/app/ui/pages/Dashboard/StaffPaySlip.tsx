@@ -28,6 +28,11 @@ interface PaySlipProps {
   todayMonth: number;
 }
 
+interface ValidationResult {
+  isValid: boolean;
+  missingFields: string[];
+}
+
 const getCurrentDateInfo = () => {
   const today = new Date();
   const currentMonthDate = new Date(today.getFullYear(), today.getMonth(), 9); // 9th of current month
@@ -48,7 +53,62 @@ const formatDateLong = (date: Date) =>
     day: "numeric",
   });
 
-const StaffPaySlip: React.FC<PaySlipProps> = ({
+// Validation function to check if required fields are present
+const validatePayslipData = (
+  employeeName: string,
+  employeeId: string,
+  sNumber: string,
+  sName: string,
+  city: string,
+  state: string,
+  country: string,
+  staffGrossPay: string | number,
+  staffTax: string | number,
+  staffPosition: string
+): ValidationResult => {
+  const missingFields: string[] = [];
+
+  // Check employee details
+  if (!employeeName || employeeName.trim() === "") {
+    missingFields.push("Employee Name");
+  }
+  if (!employeeId || employeeId.trim() === "") {
+    missingFields.push("Employee ID");
+  }
+  if (!sNumber || sNumber.trim() === "") {
+    missingFields.push("Street Number");
+  }
+  if (!sName || sName.trim() === "") {
+    missingFields.push("Street Name");
+  }
+  if (!city || city.trim() === "") {
+    missingFields.push("City");
+  }
+  if (!state || state.trim() === "") {
+    missingFields.push("State");
+  }
+  if (!country || country.trim() === "") {
+    missingFields.push("Country");
+  }
+
+  // Check financial details
+  if (!staffGrossPay || Number(staffGrossPay) <= 0) {
+    missingFields.push("Gross Pay");
+  }
+  if (!staffTax || Number(staffTax) < 0) {
+    missingFields.push("Tax Amount");
+  }
+  if (!staffPosition || staffPosition.trim() === "") {
+    missingFields.push("Staff Position");
+  }
+
+  return {
+    isValid: missingFields.length === 0,
+    missingFields
+  };
+};
+
+export const StaffPaySlip: React.FC<PaySlipProps> = ({
   employeeName,
   employeeId,
   sNumber,
@@ -65,6 +125,7 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
   const { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd } =
     getCurrentDateInfo();
   const currentMonth = new Date().toLocaleString("default", { month: "long" });
+  
   const staffGrossPay = useSelector(
     (state: RootState) => state.SignInO.staffDetails.staffGrossPay
   );
@@ -78,14 +139,45 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
   const [showGenerateButton, setShowGenerateButton] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const [showPayslip, setShowPayslip] = useState(false);
+  
   const payslips = useSelector((state: RootState) => state.payslip.payslips);
   const user = useSelector((state: RootState) => state.user);
+
+  // Validation effect
+  useEffect(() => {
+    const validation = validatePayslipData(
+      employeeName,
+      employeeId,
+      sNumber,
+      sName,
+      city,
+      state,
+      country,
+      staffGrossPay,
+      staffTax,
+      staffPosition
+    );
+
+    if (!validation.isValid) {
+      setValidationError(
+        `Please fill in the following required fields:\n• ${validation.missingFields.join('\n• ')}`
+      );
+      setShowPayslip(false);
+      
+      // // Show alert to user
+      // alert(`Payslip cannot be displayed. Missing required information:\n\n• ${validation.missingFields.join('\n• ')}\n\nPlease complete your profile information to view the payslip.`);
+    } else {
+      setValidationError(null);
+      setShowPayslip(true);
+    }
+  }, [employeeName, employeeId, sNumber, sName, city, state, country, staffGrossPay, staffTax, staffPosition]);
 
   useEffect(() => {
     const today = new Date();
     // if (today.getDate() === 8) {
     setShowGenerateButton(true);
-
     // }
   }, []);
 
@@ -133,6 +225,25 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
   };
 
   const handleGenerateClick = async () => {
+    // Re-validate before generating
+    const validation = validatePayslipData(
+      employeeName,
+      employeeId,
+      sNumber,
+      sName,
+      city,
+      state,
+      country,
+      staffGrossPay,
+      staffTax,
+      staffPosition
+    );
+
+    if (!validation.isValid) {
+      alert(`Cannot generate payslip. Missing required information:\n\n• ${validation.missingFields.join('\n• ')}\n\nPlease complete your profile information first.`);
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 
@@ -164,6 +275,7 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
       setLoading(false);
     }
   };
+
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [filteredPayslips, setFilteredPayslips] = useState<PaySlip[]>([]);
   // Add refs for each payslip card
@@ -183,20 +295,6 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
     new Set(payslips.map((p) => p.payPeriod.monthOfPay))
   );
 
-  // const handleDownload = () => {
-  //   if (contentRef.current) {
-  //     const opt = {
-  //       margin: 0.5,
-  //       filename: "payslip.pdf",
-  //       image: { type: "jpeg", quality: 0.98 },
-  //       html2canvas: { scale: 2, useCORS: true },
-  //       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-  //     };
-
-  //     html2pdf().set(opt).from(contentRef.current).save();
-  //   }
-  // };
-
   // Download handler for filtered payslips
   const handleDownloadFiltered = (index: number) => {
     const ref = payslipRefs.current[index];
@@ -211,6 +309,27 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
       html2pdf().set(opt).from(ref).save();
     }
   };
+
+  // If validation fails, show error message instead of payslip
+  if (!showPayslip) {
+    return (
+      <div style={styles.errorContainer}>
+        <div style={styles.errorCard}>
+          <h2 style={styles.errorTitle}>⚠️ Incomplete Profile Information</h2>
+          <p style={styles.errorMessage}>
+            Your payslip cannot be displayed because some required information is missing from your profile.
+          </p>
+          <div style={styles.errorDetails}>
+            <h4>Missing Information:</h4>
+            <pre style={styles.errorList}>{validationError}</pre>
+          </div>
+          <p style={styles.errorInstruction}>
+            Please complete your profile information to view and generate your payslip.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -259,6 +378,9 @@ const StaffPaySlip: React.FC<PaySlipProps> = ({
           </p>
           <p>
             <strong>Employee ID:</strong> {employeeId}
+          </p>
+          <p>
+            <strong>Position:</strong> {staffPosition}
           </p>
           <p>
             <strong>Date of Creation:</strong>{" "}
@@ -637,12 +759,65 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#7f8c8d",
     textAlign: "center",
   },
-
+  // Error styles
+  errorContainer: {
+    maxWidth: 600,
+    margin: "3rem auto",
+    padding: 20,
+  },
+  errorCard: {
+    backgroundColor: "#fff3cd",
+    border: "1px solid #ffeaa7",
+    borderRadius: 10,
+    padding: 30,
+    textAlign: "center",
+    boxShadow: "0 4px 15px rgba(255, 193, 7, 0.2)",
+  },
+  errorTitle: {
+    color: "#856404",
+    fontSize: "1.5rem",
+    marginBottom: 15,
+    fontWeight: "600",
+  },
+  errorMessage: {
+    color: "#856404",
+    fontSize: "1.1rem",
+    marginBottom: 20,
+    lineHeight: 1.5,
+  },
+  errorDetails: {
+    backgroundColor: "#fff",
+    border: "1px solid #ffeaa7",
+    borderRadius: 8,
+    padding: 20,
+    marginBottom: 20,
+    textAlign: "left",
+  },
+  errorList: {
+    color: "#d32f2f",
+    fontSize: "0.95rem",
+    fontFamily: "monospace",
+    margin: 0,
+    whiteSpace: "pre-wrap",
+  },
+  errorInstruction: {
+    color: "#856404",
+    fontSize: "1rem",
+    fontWeight: "500",
+    margin: 0,
+  },
+  errorNavButton:{
+    color:"white",
+    backgroundColor:"red",
+    marginInline:"auto",
+    fontSize:"14px",
+    marginTop:"1rem"
+  },
   payslipTableContainer: {},
   tableWrapper: {
     overflowX: "auto",
     marginTop: 10,
-    color: "#000000",
+    color: "#000000"
   },
   "table th": {
     padding: "10px",
@@ -663,5 +838,3 @@ const styles: { [key: string]: React.CSSProperties } = {
     boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
   },
 };
-
-export default StaffPaySlip;
