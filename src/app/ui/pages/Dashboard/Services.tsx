@@ -22,6 +22,7 @@ import { GiFilmProjector } from "react-icons/gi";
 
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
+import { stories } from "../../components/storyReader/stories-data";
 
 //techstack
 import { FaHtml5, FaCss3Alt, FaReact, FaPython, FaPhp } from "react-icons/fa";
@@ -37,6 +38,8 @@ import {
 import { TbBrandXamarin } from "react-icons/tb";
 import TrainingDescriptionPage from "../trainingPrograms/TrainingDescriptionPage";
 import { TrainingDescriptionData } from "../trainingPrograms/TrainingDescriptionData";
+import { storyDescriptionData } from "../../components/storyReader/storyDescriptionData";
+import StoryReader from "../../components/storyReader/StoryReader";
 
 const ServicesItems: React.FC = () => {
   const [showContentMain, setShowContentMain] = useState<boolean>(true);
@@ -59,8 +62,19 @@ const ServicesItems: React.FC = () => {
     []
   );
 
+
+
+
 const [showConsulting, setShowConsulting] = useState(false);
 const [selectedConsultingItems, setSelectedConsultingItems] = useState<any[]>([]);
+
+const [showAnimationDetail, setShowAnimationDetail] = useState(false);
+const [showStoryCards, setShowStoryCards] = useState(false);   // list view
+const [showStoryDetail, setShowStoryDetail] = useState(false); // reader view
+const [activeStory, setActiveStory] = useState<any | null>(null);
+
+const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
+
 
   const whatWeDoItems = [
     {
@@ -361,25 +375,25 @@ const [selectedConsultingItems, setSelectedConsultingItems] = useState<any[]>([]
   ];
 
   const animationItems = [
-    {
+    {id: "brothers",
       icon: <GiFilmProjector />,
       title: "Brothers",
       description:
         "A story of loyalty and courage among siblings facing adversity.",
     },
-    {
+    {id: "Cityboy",
       icon: <GiFilmProjector />,
       title: "Cityboy",
       description:
         "An animated journey of a boy discovering life in a bustling city.",
     },
-    {
+    {id: "Resilience",
       icon: <GiFilmProjector />,
       title: "Resilience",
       description:
         "An inspiring tale of bouncing back after life’s challenges.",
     },
-    {
+    {id: "Warriors",
       icon: <GiFilmProjector />,
       title: "Warriors",
       description:
@@ -626,30 +640,8 @@ const [selectedConsultingItems, setSelectedConsultingItems] = useState<any[]>([]
           </>
         )}
 
-        {showAnimation && (
-  <>
-    <button
-      className={styles.backButton}
-      onClick={() => {
-        setShowAnimation(false);
-        setShowContentMain(true);
-        setSelectedAnimationItems([]);
-      }}
-    >
-      Back
-    </button>
-    <div className="cards-grid cards-grid-3">
-      {selectedAnimationItems.map((item, index) => (
-        <DashboardCard
-          key={index}
-          icon={item.icon}
-          title={item.title}
-          description={item.description}
-        />
-      ))}
-    </div>
-  </>
-)}
+   
+
 
 {showConsulting && (
   <>
@@ -675,6 +667,98 @@ const [selectedConsultingItems, setSelectedConsultingItems] = useState<any[]>([]
     </div>
   </>
 )}
+
+{showAnimation && !showAnimationDetail && (
+  <>
+    <button
+      className={styles.backButton}
+      onClick={() => {
+        setShowAnimation(false);
+        setShowContentMain(true);
+        setSelectedAnimationItems([]);
+      }}
+    >
+      Back
+    </button>
+
+    <div className="cards-grid cards-grid-3">
+      {selectedAnimationItems.map((item) => (
+        <div
+          key={item.id}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setShowAnimationDetail(true);
+            setShowAnimation(false);
+            setActiveStoryId(item.id); 
+          }}
+        >
+          <DashboardCard
+            icon={item.icon}
+            title={item.title}
+            description={item.description}
+          />
+        </div>
+      ))}
+    </div>
+  </>
+)}
+
+
+{showStoryCards && !showStoryDetail && (
+  <>
+    <button
+      className={styles.backButton}
+      onClick={() => {
+        setShowStoryCards(false);
+        setShowContentMain(true);
+      }}
+    >
+      Back
+    </button>
+
+    <div className="cards-grid cards-grid-3">
+      {animationItems.map((item) => (
+        <div
+          key={item.title}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            const found = stories.find((s) => s.title === item.title);
+            if (found) {
+              setActiveStory(found);
+              setShowStoryDetail(true);
+              setShowStoryCards(false);
+            }
+          }}
+        >
+          <DashboardCard
+            icon={item.icon}
+            title={item.title}
+            description={item.description}
+          />
+        </div>
+      ))}
+    </div>
+  </>
+)}
+
+
+{showAnimationDetail && activeStoryId && (
+  <>
+    <button
+      className={styles.backButton}
+      onClick={() => {
+        setShowAnimation(true);
+        setShowAnimationDetail(false);
+        setActiveStoryId(null);
+      }}
+    >
+      Back to Stories
+    </button>
+
+    {storyDescriptionData({ story: activeStoryId })}
+  </>
+)}
+
 
       </section>
     </div>
