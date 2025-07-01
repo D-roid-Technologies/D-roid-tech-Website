@@ -40,7 +40,7 @@ const rootReducer = combineReducers({
   tasks: tasksReducer,
   announcements: announcementsReducer,
   trainings: trainingSlice.reducer,
-  scheduleTask: scheduleTask.reducer
+  scheduleTask: scheduleTask.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
