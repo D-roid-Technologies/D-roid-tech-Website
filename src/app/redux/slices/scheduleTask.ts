@@ -117,12 +117,9 @@ export const scheduleTask = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-        addTask: (state, action: PayloadAction<Omit<Task, 'id' | 'dateCreated'>>) => {
-            state.tasks.push({
-                ...action.payload,
-                id: uuidv4(),
-                dateCreated: new Date().toISOString(),
-            });
+        addTask: (state, action: PayloadAction<Task>) => {
+            state.tasks.push(action.payload);
+            console.log("from state", [...state.tasks]);
         },
         updateTask: (state, action: PayloadAction<Task>) => {
             const index = state.tasks.findIndex(task => task.id === action.payload.id);

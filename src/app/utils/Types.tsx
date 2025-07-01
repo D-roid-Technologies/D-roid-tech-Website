@@ -281,7 +281,7 @@ type TaskHistoryEntry = {
   metadata?: Record<string, any>;
 };
 
-type ChecklistItem = {
+export type ChecklistItem = {
   id: string;
   title: string;
   checked: boolean;
