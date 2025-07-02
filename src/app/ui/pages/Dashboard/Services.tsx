@@ -39,7 +39,11 @@ import { TbBrandXamarin } from "react-icons/tb";
 import TrainingDescriptionPage from "../trainingPrograms/TrainingDescriptionPage";
 import { TrainingDescriptionData } from "../trainingPrograms/TrainingDescriptionData";
 import { storyDescriptionData } from "../../components/storyReader/storyDescriptionData";
-import StoryReader from "../../components/storyReader/StoryReader";
+
+import { TechStackItem } from "../../../utils/Types";
+import TechDetailPage from "./techStacks/TechStackDetail";
+
+
 
 const ServicesItems: React.FC = () => {
   const [showContentMain, setShowContentMain] = useState<boolean>(true);
@@ -67,13 +71,16 @@ const ServicesItems: React.FC = () => {
 
 const [showConsulting, setShowConsulting] = useState(false);
 const [selectedConsultingItems, setSelectedConsultingItems] = useState<any[]>([]);
+const [activeConsultingDetail, setactiveConsultingDetail] = useState<TechStackItem | null>(null); 
 
 const [showAnimationDetail, setShowAnimationDetail] = useState(false);
-const [showStoryCards, setShowStoryCards] = useState(false);   // list view
-const [showStoryDetail, setShowStoryDetail] = useState(false); // reader view
+const [showStoryCards, setShowStoryCards] = useState(false);   
+const [showStoryDetail, setShowStoryDetail] = useState(false); 
 const [activeStory, setActiveStory] = useState<any | null>(null);
 
 const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
+
+const [activeTechDetail, setActiveTechDetail] = useState<TechStackItem | null>(null); 
 
 
   const whatWeDoItems = [
@@ -406,19 +413,19 @@ const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
     icon: <MdFactCheck />,
     title: "Tech Stack Evaluation & Recommendation",
     description:
-      "We assess your current technology stack and recommend best-fit tools, frameworks, and platforms tailored to your business needs.",
+      "We conduct deep-dive audits of your existing technology landscape, analyzing performance metrics, cost efficiency, and future scalability. Our experts provide actionable recommendations with ROI projections, migration timelines, and risk assessments.",
   },
   {
     icon: <FaPencilRuler />,
     title: "Digital Transformation Roadmapping",
     description:
-      "We help organizations build a practical and scalable roadmap for transitioning their processes and products into digital systems.",
+      "We craft comprehensive digital transformation strategies that align cutting-edge technology with your business objectives. From legacy system modernization to cloud migration and process automation.",
   },
   {
     icon: <FaServer />,
     title: "CTO-as-a-Service for Startups",
     description:
-      "For early-stage startups, we offer expert guidance in shaping technology strategy, architecture, and team development.",
+      "Access seasoned technical leadership without the full-time commitment. Our fractional CTOs bring 15+ years of experience scaling startups from MVP to IPO.",
   },
   {
     icon: <FaAccessibleIcon />,
@@ -430,13 +437,13 @@ const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
     icon: <GrDocumentPerformance />,
     title: "Scalability & Performance Optimization",
     description:
-      "We analyze and enhance the performance of your systems to ensure they scale efficiently with growing traffic and usage.",
+      "Our cybersecurity experts perform comprehensive penetration testing, vulnerability assessments, and compliance audits across your entire digital infrastructure.",
   },
   {
     icon: <FaCode />,
     title: "Custom Software Strategy & Architecture",
     description:
-      "We design custom software strategies with scalable and maintainable architecture tailored to your long-term goals.",
+      "We design enterprise-grade software architectures tailored to your unique business processes and growth projections. From microservices and API-first designs to event-driven architectures.",
   },
 ];
 
@@ -552,35 +559,58 @@ const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
           </>
         )}
 
-        {showTechCards && (
-          <>
-            <button
-              className={styles.backButton}
-              onClick={() => {
-                setShowTechCards(false);
-                setShowContent(true);
-                setSelectedTechStack([]);
-              }}
-            >
-              Back
-            </button>
+     {showTechCards && !activeTechDetail && (
+  <>
+    <button
+      className={styles.backButton}
+      onClick={() => {
+        setShowTechCards(false);
+        setShowContent(true);
+        setSelectedTechStack([]);
+      }}
+    >
+      Back
+    </button>
 
-            <div className="cards-grid cards-grid-3">
-              {selectedTechStack.map((tech, index) => (
-                <DashboardCard
-                  key={index}
-                  icon={tech.icon}
-                  title={tech.title}
-                  description={
-                    tech.description.length > 80
-                      ? tech.description.slice(0, 250) + "..."
-                      : tech.description
-                  }
-                />
-              ))}
-            </div>
-          </>
-        )}
+    <div className="cards-grid cards-grid-3">
+      {selectedTechStack.map((tech, index) => (
+        <div
+          key={index}
+          style={{ cursor: "pointer" }}
+          onClick={() => setActiveTechDetail(tech)} // <- show detail view
+        >
+          <DashboardCard
+            icon={tech.icon}
+            title={tech.title}
+            description={
+              tech.description.length > 80
+                ? tech.description.slice(0, 250) + "..."
+                : tech.description
+            }
+          />
+        </div>
+      ))}
+    </div>
+  </>
+)}
+
+{showTechCards && activeTechDetail && (
+  <>
+    <button
+      className={styles.backButton}
+      onClick={() => setActiveTechDetail(null)} // back to all tech cards
+    >
+      Back to Tech Cards
+    </button>
+
+     <TechDetailPage
+    icon={activeTechDetail.icon}
+    title={activeTechDetail.title}
+    description={activeTechDetail.description}
+  />
+  </>
+)}
+
 
         {showTrainingCards && (
           <>
@@ -643,7 +673,7 @@ const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
    
 
 
-{showConsulting && (
+{showConsulting && !activeConsultingDetail &&(
   <>
     <button
       className={styles.backButton}
@@ -657,12 +687,22 @@ const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
     </button>
     <div className="cards-grid cards-grid-3">
       {selectedConsultingItems.map((item, index) => (
-        <DashboardCard
+         <div
           key={index}
-          icon={item.icon}
-          title={item.title}
-          description={item.description}
-        />
+          style={{ cursor: "pointer" }}
+          onClick={() => setactiveConsultingDetail(item)} // <- show detail view
+        >
+          <DashboardCard
+            icon={item.icon}
+            title={item.title}
+            description={
+              item.description.length > 80
+                ? item.description.slice(0, 250) + "..."
+                : item.description
+            }
+          />
+        </div>
+       
       ))}
     </div>
   </>
@@ -759,6 +799,22 @@ const [activeStoryId, setActiveStoryId] = useState<string | null>(null);
   </>
 )}
 
+{showConsulting && activeConsultingDetail && (
+  <>
+    <button
+      className={styles.backButton}
+      onClick={() => setactiveConsultingDetail(null)} // back to all tech cards
+    >
+      Back to Tech Cards
+    </button>
+
+     <TechDetailPage
+    icon={activeConsultingDetail.icon}
+    title={activeConsultingDetail.title}
+    description={activeConsultingDetail.description}
+  />
+  </>
+)}
 
       </section>
     </div>

@@ -77,6 +77,7 @@ import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPic
 import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem";
 import AdminScheduleTool from "../schedule/AdminScheduleTool";
 import ServicesItems from "./Services";
+import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage";
 
 // const tools = [
 //   {
@@ -270,7 +271,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     case "ResumeAnalyzer":
       return <ResumeAnalyzing onClose={handleCloseTool} />;
     case "CodeComplexityAnalyzer":
-      return <CodeComplex onClose={handleCloseTool} />;
+      return <UnderDevelopmentPage /> 
     case "BulkImageWatermarker":
       return <ImageMark onClose={handleCloseTool} />;
     default:
