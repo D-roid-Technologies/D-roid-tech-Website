@@ -2,8 +2,9 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerificati
 import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
-import { LocationState, UserType } from "../../utils/Types";
+import { LocationState, Task, UserType } from "../../utils/Types";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
+import { addTask } from "../slices/scheduleTask";
 import { setSignInAndOutData, setStaffDetails, setStaffDocuments, setStaffLeave, StaffDetails } from "../slices/SignInAndOutSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
@@ -304,6 +305,20 @@ const addDaysToDate = (dateInput: string, daysToAdd: number) => {
     };
 
     return newDate;
+}
+
+function removeUndefined(obj: any): any {
+    if (Array.isArray(obj)) {
+        return obj.map(removeUndefined);
+    } else if (obj && typeof obj === 'object') {
+        return Object.entries(obj)
+            .filter(([, value]) => value !== undefined)
+            .reduce((acc, [key, value]) => {
+                acc[key] = removeUndefined(value);
+                return acc;
+            }, {} as any);
+    }
+    return obj;
 }
 
 function getCurrentUser(): Promise<User> {
@@ -633,6 +648,21 @@ export class AuthService {
                     staffLeave: [],
                     staffSignInAndOut: []
                 },
+                payslips: {
+                    paySlip: []
+                },
+                onboarding: {
+                    onboarding: []
+                },
+                training: {
+                    trainings: []
+                },
+                progression: {
+                    progressions: []
+                },
+                resources: {
+                    resorceses: []
+                },
                 forms: {
                     userForms: []
                 },
@@ -657,21 +687,7 @@ export class AuthService {
                 tasks: {
                     task: []
                 },
-                payslips: {
-                    paySlip: []
-                },
-                onboarding: {
-                    onboarding: []
-                },
-                training: {
-                    trainings: []
-                },
-                progression: {
-                    progressions: []
-                },
-                resources: {
-                    resorceses: []
-                },
+
             };
 
             await setDoc(userDocRef, droidAccount);
@@ -1284,7 +1300,71 @@ export class AuthService {
         }
     }
 
+    async handleCreateTask(task: Task) {
+        try {
+            const currentUser = auth.currentUser;
 
+            if (!currentUser) {
+                toast.error('No authenticated user found.', {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return null;
+            }
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, 'droidaccount', userId);
+            const userSnapshot = await getDoc(userDocRef);
+
+            if (!userSnapshot.exists()) {
+                toast.error('User document not found.', {
+                    style: { background: '#ff4d4f', color: '#fff' },
+                });
+                return null;
+            }
+
+            // Clean task to remove undefined fields before saving
+            const cleanedTask = removeUndefined(task);
+
+            const data = userSnapshot.data();
+            const existingTasks: Task[] = data?.schedules?.schedule || [];
+
+            // Optional: Check for duplicate task title & startDate
+            const duplicate = existingTasks.some(
+                (t: Task) => t.title === cleanedTask.title && t.startDate === cleanedTask.startDate
+            );
+
+            if (duplicate) {
+                toast.error(`A task with the same title and start date already exists.`, {
+                    style: { background: '#faad14', color: '#fff' },
+                });
+                return null;
+            }
+
+            // Add new task
+            await updateDoc(userDocRef, {
+                'schedules.schedule': arrayUnion(cleanedTask),
+            });
+
+            // Get updated snapshot and tasks
+            const updatedSnapshot = await getDoc(userDocRef);
+            const updatedData = updatedSnapshot.data();
+            const updatedTasks: Task[] = updatedData?.schedules?.schedule || [];
+
+            // Update Redux store
+            store.dispatch(addTask({ ...cleanedTask }));
+
+            toast.success('Task added successfully! 🎉', {
+                style: { background: '#4BB543', color: '#fff' },
+            });
+
+            return cleanedTask;
+        } catch (error: any) {
+            toast.error(`Error creating task: ${error.message}`, {
+                style: { background: '#ff4d4f', color: '#fff' },
+            });
+            return null;
+        }
+    }
 
 
 
