@@ -4,6 +4,9 @@ import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import Calendar from "./Calender";
+import TaskScheduler from "./TaskScheduler";
+import TaskSchedulerPage from "./TaskSchedulerPage";
+import TaskSchedulerDashboard from "./TaskSchedulerDashboard";
 
 // Import the components directly
 
@@ -31,9 +34,9 @@ const AdminScheduleTool: React.FunctionComponent = () => {
   const renderSelectedTool = () => {
     switch (selectedTool) {
       case "calendar":
-        return <Calendar/>
+        return <Calendar />
       case "tasks":
-        return 'Coming soon'
+        return <TaskSchedulerDashboard />
       default:
         return null;
     }
@@ -62,25 +65,25 @@ const AdminScheduleTool: React.FunctionComponent = () => {
 
         {/* Render Selected Tool Inline */}
         {selectedTool && (
-  <>
-    <button
-      onClick={() => setSelectedTool(null)} // 
-      style={{
-        margin: "2px",
-        padding: "8px 16px",
-        backgroundColor: "#f0f0f0",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        cursor: "pointer",
-        color: "#333",
-      }}
-    >
-      ← Back to Tools
-    </button>
+          <>
+            <button
+              onClick={() => setSelectedTool(null)} // 
+              style={{
+                margin: "2px",
+                padding: "8px 16px",
+                backgroundColor: "#f0f0f0",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+                cursor: "pointer",
+                color: "#333",
+              }}
+            >
+              ← Back to Tools
+            </button>
 
-    {renderSelectedTool()}
-  </>
-)}
+            {renderSelectedTool()}
+          </>
+        )}
 
       </div>
     </div>

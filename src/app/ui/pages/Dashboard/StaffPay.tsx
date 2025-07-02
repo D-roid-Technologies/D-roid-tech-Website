@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { calculateNetSalary } from '../../../redux/configuration/auth.service';
 import { Entry } from '../../../redux/slices/SignInAndOutSlice';
 import { RootState } from '../../../redux/Store';
-import StaffPaySlip from './StaffPaySlip';
+import {StaffPaySlip} from './StaffPaySlip';
 
 const StaffPay: React.FunctionComponent = () => {
     const user = useSelector((state: RootState) => state.user);

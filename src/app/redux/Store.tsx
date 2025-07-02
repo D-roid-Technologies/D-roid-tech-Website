@@ -16,6 +16,7 @@ import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
 import tasksReducer from "./slices/tasksSlice";
 import announcementsReducer from "./slices/Annoucements";
 import { trainingSlice } from './slices/TrainingsSlice';
+import { scheduleTask } from './slices/scheduleTask';
 
 const persistConfig = {
   key: 'root',
@@ -38,7 +39,8 @@ const rootReducer = combineReducers({
   connectedApps: affiliatedAppsSlice.reducer,
   tasks: tasksReducer,
   announcements: announcementsReducer,
-  trainings : trainingSlice.reducer
+  trainings: trainingSlice.reducer,
+  scheduleTask: scheduleTask.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

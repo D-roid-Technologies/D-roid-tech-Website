@@ -245,3 +245,97 @@ export type LocationState = {
 export type ToolProps = {
   onClose?: () => void;
 };
+
+export type UserRef = {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl?: string;
+};
+
+type Comment = {
+  id: string;
+  author: UserRef;
+  content: string;
+  createdAt: string;
+  updatedAt?: string;
+  reactions?: {
+    [emoji: string]: number; // e.g., { 👍: 3, 🚀: 1 }
+  };
+};
+
+type Attachment = {
+  id: string;
+  filename: string;
+  url: string;
+  fileType: string;
+  uploadedBy: UserRef;
+  uploadedAt: string;
+};
+
+type TaskHistoryEntry = {
+  id: string;
+  timestamp: string;
+  action: string; // e.g., 'status_changed', 'assigned', 'title_updated'
+  performedBy: UserRef;
+  metadata?: Record<string, any>;
+};
+
+export type ChecklistItem = {
+  id: string;
+  title: string;
+  checked: boolean;
+};
+
+export type Task = {
+  id: string;
+  title: string;
+  description: string;
+  type?: 'task' | 'event' | 'appointment' | 'reminder' | 'habit' | 'note';
+  status: 'pending' | 'in_progress' | 'completed' | 'cancelled' | 'archived' | 'on_hold' | 'reopened';
+  priority: 'low' | 'medium' | 'high' | 'urgent' | 'critical';
+  category?: string; // e.g., 'work', 'personal', 'health', 'study', 'finance', etc.
+  groupId?: string; // formerly 'projectId', can be a project, list, or team
+  boardColumn?: string; // e.g., 'To Do', 'Doing', 'Done'
+  phaseId?: string; // formerly 'sprintId', generalized
+  parentTaskId?: string;
+  subtasks?: Task[];
+  dependencies?: string[];
+  dependents?: string[];
+  tags?: string[];
+  checklist?: ChecklistItem[];
+  assignee?: UserRef;
+  collaborators?: UserRef[];
+  reporter?: UserRef;
+  comments?: Comment[];
+  attachments?: Attachment[];
+  estimatedHours?: number;
+  actualHours?: number;
+  startDate?: string;
+  endDate?: string; // formerly dueDate, more neutral
+  completedAt?: string;
+  reminderAt?: string;
+  recurring?: boolean;
+  recurrencePattern?: 'daily' | 'weekly' | 'monthly' | 'custom';
+  customRecurrenceRule?: string; // iCal RRULE string
+  location?: {
+    address?: string;
+    latitude?: number;
+    longitude?: number;
+  };
+  isPrivate?: boolean;
+  isBlocked?: boolean;
+  blockReason?: string;
+  score?: number; // for prioritization or impact
+  feedback?: string;
+  linkedResources?: {
+    title: string;
+    url: string;
+  }[];
+  auditTrail?: TaskHistoryEntry[];
+  createdBy: UserRef;
+  dateCreated: string;
+  dateModified?: string;
+  dateDeleted?: string;
+};
+
