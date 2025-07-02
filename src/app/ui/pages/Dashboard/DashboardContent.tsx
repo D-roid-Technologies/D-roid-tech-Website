@@ -78,6 +78,12 @@ import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemov
 import AdminScheduleTool from "../schedule/AdminScheduleTool";
 import ServicesItems from "./Services";
 import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage";
+import { VolunteersSection } from "./volunteers-section";
+import { DonationsSection } from "./donations-section";
+import { GroupsSection } from "./groups-section";
+import { ImpactSection } from "./impact-section";
+import { OutreachSection } from "./outreach-section";
+import { PartnersSection } from "./partners-section";
 
 // const tools = [
 //   {
@@ -746,6 +752,42 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <Finance />
           </Section>
         );
+        case "Volunteers":
+          return (
+            <Section title="Your Volunteers">
+              <VolunteersSection/>
+            </Section>
+        );
+        case "Donations":
+          return (
+            <Section title="Your Donations">
+              <DonationsSection/>
+            </Section>
+        );
+        case "Outreach":
+          return (
+            <Section title="Your Outreach">
+              <OutreachSection/>
+            </Section>
+        );
+        case "Impact":
+          return (
+            <Section title="Your Impact">
+              <ImpactSection/>
+            </Section>
+        );
+        case "Partners":
+          return (
+            <Section title="Your Partners">
+              <PartnersSection/>
+            </Section>
+        );
+        case "Groups":
+          return (
+            <Section title="Your Groups">
+              <GroupsSection/>
+            </Section>
+          );
       default:
         return (
           <Section title="Dashboard">
