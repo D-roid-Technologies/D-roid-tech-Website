@@ -20,6 +20,7 @@ import { GiUpgrade } from "react-icons/gi";
 import { PiStudentDuotone } from "react-icons/pi";
 import { IoMdPersonAdd } from "react-icons/io";
 import { SiGoogleclassroom } from "react-icons/si";
+import AllClasses from "./AllClasses";
 
 const ClassRoom: React.FC = () => {
   const [showContentMain, setShowContentMain] = useState<boolean>(true);
@@ -32,7 +33,6 @@ const ClassRoom: React.FC = () => {
 
   const whatWeDoItems = [
     {
-      // @ts-ignore
       icon: <FaUserGraduate />,
       title: "Students",
       description:
@@ -48,92 +48,116 @@ const ClassRoom: React.FC = () => {
 
   const classes = [
     {
-      // @ts-ignore
       icon: <SiGoogleclassroom />,
       title: "All Classes",
       description:
         "Access and manage every class in your organization, including enrolled students, assigned instructors, class schedules, and academic progress—all in one place.",
     },
     {
-      // @ts-ignore
       icon: <FaChalkboardTeacher />,
       title: "Create Class",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
   ];
+
   const students = [
     {
-      // @ts-ignore
       icon: <PiStudentDuotone />,
       title: "All Students",
       description:
         "Access and manage every class in your organization, including enrolled students, assigned instructors, class schedules, and academic progress—all in one place.",
     },
     {
-      // @ts-ignore
       icon: <IoMdPersonAdd />,
       title: "Add Students",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
     {
-      // @ts-ignore
       icon: <MdAppRegistration />,
       title: "Fees",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
     {
-      // @ts-ignore
       icon: <GiProgression />,
       title: "Progression",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
     {
-      // @ts-ignore
       icon: <LiaUserCheckSolid />,
       title: "Attendance",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
     {
-      // @ts-ignore
       icon: <BsRecordBtn />,
       title: "Exams and Records",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
     {
-      // @ts-ignore
       icon: <GiUpgrade />,
       title: "Grades",
       description:
         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
   ];
+
+  const handleMainItemClick = (item: any) => {
+    setShowContent(true);
+    setShowContentMain(false);
+    setShowInnerContent(true);
+    setShowTitle(item.title);
+    setShowDesc(item.description);
+  };
+
+  const handleClassItemClick = (item: any) => {
+    setShowContent(false);
+    setShowClassesContent(true);
+    setSelectedClassItem(item.title);
+    setShowTitle(item.title);
+    setShowDesc(item.description);
+  };
+
+  const handleStudentItemClick = (item: any) => {
+    setShowInnerContent(false);
+    setShowTitle(item.title);
+    setShowDesc(item.description);
+  };
+
+  const handleBackToClassroom = () => {
+    setShowContent(false);
+    setShowContentMain(true);
+    setShowClassesContent(false);
+    setShowInnerContent(false);
+    setSelectedClassItem("");
+  };
+
+  const handleBackToClasses = () => {
+    setShowContent(true);
+    setShowClassesContent(false);
+    setShowTitle("Classes");
+    setShowDesc(
+      "Organize and manage structured learning sessions. Create, schedule, and track classes with ease. Ideal for schools, training organizations, or professional development teams."
+    );
+  };
+
   return (
     <div>
       <section className="welcome-section">
-        {/* <h2 className="welcome-section-heading">What We Do</h2> */}
         <div className="cards-grid cards-grid-3">
           {showContentMain && (
             <>
               {whatWeDoItems.map((item, index) => (
                 <div
+                  key={index}
                   style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    // alert(`${item.title}`)
-                    setShowContent(true);
-                    setShowContentMain(false);
-                    setShowInnerContent(true);
-                    setShowTitle(`${item.title}`);
-                    setShowDesc(`${item.description}`);
-                  }}
+                  onClick={() => handleMainItemClick(item)}
                 >
                   <DashboardCard
-                    key={index}
                     icon={item.icon}
                     title={item.title}
                     description={item.description}
@@ -143,14 +167,12 @@ const ClassRoom: React.FC = () => {
             </>
           )}
         </div>
+
         {showContent && showTitle === "Classes" && (
           <>
             <button
               className={styles.backButton}
-              onClick={() => {
-                setShowContent(false);
-                setShowContentMain(true);
-              }}
+              onClick={handleBackToClassroom}
             >
               Back to Classroom
             </button>
@@ -161,17 +183,11 @@ const ClassRoom: React.FC = () => {
                 <div className="cards-grid cards-grid-3">
                   {classes.map((item, index) => (
                     <div
+                      key={index}
                       style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        // alert(`${item.title}`)
-                        setShowContent(false);
-                        setShowClassesContent(true);
-                        setShowTitle(`${item.title}`);
-                        setShowDesc(`${item.description}`);
-                      }}
+                      onClick={() => handleClassItemClick(item)}
                     >
                       <DashboardCard
-                        key={index}
                         icon={item.icon}
                         title={item.title}
                         description={item.description}
@@ -183,15 +199,12 @@ const ClassRoom: React.FC = () => {
             </div>
           </>
         )}
+
         {showContent && showTitle === "Students" && (
           <>
             <button
               className={styles.backButton}
-              onClick={() => {
-                setShowContent(false);
-                setShowInnerContent(false);
-                setShowContentMain(true);
-              }}
+              onClick={handleBackToClassroom}
             >
               Back to Classroom
             </button>
@@ -202,15 +215,11 @@ const ClassRoom: React.FC = () => {
                 <div className="cards-grid cards-grid-3">
                   {students.map((item, index) => (
                     <div
+                      key={index}
                       style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        setShowInnerContent(false);
-                        setShowTitle(`${item.title}`);
-                        setShowDesc(`${item.description}`);
-                      }}
+                      onClick={() => handleStudentItemClick(item)}
                     >
                       <DashboardCard
-                        key={index}
                         icon={item.icon}
                         title={item.title}
                         description={item.description}
@@ -222,16 +231,12 @@ const ClassRoom: React.FC = () => {
             </div>
           </>
         )}
-        {showClassesContent && (
-          // {/* {showClassesContent && selectedClassItem === "Create Class" && ( */}
+
+        {showClassesContent && selectedClassItem === "Create Class" && (
           <>
             <button
               className={styles.backButton}
-              onClick={() => {
-                setShowContent(false);
-                setShowContentMain(true);
-                setShowClassesContent(false);
-              }}
+              onClick={handleBackToClassroom}
             >
               Back to Classroom
             </button>
@@ -240,9 +245,270 @@ const ClassRoom: React.FC = () => {
             <CreateClassForm />
           </>
         )}
+
+        {showClassesContent && selectedClassItem === "All Classes" && (
+          <>
+            {/* <button className={styles.backButton} onClick={handleBackToClasses}>
+              Back to Classes
+            </button> */}
+            {/* <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+            <p style={{ color: "#000000" }}>{showDesc}</p> */}
+            {/* Add your All Classes content here */}
+            <AllClasses />
+          </>
+        )}
       </section>
     </div>
   );
 };
 
 export default ClassRoom;
+
+// import {
+//   BriefcaseIcon,
+//   ClockIcon,
+//   GraduationCapIcon,
+//   PaletteIcon,
+//   School,
+//   UsersIcon,
+// } from "lucide-react";
+// import React, { useState } from "react";
+// import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
+// import { IoMdArrowRoundBack } from "react-icons/io";
+// import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
+// import CreateClassForm from "./CreateClassForm";
+// import styles from "./DashboardContent.module.css";
+// import { MdAppRegistration } from "react-icons/md";
+// import { GiProgression } from "react-icons/gi";
+// import { LiaUserCheckSolid } from "react-icons/lia";
+// import { BsRecordBtn } from "react-icons/bs";
+// import { GiUpgrade } from "react-icons/gi";
+// import { PiStudentDuotone } from "react-icons/pi";
+// import { IoMdPersonAdd } from "react-icons/io";
+// import { SiGoogleclassroom } from "react-icons/si";
+
+// const ClassRoom: React.FC = () => {
+//   const [showContentMain, setShowContentMain] = useState<boolean>(true);
+//   const [showContent, setShowContent] = useState<boolean>(false);
+//   const [showClassesContent, setShowClassesContent] = useState<boolean>(false);
+//   const [showInnerContent, setShowInnerContent] = useState<boolean>(false);
+//   const [showTitle, setShowTitle] = useState<string>("");
+//   const [showDesc, setShowDesc] = useState<string>("");
+//   const [selectedClassItem, setSelectedClassItem] = useState<string>("");
+
+//   const whatWeDoItems = [
+//     {
+//       // @ts-ignore
+//       icon: <FaUserGraduate />,
+//       title: "Students",
+//       description:
+//         "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
+//     },
+//     {
+//       icon: <School />,
+//       title: "Classes",
+//       description:
+//         "Organize and manage structured learning sessions. Create, schedule, and track classes with ease. Ideal for schools, training organizations, or professional development teams.",
+//     },
+//   ];
+
+//   const classes = [
+//     {
+//       // @ts-ignore
+//       icon: <SiGoogleclassroom />,
+//       title: "All Classes",
+//       description:
+//         "Access and manage every class in your organization, including enrolled students, assigned instructors, class schedules, and academic progress—all in one place.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <FaChalkboardTeacher />,
+//       title: "Create Class",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//   ];
+//   const students = [
+//     {
+//       // @ts-ignore
+//       icon: <PiStudentDuotone />,
+//       title: "All Students",
+//       description:
+//         "Access and manage every class in your organization, including enrolled students, assigned instructors, class schedules, and academic progress—all in one place.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <IoMdPersonAdd />,
+//       title: "Add Students",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <MdAppRegistration />,
+//       title: "Fees",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <GiProgression />,
+//       title: "Progression",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <LiaUserCheckSolid />,
+//       title: "Attendance",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <BsRecordBtn />,
+//       title: "Exams and Records",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//     {
+//       // @ts-ignore
+//       icon: <GiUpgrade />,
+//       title: "Grades",
+//       description:
+//         "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
+//     },
+//   ];
+//   return (
+//     <div>
+//       <section className="welcome-section">
+//         {/* <h2 className="welcome-section-heading">What We Do</h2> */}
+//         <div className="cards-grid cards-grid-3">
+//           {showContentMain && (
+//             <>
+//               {whatWeDoItems.map((item, index) => (
+//                 <div
+//                   style={{ cursor: "pointer" }}
+//                   onClick={() => {
+//                     // alert(`${item.title}`)
+//                     setShowContent(true);
+//                     setShowContentMain(false);
+//                     setShowInnerContent(true);
+//                     setShowTitle(`${item.title}`);
+//                     setShowDesc(`${item.description}`);
+//                   }}
+//                 >
+//                   <DashboardCard
+//                     key={index}
+//                     icon={item.icon}
+//                     title={item.title}
+//                     description={item.description}
+//                   />
+//                 </div>
+//               ))}
+//             </>
+//           )}
+//         </div>
+//         {showContent && showTitle === "Classes" && (
+//           <>
+//             <button
+//               className={styles.backButton}
+//               onClick={() => {
+//                 setShowContent(false);
+//                 setShowContentMain(true);
+//               }}
+//             >
+//               Back to Classroom
+//             </button>
+//             <div>
+//               <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+//               <p style={{ color: "#000000" }}>{showDesc}</p>
+//               {showInnerContent && (
+//                 <div className="cards-grid cards-grid-3">
+//                   {classes.map((item, index) => (
+//                     <div
+//                       style={{ cursor: "pointer" }}
+//                       onClick={() => {
+//                         // alert(`${item.title}`)
+//                         setShowContent(false);
+//                         setShowClassesContent(true);
+//                         setShowTitle(`${item.title}`);
+//                         setShowDesc(`${item.description}`);
+//                       }}
+//                     >
+//                       <DashboardCard
+//                         key={index}
+//                         icon={item.icon}
+//                         title={item.title}
+//                         description={item.description}
+//                       />
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           </>
+//         )}
+//         {showContent && showTitle === "Students" && (
+//           <>
+//             <button
+//               className={styles.backButton}
+//               onClick={() => {
+//                 setShowContent(false);
+//                 setShowInnerContent(false);
+//                 setShowContentMain(true);
+//               }}
+//             >
+//               Back to Classroom
+//             </button>
+//             <div>
+//               <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+//               <p style={{ color: "#000000" }}>{showDesc}</p>
+//               {showInnerContent && (
+//                 <div className="cards-grid cards-grid-3">
+//                   {students.map((item, index) => (
+//                     <div
+//                       style={{ cursor: "pointer" }}
+//                       onClick={() => {
+//                         setShowInnerContent(false);
+//                         setShowTitle(`${item.title}`);
+//                         setShowDesc(`${item.description}`);
+//                       }}
+//                     >
+//                       <DashboardCard
+//                         key={index}
+//                         icon={item.icon}
+//                         title={item.title}
+//                         description={item.description}
+//                       />
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           </>
+//         )}
+//         {/* {showClassesContent && ( */}
+//         {showClassesContent && selectedClassItem === "Create Class" && (
+//           <>
+//             <button
+//               className={styles.backButton}
+//               onClick={() => {
+//                 setShowContent(false);
+//                 setShowContentMain(true);
+//                 setShowClassesContent(false);
+//               }}
+//             >
+//               Back to Classroom
+//             </button>
+//             <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+//             <p style={{ color: "#000000", marginBottom: 25 }}>{showDesc}</p>
+//             <CreateClassForm />
+//           </>
+//         )}
+//       </section>
+//     </div>
+//   );
+// };
+
+// export default ClassRoom;
