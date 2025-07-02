@@ -9,7 +9,7 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 export default function UnderDevelopmentPage() {
   const [dots, setDots] = useState("");
   const [currentMessage, setCurrentMessage] = useState(0);
-  const router = useNavigate();
+  const navigate = useNavigate();
 
   const messages = [
     "Calibrating neural networks",
@@ -49,7 +49,6 @@ export default function UnderDevelopmentPage() {
         </div>
 
         <div className={styles.content}>
-
           <div className={styles.mainMessage}>
             <h1 className={styles.title}>🔧 FEATURE UNDER CONSTRUCTION 🔧</h1>
 
@@ -78,10 +77,16 @@ export default function UnderDevelopmentPage() {
             <div className={styles.actions}>
               <button
                 className={styles.primaryButton}
-                onClick={() => router(-1)}
+                onClick={() => {
+                  if (window.history.length > 2) {
+                    navigate(-1);
+                  } else {
+                    navigate("/");
+                  }
+                }}
                 title="Go Back"
               >
-                <FaLongArrowAltLeft size={30}/>
+                <FaLongArrowAltLeft size={30} />
               </button>
             </div>
           </div>

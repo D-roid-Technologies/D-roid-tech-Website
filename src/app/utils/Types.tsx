@@ -339,3 +339,9 @@ export type Task = {
   dateDeleted?: string;
 };
 
+export type TechStackItem = {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+};
+
