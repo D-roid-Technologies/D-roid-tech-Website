@@ -301,7 +301,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Bmi":
         return <Bmi onClose={handleCloseCalculator} />;
       case "OhmslawCalculator":
-        return <OhmslawCalculator onClose={handleCloseCalculator} />;
+        return <UnderDevelopmentPage/>
 
       default:
         return null;

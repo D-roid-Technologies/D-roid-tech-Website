@@ -21,7 +21,7 @@
 
 .calculator-wrapper {
   font-family: var(--button-font);
-  background-color: #f0f2f5;
+  /* background-color: #f0f2f5; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,8 @@
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  width: 100%;
+  width: 98%;
+  height: 100%;
 }
 
 .calculator-header {
@@ -326,11 +327,12 @@ button.active {
     padding: 15px;
     align-items: flex-start;
     padding-top: 30px;
-    min-height: 80vh;
+    min-height: 100%;
   }
 
   .calculator-container {
     max-width: 100%;
+    min-width: 367px;
   }
 
   .display {

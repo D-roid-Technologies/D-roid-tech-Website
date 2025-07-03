@@ -4,8 +4,7 @@ import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import Calendar from "./Calender";
-import TaskScheduler from "./TaskScheduler";
-import TaskSchedulerPage from "./TaskSchedulerPage";
+
 import TaskSchedulerDashboard from "./TaskSchedulerDashboard";
 
 // Import the components directly

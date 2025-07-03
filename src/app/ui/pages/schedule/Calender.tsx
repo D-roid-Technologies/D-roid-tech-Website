@@ -247,9 +247,10 @@ const styles: { [key: string]: React.CSSProperties } = {
         transition: "background 0.2s",
     },
     monthTitle: {
-        fontSize: "1.5rem",
+        fontSize: "1rem",
         fontWeight: 600,
         color: "#1e3a8a",
+        margin: "1rem",
     },
     viewSwitcher: {
         display: "flex",
