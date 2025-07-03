@@ -14,7 +14,7 @@
 }
 
 .buttonPrimary {
-  background-color: #1e293b;
+  background-color: #071d6a;
   color: white;
 }
 
@@ -68,7 +68,7 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .cardDescription {
@@ -112,7 +112,7 @@
 .statCardValue {
   font-size: 2rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #071d6a;
   margin: 0 0 0.25rem 0;
 }
 
@@ -155,7 +155,7 @@
 
 .tableCellBold {
   font-weight: 500;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .tableActions {
@@ -176,7 +176,7 @@
 
 .actionButton:hover {
   background-color: #f1f5f9;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .actionButtonDanger:hover {
@@ -194,7 +194,7 @@
 }
 
 .badgeDefault {
-  background-color: #1e293b;
+  background-color: #071d6a;
   color: white;
 }
 
@@ -230,7 +230,7 @@
 
 .input:focus {
   outline: none;
-  border-color: #1e293b;
+  border-color: #071d6a;
   box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
 }
 
@@ -285,7 +285,7 @@
 
 .progressBar {
   height: 100%;
-  background-color: #1e293b;
+  background-color: #071d6a;
   transition: width 0.3s ease;
 }
 
@@ -322,7 +322,7 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .modalDescription {
@@ -344,7 +344,7 @@
 
 .modalClose:hover {
   background-color: #f1f5f9;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .formGroup {
@@ -378,7 +378,7 @@
 
 .textarea:focus {
   outline: none;
-  border-color: #1e293b;
+  border-color: #071d6a;
   box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
 }
 
@@ -394,7 +394,7 @@
 
 .select:focus {
   outline: none;
-  border-color: #1e293b;
+  border-color: #071d6a;
   box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
 }
 
@@ -419,7 +419,7 @@
 .metricInfo h3 {
   margin: 0 0 0.25rem 0;
   font-weight: 500;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .metricInfo p {
@@ -436,7 +436,7 @@
   margin: 0 0 0.25rem 0;
   font-size: 2rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .metricValue p {
@@ -459,7 +459,7 @@
 .progressLabel {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #1e293b;
+  color: #071d6a;
 }
 
 .progressPercent {
@@ -511,7 +511,7 @@
 
 .toastTitle {
   font-weight: 500;
-  color: #1e293b;
+  color: #071d6a;
   margin: 0 0 0.25rem 0;
 }
 
@@ -530,7 +530,7 @@
 }
 
 .toastClose:hover {
-  color: #1e293b;
+  color: #071d6a;
 }
 
 @keyframes slideIn {
