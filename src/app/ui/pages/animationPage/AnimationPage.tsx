@@ -37,7 +37,7 @@ export interface Story {
     leadershipSacrifice?: string;
     visualSpectacle?: string;
   };
-  stories: object[]
+  stories: object[];
 }
 
 const stories: Story[] = [
@@ -69,12 +69,12 @@ const stories: Story[] = [
       "While suitable for viewers 12 and above, Brothers resonates most powerfully with adults who understand the complexities of loss, separation, and the sacrifices made for family. The story doesn't shy away from difficult emotions but handles them with sensitivity and hope.",
     stories: [
       {
-        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"],
       },
       {
-        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
-      }
-    ]
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"],
+      },
+    ],
   },
   {
     id: "cityBoys",
@@ -111,17 +111,15 @@ const stories: Story[] = [
         "Incorporates social media aesthetics with characters breaking the fourth wall through phone screens and digital interfaces.",
       culturalRelevance:
         "Addresses contemporary issues like cryptocurrency volatility, influencer culture, and the gig economy's impact on traditional career paths.",
-
     },
     stories: [
       {
-        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"],
       },
       {
-        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
-      }
-    ]
-
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"],
+      },
+    ],
   },
   {
     id: "Resilience",
@@ -163,12 +161,12 @@ const stories: Story[] = [
     },
     stories: [
       {
-        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"],
       },
       {
-        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
-      }
-    ]
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"],
+      },
+    ],
   },
   {
     id: "warriors",
@@ -212,12 +210,12 @@ const stories: Story[] = [
     },
     stories: [
       {
-        chapterOne: ["paragraph one", "paragraph two", "paragraph three"]
+        chapterOne: ["paragraph one", "paragraph two", "paragraph three"],
       },
       {
-        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"]
-      }
-    ]
+        chapterTwo: ["paragraph one", "paragraph two", "paragraph three"],
+      },
+    ],
   },
 ];
 
@@ -254,20 +252,17 @@ const AnimationPage: React.FC = () => {
         </span>
         <div className="soft-dev-content">
           {stories.map((story, index) => (
-            <div
-              key={index}
-              onClick={() =>
-                navigate("/animation/description", { state: story })
-              }
-              style={{
-                cursor: "pointer",
-              }}
-            >
+            <div key={index}>
               <CoreValueCardTwo
                 title={story.title}
                 description={story.description}
                 imageSrc={story.thumbnail}
                 className="process-card"
+                onClick={() => {
+                  console.log("Navigating with story:", story);
+                  navigate("/animation/description", { state: story });
+                }}
+                readmore={true}
               />
             </div>
           ))}

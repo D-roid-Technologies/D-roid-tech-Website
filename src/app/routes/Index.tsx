@@ -268,9 +268,7 @@ const Index: React.FunctionComponent = () => {
         element={<UpcomingEventsPage />}
       />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
-      <Route
-        path={RoutePaths.AnimationDescriptionPage}
-        element={<AnimationDescriptionPage />}
+      <Route path={RoutePaths.AnimationDescriptionPage} element={<AnimationDescriptionPage />}
       />
 
       <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />

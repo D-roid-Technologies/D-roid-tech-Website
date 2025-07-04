@@ -6,6 +6,7 @@ import { FaTasks } from "react-icons/fa";
 import Calendar from "./Calender";
 
 import TaskSchedulerDashboard from "./TaskSchedulerDashboard";
+import AdminSchudleeCardTwo from "../../components/CoreValueCard/AdminSchudleeCardTwo";
 
 // Import the components directly
 
@@ -50,7 +51,7 @@ const AdminScheduleTool: React.FunctionComponent = () => {
         {!selectedTool && (
           <div className="soft-dev-content">
             {schedules.map((tool, index) => (
-              <CoreValueCardTwo
+              <AdminSchudleeCardTwo
                 key={index}
                 title={tool.title}
                 description={tool.description}
