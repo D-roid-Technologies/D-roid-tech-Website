@@ -89,10 +89,12 @@ const ServicesItems: React.FC = () => {
       <section className="welcome-section">
         {/* <h2 className="welcome-section-heading">What We Do</h2> */}
         <div className="cards-grid cards-grid-3">
+          
           {showContentMain && (
             <>
               {whatWeDoItems.map((item, index) => (
                 <div
+                  key={index}
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     const selectedTitle = item.title;
@@ -124,7 +126,7 @@ const ServicesItems: React.FC = () => {
                   }}
                 >
                   <DashboardCard
-                    key={index}
+                 
                     icon={item.icon}
                     title={item.title}
                     description={item.description}
@@ -152,6 +154,7 @@ const ServicesItems: React.FC = () => {
               <div className="cards-grid cards-grid-3">
                 {classes.map((item, index) => (
                   <div
+                    key={index}
                     style={{ cursor: "pointer" }}
                     onClick={() => {
                       const title = item.title;
@@ -181,7 +184,7 @@ const ServicesItems: React.FC = () => {
                     }}
                   >
                     <DashboardCard
-                      key={index}
+                    
                       icon={item.icon}
                       title={item.title}
                       description={item.description}
