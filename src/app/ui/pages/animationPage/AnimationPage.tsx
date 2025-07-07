@@ -40,7 +40,7 @@ export interface Story {
   stories: object[];
 }
 
-const stories: Story[] = [
+export const stories: Story[] = [
   {
     id: "brothers",
     title: "Brothers",
@@ -260,6 +260,7 @@ const AnimationPage: React.FC = () => {
                 className="process-card"
                 onClick={() => {
                   console.log("Navigating with story:", story);
+                  // navigate(`/animation/description/${story.id}`);
                   navigate("/animation/description", { state: story });
                 }}
                 readmore={true}

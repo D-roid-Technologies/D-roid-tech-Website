@@ -3,20 +3,20 @@
 import type React from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import styles from './Animation.module.css'
+//import { stories } from "./AnimationPage"
 
 const AnimationDescriptionPage: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const storyData = location.state
 
-  console.log("=== ANIMATION DESCRIPTION PAGE ===")
-  console.log("Story data received:", storyData)
+
 
   if (!storyData) {
     return (
       <div style={{ padding: "2rem", textAlign: "center" }}>
         <h1>Story Not Found</h1>
-        <p>The requested story could not be found.</p>
+        <p>The requested story could not be found</p>
         <button
           onClick={() => navigate("/animation")}
           style={{
@@ -48,7 +48,7 @@ const AnimationDescriptionPage: React.FC = () => {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem" }}>
           <div style={{ margin: "1rem 0" }}>
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/animation')}
               style={{
                 padding: "10px 16px",
                 backgroundColor: "white",
