@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import "../CoreValueCard/CoreValueCardTwo.css";
 
-interface CoreValueCardProps {
+interface AdminSchudleeCardTwoProps {
   title: string;
   description: string;
   imageSrc?: string;
@@ -14,7 +14,7 @@ interface CoreValueCardProps {
   readmore?: boolean;
 }
 
-const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
+const AdminSchudleeCardTwo: React.FC<AdminSchudleeCardTwoProps> = ({
   title,
   description,
   imageSrc,
@@ -37,19 +37,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <p className="core-value-card-description">{description}</p>
 
    
- {readmore && (
-  <div className="mt-3">
-    {onClick ? (
-      <button className="launch-button" onClick={onClick}>
-        Read More
-      </button>
-    ) : link ? (
-      <a href={link} className="launch-button">
-        Read More
-      </a>
-    ) : null}
-  </div>
-)}
+
 
 
 
@@ -59,4 +47,4 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
   );
 };
 
-export default CoreValueCardTwo;
+export default AdminSchudleeCardTwo;

@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useState, useMemo } from "react";
-import NavBar from "../../components/navbar/NavBar";
 import SearchBar from "../../components/search/SearchBar";
 import SearchFilters from "../../components/search/SearchFilters";
 import {
@@ -23,7 +22,6 @@ import { LuFileJson } from "react-icons/lu";
 import { GiPowerGenerator } from "react-icons/gi";
 import { SiLetsencrypt } from "react-icons/si";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
-import ColorConverter from "./colorconverter/ColorConverter";
 
 export const Alltools = [
   {

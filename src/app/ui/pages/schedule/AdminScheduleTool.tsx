@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "../../components/liteGrid@v1.0/lite-grid.css";
-import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import Calendar from "./Calender";
-import TaskScheduler from "./TaskScheduler";
-import TaskSchedulerPage from "./TaskSchedulerPage";
+
 import TaskSchedulerDashboard from "./TaskSchedulerDashboard";
+import AdminSchudleeCardTwo from "../../components/CoreValueCard/AdminSchudleeCardTwo";
 
 // Import the components directly
 
@@ -51,7 +50,7 @@ const AdminScheduleTool: React.FunctionComponent = () => {
         {!selectedTool && (
           <div className="soft-dev-content">
             {schedules.map((tool, index) => (
-              <CoreValueCardTwo
+              <AdminSchudleeCardTwo
                 key={index}
                 title={tool.title}
                 description={tool.description}

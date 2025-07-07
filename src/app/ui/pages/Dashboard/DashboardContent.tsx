@@ -16,13 +16,6 @@ import {
   FaBookOpen,
   FaToolbox,
   FaCalculator,
-  FaCodeBranch,
-  FaStamp,
-  FaUserTie,
-  FaFilePdf,
-  FaMagic,
-  FaSchool,
-  FaBusinessTime,
   FaHandsHelping,
   FaChalkboard,
   FaBriefcase,
@@ -55,9 +48,7 @@ import ToolsCard from "../../components/CoreValueCard/ToolsCard";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
-import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
-import OhmslawCalculator from "../calculator/OhmslawCalculator";
 import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater";
 import { FaWallet } from "react-icons/fa6";
 import ClassRoom from "./ClassRoom";
@@ -307,7 +298,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Bmi":
         return <Bmi onClose={handleCloseCalculator} />;
       case "OhmslawCalculator":
-        return <OhmslawCalculator onClose={handleCloseCalculator} />;
+        return <UnderDevelopmentPage/>
 
       default:
         return null;

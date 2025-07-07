@@ -172,16 +172,20 @@
 
 .start-reading-btn {
   background-color: rgb(7, 29, 106);
-  color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px 0 rgba(7, 29, 106, 0.4);
+ color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px 0 rgba(56, 161, 105, 0.4);
+    margin-left: 2rem;
+
 }
+
+  
 
 .start-reading-btn:hover {
   background-color: rgb(5, 22, 80);

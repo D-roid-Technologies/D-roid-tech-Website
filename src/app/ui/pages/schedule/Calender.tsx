@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { p } from "framer-motion/dist/types.d-DSjX-LJB";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { p } from "framer-motion/dist/types.d-DSjX-LJB";
+import {  useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 
@@ -20,17 +20,17 @@ const Calendar: React.FC = () => {
         [today.add(1, "day").format("YYYY-MM-DD")]: ["Lunch with Sarah", "Project deadline"],
     });
 
-    const startOfMonth = currentMonth.startOf("month");
-    const startDay = startOfMonth.day();
-    const daysInMonth = currentMonth.daysInMonth();
+    // const startOfMonth = currentMonth.startOf("month");
+    // const startDay = startOfMonth.day();
+    // const daysInMonth = currentMonth.daysInMonth();
 
     const prevMonth = () => setCurrentMonth(currentMonth.subtract(1, "month"));
     const nextMonth = () => setCurrentMonth(currentMonth.add(1, "month"));
 
-    const handleDayClick = (day: number) => {
-        const clickedDate = currentMonth.date(day);
-        setSelectedDate(clickedDate);
-    };
+    // const handleDayClick = (day: number) => {
+    //     const clickedDate = currentMonth.date(day);
+    //     setSelectedDate(clickedDate);
+    // };
 
     const navigate = useNavigate()
 
@@ -247,9 +247,10 @@ const styles: { [key: string]: React.CSSProperties } = {
         transition: "background 0.2s",
     },
     monthTitle: {
-        fontSize: "1.5rem",
+        fontSize: "1rem",
         fontWeight: 600,
         color: "#1e3a8a",
+        margin: "1rem",
     },
     viewSwitcher: {
         display: "flex",
