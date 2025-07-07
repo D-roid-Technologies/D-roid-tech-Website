@@ -75,6 +75,10 @@ import { GroupsSection } from "./groups-section";
 import { ImpactSection } from "./impact-section";
 import { OutreachSection } from "./outreach-section";
 import { PartnersSection } from "./partners-section";
+import { ClientsSection } from "./clients-section";
+import { DepartmentsSection } from "./departments-section";
+import { ProjectsSection } from "./projects-section";
+import { ReportsSection } from "./reports-section";
 
 // const tools = [
 //   {
@@ -777,6 +781,30 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           return (
             <Section title="Your Groups">
               <GroupsSection/>
+            </Section>
+          );
+        case "Departments":
+          return (
+            <Section title="Your Departments">
+              <DepartmentsSection/>
+            </Section>
+          );
+        case "Clients":
+          return (
+            <Section title="Your Clients">
+              <ClientsSection/>
+            </Section>
+        );
+        case "Projects":
+          return (
+            <Section title="Your Projects">
+              <ProjectsSection/>
+            </Section>
+        );
+        case "Reports":
+          return (
+            <Section title="Your Reports">
+              <ReportsSection/>
             </Section>
           );
       default:
