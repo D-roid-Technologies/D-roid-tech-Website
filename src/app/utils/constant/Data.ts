@@ -223,15 +223,7 @@ export const DATA = {
         twitter: "https://x.com/RebeccaEbianga?t=D-cGUwlZer3VEPZoVc3yFw&s=09",
       },
     },
-    // {
-    //   image: require("../../images/png/"),
-    //   name: "Faith Ojumola",
-    //   designation: "Product Designer",
-    //   socials: {
-    //     linkedin: "",
-    //     twitter: "",
-    //   },
-    // },
+
     // {
     //   image: require("../../images/png/"),
     //   name: "Richard",
@@ -242,13 +234,12 @@ export const DATA = {
     //   },
     // },
     {
-      image: require("../../images/png/Philip.jpg"),
-      name: "Philip Ogboh",
-      // designation: "Frontend Developer",
-      designation: "Engineering",
+      image: require("../../images/png/Faith(product).jpg"),
+      name: "Faith Ojumola",
+      designation: "Product Designer",
       socials: {
-        linkedin: "https://www.linkedin.com/in/philipogboh/",
-        twitter: "https://x.com/OgbohPhilip ",
+        linkedin: "",
+        twitter: " ",
       },
     },
   ],
