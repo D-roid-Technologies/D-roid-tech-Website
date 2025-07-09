@@ -10,6 +10,7 @@ interface CoreValueCardProps {
   url?: string;
   link?: string;
   onClick?: (e: any) => void;
+  onLaunch?: () => void;
   pressable?: boolean;
 }
 
@@ -23,6 +24,9 @@ const CoreValueCardThree: React.FC<CoreValueCardProps> = ({
   link,
   onClick,
   pressable = false,
+  onLaunch
+  
+
 }) => {
   return (
     <div className={`tools-value-card ${className}`}>
@@ -37,12 +41,17 @@ const CoreValueCardThree: React.FC<CoreValueCardProps> = ({
       <div className="tools-value-card-content">
         <h3 className="tools-value-card-title">{title}</h3>
         <p className="tools-value-card-description">{description}</p>
-
-        {link && (
+        {(onLaunch || link) && (
           <div className="launch-button-container">
-            <a href={link} className="launch-button">
-              Launch
-            </a>
+            {onLaunch ? (
+              <button className="launch-button" onClick={onLaunch}>
+                Launch
+              </button>
+            ) : (
+              <a href={link} className="launch-button">
+                Launch
+              </a>
+            )}
           </div>
         )}
       </div>
