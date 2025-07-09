@@ -37,7 +37,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
         <p className="core-value-card-description">{description}</p>
 
    
- {readmore && (
+ {/* {readmore && (
   <div className="mt-3">
     {onClick ? (
       <button className="launch-button" onClick={onClick}>
@@ -49,7 +49,7 @@ const CoreValueCardTwo: React.FC<CoreValueCardProps> = ({
       </a>
     ) : null}
   </div>
-)}
+)} */}
 
 
 

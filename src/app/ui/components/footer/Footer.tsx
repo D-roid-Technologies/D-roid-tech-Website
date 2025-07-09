@@ -82,6 +82,7 @@ const Footer: React.FC = () => {
               <a
                 key={index}
                 href={link.href}
+                target="_blank"
                 className="social-link"
                 aria-label={link.name}
               >
