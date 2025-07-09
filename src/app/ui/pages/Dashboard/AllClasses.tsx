@@ -203,62 +203,6 @@ const AllClasses = () => {
     },
   ];
 
-  const universityClasses = [
-    {
-      icon: <GraduationCap />,
-      title: "Introduction to Psychology",
-      description:
-        "Fundamental concepts in human behavior, cognition, and psychological research methods.",
-      schedule: "MWF 10:00 AM - 11:30 AM",
-      teacher: "Prof. Dr. Sarah Williams",
-      students: 150,
-    },
-    {
-      icon: <GraduationCap />,
-      title: "Calculus I",
-      description:
-        "Limits, derivatives, integrals, and applications in engineering and sciences.",
-      schedule: "TTh 2:00 PM - 3:30 PM",
-      teacher: "Prof. Dr. John Martinez",
-      students: 85,
-    },
-    {
-      icon: <GraduationCap />,
-      title: "Computer Science Fundamentals",
-      description:
-        "Programming basics, algorithms, data structures, and software development.",
-      schedule: "MWF 1:00 PM - 2:30 PM",
-      teacher: "Prof. Dr. Lisa Chen",
-      students: 120,
-    },
-    {
-      icon: <GraduationCap />,
-      title: "Business Ethics",
-      description:
-        "Moral principles in business, corporate responsibility, and ethical decision-making.",
-      schedule: "TTh 11:00 AM - 12:30 PM",
-      teacher: "Prof. Dr. Robert Thompson",
-      students: 95,
-    },
-    {
-      icon: <GraduationCap />,
-      title: "Organic Chemistry",
-      description:
-        "Structure, properties, and reactions of organic compounds and biomolecules.",
-      schedule: "MWF 8:00 AM - 9:30 AM",
-      teacher: "Prof. Dr. Amanda Rodriguez",
-      students: 60,
-    },
-    {
-      icon: <GraduationCap />,
-      title: "International Relations",
-      description:
-        "Global politics, diplomacy, international law, and contemporary world issues.",
-      schedule: "TTh 3:45 PM - 5:15 PM",
-      teacher: "Prof. Dr. Hassan Ahmed",
-      students: 75,
-    },
-  ];
   // @ts-ignore
   const getClassesForInstitution = (institutionTitle) => {
     switch (institutionTitle) {
@@ -268,8 +212,7 @@ const AllClasses = () => {
         return primaryClasses;
       case "Secondary":
         return secondaryClasses;
-      case "Universities":
-        return universityClasses;
+
       default:
         return [];
     }

@@ -11,10 +11,10 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  background-color: #ffffff;
+  background-color: #071d69;
   border: 2px solid #e9ecef;
   border-radius: 8px;
-  color: #495057;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -88,7 +88,7 @@
 }
 
 .sectionIcon {
-  color: #667eea;
+  color: #071d69;
   font-size: 18px;
 }
 
@@ -138,7 +138,7 @@
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #071d69;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
