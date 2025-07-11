@@ -600,38 +600,3 @@
     font-size: 16px; /* Prevents zoom on iOS */
   }
 }
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .formWrapper {
-    background-color: #1a1a1a;
-    color: #ffffff;
-  }
-
-  .formHeader {
-    background-color: #2d2d2d;
-    color: #ffffff;
-  }
-
-  .formSection {
-    background-color: #2d2d2d;
-    border-color: #404040;
-  }
-
-  .input,
-  .textarea,
-  .select {
-    background-color: #2d2d2d;
-    border-color: #404040;
-    color: #ffffff;
-  }
-
-  .inputLabel {
-    color: #ffffff;
-  }
-
-  .sectionTitle {
-    color: #ffffff;
-    border-color: #404040;
-  }
-}
