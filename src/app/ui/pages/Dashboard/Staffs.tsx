@@ -1,21 +1,12 @@
-import {
-  BriefcaseIcon,
-  ClockIcon,
-  GraduationCapIcon,
-  PaletteIcon,
-  School,
-  UsersIcon,
-} from "lucide-react";
+import { School } from "lucide-react";
 import React, { useState } from "react";
-import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaUserGraduate } from "react-icons/fa";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
 import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
 import AddStaff from "./AddStaff";
-// import AddStaff from "./AddStaff";
+import StaffDetails from "./StaffDetails";
 
-// Define the staff data interface
 interface StaffMember {
   title: string;
   description: string;
@@ -43,6 +34,8 @@ const Staffs: React.FC = () => {
   const [showAddStaffForm, setShowAddStaffForm] = useState<boolean>(false);
   const [showTitle, setShowTitle] = useState<string>("");
   const [showDesc, setShowDesc] = useState<string>("");
+  const [showStaffDetails, setShowStaffDetails] = useState<boolean>(false);
+  const [selectedStaffId, setSelectedStaffId] = useState<string>("");
   const [staffMembers, setStaffMembers] = useState<StaffMember[]>([
     {
       title: "Sarah Johnson",
@@ -73,7 +66,7 @@ const Staffs: React.FC = () => {
       description:
         "Physical Education teacher and varsity basketball coach. Promotes fitness and healthy lifestyle habits.",
       imageSrc:
-        "https://img.freepik.com/free-photo/medium-shot-smiley-man-outdoors_23-2149915626.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
+        "https://img.freepik.com/free-photo/pleased-young-male-teacher-wearing-glasses-sitting-desk-with-school-tools-classroom_141793-71229.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
       url: "/staff/david-thompson",
     },
     {
@@ -105,7 +98,7 @@ const Staffs: React.FC = () => {
       description:
         "Music teacher and band director. Teaches instrumental music and conducts the school orchestra.",
       imageSrc:
-        "https://img.freepik.com/free-photo/portrait-man-with-beard-shirt_23-2149915689.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
+        "https://img.freepik.com/free-photo/pleased-young-male-teacher-wearing-glasses-sitting-desk-with-school-tools-classroom_141793-71229.jpg?uid=R43512443&ga=GA1.1.882007498.1739470590&semt=ais_hybrid&w=740",
       url: "/staff/robert-anderson",
     },
     {
@@ -198,6 +191,19 @@ const Staffs: React.FC = () => {
     setShowAddStaffForm(false);
     setShowContentMain(true);
   };
+  const handleBackToStaffList = () => {
+    setShowStaffDetails(false);
+    setShowContent(true);
+    setSelectedStaffId("");
+  };
+
+  const handleStaffClick = (staffMember: StaffMember) => {
+    // Extract staff ID from URL
+    const staffId = staffMember.url.split("/").pop() || "";
+    setSelectedStaffId(staffId);
+    setShowStaffDetails(true);
+    setShowContent(false);
+  };
 
   const handleAddStaff = (staffData: StaffFormData) => {
     // Create a new staff member object
@@ -213,7 +219,7 @@ const Staffs: React.FC = () => {
     // Add the new staff member to the list
     setStaffMembers((prev) => [...prev, newStaffMember]);
 
-    // Show success message (you can implement a toast notification here)
+    // Show success message
     alert(
       `Staff member ${staffData.firstName} ${staffData.lastName} has been added successfully!`
     );
@@ -248,20 +254,23 @@ const Staffs: React.FC = () => {
         {showContent && showTitle === "All Staffs" && (
           <>
             <button className={styles.backButton} onClick={handleBackToMain}>
-              <IoMdArrowRoundBack />
-              Back to Dashboard
+              Back to Staff Menu
             </button>
             <div>
               <h3 style={{ color: "#000000" }}>{showTitle}</h3>
               <p style={{ color: "#000000" }}>{showDesc}</p>
-              <div className="cards-grid cards-grid-3">
+              <div
+                className="cards-grid cards-grid-3"
+                style={{ marginTop: "20px" }}
+              >
                 {staffMembers.map((item, index) => (
                   <div
                     key={index}
                     style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      console.log(`Clicked on ${item.title}`);
-                    }}
+                    onClick={() => handleStaffClick(item)}
+                    // onClick={() => {
+                    //   console.log(`Clicked on ${item.title}`);
+                    // }}
                   >
                     <NoReadMoreCard
                       title={item.title}
@@ -277,8 +286,18 @@ const Staffs: React.FC = () => {
           </>
         )}
 
+        {/* Add Staff */}
         {showAddStaffForm && (
           <AddStaff onBack={handleBackToMain} onSubmit={handleAddStaff} />
+        )}
+
+        {/* Staff details */}
+        {showStaffDetails && (
+          <StaffDetails
+            staffId={selectedStaffId}
+            onBack={handleBackToStaffList}
+            staffMembers={staffMembers}
+          />
         )}
       </section>
     </div>
