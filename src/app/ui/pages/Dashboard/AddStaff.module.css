@@ -10,10 +10,10 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  background-color: #071d69;
-  border: 2px solid #e9ecef;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
-  color: #ffffff;
+  color: #495057;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -22,8 +22,8 @@
 }
 
 .backButton:hover {
-  background-color: #0d47a1;
-  border-color: #071d69;
+  background-color: #e9ecef;
+  border-color: #adb5bd;
   transform: translateY(-1px);
 }
 
@@ -216,7 +216,7 @@
 
 .addButton {
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color: #0d4e1c;
   color: white;
   border: none;
   border-radius: 6px;
