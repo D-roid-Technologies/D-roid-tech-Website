@@ -90,14 +90,14 @@ export const DATA = {
       Button: "LEARN MORE",
     },
   ],
-  FeaturedDroneServices: [
-    {
-      video: require("../../images/videos/dronevideo.mp4"),
-      title: "AERIAL PHOTOGRAPHY AND VIDEOGRAPHY",
-      content:
-        "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
-    },
-  ],
+  // FeaturedDroneServices: [
+  //   {
+  //     video: require("../../images/videos/dronevideo.mp4"),
+  //     title: "AERIAL PHOTOGRAPHY AND VIDEOGRAPHY",
+  //     content:
+  //       "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
+  //   },
+  // ],
   MappingSurveying: [
     {
       // image: require("../../images/png/drone survey.png"),
