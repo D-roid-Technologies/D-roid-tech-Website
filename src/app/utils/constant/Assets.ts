@@ -184,6 +184,7 @@ export const Assets = {
     eprocess: require("../../images/png/eprocess.png"),
     accessMore: require("../../images/png/Access-more.png"),
     gigMotors: require("../../images/png/Gig.png"),
+    droidOne: require("../../images/png/Driod-one.png"),
     coastlineMicrofinanceBank: require("../../images/png/coastline-microfinance-bank.png"),
 
     // WEBSITE BUILDER SECTION

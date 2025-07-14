@@ -11,6 +11,7 @@ interface ProductCardProps {
   author: string;
   summary: string;
   descriptionUrl: string;
+  status?: string;
 }
 
 const ProductCard: React.FC<Project> = ({
@@ -22,6 +23,7 @@ const ProductCard: React.FC<Project> = ({
   summary,
   descriptionUrl,
   isBtn = false,
+  status = "Completed", // Default value for status
 }) => {
   const navigate = useNavigate(); // Initialize navigate
 
@@ -53,6 +55,7 @@ const ProductCard: React.FC<Project> = ({
         <h2 className="product-title">{title}</h2>
         <h2 className="author">{summary}</h2>
         <p className="author">By {author}</p>
+        <p className="author"> {status}</p>
       </div>
     </div>
   );
