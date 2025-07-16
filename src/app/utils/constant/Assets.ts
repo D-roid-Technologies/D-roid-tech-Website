@@ -185,6 +185,10 @@ export const Assets = {
     accessMore: require("../../images/png/Access-more.png"),
     gigMotors: require("../../images/png/Gig.png"),
     droidOne: require("../../images/png/Driod-one.png"),
+    driodButton: require("../../images/png/droid-button.png"),
+    droidCard: require("../../images/png/droid-card.png"),
+    droidCarousel: require("../../images/png/droiid-carousel.png"),
+    nerveCommerce: require("../../images/png/Nerves-ecommerce.png"),
     coastlineMicrofinanceBank: require("../../images/png/coastline-microfinance-bank.png"),
 
     // WEBSITE BUILDER SECTION
