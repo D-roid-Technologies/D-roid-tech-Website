@@ -17,12 +17,12 @@ import styles from "./AddStaff.module.css";
 interface StaffFormProps {
   onBack: () => void;
   onSubmit: (staffData: StaffFormData) => void;
-  initialData?: StaffFormData; // Optional initial data for editing
-  mode?: "add" | "edit"; // Form mode
+  initialData?: StaffFormData;
+  mode?: "add" | "edit";
 }
 
 interface StaffFormData {
-  id?: string; // Optional ID for editing
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;
