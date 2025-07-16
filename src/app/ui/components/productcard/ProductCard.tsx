@@ -23,6 +23,7 @@ const ProductCard: React.FC<Project> = ({
   summary,
   descriptionUrl,
   isBtn = false,
+  // status,
   status = "Completed", // Default value for status
 }) => {
   const navigate = useNavigate(); // Initialize navigate
@@ -54,8 +55,12 @@ const ProductCard: React.FC<Project> = ({
         </div>
         <h2 className="product-title">{title}</h2>
         <h2 className="author">{summary}</h2>
-        <p className="author">By {author}</p>
-        <p className="author"> {status}</p>
+        <div style={{ width: "100%" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <p className="author">By {author}</p>
+            <p className="author"> {status}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
