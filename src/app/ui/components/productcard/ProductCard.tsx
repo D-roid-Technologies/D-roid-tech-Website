@@ -24,9 +24,9 @@ const ProductCard: React.FC<Project> = ({
   descriptionUrl,
   isBtn = false,
   // status,
-  status = "Completed", // Default value for status
+  status = "Completed",
 }) => {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   return (
     <div className="product-card" style={{ marginTop: "35px" }}>

@@ -1,6 +1,8 @@
 import React from "react";
 import { Check, Star, Zap, Building2 } from "lucide-react";
 import "./SoftwarePricingCard.css";
+import { MdApproval } from "react-icons/md";
+import { LuBetweenVerticalStart } from "react-icons/lu";
 
 interface PricingFeature {
   text: string;
@@ -26,7 +28,7 @@ const SoftwarePricingCard: React.FC = () => {
       period: "per year",
       description:
         "Ideal for small teams and startups getting started with essential development and collaboration tools.",
-      icon: <Zap className="techsoft-pricing__tier-icon" />,
+      icon: <LuBetweenVerticalStart className="techsoft-pricing__tier-icon" />,
       features: [
         { text: "Up to 3 team members", included: true },
         { text: "5 active projects", included: true },
@@ -38,7 +40,10 @@ const SoftwarePricingCard: React.FC = () => {
         { text: "API access (1,000 requests/month)", included: true },
         { text: "1 GB storage (25MB per file)", included: true },
         { text: "Light/Dark mode UI", included: true },
-        { text: "Role-based permissions (Admin, Editor, Viewer)", included: true },
+        {
+          text: "Role-based permissions (Admin, Editor, Viewer)",
+          included: true,
+        },
         { text: "Two-factor authentication", included: true },
 
         { text: "Advanced third-party integrations", included: false },
@@ -56,7 +61,7 @@ const SoftwarePricingCard: React.FC = () => {
       period: "",
       description:
         "Ideal for growing teams that need advanced features and enhanced collaboration tools.",
-      icon: <Star className="techsoft-pricing__tier-icon" />,
+      icon: <MdApproval className="techsoft-pricing__tier-icon" />,
       isPopular: true,
       features: [
         { text: "Up to 15 team members", included: true },
@@ -64,7 +69,10 @@ const SoftwarePricingCard: React.FC = () => {
         { text: "Advanced analytics dashboard", included: true },
         { text: "Activity log (30 days)", included: true },
         { text: "Priority email support (under 12h response)", included: true },
-        { text: "Google Calendar, Slack & GitHub integrations", included: true },
+        {
+          text: "Google Calendar, Slack & GitHub integrations",
+          included: true,
+        },
         { text: "API access (10,000 requests/month)", included: true },
         { text: "10 GB storage (100MB per file)", included: true },
         { text: "Light/Dark mode UI", included: true },
@@ -124,8 +132,9 @@ const SoftwarePricingCard: React.FC = () => {
           {pricingTiers.map((tier, index) => (
             <div
               key={index}
-              className={`techsoft-pricing__card ${tier.isPopular ? "techsoft-pricing__card--popular" : ""
-                }`}
+              className={`techsoft-pricing__card ${
+                tier.isPopular ? "techsoft-pricing__card--popular" : ""
+              }`}
             >
               {tier.isPopular && (
                 <div className="techsoft-pricing__popular-badge">
@@ -156,16 +165,18 @@ const SoftwarePricingCard: React.FC = () => {
                   {tier.features.map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
-                      className={`techsoft-pricing__feature ${!feature.included
-                        ? "techsoft-pricing__feature--disabled"
-                        : ""
-                        }`}
+                      className={`techsoft-pricing__feature ${
+                        !feature.included
+                          ? "techsoft-pricing__feature--disabled"
+                          : ""
+                      }`}
                     >
                       <Check
-                        className={`techsoft-pricing__check-icon ${!feature.included
-                          ? "techsoft-pricing__check-icon--disabled"
-                          : ""
-                          }`}
+                        className={`techsoft-pricing__check-icon ${
+                          !feature.included
+                            ? "techsoft-pricing__check-icon--disabled"
+                            : ""
+                        }`}
                       />
                       <span>{feature.text}</span>
                     </li>
