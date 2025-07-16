@@ -1,6 +1,5 @@
 .techsoft-pricing {
   padding: 80px 20px;
-  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -18,7 +17,7 @@
 }
 
 .techsoft-pricing__title {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #333;
   margin-bottom: 16px;
@@ -58,7 +57,7 @@
 .techsoft-pricing__card--popular {
   border-color: #0b1a6d;
   transform: scale(1.05);
-  box-shadow: 0 32px 64px rgba(102, 126, 234, 0.25);
+  /* box-shadow: 0 32px 64px rgba(102, 126, 234, 0.25); */
 }
 
 .techsoft-pricing__card--popular:hover {
@@ -70,7 +69,7 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #667eea, #0b1a6d);
+  background-color: #0b1a6d;
   color: white;
   padding: 8px 24px;
   border-radius: 20px;
@@ -112,7 +111,7 @@
 }
 
 .techsoft-pricing__price-amount {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #1a1a1a;
   line-height: 1;
