@@ -181,6 +181,11 @@ export const Assets = {
     domeImage: require("../../images/png/dome-banner-one.png"),
     domeBannerTwo: require("../../images/png/Dome-banner-two.png"),
     domeBannerThree: require("../../images/png/Dome-banner-three.png"),
+    eprocess: require("../../images/png/eprocess.png"),
+    accessMore: require("../../images/png/Access-more.png"),
+    gigMotors: require("../../images/png/Gig.png"),
+    droidOne: require("../../images/png/Driod-one.png"),
+    coastlineMicrofinanceBank: require("../../images/png/coastline-microfinance-bank.png"),
 
     // WEBSITE BUILDER SECTION
     welcompageheroImage: require("../../images/png/welcome-image-icon-removebg-preview.png"),
