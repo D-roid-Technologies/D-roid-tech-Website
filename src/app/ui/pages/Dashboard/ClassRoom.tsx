@@ -1,14 +1,6 @@
-import {
-  BriefcaseIcon,
-  ClockIcon,
-  GraduationCapIcon,
-  PaletteIcon,
-  School,
-  UsersIcon,
-} from "lucide-react";
+import { School } from "lucide-react";
 import React, { useState } from "react";
 import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import CreateClassForm from "./CreateClassForm";
 import styles from "./DashboardContent.module.css";

@@ -1,16 +1,6 @@
 // @ts-ignore
 import React, { useState } from "react";
-import {
-  School,
-  GraduationCap,
-  Baby,
-  BookOpen,
-  Users,
-  Calendar,
-  Clock,
-  MapPin,
-  User,
-} from "lucide-react";
+import { School, Baby, BookOpen, Users, Clock, User } from "lucide-react";
 import "../Dashboard/AllClasses.css";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
@@ -42,47 +32,41 @@ const AllClasses = () => {
       description:
         "Middle and high school education for grades 7-12, offering comprehensive academic programs and preparation for higher education.",
     },
-    {
-      icon: <GraduationCap />,
-      title: "Universities",
-      description:
-        "Higher education institutions offering undergraduate and graduate degree programs across various fields of study and research.",
-    },
   ];
 
   const nurseryClasses = [
     {
       icon: <Users />,
-      title: "Toddler Class",
+      title: "Playgroup / Crèche",
       description:
-        "Ages 2-3: Basic motor skills, social interaction, and sensory play activities.",
+        "Ages 1 – 2: Focuses on basic socialization, play, and care in a structured setting.",
       schedule: "Mon-Fri 8:00 AM - 12:00 PM",
       teacher: "Ms. Sarah Johnson",
       students: 12,
     },
     {
       icon: <Users />,
-      title: "Pre-K Class A",
+      title: "Nursery 1",
       description:
-        "Ages 3-4: Introduction to letters, numbers, and structured learning activities.",
+        "Ages 2 – 3: Introduction to letters, numbers, shapes, colors, and basic motor skills through play-based learning.",
       schedule: "Mon-Fri 8:00 AM - 1:00 PM",
       teacher: "Ms. Emily Davis",
       students: 15,
     },
     {
       icon: <Users />,
-      title: "Pre-K Class B",
+      title: "Nursery 2",
       description:
-        "Ages 3-4: Creative arts, storytelling, and early literacy development.",
+        "Ages 3 – 4: Builds on Nursery 1 foundation: phonics, counting, storytelling, early writing and drawing.",
       schedule: "Mon-Fri 9:00 AM - 2:00 PM",
       teacher: "Ms. Linda Wilson",
       students: 14,
     },
     {
       icon: <Users />,
-      title: "Kindergarten Prep",
+      title: "Nursery 3",
       description:
-        "Ages 4-5: School readiness, advanced pre-literacy, and social skills.",
+        "Ages  4 – 5: Prepares children for primary school: more structured lessons in English, math, rhymes, social skills, and practical life activities.",
       schedule: "Mon-Fri 8:30 AM - 2:30 PM",
       teacher: "Ms. Anna Martinez",
       students: 18,
