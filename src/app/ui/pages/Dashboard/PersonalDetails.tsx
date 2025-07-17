@@ -27,7 +27,7 @@ const PersonalDetails: React.FunctionComponent = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (!formData) return;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: value.trim() });
     };
 
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
