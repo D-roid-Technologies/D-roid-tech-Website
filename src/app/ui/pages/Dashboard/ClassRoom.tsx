@@ -24,12 +24,12 @@ const ClassRoom: React.FC = () => {
   const [selectedClassItem, setSelectedClassItem] = useState<string>("");
 
   const whatWeDoItems = [
-    {
-      icon: <FaUserGraduate />,
-      title: "Students",
-      description:
-        "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
-    },
+    // {
+    //   icon: <FaUserGraduate />,
+    //   title: "Students",
+    //   description:
+    //     "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
+    // },
     {
       icon: <School />,
       title: "Classes",

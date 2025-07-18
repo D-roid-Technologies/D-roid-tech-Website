@@ -467,7 +467,8 @@ const AllClasses = () => {
                 Take Attendance
               </button>
               <button className="all-classes-action-btn all-classes-action-btn-purple">
-                Grade Assignments
+                {/* Grade Assignments */}
+                Exams and Records
               </button>
             </div>
           </div>

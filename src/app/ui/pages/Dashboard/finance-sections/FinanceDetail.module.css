@@ -1,0 +1,256 @@
+/* components/finance-details/FinanceDetail.module.css */
+
+.detailContainer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.25rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  color: #1a202c; /* gray-800 */
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0; /* gray-300 */
+  border-radius: 0.375rem; /* rounded-md */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #4a5568; /* gray-700 */
+  background-color: #fff; /* bg-white */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.backButton:hover {
+  background-color: #f7fafc; /* gray-50 */
+}
+
+.backButton svg {
+  margin-right: 0.5rem;
+  height: 1rem; /* h-4 */
+  width: 1rem; /* w-4 */
+}
+
+.card {
+  background-color: #fff; /* bg-white */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0; /* gray-200 */
+  margin-bottom: 2rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 0.5rem;
+  color: #1a202c; /* gray-900 */
+}
+
+.cardDescription {
+  color: #4a5568; /* gray-600 */
+  margin-bottom: 1rem;
+}
+
+.overviewContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.currentValue {
+  font-size: 2.25rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  color: #1a202c; /* gray-800 */
+}
+
+.incomingValue {
+  color: #38a169; /* green-600 */
+}
+
+.outgoingValue {
+  color: #e53e3e; /* red-600 */
+}
+
+.icon {
+  height: 1.5rem; /* h-6 */
+  width: 1.5rem; /* w-6 */
+  color: #a0aec0; /* muted-foreground equivalent */
+}
+
+.incomingIcon {
+  color: #48bb78; /* green-500 */
+}
+
+.outgoingIcon {
+  color: #f56565; /* red-500 */
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px; /* rounded-full */
+  padding: 0.25rem 0.75rem; /* px-3 py-1 */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+}
+
+.statusBadge.destructive {
+  background-color: #fee2e2; /* red-100 */
+  color: #991b1b; /* red-800 */
+}
+
+.statusBadge.success {
+  background-color: #d1fae5; /* green-100 */
+  color: #065f46; /* green-800 */
+}
+
+.statusBadge.default {
+  background-color: #f3f4f6; /* gray-100 */
+  color: #1f2937; /* gray-800 */
+}
+
+.additionalInfo {
+  font-size: 0.875rem; /* text-sm */
+  color: #718096; /* gray-500 */
+  margin-top: 0.5rem;
+}
+
+/* Progress Bar specific styles */
+.progressBarContainer {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #4a5568; /* gray-700 */
+  margin-bottom: 0.25rem;
+}
+
+.progressBarBackground {
+  width: 100%;
+  background-color: #e2e8f0; /* gray-200 */
+  border-radius: 9999px; /* rounded-full */
+  height: 0.5rem; /* h-2 */
+}
+
+.progressBarFill {
+  background-color: #3b82f6; /* blue-600 */
+  height: 100%;
+  border-radius: 9999px; /* rounded-full */
+  transition: width 0.3s ease-in-out;
+}
+
+/* Projects List specific styles */
+.projectList {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.projectItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #4a5568; /* gray-700 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.projectItem:not(:last-child) {
+  border-bottom: 1px solid #edf2f7; /* gray-100 */
+}
+
+.projectItem span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.projectItem svg {
+  height: 1rem; /* h-4 */
+  width: 1rem; /* w-4 */
+  color: #a0aec0; /* gray-400 */
+}
+
+.projectItem .amount {
+  font-weight: 500; /* font-medium */
+}
+
+/* Table specific styles */
+.tableWrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.table {
+  min-width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.table thead {
+  background-color: #f9fafb; /* gray-50 */
+}
+
+.tableHeader {
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+  text-align: left;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500; /* font-medium */
+  color: #6b7280; /* gray-500 */
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* tracking-wider */
+}
+
+.tableBody {
+  background-color: #fff;
+  border-top: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.tableRow {
+  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableCell {
+  padding: 1rem 1.5rem; /* px-6 py-4 */
+  white-space: nowrap;
+  font-size: 0.875rem; /* text-sm */
+  color: #1f2937; /* gray-800 */
+}
+
+.noContributions {
+  color: #718096; /* gray-500 */
+  padding: 1rem 0;
+}
+
+.error {
+  color: #e53e3e; /* red-600 */
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+}
