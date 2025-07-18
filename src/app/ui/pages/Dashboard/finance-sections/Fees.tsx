@@ -1,10 +1,12 @@
 import type React from "react"
 import { financeSectionsData, type Contribution } from "./finance-data"
 import styles from "./FinanceDetail.module.css" // Reusing a common CSS module
-
+import { usePagination } from "../../../../utils/hooks/usePagination"
+import Pagination from "../../../components/Pagination/Pagination"
 const FeesDetail: React.FC = () => {
   const sectionData = financeSectionsData.find((section) => section.id === "fees")
-
+const contributions = sectionData?.contributions ?? [];
+const {currentPage,totalPages,setCurrentPage,paginatedData : paginatedContributions} = usePagination(contributions,5)
   if (!sectionData) {
     return <div className={styles.error}>Section data not found.</div>
   }
@@ -51,7 +53,7 @@ const FeesDetail: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {sectionData.contributions.map((item) => (
+                {paginatedContributions.map((item) => (
                   <tr key={item.id} className={styles.tableRow}>
                     {headers.map((key) => (
                       <td key={key} className={styles.tableCell}>
@@ -63,6 +65,11 @@ const FeesDetail: React.FC = () => {
               </tbody>
             </table>
           </div>
+          <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          />
         </div>
       ) : (
         <div className={styles.card}>

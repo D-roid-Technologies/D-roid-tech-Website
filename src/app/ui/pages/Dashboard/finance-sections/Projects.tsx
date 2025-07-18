@@ -2,10 +2,12 @@ import type React from "react"
 import { financeSectionsData, type Contribution } from "./finance-data"
 import styles from "./FinanceDetail.module.css" // Reusing a common CSS module
 import { Tag } from "lucide-react"
-
+import { usePagination } from "../../../../utils/hooks/usePagination"
+import Pagination from "../../../components/Pagination/Pagination"
 const ProjectsDetail: React.FC = () => {
   const sectionData = financeSectionsData.find((section) => section.id === "projects")
-
+  const contributions = sectionData?.contributions ?? [];
+  const {currentPage,setCurrentPage,totalPages,paginatedData: paginatedContributions} = usePagination(contributions,4)
   if (!sectionData) {
     return <div className={styles.error}>Section data not found.</div>
   }
@@ -59,7 +61,7 @@ const ProjectsDetail: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {sectionData.contributions.map((item) => (
+                {paginatedContributions.map((item) => (
                   <tr key={item.id} className={styles.tableRow}>
                     {headers.map((key) => (
                       <td key={key} className={styles.tableCell}>
@@ -75,6 +77,11 @@ const ProjectsDetail: React.FC = () => {
               </tbody>
             </table>
           </div>
+          <Pagination
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          totalPages={totalPages}
+          />
         </div>
       ) : (
         <div className={styles.card}>
