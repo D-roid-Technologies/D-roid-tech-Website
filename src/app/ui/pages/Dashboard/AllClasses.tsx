@@ -474,12 +474,12 @@ const AllClasses = () => {
           </div>
         )}
         {/* Students View */}
-        {showStudentsContent && selectedClass && (
+        {/* {showStudentsContent && selectedClass && (
           <ViewAllStudent
             selectedClass={selectedClass}
             onBack={handleBackToClassDetail}
           />
-        )}
+        )} */}
       </div>
     </div>
   );

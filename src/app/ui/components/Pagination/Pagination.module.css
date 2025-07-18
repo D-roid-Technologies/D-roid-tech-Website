@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.pageButton {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: #dcdcdc;
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 640px) {
+  .pageInfo {
+    font-weight: 500;
+    font-size: 10px;
+  }
+}
