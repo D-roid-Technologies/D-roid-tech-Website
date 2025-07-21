@@ -1,14 +1,6 @@
-import {
-  BriefcaseIcon,
-  ClockIcon,
-  GraduationCapIcon,
-  PaletteIcon,
-  School,
-  UsersIcon,
-} from "lucide-react";
+import { School } from "lucide-react";
 import React, { useState } from "react";
 import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import CreateClassForm from "./CreateClassForm";
 import styles from "./DashboardContent.module.css";
@@ -32,12 +24,12 @@ const ClassRoom: React.FC = () => {
   const [selectedClassItem, setSelectedClassItem] = useState<string>("");
 
   const whatWeDoItems = [
-    {
-      icon: <FaUserGraduate />,
-      title: "Students",
-      description:
-        "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
-    },
+    // {
+    //   icon: <FaUserGraduate />,
+    //   title: "Students",
+    //   description:
+    //     "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
+    // },
     {
       icon: <School />,
       title: "Classes",
