@@ -389,7 +389,6 @@ const AllClasses = () => {
             </div>
           </div>
         )}
-
         {/* Institution Classes View */}
         {showInstitutionContent && (
           <div>
@@ -425,7 +424,6 @@ const AllClasses = () => {
             </div>
           </div>
         )}
-
         {/* Individual Class Detail View */}
         {showClassesContent && (
           <div>
@@ -474,12 +472,12 @@ const AllClasses = () => {
           </div>
         )}
         {/* Students View */}
-        {/* {showStudentsContent && selectedClass && (
+        {showStudentsContent && selectedClass && (
           <ViewAllStudent
             selectedClass={selectedClass}
             onBack={handleBackToClassDetail}
           />
-        )} */}
+        )}
       </div>
     </div>
   );
