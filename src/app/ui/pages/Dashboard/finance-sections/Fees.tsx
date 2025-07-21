@@ -3,6 +3,7 @@ import { financeSectionsData, type Contribution } from "./finance-data"
 import styles from "./FinanceDetail.module.css" // Reusing a common CSS module
 import { usePagination } from "../../../../utils/hooks/usePagination"
 import Pagination from "../../../components/Pagination/Pagination"
+import SchoolFees from "./SchoolFees"
 const FeesDetail: React.FC = () => {
   const sectionData = financeSectionsData.find((section) => section.id === "fees")
 const contributions = sectionData?.contributions ?? [];
@@ -65,11 +66,14 @@ const {currentPage,totalPages,setCurrentPage,paginatedData : paginatedContributi
               </tbody>
             </table>
           </div>
+          <div>
           <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
           />
+          </div>
+          <SchoolFees/>
         </div>
       ) : (
         <div className={styles.card}>
