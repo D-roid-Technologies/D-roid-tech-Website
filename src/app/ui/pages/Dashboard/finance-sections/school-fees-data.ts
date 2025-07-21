@@ -23,6 +23,39 @@ export const schoolFeesData: SchoolCategory[] = [
     name: "Nursery School",
     classLevels: [
       {
+      id: "creche-1",
+      name: "Crèche 1",
+      fees: [
+        { name: "Tuition Fee", amount: 120000 },
+        { name: "Books & Materials", amount: 20000 },
+        { name: "Uniforms (2 sets)", amount: 15000 },
+        { name: "PTA Levy", amount: 4000 },
+        { name: "Feeding Fee", amount: 15000 },
+      ],
+    },
+    {
+      id: "creche-2",
+      name: "Crèche 2",
+      fees: [
+        { name: "Tuition Fee", amount: 130000 },
+        { name: "Books & Materials", amount: 22000 },
+        { name: "Uniforms (2 sets)", amount: 15000 },
+        { name: "PTA Levy", amount: 4000 },
+        { name: "Feeding Fee", amount: 15000 },
+      ],
+    },
+    {
+      id: "playgroup",
+      name: "Playgroup",
+      fees: [
+        { name: "Tuition Fee", amount: 140000 },
+        { name: "Books & Materials", amount: 24000 },
+        { name: "Uniforms (2 sets)", amount: 15000 },
+        { name: "PTA Levy", amount: 4000 },
+        { name: "Feeding Fee", amount: 15000 },
+      ],
+    },
+      {
         id: "nursery-1",
         name: "Nursery 1",
         fees: [
