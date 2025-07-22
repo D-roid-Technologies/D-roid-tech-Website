@@ -13,6 +13,7 @@ import "../Dashboard/AllClasses.css";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
 import ViewAllStudent from "./ViewAllStudent";
+import Exam from "./Exam";
 
 const AllClasses = () => {
   const [showContentMain, setShowContentMain] = useState(true);
@@ -22,6 +23,7 @@ const AllClasses = () => {
   const [showDesc, setShowDesc] = useState("");
   const [selectedInstitution, setSelectedInstitution] = useState("");
   const [showStudentsContent, setShowStudentsContent] = useState(false);
+  const [showExamRord, setShowExamRord] = useState(false);
   // const [selectedClass, setSelectedClass] = useState(null);
   const [selectedClass, setSelectedClass] = useState<{
     icon: JSX.Element;
@@ -316,8 +318,15 @@ const AllClasses = () => {
 
   const handleViewStudents = () => {
     setShowClassesContent(false);
-    setShowStudentsContent(true);
+    setShowExamRord(true);
   };
+  const handleExamAndRecord = () => {
+  setShowClassesContent(false);
+  setShowExamRord(true); 
+  setShowStudentsContent(false); 
+};
+
+  
 
   // @ts-ignore
   const handleBackToClassDetail = () => {
@@ -457,6 +466,7 @@ const AllClasses = () => {
             <div className="all-classes-action-buttons">
               <button
                 onClick={handleViewStudents}
+              
                 className="all-classes-action-btn all-classes-action-btn-primary"
               >
                 View Students
@@ -464,7 +474,8 @@ const AllClasses = () => {
               <button className="all-classes-action-btn all-classes-action-btn-success">
                 Take Attendance
               </button>
-              <button className="all-classes-action-btn all-classes-action-btn-purple">
+              <button   onClick={handleExamAndRecord}
+               className="all-classes-action-btn all-classes-action-btn-purple" >
                 {/* Grade Assignments */}
                 Exams and Records
               </button>
@@ -478,6 +489,18 @@ const AllClasses = () => {
             onBack={handleBackToClassDetail}
           />
         )}
+
+       {showExamRord && selectedClass && (
+       
+  <Exam onBack={() => {
+    setShowExamRord(false);
+    setShowClassesContent(true);
+
+ 
+  }} />
+)}
+
+
       </div>
     </div>
   );
