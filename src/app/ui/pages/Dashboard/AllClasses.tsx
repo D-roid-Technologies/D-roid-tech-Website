@@ -9,11 +9,13 @@ import {
   User,
   GraduationCap,
 } from "lucide-react";
+
 import "../Dashboard/AllClasses.css";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
 import ViewAllStudent from "./ViewAllStudent";
 import Exam from "./Exam";
+import type { JSX } from "react/jsx-runtime"
 
 const AllClasses = () => {
   const [showContentMain, setShowContentMain] = useState(true);
@@ -24,6 +26,7 @@ const AllClasses = () => {
   const [selectedInstitution, setSelectedInstitution] = useState("");
   const [showStudentsContent, setShowStudentsContent] = useState(false);
   const [showExamRord, setShowExamRord] = useState(false);
+  
   // const [selectedClass, setSelectedClass] = useState(null);
   const [selectedClass, setSelectedClass] = useState<{
     icon: JSX.Element;
@@ -32,7 +35,7 @@ const AllClasses = () => {
     schedule: string;
     teacher: string;
     students: number;
-  } | null>(null); // Add this line
+  } | null>(null); 
 
   const institutions = [
     {
@@ -324,6 +327,7 @@ const AllClasses = () => {
   setShowClassesContent(false);
   setShowExamRord(true); 
   setShowStudentsContent(false); 
+  
 };
 
   

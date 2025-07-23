@@ -1,17 +1,25 @@
-import StudentScoreTable from "./examsAndRecord/StudentScoreTable";
+"use client"
 
-interface examProps{
-    onBack : () => void;
+import type React from "react"
+import { ArrowLeft } from "lucide-react"
+import ExamDashboard from "./examsAndRecord/ExamDashboard"
+import styles from "./DashboardContent.module.css"
+
+interface ExamProps {
+  onBack: () => void
 }
-export default function Exam({ onBack } : examProps) {
+
+const Exam: React.FC<ExamProps> = ({ onBack }) => {
   return (
     <div>
-      <button onClick={onBack} style={{ marginBottom: "1rem" }}>
-        ← Back to Class
+      <button className={styles.backButton} onClick={onBack}>
+        <ArrowLeft size={16} />
+        Back to Class Details
       </button>
-      <h2>Exam Section</h2>
-      <StudentScoreTable/>
-       <h2>Exam Section2</h2>
+
+      <ExamDashboard />
     </div>
-  );
+  )
 }
+
+export default Exam
