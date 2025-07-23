@@ -4,13 +4,7 @@ import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import CreateClassForm from "./CreateClassForm";
 import styles from "./DashboardContent.module.css";
-import { MdAppRegistration } from "react-icons/md";
-import { GiProgression } from "react-icons/gi";
-import { LiaUserCheckSolid } from "react-icons/lia";
-import { BsRecordBtn } from "react-icons/bs";
-import { GiUpgrade } from "react-icons/gi";
 import { PiStudentDuotone } from "react-icons/pi";
-import { IoMdPersonAdd } from "react-icons/io";
 import { SiGoogleclassroom } from "react-icons/si";
 import AllClasses from "./AllClasses";
 
@@ -24,17 +18,17 @@ const ClassRoom: React.FC = () => {
   const [selectedClassItem, setSelectedClassItem] = useState<string>("");
 
   const whatWeDoItems = [
-    // {
-    //   icon: <FaUserGraduate />,
-    //   title: "Students",
-    //   description:
-    //     "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
-    // },
     {
       icon: <School />,
       title: "Classes",
       description:
         "Organize and manage structured learning sessions. Create, schedule, and track classes with ease. Ideal for schools, training organizations, or professional development teams.",
+    },
+    {
+      icon: <FaUserGraduate />,
+      title: "Students",
+      description:
+        "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
     },
   ];
 
@@ -59,42 +53,6 @@ const ClassRoom: React.FC = () => {
       title: "All Students",
       description:
         "Access and manage every class in your organization, including enrolled students, assigned instructors, class schedules, and academic progress—all in one place.",
-    },
-    {
-      icon: <IoMdPersonAdd />,
-      title: "Add Students",
-      description:
-        "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
-    },
-    {
-      icon: <MdAppRegistration />,
-      title: "Fees",
-      description:
-        "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
-    },
-    {
-      icon: <GiProgression />,
-      title: "Progression",
-      description:
-        "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
-    },
-    {
-      icon: <LiaUserCheckSolid />,
-      title: "Attendance",
-      description:
-        "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
-    },
-    {
-      icon: <BsRecordBtn />,
-      title: "Exams and Records",
-      description:
-        "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
-    },
-    {
-      icon: <GiUpgrade />,
-      title: "Grades",
-      description:
-        "Easily set up and organize new classes with assigned subjects, teachers, and schedules. This tool streamlines classroom creation for efficient academic planning and management.",
     },
   ];
 
@@ -240,6 +198,14 @@ const ClassRoom: React.FC = () => {
 
         {showClassesContent && selectedClassItem === "All Classes" && (
           <>
+            {/* <div className="all-classes-page-header-top">
+              <button
+                className={styles.backButton}
+                onClick={handleBackToClasses}
+              >
+                Back to Class Details
+              </button>
+            </div> */}
             <AllClasses />
           </>
         )}
