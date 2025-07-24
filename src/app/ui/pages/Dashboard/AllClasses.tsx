@@ -9,11 +9,14 @@ import {
   User,
   GraduationCap,
 } from "lucide-react";
+
 import "../Dashboard/AllClasses.css";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
 import ViewAllStudent from "./ViewAllStudent";
 import Attendance from "./Attendance";
+import Exam from "./Exam";
+import type { JSX } from "react/jsx-runtime";
 
 const AllClasses = () => {
   const [showContentMain, setShowContentMain] = useState(true);
@@ -25,6 +28,9 @@ const AllClasses = () => {
   const [showStudentsContent, setShowStudentsContent] = useState(false);
   const [showAttendanceContent, setShowAttendanceContent] = useState(false);
 
+  const [showExamRord, setShowExamRord] = useState(false);
+
+  // const [selectedClass, setSelectedClass] = useState(null);
   const [selectedClass, setSelectedClass] = useState<{
     icon: JSX.Element;
     title: string;
@@ -275,14 +281,21 @@ const AllClasses = () => {
       setShowDesc(institution.description);
     }
   };
-  // View Students button handler
+
   const handleViewStudents = () => {
     setShowClassesContent(false);
     setShowStudentsContent(true);
   };
 
+  const handleExamAndRecord = () => {
+    setShowClassesContent(false);
+    setShowExamRord(true);
+    setShowStudentsContent(false);
+  };
+
   // @ts-ignore
   const handleBackToClassDetail = () => {
+    setShowAttendanceContent(false);
     setShowStudentsContent(false);
     setShowClassesContent(true);
     if (selectedClass) {
@@ -440,7 +453,10 @@ const AllClasses = () => {
               >
                 Take Attendance
               </button>
-              <button className="all-classes-action-btn all-classes-action-btn-purple">
+              <button
+                onClick={handleExamAndRecord}
+                className="all-classes-action-btn all-classes-action-btn-purple"
+              >
                 {/* Grade Assignments */}
                 Exams and Records
               </button>
@@ -459,6 +475,15 @@ const AllClasses = () => {
           <Attendance
             selectedClass={selectedClass}
             onBack={handleBackToClassDetail}
+          />
+        )}
+
+        {showExamRord && selectedClass && (
+          <Exam
+            onBack={() => {
+              setShowExamRord(false);
+              setShowClassesContent(true);
+            }}
           />
         )}
       </div>

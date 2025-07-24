@@ -207,7 +207,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
         <ProductsSmall />
       </div>
       {/* Call to Action */}
-      <div className="soft-cta">
+      {/* <div className="soft-cta">
         <h2 className="cta-header">Ready to build something great?</h2>
         <p>
           From apps to platforms and SaaS products — you provide the vision, we
@@ -238,7 +238,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
         >
           Start a Project
         </button>
-      </div>
+      </div> */}
 
       {/* Approach Section */}
       <div className="bg-color-gradient">
