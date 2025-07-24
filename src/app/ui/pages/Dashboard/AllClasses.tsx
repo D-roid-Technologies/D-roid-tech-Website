@@ -14,8 +14,9 @@ import "../Dashboard/AllClasses.css";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
 import ViewAllStudent from "./ViewAllStudent";
+import Attendance from "./Attendance";
 import Exam from "./Exam";
-import type { JSX } from "react/jsx-runtime"
+import type { JSX } from "react/jsx-runtime";
 
 const AllClasses = () => {
   const [showContentMain, setShowContentMain] = useState(true);
@@ -25,8 +26,10 @@ const AllClasses = () => {
   const [showDesc, setShowDesc] = useState("");
   const [selectedInstitution, setSelectedInstitution] = useState("");
   const [showStudentsContent, setShowStudentsContent] = useState(false);
+  const [showAttendanceContent, setShowAttendanceContent] = useState(false);
+
   const [showExamRord, setShowExamRord] = useState(false);
-  
+
   // const [selectedClass, setSelectedClass] = useState(null);
   const [selectedClass, setSelectedClass] = useState<{
     icon: JSX.Element;
@@ -35,7 +38,7 @@ const AllClasses = () => {
     schedule: string;
     teacher: string;
     students: number;
-  } | null>(null); 
+  } | null>(null);
 
   const institutions = [
     {
@@ -226,57 +229,17 @@ const AllClasses = () => {
     }
   };
 
-  // // @ts-ignore
-  // const handleInstitutionClick = (item) => {
-  //   setShowContentMain(false);
-  //   setShowInstitutionContent(true);
-  //   setSelectedInstitution(item.title);
-  //   setShowTitle(item.title);
-  //   setShowDesc(item.description);
-  // };
-
-  // // @ts-ignore
-  // const handleClassClick = (classItem) => {
-  //   setShowInstitutionContent(false);
-  //   setShowClassesContent(true);
-  //   setShowTitle(classItem.title);
-  //   setShowDesc(classItem.description);
-  // };
-
-  // const handleBackToAllClasses = () => {
-  //   setShowContentMain(true);
-  //   setShowInstitutionContent(false);
-  //   setShowClassesContent(false);
-  //   setSelectedInstitution("");
-  //   setShowTitle("");
-  //   setShowDesc("");
-  // };
-
-  // const handleBackToInstitution = () => {
-  //   setShowInstitutionContent(true);
-  //   setShowClassesContent(false);
-  //   const institution = institutions.find(
-  //     (inst) => inst.title === selectedInstitution
-  //   );
-  //   if (institution) {
-  //     setShowTitle(institution.title);
-  //     setShowDesc(institution.description);
-  //   }
-  // };
-
-  // const handleViewStudents = () => {
-  //   setShowClassesContent(false);
-  //   setShowStudentsContent(true);
-  // };
-
-  // const handleBackToClassDetail = () => {
-  //   setShowStudentsContent(false);
-  //   setShowClassesContent(true);
-  //   if (selectedClass) {
-  //     setShowTitle(selectedClass.title);
-  //     setShowDesc(selectedClass.description);
-  //   }
-  // };
+  const handleBackToDashboard = () => {
+    setShowContentMain(true);
+    setShowInstitutionContent(false);
+    setShowClassesContent(false);
+    setShowStudentsContent(false);
+    setShowAttendanceContent(false);
+    setShowTitle("");
+    setShowDesc("");
+    setSelectedInstitution("");
+    setSelectedClass(null);
+  };
 
   // @ts-ignore
   const handleInstitutionClick = (item) => {
@@ -321,25 +284,31 @@ const AllClasses = () => {
 
   const handleViewStudents = () => {
     setShowClassesContent(false);
-    setShowExamRord(true);
+    setShowStudentsContent(true);
   };
-  const handleExamAndRecord = () => {
-  setShowClassesContent(false);
-  setShowExamRord(true); 
-  setShowStudentsContent(false); 
-  
-};
 
-  
+  const handleExamAndRecord = () => {
+    setShowClassesContent(false);
+    setShowExamRord(true);
+    setShowStudentsContent(false);
+  };
 
   // @ts-ignore
   const handleBackToClassDetail = () => {
+    setShowAttendanceContent(false);
     setShowStudentsContent(false);
     setShowClassesContent(true);
     if (selectedClass) {
       setShowTitle(selectedClass.title);
       setShowDesc(selectedClass.description);
     }
+  };
+
+  // Attendance
+  const handleAttendance = () => {
+    setShowClassesContent(false);
+    setShowStudentsContent(false);
+    setShowAttendanceContent(true);
   };
 
   // @ts-ignore
@@ -374,7 +343,11 @@ const AllClasses = () => {
         {/* Main Institutions View */}
         {showContentMain && (
           <div>
-            {/* <div className="all-classes-page-header"> */}
+            {/* <div className="">
+              <button className="" onClick={handleBackToDashboard}>
+                Back to Dashboard
+              </button>
+            </div> */}
             <div className="welcome-section">
               <h1 style={{ color: "#000000" }}>All Classes</h1>
               <p style={{ color: "#000000" }}>
@@ -437,7 +410,7 @@ const AllClasses = () => {
             </div>
           </div>
         )}
-        {/* Individual Class Detail View */}
+        {/* Individual Class Detail */}
         {showClassesContent && (
           <div>
             <button
@@ -470,16 +443,20 @@ const AllClasses = () => {
             <div className="all-classes-action-buttons">
               <button
                 onClick={handleViewStudents}
-              
                 className="all-classes-action-btn all-classes-action-btn-primary"
               >
                 View Students
               </button>
-              <button className="all-classes-action-btn all-classes-action-btn-success">
+              <button
+                onClick={handleAttendance}
+                className="all-classes-action-btn all-classes-action-btn-success"
+              >
                 Take Attendance
               </button>
-              <button   onClick={handleExamAndRecord}
-               className="all-classes-action-btn all-classes-action-btn-purple" >
+              <button
+                onClick={handleExamAndRecord}
+                className="all-classes-action-btn all-classes-action-btn-purple"
+              >
                 {/* Grade Assignments */}
                 Exams and Records
               </button>
@@ -493,18 +470,22 @@ const AllClasses = () => {
             onBack={handleBackToClassDetail}
           />
         )}
+        {/* Attendance */}
+        {showAttendanceContent && selectedClass && (
+          <Attendance
+            selectedClass={selectedClass}
+            onBack={handleBackToClassDetail}
+          />
+        )}
 
-       {showExamRord && selectedClass && (
-       
-  <Exam onBack={() => {
-    setShowExamRord(false);
-    setShowClassesContent(true);
-
- 
-  }} />
-)}
-
-
+        {showExamRord && selectedClass && (
+          <Exam
+            onBack={() => {
+              setShowExamRord(false);
+              setShowClassesContent(true);
+            }}
+          />
+        )}
       </div>
     </div>
   );
