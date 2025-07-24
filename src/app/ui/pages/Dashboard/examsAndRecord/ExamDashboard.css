@@ -4,19 +4,25 @@
   min-height: 100vh;
 }
 
-.dashboard-header {
+.exam_dashboard-header {
+  background-color: #071d6a;
+    color: #ffffff;
+    padding: 15px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    z-index: 1000;
   margin-bottom: 2rem;
+  
 }
 
 .dashboard-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #1f2937;
   margin-bottom: 0.5rem;
 }
 
 .dashboard-subtitle {
-  color: #6b7280;
   font-size: 1rem;
 }
 
@@ -120,7 +126,12 @@
   cursor: pointer;
 }
 
-.student-name {
+.student-name,
+.student-gender,
+.student-age,
+.student-totalScore,
+.student-avaarage,
+.student-remark {
   font-weight: 500;
   color: #1f2937;
 }
@@ -212,7 +223,7 @@
   }
 
   .dashboard-title {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .filters-grid {
