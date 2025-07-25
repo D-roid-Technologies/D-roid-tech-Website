@@ -425,7 +425,7 @@ const ViewAllStudent: React.FC<ViewAllStudentProps> = ({
       <div className="vas-students-wrapper">
         <div className="vas-page-header-top">
           <button className="vas-back-button" onClick={onBack}>
-            Back to Class Details
+            Back to Class Detailsssss
           </button>
         </div>
         <div className="vas-page-header">
