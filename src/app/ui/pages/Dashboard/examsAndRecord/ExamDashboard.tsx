@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { BookOpen } from "lucide-react"
 import type { Student } from "./student"
 import { classLevels, getStudentsByClass } from "./examData"
@@ -52,9 +52,12 @@ const ExamDashboard: React.FC = () => {
     return "position-other"
   }
 
+  const sortedStudents = useMemo(() =>{
+    return [...filteredStudents].sort((a,b) => a.position - b.position)
+  },[filteredStudents])
   return (
     <div className="exam-dashboard">
-      <div className="dashboard-header">
+      <div className="exam_dashboard-header">
         <h1 className="dashboard-title">Exam Records Dashboard</h1>
         <p className="dashboard-subtitle">Comprehensive academic performance tracking across all educational levels</p>
       </div>
@@ -137,7 +140,7 @@ const ExamDashboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredStudents.map((student) => (
+                {sortedStudents.map((student) => (
                   <tr key={student.id} onClick={() => handleStudentClick(student)}>
                     <td>
                       <span className={`position-badge ${getPositionClass(student.position)}`}>{student.position}</span>
@@ -148,16 +151,16 @@ const ExamDashboard: React.FC = () => {
                     <td>
                       <span className="student-name">{student.fullName}</span>
                     </td>
-                    <td>{student.gender}</td>
-                    <td>{student.age}</td>
+                    <td className="student-gender">{student.gender}</td>
+                    <td className="student-age">{student.age}</td>
                     <td>
-                      <strong>{student.totalScore}</strong>
+                      <strong  className="student-totalScore"> {student.totalScore}</strong>
                     </td>
-                    <td>{student.average}%</td>
+                    <td className="student-avaarage">{student.average}%</td>
                     <td>
                       <span className={`grade-badge grade-${student.grade}`}>{student.grade}</span>
                     </td>
-                    <td>{student.remarks}</td>
+                    <td className="student-remark">{student.remarks}</td>
                   </tr>
                 ))}
               </tbody>

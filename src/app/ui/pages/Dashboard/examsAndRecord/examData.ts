@@ -233,6 +233,7 @@ const getAgeForClass = (className: string): number => {
 }
 
 export const studentsData: Student[] = generateStudentData()
+console.log("studentsData",studentsData)
 
 export const getStudentsByClass = (className: string): Student[] => {
   return studentsData.filter((student) => student.classLevel === className)
