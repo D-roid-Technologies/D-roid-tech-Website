@@ -1,456 +1,821 @@
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import { authService } from '../../../redux/configuration/auth.service';
-import { addTask, deleteThisTask, updateTask } from '../../../redux/slices/scheduleTask';
-import { RootState } from '../../../redux/Store';
-import { ChecklistItem, Task, UserRef, } from '../../../utils/Types';
+"use client"
+
+import React, { useState } from "react"
 import {
-    EditIcon,
-    DeleteIcon
-} from '../../components/dashboard-card/Icons';
+  ArrowLeft,
+  Tag,
+  ListTodo,
+  MapPin,
+  Link,
+  Scale,
+  MessageSquare,
+  Clock,
+  Calendar,
+  Lock,
+  Ban,
+  Info,
+  CheckCircle,
+  Hourglass,
+  Zap,
+  Star,
+  BookOpen,
+  Layers,
+  Repeat,
+} from "lucide-react"
+import styles from "./CreateTasks.module.css"
 
-const CreateTasks: React.FC = () => {
-    const user = useSelector((state: RootState) => state.user);
-    const tasks = useSelector((state: RootState) => state.scheduleTask.tasks);
-    const dispatch = useDispatch();
+interface ChecklistItem {
+  id: string
+  title: string
+  checked: boolean
+}
 
-    // const [title, setTitle] = useState('');
-    // const [desc, setDesc] = useState('');
-    const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
-    const [editingTitle, setEditingTitle] = useState('');
-    const [editingDesc, setEditingDesc] = useState('');
+interface TaskFormData {
+  id?: string
+  title: string
+  description: string
+  type: "" | "task" | "event" | "appointment" | "reminder" | "habit" | "note"
+  category: string
+  priority: "" | "low" | "medium" | "high" | "urgent" | "critical"
+  status: "" | "pending" | "in_progress" | "completed" | "cancelled" | "archived" | "on_hold" | "reopened"
+  tags: string[]
+  checklist: ChecklistItem[]
+  estimatedHours: number | ""
+  actualHours: number | ""
+  dueDays: number | ""
+  reminderDays: number | ""
+  recurrencePattern: string
+  customRecurrenceRule: string
+  locationAddress: string
+  latitude: number | ""
+  longitude: number | ""
+  score: number | ""
+  feedback: string
+  linkedResourceTitle: string
+  linkedResourceUrl: string
+  isPrivate: boolean
+  isBlocked: boolean
+  blockReason: string
+}
 
-    // const [type, setType] = useState('task');
-    // const [category, setCategory] = useState('work');
-    // const [priority, setPriority] = useState('medium');
-    // const [status, setStatus] = useState('pending');
-    const [groupId, setGroupId] = useState('');
-    const [phaseId, setPhaseId] = useState('');
-    const [boardColumn, setBoardColumn] = useState('');
-    // const [tags, setTags] = useState('');
-    // const [estimatedHours, setEstimatedHours] = useState<number | ''>('');
-    // const [actualHours, setActualHours] = useState<number | ''>('');
-    // const [dueDays, setDueDays] = useState<number | ''>('');
-    // const [reminderDays, setReminderDays] = useState<number | ''>('');
-    // const [recurrencePattern, setRecurrencePattern] = useState('custom');
-    // const [customRecurrenceRule, setCustomRecurrenceRule] = useState('');
-    // const [locationAddress, setLocationAddress] = useState('');
-    // const [latitude, setLatitude] = useState<number>();
-    // const [longitude, setLongitude] = useState<number>();
-    // const [score, setScore] = useState<number | ''>('');
-    // const [feedback, setFeedback] = useState('');
-    // const [linkedResourceTitle, setLinkedResourceTitle] = useState('');
-    // const [linkedResourceUrl, setLinkedResourceUrl] = useState('');
-    // const [isPrivate, setIsPrivate] = useState(false);
-    // const [isBlocked, setIsBlocked] = useState(false);
-    // const [blockReason, setBlockReason] = useState('');
+interface TaskFormErrors {
+  title?: string;
+  type?: string;
+  category?: string;
+  priority?: string;
+  status?: string;
+  
+}
 
-    // const [checklistInput, setChecklistInput] = useState('');
-    // const [checklist, setChecklist] = useState<ChecklistItem[]>([]);
-    type StatusType = 'pending' | 'in_progress' | 'completed' | 'cancelled' | 'archived' | 'on_hold' | 'reopened';
+interface CreateTaskFormProps {
+  onBack: () => void
+  onSubmit: (taskData: TaskFormData) => void
+  initialData?: TaskFormData
+  mode?: "add" | "edit"
+}
 
-    type Priority = 'low' | 'medium' | 'high';
-    const [step, setStep] = useState(1);
+const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, onSubmit, initialData, mode = "add" }) => {
+  const [formData, setFormData] = useState<TaskFormData>({
+    title: "",
+    description: "",
+    type: "task",
+    category: "work",
+    priority: "medium",
+    status: "pending",
+    tags: [""],
+    checklist: [],
+    estimatedHours: "",
+    actualHours: "",
+    dueDays: "",
+    reminderDays: "",
+    recurrencePattern: "custom",
+    customRecurrenceRule: "",
+    locationAddress: "",
+    latitude: "",
+    longitude: "",
+    score: "",
+    feedback: "",
+    linkedResourceTitle: "",
+    linkedResourceUrl: "",
+    isPrivate: false,
+    isBlocked: false,
+    blockReason: "",
+  })
 
-    // Step 1: Text Inputs
-    const [title, setTitle] = useState('');
-    const [desc, setDesc] = useState('');
-    const [tags, setTags] = useState('');
-    const [checklistInput, setChecklistInput] = useState('');
-    const [checklist, setChecklist] = useState<ChecklistItem[]>([]);
-    const [locationAddress, setLocationAddress] = useState('');
-    const [linkedResourceTitle, setLinkedResourceTitle] = useState('');
-    const [linkedResourceUrl, setLinkedResourceUrl] = useState('');
+  const [errors, setErrors] = useState<Partial<TaskFormData>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-    // Step 2: Numbers
-    const [latitude, setLatitude] = useState<number | ''>('');
-    const [longitude, setLongitude] = useState<number | ''>('');
-    const [estimatedHours, setEstimatedHours] = useState<any>('');
-    const [actualHours, setActualHours] = useState<any>('');
-    const [dueDays, setDueDays] = useState<any>('');
-    const [reminderDays, setReminderDays] = useState<number | "">('');
-    const [score, setScore] = useState<number | "">('');
+  // Populate form with initial data when editing
+  React.useEffect(() => {
+    if (initialData && mode === "edit") {
+      setFormData({
+        ...initialData,
+        tags: initialData.tags?.length ? initialData.tags : [""],
+        checklist: initialData.checklist?.length ? initialData.checklist : [],
+      })
+    }
+  }, [initialData, mode])
 
-    // Step 3: Long text
-    const [feedback, setFeedback] = useState('');
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type, checked } = e.target as HTMLInputElement
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }))
 
-    // Step 4: Dropdowns
-    const [type, setType] = useState<'' | 'task' | 'event' | 'appointment' | 'reminder' | 'habit' | 'note'>('');
-    const [category, setCategory] = useState('');
-    const [priority, setPriority] = useState<any>('');
-    const [status, setStatus] = useState<any>('');
-    const [recurrencePattern, setRecurrencePattern] = useState('custom');
-    const [customRecurrenceRule, setCustomRecurrenceRule] = useState('');
+    if (errors[name as keyof TaskFormData]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }))
+    }
+  }
 
-    // Step 5: Toggles
-    const [isPrivate, setIsPrivate] = useState(false);
-    const [isBlocked, setIsBlocked] = useState(false);
-    const [blockReason, setBlockReason] = useState('');
+  const handleNumberInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof TaskFormData) => {
+    const { value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value === "" ? "" : Number.parseFloat(value),
+    }))
+    if (errors[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: "",
+      }))
+    }
+  }
 
+  const handleArrayChange = (field: "tags" | "checklist", index: number, value: string) => {
+    if (field === "tags") {
+      setFormData((prev) => ({
+        ...prev,
+        tags: prev.tags.map((item, i) => (i === index ? value : item)),
+      }))
+    } else if (field === "checklist") {
+      setFormData((prev) => ({
+        ...prev,
+        checklist: prev.checklist.map((item, i) => (i === index ? { ...item, title: value } : item)),
+      }))
+    }
+  }
 
-    const createTask = async () => {
-        if (!title.trim() || !status || !priority) {
-            toast.error("Please fill required fields");
-            return;
-        }
+  const addArrayItem = (field: "tags" | "checklist") => {
+    if (field === "tags") {
+      setFormData((prev) => ({
+        ...prev,
+        tags: [...prev.tags, ""],
+      }))
+    } else if (field === "checklist") {
+      setFormData((prev) => ({
+        ...prev,
+        checklist: [...prev.checklist, { id: crypto.randomUUID(), title: "", checked: false }],
+      }))
+    }
+  }
 
-        const now = new Date().toLocaleString();
-        const userRef: UserRef = {
-            id: user.uniqueId,
-            name: `${user.firstName} ${user.lastName}`,
-            email: user.email,
-        };
+  const removeArrayItem = (field: "tags" | "checklist", index: number) => {
+    if (field === "tags") {
+      setFormData((prev) => ({
+        ...prev,
+        tags: prev.tags.filter((_, i) => i !== index),
+      }))
+    } else if (field === "checklist") {
+      setFormData((prev) => ({
+        ...prev,
+        checklist: prev.checklist.filter((_, i) => i !== index),
+      }))
+    }
+  }
 
-        const newTask: Task = {
-            id: crypto.randomUUID(),
-            title: title.trim(),
-            description: desc.trim(),
-            type: type === '' ? undefined : type,
-            status: status === '' ? undefined : status,
-            priority: priority === '' ? undefined : priority,
-            category: category, // e.g., 'work', 'personal', 'health', etc.
-            // groupId: '', // replaces projectId
-            // boardColumn: 'To Do',
-            // phaseId: '', // replaces sprintId
-            // parentTaskId: undefined,
-            subtasks: [],
-            dependencies: [],
-            dependents: [],
-            tags: [],
-            checklist: checklist,
-            assignee: userRef,
-            collaborators: [userRef],
-            reporter: userRef,
-            // comments: comments,
-            // attachments: attachements,
-            estimatedHours: estimatedHours,
-            actualHours: actualHours,
-            startDate: now,
-            endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleString(), // +3 days
-            completedAt: undefined,
-            reminderAt: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toLocaleString(), // +1 day
-            recurring: false,
-            recurrencePattern: 'custom',
-            customRecurrenceRule: '',
-            location: {
-                address: locationAddress,
-                latitude: latitude === '' ? undefined : latitude,
-                longitude: longitude === '' ? undefined : longitude,
-            },
-            isPrivate: false,
-            isBlocked: false,
-            blockReason: '',
-            score: 5,
-            feedback: '',
-            linkedResources: [
-                {
-                    title: 'Design Spec',
-                    url: 'https://example.com/specs/design',
-                },
-            ],
-            auditTrail: [],
-            createdBy: userRef,
-            dateCreated: now,
-            dateModified: now,
-            dateDeleted: undefined,
-        };
+  const validateForm = (): boolean => {
+    const newErrors: Partial<TaskFormErrors> = {}
 
-        await authService.handleCreateTask(newTask).then(() => {
-            toast.success('Task stored in database 🎉', {
-                style: { background: '#4BB543', color: '#fff' },
-            });
-            setStep(1);
+    if (!formData.title.trim()) newErrors.title = "Task title is required"
+    if (!formData.type) newErrors.type = "Task type is required"
+    if (!formData.category) newErrors.category = "Category is required"
+    if (!formData.priority) newErrors.priority = "Priority is required"
+    if (!formData.status) newErrors.status = "Status is required"
+    // if (formData.isBlocked && !formData.blockReason.trim())
+    //   newErrors.blockReason = "Block reason is required if task is blocked"
 
-            // Step 1
-            setTitle('');
-            setDesc('');
-            setTags('');
-            setChecklistInput('');
-            setChecklist([]);
-            setLocationAddress('');
-            setLinkedResourceTitle('');
-            setLinkedResourceUrl('');
+    // setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
-            // Step 2
-            setLatitude('');
-            setLongitude('');
-            setEstimatedHours('');
-            setActualHours('');
-            setDueDays('');
-            setReminderDays('');
-            setScore('');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
 
-            // Step 3
-            setFeedback('');
+    if (!validateForm()) return
 
-            // Step 4
-            setType('');
-            setCategory('');
-            setPriority('');
-            setStatus('');
-            setRecurrencePattern('custom');
-            setCustomRecurrenceRule('');
+    setIsSubmitting(true)
 
-            // Step 5
-            setIsPrivate(false);
-            setIsBlocked(false);
-            setBlockReason('');
+    try {
+      const processedData = {
+        ...formData,
+        tags: formData.tags.filter((item) => item.trim() !== ""),
+        checklist: formData.checklist.filter((item) => item.title.trim() !== ""),
+      }
+
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      onSubmit(processedData)
+    } catch (error) {
+      console.error("Error submitting form:", error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
 
-            // console.log(newTask);
-        }).catch((err) => {
-            toast.error(`${err} 🚫`, {
-                style: { background: '#ff4d4f', color: '#fff' },
-            });
-            console.log(err)
-        })
+  const handleReset = () => {
+    if (mode === "edit" && initialData) {
+      setFormData({
+        ...initialData,
+        tags: initialData.tags?.length ? initialData.tags : [""],
+        checklist: initialData.checklist?.length ? initialData.checklist : [],
+      })
+    } else {
+      setFormData({
+        title: "",
+        description: "",
+        type: "task",
+        category: "work",
+        priority: "medium",
+        status: "pending",
+        tags: [""],
+        checklist: [],
+        estimatedHours: "",
+        actualHours: "",
+        dueDays: "",
+        reminderDays: "",
+        recurrencePattern: "custom",
+        customRecurrenceRule: "",
+        locationAddress: "",
+        latitude: "",
+        longitude: "",
+        score: "",
+        feedback: "",
+        linkedResourceTitle: "",
+        linkedResourceUrl: "",
+        isPrivate: false,
+        isBlocked: false,
+        blockReason: "",
+      })
+    }
+    setErrors({})
+  }
 
+  const isEditMode = mode === "edit"
 
-        // dispatch(addTask(newTask));
+  return (
+    <div className={styles.addStaffFormContainer}>
+      <button className={styles.backButton} onClick={onBack}>
+        <ArrowLeft />
+        Back to Task Management
+      </button>
 
-    };
+      <div className={styles.formWrapper}>
+        <div className={styles.formHeader}>
+          <h2 className={styles.formTitle}>{isEditMode ? "Edit Task" : "Create New Task"}</h2>
+          <p className={styles.formSubtitle}>
+            {isEditMode
+              ? "Update the details below to modify the task information"
+              : "Fill in the details below to create a new task"}
+          </p>
+        </div>
 
+        <form onSubmit={handleSubmit} className={styles.staffForm}>
+          <div className={styles.formGrid}>
+            {/* Task Details Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                <Info className={styles.sectionIcon} />
+                Task Details
+              </h3>
 
-    const handleUpdateTask = () => {
-        if (!editingTaskId || !editingTitle.trim()) return;
+              <div className={styles.inputGroup}>
+                <div className={styles.inputField}>
+                  <label htmlFor="title" className={styles.inputLabel}>
+                    Title *
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleInputChange}
+                    className={`${styles.input} ${errors.title ? styles.inputError : ""}`}
+                    placeholder="Enter task title"
+                  />
+                  {errors.title && <span className={styles.errorMessage}>{errors.title}</span>}
+                </div>
 
-        const now = new Date().toISOString();
-        const updatedTask: Task = {
-            ...tasks.find((t: { id: string; }) => t.id === editingTaskId)!,
-            title: editingTitle.trim(),
-            description: editingDesc.trim(),
-            dateModified: now,
-        };
+                <div className={styles.inputField}>
+                  <label htmlFor="description" className={styles.inputLabel}>
+                    Description
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    className={styles.textarea}
+                    placeholder="Enter a detailed description of the task"
+                    rows={3}
+                  />
+                </div>
 
-        dispatch(updateTask(updatedTask));
-        setEditingTaskId(null);
-        setEditingTitle('');
-        setEditingDesc('');
-    };
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="type" className={styles.inputLabel}>
+                      <Layers className={styles.inputIcon} />
+                      Type *
+                    </label>
+                    <select
+                      id="type"
+                      name="type"
+                      value={formData.type}
+                      onChange={handleInputChange}
+                      className={`${styles.input} ${errors.type ? styles.inputError : ""}`}
+                    >
+                      <option value="task">Task</option>
+                      <option value="event">Event</option>
+                      <option value="appointment">Appointment</option>
+                      <option value="reminder">Reminder</option>
+                      <option value="habit">Habit</option>
+                      <option value="note">Note</option>
+                    </select>
+                    {errors.type && <span className={styles.errorMessage}>{errors.type}</span>}
+                  </div>
 
-    const deleteTask = (id: string) => {
-        dispatch(deleteThisTask(id));
-    };
+                  <div className={styles.inputField}>
+                    <label htmlFor="category" className={styles.inputLabel}>
+                      <BookOpen className={styles.inputIcon} />
+                      Category *
+                    </label>
+                    <select
+                      id="category"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleInputChange}
+                      className={`${styles.input} ${errors.category ? styles.inputError : ""}`}
+                    >
+                      <option value="work">Work</option>
+                      <option value="personal">Personal</option>
+                      <option value="health">Health</option>
+                      <option value="finance">Finance</option>
+                      <option value="education">Education</option>
+                      <option value="home">Home</option>
+                      <option value="other">Other</option>
+                    </select>
+                    {errors.category && <span className={styles.errorMessage}>{errors.category}</span>}
+                  </div>
+                </div>
 
-    const nextStep = () => setStep(prev => prev + 1);
-    const prevStep = () => setStep(prev => prev - 1);
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="priority" className={styles.inputLabel}>
+                      <Zap className={styles.inputIcon} />
+                      Priority *
+                    </label>
+                    <select
+                      id="priority"
+                      name="priority"
+                      value={formData.priority}
+                      onChange={handleInputChange}
+                      className={`${styles.input} ${errors.priority ? styles.inputError : ""}`}
+                    >
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                      <option value="urgent">Urgent</option>
+                      <option value="critical">Critical</option>
+                    </select>
+                    {errors.priority && <span className={styles.errorMessage}>{errors.priority}</span>}
+                  </div>
 
-    return (
-        <div style={{ padding: '2rem', background: 'grey', color: '#fff' }}>
-            <h2>Your Tasks</h2>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', margin: '1rem 0' }}>
-                {step === 1 && (
-                    <>
-                        <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} style={inputStyle} />
-                        <textarea placeholder="Description" value={desc} onChange={e => setDesc(e.target.value)} style={{ ...inputStyle, height: '80px' }} />
-                        <input type="text" placeholder="Tags (comma separated)" value={tags} onChange={e => setTags(e.target.value)} style={inputStyle} />
-                        <input
-                            type="text"
-                            placeholder="Checklist (comma separated)"
-                            value={checklistInput}
-                            onChange={e => {
-                                const input = e.target.value;
-                                setChecklistInput(input);
-                                const items = input.split(',').map((title, index) => ({
-                                    id: `chk-${index + 1}`,
-                                    title: title.trim(),
-                                    checked: false
-                                })).filter(item => item.title.length > 0);
-                                setChecklist(items);
-                            }}
-                            style={inputStyle}
-                        />
-                        <input type="text" placeholder="Location Address" value={locationAddress} onChange={e => setLocationAddress(e.target.value)} style={inputStyle} />
-                        <input type="text" placeholder="Linked Resource Title" value={linkedResourceTitle} onChange={e => setLinkedResourceTitle(e.target.value)} style={inputStyle} />
-                        <input type="url" placeholder="Linked Resource URL" value={linkedResourceUrl} onChange={e => setLinkedResourceUrl(e.target.value)} style={inputStyle} />
-                        <button onClick={nextStep} style={buttonStyle('#2196F3')}>Continue</button>
-                    </>
-                )}
-
-                {step === 2 && (
-                    <>
-                        {/* <input type="number" placeholder="Latitude" value={latitude} onChange={e => setLatitude(Number(e.target.value))} style={inputStyle} />
-                        <input type="number" placeholder="Longitude" value={longitude} onChange={e => setLongitude(Number(e.target.value))} style={inputStyle} /> */}
-                        <input
-                            type="number"
-                            placeholder="Estimated Hours"
-                            value={estimatedHours}
-                            onChange={e => {
-                                const val = e.target.value;
-                                setEstimatedHours(val === '' ? '' : parseFloat(val));
-                            }}
-                            style={inputStyle}
-                        />
-                        <input type="number" placeholder="Actual Hours" value={actualHours} onChange={e => setActualHours(Number(e.target.value))} style={inputStyle} />
-                        <input type="number" placeholder="Due in (days)" value={dueDays} onChange={e => setDueDays(Number(e.target.value))} style={inputStyle} />
-                        <input type="number" placeholder="Reminder in (days)" value={reminderDays} onChange={e => setReminderDays(Number(e.target.value))} style={inputStyle} />
-                        <input type="number" placeholder="Score" value={score} onChange={e => setScore(Number(e.target.value))} style={inputStyle} />
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <button onClick={prevStep} style={buttonStyle('#aaa')}>Back</button>
-                            <button onClick={nextStep} style={buttonStyle('#2196F3')}>Continue</button>
-                        </div>
-                    </>
-                )}
-
-                {step === 3 && (
-                    <>
-                        <textarea placeholder="Feedback" value={feedback} onChange={e => setFeedback(e.target.value)} style={{ ...inputStyle, height: '60px' }} />
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <button onClick={prevStep} style={buttonStyle('#aaa')}>Back</button>
-                            <button onClick={nextStep} style={buttonStyle('#2196F3')}>Continue</button>
-                        </div>
-                    </>
-                )}
-
-                {step === 4 && (
-                    <>
-                        <select value={type} onChange={e => setType(e.target.value as '' | 'task' | 'event' | 'appointment' | 'reminder' | 'habit' | 'note')} style={inputStyle}>
-                            <option value="task">Task</option>
-                            <option value="event">Event</option>
-                            <option value="reminder">Reminder</option>
-                        </select>
-                        <select value={category} onChange={e => setCategory(e.target.value)} style={inputStyle}>
-                            <option value="work">Work</option>
-                            <option value="personal">Personal</option>
-                            <option value="health">Health</option>
-                            <option value="finance">Finance</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <select value={priority} onChange={e => setPriority(e.target.value)} style={inputStyle}>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                            <option value="urgent">Urgent</option>
-                            <option value="critical">Critical</option>
-                        </select>
-                        <select value={status} onChange={e => setStatus(e.target.value)} style={inputStyle}>
-                            <option value="pending">Pending</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                            <option value="archived">Archived</option>
-                            <option value="on_hold">On Hold</option>
-                            <option value="reopened">Reopened</option>
-                        </select>
-                        <select value={recurrencePattern} onChange={e => setRecurrencePattern(e.target.value)} style={inputStyle}>
-                            <option value="custom">Custom</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
-                        <input type="text" placeholder="Custom Recurrence Rule (iCal RRULE)" value={customRecurrenceRule} onChange={e => setCustomRecurrenceRule(e.target.value)} style={inputStyle} />
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <button onClick={prevStep} style={buttonStyle('#aaa')}>Back</button>
-                            <button onClick={nextStep} style={buttonStyle('#2196F3')}>Continue</button>
-                        </div>
-                    </>
-                )}
-
-                {step === 5 && (
-                    <>
-                        <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                            <input type="checkbox" checked={isPrivate} onChange={e => setIsPrivate(e.target.checked)} />
-                            Private Task
-                        </label>
-                        <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                            <input type="checkbox" checked={isBlocked} onChange={e => setIsBlocked(e.target.checked)} />
-                            Blocked
-                        </label>
-                        {isBlocked && (
-                            <input type="text" placeholder="Reason for blocking" value={blockReason} onChange={e => setBlockReason(e.target.value)} style={inputStyle} />
-                        )}
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <button onClick={prevStep} style={buttonStyle('#aaa')}>Back</button>
-                            <button onClick={createTask} style={buttonStyle('#4CAF50')}>Add Task</button>
-                        </div>
-                    </>
-                )}
+                  <div className={styles.inputField}>
+                    <label htmlFor="status" className={styles.inputLabel}>
+                      <CheckCircle className={styles.inputIcon} />
+                      Status *
+                    </label>
+                    <select
+                      id="status"
+                      name="status"
+                      value={formData.status}
+                      onChange={handleInputChange}
+                      className={`${styles.input} ${errors.status ? styles.inputError : ""}`}
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="in_progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                      <option value="cancelled">Cancelled</option>
+                      <option value="archived">Archived</option>
+                      <option value="on_hold">On Hold</option>
+                      <option value="reopened">Reopened</option>
+                    </select>
+                    {errors.status && <span className={styles.errorMessage}>{errors.status}</span>}
+                  </div>
+                </div>
+              </div>
             </div>
 
+            {/* Scheduling Information Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                <Calendar className={styles.sectionIcon} />
+                Scheduling
+              </h3>
 
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-                {tasks.map(task => (
-                    <li key={task.id} style={taskItemStyle}>
-                        {editingTaskId === task.id ? (
-                            <>
-                                <input
-                                    type="text"
-                                    value={editingTitle}
-                                    onChange={e => setEditingTitle(e.target.value)}
-                                    style={inputStyle}
-                                />
-                                <textarea
-                                    value={editingDesc}
-                                    onChange={e => setEditingDesc(e.target.value)}
-                                    style={{ ...inputStyle, height: '60px' }}
-                                />
-                                <div>
-                                    <button onClick={handleUpdateTask} style={buttonStyle('#2196F3')}>
-                                        Save
-                                    </button>
-                                    <button onClick={() => setEditingTaskId(null)} style={buttonStyle('#777')}>
-                                        Cancel
-                                    </button>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <strong>{task.title}</strong>
-                                <div>{task.description}</div>
-                                <div style={{ marginTop: '8px', display: "flex", justifyContent: "left", gap: 20 }}>
-                                    <button
-                                        onClick={() => {
-                                            setEditingTaskId(task.id);
-                                            setEditingTitle(task.title);
-                                            setEditingDesc(task.description);
-                                        }}
-                                        style={buttonStyle('#FF9800')}
-                                    >
-                                        Edit
-                                        {/* <EditIcon /> */}
-                                    </button>
-                                    <button onClick={() => deleteTask(task.id)} style={buttonStyle('#f44336')}>
-                                        Delete
-                                        {/* <DeleteIcon /> */}
-                                    </button>
-                                </div>
-                            </>
-                        )}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
+              <div className={styles.inputGroup}>
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="estimatedHours" className={styles.inputLabel}>
+                      <Hourglass className={styles.inputIcon} />
+                      Estimated Hours
+                    </label>
+                    <input
+                      type="number"
+                      id="estimatedHours"
+                      name="estimatedHours"
+                      value={formData.estimatedHours}
+                      onChange={(e) => handleNumberInputChange(e, "estimatedHours")}
+                      className={styles.input}
+                      placeholder="e.g., 8"
+                      min="0"
+                    />
+                  </div>
 
-export default CreateTasks;
+                  <div className={styles.inputField}>
+                    <label htmlFor="actualHours" className={styles.inputLabel}>
+                      <Clock className={styles.inputIcon} />
+                      Actual Hours
+                    </label>
+                    <input
+                      type="number"
+                      id="actualHours"
+                      name="actualHours"
+                      value={formData.actualHours}
+                      onChange={(e) => handleNumberInputChange(e, "actualHours")}
+                      className={styles.input}
+                      placeholder="e.g., 7.5"
+                      min="0"
+                    />
+                  </div>
+                </div>
 
-const inputStyle: React.CSSProperties = {
-    padding: '10px',
-    borderRadius: '8px',
-    border: '1px solid #444',
-    background: '#ffffff',
-    color: '#000000',
-    width: '100%',
-};
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="dueDays" className={styles.inputLabel}>
+                      <Calendar className={styles.inputIcon} />
+                      Due in (days)
+                    </label>
+                    <input
+                      type="number"
+                      id="dueDays"
+                      name="dueDays"
+                      value={formData.dueDays}
+                      onChange={(e) => handleNumberInputChange(e, "dueDays")}
+                      className={styles.input}
+                      placeholder="e.g., 3"
+                      min="0"
+                    />
+                  </div>
 
-const buttonStyle = (bgColor: string): React.CSSProperties => ({
-    padding: '10px 20px',
-    border: 'none',
-    borderRadius: '8px',
-    background: bgColor,
-    color: '#fff',
-    marginRight: '8px',
-});
+                  <div className={styles.inputField}>
+                    <label htmlFor="reminderDays" className={styles.inputLabel}>
+                      <Clock className={styles.inputIcon} />
+                      Reminder in (days)
+                    </label>
+                    <input
+                      type="number"
+                      id="reminderDays"
+                      name="reminderDays"
+                      value={formData.reminderDays}
+                      onChange={(e) => handleNumberInputChange(e, "reminderDays")}
+                      className={styles.input}
+                      placeholder="e.g., 1"
+                      min="0"
+                    />
+                  </div>
+                </div>
 
-const taskItemStyle: React.CSSProperties = {
-    background: '#000000',
-    padding: '12px 16px',
-    marginBottom: '10px',
-    borderRadius: '8px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.5rem',
-};
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="recurrencePattern" className={styles.inputLabel}>
+                      <Repeat className={styles.inputIcon} />
+                      Recurrence Pattern
+                    </label>
+                    <select
+                      id="recurrencePattern"
+                      name="recurrencePattern"
+                      value={formData.recurrencePattern}
+                      onChange={handleInputChange}
+                      className={styles.input}
+                    >
+                      <option value="custom">Custom</option>
+                      <option value="daily">Daily</option>
+                      <option value="weekly">Weekly</option>
+                      <option value="monthly">Monthly</option>
+                      <option value="yearly">Yearly</option>
+                    </select>
+                  </div>
+
+                  {formData.recurrencePattern === "custom" && (
+                    <div className={styles.inputField}>
+                      <label htmlFor="customRecurrenceRule" className={styles.inputLabel}>
+                        Custom Recurrence Rule (iCal RRULE)
+                      </label>
+                      <input
+                        type="text"
+                        id="customRecurrenceRule"
+                        name="customRecurrenceRule"
+                        value={formData.customRecurrenceRule}
+                        onChange={handleInputChange}
+                        className={styles.input}
+                        placeholder="e.g., FREQ=WEEKLY;BYDAY=MO,WE,FR"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Location Information Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                <MapPin className={styles.sectionIcon} />
+                Location
+              </h3>
+
+              <div className={styles.inputGroup}>
+                <div className={styles.inputField}>
+                  <label htmlFor="locationAddress" className={styles.inputLabel}>
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    id="locationAddress"
+                    name="locationAddress"
+                    value={formData.locationAddress}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                    placeholder="Enter location address"
+                  />
+                </div>
+
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="latitude" className={styles.inputLabel}>
+                      Latitude
+                    </label>
+                    <input
+                      type="number"
+                      id="latitude"
+                      name="latitude"
+                      value={formData.latitude}
+                      onChange={(e) => handleNumberInputChange(e, "latitude")}
+                      className={styles.input}
+                      placeholder="e.g., 34.0522"
+                      step="any"
+                    />
+                  </div>
+
+                  <div className={styles.inputField}>
+                    <label htmlFor="longitude" className={styles.inputLabel}>
+                      Longitude
+                    </label>
+                    <input
+                      type="number"
+                      id="longitude"
+                      name="longitude"
+                      value={formData.longitude}
+                      onChange={(e) => handleNumberInputChange(e, "longitude")}
+                      className={styles.input}
+                      placeholder="e.g., -118.2437"
+                      step="any"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Information Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                <Star className={styles.sectionIcon} />
+                Additional Information
+              </h3>
+
+              <div className={styles.inputGroup}>
+                <div className={styles.inputField}>
+                  <label className={styles.inputLabel}>
+                    <Tag className={styles.inputIcon} />
+                    Tags
+                  </label>
+                  {formData.tags.map((tag, index) => (
+                    <div key={index} className={styles.arrayItemContainer}>
+                      <input
+                        type="text"
+                        value={tag}
+                        onChange={(e) => handleArrayChange("tags", index, e.target.value)}
+                        className={styles.arrayInput}
+                        placeholder="Enter tag"
+                      />
+                      {formData.tags.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeArrayItem("tags", index)}
+                          className={styles.removeButton}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => addArrayItem("tags")} className={styles.addButton}>
+                    Add Tag
+                  </button>
+                </div>
+
+                <div className={styles.inputField}>
+                  <label className={styles.inputLabel}>
+                    <ListTodo className={styles.inputIcon} />
+                    Checklist
+                  </label>
+                  {formData.checklist.map((item, index) => (
+                    <div key={item.id} className={styles.arrayItemContainer}>
+                      <input
+                        type="text"
+                        value={item.title}
+                        onChange={(e) => handleArrayChange("checklist", index, e.target.value)}
+                        className={styles.arrayInput}
+                        placeholder="Enter checklist item"
+                      />
+                      {formData.checklist.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeArrayItem("checklist", index)}
+                          className={styles.removeButton}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => addArrayItem("checklist")} className={styles.addButton}>
+                    Add Checklist Item
+                  </button>
+                </div>
+
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="linkedResourceTitle" className={styles.inputLabel}>
+                      <Link className={styles.inputIcon} />
+                      Linked Resource Title
+                    </label>
+                    <input
+                      type="text"
+                      id="linkedResourceTitle"
+                      name="linkedResourceTitle"
+                      value={formData.linkedResourceTitle}
+                      onChange={handleInputChange}
+                      className={styles.input}
+                      placeholder="e.g., Design Spec"
+                    />
+                  </div>
+
+                  <div className={styles.inputField}>
+                    <label htmlFor="linkedResourceUrl" className={styles.inputLabel}>
+                      <Link className={styles.inputIcon} />
+                      Linked Resource URL
+                    </label>
+                    <input
+                      type="url"
+                      id="linkedResourceUrl"
+                      name="linkedResourceUrl"
+                      value={formData.linkedResourceUrl}
+                      onChange={handleInputChange}
+                      className={styles.input}
+                      placeholder="e.g., https://example.com/design-spec"
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.inputRow}>
+                  <div className={styles.inputField}>
+                    <label htmlFor="score" className={styles.inputLabel}>
+                      <Scale className={styles.inputIcon} />
+                      Score
+                    </label>
+                    <input
+                      type="number"
+                      id="score"
+                      name="score"
+                      value={formData.score}
+                      onChange={(e) => handleNumberInputChange(e, "score")}
+                      className={styles.input}
+                      placeholder="e.g., 5"
+                      min="0"
+                      max="10"
+                    />
+                  </div>
+
+                  <div className={styles.inputField}>
+                    <label htmlFor="feedback" className={styles.inputLabel}>
+                      <MessageSquare className={styles.inputIcon} />
+                      Feedback
+                    </label>
+                    <textarea
+                      id="feedback"
+                      name="feedback"
+                      value={formData.feedback}
+                      onChange={handleInputChange}
+                      className={styles.textarea}
+                      placeholder="Enter feedback for the task"
+                      rows={2}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Privacy and Blocking Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                <Lock className={styles.sectionIcon} />
+                Privacy & Blocking
+              </h3>
+
+              <div className={styles.inputGroup}>
+                <div className={styles.checkboxField}>
+                  <input
+                    type="checkbox"
+                    id="isPrivate"
+                    name="isPrivate"
+                    checked={formData.isPrivate}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                  <label htmlFor="isPrivate" className={styles.checkboxLabel}>
+                    Private Task
+                  </label>
+                </div>
+
+                <div className={styles.checkboxField}>
+                  <input
+                    type="checkbox"
+                    id="isBlocked"
+                    name="isBlocked"
+                    checked={formData.isBlocked}
+                    onChange={handleInputChange}
+                    className={styles.checkbox}
+                  />
+                  <label htmlFor="isBlocked" className={styles.checkboxLabel}>
+                    Blocked
+                  </label>
+                </div>
+
+                {formData.isBlocked && (
+                  <div className={styles.inputField}>
+                    <label htmlFor="blockReason" className={styles.inputLabel}>
+                      <Ban className={styles.inputIcon} />
+                      Reason for Blocking *
+                    </label>
+                    <input
+                      type="text"
+                      id="blockReason"
+                      name="blockReason"
+                      value={formData.blockReason}
+                      onChange={handleInputChange}
+                      className={`${styles.input} ${errors.blockReason ? styles.inputError : ""}`}
+                      placeholder="Enter reason for blocking this task"
+                    />
+                    {errors.blockReason && <span className={styles.errorMessage}>{errors.blockReason}</span>}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.formActions}>
+            <button type="button" onClick={handleReset} className={styles.resetButton} disabled={isSubmitting}>
+              {isEditMode ? "Reset Changes" : "Reset Form"}
+            </button>
+            <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+              {isSubmitting
+                ? isEditMode
+                  ? "Updating Task..."
+                  : "Creating Task..."
+                : isEditMode
+                  ? "Update Task"
+                  : "Create Task"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default CreateTasks

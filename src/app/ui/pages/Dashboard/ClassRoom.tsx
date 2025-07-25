@@ -7,6 +7,7 @@ import styles from "./DashboardContent.module.css";
 import { PiStudentDuotone } from "react-icons/pi";
 import { SiGoogleclassroom } from "react-icons/si";
 import AllClasses from "./AllClasses";
+import AllStudentsCard from "./Students/AllStudentsCard";
 
 const ClassRoom: React.FC = () => {
   const [showContentMain, setShowContentMain] = useState<boolean>(true);
@@ -16,6 +17,7 @@ const ClassRoom: React.FC = () => {
   const [showTitle, setShowTitle] = useState<string>("");
   const [showDesc, setShowDesc] = useState<string>("");
   const [selectedClassItem, setSelectedClassItem] = useState<string>("");
+  const [selectAllStudents, setSelectAllStudents] = useState<string>("");
 
   const whatWeDoItems = [
     {
@@ -26,9 +28,9 @@ const ClassRoom: React.FC = () => {
     },
     {
       icon: <FaUserGraduate />,
-      title: "Students",
+      title: "All Students",
       description:
-        "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
+        "Access a centralized overview of all students, including their class placement and essential profile information for administrative monitoring and engagement.",
     },
   ];
 
@@ -76,6 +78,10 @@ const ClassRoom: React.FC = () => {
     setShowInnerContent(false);
     setShowTitle(item.title);
     setShowDesc(item.description);
+
+    if (item.title === "All Students") {
+      setSelectAllStudents("All Students");
+    }
   };
 
   const handleBackToClassroom = () => {
@@ -147,6 +153,20 @@ const ClassRoom: React.FC = () => {
                 </div>
               )}
             </div>
+          </>
+        )}
+
+        {showContent && showTitle === "All Students" && (
+          <>
+            <button
+              className={styles.backButton}
+              onClick={handleBackToClassroom}
+            >
+              Back to Classroom
+            </button>
+            <h3 style={{ color: "#000000" }}>{showTitle}</h3>
+            <p style={{ color: "#000000", marginBottom: 25 }}>{showDesc}</p>
+            <AllStudentsCard />
           </>
         )}
 
