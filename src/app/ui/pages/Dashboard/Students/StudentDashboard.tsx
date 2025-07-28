@@ -1,7 +1,6 @@
-"use client"
-
-import type React from "react"
-import { useState, useMemo } from "react"
+"use client";
+import type React from "react";
+import { useState, useMemo } from "react";
 import {
   FaUsers,
   FaGraduationCap,
@@ -19,21 +18,34 @@ import {
   FaBookOpen,
   FaChartBar,
   FaUserFriends,
-} from "react-icons/fa"
-import { sampleStudents, getClassSummary, getEnrollmentSummary, type Student } from "./schoolData"
-import "./studentDashboard.css"
+} from "react-icons/fa";
+import {
+  sampleStudents,
+  getClassSummary,
+  getEnrollmentSummary,
+  type Student,
+} from "./schoolData";
+import { usePagination } from "../../../../utils/hooks/usePagination";
+import "./studentDashboard.css";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const StudentDashboard: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [classFilter, setClassFilter] = useState("")
-  const [genderFilter, setGenderFilter] = useState("")
-  const [statusFilter, setStatusFilter] = useState("")
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [classFilter, setClassFilter] = useState("");
+  const [genderFilter, setGenderFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   // Get unique values for filters
-  const uniqueClasses = useMemo(() => [...new Set(sampleStudents.map((s) => s.className))].sort(), [])
+  const uniqueClasses = useMemo(
+    () => [...new Set(sampleStudents.map((s) => s.className))].sort(),
+    []
+  );
 
-  const uniqueStatuses = useMemo(() => [...new Set(sampleStudents.map((s) => s.enrollmentStatus))], [])
+  const uniqueStatuses = useMemo(
+    () => [...new Set(sampleStudents.map((s) => s.enrollmentStatus))],
+    []
+  );
 
   // Filter students based on search and filters
   const filteredStudents = useMemo(() => {
@@ -41,54 +53,69 @@ const StudentDashboard: React.FC = () => {
       const matchesSearch =
         student.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         student.studentId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        student.guardianName.toLowerCase().includes(searchTerm.toLowerCase())
+        student.guardianName.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const matchesClass = !classFilter || student.className === classFilter
-      const matchesGender = !genderFilter || student.gender === genderFilter
-      const matchesStatus = !statusFilter || student.enrollmentStatus === statusFilter
+      const matchesClass = !classFilter || student.className === classFilter;
+      const matchesGender = !genderFilter || student.gender === genderFilter;
+      const matchesStatus =
+        !statusFilter || student.enrollmentStatus === statusFilter;
 
-      return matchesSearch && matchesClass && matchesGender && matchesStatus
-    })
-  }, [searchTerm, classFilter, genderFilter, statusFilter])
+      return matchesSearch && matchesClass && matchesGender && matchesStatus;
+    });
+  }, [searchTerm, classFilter, genderFilter, statusFilter]);
+
+  // Pagination hook - MOVED AFTER filteredStudents
+  const {
+    currentPage,
+    totalPages,
+    setCurrentPage,
+    paginatedData: paginatedStudents,
+  } = usePagination(filteredStudents, 15);
 
   // Calculate summaries
-  const classSummary = getClassSummary(sampleStudents)
-  const enrollmentSummary = getEnrollmentSummary(sampleStudents)
-  const totalActiveStudents = enrollmentSummary.Active || 0
+  const classSummary = getClassSummary(sampleStudents);
+  const enrollmentSummary = getEnrollmentSummary(sampleStudents);
+  const totalActiveStudents = enrollmentSummary.Active || 0;
 
   const getStatusBadgeClass = (status: string) => {
     switch (status) {
       case "Active":
-        return "status-badge status-active"
+        return "status-badge status-active";
       case "Transferred":
-        return "status-badge status-transferred"
+        return "status-badge status-transferred";
       case "Graduated":
-        return "status-badge status-graduated"
+        return "status-badge status-graduated";
       case "Suspended":
-        return "status-badge status-suspended"
+        return "status-badge status-suspended";
       default:
-        return "status-badge"
+        return "status-badge";
     }
-  }
+  };
 
   const getGenderBadgeClass = (gender: string) => {
-    return `gender-badge ${gender === "Male" ? "gender-male" : "gender-female"}`
-  }
+    return `gender-badge ${
+      gender === "Male" ? "gender-male" : "gender-female"
+    }`;
+  };
 
   const calculateAge = (dateOfBirth: string) => {
-    const today = new Date()
-    const birthDate = new Date(dateOfBirth)
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--
+    const today = new Date();
+    const birthDate = new Date(dateOfBirth);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
     }
+    return age;
+  };
 
-    return age
-  }
-
-  const StudentModal: React.FC<{ student: Student; onClose: () => void }> = ({ student, onClose }) => (
+  const StudentModal: React.FC<{ student: Student; onClose: () => void }> = ({
+    student,
+    onClose,
+  }) => (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
@@ -125,23 +152,32 @@ const StudentDashboard: React.FC = () => {
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Date of Birth</span>
-                  <span className="detail-value">{new Date(student.dateOfBirth).toLocaleDateString()}</span>
+                  <span className="detail-value">
+                    {new Date(student.dateOfBirth).toLocaleDateString()}
+                  </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Age</span>
-                  <span className="detail-value">{calculateAge(student.dateOfBirth)} years</span>
+                  <span className="detail-value">
+                    {calculateAge(student.dateOfBirth)} years
+                  </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Enrollment Status</span>
-                  <span className={getStatusBadgeClass(student.enrollmentStatus)}>{student.enrollmentStatus}</span>
+                  <span
+                    className={getStatusBadgeClass(student.enrollmentStatus)}
+                  >
+                    {student.enrollmentStatus}
+                  </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Enrollment Date</span>
-                  <span className="detail-value">{new Date(student.enrollmentDate).toLocaleDateString()}</span>
+                  <span className="detail-value">
+                    {new Date(student.enrollmentDate).toLocaleDateString()}
+                  </span>
                 </div>
               </div>
             </div>
-
             {/* Guardian Information */}
             <div className="detail-section">
               <h3 className="section-title">
@@ -175,7 +211,6 @@ const StudentDashboard: React.FC = () => {
                 </div>
               </div>
             </div>
-
             {/* Academic Information */}
             <div className="detail-section">
               <h3 className="section-title">
@@ -183,9 +218,10 @@ const StudentDashboard: React.FC = () => {
               </h3>
               <div className="detail-item">
                 <span className="detail-label">Subjects</span>
-                <span className="detail-value">{student.subjects.join(", ")}</span>
+                <span className="detail-value">
+                  {student.subjects.join(", ")}
+                </span>
               </div>
-
               {student.academicRecord && student.academicRecord.length > 0 && (
                 <div className="academic-record">
                   <span className="detail-label">Academic Record</span>
@@ -218,7 +254,6 @@ const StudentDashboard: React.FC = () => {
                 </div>
               )}
             </div>
-
             {/* Medical Information */}
             {student.medicalInfo && (
               <div className="detail-section">
@@ -229,7 +264,9 @@ const StudentDashboard: React.FC = () => {
                   <div className="detail-item">
                     <span className="detail-label">Allergies</span>
                     <span className="detail-value">
-                      {student.medicalInfo.allergies.length > 0 ? student.medicalInfo.allergies.join(", ") : "None"}
+                      {student.medicalInfo.allergies.length > 0
+                        ? student.medicalInfo.allergies.join(", ")
+                        : "None"}
                     </span>
                   </div>
                   <div className="detail-item">
@@ -246,57 +283,64 @@ const StudentDashboard: React.FC = () => {
         </div>
       </div>
     </div>
-  )
+  );
 
   return (
-    <div className="dashboard-container">
+    <div className="all_students_dashboard-container">
       {/* Header */}
-      <div className="dashboard-header">
-        <div className="header-content">
-          <h1 className="header-title">
+      <div className="all_students_dashboard-header">
+        <div className="all_students_header-content">
+          <h1 className="all_students_header-title ">
             <FaGraduationCap />
             Student Management Dashboard
           </h1>
-          <p className="header-subtitle">Comprehensive student information and management system</p>
+          <p className="all_students_header-subtitle">
+            Comprehensive student information and management system
+          </p>
         </div>
       </div>
 
-      <div className="dashboard-content">
+      <div className="all_students_dashboard-content">
         {/* Summary Cards */}
-        <div className="summary-cards">
-          <div className="summary-card">
-            <div className="card-header">
-              <h3 className="card-title">Total Active Students</h3>
-              <FaUsers className="card-icon" />
+        <div className="all_students_summary-cards">
+          <div className="all_students_summary-card">
+            <div className="all_students_card-header">
+              <h3 className="all_students_card-title">Total Active Students</h3>
+              <FaUsers className="all_students_card-icon" />
             </div>
-            <div className="card-value">{totalActiveStudents}</div>
-            <p className="card-description">Currently enrolled students</p>
+            <div className="all_students_card-value">{totalActiveStudents}</div>
+            <p className="all_students_card-description">
+              Currently enrolled students
+            </p>
           </div>
-
-          <div className="summary-card">
-            <div className="card-header">
-              <h3 className="card-title">Total Classes</h3>
-              <FaChartBar className="card-icon" />
+          <div className="all_students_summary-card">
+            <div className="all_students_card-header">
+              <h3 className="all_students_card-title">Total Classes</h3>
+              <FaChartBar className="all_students_card-icon" />
             </div>
-            <div className="card-value">{Object.keys(classSummary).length}</div>
-            <p className="card-description">Active class groups</p>
+            <div className="all_students_card-value">
+              {Object.keys(classSummary).length}
+            </div>
+            <p className="all_students_card-description">Active class groups</p>
           </div>
-
-          <div className="summary-card">
-            <div className="card-header">
-              <h3 className="card-title">Transferred Students</h3>
+          <div className="all_students_summary-card">
+            <div className="all_students_card-header">
+              <h3 className="all_students_card-title">Transferred Students</h3>
               <FaUserGraduate className="card-icon" />
             </div>
-            <div className="card-value">{enrollmentSummary.Transferred || 0}</div>
-            <p className="card-description">Students who transferred</p>
+            <div className="all_students_card-value">
+              {enrollmentSummary.Transferred || 0}
+            </div>
+            <p className="all_students_card-description">
+              Students who transferred
+            </p>
           </div>
-
-          <div className="summary-card">
-            <div className="card-header">
-              <h3 className="card-title">Class Summary</h3>
+          <div className="all_students_summary-card">
+            <div className="all_students_card-header">
+              <h3 className="all_students_card-title">Class Summary</h3>
               <FaGraduationCap className="card-icon" />
             </div>
-            <div className="card-description">
+            <div className="all_students_card-description">
               {Object.entries(classSummary).map(([className, count]) => (
                 <div key={className} style={{ marginBottom: "0.25rem" }}>
                   <strong>{className}:</strong> {count} students
@@ -307,16 +351,21 @@ const StudentDashboard: React.FC = () => {
         </div>
 
         {/* Controls Section */}
-        <div className="controls-section">
-          <div className="controls-header">
+        <div className="all_students_controls-section">
+          <div className="all_students_controls-header">
             <FaFilter />
-            <h3 className="controls-title">Search & Filter Students</h3>
+            <h3 className="all_students_controls-title">
+              Search & Filter Students
+            </h3>
           </div>
-
           <div className="filters-container">
             <div className="filter-group">
               <label className="filter-label">Class</label>
-              <select className="filter-select" value={classFilter} onChange={(e) => setClassFilter(e.target.value)}>
+              <select
+                className="filter-select"
+                value={classFilter}
+                onChange={(e) => setClassFilter(e.target.value)}
+              >
                 <option value="">All Classes</option>
                 {uniqueClasses.map((className) => (
                   <option key={className} value={className}>
@@ -325,19 +374,25 @@ const StudentDashboard: React.FC = () => {
                 ))}
               </select>
             </div>
-
             <div className="filter-group">
               <label className="filter-label">Gender</label>
-              <select className="filter-select" value={genderFilter} onChange={(e) => setGenderFilter(e.target.value)}>
+              <select
+                className="filter-select"
+                value={genderFilter}
+                onChange={(e) => setGenderFilter(e.target.value)}
+              >
                 <option value="">All Genders</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
             </div>
-
             <div className="filter-group">
               <label className="filter-label">Status</label>
-              <select className="filter-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+              <select
+                className="filter-select"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+              >
                 <option value="">All Statuses</option>
                 {uniqueStatuses.map((status) => (
                   <option key={status} value={status}>
@@ -346,7 +401,6 @@ const StudentDashboard: React.FC = () => {
                 ))}
               </select>
             </div>
-
             <div className="search-container">
               <FaSearch className="search-icon" />
               <input
@@ -368,63 +422,82 @@ const StudentDashboard: React.FC = () => {
               Students List ({filteredStudents.length} students)
             </h3>
           </div>
-
-          {filteredStudents.length > 0 ? (
-            <table className="students-table">
-              <thead className="table-head">
-                <tr>
-                  <th>Student Info</th>
-                  <th>Class</th>
-                  <th>Gender</th>
-                  <th>Age</th>
-                  <th>Guardian</th>
-                  <th>Contact</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody className="table-body">
-                {filteredStudents.map((student) => (
-                  <tr key={student.id}>
-                    <td>
-                      <div>
-                        <div className="student-name">{student.fullName}</div>
-                        <div className="student-id">{student.studentId}</div>
-                      </div>
-                    </td>
-                    <td>{student.className}</td>
-                    <td>
-                      <span className={getGenderBadgeClass(student.gender)}>{student.gender}</span>
-                    </td>
-                    <td>{calculateAge(student.dateOfBirth)} years</td>
-                    <td>{student.guardianName}</td>
-                    <td>
-                      <div style={{ fontSize: "0.8rem" }}>
-                        <div>{student.contactInfo.phone}</div>
-                        <div style={{ color: "var(--text-gray)" }}>{student.contactInfo.email}</div>
-                      </div>
-                    </td>
-                    <td>
-                      <span className={getStatusBadgeClass(student.enrollmentStatus)}>{student.enrollmentStatus}</span>
-                    </td>
-                    <td>
-                      <div className="action-buttons">
-                        <button
-                          className="action-btn view-btn"
-                          onClick={() => setSelectedStudent(student)}
-                          title="View Details"
-                        >
-                          <FaEye />
-                        </button>
-                        <button className="action-btn edit-btn" title="Edit Student">
-                          <FaEdit />
-                        </button>
-                      </div>
-                    </td>
+          {paginatedStudents.length > 0 ? (
+            <div>
+              <table className="students-table">
+                <thead className="table-head">
+                  <tr>
+                    <th>Student Info</th>
+                    <th>Class</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Guardian</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="table-body">
+                  {paginatedStudents.map((student) => (
+                    <tr key={student.id}>
+                      <td>
+                        <div>
+                          <div className="student-name">{student.fullName}</div>
+                          <div className="student-id">{student.studentId}</div>
+                        </div>
+                      </td>
+                      <td>{student.className}</td>
+                      <td>
+                        <span className={getGenderBadgeClass(student.gender)}>
+                          {student.gender}
+                        </span>
+                      </td>
+                      <td>{calculateAge(student.dateOfBirth)} years</td>
+                      <td>{student.guardianName}</td>
+                      <td>
+                        <div style={{ fontSize: "0.8rem" }}>
+                          <div>{student.contactInfo.phone}</div>
+                          <div style={{ color: "var(--text-gray)" }}>
+                            {student.contactInfo.email}
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          className={getStatusBadgeClass(
+                            student.enrollmentStatus
+                          )}
+                        >
+                          {student.enrollmentStatus}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="action-buttons">
+                          <button
+                            className="action-btn view-btn"
+                            onClick={() => setSelectedStudent(student)}
+                            title="View Details"
+                          >
+                            <FaEye />
+                          </button>
+                          <button
+                            className="action-btn edit-btn"
+                            title="Edit Student"
+                          >
+                            <FaEdit />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
           ) : (
             <div className="no-students">
               <FaUsers className="no-students-icon" />
@@ -436,9 +509,14 @@ const StudentDashboard: React.FC = () => {
       </div>
 
       {/* Student Details Modal */}
-      {selectedStudent && <StudentModal student={selectedStudent} onClose={() => setSelectedStudent(null)} />}
+      {selectedStudent && (
+        <StudentModal
+          student={selectedStudent}
+          onClose={() => setSelectedStudent(null)}
+        />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default StudentDashboard
+export default StudentDashboard;

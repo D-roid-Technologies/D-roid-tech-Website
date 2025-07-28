@@ -12,6 +12,7 @@ const {currentPage,totalPages,setCurrentPage,paginatedData : paginatedContributi
     return <div className={styles.error}>Section data not found.</div>
   }
 
+
   const getTableHeaders = (contributions: Contribution[]) => {
     if (!contributions || contributions.length === 0) return []
     return Object.keys(contributions[0]).filter((key) => key !== "id")
