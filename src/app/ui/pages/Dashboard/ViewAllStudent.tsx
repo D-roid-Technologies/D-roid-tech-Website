@@ -365,6 +365,7 @@ const ViewAllStudent: React.FC<ViewAllStudentProps> = ({
         style: { background: "#4BB543", color: "#fff" },
       });
       setStudentToDelete(null);
+      setDeleteConfirmOpen(false);
     }
   };
 
@@ -515,7 +516,7 @@ const ViewAllStudent: React.FC<ViewAllStudentProps> = ({
                       <th className="vas-table-header-cell">Name</th>
                       <th className="vas-table-header-cell">Contact</th>
                       <th className="vas-table-header-cell">Guardian</th>
-                      <th className="vas-table-header-cell">Grade</th>
+                      <th className="vas-table-header-cell">Grade Average</th>
                       <th className="vas-table-header-cell">Status</th>
                       <th className="vas-table-header-cell">Actions</th>
                     </tr>
@@ -852,13 +853,13 @@ const ViewAllStudent: React.FC<ViewAllStudentProps> = ({
             </div>
 
             <div className="vas-form-actions">
-              <button
+              {/* <button
                 type="button"
                 className="vas-button vas-button-secondary"
                 onClick={closeModal}
               >
                 Cancel
-              </button>
+              </button> */}
               <button type="submit" className="vas-button vas-button-primary">
                 {editingStudent ? "Update Student" : "Add Student"}
               </button>
@@ -979,32 +980,57 @@ const ViewAllStudent: React.FC<ViewAllStudentProps> = ({
           )}
         </Modal>
         {/* Delete Confirmation Modal */}
-        <Modal
+        {/* <Modal
           isOpen={deleteConfirmOpen}
           onClose={() => setDeleteConfirmOpen(false)}
           title="Confirm Deletion"
           description="Are you sure you want to remove this student? This action cannot be undone."
-          // actions={
-          //   <>
-          //     <button
-          //       className="vas-button vas-button-secondary"
-          //       onClick={() => setDeleteConfirmOpen(false)}
-          //     >
-          //       Cancel
-          //     </button>
-          //     <button
-          //       className="vas-button vas-button-danger"
-          //       onClick={confirmDelete}
-          //     >
-          //       Confirm Deletion
-          //     </button>
-          //   </>
-          // }
+          actions={
+            <>
+              <button
+                className="vas-button vas-button-secondary"
+                onClick={() => setDeleteConfirmOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="vas-button vas-button-danger"
+                onClick={confirmDelete}
+              >
+                Confirm Deletion
+              </button>
+            </>
+          }
         >
           <p className="vas-confirm-text">
             This will permanently remove the student from the class and all
             associated records.
           </p>
+        </Modal> */}
+        <Modal
+          isOpen={deleteConfirmOpen}
+          onClose={() => setDeleteConfirmOpen(false)}
+          title="Confirm Deletion"
+          description="Are you sure you want to remove this student? This action cannot be undone."
+        >
+          <p className="vas-confirm-text">
+            This will permanently remove the student from the class and all
+            associated records.
+          </p>
+          <div className="vas-form-actions">
+            <button
+              className="vas-button vas-button-secondary"
+              onClick={() => setDeleteConfirmOpen(false)}
+            >
+              Cancel
+            </button>
+            <button
+              className="vas-button vas-button-danger"
+              onClick={confirmDelete}
+            >
+              Confirm Deletion
+            </button>
+          </div>
         </Modal>
       </div>
     </div>
