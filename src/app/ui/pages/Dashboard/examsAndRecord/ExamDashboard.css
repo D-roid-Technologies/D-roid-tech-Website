@@ -6,14 +6,16 @@
 
 .exam_dashboard-header {
   background-color: #071d6a;
-    color: #ffffff;
-    padding: 15px 20px;
-    width: 100%;
-    box-sizing: border-box;
-    top: 0;
-    z-index: 1000;
+  color: #ffffff;
+  padding: 15px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  z-index: 1000;
   margin-bottom: 2rem;
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dashboard-title {
@@ -24,6 +26,12 @@
 
 .dashboard-subtitle {
   font-size: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .filters-section {
@@ -86,13 +94,28 @@
 .table-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #374151;
   margin: 0;
 }
 
+.table-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .students-count {
-  color: #6b7280;
+  color: #374151;
   font-size: 0.875rem;
+}
+
+.selection-count {
+  color: #071d6a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: #e0e7ff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
 }
 
 .table-wrapper {
@@ -102,7 +125,7 @@
 .students-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 800px;
+  min-width: 900px;
 }
 
 .students-table th,
@@ -121,9 +144,45 @@
   letter-spacing: 0.05em;
 }
 
+.checkbox-header {
+  width: 50px;
+  text-align: center;
+}
+
+.checkbox-cell {
+  width: 50px;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+}
+
+.select-all-button,
+.student-checkbox {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.select-all-button:hover,
+.student-checkbox:hover {
+  background-color: #f3f4f6;
+  color: #071d6a;
+}
+
 .students-table tbody tr:hover {
   background-color: #f9fafb;
   cursor: pointer;
+}
+
+.students-table tbody tr.selected-row {
+  background-color: #e0e7ff;
+}
+
+.students-table tbody tr.selected-row:hover {
+  background-color: #c7d2fe;
 }
 
 .student-name,
@@ -217,12 +276,85 @@
   opacity: 0.5;
 }
 
+.add-record-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  color: #071d6a;
+  border: 2px solid #ffffff;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.add-record-button:hover {
+  background-color: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #10b981;
+  color: #ffffff;
+  border: 2px solid #10b981;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.export-button:hover {
+  background-color: #059669;
+  border-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 @media (max-width: 768px) {
   .exam-dashboard {
     padding: 1rem;
   }
 
+  .exam_dashboard-header {
+    padding: 1rem;
+  }
+
+  .exam_dashboard-header > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .add-record-button,
+  .export-button {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
     font-size: 1rem;
   }
 
@@ -234,5 +366,35 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+
+  .table-header-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .students-table {
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 480px) {
+  .exam_dashboard-header {
+    padding: 0.75rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.25rem;
+  }
+
+  .add-record-button,
+  .export-button {
+    padding: 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .header-actions {
+    width: 100%;
   }
 }
