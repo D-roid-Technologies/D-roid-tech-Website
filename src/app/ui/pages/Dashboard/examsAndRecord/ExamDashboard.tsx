@@ -2,11 +2,15 @@
 
 import type React from "react"
 import { useState, useEffect, useMemo } from "react"
-import { BookOpen } from "lucide-react"
+import { BookOpen, Plus, Download, CheckSquare, Square } from "lucide-react"
 import type { Student } from "./student"
 import { classLevels, getStudentsByClass } from "./examData"
 import StudentDetailModal from "./StudentDetailModal"
+import { usePagination } from "../../../../utils/hooks/usePagination"
+import Pagination from "../../../components/Pagination/Pagination"
 import "./ExamDashboard.css"
+import AddRecordModal from "./AddRecordModal"
+import { exportToExcel } from "./exportUtils"
 
 const ExamDashboard: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<string>("")
@@ -14,6 +18,9 @@ const ExamDashboard: React.FC = () => {
   const [filteredStudents, setFilteredStudents] = useState<Student[]>([])
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null)
   const [showModal, setShowModal] = useState(false)
+  const [showAddModal, setShowAddModal] = useState(false)
+  const [selectedStudentIds, setSelectedStudentIds] = useState<Set<string>>(new Set())
+  const [selectAll, setSelectAll] = useState(false)
 
   // Get available classes based on selected level
   const availableClasses = selectedLevel
@@ -25,8 +32,13 @@ const ExamDashboard: React.FC = () => {
     if (selectedClass) {
       const students = getStudentsByClass(selectedClass)
       setFilteredStudents(students)
+      // Clear selections when class changes
+      setSelectedStudentIds(new Set())
+      setSelectAll(false)
     } else {
       setFilteredStudents([])
+      setSelectedStudentIds(new Set())
+      setSelectAll(false)
     }
   }, [selectedClass])
 
@@ -35,7 +47,11 @@ const ExamDashboard: React.FC = () => {
     setSelectedClass("")
   }, [selectedLevel])
 
-  const handleStudentClick = (student: Student) => {
+  const handleStudentClick = (student: Student, event: React.MouseEvent) => {
+    // Prevent modal opening when clicking on checkbox
+    if ((event.target as HTMLElement).closest(".checkbox-cell")) {
+      return
+    }
     setSelectedStudent(student)
     setShowModal(true)
   }
@@ -52,14 +68,119 @@ const ExamDashboard: React.FC = () => {
     return "position-other"
   }
 
-  const sortedStudents = useMemo(() =>{
-    return [...filteredStudents].sort((a,b) => a.position - b.position)
-  },[filteredStudents])
+  const sortedStudents = useMemo(() => {
+    return [...filteredStudents].sort((a, b) => a.position - b.position)
+  }, [filteredStudents])
+
+  const {
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    totalItems,
+    paginatedData: paginatedStudents,
+  } = usePagination(sortedStudents, 5)
+
+  const handleAddRecord = (recordData: any) => {
+    // Generate ID and admission number
+    const newId = `STU${String(Date.now()).slice(-4)}`
+    const admissionNumber = `${recordData.classLevel.toUpperCase()}/${new Date().getFullYear()}/${String(Math.floor(Math.random() * 999) + 1).padStart(3, "0")}`
+
+    const newStudent = {
+      ...recordData,
+      id: newId,
+      admissionNumber,
+      position: 0, // Will be recalculated
+    }
+
+    // Add to the students data (you would typically update your data source here)
+    // For now, we'll add it to the filtered students if it matches the current class
+    if (selectedClass === recordData.classLevel) {
+      const updatedStudents = [...filteredStudents, newStudent]
+      // Recalculate positions
+      const sorted = updatedStudents.sort((a, b) => b.average - a.average)
+      sorted.forEach((student, index) => {
+        student.position = index + 1
+      })
+      setFilteredStudents(sorted)
+    }
+  }
+
+  const handleStudentUpdate = (updatedStudent: Student) => {
+    // Update the student in the filtered list
+    const updatedStudents = filteredStudents.map((student) =>
+      student.id === updatedStudent.id ? updatedStudent : student,
+    )
+
+    // Recalculate positions
+    const sorted = updatedStudents.sort((a, b) => b.average - a.average)
+    sorted.forEach((student, index) => {
+      student.position = index + 1
+    })
+
+    setFilteredStudents(sorted)
+  }
+
+  const handleSelectStudent = (studentId: string) => {
+    const newSelected = new Set(selectedStudentIds)
+    if (newSelected.has(studentId)) {
+      newSelected.delete(studentId)
+    } else {
+      newSelected.add(studentId)
+    }
+    setSelectedStudentIds(newSelected)
+
+    // Update select all state
+    setSelectAll(newSelected.size === sortedStudents.length && sortedStudents.length > 0)
+  }
+
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedStudentIds(new Set())
+      setSelectAll(false)
+    } else {
+      const allIds = new Set(sortedStudents.map((student) => student.id))
+      setSelectedStudentIds(allIds)
+      setSelectAll(true)
+    }
+  }
+
+  const handleExportSelected = () => {
+    const selectedStudents = sortedStudents.filter((student) => selectedStudentIds.has(student.id))
+
+    if (selectedStudents.length === 0) {
+      alert("Please select at least one student to export.")
+      return
+    }
+
+    const className = selectedClass || "All Classes"
+    exportToExcel(selectedStudents, className)
+  }
+
+  const selectedCount = selectedStudentIds.size
+
   return (
     <div className="exam-dashboard">
       <div className="exam_dashboard-header">
-        <h1 className="dashboard-title">Exam Records Dashboard</h1>
-        <p className="dashboard-subtitle">Comprehensive academic performance tracking across all educational levels</p>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div>
+            <h1 className="dashboard-title">Exam Records Dashboard</h1>
+            <p className="dashboard-subtitle">
+              Comprehensive academic performance tracking across all educational levels
+            </p>
+          </div>
+          <div className="header-actions">
+            {selectedCount > 0 && (
+              <button className="export-button" onClick={handleExportSelected}>
+                <Download size={20} />
+                Export ({selectedCount})
+              </button>
+            )}
+            <button className="add-record-button" onClick={() => setShowAddModal(true)}>
+              <Plus size={20} />
+              Add Record
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Filters Section */}
@@ -118,53 +239,86 @@ const ExamDashboard: React.FC = () => {
       <div className="students-table-container">
         <div className="table-header">
           <h2 className="table-title">{selectedClass ? `${selectedClass} Students` : "Students"}</h2>
-          <span className="students-count">
-            {filteredStudents.length} student{filteredStudents.length !== 1 ? "s" : ""}
-          </span>
+          <div className="table-header-actions">
+            {selectedCount > 0 && <span className="selection-count">{selectedCount} selected</span>}
+            <span className="students-count">
+              {filteredStudents.length} student{filteredStudents.length !== 1 ? "s" : ""}
+            </span>
+          </div>
         </div>
 
         <div className="table-wrapper">
           {filteredStudents.length > 0 ? (
-            <table className="students-table">
-              <thead>
-                <tr>
-                  <th>Position</th>
-                  <th>Admission No.</th>
-                  <th>Student Name</th>
-                  <th>Gender</th>
-                  <th>Age</th>
-                  <th>Total Score</th>
-                  <th>Average</th>
-                  <th>Grade</th>
-                  <th>Remarks</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedStudents.map((student) => (
-                  <tr key={student.id} onClick={() => handleStudentClick(student)}>
-                    <td>
-                      <span className={`position-badge ${getPositionClass(student.position)}`}>{student.position}</span>
-                    </td>
-                    <td>
-                      <span className="admission-number">{student.admissionNumber}</span>
-                    </td>
-                    <td>
-                      <span className="student-name">{student.fullName}</span>
-                    </td>
-                    <td className="student-gender">{student.gender}</td>
-                    <td className="student-age">{student.age}</td>
-                    <td>
-                      <strong  className="student-totalScore"> {student.totalScore}</strong>
-                    </td>
-                    <td className="student-avaarage">{student.average}%</td>
-                    <td>
-                      <span className={`grade-badge grade-${student.grade}`}>{student.grade}</span>
-                    </td>
-                    <td className="student-remark">{student.remarks}</td>
+            <>
+              <table className="students-table">
+                <thead>
+                  <tr>
+                    <th className="checkbox-header">
+                      <button
+                        className="select-all-button"
+                        onClick={handleSelectAll}
+                        title={selectAll ? "Deselect All" : "Select All"}
+                      >
+                        {selectAll ? <CheckSquare size={18} /> : <Square size={18} />}
+                      </button>
+                    </th>
+                    <th>Position</th>
+                    <th>Admission No.</th>
+                    <th>Student Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Total Score</th>
+                    <th>Average</th>
+                    <th>Grade</th>
+                    <th>Remarks</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {paginatedStudents.map((student) => (
+                    <tr
+                      key={student.id}
+                      onClick={(e) => handleStudentClick(student, e)}
+                      className={selectedStudentIds.has(student.id) ? "selected-row" : ""}
+                    >
+                      <td className="checkbox-cell">
+                        <button
+                          className="student-checkbox"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleSelectStudent(student.id)
+                          }}
+                        >
+                          {selectedStudentIds.has(student.id) ? <CheckSquare size={16} /> : <Square size={16} />}
+                        </button>
+                      </td>
+                      <td>
+                        <span className={`position-badge ${getPositionClass(student.position)}`}>
+                          {student.position}
+                        </span>
+                      </td>
+                      <td>
+                        <span className="admission-number">{student.admissionNumber}</span>
+                      </td>
+                      <td>
+                        <span className="student-name">{student.fullName}</span>
+                      </td>
+                      <td className="student-gender">{student.gender}</td>
+                      <td className="student-age">{student.age}</td>
+                      <td>
+                        <strong className="student-totalScore"> {student.totalScore}</strong>
+                      </td>
+                      <td className="student-avaarage">{student.average}%</td>
+                      <td>
+                        <span className={`grade-badge grade-${student.grade}`}>{student.grade}</span>
+                      </td>
+                      <td className="student-remark">{student.remarks}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+            </>
           ) : (
             <div className="no-data">
               <div className="no-data-icon">
@@ -184,7 +338,12 @@ const ExamDashboard: React.FC = () => {
       </div>
 
       {/* Student Detail Modal */}
-      {showModal && selectedStudent && <StudentDetailModal student={selectedStudent} onClose={closeModal} />}
+      {showModal && selectedStudent && (
+        <StudentDetailModal student={selectedStudent} onClose={closeModal} onUpdate={handleStudentUpdate} />
+      )}
+
+      {/* Add Record Modal */}
+      {showAddModal && <AddRecordModal onClose={() => setShowAddModal(false)} onSubmit={handleAddRecord} />}
     </div>
   )
 }

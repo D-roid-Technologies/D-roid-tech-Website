@@ -5,6 +5,7 @@
   gap: 1rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
+  color: black;
 }
 
 .pageButton {
@@ -26,6 +27,7 @@
 
 .pageInfo {
   font-weight: 500;
+  color: black;
 }
 
 @media screen and (max-width: 640px) {
