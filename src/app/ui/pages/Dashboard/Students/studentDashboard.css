@@ -1,4 +1,4 @@
-/* dashboard.css */
+
 :root {
   --primary-blue: #071d6a;
   --white: #ffffff;
@@ -18,13 +18,13 @@
   box-sizing: border-box;
 }
 
-.dashboard-container {
+.all_students_dashboard-container {
   min-height: 100vh;
   background-color: var(--light-gray);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.dashboard-header {
+.all_students_dashboard-header {
   background: linear-gradient(135deg, var(--primary-blue) 0%, var(--hover-blue) 100%);
   color: var(--white);
   padding: 2rem;
@@ -36,7 +36,7 @@
   margin: 0 auto;
 }
 
-.header-title {
+.all_students_header-title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -45,25 +45,25 @@
   gap: 1rem;
 }
 
-.header-subtitle {
+.all_students_header-subtitle {
   font-size: 1.1rem;
   opacity: 0.9;
 }
 
-.dashboard-content {
+.all_students_dashboard-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-.summary-cards {
+.all_students_summary-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.summary-card {
+.all_students_summary-card {
   background: var(--white);
   border-radius: 12px;
   padding: 1.5rem;
@@ -72,42 +72,42 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.summary-card:hover {
+.all_students_summary-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.card-header {
+.all_students_card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.card-title {
+.all_students_card-title {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--primary-blue);
 }
 
-.card-icon {
+.all_students_card-icon {
   font-size: 1.5rem;
   color: var(--primary-blue);
 }
 
-.card-value {
+.all_students_card-value {
   font-size: 2rem;
   font-weight: 700;
   color: var(--black);
 }
 
-.card-description {
+.all_students_card-description {
   font-size: 0.9rem;
   color: var(--text-gray);
   margin-top: 0.5rem;
 }
 
-.controls-section {
+.all_students_controls-section {
   background: var(--white);
   border-radius: 12px;
   padding: 1.5rem;
@@ -115,17 +115,390 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.controls-header {
+.all_students_controls-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.controls-title {
+.all_students_controls-title {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--primary-blue);
 }
 
+.filters-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.filter-select,
+.search-input {
+  padding: 0.75rem;
+  border: 2px solid var(--border-gray);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.filter-select:focus,
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
+.search-container {
+  position: relative;
+  grid-column: 1 / -1;
+}
+
+.search-input {
+  width: 100%;
+  padding-left: 2.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-gray);
+}
+
+.table-container {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-head {
+  background: var(--light-gray);
+}
+
+.table-head th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--primary-blue);
+  border-bottom: 2px solid var(--border-gray);
+  font-size: 0.9rem;
+}
+
+.table-body tr {
+  border-bottom: 1px solid var(--border-gray);
+  transition: background-color 0.2s ease;
+}
+
+.table-body tr:hover {
+  background-color: var(--light-gray);
+}
+
+.table-body td {
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--black);
+}
+
+.student-name {
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.student-id {
+  font-family: "Courier New", monospace;
+  background: var(--light-gray);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background: rgba(40, 167, 69, 0.1);
+  color: var(--success-green);
+}
+
+.status-transferred {
+  background: rgba(255, 193, 7, 0.1);
+  color: var(--warning-orange);
+}
+
+.status-graduated {
+  background: rgba(7, 29, 106, 0.1);
+  color: var(--primary-blue);
+}
+
+.status-suspended {
+  background: rgba(220, 53, 69, 0.1);
+  color: var(--danger-red);
+}
+
+.gender-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.gender-male {
+  background: rgba(7, 29, 106, 0.1);
+  color: var(--primary-blue);
+}
+
+.gender-female {
+  background: rgba(220, 53, 69, 0.1);
+  color: var(--danger-red);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-btn {
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+.view-btn:hover {
+  background: var(--hover-blue);
+}
+
+.edit-btn {
+  background: var(--success-green);
+  color: var(--white);
+}
+
+.edit-btn:hover {
+  background: #218838;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.student-details {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.detail-section {
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-gray);
+  text-transform: uppercase;
+}
+
+.detail-value {
+  font-size: 0.9rem;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.academic-record {
+  margin-top: 1rem;
+}
+
+.record-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.record-table th,
+.record-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-gray);
+  font-size: 0.8rem;
+}
+
+.record-table th {
+  background: var(--light-gray);
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.no-students {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-gray);
+}
+
+.no-students-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 1rem;
+  }
+
+  .header-title {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-container {
+    grid-template-columns: 1fr;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .students-table {
+    min-width: 800px;
+  }
+
+  .modal-content {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+}

@@ -7,10 +7,11 @@ import SchoolFees from "./SchoolFees"
 const FeesDetail: React.FC = () => {
   const sectionData = financeSectionsData.find((section) => section.id === "fees")
 const contributions = sectionData?.contributions ?? [];
-const {currentPage,totalPages,setCurrentPage,paginatedData : paginatedContributions} = usePagination(contributions,5)
+const {currentPage,totalPages,setCurrentPage,paginatedData : paginatedContributions} = usePagination(contributions,15)
   if (!sectionData) {
     return <div className={styles.error}>Section data not found.</div>
   }
+
 
   const getTableHeaders = (contributions: Contribution[]) => {
     if (!contributions || contributions.length === 0) return []
