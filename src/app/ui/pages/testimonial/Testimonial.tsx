@@ -1,55 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Testimonial.css";
-import { Assets } from "../../../utils/constant/Assets";
-import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import { TestimonialData } from "./types/testimonial";
+import { testimonialDataMap } from "./data/testimonialDataMap";
 
-interface TestimonialData {
-  id: number;
-  name: string;
-  role: string;
-  content: string;
-  avatar: string;
-  companyLogo: string;
+interface TestimonialProps {
+  map?: string;
 }
 
-const Testimonial: React.FC = () => {
+const Testimonial: React.FC<TestimonialProps> = ({ map = "default" }) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [touchStart, setTouchStart] = useState<number>(0);
   const [touchEnd, setTouchEnd] = useState<number>(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const testimonials: TestimonialData[] = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "CEO, TechSolutions Inc.",
-      content:
-        "D'roidTech transformed our digital infrastructure completely. Their team delivered beyond our expectations with innovative solutions that boosted our productivity by 40%.",
-      avatar: Assets.images.sj,
-      companyLogo:
-        "https://www.techsolutionsinc.com/wp-content/uploads/2020/05/logo-tech-solutions-r1.png",
-    },
-    {
-      id: 2,
-      name: "Michael Obiagwu",
-      role: "Senior Backend Engineer, Ecobank Nigeria",
-      content:
-        "The custom software developed by D'roid has been game-changing for our operations. Their attention to detail and micro-launch support is exceptional.",
-      avatar: Assets.images.mo,
-      companyLogo:
-        "https://facilitatorsc.com/wp-content/uploads/2019/11/Ecobank_logo_logotype_blue-scaled.png",
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "Product Manager, DigitalFirst",
-      content:
-        "Working with D'roidTech was a seamless experience. They understood our vision and delivered a product that perfectly matched our requirements ahead of schedule.",
-      avatar: Assets.images.er,
-      companyLogo:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTThaWRKDFGCLhN3GHtKgcFmHEyYCap8_5fow&s",
-    },
-  ];
+  const testimonials: TestimonialData[] =
+    testimonialDataMap[map] || testimonialDataMap.default;
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -106,7 +71,7 @@ const Testimonial: React.FC = () => {
         >
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="testimonial-card">
-              <div className="quote-mark">“</div>
+              <div className="quote-mark">"</div>
               <p className="testimonial-text">{testimonial.content}</p>
               <div className="testimonial-footer">
                 <div className="author-info">
@@ -120,11 +85,13 @@ const Testimonial: React.FC = () => {
                     <p className="author-role">{testimonial.role}</p>
                   </div>
                 </div>
-                <img
-                  src={testimonial.companyLogo}
-                  alt="Company logo"
-                  className="company-logo"
-                />
+                {testimonial.companyLogo && (
+                  <img
+                    src={testimonial.companyLogo}
+                    alt="Company logo"
+                    className="company-logo"
+                  />
+                )}
               </div>
             </div>
           ))}
@@ -137,8 +104,6 @@ const Testimonial: React.FC = () => {
           onClick={prevSlide}
           aria-label="Previous testimonial"
         >
-          {/* <IoMdArrowDropleft style={{ color: "black" }} />
-           */}
           <p>&lt;</p>
         </button>
         <div className="slide-counter">

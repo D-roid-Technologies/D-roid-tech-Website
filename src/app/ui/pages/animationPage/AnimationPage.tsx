@@ -4,6 +4,7 @@ import { Assets } from "../../../utils/constant/Assets";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
 import bannerStyles from "../../components/global-styles/Banner.module.css";
+import AnimationPrincingCard from "../animations/AnimationPrincingCard";
 
 export interface Story {
   id: string;
@@ -302,8 +303,10 @@ const AnimationPage: React.FC = () => {
           Collaborate With Us
         </a>
       </div>
+      <AnimationPrincingCard />
     </div>
   );
 };
 
 export default AnimationPage;
+ 

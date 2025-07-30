@@ -23,6 +23,7 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { title } from "process";
 import AppInput from "../../components/textInput/AppInput";
 import { useNavigate } from "react-router-dom";
+import AnimationPrincingCard from "./AnimationPrincingCard";
 
 interface product {
   title: string;
