@@ -339,12 +339,12 @@
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  color: #64748b;
+  color: red;
 }
 
 .modalClose:hover {
   background-color: #f1f5f9;
-  color: #071d6a;
+  color: rgb(172, 12, 12);
 }
 
 .formGroup {
