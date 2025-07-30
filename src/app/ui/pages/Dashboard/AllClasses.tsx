@@ -365,11 +365,9 @@ const AllClasses = ({
         {/* Main Institutions View */}
         {showContentMain && (
           <div>
-            {/* <div className="">
-              <button className="" onClick={handleBackToDashboard}>
-                Back to Dashboard
-              </button>
-            </div> */}
+            <div className="">
+             
+            </div>
             <div className="welcome-section">
               <h1 style={{ color: "#000000" }}>All Classes</h1>
               <p style={{ color: "#000000" }}>
@@ -397,6 +395,7 @@ const AllClasses = ({
             </div>
           </div>
         )}
+
         {/* Institution Classes View */}
         {showInstitutionContent && (
           <div>
