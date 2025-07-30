@@ -161,8 +161,8 @@ const ExamDashboard: React.FC = () => {
   return (
     <div className="exam-dashboard">
       <div className="exam_dashboard-header">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div>
+        {/* <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}> */}
+          <div className="exam_dashboard-header_description" >
             <h1 className="dashboard-title">Exam Records Dashboard</h1>
             <p className="dashboard-subtitle">
               Comprehensive academic performance tracking across all educational levels
@@ -180,7 +180,7 @@ const ExamDashboard: React.FC = () => {
               Add Record
             </button>
           </div>
-        </div>
+        {/* </div> */}
       </div>
 
       {/* Filters Section */}
@@ -236,12 +236,12 @@ const ExamDashboard: React.FC = () => {
       </div>
 
       {/* Students Table */}
-      <div className="students-table-container">
-        <div className="table-header">
-          <h2 className="table-title">{selectedClass ? `${selectedClass} Students` : "Students"}</h2>
-          <div className="table-header-actions">
-            {selectedCount > 0 && <span className="selection-count">{selectedCount} selected</span>}
-            <span className="students-count">
+      <div className="Exam_students-table-container">
+        <div className="Exam_students-table-header">
+          <h2 className="Exam_students-table-title">{selectedClass ? `${selectedClass} Students` : "Students"}</h2>
+          <div className="Exam_students-table-header-actions">
+            {selectedCount > 0 && <span className="Exam_students-selection-count">{selectedCount} selected</span>}
+            <span className="Exam_students-students-count">
               {filteredStudents.length} student{filteredStudents.length !== 1 ? "s" : ""}
             </span>
           </div>
