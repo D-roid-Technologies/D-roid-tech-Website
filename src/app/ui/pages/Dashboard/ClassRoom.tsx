@@ -92,6 +92,7 @@ const ClassRoom: React.FC = () => {
     setSelectedClassItem("");
   };
 
+
   const handleBackToClasses = () => {
     setShowContent(true);
     setShowClassesContent(false);
@@ -218,15 +219,15 @@ const ClassRoom: React.FC = () => {
 
         {showClassesContent && selectedClassItem === "All Classes" && (
           <>
-            {/* <div className="all-classes-page-header-top">
+            <div className="all-classes-page-header-top">
               <button
                 className={styles.backButton}
                 onClick={handleBackToClasses}
               >
                 Back to Class Details
               </button>
-            </div> */}
-            <AllClasses />
+            </div> 
+            <AllClasses  />
           </>
         )}
       </section>
