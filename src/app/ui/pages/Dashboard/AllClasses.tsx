@@ -18,7 +18,12 @@ import Attendance from "./Attendance";
 import Exam from "./Exam";
 import type { JSX } from "react/jsx-runtime";
 
-const AllClasses = () => {
+// const AllClasses = () => {
+const AllClasses = ({
+  onBackToDashboard,
+}: {
+  onBackToDashboard?: () => void;
+}) => {
   const [showContentMain, setShowContentMain] = useState(true);
   const [showInstitutionContent, setShowInstitutionContent] = useState(false);
   const [showClassesContent, setShowClassesContent] = useState(false);
@@ -229,16 +234,33 @@ const AllClasses = () => {
     }
   };
 
+  // const handleBackToDashboard = () => {
+  //   setShowContentMain(true);
+  //   setShowInstitutionContent(false);
+  //   setShowClassesContent(false);
+  //   setShowStudentsContent(false);
+  //   setShowAttendanceContent(false);
+  //   setShowTitle("");
+  //   setShowDesc("");
+  //   setSelectedInstitution("");
+  //   setSelectedClass(null);
+  // };
+
   const handleBackToDashboard = () => {
-    setShowContentMain(true);
-    setShowInstitutionContent(false);
-    setShowClassesContent(false);
-    setShowStudentsContent(false);
-    setShowAttendanceContent(false);
-    setShowTitle("");
-    setShowDesc("");
-    setSelectedInstitution("");
-    setSelectedClass(null);
+    if (onBackToDashboard) {
+      onBackToDashboard();
+    } else {
+      // Fallback to internal state reset if no callback provided
+      setShowContentMain(true);
+      setShowInstitutionContent(false);
+      setShowClassesContent(false);
+      setShowStudentsContent(false);
+      setShowAttendanceContent(false);
+      setShowTitle("");
+      setShowDesc("");
+      setSelectedInstitution("");
+      setSelectedClass(null);
+    }
   };
 
   // @ts-ignore

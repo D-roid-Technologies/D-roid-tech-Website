@@ -227,7 +227,7 @@ const ClassRoom: React.FC = () => {
                 Back to Class Details
               </button>
             </div> 
-            <AllClasses  />
+            <AllClasses  onBackToDashboard={handleBackToClassroom} />
           </>
         )}
       </section>
