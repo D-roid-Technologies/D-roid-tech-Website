@@ -79,7 +79,7 @@ const BlogPost: React.FC = () => {
 
   return (
     <div>
-      <Navbar className="scrolled" />
+      <Navbar className="scrolled" logo="logoTwo" />
       <div className="blog-post-container">
         <div className="wrapper">
           <div className="group justify-content-center">
