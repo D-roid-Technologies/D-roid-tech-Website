@@ -188,6 +188,7 @@ export const Assets = {
     driodButton: require("../../images/png/droid-button.png"),
     droidCard: require("../../images/png/droid-card.png"),
     droidCarousel: require("../../images/png/droiid-carousel.png"),
+    tickleMyFancy: require("../../images/png/TicklemyFancy.png"),
     nerveCommerce: require("../../images/png/Nerves-ecommerce.png"),
     coastlineMicrofinanceBank: require("../../images/png/coastline-microfinance-bank.png"),
 
