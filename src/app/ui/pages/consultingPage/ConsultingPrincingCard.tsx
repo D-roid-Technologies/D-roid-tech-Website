@@ -1,6 +1,6 @@
 import React from "react";
 import { Check, Star, Zap, Building2 } from "lucide-react";
-import "../softwareDevelopment/SoftwarePricingCard.css"
+import "../softwareDevelopment/SoftwarePricingCard.css";
 import { MdApproval } from "react-icons/md";
 import { LuBetweenVerticalStart } from "react-icons/lu";
 
@@ -24,97 +24,75 @@ const ConsultingPrincingCard: React.FC = () => {
   const pricingTiers: PricingTier[] = [
     {
       name: "Starter",
-      price: "₦703,859.99 – ₦1,390,699.99",
-      period: "per year",
+      price: "₦500,000 – ₦1,000,000",
+      period: "per engagement",
       description:
-        "Ideal for small teams and startups getting started with essential development and collaboration tools.",
+        "Perfect for startups and small businesses seeking expert advice to kickstart their technology strategy.",
       icon: <LuBetweenVerticalStart className="techsoft-pricing__tier-icon" />,
       features: [
-        { text: "Up to 3 team members", included: true },
-        { text: "5 active projects", included: true },
-        { text: "Task and project management", included: true },
-        { text: "Basic analytics dashboard", included: true },
-        { text: "Activity log (last 7 days)", included: true },
-        { text: "Standard email support (24–48h response)", included: true },
-        { text: "Google Calendar & Slack integration", included: true },
-        { text: "API access (1,000 requests/month)", included: true },
-        { text: "1 GB storage (25MB per file)", included: true },
-        { text: "Light/Dark mode UI", included: true },
-        {
-          text: "Role-based permissions (Admin, Editor, Viewer)",
-          included: true,
-        },
-        { text: "Two-factor authentication", included: true },
+        { text: "Up to 5 hours of consultation", included: true },
+        { text: "Technology roadmap review", included: true },
+        { text: "Basic IT infrastructure assessment", included: true },
+        { text: "Cloud adoption guidance", included: true },
+        { text: "Digital transformation starter plan", included: true },
+        { text: "Email support (within 48h)", included: true },
 
-        { text: "Advanced third-party integrations", included: false },
-        { text: "Custom branding and UI theming", included: false },
-        { text: "Priority customer support", included: false },
-        { text: "Onboarding assistance", included: false },
-        { text: "Webhooks & custom workflows", included: false },
-        { text: "Unlimited storage", included: false },
+        { text: "Custom software architecture design", included: false },
+        { text: "On-site workshop & training", included: false },
+        { text: "Priority support", included: false },
+        { text: "Vendor negotiation & partnership setup", included: false },
+        { text: "Comprehensive cybersecurity review", included: false },
       ],
-      buttonText: "Start with Starter",
+      buttonText: "Start Consulting",
     },
     {
       name: "Pro",
-      price: "₦1,390,699.99 - ₦3,506,989.99",
-      period: "",
+      price: "₦1,000,000 – ₦2,500,000",
+      period: "per engagement",
       description:
-        "Ideal for growing teams that need advanced features and enhanced collaboration tools.",
+        "Best for growing businesses needing tailored strategies, process optimization, and hands-on implementation support.",
       icon: <MdApproval className="techsoft-pricing__tier-icon" />,
       isPopular: true,
       features: [
-        { text: "Up to 15 team members", included: true },
-        { text: "25 active projects", included: true },
-        { text: "Advanced analytics dashboard", included: true },
-        { text: "Activity log (30 days)", included: true },
-        { text: "Priority email support (under 12h response)", included: true },
-        {
-          text: "Google Calendar, Slack & GitHub integrations",
-          included: true,
-        },
-        { text: "API access (10,000 requests/month)", included: true },
-        { text: "10 GB storage (100MB per file)", included: true },
-        { text: "Light/Dark mode UI", included: true },
-        { text: "Role-based permissions with audit logs", included: true },
-        { text: "Two-factor authentication", included: true },
-        { text: "Advanced third-party integrations", included: true },
-        { text: "Custom branding and UI theming", included: true },
+        { text: "Up to 20 hours of consultation", included: true },
+        { text: "End-to-end technology strategy", included: true },
+        { text: "Detailed IT infrastructure assessment", included: true },
+        { text: "Cloud migration planning", included: true },
+        { text: "Process automation recommendations", included: true },
+        { text: "Cybersecurity best practices audit", included: true },
+        { text: "Email & phone support (within 12h)", included: true },
+        { text: "Quarterly progress review", included: true },
 
-        { text: "Onboarding assistance", included: false },
-        { text: "Webhooks & custom workflows", included: false },
-        { text: "Unlimited storage", included: false },
+        { text: "Full implementation management", included: false },
+        { text: "Ongoing performance monitoring", included: false },
       ],
-      buttonText: "Get Started",
+      buttonText: "Engage Us",
     },
     {
       name: "Enterprise",
-      price: "₦3,506,989.99 - ₦7,709,109.99",
-      period: "",
+      price: "₦2,500,000 – ₦6,000,000+",
+      period: "per engagement",
       description:
-        "Comprehensive solution for large organizations with custom requirements and dedicated support.",
+        "Comprehensive consulting for enterprises — strategy, execution, and innovation at scale with full technology leadership support.",
       icon: <Building2 className="techsoft-pricing__tier-icon" />,
       features: [
-        { text: "Unlimited team members", included: true },
-        { text: "Unlimited projects", included: true },
-        { text: "Custom analytics and reporting suite", included: true },
-        { text: "Activity log (unlimited history)", included: true },
-        { text: "Dedicated account manager & phone support", included: true },
-        { text: "Advanced integrations & SSO", included: true },
-        { text: "API access (unlimited requests)", included: true },
-        { text: "Unlimited storage", included: true },
-        { text: "Custom UI and branded workspace", included: true },
-        { text: "Granular permission controls", included: true },
-        { text: "Audit logs & compliance reports", included: true },
-        { text: "Webhooks & custom workflow automations", included: true },
-        { text: "Onboarding & migration support", included: true },
-
-        { text: "Requires contract & SLA", included: true },
-        { text: "Onboarding assistance", included: true },
-        { text: "Webhooks & custom workflows", included: true },
-        { text: "Unlimited storage", included: true },
+        { text: "Unlimited consultation hours", included: true },
+        { text: "Full digital transformation leadership", included: true },
+        { text: "Complete IT & cloud infrastructure design", included: true },
+        {
+          text: "Enterprise architecture & systems integration",
+          included: true,
+        },
+        {
+          text: "Advanced cybersecurity and compliance review",
+          included: true,
+        },
+        { text: "Custom software development advisory", included: true },
+        { text: "Dedicated account manager", included: true },
+        { text: "On-site training & workshops", included: true },
+        { text: "Ongoing performance optimization", included: true },
       ],
-      buttonText: "Get Started",
+      buttonText: "Partner With Us",
     },
   ];
 
@@ -200,7 +178,7 @@ const ConsultingPrincingCard: React.FC = () => {
 
         <div className="techsoft-pricing__footer">
           <p className="techsoft-pricing__footer-text">
-            Innovative software development tailored to your business needs.
+            Strategic technology consulting to drive innovation and growth.
           </p>
         </div>
       </div>
