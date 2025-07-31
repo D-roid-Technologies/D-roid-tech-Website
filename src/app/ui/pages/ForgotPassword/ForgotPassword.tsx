@@ -33,7 +33,7 @@ const ForgotPassword: React.FunctionComponent = () => {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <a href="/" className={styles.backLink}>
+        <a href="/auth/join-our-community" className={styles.backLink}>
           {/* @ts-ignore */}
           <FaArrowLeft style={{ marginRight: "8px" }} /> Back to Community
         </a>

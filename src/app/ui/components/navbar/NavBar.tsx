@@ -11,9 +11,10 @@ import { dropdownItems, RoutePaths } from "../../../routes/Index";
 
 interface NavBarProps {
   className?: string;
+  logo?: "default" | "logoTwo";
 }
 
-const Navbar: React.FC<NavbarProps> = ({ className }) => {
+const Navbar: React.FC<NavbarProps> = ({ className, logo = "default" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -61,6 +62,18 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getLogoSource = () => {
+    if (logo === "logoTwo") {
+      return Assets.images.companyLogoTwoAlt;
+    }
+
+    return isLogoHovered
+      ? Assets.images.companyLogoTwoAlt
+      : isScrolledLogo
+      ? Assets.images.companyLogoTwoAlt
+      : Assets.images.companyLogoAltTwoWhite;
+  };
+
   return (
     <nav
       className={`navbar ${className || ""} ${
@@ -72,26 +85,13 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         setActiveDropdown(null);
       }}
     >
-      <div className="navbar-container"
+      <div
+        className="navbar-container"
         onMouseEnter={() => setIsLogoHovered(true)}
-          onMouseLeave={() => setIsLogoHovered(false)}
+        onMouseLeave={() => setIsLogoHovered(false)}
       >
-        <a
-          href="/"
-          className="navbar-logo"
-        
-        >
-          {/* <img src={Assets.images.companyLogoTwoAlt} alt="D-roidTech Logo" /> */}
-          <img
-            src={
-              isLogoHovered
-                ? Assets.images.companyLogoTwoAlt
-                : isScrolledLogo
-                ? Assets.images.companyLogoTwoAlt
-                : Assets.images.companyLogoAltTwoWhite
-            }
-            alt="D-roidTech Logo"
-          />
+        <a href="/" className="navbar-logo">
+          <img src={getLogoSource()} alt="D-roidTech Logo" />
         </a>
 
         <div className="desktop-nav-links">
