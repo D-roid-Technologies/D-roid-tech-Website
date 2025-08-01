@@ -199,6 +199,7 @@ const TrainingProgramsPage: React.FC = () => {
             <div
               key={index}
               onClick={() => navigate("/training/description", { state: prog })}
+              style={{ cursor: "pointer" }}
             >
               <CoreValueCardTwo
                 title={prog.title}
