@@ -1,6 +1,6 @@
 // src/pages/training/TrainingDescriptionPage.tsx
 import React, { useState } from "react";
-import './TrainingDescriptionPage.css'
+import "./TrainingDescriptionPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import TrainingApplicationForm from "./TrainingApplicationform";
 import { useSelector } from "react-redux";
@@ -13,7 +13,9 @@ const TrainingDescriptionPage: React.FC = () => {
   const program = location.state;
 
   const [showForm, setShowForm] = useState(false);
-  const isUserLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const isUserLoggedIn = useSelector(
+    (state: RootState) => state.user.isLoggedIn
+  );
 
   if (!program) {
     return (
@@ -58,20 +60,32 @@ const TrainingDescriptionPage: React.FC = () => {
 
         <h3 className="section-subheading">Details</h3>
         <ul className="program-list">
-          <li><strong>Duration:</strong> {program.duration}</li>
-          <li><strong>Level:</strong> {program.level}</li>
-          <li><strong>Mode:</strong> {program.mode?.join(", ")}</li>
-          <li><strong>Tools:</strong> {program.tools?.join(", ")}</li>
+          <li>
+            <strong>Duration:</strong> {program.duration}
+          </li>
+          <li>
+            <strong>Level:</strong> {program.level}
+          </li>
+          <li>
+            <strong>Mode:</strong> {program.mode?.join(", ")}
+          </li>
+          <li>
+            <strong>Tools:</strong> {program.tools?.join(", ")}
+          </li>
         </ul>
 
         <h3 className="section-subheading">How to Apply</h3>
         <ul className="program-list">
-          {(program.howToApply as (string | { label: string; href: string })[]).map((step, index) =>
+          {(
+            program.howToApply as (string | { label: string; href: string })[]
+          ).map((step, index) =>
             typeof step === "string" ? (
               <li key={index}>{step}</li>
             ) : (
               <li key={index}>
-                <a href={step.href} className="link">{step.label}</a>
+                <a href={step.href} className="link">
+                  {step.label}
+                </a>
               </li>
             )
           )}
@@ -79,12 +93,16 @@ const TrainingDescriptionPage: React.FC = () => {
 
         <h3 className="section-subheading">Benefits</h3>
         <ul className="program-list">
-          {(program.benefits as (string | { label: string; href: string })[]).map((step, index) =>
+          {(
+            program.benefits as (string | { label: string; href: string })[]
+          ).map((step, index) =>
             typeof step === "string" ? (
               <li key={index}>{step}</li>
             ) : (
               <li key={index}>
-                <a href={step.href} className="link">{step.label}</a>
+                <a href={step.href} className="link">
+                  {step.label}
+                </a>
               </li>
             )
           )}
@@ -92,38 +110,48 @@ const TrainingDescriptionPage: React.FC = () => {
 
         <h3 className="section-subheading">What you would learn</h3>
         <ul className="program-list">
-          {(program.learn as (string | { label: string; href: string })[]).map((step, index) =>
-            typeof step === "string" ? (
-              <li key={index}>{step}</li>
-            ) : (
-              <li key={index}>
-                <a href={step.href} className="link">{step.label}</a>
-              </li>
-            )
+          {(program.learn as (string | { label: string; href: string })[]).map(
+            (step, index) =>
+              typeof step === "string" ? (
+                <li key={index}>{step}</li>
+              ) : (
+                <li key={index}>
+                  <a href={step.href} className="link">
+                    {step.label}
+                  </a>
+                </li>
+              )
           )}
         </ul>
 
         <h3 className="section-subheading">Price</h3>
         <ul className="program-list">
-          {(program.price as (string | { label: string; href: string })[]).map((step, index) =>
-            typeof step === "string" ? (
-              <li key={index}>{step}</li>
-            ) : (
-              <li key={index}>
-                <a href={step.href} className="link">{step.label}</a>
-              </li>
-            )
+          {(program.price as (string | { label: string; href: string })[]).map(
+            (step, index) =>
+              typeof step === "string" ? (
+                <li key={index}>{step}</li>
+              ) : (
+                <li key={index}>
+                  <a href={step.href} className="link">
+                    {step.label}
+                  </a>
+                </li>
+              )
           )}
         </ul>
 
         <h3 className="section-subheading">Your Mentor</h3>
         <ul className="program-list">
-          {(program.trainer as (string | { label: string; href: string })[]).map((step, index) =>
+          {(
+            program.trainer as (string | { label: string; href: string })[]
+          ).map((step, index) =>
             typeof step === "string" ? (
               <li key={index}>{step}</li>
             ) : (
               <li key={index}>
-                <a href={step.href} className="link">{step.label}</a>
+                <a href={step.href} className="link">
+                  {step.label}
+                </a>
               </li>
             )
           )}
@@ -131,19 +159,22 @@ const TrainingDescriptionPage: React.FC = () => {
 
         {/* Apply Button */}
         {!showForm && (
-          <button onClick={() => {
-            if (!isUserLoggedIn) {
-              toast.error('Please log in or sign up.', {
-                style: {
-                  background: '#ff4d4f',
-                  color: '#fff',
-                },
-              });
-              setTimeout(() => {
-                navigate("/auth/join-our-community")
-              }, 3000)
-            }
-          }} className="apply-button">
+          <button
+            onClick={() => {
+              if (!isUserLoggedIn) {
+                toast.error("Please log in or sign up.", {
+                  style: {
+                    background: "#ff4d4f",
+                    color: "#fff",
+                  },
+                });
+                setTimeout(() => {
+                  navigate("/auth/join-our-community");
+                }, 3000);
+              }
+            }}
+            className="apply-button"
+          >
             Apply Now
           </button>
         )}
@@ -156,7 +187,6 @@ const TrainingDescriptionPage: React.FC = () => {
         )}
       </div>
     </div>
-
   );
 };
 

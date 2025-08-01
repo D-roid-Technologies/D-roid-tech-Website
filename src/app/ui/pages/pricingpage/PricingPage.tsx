@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PricingCalculator from "./PricingCalclator";
-
+import GeneralPricingCard from "./GeneralPricingCard";
 
 const PricingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -44,6 +44,7 @@ const PricingPage: React.FC = () => {
       <div style={{ marginTop: 30 }}>
         <PricingCalculator />
       </div>
+      <GeneralPricingCard />
     </div>
   );
 };

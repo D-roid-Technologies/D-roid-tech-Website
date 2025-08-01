@@ -21,102 +21,77 @@ interface PricingTier {
 }
 
 const AnimationPrincingCard: React.FC = () => {
-  const pricingTiers: PricingTier[] = [
-    {
-      name: "Starter",
-      price: "₦703,859.99 – ₦1,390,699.99",
-      period: "per year",
-      description:
-        "Ideal for small teams and startups getting started with essential development and collaboration tools.",
-      icon: <LuBetweenVerticalStart className="techsoft-pricing__tier-icon" />,
-      features: [
-        { text: "Up to 3 team members", included: true },
-        { text: "5 active projects", included: true },
-        { text: "Task and project management", included: true },
-        { text: "Basic analytics dashboard", included: true },
-        { text: "Activity log (last 7 days)", included: true },
-        { text: "Standard email support (24–48h response)", included: true },
-        { text: "Google Calendar & Slack integration", included: true },
-        { text: "API access (1,000 requests/month)", included: true },
-        { text: "1 GB storage (25MB per file)", included: true },
-        { text: "Light/Dark mode UI", included: true },
-        {
-          text: "Role-based permissions (Admin, Editor, Viewer)",
-          included: true,
-        },
-        { text: "Two-factor authentication", included: true },
+ const pricingTiers: PricingTier[] = [
+   {
+     name: "Starter",
+     price: "₦350,000 – ₦700,000",
+     period: "per project",
+     description:
+       "Perfect for small animation projects or short stories — bringing your ideas to life with motion and creativity.",
+     icon: <LuBetweenVerticalStart className="techsoft-pricing__tier-icon" />,
+     features: [
+       { text: "Up to 1-minute animation", included: true },
+       { text: "Basic storyboard & script support", included: true },
+       { text: "Royalty-free background music", included: true },
+       { text: "Simple character animation", included: true },
+       { text: "1 revision round", included: true },
+       { text: "Standard delivery (7–10 days)", included: true },
+       { text: "Basic color grading", included: true },
 
-        { text: "Advanced third-party integrations", included: false },
-        { text: "Custom branding and UI theming", included: false },
-        { text: "Priority customer support", included: false },
-        { text: "Onboarding assistance", included: false },
-        { text: "Webhooks & custom workflows", included: false },
-        { text: "Unlimited storage", included: false },
-      ],
-      buttonText: "Start with Starter",
-    },
-    {
-      name: "Pro",
-      price: "₦1,390,699.99 - ₦3,506,989.99",
-      period: "",
-      description:
-        "Ideal for growing teams that need advanced features and enhanced collaboration tools.",
-      icon: <MdApproval className="techsoft-pricing__tier-icon" />,
-      isPopular: true,
-      features: [
-        { text: "Up to 15 team members", included: true },
-        { text: "25 active projects", included: true },
-        { text: "Advanced analytics dashboard", included: true },
-        { text: "Activity log (30 days)", included: true },
-        { text: "Priority email support (under 12h response)", included: true },
-        {
-          text: "Google Calendar, Slack & GitHub integrations",
-          included: true,
-        },
-        { text: "API access (10,000 requests/month)", included: true },
-        { text: "10 GB storage (100MB per file)", included: true },
-        { text: "Light/Dark mode UI", included: true },
-        { text: "Role-based permissions with audit logs", included: true },
-        { text: "Two-factor authentication", included: true },
-        { text: "Advanced third-party integrations", included: true },
-        { text: "Custom branding and UI theming", included: true },
+       { text: "Voice-over recording", included: false },
+       { text: "Custom illustration & assets", included: false },
+       { text: "Priority delivery (under 5 days)", included: false },
+       { text: "Multi-language subtitles", included: false },
+       { text: "Social media teaser version", included: false },
+     ],
+     buttonText: "Start Your Story",
+   },
+   {
+     name: "Pro",
+     price: "₦700,000 – ₦1,500,000",
+     period: "per project",
+     description:
+       "Best for brands and storytellers who want engaging animations with professional voice-overs and enhanced visuals.",
+     icon: <MdApproval className="techsoft-pricing__tier-icon" />,
+     isPopular: true,
+     features: [
+       { text: "Up to 3-minute animation", included: true },
+       { text: "Full storyboard & script assistance", included: true },
+       { text: "Professional voice-over (1 language)", included: true },
+       { text: "Custom illustrations & backgrounds", included: true },
+       { text: "Up to 3 revision rounds", included: true },
+       { text: "Priority delivery (5–7 days)", included: true },
+       { text: "Royalty-free music & sound design", included: true },
+       { text: "Social media teaser version", included: true },
 
-        { text: "Onboarding assistance", included: false },
-        { text: "Webhooks & custom workflows", included: false },
-        { text: "Unlimited storage", included: false },
-      ],
-      buttonText: "Get Started",
-    },
-    {
-      name: "Enterprise",
-      price: "₦3,506,989.99 - ₦7,709,109.99",
-      period: "",
-      description:
-        "Comprehensive solution for large organizations with custom requirements and dedicated support.",
-      icon: <Building2 className="techsoft-pricing__tier-icon" />,
-      features: [
-        { text: "Unlimited team members", included: true },
-        { text: "Unlimited projects", included: true },
-        { text: "Custom analytics and reporting suite", included: true },
-        { text: "Activity log (unlimited history)", included: true },
-        { text: "Dedicated account manager & phone support", included: true },
-        { text: "Advanced integrations & SSO", included: true },
-        { text: "API access (unlimited requests)", included: true },
-        { text: "Unlimited storage", included: true },
-        { text: "Custom UI and branded workspace", included: true },
-        { text: "Granular permission controls", included: true },
-        { text: "Audit logs & compliance reports", included: true },
-        { text: "Webhooks & custom workflow automations", included: true },
-        { text: "Onboarding & migration support", included: true },
+       { text: "Multi-language subtitles", included: false },
+       { text: "Animated infographics", included: false },
+       { text: "Character lip-sync animation", included: false },
+     ],
+     buttonText: "Bring It to Life",
+   },
+   {
+     name: "Enterprise",
+     price: "₦1,500,000 – ₦3,500,000+",
+     period: "per project",
+     description:
+       "Complete animation & storytelling solution — from concept to final delivery, tailored for large productions or campaigns.",
+     icon: <Building2 className="techsoft-pricing__tier-icon" />,
+     features: [
+       { text: "Unlimited animation length", included: true },
+       { text: "Full concept development & storyboarding", included: true },
+       { text: "Professional voice-over (multi-language)", included: true },
+       { text: "Advanced custom illustrations & animation", included: true },
+       { text: "Unlimited revision rounds", included: true },
+       { text: "Cinematic sound design & mixing", included: true },
+       { text: "Priority delivery (custom schedule)", included: true },
+       { text: "Social media & ad-ready formats", included: true },
+       { text: "On-site production support", included: true },
+     ],
+     buttonText: "Let’s Tell Your Story",
+   },
+ ];
 
-        { text: "Requires contract & SLA", included: true },
-        { text: "Onboarding assistance", included: true },
-        { text: "Webhooks & custom workflows", included: true },
-        { text: "Unlimited storage", included: true },
-      ],
-      buttonText: "Get Started",
-    },
-  ];
 
   return (
     <section className="techsoft-pricing">
@@ -200,7 +175,8 @@ const AnimationPrincingCard: React.FC = () => {
 
         <div className="techsoft-pricing__footer">
           <p className="techsoft-pricing__footer-text">
-            Innovative software development tailored to your business needs.
+            Creative animation and storytelling crafted to captivate your
+            audience.
           </p>
         </div>
       </div>
