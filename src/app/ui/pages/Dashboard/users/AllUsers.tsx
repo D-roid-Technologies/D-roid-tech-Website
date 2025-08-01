@@ -5,156 +5,408 @@ import { RootState } from "../../../../redux/Store";
 import { auth, db } from "../../../../../firebase";
 import { UserType } from "../../../../utils/Types";
 import { setAllUsers } from "../../../../redux/slices/AllUserSlice";
+import {
+  FaUser,
+  FaUsers,
+  FaBuilding,
+  FaUserTie,
+  FaUserShield,
+  FaArrowLeft,
+} from "react-icons/fa";
+import "./AllUsers.css"; 
+
+const DashboardCard: React.FC<{
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  onClick?: () => void;
+}> = ({ icon, title, description, onClick }) => (
+  <div
+    onClick={onClick}
+    className={`allUsers-dashboard-card ${
+      !onClick ? "allUsers-dashboard-card--disabled" : ""
+    }`}
+  >
+    <div className="allUsers-card-header">
+      <div className="allUsers-card-icon">{icon}</div>
+      <h3 className="allUsers-card-title">{title}</h3>
+    </div>
+    <p className="allUsers-card-description">{description}</p>
+  </div>
+);
+
+interface UserStats {
+  total: number;
+  staff: number;
+  member: number;
+  organisation: number;
+  superadmin: number;
+  school: number;
+  business: number;
+  ngo: number;
+}
 
 const AllUsers: React.FC = () => {
-    const dispatch = useDispatch();
-    const allUsers = useSelector((state: RootState) => state.allUsers.allUsers);
+  const dispatch = useDispatch();
+  const allUsers = useSelector((state: RootState) => state.allUsers.allUsers);
 
-    // State to store the selected user's details
-    const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [selectedAccountType, setSelectedAccountType] = useState<string | null>(
+    null
+  );
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [userStats, setUserStats] = useState<UserStats>({
+    total: 0,
+    staff: 0,
+    member: 0,
+    organisation: 0,
+    superadmin: 0,
+    school: 0,
+    business: 0,
+    ngo: 0,
+  });
 
-    // State for pagination
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const usersPerPage = 10; // Number of users per page
+  const usersPerPage = 10;
 
-    const getAllUsersFromFirestore = async () => {
-        try {
-            const currentUser = auth.currentUser;
-            if (!currentUser) {
-                console.warn("No authenticated user");
-                return;
-            }
+  const getAllUsersFromFirestore = async () => {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) {
+        console.warn("No authenticated user");
+        return;
+      }
 
-            const userCollectionRef = collection(db, "droidaccount");
-            const snapshot = await getDocs(userCollectionRef);
-            const usersList: UserType[] = [];
+      const userCollectionRef = collection(db, "droidaccount");
+      const snapshot = await getDocs(userCollectionRef);
+      const usersList: UserType[] = [];
 
-            snapshot.forEach((doc) => {
-                const data = doc.data();
-                if (data?.user?.primaryInformation) {
-                    usersList.push(data.user.primaryInformation);
-                }
-            });
-
-            dispatch(setAllUsers(usersList));
-        } catch (error: any) {
-            console.error("Error fetching users:", error.message);
-            alert(`${error.message}`);
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data?.user?.primaryInformation) {
+          usersList.push(data.user.primaryInformation);
         }
-    };
+      });
 
-    useEffect(() => {
-        getAllUsersFromFirestore();
-    }, []);
+      dispatch(setAllUsers(usersList));
+    } catch (error: any) {
+      console.error("Error fetching users:", error.message);
+      alert(`${error.message}`);
+    }
+  };
 
-    const handleUserClick = (user: UserType) => {
-        setSelectedUser(user); // Set the clicked user details
-    };
+  // Calculate user statistics
+  useEffect(() => {
+    if (allUsers.length > 0) {
+      const stats: UserStats = {
+        total: allUsers.length,
+        staff: 0,
+        member: 0,
+        organisation: 0,
+        superadmin: 0,
+        school: 0,
+        business: 0,
+        ngo: 0,
+      };
 
-    // Calculate the users to display based on the current page
-    const indexOfLastUser = currentPage * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = allUsers.slice(indexOfFirstUser, indexOfLastUser);
+      allUsers.forEach((user) => {
+        // Count by user type
+        if (user.userType === "Staff") stats.staff++;
+        else if (user.userType === "Member") stats.member++;
+        else if (user.userType === "Organisation") stats.organisation++;
 
-    // Handle pagination button click
-    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+        if (user.role === "Superadmin") stats.superadmin++;
+        // Count by organization type
+        if (user.organisationalType?.toLowerCase() === "school") stats.school++;
+        else if (user.organisationalType?.toLowerCase() === "business")
+          stats.business++;
+        else if (user.organisationalType?.toLowerCase() === "ngo") stats.ngo++;
+      });
 
-    // Pagination Logic
-    const totalPages = Math.ceil(allUsers.length / usersPerPage);
+      setUserStats(stats);
+    }
+  }, [allUsers]);
 
+  useEffect(() => {
+    getAllUsersFromFirestore();
+  }, []);
+
+  const handleUserClick = (user: UserType) => {
+    setSelectedUser(user);
+  };
+
+  const handleAccountTypeClick = (accountType: string) => {
+    setSelectedAccountType(accountType);
+    setCurrentPage(1);
+    setSelectedUser(null);
+  };
+
+  const handleBackToOverview = () => {
+    setSelectedAccountType(null);
+    setSelectedUser(null);
+    setCurrentPage(1);
+  };
+
+  // Filter users based on selected account type
+  const getFilteredUsers = (): UserType[] => {
+    if (!selectedAccountType) return allUsers;
+
+    switch (selectedAccountType) {
+      case "Staff":
+        return allUsers.filter((user) => user.userType === "Staff");
+      case "Member":
+        return allUsers.filter((user) => user.userType === "Member");
+      case "Organisation":
+        return allUsers.filter((user) => user.userType === "Organisation");
+      case "Superadmin":
+        return allUsers.filter((user) => user.role === "Superadmin");
+      case "School":
+        return allUsers.filter(
+          (user) => user.organisationalType?.toLowerCase() === "school"
+        );
+      case "Business":
+        return allUsers.filter(
+          (user) => user.organisationalType?.toLowerCase() === "business"
+        );
+      case "NGO":
+        return allUsers.filter(
+          (user) => user.organisationalType?.toLowerCase() === "ngo"
+        );
+      default:
+        return allUsers;
+    }
+  };
+
+  const filteredUsers = getFilteredUsers();
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Account type cards data
+  const accountTypeCards = [
+    {
+      icon: <FaUsers />,
+      title: "Total Users",
+      description: `${userStats.total} users registered in the system`,
+      type: "Total",
+    },
+    {
+      icon: <FaUserTie />,
+      title: "Staff Accounts",
+      description: `${userStats.staff} staff members in the organization`,
+      type: "Staff",
+    },
+    {
+      icon: <FaUser />,
+      title: "Member Accounts",
+      description: `${userStats.member} members registered`,
+      type: "Member",
+    },
+    {
+      icon: <FaBuilding />,
+      title: "Organization Accounts",
+      description: `${userStats.organisation} organizational accounts`,
+      type: "Organisation",
+    },
+    {
+      icon: <FaUserShield />,
+      title: "Super Admin Accounts",
+      description: `${userStats.superadmin} super admin accounts`,
+      type: "Superadmin",
+    },
+    {
+      icon: <FaBuilding />,
+      title: "School Organizations",
+      description: `${userStats.school} school-type organizations`,
+      type: "School",
+    },
+    {
+      icon: <FaBuilding />,
+      title: "Business Organizations",
+      description: `${userStats.business} business-type organizations`,
+      type: "Business",
+    },
+    {
+      icon: <FaBuilding />,
+      title: "NGO Organizations",
+      description: `${userStats.ngo} non-profit organizations`,
+      type: "NGO",
+    },
+  ];
+
+  if (!selectedAccountType) {
     return (
-        <div>
-            <p style={{ fontSize: '16px', fontWeight: '500', marginBottom: "25px", color: "#000000" }}>
-                Here you can view and manage your users information.
-            </p>
-            {currentUsers.length > 0 ? (
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                    {currentUsers.map((user, index) => (
-                        <li key={index} style={{ marginBottom: "8px" }}>
-                            <button
-                                style={{
-                                    padding: "10px 16px",
-                                    borderRadius: "8px",
-                                    border: "1px solid #ccc",
-                                    backgroundColor: "#f9f9f9",
-                                    cursor: "pointer",
-                                    width: "100%",
-                                    textAlign: "left",
-                                    outline: "none",
-                                    userSelect: "none",
-                                    color: "#000000"
-                                }}
-                                onMouseDown={(e) => e.preventDefault()} // Prevents active state visuals
-                                onClick={() => handleUserClick(user)} // Set the clicked user
-                            >
-                                {user.firstName} {user.lastName} – {user.email}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No users found or still loading...</p>
-            )}
+      <div className="allUsers-container">
+        <p className="allUsers-description">
+          Overview of all user accounts in the system. Click on any card to view
+          detailed user lists.
+        </p>
 
-            {/* Display selected user's details */}
-            {selectedUser && (
-                <div style={{ marginTop: "20px", padding: "15px", border: "1px solid #ccc", borderRadius: "8px", backgroundColor: "#f9f9f9" }}>
-                    <h3 style={{ marginBottom: "20px", color: "#000000" }}>{`${selectedUser.firstName}'s Details`}</h3>
-
-                    <div style={{
-                        display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
-                    }}>
-                        <p style={{ color: "#000000" }}>{selectedUser.firstName} {selectedUser.middleName} {selectedUser.lastName}</p>
-                        <p style={{ color: "#000000" }}>{selectedUser.uniqueId || 'Unique Id not Provided'}</p>
-                    </div>
-                    <div style={{
-                        display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
-                    }}>
-                        <p style={{ color: "#000000" }}>{selectedUser.email}</p>
-                        <p style={{ color: "#000000" }}>{selectedUser.disability || 'Disability not Provided'}</p>
-                    </div>
-                    <div style={{
-                        display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
-                    }}>
-                        <p style={{ color: "#000000" }}>{selectedUser.gender || 'Gender not Provided'}</p>
-                        <p style={{ color: "#000000" }}>{selectedUser.dateOfBirth || 'Date of Birth not Provided'}</p>
-                    </div>
-                    <div style={{
-                        display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
-                    }}>
-                        <p style={{ color: "#000000" }}>{selectedUser.educationalLevel || 'Educational Level not Provided'}</p>
-                        <p style={{ color: "#000000" }}>{selectedUser.referralName || 'Referral Name not Provided'}</p>
-                    </div>
-                    <div style={{
-                        display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px"
-                    }}>
-                        <p style={{ color: "#000000" }}>{selectedUser.secondaryEmail || 'Secondary Email not Provided'}</p>
-                        <p style={{ color: "#000000" }}>{selectedUser.phone || 'Phone not Provided'}</p>
-                    </div>
-                </div>
-            )}
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-                <div style={{ marginTop: "20px" }}>
-                    <button
-                        onClick={() => paginate(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        style={{ padding: "10px 16px", marginRight: "8px", borderRadius: "8px", backgroundColor: "#f9f9f9", border: "1px solid #ccc", color: "#000000" }}
-                    >
-                        Previous
-                    </button>
-                    <button
-                        onClick={() => paginate(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        style={{ padding: "10px 16px", borderRadius: "8px", backgroundColor: "#f9f9f9", border: "1px solid #ccc", color: "#000000" }}
-                    >
-                        Next
-                    </button>
-                </div>
-            )}
+        <div className="allUsers-cards-grid">
+          {accountTypeCards.map((card, index) => (
+            <DashboardCard
+              key={index}
+              icon={card.icon}
+              title={card.title}
+              description={card.description}
+              onClick={
+                card.type !== "Total"
+                  ? () => handleAccountTypeClick(card.type)
+                  : undefined
+              }
+            />
+          ))}
         </div>
+      </div>
     );
+  }
+
+  return (
+    <div className="allUsers-container">
+      <div className="allUsers-header">
+        <button onClick={handleBackToOverview} className="allUsers-back-button">
+          <FaArrowLeft className="allUsers-back-icon" />
+          Back to Overview
+        </button>
+        <h2 className="allUsers-section-title">
+          {selectedAccountType} Accounts ({filteredUsers.length})
+        </h2>
+      </div>
+
+      {currentUsers.length > 0 ? (
+        <ul className="allUsers-list">
+          {currentUsers.map((user, index) => (
+            <li key={index} className="allUsers-list-item">
+              <button
+                className="allUsers-user-button"
+                onClick={() => handleUserClick(user)}
+              >
+                <div className="allUsers-user-info">
+                  <span className="allUsers-user-name">
+                    {user.firstName} {user.lastName}&nbsp;-&nbsp;
+                    <span className="allUsers-user-type">
+                      {user.userType} {user.role && `• ${user.role}`}
+                    </span>
+                  </span>
+                </div>
+                <div className="allUsers-user-email">{user.email}</div>
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="allUsers-empty-state">
+          No {selectedAccountType.toLowerCase()} accounts found.
+        </p>
+      )}
+
+      {/* Display selected user's details */}
+      {selectedUser && (
+        <div className="allUsers-user-details">
+          <h3 className="allUsers-details-title">
+            {selectedUser.firstName}'s Details
+          </h3>
+
+          <div className="allUsers-details-grid">
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Full Name:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.firstName} {selectedUser.middleName}{" "}
+                {selectedUser.lastName}
+              </div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Unique ID:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.uniqueId || "Not Provided"}
+              </div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Email:</span>
+              <div className="allUsers-detail-value">{selectedUser.email}</div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">User Type:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.userType}{" "}
+                {selectedUser.role && `(${selectedUser.role})`}
+              </div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Gender:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.gender || "Not Provided"}
+              </div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Date of Birth:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.dateOfBirth || "Not Provided"}
+              </div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Education Level:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.educationalLevel || "Not Provided"}
+              </div>
+            </div>
+            <div className="allUsers-detail-item">
+              <span className="allUsers-detail-label">Phone:</span>
+              <div className="allUsers-detail-value">
+                {selectedUser.phone || "Not Provided"}
+              </div>
+            </div>
+            {selectedUser.organisationalType && (
+              <div className="allUsers-detail-item">
+                <span className="allUsers-detail-label">
+                  Organization Type:
+                </span>
+                <div className="allUsers-detail-value">
+                  {selectedUser.organisationalType}
+                </div>
+              </div>
+            )}
+            {selectedUser.secondaryEmail && (
+              <div className="allUsers-detail-item">
+                <span className="allUsers-detail-label">Secondary Email:</span>
+                <div className="allUsers-detail-value">
+                  {selectedUser.secondaryEmail}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="allUsers-pagination">
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="allUsers-pagination-button"
+          >
+            Previous
+          </button>
+
+          <span className="allUsers-pagination-info">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="allUsers-pagination-button"
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default AllUsers;

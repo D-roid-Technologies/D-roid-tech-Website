@@ -15,6 +15,8 @@ import {
   updateModalContent,
 } from "../../../redux/slices/AppEntrySlice";
 import { store } from "../../../redux/Store";
+import Testimonial from "../testimonial/Testimonial";
+import ConsultingPrincingCard from "./ConsultingPrincingCard";
 
 const offer = [
   {
@@ -339,7 +341,7 @@ const ConsultingPage: React.FC = () => {
           padding: "50px 20px",
         }}
       >
-        <h2
+        {/* <h2
           style={{
             fontSize: "2rem",
             textAlign: "center",
@@ -390,7 +392,10 @@ const ConsultingPage: React.FC = () => {
               modern React/TypeScript with improved UX and performance.
             </p>
           </div>
-        </div>
+        </div> */}
+
+        <Testimonial map="consulting" />
+        <ConsultingPrincingCard />
       </div>
     </div>
   );

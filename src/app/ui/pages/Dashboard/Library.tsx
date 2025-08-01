@@ -27,8 +27,9 @@ import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
 import { LibraryDetail } from "./library/library-detail";
 
-import { EnhancedLibraryDetail } from "./library/enhanced-library-detail"
-import { libraryData, type LibraryType } from "./library/library-data"
+import { EnhancedLibraryDetail } from "./library/enhanced-library-detail";
+import { libraryData, type LibraryType } from "./library/library-data";
+import AddLibraryForm from "./library/AddLibraryForm";
 
 // type LibraryType = {
 //   icon: React.ReactNode;
@@ -51,8 +52,10 @@ const Library: React.FC = () => {
   // const [selectedLibrary, setSelectedLibrary] = useState<LibraryType | null>(
   //   null
   // );
-  const [selectedLibrary, setSelectedLibrary] = useState<LibraryType | null>(null);
-
+  const [selectedLibrary, setSelectedLibrary] = useState<LibraryType | null>(
+    null
+  );
+  const [showAddLibraryForm, setShowAddLibraryForm] = useState(false);
 
   const [showDescription, setShowDescription] = useState(false);
 
@@ -61,6 +64,13 @@ const Library: React.FC = () => {
       // @ts-ignore
       icon: <FaUserGraduate />,
       title: "Library",
+      description:
+        "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
+    },
+    {
+      // @ts-ignore
+      icon: <FaUserGraduate />,
+      title: "Add Library",
       description:
         "Access and manage student-related information including enrollment, profiles, academic progress, attendance, and engagement in school or organization activities",
     },
@@ -419,7 +429,8 @@ const Library: React.FC = () => {
       title: "General Library",
       description:
         "The main library containing books, periodicals, and resources across all subjects. Serves as the central hub for research, study, and reading activities for all students and staff.",
-      shortDescription: "Main library with comprehensive resources across all subjects",
+      shortDescription:
+        "Main library with comprehensive resources across all subjects",
       stats: {
         totalItems: 15420,
         availableItems: 12890,
@@ -443,7 +454,8 @@ const Library: React.FC = () => {
           "Academic writing support",
           "Citation and referencing help",
         ],
-        hours: "Monday - Friday: 8:00 AM - 10:00 PM, Saturday - Sunday: 9:00 AM - 8:00 PM",
+        hours:
+          "Monday - Friday: 8:00 AM - 10:00 PM, Saturday - Sunday: 9:00 AM - 8:00 PM",
         contact: "generallib@school.edu | +1 (555) 123-4567",
       },
     },
@@ -454,7 +466,8 @@ const Library: React.FC = () => {
       title: "Science Library",
       description:
         "Specialized collection focusing on scientific journals, research papers, laboratory manuals, and reference materials for physics, chemistry, biology, and other science subjects.",
-      shortDescription: "Scientific journals, research papers, and laboratory resources",
+      shortDescription:
+        "Scientific journals, research papers, and laboratory resources",
       stats: {
         totalItems: 8750,
         availableItems: 7200,
@@ -478,7 +491,8 @@ const Library: React.FC = () => {
           "Equipment booking system",
           "Collaboration with research departments",
         ],
-        hours: "Monday - Friday: 7:00 AM - 11:00 PM, Saturday - Sunday: 10:00 AM - 6:00 PM",
+        hours:
+          "Monday - Friday: 7:00 AM - 11:00 PM, Saturday - Sunday: 10:00 AM - 6:00 PM",
         contact: "sciencelib@school.edu | +1 (555) 234-5678",
       },
     },
@@ -513,7 +527,8 @@ const Library: React.FC = () => {
           "Virtual reality educational experiences",
           "Remote access setup for students",
         ],
-        hours: "Monday - Friday: 6:00 AM - 12:00 AM, Saturday - Sunday: 8:00 AM - 10:00 PM",
+        hours:
+          "Monday - Friday: 6:00 AM - 12:00 AM, Saturday - Sunday: 8:00 AM - 10:00 PM",
         contact: "digitallib@school.edu | +1 (555) 345-6789",
       },
     },
@@ -548,12 +563,12 @@ const Library: React.FC = () => {
           "Statistical data interpretation",
           "Subject-specific reference tours",
         ],
-        hours: "Monday - Friday: 8:00 AM - 9:00 PM, Saturday - Sunday: 10:00 AM - 6:00 PM",
+        hours:
+          "Monday - Friday: 8:00 AM - 9:00 PM, Saturday - Sunday: 10:00 AM - 6:00 PM",
         contact: "reflib@school.edu | +1 (555) 456-7890",
       },
     },
-  ]
-
+  ];
 
   const handleLibraryClick = (library: LibraryType) => {
     setSelectedLibrary(library);
@@ -576,11 +591,17 @@ const Library: React.FC = () => {
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    // alert(`${item.title}`)
-                    setShowContent(true);
-                    setShowContentMain(false);
-                    setShowTitle(`${item.title}`);
-                    setShowDesc(`${item.description}`);
+                    if (item.title === "Add Library") {
+                      setShowAddLibraryForm(true);
+                      setShowContentMain(false);
+                      setShowContent(false);
+                      setShowDescription(false);
+                    } else {
+                      setShowContent(true);
+                      setShowContentMain(false);
+                      setShowTitle(item.title);
+                      setShowDesc(item.description);
+                    }
                   }}
                 >
                   <DashboardCard
@@ -631,10 +652,24 @@ const Library: React.FC = () => {
         )}
 
         {/* Individual Library Description Page */}
-       {showDescription && selectedLibrary && (
-          <EnhancedLibraryDetail library={selectedLibrary} onBack={handleBackToLibraries} />
+        {showDescription && selectedLibrary && (
+          <EnhancedLibraryDetail
+            library={selectedLibrary}
+            onBack={handleBackToLibraries}
+          />
         )}
 
+        {showAddLibraryForm && (
+          <AddLibraryForm
+            onBack={() => {
+              setShowAddLibraryForm(false);
+              setShowContentMain(true);
+            }}
+            onSubmit={(data) => {
+              console.log("Submitted data:", data);
+            }}
+          />
+        )}
       </section>
     </div>
   );

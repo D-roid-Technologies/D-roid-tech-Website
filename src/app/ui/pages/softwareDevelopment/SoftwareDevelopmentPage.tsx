@@ -277,7 +277,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
         </div>
       </div>
       {/* testimonial */}
-      <Testimonial />
+      <Testimonial/>
       <LeadForm />
       <SoftwarePricingCard />
 

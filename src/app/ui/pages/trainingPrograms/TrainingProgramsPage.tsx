@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
+import TrainingPrincingCard from "./TrainingPrincingCard";
 
 const programs = [
   {
@@ -242,6 +243,7 @@ const TrainingProgramsPage: React.FC = () => {
           Contact for Enrollment
         </a>
       </div>
+      <TrainingPrincingCard />
     </div>
   );
 };

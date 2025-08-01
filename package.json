@@ -27,7 +27,7 @@
     "gsap": "^3.13.0",
     "html2pdf.js": "^0.10.3",
     "keen-slider": "^6.8.6",
-    "lucide-react": "^0.518.0",
+    "lucide-react": "^0.534.0",
     "node-cron": "^4.0.5",
     "nodemailer": "^7.0.3",
     "pdf-lib": "^1.17.1",

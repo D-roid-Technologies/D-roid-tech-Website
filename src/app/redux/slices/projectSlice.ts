@@ -166,6 +166,21 @@ const initialState: ProjectState = {
     },
     {
       id: "11",
+      title: "Tickle My Fancy",
+      status: "Ongoing",
+      descriptionUrl: "",
+      summary:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo omnis quasi itaque tenetur adipisci sapiente aut consequuntur perferendis. Perspiciatis, aliquid?",
+      startDate: "2025-01-10",
+      client: "WellBody Co.",
+      team: ["Chinaza Eze", "Marcus Lee", "Fatima Noor"],
+      imageUrl: Assets.images.tickleMyFancy,
+      category: "Development",
+      price: "Paid",
+      author: "D'roid",
+    },
+    {
+      id: "12",
       title: "D'roid one central platform",
       status: "Ongoing",
       descriptionUrl: "https://droidtechhq.com/auth/join-our-community",
@@ -180,7 +195,7 @@ const initialState: ProjectState = {
       author: "D'roid",
     },
     {
-      id: "12",
+      id: "13",
       title: "D'roid Input Component",
       status: "Ongoing",
       descriptionUrl: "/projects/health-wellness-app",
@@ -195,7 +210,7 @@ const initialState: ProjectState = {
       author: "D'roid",
     },
     {
-      id: "13",
+      id: "14",
       title: "D'roid Button Component",
       status: "Completed",
       descriptionUrl: "https://www.npmjs.com/package/react-ts-droid-button",
@@ -210,7 +225,7 @@ const initialState: ProjectState = {
       author: "D'roid",
     },
     {
-      id: "14",
+      id: "15",
       title: "D'roid Card Component",
       status: "Completed",
       descriptionUrl: "https://www.npmjs.com/package/react-ts-droid-card",
@@ -225,7 +240,7 @@ const initialState: ProjectState = {
       author: "D'roid",
     },
     {
-      id: "15",
+      id: "16",
       title: "D'roid Carousel Component",
       status: "Completed",
       descriptionUrl: "https://www.npmjs.com/package/react-ts-droid-carousel",

@@ -38,7 +38,6 @@ const Blog: React.FC = () => {
       id: "1",
       title: "Events",
       status: "In Communication",
-      // descriptionUrl: "/projects/blockchain-logistics",
       descriptionUrl: `${RoutePaths.Blog}/events`,
       summary:
         "At D'roid, we transform ideas into reality through groundbreaking projects that blend technology, creativity, and innovation. From AI-driven solutions to dynamic web platforms and immersive animations, every project reflects our commitment to excellence, forward-thinking design, and real-world impact.",
