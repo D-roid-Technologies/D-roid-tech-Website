@@ -45,17 +45,22 @@ const BlogPostView: React.FC = () => {
       <div className="wrapper">
         <div className="group justify-content-center">
           <div
-            className="block-8 blog-info"
             style={{
               marginTop: "40px",
               marginBottom: "60px",
+              justifyContent: "space-between",
               textAlign: "center",
+              display: "flex",
             }}
           >
             <span className="title_span">D'ROID BLOG</span>
-            <h1>{post.title}</h1>
-            <div style={{ textAlign: "center", marginTop: "10px" }}>
-              <button onClick={() => navigate(-1)} className="back-btn">
+            {/* <h1>{post.title}</h1> */}
+            <div>
+              <button
+                onClick={() => navigate(-1)}
+                className="back-btn"
+                style={{ marginTop: "30px" }}
+              >
                 ← Back
               </button>
             </div>
