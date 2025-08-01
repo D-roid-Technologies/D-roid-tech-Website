@@ -79,7 +79,7 @@ import { ClientsSection } from "./clients-section";
 import { DepartmentsSection } from "./departments-section";
 import { ProjectsSection } from "./projects-section";
 import { ReportsSection } from "./reports-section";
-
+import StaffUserHomePage from "./staff/StaffUserHomePage";
 
 // const tools = [
 //   {
@@ -245,42 +245,41 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   // };
 
   const renderToolComponent = () => {
-  switch (activeTool) {
-    case "ImageResizing":
-      return <ImageRezised /> //working but onClose={handleCloseTool}
-    case "ColorConverter": 
-      return <ColorConv  />; //working but onClose={handleCloseTool} is not
-    case "ImageCompressor":
-      return <ImageCompressItem/>;//// working but onClose={handleCloseTool} is not
-    case "CropTool":
-      return <CropToolItem/>;
-    case "ColorPicker":
-      return <ColorPickerItem/> ;////Not working 
-    case "WordCounter":
-      return <WordCounterItem/>; //working but onClose={handleCloseTool} is not
-    case "CurrencyConverter":
-      return <CurrencyConvert onClose={handleCloseTool} />; //working but No item
-    case "JsonFormatter":
-      return <JsonFormatter  />; // working
-    case "UUIDGenerator":
-      return <UuidGeneratorItem/>;
-    case "Base64EncoderDecoder":
-      return <EncoderItem />;
-    case "BackgroundRemove":
-      return <BackgroundRemoverItem onClose={handleCloseTool}/>
-    case "PDFEditor":
-      return <PdfEdit onClose={handleCloseTool} />;
-    case "ResumeAnalyzer":
-      return <ResumeAnalyzing onClose={handleCloseTool} />;
-    case "CodeComplexityAnalyzer":
-      return <UnderDevelopmentPage /> 
-    case "BulkImageWatermarker":
-      return <ImageMark onClose={handleCloseTool} />;
-    default:
-      return <p>Select a tool to get started.</p>;
-  }
-};
-
+    switch (activeTool) {
+      case "ImageResizing":
+        return <ImageRezised />; //working but onClose={handleCloseTool}
+      case "ColorConverter":
+        return <ColorConv />; //working but onClose={handleCloseTool} is not
+      case "ImageCompressor":
+        return <ImageCompressItem />; //// working but onClose={handleCloseTool} is not
+      case "CropTool":
+        return <CropToolItem />;
+      case "ColorPicker":
+        return <ColorPickerItem />; ////Not working
+      case "WordCounter":
+        return <WordCounterItem />; //working but onClose={handleCloseTool} is not
+      case "CurrencyConverter":
+        return <CurrencyConvert onClose={handleCloseTool} />; //working but No item
+      case "JsonFormatter":
+        return <JsonFormatter />; // working
+      case "UUIDGenerator":
+        return <UuidGeneratorItem />;
+      case "Base64EncoderDecoder":
+        return <EncoderItem />;
+      case "BackgroundRemove":
+        return <BackgroundRemoverItem onClose={handleCloseTool} />;
+      case "PDFEditor":
+        return <PdfEdit onClose={handleCloseTool} />;
+      case "ResumeAnalyzer":
+        return <ResumeAnalyzing onClose={handleCloseTool} />;
+      case "CodeComplexityAnalyzer":
+        return <UnderDevelopmentPage />;
+      case "BulkImageWatermarker":
+        return <ImageMark onClose={handleCloseTool} />;
+      default:
+        return <p>Select a tool to get started.</p>;
+    }
+  };
 
   //Calculator
   // Update the handleLaunchTool function
@@ -303,7 +302,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Bmi":
         return <Bmi onClose={handleCloseCalculator} />;
       case "OhmslawCalculator":
-        return <UnderDevelopmentPage/>
+        return <UnderDevelopmentPage />;
 
       default:
         return null;
@@ -328,11 +327,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const isUserStaff = userDetails.userType === "Staff";
   const isUserRole = userDetails.role === "Superadmin";
   const userType = userDetails.userType;
-  const orgType = userDetails.organisationalType?.toLowerCase() as "school" | "business" | "ngo" | undefined;
+  const orgType = userDetails.organisationalType?.toLowerCase() as
+    | "school"
+    | "business"
+    | "ngo"
+    | undefined;
 
   const organizationType: "school" | "business" | "ngo" = "school";
 
-  const orgSpecificItems: Record<"school" | "business" | "ngo", { label: string; icon: any }[]> = {
+  const orgSpecificItems: Record<
+    "school" | "business" | "ngo",
+    { label: string; icon: any }[]
+  > = {
     school: [
       { label: "Classroom", icon: FaChalkboard },
       // { label: "Students", icon: FaUsers },
@@ -371,7 +377,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     // },
     {
       label: "Personal Details",
-      icon: FaUser
+      icon: FaUser,
     },
     ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
       ? orgSpecificItems[orgType]
@@ -385,13 +391,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-        { label: "Tasks", icon: FaTasks },
-        { label: "Payslips", icon: FaFileInvoiceDollar },
-        { label: "Onboarding", icon: FaUserPlus },
-        { label: "Training", icon: FaChalkboardTeacher },
-        { label: "Progressions", icon: FaChartLine },
-        { label: "Resource", icon: FaBookOpen },
-      ]
+          { label: "Tasks", icon: FaTasks },
+          { label: "Payslips", icon: FaFileInvoiceDollar },
+          { label: "Onboarding", icon: FaUserPlus },
+          { label: "Training", icon: FaChalkboardTeacher },
+          { label: "Progressions", icon: FaChartLine },
+          { label: "Resource", icon: FaBookOpen },
+        ]
       : []),
   ];
 
@@ -455,13 +461,79 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   const renderContent = () => {
     if (!selectedMenu) {
-      return (
-        <>
-          <Section title="Welcome to your D'roid One Account">
-            <WelcomePage />
-          </Section>
-        </>
-      );
+      switch (userType) {
+        case "Staff":
+          return (
+            <>
+              <Section title="Staff Dashboard">
+                <StaffUserHomePage />
+              </Section>
+            </>
+          );
+        case "Organisation":
+          // Check organization type and render appropriate home page
+          switch (orgType) {
+            case "school":
+              return (
+                <>
+                  <Section title="School Dashboard">
+                    <p> School Home page goes here</p>
+                    {/* <SchoolHomePage /> */}
+                  </Section>
+                </>
+              );
+            case "business":
+              return (
+                <>
+                  <Section title="Business Dashboard">
+                    <p> Business Home page goes here</p>
+                    {/* <BusinessHomePage /> */}
+                  </Section>
+                </>
+              );
+            case "ngo":
+              return (
+                <>
+                  <Section title="NGO Dashboard">
+                    <p> NGO Home page goes here</p>
+                  </Section>
+                </>
+              );
+            default:
+              return (
+                <>
+                  <Section title="Organization Dashboard">
+                    <p>Please configure your organization type in settings.</p>
+                  </Section>
+                </>
+              );
+          }
+        // case "Organisation":
+        //   return (
+        //     <>
+        //       <Section title="Organization Dashboard">
+        //         <p> Organization Home Page goes here </p>
+        //       </Section>
+        //     </>
+        //   );
+        case "Member":
+          return (
+            <>
+              <Section title="Member Dashboard">
+                <p> Member Home Page goes here </p>
+                {/* <MemberHomePage /> */}
+              </Section>
+            </>
+          );
+        default:
+          return (
+            <>
+              <Section title="Welcome to your D'roid One Account">
+                <WelcomePage />
+              </Section>
+            </>
+          );
+      }
     }
 
     switch (selectedMenu) {
@@ -472,7 +544,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           </Section>
         );
       case "Personal Details":
-
         return (
           <Section title="Personal Details">
             <PersonalDetails />
@@ -548,10 +619,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <p style={{ color: "#000000" }}>
               Manage and view your working schedules.
             </p>
-            
-            <div style={{ marginTop: "10px" }}>
-              <AdminScheduleTool/>
 
+            <div style={{ marginTop: "10px" }}>
+              <AdminScheduleTool />
             </div>
           </Section>
         );
@@ -626,37 +696,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               >
                 Perform calculations using our tools.
               </p>
-              {/* <select
-                onChange={(e) => {
-                  const selectedTitle = e.target.value;
-                  if (selectedTitle === "Scientific Calculator") {
-                    setSelectedMenuItem(null);
-                  } else {
-                    const foundItem = rightMenuItems.find(
-                      (item) => item.title === selectedTitle
-                    );
-                    setSelectedMenuItem(foundItem || null);
-                  }
-                }}
-                style={{
-                  padding: "8px 12px",
-                  borderRadius: "8px",
-                  border: "1px solid #ccc",
-                  fontSize: "14px",
-                  backgroundColor: "#fff",
-                  minWidth: "200px",
-                  cursor: "pointer",
-                }}
-              >
-                <option value="Scientific Calculator">
-                  Scientific Calculator
-                </option>
-                {calculateItems.map((item) => (
-                  <option key={item.title} value={item.title}>
-                    {item.title}
-                  </option>
-                ))}
-              </select> */}
             </div>
             {activeCalculator ? (
               // Render the active tool component
@@ -713,7 +752,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Classroom":
         return (
           <Section title="Your Class Room">
-           
             <ClassRoom />
           </Section>
         );
@@ -733,8 +771,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Your Services">
             {/* <Finance /> */}
-           <ServicesItems/>
-
+            <ServicesItems />
           </Section>
         );
       case "Careers":
@@ -749,66 +786,66 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <Finance />
           </Section>
         );
-        case "Volunteers":
-          return (
-            <Section title="Your Volunteers">
-              <VolunteersSection/>
-            </Section>
+      case "Volunteers":
+        return (
+          <Section title="Your Volunteers">
+            <VolunteersSection />
+          </Section>
         );
-        case "Donations":
-          return (
-            <Section title="Your Donations">
-              <DonationsSection/>
-            </Section>
+      case "Donations":
+        return (
+          <Section title="Your Donations">
+            <DonationsSection />
+          </Section>
         );
-        case "Outreach":
-          return (
-            <Section title="Your Outreach">
-              <OutreachSection/>
-            </Section>
+      case "Outreach":
+        return (
+          <Section title="Your Outreach">
+            <OutreachSection />
+          </Section>
         );
-        case "Impact":
-          return (
-            <Section title="Your Impact">
-              <ImpactSection/>
-            </Section>
+      case "Impact":
+        return (
+          <Section title="Your Impact">
+            <ImpactSection />
+          </Section>
         );
-        case "Partners":
-          return (
-            <Section title="Your Partners">
-              <PartnersSection/>
-            </Section>
+      case "Partners":
+        return (
+          <Section title="Your Partners">
+            <PartnersSection />
+          </Section>
         );
-        case "Groups":
-          return (
-            <Section title="Your Groups">
-              <GroupsSection/>
-            </Section>
-          );
-        case "Departments":
-          return (
-            <Section title="Your Departments">
-              <DepartmentsSection/>
-            </Section>
-          );
-        case "Clients":
-          return (
-            <Section title="Your Clients">
-              <ClientsSection/>
-            </Section>
+      case "Groups":
+        return (
+          <Section title="Your Groups">
+            <GroupsSection />
+          </Section>
         );
-        case "Projects":
-          return (
-            <Section title="Your Projects">
-              <ProjectsSection/>
-            </Section>
+      case "Departments":
+        return (
+          <Section title="Your Departments">
+            <DepartmentsSection />
+          </Section>
         );
-        case "Reports":
-          return (
-            <Section title="Your Reports">
-              <ReportsSection/>
-            </Section>
-          );
+      case "Clients":
+        return (
+          <Section title="Your Clients">
+            <ClientsSection />
+          </Section>
+        );
+      case "Projects":
+        return (
+          <Section title="Your Projects">
+            <ProjectsSection />
+          </Section>
+        );
+      case "Reports":
+        return (
+          <Section title="Your Reports">
+            <ReportsSection />
+          </Section>
+        );
       default:
         return (
           <Section title="Dashboard">
@@ -821,8 +858,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
-          }`}
+        className={`${styles.sidebar} ${
+          isSidebarOpen ? styles.sidebarOpen : ""
+        }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -842,8 +880,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
-                }`}
+              className={`${styles.navItem} ${
+                selectedMenu === item.label ? styles.navItemActive : ""
+              }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}
