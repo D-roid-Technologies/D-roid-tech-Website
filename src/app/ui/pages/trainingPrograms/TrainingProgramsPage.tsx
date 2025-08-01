@@ -71,15 +71,24 @@ const programs = [
       "Scholarships and group discounts may be available.",
     ],
     learn: [
-      "Digital Skills: Basic computing, Microsoft Office, web design, social media marketing",
-      "Creative Skills: Graphic design, photography, video editing",
-      "Technical Skills: Electrical repairs, plumbing, auto mechanics",
-      "Artisan Skills: Tailoring, baking, soap making, beadwork",
-      "Entrepreneurship: Branding, pricing, marketing, business setup basics",
+      "Structure and style web pages using HTML & CSS",
+      "Write interactive web logic with modern JavaScript",
+      "Build single-page applications with React",
+      "Create responsive layouts for desktop and mobile",
+      "Use APIs to fetch and display dynamic data",
+      "Follow best practices in code organization and accessibility",
+      "Version control with Git and deploy your work online",
+      "Debug and optimize performance in the browser",
+      "Collaborate using design tools and developer handoff methods",
     ],
     trainer: [
       "Ekendilichukwu Okoli",
-      { label: "Visit Ekene's Website", href: "www.ekenedilichukwu.com" },
+      {
+        label: "Visit Ekene's Website",
+        href: "https://www.ekenedilichukwu.com",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
     ],
   },
   {
@@ -141,21 +150,19 @@ const programs = [
       "Scholarships and group discounts may be available.",
     ],
     learn: [
-      "Structure and style web pages using HTML & CSS",
-      "Write interactive web logic with modern JavaScript",
-      "Build single-page applications with React",
-      "Create responsive layouts for desktop and mobile",
-      "Use APIs to fetch and display dynamic data",
-      "Follow best practices in code organization and accessibility",
-      "Version control with Git and deploy your work online",
-      "Debug and optimize performance in the browser",
-      "Collaborate using design tools and developer handoff methods",
+      "Digital Skills: Basic computing, Microsoft Office, web design, social media marketing",
+      "Creative Skills: Graphic design, photography, video editing",
+      "Technical Skills: Electrical repairs, plumbing, auto mechanics",
+      "Artisan Skills: Tailoring, baking, soap making, beadwork",
+      "Entrepreneurship: Branding, pricing, marketing, business setup basics",
     ],
     trainer: [
       "Ekendilichukwu Okoli",
       {
         label: "Visit Ekene's Website",
         href: "https://www.ekenedilichukwu.com",
+        target: "_blank",
+        rel: "noopener noreferrer",
       },
     ],
   },
@@ -192,6 +199,7 @@ const TrainingProgramsPage: React.FC = () => {
             <div
               key={index}
               onClick={() => navigate("/training/description", { state: prog })}
+              style={{ cursor: "pointer" }}
             >
               <CoreValueCardTwo
                 title={prog.title}
