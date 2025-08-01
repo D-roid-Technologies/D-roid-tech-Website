@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: number;
   title: string;
@@ -11,9 +10,10 @@ export interface BlogPost {
   image: string;
   featured?: boolean;
   readMoreLink: string;
+  content?: string[];
 }
 
-const generateSlug = (title: string) => {
+export const generateSlug = (title: string) => {
   return title
     .toLowerCase()
     .replace(/[^\w\s]/gi, "")
@@ -166,7 +166,7 @@ export const businessPosts: BlogPost[] = [
 export const eventsPosts: BlogPost[] = [
   {
     id: 9,
-    title: "Code Verse Tech Confrence",
+    title: "Code Verse Tech Conference",
     excerpt:
       "Highlights and key takeaways from this year's premier developer event.",
     date: "June 15, 2023",
@@ -175,12 +175,15 @@ export const eventsPosts: BlogPost[] = [
     category: "Events",
     readTime: "6 min read",
     image:
-      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
     featured: true,
-    readMoreLink: generateBlogLink(
-      "events",
-      "Annual Developer Conference 2023 Recap"
-    ),
+    readMoreLink: generateBlogLink("events", "Code Verse Tech Conference"),
+    content: [
+      "The Code Verse Tech Conference brought together developers, engineers, and innovators from across the globe to explore the latest advancements in technology.",
+      "Keynote sessions covered AI in modern development, emerging web standards, and cloud-native architecture trends.",
+      "Attendees participated in hands-on workshops, networking sessions, and panel discussions that explored the future of open-source collaboration.",
+      "The event ended with an inspiring closing speech encouraging developers to embrace creativity and continuous learning.",
+    ],
   },
   {
     id: 10,
@@ -193,47 +196,57 @@ export const eventsPosts: BlogPost[] = [
     category: "Events",
     readTime: "5 min read",
     image:
-      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    readMoreLink: generateBlogLink(
-      "events",
-      "Upcoming Web Development Workshops"
-    ),
+      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
+    readMoreLink: generateBlogLink("events", "Front-End Engineering Training"),
+    content: [
+      "This intensive training program focuses on the latest front-end development technologies and best practices.",
+      "Participants will work on real-world projects using React, TypeScript, and modern CSS techniques.",
+      "Our expert trainers will provide mentorship, feedback, and career guidance to help you become job-ready.",
+      "By the end of the training, you'll have built and deployed your own responsive, production-ready web application.",
+    ],
   },
   {
     id: 11,
     title: "Clash of Kings - Chess Tournament",
     excerpt:
-      "Don't miss these hands-on learning opportunities happening next month.",
+      "An exciting chess tournament featuring some of the region's top players.",
     date: "May 30, 2023",
     author: "Community Team",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
     readTime: "5 min read",
     image:
-      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    readMoreLink: generateBlogLink(
-      "events",
-      "Upcoming Web Development Workshops"
-    ),
+      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
+    readMoreLink: generateBlogLink("events", "Clash of Kings Chess Tournament"),
+    content: [
+      "The Clash of Kings Chess Tournament brought together some of the most talented chess players in the region.",
+      "Matches were intense, with each move carefully calculated to outwit the opponent.",
+      "The tournament encouraged strategic thinking, patience, and focus among participants of all ages.",
+      "Winners received trophies, cash prizes, and recognition within the competitive chess community.",
+    ],
   },
   {
     id: 12,
     title: "Rapid Training Conference",
     excerpt:
-      "Don't miss these hands-on learning opportunities happening next month.",
+      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
     date: "May 30, 2023",
     author: "Community Team",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
     readTime: "5 min read",
     image:
-      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    readMoreLink: generateBlogLink(
-      "events",
-      "Upcoming Web Development Workshops"
-    ),
+      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
+    readMoreLink: generateBlogLink("events", "Rapid Training Conference"),
+    content: [
+      "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
+      "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
+      "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
+      "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
+    ],
   },
 ];
+
 
 // All posts combined
 export const allPosts: BlogPost[] = [
