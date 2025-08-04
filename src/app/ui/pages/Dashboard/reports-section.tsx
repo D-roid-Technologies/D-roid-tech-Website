@@ -283,68 +283,108 @@ export const ReportsSection: React.FC = () => {
       </div>
 
       {/* Recent Reports */}
-      <div className={componentStyles.card}>
-        <div className={componentStyles.cardHeader}>
-          <h2 className={componentStyles.cardTitle}>Recent Reports</h2>
-          <div className={componentStyles.inputGroup}>
-            <select className={componentStyles.select} style={{ minWidth: "150px" }}>
-              <option value="">All Types</option>
-              {reportTypeOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+     <div className={componentStyles.cardContent}>
+  <div className={componentStyles.responsiveTableContainer}>
+    {/* Desktop Table View */}
+    <div className={componentStyles.desktopTable}>
+      <table className={componentStyles.table}>
+        <thead className={componentStyles.tableHeader}>
+          <tr>
+            <th className={componentStyles.tableHeaderCell}>Report</th>
+            <th className={componentStyles.tableHeaderCell}>Type</th>
+            <th className={componentStyles.tableHeaderCell}>Period</th>
+            <th className={componentStyles.tableHeaderCell}>Generated</th>
+            <th className={componentStyles.tableHeaderCell}>Status</th>
+            <th className={componentStyles.tableHeaderCell}>Size</th>
+            <th className={componentStyles.tableHeaderCell}>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reportsData.map((report) => (
+            <tr key={report.id} className={componentStyles.tableRow}>
+              <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  {getTypeIcon(report.type)}
+                  {report.name}
+                </div>
+              </td>
+              <td className={componentStyles.tableCell}>
+                <span className={`${componentStyles.badge} ${componentStyles.badgeOutline}`}>{report.type}</span>
+              </td>
+              <td className={componentStyles.tableCell}>{report.period}</td>
+              <td className={componentStyles.tableCell}>{report.generatedDate}</td>
+              <td className={componentStyles.tableCell}>
+                <span className={`${componentStyles.badge} ${getStatusColor(report.status)}`}>{report.status}</span>
+              </td>
+              <td className={componentStyles.tableCell}>{report.size}</td>
+              <td className={componentStyles.tableCell}>
+                {report.status === "Generated" && (
+                  <button
+                    className={componentStyles.actionButton}
+                    onClick={() => handleDownloadReport(report.name)}
+                    title="Download report"
+                  >
+                    <Download size={16} />
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Mobile Card View */}
+    <div className={componentStyles.mobileCards}>
+      {reportsData.map((report) => (
+        <div key={report.id} className={componentStyles.departmentCard}>
+          <div className={componentStyles.cardHeader}>
+            <div className={componentStyles.cardTitleSection}>
+              <h3 className={componentStyles.cardTitle}>{report.name}</h3>
+              <span className={`${componentStyles.badge} ${getStatusColor(report.status)}`}>{report.status}</span>
+            </div>
+            <div className={componentStyles.cardActions}>
+              {report.status === "Generated" && (
+                <button
+                  className={componentStyles.actionButton}
+                  onClick={() => handleDownloadReport(report.name)}
+                  title="Download report"
+                >
+                  <Download size={16} />
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className={componentStyles.cardBody}>
+            <div className={componentStyles.cardRow}>
+              <div className={componentStyles.cardField}>
+                <span className={componentStyles.fieldLabel}>Type</span>
+                <span className={componentStyles.fieldValue}>{report.type}</span>
+              </div>
+              <div className={componentStyles.cardField}>
+                <span className={componentStyles.fieldLabel}>Period</span>
+                <span className={componentStyles.fieldValue}>{report.period}</span>
+              </div>
+            </div>
+
+            <div className={componentStyles.cardRow}>
+              <div className={componentStyles.cardField}>
+                <span className={componentStyles.fieldLabel}>Generated</span>
+                <span className={componentStyles.fieldValue}>{report.generatedDate}</span>
+              </div>
+              <div className={componentStyles.cardField}>
+                <span className={componentStyles.fieldLabel}>Size</span>
+                <span className={componentStyles.fieldValue}>{report.size}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className={componentStyles.cardContent}>
-          <table className={componentStyles.table}>
-            <thead className={componentStyles.tableHeader}>
-              <tr>
-                <th className={componentStyles.tableHeaderCell}>Report</th>
-                <th className={componentStyles.tableHeaderCell}>Type</th>
-                <th className={componentStyles.tableHeaderCell}>Period</th>
-                <th className={componentStyles.tableHeaderCell}>Generated</th>
-                <th className={componentStyles.tableHeaderCell}>Status</th>
-                <th className={componentStyles.tableHeaderCell}>Size</th>
-                <th className={componentStyles.tableHeaderCell}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reportsData.map((report) => (
-                <tr key={report.id} className={componentStyles.tableRow}>
-                  <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                      {getTypeIcon(report.type)}
-                      {report.name}
-                    </div>
-                  </td>
-                  <td className={componentStyles.tableCell}>
-                    <span className={`${componentStyles.badge} ${componentStyles.badgeOutline}`}>{report.type}</span>
-                  </td>
-                  <td className={componentStyles.tableCell}>{report.period}</td>
-                  <td className={componentStyles.tableCell}>{report.generatedDate}</td>
-                  <td className={componentStyles.tableCell}>
-                    <span className={`${componentStyles.badge} ${getStatusColor(report.status)}`}>{report.status}</span>
-                  </td>
-                  <td className={componentStyles.tableCell}>{report.size}</td>
-                  <td className={componentStyles.tableCell}>
-                    {report.status === "Generated" && (
-                      <button
-                        className={componentStyles.actionButton}
-                        onClick={() => handleDownloadReport(report.name)}
-                        title="Download report"
-                      >
-                        <Download size={16} />
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* Analytics Summary */}
       <div className={styles.contentGrid}>
