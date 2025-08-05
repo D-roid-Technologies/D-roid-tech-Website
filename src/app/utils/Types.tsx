@@ -6,6 +6,49 @@ export type DimensionType = {
   width: number;
   height: number;
 };
+// export type UserType = {
+//   firstName: string;
+//   lastName: string;
+//   middleName: string;
+//   initials: string;
+//   userType: string;
+//   uniqueId: string;
+//   email: string;
+//   phone: string;
+//   agreeToPolicy: boolean;
+//   isLoggedIn: boolean;
+//   gender: string;
+//   dateOfBirth: string;
+//   disability: boolean;
+//   disabilityType: string;
+//   photoUrl: string;
+//   educationalLevel: string;
+//   referralName: string;
+//   secondaryEmail: string;
+//   securityQuestion: string;
+//   securityAnswer: string;
+//   verifiedEmail: boolean;
+//   verifyPhoneNumber: boolean;
+//   agreedToTerms: boolean;
+//   twoFactorSettings: boolean;
+//   password: string;
+//   role?: string; // ✅ Added this field
+//   streetNumber: string;
+//   streetName: string;
+//   city: string;
+//   state: string;
+//   country: string;
+//   organisationalType: string;
+//   isCompanyRegistered: string;
+//   dateOfRegistration: string;
+//   skills: string[];
+//   certifications: string[];
+//   accessLevel: string;
+//   permissions: string[];
+//   notificationPreferences: {
+//     email: boolean;
+//   };
+// };
 export type UserType = {
   firstName: string;
   lastName: string;
@@ -32,17 +75,37 @@ export type UserType = {
   agreedToTerms: boolean;
   twoFactorSettings: boolean;
   password: string;
-  role?: string; // ✅ Added this field
-  streetNumber: string,
-  streetName: string,
-  city: string,
-  state: string,
-  country: string,
-  organisationalType: string,
-  isCompanyRegistered: string,
-  dateOfRegistration: string
-};
+  role?: string;
+  streetNumber: string;
+  streetName: string;
+  city: string;
+  state: string;
+  country: string;
+  organisationalType: string;
+  isCompanyRegistered: string;
+  dateOfRegistration: string;
+  skills: string[];
+  certifications: string[];
+  accessLevel: string;
+  permissions: string[];
+  notificationPreferences: {
+    email: boolean;
+  };
 
+  // Essential fields for Staff Homepage
+  position?: string;
+  department?: string;
+  employeeId?: string;
+  joinDate?: string;
+
+  // Optional performance metrics
+  performanceScore?: number;
+  attendanceRate?: number;
+  trainingProgress?: number;
+  activeTasks?: number;
+  employmentStatus?: string;
+  workLocation?: string;
+};
 
 export type ContactType = {
   userFullName: string;
@@ -240,7 +303,7 @@ export type LocationState = {
   postcode: string;
   principalSubdivision: string;
   principalSubdivisionCode: string;
-}
+};
 
 export type ToolProps = {
   onClose?: () => void;
@@ -291,9 +354,16 @@ export type Task = {
   id: string;
   title: string;
   description: string;
-  type?: 'task' | 'event' | 'appointment' | 'reminder' | 'habit' | 'note';
-  status: 'pending' | 'in_progress' | 'completed' | 'cancelled' | 'archived' | 'on_hold' | 'reopened';
-  priority: 'low' | 'medium' | 'high' | 'urgent' | 'critical';
+  type?: "task" | "event" | "appointment" | "reminder" | "habit" | "note";
+  status:
+    | "pending"
+    | "in_progress"
+    | "completed"
+    | "cancelled"
+    | "archived"
+    | "on_hold"
+    | "reopened";
+  priority: "low" | "medium" | "high" | "urgent" | "critical";
   category?: string; // e.g., 'work', 'personal', 'health', 'study', 'finance', etc.
   groupId?: string; // formerly 'projectId', can be a project, list, or team
   boardColumn?: string; // e.g., 'To Do', 'Doing', 'Done'
@@ -316,7 +386,7 @@ export type Task = {
   completedAt?: string;
   reminderAt?: string;
   recurring?: boolean;
-  recurrencePattern?: 'daily' | 'weekly' | 'monthly' | 'custom';
+  recurrencePattern?: "daily" | "weekly" | "monthly" | "custom";
   customRecurrenceRule?: string; // iCal RRULE string
   location?: {
     address?: string;
@@ -344,4 +414,3 @@ export type TechStackItem = {
   title: string;
   description: string;
 };
-
