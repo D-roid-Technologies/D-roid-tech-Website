@@ -349,7 +349,8 @@
 }
 
 .modal-content {
-  background: var(--white);
+   background-color: #f8f9fa;
+  color: #333;
   border-radius: 12px;
   max-width: 600px;
   width: 100%;
@@ -359,8 +360,8 @@
 }
 
 .modal-header {
-  background: var(--primary-blue);
-  color: var(--white);
+  background-color: #f8f9fa;
+  color: #333;
   padding: 1.5rem;
   display: flex;
   align-items: center;
@@ -380,6 +381,7 @@
   cursor: pointer;
   padding: 0.25rem;
   border-radius: 4px;
+  color: #333 !important;
   transition: background-color 0.2s ease;
 }
 
@@ -405,7 +407,7 @@
 .section-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary-blue);
+  color: #333 !important;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
