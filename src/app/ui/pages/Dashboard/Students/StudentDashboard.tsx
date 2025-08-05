@@ -28,6 +28,7 @@ import {
 import { usePagination } from "../../../../utils/hooks/usePagination";
 import "./studentDashboard.css";
 import Pagination from "../../../components/Pagination/Pagination";
+import componentStyles from "../components.module.css";
 
 const StudentDashboard: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -300,213 +301,167 @@ const StudentDashboard: React.FC = () => {
         </div>
       </div>
 
-      <div className="all_students_dashboard-content">
-        {/* Summary Cards */}
-        <div className="all_students_summary-cards">
-          <div className="all_students_summary-card">
-            <div className="all_students_card-header">
-              <h3 className="all_students_card-title">Total Active Students</h3>
-              <FaUsers className="all_students_card-icon" />
-            </div>
-            <div className="all_students_card-value">{totalActiveStudents}</div>
-            <p className="all_students_card-description">
-              Currently enrolled students
-            </p>
-          </div>
-          <div className="all_students_summary-card">
-            <div className="all_students_card-header">
-              <h3 className="all_students_card-title">Total Classes</h3>
-              <FaChartBar className="all_students_card-icon" />
-            </div>
-            <div className="all_students_card-value">
-              {Object.keys(classSummary).length}
-            </div>
-            <p className="all_students_card-description">Active class groups</p>
-          </div>
-          <div className="all_students_summary-card">
-            <div className="all_students_card-header">
-              <h3 className="all_students_card-title">Transferred Students</h3>
-              <FaUserGraduate className="card-icon" />
-            </div>
-            <div className="all_students_card-value">
-              {enrollmentSummary.Transferred || 0}
-            </div>
-            <p className="all_students_card-description">
-              Students who transferred
-            </p>
-          </div>
-          <div className="all_students_summary-card">
-            <div className="all_students_card-header">
-              <h3 className="all_students_card-title">Class Summary</h3>
-              <FaGraduationCap className="card-icon" />
-            </div>
-            <div className="all_students_card-description">
-              {Object.entries(classSummary).map(([className, count]) => (
-                <div key={className} style={{ marginBottom: "0.25rem" }}>
-                  <strong>{className}:</strong> {count} students
-                </div>
+     <div className={componentStyles.card}>
+  <div className={componentStyles.cardHeader}>
+    <h3 className={componentStyles.cardTitle}>
+      <FaUsers />
+      &nbsp;Students List ({filteredStudents.length} students)
+    </h3>
+  </div>
+
+  <div className={componentStyles.cardContent}>
+    {paginatedStudents.length > 0 ? (
+      <div className={componentStyles.responsiveTableContainer}>
+        {/* Desktop Table View */}
+        <div className={componentStyles.desktopTable}>
+          <table className={componentStyles.table}>
+            <thead className={componentStyles.tableHeader}>
+              <tr>
+                <th className={componentStyles.tableHeaderCell}>Student Info</th>
+                <th className={componentStyles.tableHeaderCell}>Class</th>
+                <th className={componentStyles.tableHeaderCell}>Gender</th>
+                <th className={componentStyles.tableHeaderCell}>Age</th>
+                <th className={componentStyles.tableHeaderCell}>Guardian</th>
+                <th className={componentStyles.tableHeaderCell}>Contact</th>
+                <th className={componentStyles.tableHeaderCell}>Status</th>
+                <th className={componentStyles.tableHeaderCell}>Actions</th>
+              </tr>
+            </thead>
+            <tbody className={componentStyles.tableBody}>
+              {paginatedStudents.map((student) => (
+                <tr key={student.id} className={componentStyles.tableRow}>
+                  <td className={componentStyles.tableCell}>
+                    <div className={componentStyles.tableCellBold}>{student.fullName}</div>
+                    <div className={componentStyles.fieldSubtext}>{student.studentId}</div>
+                  </td>
+                  <td className={componentStyles.tableCell}>{student.className}</td>
+                  <td className={componentStyles.tableCell}>
+                    <span className={getGenderBadgeClass(student.gender)}>{student.gender}</span>
+                  </td>
+                  <td className={componentStyles.tableCell}>
+                    {calculateAge(student.dateOfBirth)} years
+                  </td>
+                  <td className={componentStyles.tableCell}>{student.guardianName}</td>
+                  <td className={componentStyles.tableCell}>
+                    <div className={componentStyles.fieldValue}>{student.contactInfo.phone}</div>
+                    <div className={componentStyles.fieldSubtext}>{student.contactInfo.email}</div>
+                  </td>
+                  <td className={componentStyles.tableCell}>
+                    <span className={getStatusBadgeClass(student.enrollmentStatus)}>
+                      {student.enrollmentStatus}
+                    </span>
+                  </td>
+                  <td className={componentStyles.tableCell}>
+                    <div className={componentStyles.tableActions}>
+                      <button
+                        className={componentStyles.actionButton}
+                        onClick={() => setSelectedStudent(student)}
+                        title="View Details"
+                      >
+                        <FaEye />
+                      </button>
+                      <button className={componentStyles.actionButton} title="Edit Student">
+                        <FaEdit />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
               ))}
-            </div>
-          </div>
+            </tbody>
+          </table>
         </div>
 
-        {/* Controls Section */}
-        <div className="all_students_controls-section">
-          <div className="all_students_controls-header">
-            <FaFilter />
-            <h3 className="all_students_controls-title">
-              Search & Filter Students
-            </h3>
-          </div>
-          <div className="filters-container">
-            <div className="filter-group">
-              <label className="filter-label">Class</label>
-              <select
-                className="filter-select"
-                value={classFilter}
-                onChange={(e) => setClassFilter(e.target.value)}
-              >
-                <option value="">All Classes</option>
-                {uniqueClasses.map((className) => (
-                  <option key={className} value={className}>
-                    {className}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="filter-group">
-              <label className="filter-label">Gender</label>
-              <select
-                className="filter-select"
-                value={genderFilter}
-                onChange={(e) => setGenderFilter(e.target.value)}
-              >
-                <option value="">All Genders</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
-            <div className="filter-group">
-              <label className="filter-label">Status</label>
-              <select
-                className="filter-select"
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-              >
-                <option value="">All Statuses</option>
-                {uniqueStatuses.map((status) => (
-                  <option key={status} value={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="search-container">
-              <FaSearch className="search-icon" />
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search by name, student ID, or guardian name..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
+        {/* Mobile Card View */}
+        <div className={componentStyles.mobileCards}>
+          {paginatedStudents.map((student) => (
+            <div key={student.id} className={componentStyles.departmentCard}>
+              <div className={componentStyles.cardHeader}>
+                <div className={componentStyles.cardTitleSection}>
+                  <h3 className={componentStyles.cardTitle}>{student.fullName}</h3>
+                  <span className={getStatusBadgeClass(student.enrollmentStatus)}>
+                    {student.enrollmentStatus}
+                  </span>
+                </div>
+                <div className={componentStyles.cardActions}>
+                  <button
+                    className={componentStyles.actionButton}
+                    onClick={() => setSelectedStudent(student)}
+                    title="View Details"
+                  >
+                    <FaEye />
+                  </button>
+                  <button className={componentStyles.actionButton} title="Edit Student">
+                    <FaEdit />
+                  </button>
+                </div>
+              </div>
 
-        {/* Students Table */}
-        <div className="table-container">
-          <div className="table-header">
-            <h3 className="table-title">
-              <FaUsers />
-              Students List ({filteredStudents.length} students)
-            </h3>
-          </div>
-          {paginatedStudents.length > 0 ? (
-            <div>
-              <table className="students-table">
-                <thead className="table-head">
-                  <tr>
-                    <th>Student Info</th>
-                    <th>Class</th>
-                    <th>Gender</th>
-                    <th>Age</th>
-                    <th>Guardian</th>
-                    <th>Contact</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="table-body">
-                  {paginatedStudents.map((student) => (
-                    <tr key={student.id}>
-                      <td>
-                        <div>
-                          <div className="student-name">{student.fullName}</div>
-                          <div className="student-id">{student.studentId}</div>
-                        </div>
-                      </td>
-                      <td>{student.className}</td>
-                      <td>
-                        <span className={getGenderBadgeClass(student.gender)}>
-                          {student.gender}
-                        </span>
-                      </td>
-                      <td>{calculateAge(student.dateOfBirth)} years</td>
-                      <td>{student.guardianName}</td>
-                      <td>
-                        <div style={{ fontSize: "0.8rem" }}>
-                          <div>{student.contactInfo.phone}</div>
-                          <div style={{ color: "var(--text-gray)" }}>
-                            {student.contactInfo.email}
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span
-                          className={getStatusBadgeClass(
-                            student.enrollmentStatus
-                          )}
-                        >
-                          {student.enrollmentStatus}
-                        </span>
-                      </td>
-                      <td>
-                        <div className="action-buttons">
-                          <button
-                            className="action-btn view-btn"
-                            onClick={() => setSelectedStudent(student)}
-                            title="View Details"
-                          >
-                            <FaEye />
-                          </button>
-                          <button
-                            className="action-btn edit-btn"
-                            title="Edit Student"
-                          >
-                            <FaEdit />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
+              <div className={componentStyles.cardBody}>
+                <div className={componentStyles.cardRow}>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Student ID</span>
+                    <span className={componentStyles.fieldValue}>{student.studentId}</span>
+                  </div>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Class</span>
+                    <span className={componentStyles.fieldValue}>{student.className}</span>
+                  </div>
+                </div>
+
+                <div className={componentStyles.cardRow}>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Gender</span>
+                    <span className={componentStyles.fieldValue}>{student.gender}</span>
+                  </div>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Age</span>
+                    <span className={componentStyles.fieldValue}>
+                      {calculateAge(student.dateOfBirth)} years
+                    </span>
+                  </div>
+                </div>
+
+                <div className={componentStyles.cardRow}>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Guardian</span>
+                    <span className={componentStyles.fieldValue}>{student.guardianName}</span>
+                  </div>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Phone</span>
+                    <span className={componentStyles.fieldValue}>{student.contactInfo.phone}</span>
+                  </div>
+                </div>
+
+                <div className={componentStyles.cardRow}>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Email</span>
+                    <span className={componentStyles.fieldSubtext}>{student.contactInfo.email}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          ) : (
-            <div className="no-students">
-              <FaUsers className="no-students-icon" />
-              <h3>No students found</h3>
-              <p>Try adjusting your search criteria or filters</p>
-            </div>
-          )}
+          ))}
         </div>
       </div>
+    ) : (
+      <div className={componentStyles.emptyState}>
+        <FaUsers className={componentStyles.emptyStateIcon} />
+        <h3 className={componentStyles.emptyStateTitle}>No students found</h3>
+        <p className={componentStyles.emptyStateDescription}>
+          Try adjusting your search criteria or filters
+        </p>
+      </div>
+    )}
+  </div>
+
+  {/* Pagination below table/cards */}
+  <Pagination
+    currentPage={currentPage}
+    totalPages={totalPages}
+    onPageChange={setCurrentPage}
+  />
+</div>
+
 
       {/* Student Details Modal */}
       {selectedStudent && (

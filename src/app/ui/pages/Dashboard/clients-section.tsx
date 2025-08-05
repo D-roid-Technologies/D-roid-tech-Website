@@ -341,51 +341,88 @@ export const ClientsSection: React.FC = () => {
               }
             />
           ) : (
-            <table className={componentStyles.table}>
-              <thead className={componentStyles.tableHeader}>
-                <tr>
-                  <th className={componentStyles.tableHeaderCell}>Client</th>
-                  <th className={componentStyles.tableHeaderCell}>Contact</th>
-                  <th className={componentStyles.tableHeaderCell}>Industry</th>
-                  <th className={componentStyles.tableHeaderCell}>Status</th>
-                  <th className={componentStyles.tableHeaderCell}>Contract Value</th>
-                  <th className={componentStyles.tableHeaderCell}>Account Manager</th>
-                  <th className={componentStyles.tableHeaderCell}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div className={componentStyles.responsiveTableContainer}>
+              {/* Desktop Table View */}
+              <div className={componentStyles.desktopTable}>
+                <table className={componentStyles.table}>
+                  <thead className={componentStyles.tableHeader}>
+                    <tr>
+                      <th className={componentStyles.tableHeaderCell}>Client</th>
+                      <th className={componentStyles.tableHeaderCell}>Contact</th>
+                      <th className={componentStyles.tableHeaderCell}>Industry</th>
+                      <th className={componentStyles.tableHeaderCell}>Status</th>
+                      <th className={componentStyles.tableHeaderCell}>Contract Value</th>
+                      <th className={componentStyles.tableHeaderCell}>Account Manager</th>
+                      <th className={componentStyles.tableHeaderCell}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredClients.map((client) => (
+                      <tr key={client.id} className={componentStyles.tableRow}>
+                        <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
+                          <div>
+                            <div>{client.name}</div>
+                            <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{client.company}</div>
+                          </div>
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          <div>
+                            <div className={componentStyles.iconButton}>
+                              <Mail size={12} />
+                              {client.email}
+                            </div>
+                            <div className={componentStyles.iconButton}>
+                              <Phone size={12} />
+                              {client.phone}
+                            </div>
+                          </div>
+                        </td>
+                        <td className={componentStyles.tableCell}>{client.industry}</td>
+                        <td className={componentStyles.tableCell}>
+                          <span className={`${componentStyles.badge} ${getStatusColor(client.status)}`}>
+                            {client.status}
+                          </span>
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          {client.contractValue > 0 ? `$${client.contractValue.toLocaleString()}` : "—"}
+                        </td>
+                        <td className={componentStyles.tableCell}>{client.accountManager}</td>
+                        <td className={componentStyles.tableCell}>
+                          <div className={componentStyles.tableActions}>
+                            <button
+                              className={componentStyles.actionButton}
+                              onClick={() => openModal(client)}
+                              title="Edit client"
+                            >
+                              <Edit size={16} />
+                            </button>
+                            <button
+                              className={`${componentStyles.actionButton} ${componentStyles.actionButtonDanger}`}
+                              onClick={() => handleDelete(client.id)}
+                              title="Delete client"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className={componentStyles.mobileCards}>
                 {filteredClients.map((client) => (
-                  <tr key={client.id} className={componentStyles.tableRow}>
-                    <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
-                      <div>
-                        <div>{client.name}</div>
-                        <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{client.company}</div>
+                  <div key={client.id} className={componentStyles.departmentCard}>
+                    <div className={componentStyles.cardHeader}>
+                      <div className={componentStyles.cardTitleSection}>
+                        <h3 className={componentStyles.cardTitle}>{client.name}</h3>
+                        <span className={`${componentStyles.badge} ${getStatusColor(client.status)}`}>
+                          {client.status}
+                        </span>
                       </div>
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      <div>
-                        <div className={componentStyles.iconButton}>
-                          <Mail size={12} />
-                          {client.email}
-                        </div>
-                        <div className={componentStyles.iconButton}>
-                          <Phone size={12} />
-                          {client.phone}
-                        </div>
-                      </div>
-                    </td>
-                    <td className={componentStyles.tableCell}>{client.industry}</td>
-                    <td className={componentStyles.tableCell}>
-                      <span className={`${componentStyles.badge} ${getStatusColor(client.status)}`}>
-                        {client.status}
-                      </span>
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      {client.contractValue > 0 ? `$${client.contractValue.toLocaleString()}` : "—"}
-                    </td>
-                    <td className={componentStyles.tableCell}>{client.accountManager}</td>
-                    <td className={componentStyles.tableCell}>
-                      <div className={componentStyles.tableActions}>
+                      <div className={componentStyles.cardActions}>
                         <button
                           className={componentStyles.actionButton}
                           onClick={() => openModal(client)}
@@ -401,11 +438,56 @@ export const ClientsSection: React.FC = () => {
                           <Trash2 size={16} />
                         </button>
                       </div>
-                    </td>
-                  </tr>
+                    </div>
+
+                    <div className={componentStyles.cardBody}>
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Company</span>
+                          <span className={componentStyles.fieldValue}>{client.company}</span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Contact</span>
+                          <div className={componentStyles.fieldValue}>
+                            <div className={componentStyles.iconButton}>
+                              <Mail size={12} />
+                              {client.email}
+                            </div>
+                            <div className={componentStyles.iconButton}>
+                              <Phone size={12} />
+                              {client.phone}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Industry</span>
+                          <span className={componentStyles.fieldValue}>{client.industry}</span>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Contract Value</span>
+                          <span className={componentStyles.fieldValue}>
+                            {client.contractValue > 0 ? `$${client.contractValue.toLocaleString()}` : "—"}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Account Manager</span>
+                          <span className={componentStyles.fieldValue}>{client.accountManager}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -27,39 +27,43 @@ const groupsData = [
 
 export const GroupsSection: React.FC = () => {
   return (
+   <div>
+  <div className={styles.sectionHeader}>
     <div>
-      <div className={styles.sectionHeader}>
-        <div>
-          <h1 className={styles.sectionTitle}>Groups</h1>
-          <p className={styles.sectionDescription}>Manage teams and working groups</p>
-        </div>
-        <button className={`${componentStyles.button} ${componentStyles.buttonPrimary}`}>
-          <Plus size={16} />
-          Create Group
+      <h1 className={styles.sectionTitle}>Groups</h1>
+      <p className={styles.sectionDescription}>Manage teams and working groups</p>
+    </div>
+    <button className={`${componentStyles.button} ${componentStyles.buttonPrimary}`}>
+      <Plus size={16} />
+      Create Group
+    </button>
+  </div>
+
+  <div className={styles.statsGrid}>
+    <StatCard title="Active Groups" value="12" change="Across all departments" icon={UserCheck} />
+    <StatCard title="Total Members" value="89" change="Active participants" icon={Users} />
+    <StatCard title="Avg. Group Size" value="7.4" change="Members per group" icon={Target} />
+    <StatCard title="Engagement Rate" value="85%" change="Meeting attendance" icon={TrendingUp} />
+  </div>
+
+  <div className={componentStyles.card}>
+    <div className={componentStyles.cardHeader}>
+      <h2 className={componentStyles.cardTitle}>Groups Overview</h2>
+      <div className={componentStyles.inputGroup}>
+        <input className={componentStyles.input} placeholder="Search groups..." />
+        <button
+          className={`${componentStyles.button} ${componentStyles.buttonSecondary} ${componentStyles.buttonSmall}`}
+        >
+          <Filter size={14} />
+          Filter
         </button>
       </div>
+    </div>
 
-      <div className={styles.statsGrid}>
-        <StatCard title="Active Groups" value="12" change="Across all departments" icon={UserCheck} />
-        <StatCard title="Total Members" value="89" change="Active participants" icon={Users} />
-        <StatCard title="Avg. Group Size" value="7.4" change="Members per group" icon={Target} />
-        <StatCard title="Engagement Rate" value="85%" change="Meeting attendance" icon={TrendingUp} />
-      </div>
-
-      <div className={componentStyles.card}>
-        <div className={componentStyles.cardHeader}>
-          <h2 className={componentStyles.cardTitle}>Groups Overview</h2>
-          <div className={componentStyles.inputGroup}>
-            <input className={componentStyles.input} placeholder="Search groups..." />
-            <button
-              className={`${componentStyles.button} ${componentStyles.buttonSecondary} ${componentStyles.buttonSmall}`}
-            >
-              <Filter size={14} />
-              Filter
-            </button>
-          </div>
-        </div>
-        <div className={componentStyles.cardContent}>
+    <div className={componentStyles.cardContent}>
+      <div className={componentStyles.responsiveTableContainer}>
+        {/* Desktop Table View */}
+        <div className={componentStyles.desktopTable}>
           <table className={componentStyles.table}>
             <thead className={componentStyles.tableHeader}>
               <tr>
@@ -90,7 +94,50 @@ export const GroupsSection: React.FC = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Mobile Card View */}
+        <div className={componentStyles.mobileCards}>
+          {groupsData.map((group) => (
+            <div key={group.id} className={componentStyles.departmentCard}>
+              <div className={componentStyles.cardHeader}>
+                <div className={componentStyles.cardTitleSection}>
+                  <h3 className={componentStyles.cardTitle}>{group.name}</h3>
+                  <span className={`${componentStyles.badge} ${componentStyles.badgeDefault}`}>{group.status}</span>
+                </div>
+              </div>
+
+              <div className={componentStyles.cardBody}>
+                <div className={componentStyles.cardRow}>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Members</span>
+                    <div className={componentStyles.fieldValue}>
+                      <div className={componentStyles.iconButton}>
+                        <Users size={12} />
+                        {group.members}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Lead</span>
+                    <span className={componentStyles.fieldValue}>{group.lead}</span>
+                  </div>
+                </div>
+
+                <div className={componentStyles.cardRow}>
+                  <div className={componentStyles.cardField}>
+                    <span className={componentStyles.fieldLabel}>Focus Area</span>
+                    <span className={componentStyles.fieldValue}>{group.focus}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
   )
 }

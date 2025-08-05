@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import { Plus, Users, Clock, UserCheck, Award, Edit, Trash2 } from "lucide-react"
 import { StatCard } from "./micro-ui/stat-card"
@@ -7,7 +9,7 @@ import { useState, useMemo } from "react"
 import { ConfirmationDialog } from "./micro-ui/confirmation-dialog"
 import { EmptyState } from "./micro-ui/empty-state"
 import { Modal } from "./micro-ui/modal"
-import { ValidationRules, emailPattern, validateForm } from "./validation/validation"
+import { type ValidationRules, emailPattern, validateForm } from "./validation/validation"
 import { SearchFilter } from "./micro-ui/search-filter"
 import toast from "react-hot-toast"
 
@@ -122,9 +124,7 @@ export const VolunteersSection: React.FC = () => {
         volunteer.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         volunteer.email.toLowerCase().includes(searchValue.toLowerCase()) ||
         volunteer.skills.toLowerCase().includes(searchValue.toLowerCase())
-
       const matchesFilter = !filterValue || volunteer.status === filterValue
-
       return matchesSearch && matchesFilter
     })
   }, [volunteers, searchValue, filterValue])
@@ -134,7 +134,6 @@ export const VolunteersSection: React.FC = () => {
     const totalHours = volunteers.reduce((sum, v) => sum + v.hours, 0)
     const pendingApplications = volunteers.filter((v) => v.status === "Pending").length
     const retentionRate = Math.round((activeVolunteers / volunteers.length) * 100) || 0
-
     return {
       activeVolunteers: activeVolunteers.toString(),
       totalHours: totalHours.toString(),
@@ -187,14 +186,11 @@ export const VolunteersSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
     const errors = validateForm(formData, validationRules)
-
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors)
       return
     }
-
     const volunteerData: Volunteer = {
       id: editingVolunteer?.id || Date.now(),
       name: formData.name,
@@ -206,15 +202,17 @@ export const VolunteersSection: React.FC = () => {
       hours: editingVolunteer?.hours || 0,
       joinDate: editingVolunteer?.joinDate || new Date().toISOString().split("T")[0],
     }
-
     if (editingVolunteer) {
       setVolunteers((prev) => prev.map((v) => (v.id === editingVolunteer.id ? volunteerData : v)))
-      toast.success("The volunteer information has been successfully updated.", { style: { background: '#4BB543', color: '#fff' } })
+      toast.success("The volunteer information has been successfully updated.", {
+        style: { background: "#4BB543", color: "#fff" },
+      })
     } else {
       setVolunteers((prev) => [...prev, volunteerData])
-      toast.success("The volunteer has been successfully registered.", { style: { background: '#4BB543', color: '#fff' } })
+      toast.success("The volunteer has been successfully registered.", {
+        style: { background: "#4BB543", color: "#fff" },
+      })
     }
-
     closeModal()
   }
 
@@ -226,8 +224,21 @@ export const VolunteersSection: React.FC = () => {
   const confirmDelete = () => {
     if (volunteerToDelete) {
       setVolunteers((prev) => prev.filter((v) => v.id !== volunteerToDelete))
-      toast.success("The volunteer has been successfully removed.", { style: { background: '#4BB543', color: '#fff' } })
+      toast.success("The volunteer has been successfully removed.", { style: { background: "#4BB543", color: "#fff" } })
       setVolunteerToDelete(null)
+    }
+  }
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Active":
+        return componentStyles.badgeSuccess
+      case "Pending":
+        return componentStyles.badgeWarning
+      case "Inactive":
+        return componentStyles.badgeSecondary
+      default:
+        return componentStyles.badgeSecondary
     }
   }
 
@@ -275,43 +286,72 @@ export const VolunteersSection: React.FC = () => {
               }
             />
           ) : (
-            <table className={componentStyles.table}>
-              <thead className={componentStyles.tableHeader}>
-                <tr>
-                  <th className={componentStyles.tableHeaderCell}>Name</th>
-                  <th className={componentStyles.tableHeaderCell}>Email</th>
-                  <th className={componentStyles.tableHeaderCell}>Phone</th>
-                  <th className={componentStyles.tableHeaderCell}>Skills</th>
-                  <th className={componentStyles.tableHeaderCell}>Hours</th>
-                  <th className={componentStyles.tableHeaderCell}>Status</th>
-                  <th className={componentStyles.tableHeaderCell}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div className={componentStyles.responsiveTableContainer}>
+              {/* Desktop Table View */}
+              <div className={componentStyles.desktopTable}>
+                <table className={componentStyles.table}>
+                  <thead className={componentStyles.tableHeader}>
+                    <tr>
+                      <th className={componentStyles.tableHeaderCell}>Name</th>
+                      <th className={componentStyles.tableHeaderCell}>Email</th>
+                      <th className={componentStyles.tableHeaderCell}>Phone</th>
+                      <th className={componentStyles.tableHeaderCell}>Skills</th>
+                      <th className={componentStyles.tableHeaderCell}>Hours</th>
+                      <th className={componentStyles.tableHeaderCell}>Status</th>
+                      <th className={componentStyles.tableHeaderCell}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredVolunteers.map((volunteer) => (
+                      <tr key={volunteer.id} className={componentStyles.tableRow}>
+                        <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
+                          {volunteer.name}
+                        </td>
+                        <td className={componentStyles.tableCell}>{volunteer.email}</td>
+                        <td className={componentStyles.tableCell}>{volunteer.phone}</td>
+                        <td className={componentStyles.tableCell}>{volunteer.skills}</td>
+                        <td className={componentStyles.tableCell}>{volunteer.hours}h</td>
+                        <td className={componentStyles.tableCell}>
+                          <span className={`${componentStyles.badge} ${getStatusColor(volunteer.status)}`}>
+                            {volunteer.status}
+                          </span>
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          <div className={componentStyles.tableActions}>
+                            <button
+                              className={componentStyles.actionButton}
+                              onClick={() => openModal(volunteer)}
+                              title="Edit volunteer"
+                            >
+                              <Edit size={16} />
+                            </button>
+                            <button
+                              className={`${componentStyles.actionButton} ${componentStyles.actionButtonDanger}`}
+                              onClick={() => handleDelete(volunteer.id)}
+                              title="Delete volunteer"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className={componentStyles.mobileCards}>
                 {filteredVolunteers.map((volunteer) => (
-                  <tr key={volunteer.id} className={componentStyles.tableRow}>
-                    <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
-                      {volunteer.name}
-                    </td>
-                    <td className={componentStyles.tableCell}>{volunteer.email}</td>
-                    <td className={componentStyles.tableCell}>{volunteer.phone}</td>
-                    <td className={componentStyles.tableCell}>{volunteer.skills}</td>
-                    <td className={componentStyles.tableCell}>{volunteer.hours}h</td>
-                    <td className={componentStyles.tableCell}>
-                      <span
-                        className={`${componentStyles.badge} ${
-                          volunteer.status === "Active"
-                            ? componentStyles.badgeSuccess
-                            : volunteer.status === "Pending"
-                              ? componentStyles.badgeWarning
-                              : componentStyles.badgeSecondary
-                        }`}
-                      >
-                        {volunteer.status}
-                      </span>
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      <div className={componentStyles.tableActions}>
+                  <div key={volunteer.id} className={componentStyles.departmentCard}>
+                    <div className={componentStyles.cardHeader}>
+                      <div className={componentStyles.cardTitleSection}>
+                        <h3 className={componentStyles.cardTitle}>{volunteer.name}</h3>
+                        <span className={`${componentStyles.badge} ${getStatusColor(volunteer.status)}`}>
+                          {volunteer.status}
+                        </span>
+                      </div>
+                      <div className={componentStyles.cardActions}>
                         <button
                           className={componentStyles.actionButton}
                           onClick={() => openModal(volunteer)}
@@ -327,11 +367,42 @@ export const VolunteersSection: React.FC = () => {
                           <Trash2 size={16} />
                         </button>
                       </div>
-                    </td>
-                  </tr>
+                    </div>
+
+                    <div className={componentStyles.cardBody}>
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Email</span>
+                          <span className={componentStyles.fieldValue}>{volunteer.email}</span>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Phone</span>
+                          <span className={componentStyles.fieldValue}>{volunteer.phone}</span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Skills</span>
+                          <span className={componentStyles.fieldValue}>{volunteer.skills}</span>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Hours</span>
+                          <span className={componentStyles.fieldValue}>{volunteer.hours}h</span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Availability</span>
+                          <span className={componentStyles.fieldValue}>{volunteer.availability}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           )}
         </div>
       </div>
@@ -449,4 +520,3 @@ export const VolunteersSection: React.FC = () => {
     </div>
   )
 }
-
