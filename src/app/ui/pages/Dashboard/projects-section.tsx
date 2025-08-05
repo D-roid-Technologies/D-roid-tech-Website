@@ -29,8 +29,8 @@ interface Project {
   department: string
 }
 
-type ProjectStatus = "Planning" | "In Progress" | "On Hold" | "Completed" | "Cancelled";
-type ProjectPriority = "Low" | "Medium" | "High" | "Critical";
+type ProjectStatus = "Planning" | "In Progress" | "On Hold" | "Completed" | "Cancelled"
+type ProjectPriority = "Low" | "Medium" | "High" | "Critical"
 
 const initialProjects: Project[] = [
   {
@@ -371,51 +371,88 @@ export const ProjectsSection: React.FC = () => {
               }
             />
           ) : (
-            <table className={componentStyles.table}>
-              <thead className={componentStyles.tableHeader}>
-                <tr>
-                  <th className={componentStyles.tableHeaderCell}>Project</th>
-                  <th className={componentStyles.tableHeaderCell}>Manager</th>
-                  <th className={componentStyles.tableHeaderCell}>Client</th>
-                  <th className={componentStyles.tableHeaderCell}>Status</th>
-                  <th className={componentStyles.tableHeaderCell}>Priority</th>
-                  <th className={componentStyles.tableHeaderCell}>Progress</th>
-                  <th className={componentStyles.tableHeaderCell}>Budget</th>
-                  <th className={componentStyles.tableHeaderCell}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div className={componentStyles.responsiveTableContainer}>
+              {/* Desktop Table View */}
+              <div className={componentStyles.desktopTable}>
+                <table className={componentStyles.table}>
+                  <thead className={componentStyles.tableHeader}>
+                    <tr>
+                      <th className={componentStyles.tableHeaderCell}>Project</th>
+                      <th className={componentStyles.tableHeaderCell}>Manager</th>
+                      <th className={componentStyles.tableHeaderCell}>Client</th>
+                      <th className={componentStyles.tableHeaderCell}>Status</th>
+                      <th className={componentStyles.tableHeaderCell}>Priority</th>
+                      <th className={componentStyles.tableHeaderCell}>Progress</th>
+                      <th className={componentStyles.tableHeaderCell}>Budget</th>
+                      <th className={componentStyles.tableHeaderCell}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredProjects.map((project) => (
+                      <tr key={project.id} className={componentStyles.tableRow}>
+                        <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
+                          <div>
+                            <div>{project.name}</div>
+                            <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{project.department}</div>
+                          </div>
+                        </td>
+                        <td className={componentStyles.tableCell}>{project.manager}</td>
+                        <td className={componentStyles.tableCell}>{project.client}</td>
+                        <td className={componentStyles.tableCell}>
+                          <span className={`${componentStyles.badge} ${getStatusColor(project.status)}`}>
+                            {project.status}
+                          </span>
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          <span className={`${componentStyles.badge} ${getPriorityColor(project.priority)}`}>
+                            {project.priority}
+                          </span>
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                            <div className={componentStyles.progress} style={{ width: "60px" }}>
+                              <div className={componentStyles.progressBar} style={{ width: `${project.progress}%` }} />
+                            </div>
+                            <span style={{ fontSize: "0.75rem" }}>{project.progress}%</span>
+                          </div>
+                        </td>
+                        <td className={componentStyles.tableCell}>${project.budget.toLocaleString()}</td>
+                        <td className={componentStyles.tableCell}>
+                          <div className={componentStyles.tableActions}>
+                            <button
+                              className={componentStyles.actionButton}
+                              onClick={() => openModal(project)}
+                              title="Edit project"
+                            >
+                              <Edit size={16} />
+                            </button>
+                            <button
+                              className={`${componentStyles.actionButton} ${componentStyles.actionButtonDanger}`}
+                              onClick={() => handleDelete(project.id)}
+                              title="Delete project"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className={componentStyles.mobileCards}>
                 {filteredProjects.map((project) => (
-                  <tr key={project.id} className={componentStyles.tableRow}>
-                    <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
-                      <div>
-                        <div>{project.name}</div>
-                        <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{project.department}</div>
+                  <div key={project.id} className={componentStyles.departmentCard}>
+                    <div className={componentStyles.cardHeader}>
+                      <div className={componentStyles.cardTitleSection}>
+                        <h3 className={componentStyles.cardTitle}>{project.name}</h3>
+                        <span className={`${componentStyles.badge} ${getStatusColor(project.status)}`}>
+                          {project.status}
+                        </span>
                       </div>
-                    </td>
-                    <td className={componentStyles.tableCell}>{project.manager}</td>
-                    <td className={componentStyles.tableCell}>{project.client}</td>
-                    <td className={componentStyles.tableCell}>
-                      <span className={`${componentStyles.badge} ${getStatusColor(project.status)}`}>
-                        {project.status}
-                      </span>
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      <span className={`${componentStyles.badge} ${getPriorityColor(project.priority)}`}>
-                        {project.priority}
-                      </span>
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <div className={componentStyles.progress} style={{ width: "60px" }}>
-                          <div className={componentStyles.progressBar} style={{ width: `${project.progress}%` }} />
-                        </div>
-                        <span style={{ fontSize: "0.75rem" }}>{project.progress}%</span>
-                      </div>
-                    </td>
-                    <td className={componentStyles.tableCell}>${project.budget.toLocaleString()}</td>
-                    <td className={componentStyles.tableCell}>
-                      <div className={componentStyles.tableActions}>
+                      <div className={componentStyles.cardActions}>
                         <button
                           className={componentStyles.actionButton}
                           onClick={() => openModal(project)}
@@ -431,11 +468,53 @@ export const ProjectsSection: React.FC = () => {
                           <Trash2 size={16} />
                         </button>
                       </div>
-                    </td>
-                  </tr>
+                    </div>
+
+                    <div className={componentStyles.cardBody}>
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Department</span>
+                          <span className={componentStyles.fieldValue}>{project.department}</span>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Priority</span>
+                          <span className={`${componentStyles.badge} ${getPriorityColor(project.priority)}`}>
+                            {project.priority}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Manager</span>
+                          <span className={componentStyles.fieldValue}>{project.manager}</span>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Client</span>
+                          <span className={componentStyles.fieldValue}>{project.client}</span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Progress</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
+                            <div className={componentStyles.progress} style={{ flexGrow: 1 }}>
+                              <div className={componentStyles.progressBar} style={{ width: `${project.progress}%` }} />
+                            </div>
+                            <span style={{ fontSize: "0.75rem" }}>{project.progress}%</span>
+                          </div>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Budget</span>
+                          <span className={componentStyles.fieldValue}>${project.budget.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           )}
         </div>
       </div>
