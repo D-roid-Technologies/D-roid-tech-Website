@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { RootState, store } from "../../../redux/Store";
 import { addLocation } from "../../../redux/slices/Location";
 import { useSelector } from "react-redux";
-import { LocationState } from "../../../utils/Types";
+import { LocationState, UserType } from "../../../utils/Types";
 import { authService } from "../../../redux/configuration/auth.service";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
@@ -63,7 +63,11 @@ const SignUp: React.FunctionComponent = () => {
   const userLocation: LocationState = useSelector(
     (state: RootState) => state.location
   );
-  const [formData, setFormData] = useState<FormData>({
+  // const [formData, setFormData] = useState<FormData>({
+
+  const [formData, setFormData] = useState<
+    UserType & { confirmPassword: string }
+  >({
     firstName: "",
     lastName: "",
     middleName: "",
@@ -96,6 +100,16 @@ const SignUp: React.FunctionComponent = () => {
     city: "",
     state: "",
     country: "",
+    // new
+    // confirmPassword: "", // Add this extra field for form validation
+    skills: [],
+    certifications: [],
+    accessLevel: "",
+    permissions: [],
+    notificationPreferences: { email: true },
+    organisationalType: "",
+    isCompanyRegistered: "",
+    dateOfRegistration: "",
   });
 
   const SERVICE_ID = "service_o1jbklr";
@@ -255,12 +269,15 @@ const SignUp: React.FunctionComponent = () => {
       uniqueId: generatedId,
       organisationalType: "",
       isCompanyRegistered: "",
-      dateOfRegistration: ""
+      dateOfRegistration: "",
     };
 
     setText("Creating your D'roid Account...");
 
-    const startCountdown = (seconds: number, onTick: (value: number) => void): Promise<void> => {
+    const startCountdown = (
+      seconds: number,
+      onTick: (value: number) => void
+    ): Promise<void> => {
       return new Promise((resolve) => {
         let count = seconds;
         const interval = setInterval(() => {
@@ -274,42 +291,44 @@ const SignUp: React.FunctionComponent = () => {
       });
     };
 
-    await authService.handleUserRegistration(updatedFormData, userLocation).then(async () => {
-      await startCountdown(5, (value) => {
-        setText(`User Created. Redirecting in ${value}s...`);
-      }).then(() => {
-        // Optional: only navigate if developer explicitly uncomments this
-        navigate(RoutePaths.DashBoard);
+    await authService
+      .handleUserRegistration(updatedFormData, userLocation)
+      .then(async () => {
+        await startCountdown(5, (value) => {
+          setText(`User Created. Redirecting in ${value}s...`);
+        }).then(() => {
+          // Optional: only navigate if developer explicitly uncomments this
+          navigate(RoutePaths.DashBoard);
 
+          const templateParams = {
+            name: `${updatedFormData.firstName} ${updatedFormData.lastName}`,
+            title: `Welcome to D'roid Technologies Ltd...`,
+            email: updatedFormData.email,
+          };
 
-        const templateParams = {
-          name: `${updatedFormData.firstName} ${updatedFormData.lastName}`,
-          title: `Welcome to D'roid Technologies Ltd...`,
-          email: updatedFormData.email,
-        };
-
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
-          () => {
-            toast.success("Email successfully sent!", {
-              style: { background: "#4BB543", color: "#fff" },
-            });
-          },
-          () => {
-            toast.error("Error sending email 🚫", {
-              style: { background: "#ff4d4f", color: "#fff" },
-            });
-          }
-        );
+          emailjs
+            .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+            .then(
+              () => {
+                toast.success("Email successfully sent!", {
+                  style: { background: "#4BB543", color: "#fff" },
+                });
+              },
+              () => {
+                toast.error("Error sending email 🚫", {
+                  style: { background: "#ff4d4f", color: "#fff" },
+                });
+              }
+            );
+        });
       })
-    }).catch(() => {
-      setText("Sign Up");
-      toast.error("User registration failed.", {
-        style: { background: "#ff4d4f", color: "#fff" },
+      .catch(() => {
+        setText("Sign Up");
+        toast.error("User registration failed.", {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
       });
-    })
   };
-
-
 
   return (
     <div

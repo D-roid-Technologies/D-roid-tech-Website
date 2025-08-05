@@ -24,6 +24,9 @@ import {
 } from "react-icons/fa";
 import "./StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
+import { useSelector } from "react-redux";
+import { UserType } from "../../../../utils/Types";
+import { RootState } from "../../../../redux/Store";
 
 // Mock StatCard component since it already exists in the project
 // const StatCard = ({ title, value, change, icon: Icon, onClick }) => (
@@ -119,16 +122,17 @@ const RecentActivityItem = ({
 );
 
 const StaffUserHomePage = () => {
+  const userDetails: UserType = useSelector((state: RootState) => state.user);
   const [currentTime] = useState(new Date());
 
   // Mock data - in real app, this would come from API/Redux
-  const staffData = {
-    name: "John Doe",
-    position: "Senior Developer",
-    department: "Engineering",
-    employeeId: "EMP001",
-    joinDate: "Jan 2023",
-  };
+  // const staffData = {
+  //   name: "John Doe",
+  //   position: "Senior Developer",
+  //   department: "Engineering",
+  //   employeeId: "EMP001",
+  //   joinDate: "Jan 2023",
+  // };
 
   const dashboardStats = [
     {
@@ -269,10 +273,10 @@ const StaffUserHomePage = () => {
                 : currentTime.getHours() < 18
                 ? "Afternoon"
                 : "Evening"}
-              , {staffData.name}!
+              {/* , {staffData.name}! */}, {userDetails.firstName}!
             </h1>
             <p className="shp-welcome-subtitle">
-              {staffData.position} • {staffData.department}
+              {userDetails.position} • {userDetails.department}
             </p>
           </div>
           <div className="shp-time-info">
@@ -374,19 +378,19 @@ const StaffUserHomePage = () => {
           <div className="shp-info-grid">
             <div className="shp-info-item">
               <span className="shp-info-label">Employee ID:</span>
-              <span className="shp-info-value">{staffData.employeeId}</span>
+              <span className="shp-info-value">{userDetails.employeeId}</span>
             </div>
             <div className="shp-info-item">
               <span className="shp-info-label">Department:</span>
-              <span className="shp-info-value">{staffData.department}</span>
+              <span className="shp-info-value">{userDetails.department}</span>
             </div>
             <div className="shp-info-item">
               <span className="shp-info-label">Position:</span>
-              <span className="shp-info-value">{staffData.position}</span>
+              <span className="shp-info-value">{userDetails.position}</span>
             </div>
             <div className="shp-info-item">
               <span className="shp-info-label">Join Date:</span>
-              <span className="shp-info-value">{staffData.joinDate}</span>
+              <span className="shp-info-value">{userDetails.joinDate}</span>
             </div>
           </div>
         </div>

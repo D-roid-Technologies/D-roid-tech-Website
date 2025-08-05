@@ -234,7 +234,7 @@ export const DepartmentsSection: React.FC = () => {
     }
   }
 
-  return (
+ return (
     <div>
       <div className={styles.sectionHeader}>
         <div>
@@ -288,48 +288,93 @@ export const DepartmentsSection: React.FC = () => {
               }
             />
           ) : (
-            <table className={componentStyles.table}>
-              <thead className={componentStyles.tableHeader}>
-                <tr>
-                  <th className={componentStyles.tableHeaderCell}>Department</th>
-                  <th className={componentStyles.tableHeaderCell}>Manager</th>
-                  <th className={componentStyles.tableHeaderCell}>Employees</th>
-                  <th className={componentStyles.tableHeaderCell}>Budget</th>
-                  <th className={componentStyles.tableHeaderCell}>Location</th>
-                  <th className={componentStyles.tableHeaderCell}>Status</th>
-                  <th className={componentStyles.tableHeaderCell}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div className={componentStyles.responsiveTableContainer}>
+              {/* Desktop Table View */}
+              <div className={componentStyles.desktopTable}>
+                <table className={componentStyles.table}>
+                  <thead className={componentStyles.tableHeader}>
+                    <tr>
+                      <th className={componentStyles.tableHeaderCell}>Department</th>
+                      <th className={componentStyles.tableHeaderCell}>Manager</th>
+                      <th className={componentStyles.tableHeaderCell}>Employees</th>
+                      <th className={componentStyles.tableHeaderCell}>Budget</th>
+                      <th className={componentStyles.tableHeaderCell}>Location</th>
+                      <th className={componentStyles.tableHeaderCell}>Status</th>
+                      <th className={componentStyles.tableHeaderCell}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredDepartments.map((department) => (
+                      <tr key={department.id} className={componentStyles.tableRow}>
+                        <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
+                          {department.name}
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          <div>
+                            <div>{department.manager}</div>
+                            <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{department.managerEmail}</div>
+                          </div>
+                        </td>
+                        <td className={componentStyles.tableCell}>{department.employees}</td>
+                        <td className={componentStyles.tableCell}>${department.budget.toLocaleString()}</td>
+                        <td className={componentStyles.tableCell}>{department.location}</td>
+                        <td className={componentStyles.tableCell}>
+                          <span
+                            className={`${componentStyles.badge} ${
+                              department.status === "Active"
+                                ? componentStyles.badgeSuccess
+                                : department.status === "Restructuring"
+                                  ? componentStyles.badgeWarning
+                                  : componentStyles.badgeSecondary
+                            }`}
+                          >
+                            {department.status}
+                          </span>
+                        </td>
+                        <td className={componentStyles.tableCell}>
+                          <div className={componentStyles.tableActions}>
+                            <button
+                              className={componentStyles.actionButton}
+                              onClick={() => openModal(department)}
+                              title="Edit department"
+                            >
+                              <Edit size={16} />
+                            </button>
+                            <button
+                              className={`${componentStyles.actionButton} ${componentStyles.actionButtonDanger}`}
+                              onClick={() => handleDelete(department.id)}
+                              title="Delete department"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className={componentStyles.mobileCards}>
                 {filteredDepartments.map((department) => (
-                  <tr key={department.id} className={componentStyles.tableRow}>
-                    <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
-                      {department.name}
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      <div>
-                        <div>{department.manager}</div>
-                        <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{department.managerEmail}</div>
+                  <div key={department.id} className={componentStyles.departmentCard}>
+                    <div className={componentStyles.cardHeader}>
+                      <div className={componentStyles.cardTitleSection}>
+                        <h3 className={componentStyles.cardTitle}>{department.name}</h3>
+                        <span
+                          className={`${componentStyles.badge} ${
+                            department.status === "Active"
+                              ? componentStyles.badgeSuccess
+                              : department.status === "Restructuring"
+                                ? componentStyles.badgeWarning
+                                : componentStyles.badgeSecondary
+                          }`}
+                        >
+                          {department.status}
+                        </span>
                       </div>
-                    </td>
-                    <td className={componentStyles.tableCell}>{department.employees}</td>
-                    <td className={componentStyles.tableCell}>${department.budget.toLocaleString()}</td>
-                    <td className={componentStyles.tableCell}>{department.location}</td>
-                    <td className={componentStyles.tableCell}>
-                      <span
-                        className={`${componentStyles.badge} ${
-                          department.status === "Active"
-                            ? componentStyles.badgeSuccess
-                            : department.status === "Restructuring"
-                              ? componentStyles.badgeWarning
-                              : componentStyles.badgeSecondary
-                        }`}
-                      >
-                        {department.status}
-                      </span>
-                    </td>
-                    <td className={componentStyles.tableCell}>
-                      <div className={componentStyles.tableActions}>
+                      <div className={componentStyles.cardActions}>
                         <button
                           className={componentStyles.actionButton}
                           onClick={() => openModal(department)}
@@ -345,11 +390,48 @@ export const DepartmentsSection: React.FC = () => {
                           <Trash2 size={16} />
                         </button>
                       </div>
-                    </td>
-                  </tr>
+                    </div>
+
+                    <div className={componentStyles.cardBody}>
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Manager</span>
+                          <div className={componentStyles.fieldValue}>
+                            <div>{department.manager}</div>
+                            <div className={componentStyles.fieldSubtext}>{department.managerEmail}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Employees</span>
+                          <span className={componentStyles.fieldValue}>{department.employees}</span>
+                        </div>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Budget</span>
+                          <span className={componentStyles.fieldValue}>${department.budget.toLocaleString()}</span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Location</span>
+                          <span className={componentStyles.fieldValue}>{department.location}</span>
+                        </div>
+                      </div>
+
+                      <div className={componentStyles.cardRow}>
+                        <div className={componentStyles.cardField}>
+                          <span className={componentStyles.fieldLabel}>Description</span>
+                          <span className={componentStyles.fieldValue}>{department.description}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           )}
         </div>
       </div>
@@ -483,6 +565,16 @@ export const DepartmentsSection: React.FC = () => {
         cancelText="Cancel"
         type="danger"
       />
+      {/* {showToast && (
+        <div className={`${componentStyles.toast} ${componentStyles.toastSuccess}`}>
+          <div className={componentStyles.toastContent}>
+            <p className={componentStyles.toastMessage}>{toastMessage}</p>
+          </div>
+          <button className={componentStyles.toastClose} onClick={() => setShowToast(false)}>
+            ×
+          </button>
+        </div>
+      )} */}
     </div>
   )
 }
