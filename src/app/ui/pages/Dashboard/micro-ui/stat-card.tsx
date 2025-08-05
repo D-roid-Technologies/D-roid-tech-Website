@@ -4,7 +4,7 @@ import componentStyles from "../components.module.css"
 interface StatCardProps {
   title: string
   value: string
-  change: string
+  change: React.ReactNode
   icon: React.ComponentType<any>
 }
 
