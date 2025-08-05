@@ -20,15 +20,16 @@
 
 .all_students_dashboard-container {
   min-height: 100vh;
-  background-color: var(--light-gray);
+  background-color: #f8f9fa;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .all_students_dashboard-header {
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--hover-blue) 100%);
-  color: var(--white);
+ background-color: #f8f9fa;
+  color: #333;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top:  1rem;
 }
 
 .header-content {
@@ -65,6 +66,8 @@
 
 .all_students_summary-card {
   background: var(--white);
+    color: #333;
+
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -87,7 +90,8 @@
 .all_students_card-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary-blue);
+    color: #333;
+
 }
 
 .all_students_card-icon {
@@ -103,7 +107,8 @@
 
 .all_students_card-description {
   font-size: 0.9rem;
-  color: var(--text-gray);
+    color: #333;
+
   margin-top: 0.5rem;
 }
 
