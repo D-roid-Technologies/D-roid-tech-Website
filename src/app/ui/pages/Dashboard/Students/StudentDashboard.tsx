@@ -27,8 +27,9 @@ import {
 } from "./schoolData";
 import { usePagination } from "../../../../utils/hooks/usePagination";
 import "./studentDashboard.css";
+import componentStyles from "../components.module.css"
 import Pagination from "../../../components/Pagination/Pagination";
-import componentStyles from "../components.module.css";
+import { StatCard } from "../micro-ui/stat-card";
 
 const StudentDashboard: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -301,7 +302,110 @@ const StudentDashboard: React.FC = () => {
         </div>
       </div>
 
-     <div className={componentStyles.card}>
+      <div className="all_students_dashboard-content">
+        {/* Summary Cards */}
+        <div className="all_students_summary-cards">
+  <StatCard
+    title="Total Active Students"
+    value={String(totalActiveStudents)}
+    change="Currently enrolled students"
+    icon={FaUsers}
+  />
+  <StatCard
+    title="Total Classes"
+    value={String(Object.keys(classSummary).length)}
+    change="Active class groups"
+    icon={FaChartBar}
+  />
+  <StatCard
+    title="Transferred Students"
+    value={String(enrollmentSummary.Transferred || 0)}
+    change="Students who transferred"
+    icon={FaUserGraduate}
+  />
+  <StatCard
+    title="Class Summary"
+    value="-"
+    change={
+      <>
+        {Object.entries(classSummary).map(([className, count]) => (
+          <div key={className} style={{ marginBottom: "0.25rem" }}>
+            <strong>{className}:</strong> {count} students
+          </div>
+        ))}
+      </>
+    }
+    icon={FaGraduationCap}
+  />
+</div>
+
+
+        {/* Controls Section */}
+        <div className="all_students_controls-section">
+          <div className="all_students_controls-header">
+            <FaFilter />
+            <h3 className="all_students_controls-title">
+              Search & Filter Students
+            </h3>
+          </div>
+          <div className="filters-container">
+            <div className="filter-group">
+              <label className="filter-label">Class</label>
+              <select
+                className="filter-select"
+                value={classFilter}
+                onChange={(e) => setClassFilter(e.target.value)}
+              >
+                <option value="">All Classes</option>
+                {uniqueClasses.map((className) => (
+                  <option key={className} value={className}>
+                    {className}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="filter-group">
+              <label className="filter-label">Gender</label>
+              <select
+                className="filter-select"
+                value={genderFilter}
+                onChange={(e) => setGenderFilter(e.target.value)}
+              >
+                <option value="">All Genders</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div className="filter-group">
+              <label className="filter-label">Status</label>
+              <select
+                className="filter-select"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+              >
+                <option value="">All Statuses</option>
+                {uniqueStatuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="search-container">
+              <FaSearch className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search by name, student ID, or guardian name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Students Table */}
+        <div className={componentStyles.card}>
   <div className={componentStyles.cardHeader}>
     <h3 className={componentStyles.cardTitle}>
       <FaUsers />
@@ -338,12 +442,10 @@ const StudentDashboard: React.FC = () => {
                   <td className={componentStyles.tableCell}>
                     <span className={getGenderBadgeClass(student.gender)}>{student.gender}</span>
                   </td>
-                  <td className={componentStyles.tableCell}>
-                    {calculateAge(student.dateOfBirth)} years
-                  </td>
+                  <td className={componentStyles.tableCell}>{calculateAge(student.dateOfBirth)} years</td>
                   <td className={componentStyles.tableCell}>{student.guardianName}</td>
                   <td className={componentStyles.tableCell}>
-                    <div className={componentStyles.fieldValue}>{student.contactInfo.phone}</div>
+                    <div>{student.contactInfo.phone}</div>
                     <div className={componentStyles.fieldSubtext}>{student.contactInfo.email}</div>
                   </td>
                   <td className={componentStyles.tableCell}>
@@ -399,7 +501,7 @@ const StudentDashboard: React.FC = () => {
               <div className={componentStyles.cardBody}>
                 <div className={componentStyles.cardRow}>
                   <div className={componentStyles.cardField}>
-                    <span className={componentStyles.fieldLabel}>Student ID</span>
+                    <span className={componentStyles.fieldLabel}>ID</span>
                     <span className={componentStyles.fieldValue}>{student.studentId}</span>
                   </div>
                   <div className={componentStyles.cardField}>
@@ -426,13 +528,13 @@ const StudentDashboard: React.FC = () => {
                     <span className={componentStyles.fieldLabel}>Guardian</span>
                     <span className={componentStyles.fieldValue}>{student.guardianName}</span>
                   </div>
+                </div>
+
+                <div className={componentStyles.cardRow}>
                   <div className={componentStyles.cardField}>
                     <span className={componentStyles.fieldLabel}>Phone</span>
                     <span className={componentStyles.fieldValue}>{student.contactInfo.phone}</span>
                   </div>
-                </div>
-
-                <div className={componentStyles.cardRow}>
                   <div className={componentStyles.cardField}>
                     <span className={componentStyles.fieldLabel}>Email</span>
                     <span className={componentStyles.fieldSubtext}>{student.contactInfo.email}</span>
@@ -454,7 +556,6 @@ const StudentDashboard: React.FC = () => {
     )}
   </div>
 
-  {/* Pagination below table/cards */}
   <Pagination
     currentPage={currentPage}
     totalPages={totalPages}
@@ -462,6 +563,8 @@ const StudentDashboard: React.FC = () => {
   />
 </div>
 
+      
+      </div>
 
       {/* Student Details Modal */}
       {selectedStudent && (

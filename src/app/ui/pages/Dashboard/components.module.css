@@ -68,7 +68,8 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #071d6a;
+   color: #333;;
+   border-color: #f8f9fa;
 }
 
 .cardDescription {
