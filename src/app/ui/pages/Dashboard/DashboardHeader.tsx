@@ -21,7 +21,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ toggleSidebar }) => {
         <button className="mobile-menu-button" onClick={toggleSidebar}>
           <IoMdMenu size={24} />
         </button>
-        <h2 className="header-title">D'roid One Dashboard</h2>
+        <h2 className="header-title">D'roid One </h2>
         <div className="header-user-info">
           <span className="location-info">{location.principalSubdivision}</span>
           <div className="user-avatar">{userDetails.initials}</div>
