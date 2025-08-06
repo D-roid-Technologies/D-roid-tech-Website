@@ -121,18 +121,9 @@ const RecentActivityItem = ({
   </div>
 );
 
-const StaffUserHomePage = () => {
+const StaffUserHomePage: React.FC = () => {
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const [currentTime] = useState(new Date());
-
-  // Mock data - in real app, this would come from API/Redux
-  // const staffData = {
-  //   name: "John Doe",
-  //   position: "Senior Developer",
-  //   department: "Engineering",
-  //   employeeId: "EMP001",
-  //   joinDate: "Jan 2023",
-  // };
 
   const dashboardStats = [
     {
@@ -267,12 +258,12 @@ const StaffUserHomePage = () => {
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              Good{" "}
-              {currentTime.getHours() < 12
+              Your Dashboard
+              {/* {currentTime.getHours() < 12
                 ? "Morning"
                 : currentTime.getHours() < 18
                 ? "Afternoon"
-                : "Evening"}
+                : "Evening"} */}
               {/* , {staffData.name}! */}, {userDetails.firstName}!
             </h1>
             <p className="shp-welcome-subtitle">
@@ -288,7 +279,7 @@ const StaffUserHomePage = () => {
 
       {/* Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Actions</h2>
+        <h2 className="shp-section-title">Quick Links</h2>
         <div className="shp-quick-actions-grid">
           {quickActions.map((action, index) => (
             <QuickActionCard
@@ -305,7 +296,7 @@ const StaffUserHomePage = () => {
 
       {/* Dashboard Stats */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Your Dashboard</h2>
+        <h2 className="shp-section-title">Quick Views</h2>
         <div className="shp-stats-grid">
           {dashboardStats.map((stat, index) => (
             <StatCard
@@ -372,7 +363,7 @@ const StaffUserHomePage = () => {
       </div>
 
       {/* Staff Info Summary */}
-      <div className="shp-section">
+      {/* <div className="shp-section">
         <div className="shp-staff-info-card">
           <h3 className="shp-info-title">Staff Information</h3>
           <div className="shp-info-grid">
@@ -394,7 +385,7 @@ const StaffUserHomePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

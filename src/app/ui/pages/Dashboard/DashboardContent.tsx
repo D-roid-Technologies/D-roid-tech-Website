@@ -193,6 +193,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   setIsSidebarOpen,
 }) => {
   const navigate = useNavigate();
+  const [currentTime] = useState(new Date());
 
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
@@ -864,7 +865,14 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       >
         <div className={styles.userInfo}>
           <h3>
-            Hello, {userDetails.firstName} {userDetails.lastName}
+            Good{" "}
+            {currentTime.getHours() < 12
+              ? "Morning"
+              : currentTime.getHours() < 18
+              ? "Afternoon"
+              : "Evening"}
+            , {userDetails.firstName}
+            {/* Hello, {userDetails.firstName} {userDetails.lastName} */}
           </h3>
           <p>{userDetails.email}</p>
           <div className={styles.userMeta}>
