@@ -267,7 +267,7 @@ const StaffUserHomePage: React.FC = () => {
               {/* , {staffData.name}! */}, {userDetails.firstName}!
             </h1>
             <p className="shp-welcome-subtitle">
-              {userDetails.position} • {userDetails.department}
+              {userDetails.position} {userDetails.department}
             </p>
           </div>
           <div className="shp-time-info">

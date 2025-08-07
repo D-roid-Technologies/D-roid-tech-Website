@@ -248,15 +248,13 @@ const BusinessDashboard: React.FC = () => {
   return (
     <div className="shp-homepage-container">
       {/* Welcome Header */}
-      <div className="shp-welcome-header" style={{ background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)" }}>
+      <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              Business Operations Hub
+              Business Management
             </h1>
-            <p className="shp-welcome-subtitle">
-              Driving growth and innovation • Enterprise Solutions
-            </p>
+           
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -267,7 +265,7 @@ const BusinessDashboard: React.FC = () => {
 
       {/* Business Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Business Management Modules</h2>
+        <h2 className="shp-section-title">Quick Actions</h2>
         <div className="shp-quick-actions-grid">
           {businessQuickActions.map((action, index) => (
             <QuickActionCard

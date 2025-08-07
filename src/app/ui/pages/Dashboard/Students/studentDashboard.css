@@ -54,7 +54,7 @@
 .all_students_dashboard-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
 }
 
 .all_students_summary-cards {
@@ -115,7 +115,7 @@
 .all_students_controls-section {
   background: var(--white);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 0.5rem;
   margin-bottom: 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

@@ -247,15 +247,13 @@ const NGODashboard: React.FC = () => {
   return (
     <div className="shp-homepage-container">
       {/* Welcome Header */}
-      <div className="shp-welcome-header" style={{ background: "linear-gradient(135deg, #10b981 0%, #059669 100%)" }}>
+      <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
               NGO Management Dashboard
             </h1>
-            <p className="shp-welcome-subtitle">
-              Making a difference in our community • Impact & Outreach
-            </p>
+            
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -266,7 +264,7 @@ const NGODashboard: React.FC = () => {
 
       {/* NGO Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">NGO Management Modules</h2>
+        <h2 className="shp-section-title">Quick Actions</h2>
         <div className="shp-quick-actions-grid">
           {ngoQuickActions.map((action, index) => (
             <QuickActionCard

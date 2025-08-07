@@ -249,15 +249,13 @@ const SchoolDashboard: React.FC = () => {
   return (
     <div className="shp-homepage-container">
       {/* Welcome Header */}
-      <div className="shp-welcome-header" style={{ background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)" }}>
+      <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
               School Management System
             </h1>
-            <p className="shp-welcome-subtitle">
-              Nurturing minds, building futures • Educational Excellence
-            </p>
+            
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -268,7 +266,8 @@ const SchoolDashboard: React.FC = () => {
 
       {/* School Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">School Management Modules</h2>
+        <h2 className="shp-section-title">Quick Actions
+</h2>
         <div className="shp-quick-actions-grid">
           {schoolQuickActions.map((action, index) => (
             <QuickActionCard

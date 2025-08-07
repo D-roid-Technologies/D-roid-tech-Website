@@ -482,7 +482,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="School Dashboard">
-                    <p> School Home page goes here</p>
+                  
                     <SchoolDashboard/>
                   </Section>
                 </>
@@ -491,7 +491,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="Business Dashboard">
-                    <p> Business Home page goes here</p>
+                   
                     <BusinessDashboard/>
                   </Section>
                 </>
@@ -500,7 +500,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="NGO Dashboard">
-                    <p> NGO Home page goes here</p>
+                    
                     <NGODashboard/>
                   </Section>
                 </>
