@@ -82,6 +82,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/Store";
 import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage";
 import CalenderPage from "../ui/pages/schedule/CalenderPage";
+import Announcements from "../ui/pages/Dashboard/Announcements";
 
 // Define an enum for all route paths
 
@@ -268,7 +269,10 @@ const Index: React.FunctionComponent = () => {
         element={<UpcomingEventsPage />}
       />
       <Route path={RoutePaths.Animation} element={<AnimationPage />} />
-      <Route path={RoutePaths.AnimationDescriptionPage} element={<AnimationDescriptionPage />} />
+      <Route
+        path={RoutePaths.AnimationDescriptionPage}
+        element={<AnimationDescriptionPage />}
+      />
 
       <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
 
@@ -388,6 +392,8 @@ const Index: React.FunctionComponent = () => {
       {/* <Route path={RoutePaths.Dome} element={<Dome />} /> */}
       {/* Website Routes */}
       <Route path={RoutePaths.Website} element={<Website />} />
+      <Route path="/announcements" element={<Announcements />} />
+      {/* <Route path="/announcements/:id" element={<AnnouncementDetailPage />} /> */}
       {/* <Route path={RoutePaths.WebWelcome} element={<WebWelcome />} />
       <Route path={RoutePaths.WebOverview} element={<WebOverview />} />
       <Route path={RoutePaths.Project} element={<Project />} />
