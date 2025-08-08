@@ -1,50 +1,17 @@
 import React, { useState } from "react";
 import {
-  FaTasks,
-  FaFileInvoiceDollar,
-  FaUserPlus,
-  FaChalkboardTeacher,
-  FaChartLine,
-  FaBookOpen,
-  FaCheckCircle,
-  FaClock,
-  FaExclamationTriangle,
-  FaDollarSign,
-  FaCalendar,
-  FaTrophy,
+  FaChalkboard,
   FaUsers,
-  FaGraduationCap,
+  FaBookOpen,
+  FaWallet,
+  FaCalendar,
+  FaUserGraduate,
   FaBell,
-  FaClipboardList,
-  FaAward,
-  FaUserCheck,
-  FaChevronRight,
-  FaDownload,
-  FaPlay,
+  FaChartLine,
+  FaTrophy,
 } from "react-icons/fa";
-import "./StaffUserHomePage.css";
+import "../staff/StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
-import { useSelector } from "react-redux";
-import { UserType } from "../../../../utils/Types";
-import { RootState } from "../../../../redux/Store";
-
-// Mock StatCard component since it already exists in the project
-// const StatCard = ({ title, value, change, icon: Icon, onClick }) => (
-//   <div className="shp-stat-card" onClick={onClick}>
-//     <div className="shp-stat-icon">
-//       <Icon size={24} />
-//     </div>
-//     <div className="shp-stat-content">
-//       <h3 className="shp-stat-title">{title}</h3>
-//       <p className="shp-stat-value">{value}</p>
-//       <span className="shp-stat-change">{change}</span>
-//     </div>
-//     <div className="shp-stat-arrow">
-//       <FaChevronRight size={16} />
-//     </div>
-//   </div>
-// );
-
 type QuickActionCardProps = {
   title: string;
   description: string;
@@ -121,116 +88,134 @@ const RecentActivityItem = ({
   </div>
 );
 
-const StaffUserHomePage: React.FC = () => {
-  const userDetails: UserType = useSelector((state: RootState) => state.user);
+const SchoolDashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
 
-  const dashboardStats = [
+  const schoolStats = [
     {
-      title: "Active Tasks",
-      value: "8",
-      change: "2 due today",
-      icon: FaTasks,
+      title: "Total Students",
+      value: "1,245",
+      change: "45 new admissions",
+      icon: FaUserGraduate,
       color: "blue",
     },
     {
-      title: "Training Progress",
-      value: "75%",
-      change: "3 courses remaining",
-      icon: FaGraduationCap,
+      title: "Teaching Staff",
+      value: "78",
+      change: "5 new teachers",
+      icon: FaUsers,
       color: "green",
     },
     {
-      title: "Performance Score",
-      value: "4.2/5",
-      change: "Above average",
-      icon: FaTrophy,
-      color: "gold",
+      title: "Active Classes",
+      value: "32",
+      change: "All sessions running",
+      icon: FaChalkboard,
+      color: "purple",
     },
     {
-      title: "Attendance Rate",
-      value: "96%",
-      change: "This month",
-      icon: FaUserCheck,
-      color: "purple",
+      title: "Library Books",
+      value: "8,450",
+      change: "200 new additions",
+      icon: FaBookOpen,
+      color: "orange",
     },
   ];
 
-  const quickActions = [
+  const schoolQuickActions = [
     {
-      title: "Clock In/Out",
-      description: "Track your work hours",
-      icon: FaClock,
+      title: "Classroom Management",
+      description: "Manage classes and schedules",
+      icon: FaChalkboard,
       variant: "primary",
     },
     {
-      title: "View Payslip",
-      description: "Download latest payslip",
-      icon: FaDownload,
+      title: "Staff Directory",
+      description: "View and manage teaching staff",
+      icon: FaUsers,
       variant: "secondary",
     },
     {
-      title: "Submit Timesheet",
-      description: "Log your weekly hours",
-      icon: FaClipboardList,
+      title: "Library System",
+      description: "Manage books and resources",
+      icon: FaBookOpen,
+      variant: "success",
+    },
+    {
+      title: "Financial Management",
+      description: "Track fees and expenses",
+      icon: FaWallet,
       variant: "default",
     },
     {
-      title: "Start Training",
-      description: "Continue learning modules",
-      icon: FaPlay,
-      variant: "success",
+      title: "Student Records",
+      description: "Manage student information",
+      icon: FaUserGraduate,
+      variant: "primary",
+    },
+    {
+      title: "Academic Reports",
+      description: "Generate performance reports",
+      icon: FaChartLine,
+      variant: "secondary",
     },
   ];
 
-  const notifications = [
+  const schoolNotifications = [
     {
-      title: "New Task Assigned",
-      message: "Review API documentation for mobile app",
-      time: "2 hours ago",
+      title: "Parent-Teacher Meeting",
+      message: "Scheduled for Grade 10 students this Friday",
+      time: "1 hour ago",
       type: "info",
       isRead: false,
     },
     {
-      title: "Training Reminder",
-      message: "Complete 'Workplace Safety' module by Friday",
-      time: "1 day ago",
-      type: "warning",
+      title: "New Student Admission",
+      message: "5 new students enrolled in Grade 8",
+      time: "3 hours ago",
+      type: "success",
       isRead: false,
     },
     {
-      title: "Payslip Available",
-      message: "Your December payslip is ready for download",
-      time: "3 days ago",
+      title: "Library Book Return",
+      message: "15 books overdue, reminders sent to students",
+      time: "1 day ago",
+      type: "warning",
+      isRead: true,
+    },
+    {
+      title: "Fee Collection Update",
+      message: "Monthly fee collection completed for 95% students",
+      time: "2 days ago",
       type: "success",
       isRead: true,
     },
   ];
 
-  const recentActivities = [
+  const schoolActivities = [
     {
-      action: "Completed Task",
-      details: "Database optimization for user module",
-      time: "3 hours ago",
-      icon: FaCheckCircle,
+      action: "Class Scheduled",
+      details: "Mathematics exam scheduled for Grade 12 next week",
+      time: "2 hours ago",
+      icon: FaCalendar,
     },
     {
-      action: "Started Training",
-      details: "Advanced React Development Course",
+      action: "New Teacher Joined",
+      details: "Ms. Sarah Wilson joined as English Literature teacher",
       time: "1 day ago",
-      icon: FaGraduationCap,
+      icon: FaUsers,
     },
     {
-      action: "Submitted Report",
-      details: "Weekly progress report for Project Alpha",
-      time: "2 days ago",
-      icon: FaFileInvoiceDollar,
+      action: "Library Updated",
+      details: "Added 50 new science textbooks to the collection",
+      time: "3 days ago",
+      icon: FaBookOpen,
     },
     {
-      action: "Updated Profile",
-      details: "Added new skills and certifications",
+      action: "Student Achievement",
+      details: "Grade 11 students won inter-school science competition",
       time: "1 week ago",
-      icon: FaUserPlus,
+      icon: FaTrophy,
     },
   ];
 
@@ -257,18 +242,7 @@ const StaffUserHomePage: React.FC = () => {
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
-            <h1 className="shp-welcome-title">
-              Your Dashboard
-              {/* {currentTime.getHours() < 12
-                ? "Morning"
-                : currentTime.getHours() < 18
-                ? "Afternoon"
-                : "Evening"} */}
-              {/* , {staffData.name}! */}, {userDetails.firstName}!
-            </h1>
-            <p className="shp-welcome-subtitle">
-              {userDetails.position} {userDetails.department}
-            </p>
+            <h1 className="shp-welcome-title">School Management System</h1>
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -277,11 +251,11 @@ const StaffUserHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* School Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Links</h2>
+        <h2 className="shp-section-title">Quick Actions</h2>
         <div className="shp-quick-actions-grid">
-          {quickActions.map((action, index) => (
+          {schoolQuickActions.map((action, index) => (
             <QuickActionCard
               key={index}
               title={action.title}
@@ -294,11 +268,11 @@ const StaffUserHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Dashboard Stats */}
+      {/* School Stats */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Views</h2>
+        <h2 className="shp-section-title">School Overview</h2>
         <div className="shp-stats-grid">
-          {dashboardStats.map((stat, index) => (
+          {schoolStats.map((stat, index) => (
             <StatCard
               key={index}
               title={stat.title}
@@ -316,11 +290,11 @@ const StaffUserHomePage: React.FC = () => {
         <div className="shp-activity-section">
           <div className="shp-card">
             <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Activity</h3>
+              <h3 className="shp-card-title">Recent School Activity</h3>
               <button className="shp-view-all-btn">View All</button>
             </div>
             <div className="shp-activity-list">
-              {recentActivities.map((activity, index) => (
+              {schoolActivities.map((activity, index) => (
                 <RecentActivityItem
                   key={index}
                   action={activity.action}
@@ -339,12 +313,14 @@ const StaffUserHomePage: React.FC = () => {
             <div className="shp-card-header">
               <h3 className="shp-card-title">
                 <FaBell size={18} />
-                Notifications
+                School Notifications
               </h3>
-              <span className="shp-notification-count">3</span>
+              <span className="shp-notification-count">
+                {schoolNotifications.filter((n) => !n.isRead).length}
+              </span>
             </div>
             <div className="shp-notifications-list">
-              {notifications.map((notification, index) => (
+              {schoolNotifications.map((notification, index) => (
                 <NotificationItem
                   key={index}
                   title={notification.title}
@@ -361,33 +337,8 @@ const StaffUserHomePage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Staff Info Summary */}
-      {/* <div className="shp-section">
-        <div className="shp-staff-info-card">
-          <h3 className="shp-info-title">Staff Information</h3>
-          <div className="shp-info-grid">
-            <div className="shp-info-item">
-              <span className="shp-info-label">Employee ID:</span>
-              <span className="shp-info-value">{userDetails.employeeId}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Department:</span>
-              <span className="shp-info-value">{userDetails.department}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Position:</span>
-              <span className="shp-info-value">{userDetails.position}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Join Date:</span>
-              <span className="shp-info-value">{userDetails.joinDate}</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
 
-export default StaffUserHomePage;
+export default SchoolDashboard;

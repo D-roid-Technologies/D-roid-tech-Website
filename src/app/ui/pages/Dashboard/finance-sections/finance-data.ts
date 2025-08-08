@@ -22,7 +22,7 @@ export const financeSectionsData: FinanceSectionData[] = [
     id: "incoming",
     title: "Incoming",
     description: "Detailed list of all money received, categorized by source.",
-    currentValue: "$5,678.90",
+    currentValue: "₦5,678.90",
     icon: "ArrowUpRight",
     additionalInfo: "Last 30 days",
     contributions: [
@@ -88,7 +88,7 @@ export const financeSectionsData: FinanceSectionData[] = [
     title: "Outgoing",
     description:
       "Detailed list of all money spent, categorized by expense type.",
-    currentValue: "$3,456.78",
+    currentValue: "₦3,456.78",
     icon: "ArrowDownLeft",
     additionalInfo: "Last 30 days",
     contributions: [
@@ -159,7 +159,7 @@ export const financeSectionsData: FinanceSectionData[] = [
     id: "fees",
     title: "Fees",
     description: "Detailed breakdown of all incurred fees and their sources.",
-    currentValue: "$1,234.56",
+    currentValue: "₦1,234.56",
     statusBadge: { text: "Overdue", type: "destructive" },
     additionalInfo: "Last updated: 2 hours ago",
     contributions: [
@@ -200,8 +200,8 @@ export const financeSectionsData: FinanceSectionData[] = [
     title: "Funding",
     description:
       "Detailed information on current funding sources and progress towards targets.",
-    currentValue: "$75,000",
-    progress: { value: 75, target: "$100,000", raised: "$75,000" },
+    currentValue: "₦75,000",
+    progress: { value: 75, target: "₦100,000", raised: "₦75,000" },
     additionalInfo: "75% of target achieved",
     contributions: [
   {
@@ -272,7 +272,7 @@ export const financeSectionsData: FinanceSectionData[] = [
     title: "Salaries",
     description:
       "Detailed breakdown of all salary expenses and upcoming payrolls.",
-    currentValue: "$12,345.00",
+    currentValue: "₦12,345.00",
     icon: "Users",
     additionalInfo: "Next payroll: 5 days",
     contributions: [

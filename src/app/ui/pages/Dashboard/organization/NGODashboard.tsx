@@ -1,49 +1,16 @@
 import React, { useState } from "react";
 import {
-  FaTasks,
-  FaFileInvoiceDollar,
-  FaUserPlus,
-  FaChalkboardTeacher,
-  FaChartLine,
-  FaBookOpen,
-  FaCheckCircle,
-  FaClock,
-  FaExclamationTriangle,
-  FaDollarSign,
-  FaCalendar,
-  FaTrophy,
+  FaHandsHelping,
+  FaDonate,
+  FaBullhorn,
+  FaHeart,
   FaUsers,
-  FaGraduationCap,
+  FaChartLine,
+  FaGlobe,
   FaBell,
-  FaClipboardList,
-  FaAward,
-  FaUserCheck,
-  FaChevronRight,
-  FaDownload,
-  FaPlay,
 } from "react-icons/fa";
-import "./StaffUserHomePage.css";
+import "../staff/StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
-import { useSelector } from "react-redux";
-import { UserType } from "../../../../utils/Types";
-import { RootState } from "../../../../redux/Store";
-
-// Mock StatCard component since it already exists in the project
-// const StatCard = ({ title, value, change, icon: Icon, onClick }) => (
-//   <div className="shp-stat-card" onClick={onClick}>
-//     <div className="shp-stat-icon">
-//       <Icon size={24} />
-//     </div>
-//     <div className="shp-stat-content">
-//       <h3 className="shp-stat-title">{title}</h3>
-//       <p className="shp-stat-value">{value}</p>
-//       <span className="shp-stat-change">{change}</span>
-//     </div>
-//     <div className="shp-stat-arrow">
-//       <FaChevronRight size={16} />
-//     </div>
-//   </div>
-// );
 
 type QuickActionCardProps = {
   title: string;
@@ -121,116 +88,134 @@ const RecentActivityItem = ({
   </div>
 );
 
-const StaffUserHomePage: React.FC = () => {
-  const userDetails: UserType = useSelector((state: RootState) => state.user);
+const NGODashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
 
-  const dashboardStats = [
+  const ngoStats = [
     {
-      title: "Active Tasks",
-      value: "8",
-      change: "2 due today",
-      icon: FaTasks,
-      color: "blue",
-    },
-    {
-      title: "Training Progress",
-      value: "75%",
-      change: "3 courses remaining",
-      icon: FaGraduationCap,
+      title: "Active Volunteers",
+      value: "156",
+      change: "12 new this month",
+      icon: FaHandsHelping,
       color: "green",
     },
     {
-      title: "Performance Score",
-      value: "4.2/5",
-      change: "Above average",
-      icon: FaTrophy,
-      color: "gold",
+      title: "Total Donations",
+      value: "$45,230",
+      change: "15% increase",
+      icon: FaDonate,
+      color: "blue",
     },
     {
-      title: "Attendance Rate",
-      value: "96%",
-      change: "This month",
-      icon: FaUserCheck,
+      title: "Ongoing Projects",
+      value: "8",
+      change: "3 launching soon",
+      icon: FaHeart,
+      color: "red",
+    },
+    {
+      title: "People Helped",
+      value: "2,340",
+      change: "This quarter",
+      icon: FaUsers,
       color: "purple",
     },
   ];
 
-  const quickActions = [
+  const ngoQuickActions = [
     {
-      title: "Clock In/Out",
-      description: "Track your work hours",
-      icon: FaClock,
+      title: "Manage Volunteers",
+      description: "View and organize volunteer activities",
+      icon: FaHandsHelping,
       variant: "primary",
     },
     {
-      title: "View Payslip",
-      description: "Download latest payslip",
-      icon: FaDownload,
+      title: "Track Donations",
+      description: "Monitor incoming donations",
+      icon: FaDonate,
+      variant: "success",
+    },
+    {
+      title: "Create Campaign",
+      description: "Launch new outreach campaign",
+      icon: FaBullhorn,
       variant: "secondary",
     },
     {
-      title: "Submit Timesheet",
-      description: "Log your weekly hours",
-      icon: FaClipboardList,
+      title: "Impact Report",
+      description: "Generate impact assessment",
+      icon: FaChartLine,
       variant: "default",
     },
     {
-      title: "Start Training",
-      description: "Continue learning modules",
-      icon: FaPlay,
+      title: "Partner Network",
+      description: "Manage partner organizations",
+      icon: FaUsers,
+      variant: "primary",
+    },
+    {
+      title: "Community Groups",
+      description: "Organize community groups",
+      icon: FaGlobe,
       variant: "success",
     },
   ];
 
-  const notifications = [
+  const ngoNotifications = [
     {
-      title: "New Task Assigned",
-      message: "Review API documentation for mobile app",
-      time: "2 hours ago",
+      title: "New Volunteer Application",
+      message: "Sarah Johnson applied for the education program",
+      time: "1 hour ago",
       type: "info",
       isRead: false,
     },
     {
-      title: "Training Reminder",
-      message: "Complete 'Workplace Safety' module by Friday",
-      time: "1 day ago",
-      type: "warning",
+      title: "Donation Received",
+      message: "Anonymous donor contributed $500 to clean water project",
+      time: "3 hours ago",
+      type: "success",
       isRead: false,
     },
     {
-      title: "Payslip Available",
-      message: "Your December payslip is ready for download",
-      time: "3 days ago",
-      type: "success",
+      title: "Campaign Milestone",
+      message: "Food drive campaign reached 75% of target",
+      time: "1 day ago",
+      type: "warning",
+      isRead: true,
+    },
+    {
+      title: "Partner Meeting",
+      message: "Quarterly meeting with local partners scheduled",
+      time: "2 days ago",
+      type: "info",
       isRead: true,
     },
   ];
 
-  const recentActivities = [
+  const ngoActivities = [
     {
-      action: "Completed Task",
-      details: "Database optimization for user module",
-      time: "3 hours ago",
-      icon: FaCheckCircle,
+      action: "Volunteer Registered",
+      details: "New volunteer joined the environmental cleanup team",
+      time: "2 hours ago",
+      icon: FaHandsHelping,
     },
     {
-      action: "Started Training",
-      details: "Advanced React Development Course",
+      action: "Campaign Launched",
+      details: "Started 'Books for All' literacy campaign",
       time: "1 day ago",
-      icon: FaGraduationCap,
+      icon: FaBullhorn,
     },
     {
-      action: "Submitted Report",
-      details: "Weekly progress report for Project Alpha",
-      time: "2 days ago",
-      icon: FaFileInvoiceDollar,
+      action: "Impact Assessment",
+      details: "Completed quarterly impact report for education program",
+      time: "3 days ago",
+      icon: FaChartLine,
     },
     {
-      action: "Updated Profile",
-      details: "Added new skills and certifications",
+      action: "Partnership Formed",
+      details: "New collaboration with Local Community Center",
       time: "1 week ago",
-      icon: FaUserPlus,
+      icon: FaUsers,
     },
   ];
 
@@ -257,18 +242,7 @@ const StaffUserHomePage: React.FC = () => {
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
-            <h1 className="shp-welcome-title">
-              Your Dashboard
-              {/* {currentTime.getHours() < 12
-                ? "Morning"
-                : currentTime.getHours() < 18
-                ? "Afternoon"
-                : "Evening"} */}
-              {/* , {staffData.name}! */}, {userDetails.firstName}!
-            </h1>
-            <p className="shp-welcome-subtitle">
-              {userDetails.position} {userDetails.department}
-            </p>
+            <h1 className="shp-welcome-title">NGO Management Dashboard</h1>
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -277,11 +251,11 @@ const StaffUserHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* NGO Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Links</h2>
+        <h2 className="shp-section-title">Quick Actions</h2>
         <div className="shp-quick-actions-grid">
-          {quickActions.map((action, index) => (
+          {ngoQuickActions.map((action, index) => (
             <QuickActionCard
               key={index}
               title={action.title}
@@ -294,11 +268,11 @@ const StaffUserHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Dashboard Stats */}
+      {/* NGO Stats */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Views</h2>
+        <h2 className="shp-section-title">Impact Overview</h2>
         <div className="shp-stats-grid">
-          {dashboardStats.map((stat, index) => (
+          {ngoStats.map((stat, index) => (
             <StatCard
               key={index}
               title={stat.title}
@@ -316,11 +290,11 @@ const StaffUserHomePage: React.FC = () => {
         <div className="shp-activity-section">
           <div className="shp-card">
             <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Activity</h3>
+              <h3 className="shp-card-title">Recent NGO Activity</h3>
               <button className="shp-view-all-btn">View All</button>
             </div>
             <div className="shp-activity-list">
-              {recentActivities.map((activity, index) => (
+              {ngoActivities.map((activity, index) => (
                 <RecentActivityItem
                   key={index}
                   action={activity.action}
@@ -339,12 +313,14 @@ const StaffUserHomePage: React.FC = () => {
             <div className="shp-card-header">
               <h3 className="shp-card-title">
                 <FaBell size={18} />
-                Notifications
+                NGO Notifications
               </h3>
-              <span className="shp-notification-count">3</span>
+              <span className="shp-notification-count">
+                {ngoNotifications.filter((n) => !n.isRead).length}
+              </span>
             </div>
             <div className="shp-notifications-list">
-              {notifications.map((notification, index) => (
+              {ngoNotifications.map((notification, index) => (
                 <NotificationItem
                   key={index}
                   title={notification.title}
@@ -361,33 +337,8 @@ const StaffUserHomePage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Staff Info Summary */}
-      {/* <div className="shp-section">
-        <div className="shp-staff-info-card">
-          <h3 className="shp-info-title">Staff Information</h3>
-          <div className="shp-info-grid">
-            <div className="shp-info-item">
-              <span className="shp-info-label">Employee ID:</span>
-              <span className="shp-info-value">{userDetails.employeeId}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Department:</span>
-              <span className="shp-info-value">{userDetails.department}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Position:</span>
-              <span className="shp-info-value">{userDetails.position}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Join Date:</span>
-              <span className="shp-info-value">{userDetails.joinDate}</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
 
-export default StaffUserHomePage;
+export default NGODashboard;

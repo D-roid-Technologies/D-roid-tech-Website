@@ -1,49 +1,25 @@
 import React, { useState } from "react";
 import {
-  FaTasks,
+  FaBriefcase,
+  FaFolderOpen,
+  FaUsers,
   FaFileInvoiceDollar,
-  FaUserPlus,
-  FaChalkboardTeacher,
   FaChartLine,
-  FaBookOpen,
+  FaCalendar,
+  FaTasks,
+  FaCog,
+  FaBuilding,
   FaCheckCircle,
   FaClock,
-  FaExclamationTriangle,
-  FaDollarSign,
-  FaCalendar,
-  FaTrophy,
-  FaUsers,
-  FaGraduationCap,
   FaBell,
-  FaClipboardList,
-  FaAward,
-  FaUserCheck,
   FaChevronRight,
   FaDownload,
-  FaPlay,
+  FaPlus,
+  FaEye,
+  FaDollarSign,
 } from "react-icons/fa";
-import "./StaffUserHomePage.css";
+import "../staff/StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
-import { useSelector } from "react-redux";
-import { UserType } from "../../../../utils/Types";
-import { RootState } from "../../../../redux/Store";
-
-// Mock StatCard component since it already exists in the project
-// const StatCard = ({ title, value, change, icon: Icon, onClick }) => (
-//   <div className="shp-stat-card" onClick={onClick}>
-//     <div className="shp-stat-icon">
-//       <Icon size={24} />
-//     </div>
-//     <div className="shp-stat-content">
-//       <h3 className="shp-stat-title">{title}</h3>
-//       <p className="shp-stat-value">{value}</p>
-//       <span className="shp-stat-change">{change}</span>
-//     </div>
-//     <div className="shp-stat-arrow">
-//       <FaChevronRight size={16} />
-//     </div>
-//   </div>
-// );
 
 type QuickActionCardProps = {
   title: string;
@@ -121,116 +97,134 @@ const RecentActivityItem = ({
   </div>
 );
 
-const StaffUserHomePage: React.FC = () => {
-  const userDetails: UserType = useSelector((state: RootState) => state.user);
+const BusinessDashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
 
-  const dashboardStats = [
+  const businessStats = [
     {
-      title: "Active Tasks",
-      value: "8",
-      change: "2 due today",
-      icon: FaTasks,
+      title: "Active Projects",
+      value: "24",
+      change: "5 new this month",
+      icon: FaFolderOpen,
       color: "blue",
     },
     {
-      title: "Training Progress",
-      value: "75%",
-      change: "3 courses remaining",
-      icon: FaGraduationCap,
+      title: "Total Revenue",
+      value: "₦125,430",
+      change: "22% increase",
+      icon: FaDollarSign,
       color: "green",
     },
     {
-      title: "Performance Score",
-      value: "4.2/5",
-      change: "Above average",
-      icon: FaTrophy,
-      color: "gold",
+      title: "Team Members",
+      value: "87",
+      change: "8 new hires",
+      icon: FaUsers,
+      color: "purple",
     },
     {
-      title: "Attendance Rate",
-      value: "96%",
-      change: "This month",
-      icon: FaUserCheck,
-      color: "purple",
+      title: "Client Satisfaction",
+      value: "94%",
+      change: "Above target",
+      icon: FaDollarSign,
+      color: "orange",
     },
   ];
 
-  const quickActions = [
+  const businessQuickActions = [
     {
-      title: "Clock In/Out",
-      description: "Track your work hours",
-      icon: FaClock,
+      title: "Manage Departments",
+      description: "Organize teams and departments",
+      icon: FaBriefcase,
       variant: "primary",
     },
     {
-      title: "View Payslip",
-      description: "Download latest payslip",
-      icon: FaDownload,
+      title: "Project Overview",
+      description: "Track project progress and deadlines",
+      icon: FaFolderOpen,
       variant: "secondary",
     },
     {
-      title: "Submit Timesheet",
-      description: "Log your weekly hours",
-      icon: FaClipboardList,
+      title: "Client Management",
+      description: "Manage client relationships",
+      icon: FaUsers,
+      variant: "success",
+    },
+    {
+      title: "Financial Reports",
+      description: "View revenue and expense reports",
+      icon: FaFileInvoiceDollar,
       variant: "default",
     },
     {
-      title: "Start Training",
-      description: "Continue learning modules",
-      icon: FaPlay,
-      variant: "success",
+      title: "Analytics Dashboard",
+      description: "Business performance metrics",
+      icon: FaChartLine,
+      variant: "primary",
+    },
+    {
+      title: "Resource Planning",
+      description: "Allocate resources efficiently",
+      icon: FaCog,
+      variant: "secondary",
     },
   ];
 
-  const notifications = [
+  const businessNotifications = [
     {
-      title: "New Task Assigned",
-      message: "Review API documentation for mobile app",
-      time: "2 hours ago",
-      type: "info",
-      isRead: false,
-    },
-    {
-      title: "Training Reminder",
-      message: "Complete 'Workplace Safety' module by Friday",
-      time: "1 day ago",
+      title: "Project Deadline",
+      message: "Mobile app development project due in 3 days",
+      time: "30 minutes ago",
       type: "warning",
       isRead: false,
     },
     {
-      title: "Payslip Available",
-      message: "Your December payslip is ready for download",
-      time: "3 days ago",
+      title: "New Client Onboarded",
+      message: "TechCorp signed annual contract worth ₦50,000",
+      time: "2 hours ago",
+      type: "success",
+      isRead: false,
+    },
+    {
+      title: "Team Meeting",
+      message: "Weekly standup scheduled for tomorrow 10 AM",
+      time: "4 hours ago",
+      type: "info",
+      isRead: true,
+    },
+    {
+      title: "Invoice Approved",
+      message: "Client payment of ₦15,000 has been processed",
+      time: "1 day ago",
       type: "success",
       isRead: true,
     },
   ];
 
-  const recentActivities = [
+  const businessActivities = [
     {
-      action: "Completed Task",
-      details: "Database optimization for user module",
-      time: "3 hours ago",
+      action: "Project Completed",
+      details: "E-commerce website delivered to RetailPlus",
+      time: "1 hour ago",
       icon: FaCheckCircle,
     },
     {
-      action: "Started Training",
-      details: "Advanced React Development Course",
-      time: "1 day ago",
-      icon: FaGraduationCap,
-    },
-    {
-      action: "Submitted Report",
-      details: "Weekly progress report for Project Alpha",
-      time: "2 days ago",
+      action: "New Contract Signed",
+      details: "Annual maintenance contract with StartupXYZ",
+      time: "4 hours ago",
       icon: FaFileInvoiceDollar,
     },
     {
-      action: "Updated Profile",
-      details: "Added new skills and certifications",
+      action: "Team Expansion",
+      details: "Hired 3 new developers for the mobile team",
+      time: "2 days ago",
+      icon: FaUsers,
+    },
+    {
+      action: "Quarterly Review",
+      details: "Completed Q4 performance analysis and planning",
       time: "1 week ago",
-      icon: FaUserPlus,
+      icon: FaChartLine,
     },
   ];
 
@@ -258,17 +252,9 @@ const StaffUserHomePage: React.FC = () => {
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              Your Dashboard
-              {/* {currentTime.getHours() < 12
-                ? "Morning"
-                : currentTime.getHours() < 18
-                ? "Afternoon"
-                : "Evening"} */}
-              {/* , {staffData.name}! */}, {userDetails.firstName}!
+              Business Management
             </h1>
-            <p className="shp-welcome-subtitle">
-              {userDetails.position} {userDetails.department}
-            </p>
+           
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -277,11 +263,11 @@ const StaffUserHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* Business Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Links</h2>
+        <h2 className="shp-section-title">Quick Actions</h2>
         <div className="shp-quick-actions-grid">
-          {quickActions.map((action, index) => (
+          {businessQuickActions.map((action, index) => (
             <QuickActionCard
               key={index}
               title={action.title}
@@ -294,11 +280,11 @@ const StaffUserHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Dashboard Stats */}
+      {/* Business Stats */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Views</h2>
+        <h2 className="shp-section-title">Business Performance</h2>
         <div className="shp-stats-grid">
-          {dashboardStats.map((stat, index) => (
+          {businessStats.map((stat, index) => (
             <StatCard
               key={index}
               title={stat.title}
@@ -316,11 +302,11 @@ const StaffUserHomePage: React.FC = () => {
         <div className="shp-activity-section">
           <div className="shp-card">
             <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Activity</h3>
+              <h3 className="shp-card-title">Recent Business Activity</h3>
               <button className="shp-view-all-btn">View All</button>
             </div>
             <div className="shp-activity-list">
-              {recentActivities.map((activity, index) => (
+              {businessActivities.map((activity, index) => (
                 <RecentActivityItem
                   key={index}
                   action={activity.action}
@@ -339,12 +325,12 @@ const StaffUserHomePage: React.FC = () => {
             <div className="shp-card-header">
               <h3 className="shp-card-title">
                 <FaBell size={18} />
-                Notifications
+                Business Notifications
               </h3>
-              <span className="shp-notification-count">3</span>
+              <span className="shp-notification-count">{businessNotifications.filter(n => !n.isRead).length}</span>
             </div>
             <div className="shp-notifications-list">
-              {notifications.map((notification, index) => (
+              {businessNotifications.map((notification, index) => (
                 <NotificationItem
                   key={index}
                   title={notification.title}
@@ -361,33 +347,8 @@ const StaffUserHomePage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Staff Info Summary */}
-      {/* <div className="shp-section">
-        <div className="shp-staff-info-card">
-          <h3 className="shp-info-title">Staff Information</h3>
-          <div className="shp-info-grid">
-            <div className="shp-info-item">
-              <span className="shp-info-label">Employee ID:</span>
-              <span className="shp-info-value">{userDetails.employeeId}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Department:</span>
-              <span className="shp-info-value">{userDetails.department}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Position:</span>
-              <span className="shp-info-value">{userDetails.position}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Join Date:</span>
-              <span className="shp-info-value">{userDetails.joinDate}</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
 
-export default StaffUserHomePage;
+export default BusinessDashboard;

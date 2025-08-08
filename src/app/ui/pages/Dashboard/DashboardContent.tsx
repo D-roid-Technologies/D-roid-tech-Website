@@ -80,6 +80,10 @@ import { DepartmentsSection } from "./departments-section";
 import { ProjectsSection } from "./projects-section";
 import { ReportsSection } from "./reports-section";
 import StaffUserHomePage from "./staff/StaffUserHomePage";
+import SchoolDashboard from "./organization/SchoolDashboard";
+import BusinessDashboard from "./organization/BusinessDashboard";
+import NGODashboard from "./organization/NGODashboard";
+
 
 // const tools = [
 //   {
@@ -478,8 +482,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="School Dashboard">
-                    <p> School Home page goes here</p>
-                    {/* <SchoolHomePage /> */}
+                  
+                    <SchoolDashboard/>
                   </Section>
                 </>
               );
@@ -487,8 +491,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="Business Dashboard">
-                    <p> Business Home page goes here</p>
-                    {/* <BusinessHomePage /> */}
+                   
+                    <BusinessDashboard/>
                   </Section>
                 </>
               );
@@ -496,7 +500,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="NGO Dashboard">
-                    <p> NGO Home page goes here</p>
+                    
+                    <NGODashboard/>
                   </Section>
                 </>
               );
