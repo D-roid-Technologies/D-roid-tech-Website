@@ -4,21 +4,11 @@ import {
   FaUsers,
   FaBookOpen,
   FaWallet,
-  FaGraduationCap,
   FaCalendar,
-  FaTasks,
-  FaClipboardList,
   FaUserGraduate,
-  FaCheckCircle,
-  FaClock,
   FaBell,
-  FaChevronRight,
-  FaDownload,
-  FaPlus,
-  FaEye,
   FaChartLine,
   FaTrophy,
-  FaSchool,
 } from "react-icons/fa";
 import "../staff/StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
@@ -252,10 +242,7 @@ const SchoolDashboard: React.FC = () => {
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
-            <h1 className="shp-welcome-title">
-              School Management System
-            </h1>
-            
+            <h1 className="shp-welcome-title">School Management System</h1>
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -266,8 +253,7 @@ const SchoolDashboard: React.FC = () => {
 
       {/* School Quick Actions */}
       <div className="shp-section">
-        <h2 className="shp-section-title">Quick Actions
-</h2>
+        <h2 className="shp-section-title">Quick Actions</h2>
         <div className="shp-quick-actions-grid">
           {schoolQuickActions.map((action, index) => (
             <QuickActionCard
@@ -329,7 +315,9 @@ const SchoolDashboard: React.FC = () => {
                 <FaBell size={18} />
                 School Notifications
               </h3>
-              <span className="shp-notification-count">{schoolNotifications.filter(n => !n.isRead).length}</span>
+              <span className="shp-notification-count">
+                {schoolNotifications.filter((n) => !n.isRead).length}
+              </span>
             </div>
             <div className="shp-notifications-list">
               {schoolNotifications.map((notification, index) => (

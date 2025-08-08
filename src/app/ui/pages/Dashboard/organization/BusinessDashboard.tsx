@@ -110,7 +110,7 @@ const BusinessDashboard: React.FC = () => {
     },
     {
       title: "Total Revenue",
-      value: "$125,430",
+      value: "₦125,430",
       change: "22% increase",
       icon: FaDollarSign,
       color: "green",
@@ -180,7 +180,7 @@ const BusinessDashboard: React.FC = () => {
     },
     {
       title: "New Client Onboarded",
-      message: "TechCorp signed annual contract worth $50,000",
+      message: "TechCorp signed annual contract worth ₦50,000",
       time: "2 hours ago",
       type: "success",
       isRead: false,
@@ -194,7 +194,7 @@ const BusinessDashboard: React.FC = () => {
     },
     {
       title: "Invoice Approved",
-      message: "Client payment of $15,000 has been processed",
+      message: "Client payment of ₦15,000 has been processed",
       time: "1 day ago",
       type: "success",
       isRead: true,

@@ -36,7 +36,7 @@ const ProjectsDetail: React.FC = () => {
                   <Tag className={styles.icon} /> {project.project}
                 </span>
                 <span className={styles.amount}>
-                  Budget: ${project.budget.toLocaleString()} | Spent: ${project.spent.toLocaleString()} (Status:{" "}
+                  Budget: ₦{project.budget.toLocaleString()} | Spent: ₦{project.spent.toLocaleString()} (Status:{" "}
                   {project.status})
                 </span>
               </li>
@@ -65,10 +65,10 @@ const ProjectsDetail: React.FC = () => {
                   <tr key={item.id} className={styles.tableRow}>
                     {headers.map((key) => (
                       <td key={key} className={styles.tableCell}>
-                        {typeof item[key] === "number" &&
+                        ₦{typeof item[key] === "number" &&
                         !key.toLowerCase().includes("budget") &&
                         !key.toLowerCase().includes("spent")
-                          ? `$${item[key].toFixed(2)}`
+                          ? `₦${item[key].toFixed(2)}`
                           : item[key]}
                       </td>
                     ))}

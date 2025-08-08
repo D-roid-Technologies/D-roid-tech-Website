@@ -6,16 +6,8 @@ import {
   FaHeart,
   FaUsers,
   FaChartLine,
-  FaCalendar,
-  FaFileAlt,
   FaGlobe,
-  FaCheckCircle,
-  FaClock,
   FaBell,
-  FaChevronRight,
-  FaDownload,
-  FaPlus,
-  FaEye,
 } from "react-icons/fa";
 import "../staff/StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
@@ -250,10 +242,7 @@ const NGODashboard: React.FC = () => {
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
-            <h1 className="shp-welcome-title">
-              NGO Management Dashboard
-            </h1>
-            
+            <h1 className="shp-welcome-title">NGO Management Dashboard</h1>
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -326,7 +315,9 @@ const NGODashboard: React.FC = () => {
                 <FaBell size={18} />
                 NGO Notifications
               </h3>
-              <span className="shp-notification-count">{ngoNotifications.filter(n => !n.isRead).length}</span>
+              <span className="shp-notification-count">
+                {ngoNotifications.filter((n) => !n.isRead).length}
+              </span>
             </div>
             <div className="shp-notifications-list">
               {ngoNotifications.map((notification, index) => (
