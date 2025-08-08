@@ -8,6 +8,9 @@ interface Announcement {
   title: string;
   message: string;
   date: string;
+  time: string;
+  type: string;
+  isRead: boolean;
 }
 
 const Announcements: React.FC = () => {
@@ -49,6 +52,36 @@ const Announcements: React.FC = () => {
               {a.message}
             </p>
             <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{a.date}</p>
+            <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{a.time}</p>
+            <p style={{ fontSize: "12px", color: "#9CA3AF" }}>Type: {a.type}</p>
+            <div
+              style={{
+                position: "absolute",
+                top: "12px",
+                right: "12px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  backgroundColor: a.isRead ? "#4CAF50" : "#FF9800",
+                  marginRight: "8px",
+                }}
+              ></span>
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: a.isRead ? "#4CAF50" : "#FF9800",
+                }}
+              >
+                {a.isRead ? "Read" : "Unread"}
+              </span>
+            </div>
 
             <div style={{ display: "flex", gap: "8px", marginTop: "12px" }}>
               <button

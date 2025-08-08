@@ -6,12 +6,18 @@ const initialState = [
     title: "System Maintenance",
     message: "Scheduled maintenance this Friday at 10 PM.",
     date: "2025-05-15",
+    time: "1 day ago",
+    type: "warning",
+    isRead: false,
   },
   {
     id: 2,
     title: "New Policy Update",
     message: "Please review the updated attendance policy.",
     date: "2025-05-12",
+    time: "2 hours ago",
+    type: "info",
+    isRead: false,
   },
 ];
 

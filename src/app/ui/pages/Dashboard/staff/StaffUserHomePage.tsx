@@ -21,29 +21,16 @@ import {
   FaChevronRight,
   FaDownload,
   FaPlay,
+  FaBullhorn,
+  FaSpinner,
 } from "react-icons/fa";
 import "./StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
 import { useSelector } from "react-redux";
 import { UserType } from "../../../../utils/Types";
 import { RootState } from "../../../../redux/Store";
-
-// Mock StatCard component since it already exists in the project
-// const StatCard = ({ title, value, change, icon: Icon, onClick }) => (
-//   <div className="shp-stat-card" onClick={onClick}>
-//     <div className="shp-stat-icon">
-//       <Icon size={24} />
-//     </div>
-//     <div className="shp-stat-content">
-//       <h3 className="shp-stat-title">{title}</h3>
-//       <p className="shp-stat-value">{value}</p>
-//       <span className="shp-stat-change">{change}</span>
-//     </div>
-//     <div className="shp-stat-arrow">
-//       <FaChevronRight size={16} />
-//     </div>
-//   </div>
-// );
+import { useNavigate } from "react-router-dom";
+import { Task, TaskStatus } from "../../../../redux/slices/tasksSlice";
 
 type QuickActionCardProps = {
   title: string;
@@ -71,30 +58,90 @@ const QuickActionCard = ({
   </div>
 );
 
-type NotificationItemProps = {
+type TaskActivityItemProps = {
+  task: Task;
+  action: string;
+  time: string;
+};
+
+const TaskActivityItem = ({ task, action, time }: TaskActivityItemProps) => {
+  const getTaskIcon = (status: TaskStatus) => {
+    switch (status) {
+      case "completed":
+        return FaCheckCircle;
+      case "ongoing":
+        return FaSpinner;
+      case "not_started":
+        return FaClock;
+      default:
+        return FaTasks;
+    }
+  };
+
+  const Icon = getTaskIcon(task.status);
+
+  return (
+    <div className="shp-activity-item">
+      <div className="shp-activity-icon">
+        <Icon size={16} />
+      </div>
+      <div className="shp-activity-content">
+        <p className="shp-activity-action">{action}</p>
+        <p className="shp-activity-details">{task.title}</p>
+        <span className="shp-activity-time">{time}</span>
+      </div>
+    </div>
+  );
+};
+
+type AnnouncementItemProps = {
+  id: number;
   title: string;
   message: string;
+  date: string;
   time: string;
   type: string;
   isRead: boolean;
 };
 
-const NotificationItem = ({
+const AnnouncementItem = ({
+  id,
   title,
   message,
+  date,
   time,
   type,
-  isRead,
-}: NotificationItemProps) => (
-  <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
-    <div className={`shp-notification-indicator ${type}`}></div>
-    <div className="shp-notification-content">
-      <h5 className="shp-notification-title">{title}</h5>
-      <p className="shp-notification-message">{message}</p>
-      <span className="shp-notification-time">{time}</span>
+  onClick,
+}: AnnouncementItemProps & { onClick: () => void }) => {
+  // Calculate time difference for display
+  const getTimeAgo = (dateString: string) => {
+    const announcementDate = new Date(dateString);
+    const now = new Date();
+    const diffInMs = now.getTime() - announcementDate.getTime();
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    if (diffInDays === 0) {
+      return "Today";
+    } else if (diffInDays === 1) {
+      return "Yesterday";
+    } else if (diffInDays < 7) {
+      return `${diffInDays} days ago`;
+    } else {
+      return announcementDate.toLocaleDateString();
+    }
+  };
+
+  return (
+    <div className="shp-notification-item unread" onClick={onClick}>
+      <div className="shp-notification-indicator info"></div>
+      <div className="shp-notification-content">
+        <h5 className="shp-notification-title">{title}</h5>
+        <p className="shp-notification-message">{message}</p>
+        <span className="shp-notification-time">{getTimeAgo(date)}</span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 type RecentActivityItemProps = {
   action: string;
@@ -122,22 +169,37 @@ const RecentActivityItem = ({
 );
 
 const StaffUserHomePage: React.FC = () => {
+  const navigate = useNavigate();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
+  const announcements = useSelector((state: RootState) => state.announcements);
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const [currentTime] = useState(new Date());
+
+  //  Calculate task statistics
+  const completedTasks = tasks.filter(
+    (task) => task.status === "completed"
+  ).length;
+  const ongoingTasks = tasks.filter((task) => task.status === "ongoing").length;
+  const notStartedTasks = tasks.filter(
+    (task) => task.status === "not_started"
+  ).length;
+  const totalTasks = tasks.length;
 
   const dashboardStats = [
     {
       title: "Active Tasks",
-      value: "8",
-      change: "2 due today",
+      value: ongoingTasks.toString(),
+      change: `${notStartedTasks} pending`,
       icon: FaTasks,
       color: "blue",
     },
     {
-      title: "Training Progress",
-      value: "75%",
-      change: "3 courses remaining",
-      icon: FaGraduationCap,
+      title: "Completed Tasks",
+      value: completedTasks.toString(),
+      change: `${Math.round(
+        (completedTasks / totalTasks) * 100
+      )}% completion rate`,
+      icon: FaCheckCircle,
       color: "green",
     },
     {
@@ -183,48 +245,33 @@ const StaffUserHomePage: React.FC = () => {
     },
   ];
 
-  const notifications = [
-    {
-      title: "New Task Assigned",
-      message: "Review API documentation for mobile app",
-      time: "2 hours ago",
-      type: "info",
-      isRead: false,
-    },
-    {
-      title: "Training Reminder",
-      message: "Complete 'Workplace Safety' module by Friday",
-      time: "1 day ago",
-      type: "warning",
-      isRead: false,
-    },
-    {
-      title: "Payslip Available",
-      message: "Your December payslip is ready for download",
-      time: "3 days ago",
-      type: "success",
-      isRead: true,
-    },
-  ];
+  // Generate mock recent activities from tasks
+  const generateMockTime = (index: number) => {
+    const hours = [1, 3, 6, 12, 24, 48, 72];
+    const randomHours = hours[index % hours.length];
 
-  const recentActivities = [
-    {
-      action: "Completed Task",
-      details: "Database optimization for user module",
-      time: "3 hours ago",
-      icon: FaCheckCircle,
-    },
+    if (randomHours < 24) {
+      return `${randomHours} hour${randomHours > 1 ? "s" : ""} ago`;
+    } else {
+      const days = Math.floor(randomHours / 24);
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    }
+  };
+
+  // Create recent activities from tasks (showing most recent 6 tasks)
+  const recentTaskActivities = tasks.slice(0, 6).map((task, index) => ({
+    task,
+    action: task.status,
+    time: generateMockTime(index),
+  }));
+
+  // Additional non-task activities
+  const otherActivities = [
     {
       action: "Started Training",
       details: "Advanced React Development Course",
       time: "1 day ago",
       icon: FaGraduationCap,
-    },
-    {
-      action: "Submitted Report",
-      details: "Weekly progress report for Project Alpha",
-      time: "2 days ago",
-      icon: FaFileInvoiceDollar,
     },
     {
       action: "Updated Profile",
@@ -251,6 +298,22 @@ const StaffUserHomePage: React.FC = () => {
     });
   };
 
+  // Sort announcements by date (newest first) and limit to recent ones
+  const recentAnnouncements = [...announcements]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
+  const handleViewAllAnnouncements = () => {
+    navigate("/announcements");
+  };
+  const handleAnnouncementClick = (announcementId: number) => {
+    navigate(`/announcements/${announcementId}`);
+  };
+
+  const handleViewAllActivities = () => {
+    navigate("/tasks");
+  };
+
   return (
     <div className="shp-homepage-container">
       {/* Welcome Header */}
@@ -258,13 +321,7 @@ const StaffUserHomePage: React.FC = () => {
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              Your Dashboard
-              {/* {currentTime.getHours() < 12
-                ? "Morning"
-                : currentTime.getHours() < 18
-                ? "Afternoon"
-                : "Evening"} */}
-              {/* , {staffData.name}! */}, {userDetails.firstName}!
+              Your Dashboard, {userDetails.firstName}!
             </h1>
             <p className="shp-welcome-subtitle">
               {userDetails.position} {userDetails.department}
@@ -317,75 +374,89 @@ const StaffUserHomePage: React.FC = () => {
           <div className="shp-card">
             <div className="shp-card-header">
               <h3 className="shp-card-title">Recent Activity</h3>
-              <button className="shp-view-all-btn">View All</button>
+              <button
+                className="shp-view-all-btn"
+                onClick={handleViewAllActivities}
+              >
+                View All
+              </button>
             </div>
             <div className="shp-activity-list">
-              {recentActivities.map((activity, index) => (
-                <RecentActivityItem
-                  key={index}
+              {/* Show recent task activities */}
+              {recentTaskActivities.slice(0, 4).map((activity, index) => (
+                <TaskActivityItem
+                  key={`task-${activity.task.id}`}
+                  task={activity.task}
                   action={activity.action}
-                  details={activity.details}
                   time={activity.time}
-                  icon={activity.icon}
                 />
               ))}
+
+              {/* Show other activities if there's space */}
+              {otherActivities
+                .slice(0, Math.max(0, 4 - recentTaskActivities.length))
+                .map((activity, index) => (
+                  <RecentActivityItem
+                    key={`other-${index}`}
+                    action={activity.action}
+                    details={activity.details}
+                    time={activity.time}
+                    icon={activity.icon}
+                  />
+                ))}
+
+              {/* Show message if no activities */}
+              {recentTaskActivities.length === 0 && (
+                <div className="shp-no-activities">
+                  <p>No recent activities</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Notifications */}
+        {/* Announcements */}
         <div className="shp-notifications-section">
           <div className="shp-card">
             <div className="shp-card-header">
               <h3 className="shp-card-title">
-                <FaBell size={18} />
-                Notifications
+                <FaBullhorn size={18} />
+                Announcements
               </h3>
-              <span className="shp-notification-count">3</span>
+              <span className="shp-notification-count">
+                {announcements.length}
+              </span>
             </div>
             <div className="shp-notifications-list">
-              {notifications.map((notification, index) => (
-                <NotificationItem
-                  key={index}
-                  title={notification.title}
-                  message={notification.message}
-                  time={notification.time}
-                  type={notification.type}
-                  isRead={notification.isRead}
-                />
-              ))}
+              {recentAnnouncements.length > 0 ? (
+                recentAnnouncements.map((announcement) => (
+                  <AnnouncementItem
+                    key={announcement.id}
+                    id={announcement.id}
+                    title={announcement.title}
+                    message={announcement.message}
+                    date={announcement.date}
+                    time={announcement.date}
+                    type={announcement.type}
+                    isRead={announcement.isRead}
+                    onClick={() => handleAnnouncementClick(announcement.id)}
+                  />
+                ))
+              ) : (
+                <div className="shp-no-announcements">
+                  <p>No recent announcements</p>
+                </div>
+              )}
             </div>
-            <button className="shp-view-all-notifications">
-              View All Notifications
+            <button
+              className="shp-view-all-notifications"
+              onClick={handleViewAllAnnouncements}
+            >
+              View All Announcements
             </button>
           </div>
         </div>
       </div>
-
-      {/* Staff Info Summary */}
-      {/* <div className="shp-section">
-        <div className="shp-staff-info-card">
-          <h3 className="shp-info-title">Staff Information</h3>
-          <div className="shp-info-grid">
-            <div className="shp-info-item">
-              <span className="shp-info-label">Employee ID:</span>
-              <span className="shp-info-value">{userDetails.employeeId}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Department:</span>
-              <span className="shp-info-value">{userDetails.department}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Position:</span>
-              <span className="shp-info-value">{userDetails.position}</span>
-            </div>
-            <div className="shp-info-item">
-              <span className="shp-info-label">Join Date:</span>
-              <span className="shp-info-value">{userDetails.joinDate}</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
