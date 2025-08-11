@@ -176,7 +176,7 @@ export const ClientsSection: React.FC = () => {
       totalClients: totalClients.toString(),
       activeClients: activeClients.toString(),
       prospects: prospects.toString(),
-      totalValue: `$${(totalValue / 1000000).toFixed(1)}M`,
+      totalValue: `₦${(totalValue / 1000000).toFixed(1)}M`,
     }
   }, [clients])
 
@@ -384,7 +384,7 @@ export const ClientsSection: React.FC = () => {
                           </span>
                         </td>
                         <td className={componentStyles.tableCell}>
-                          {client.contractValue > 0 ? `$${client.contractValue.toLocaleString()}` : "—"}
+                          {client.contractValue > 0 ? `₦${client.contractValue.toLocaleString()}` : "—"}
                         </td>
                         <td className={componentStyles.tableCell}>{client.accountManager}</td>
                         <td className={componentStyles.tableCell}>
@@ -472,7 +472,7 @@ export const ClientsSection: React.FC = () => {
                         <div className={componentStyles.cardField}>
                           <span className={componentStyles.fieldLabel}>Contract Value</span>
                           <span className={componentStyles.fieldValue}>
-                            {client.contractValue > 0 ? `$${client.contractValue.toLocaleString()}` : "—"}
+                            {client.contractValue > 0 ? `₦${client.contractValue.toLocaleString()}` : "—"}
                           </span>
                         </div>
                       </div>
@@ -596,7 +596,7 @@ export const ClientsSection: React.FC = () => {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
             <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Contract Value ($)</label>
+              <label className={componentStyles.label}>Contract Value (₦)</label>
               <input
                 type="number"
                 min="0"

@@ -139,12 +139,12 @@ const BackendDevelopment: React.FC = () => {
   const pricingPlans = [
     {
       title: "Starter Plan",
-      price: "$19/month",
+      price: "₦19/month",
       offers: ["Up to 5 Projects", "Basic Support", "Standard Components"],
     },
     {
       title: "Pro Plan",
-      price: "$49/month",
+      price: "₦49/month",
       offers: [
         "Unlimited Projects",
         "Priority Support",
@@ -154,7 +154,7 @@ const BackendDevelopment: React.FC = () => {
     },
     {
       title: "Enterprise Plan",
-      price: "$99/month",
+      price: "₦99/month",
       offers: [
         "Dedicated Manager",
         "Custom Development",

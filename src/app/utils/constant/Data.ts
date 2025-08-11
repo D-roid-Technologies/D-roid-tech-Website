@@ -505,7 +505,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["Reactjs", "Nextjs", "HTML", "Css", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
@@ -566,7 +566,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
@@ -627,7 +627,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
@@ -688,7 +688,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
