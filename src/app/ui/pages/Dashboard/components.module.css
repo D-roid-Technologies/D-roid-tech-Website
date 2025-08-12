@@ -407,6 +407,7 @@
   font-size: 0.875rem;
 }
 
+
 .metricCard {
   display: flex;
   justify-content: space-between;
@@ -659,6 +660,26 @@
   font-weight: 400;
   margin-top: 0.125rem;
 }
+
+.formGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formGrid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .formGrid2,
+  .formGrid3 {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* Tablet Responsive Styles */
 @media (max-width: 1024px) {

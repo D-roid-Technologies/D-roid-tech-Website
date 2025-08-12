@@ -136,7 +136,7 @@ export const DepartmentsSection: React.FC = () => {
     return {
       totalDepartments: totalDepartments.toString(),
       totalEmployees: totalEmployees.toString(),
-      totalBudget: `$${(totalBudget / 1000000).toFixed(1)}M`,
+      totalBudget: `₦${(totalBudget / 1000000).toFixed(1)}M`,
       activeDepartments: activeDepartments.toString(),
     }
   }, [departments])
@@ -316,7 +316,7 @@ export const DepartmentsSection: React.FC = () => {
                           </div>
                         </td>
                         <td className={componentStyles.tableCell}>{department.employees}</td>
-                        <td className={componentStyles.tableCell}>${department.budget.toLocaleString()}</td>
+                        <td className={componentStyles.tableCell}> ₦{department.budget.toLocaleString()}</td>
                         <td className={componentStyles.tableCell}>{department.location}</td>
                         <td className={componentStyles.tableCell}>
                           <span
@@ -410,7 +410,7 @@ export const DepartmentsSection: React.FC = () => {
                         </div>
                         <div className={componentStyles.cardField}>
                           <span className={componentStyles.fieldLabel}>Budget</span>
-                          <span className={componentStyles.fieldValue}>${department.budget.toLocaleString()}</span>
+                          <span className={componentStyles.fieldValue}> ₦{department.budget.toLocaleString()}</span>
                         </div>
                       </div>
 
@@ -490,7 +490,7 @@ export const DepartmentsSection: React.FC = () => {
           </div>
 
           <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Annual Budget ($) *</label>
+            <label className={componentStyles.label}>Annual Budget (₦) *</label>
             <input
               type="number"
               min="0"

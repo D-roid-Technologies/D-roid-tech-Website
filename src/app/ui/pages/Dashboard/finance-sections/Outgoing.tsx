@@ -55,7 +55,7 @@ const OutgoingDetail: React.FC = () => {
                   <tr key={item.id} className={styles.tableRow}>
                     {headers.map((key) => (
                       <td key={key} className={styles.tableCell}>
-                        {typeof item[key] === "number" ? `$${item[key].toFixed(2)}` : item[key]}
+                        {typeof item[key] === "number" ? `₦${item[key].toFixed(2)}` : item[key]}
                       </td>
                     ))}
                   </tr>

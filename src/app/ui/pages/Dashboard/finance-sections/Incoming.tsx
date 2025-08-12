@@ -66,7 +66,7 @@ const IncomingDetail: React.FC = () => {
                     {headers.map((key) => (
                       <td key={key} className={styles.tableCell}>
                         {typeof item[key] === "number"
-                          ? `$${item[key].toFixed(2)}`
+                          ? `₦${item[key].toFixed(2)}`
                           : item[key]}
                       </td>
                     ))}
