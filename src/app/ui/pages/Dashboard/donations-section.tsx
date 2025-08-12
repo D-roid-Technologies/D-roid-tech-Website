@@ -123,10 +123,10 @@ export const DonationsSection: React.FC = () => {
     const avgDonation = totalRaised / donations.filter((d) => d.status === "Completed").length || 0
     const activeCampaigns = new Set(donations.map((d) => d.campaign)).size
     return {
-      totalRaised: `$${totalRaised.toLocaleString()}`,
+      totalRaised: `₦${totalRaised.toLocaleString()}`,
       activeCampaigns: activeCampaigns.toString(),
       totalDonors: totalDonors.toString(),
-      avgDonation: `$${Math.round(avgDonation)}`,
+      avgDonation: `₦${Math.round(avgDonation)}`,
     }
   }, [donations])
 

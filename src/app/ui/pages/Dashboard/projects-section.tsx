@@ -194,7 +194,7 @@ export const ProjectsSection: React.FC = () => {
       totalProjects: totalProjects.toString(),
       activeProjects: activeProjects.toString(),
       completedProjects: completedProjects.toString(),
-      totalBudget: `$${(totalBudget / 1000000).toFixed(1)}M`,
+      totalBudget: `₦${(totalBudget / 1000000).toFixed(1)}M`,
     };
   }, [projects]);
 
@@ -515,7 +515,7 @@ export const ProjectsSection: React.FC = () => {
                           </div>
                         </td>
                         <td className={componentStyles.tableCell}>
-                          ${project.budget.toLocaleString()}
+                          ₦{project.budget.toLocaleString()}
                         </td>
                         <td className={componentStyles.tableCell}>
                           <div className={componentStyles.tableActions}>
@@ -654,7 +654,7 @@ export const ProjectsSection: React.FC = () => {
                             Budget
                           </span>
                           <span className={componentStyles.fieldValue}>
-                            ${project.budget.toLocaleString()}
+                            ₦{project.budget.toLocaleString()}
                           </span>
                         </div>
                       </div>
@@ -675,178 +675,7 @@ export const ProjectsSection: React.FC = () => {
           editingProject ? "Update project information" : "Create a new project"
         }
       >
-        {/* <form onSubmit={handleSubmit}>
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Project Name *</label>
-            <input
-              className={`${componentStyles.input} ${formErrors.name ? componentStyles.inputError : ""}`}
-              placeholder="Enter project name"
-              value={formData.name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-            />
-            {formErrors.name && <div className={componentStyles.errorText}>{formErrors.name}</div>}
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Description *</label>
-            <textarea
-              className={`${componentStyles.textarea} ${formErrors.description ? componentStyles.inputError : ""}`}
-              placeholder="Project description and objectives"
-              value={formData.description}
-              onChange={(e) => handleInputChange("description", e.target.value)}
-            />
-            {formErrors.description && <div className={componentStyles.errorText}>{formErrors.description}</div>}
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Project Manager *</label>
-              <input
-                className={`${componentStyles.input} ${formErrors.manager ? componentStyles.inputError : ""}`}
-                placeholder="Manager name"
-                value={formData.manager}
-                onChange={(e) => handleInputChange("manager", e.target.value)}
-              />
-              {formErrors.manager && <div className={componentStyles.errorText}>{formErrors.manager}</div>}
-            </div>
-
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Client *</label>
-              <input
-                className={`${componentStyles.input} ${formErrors.client ? componentStyles.inputError : ""}`}
-                placeholder="Client name"
-                value={formData.client}
-                onChange={(e) => handleInputChange("client", e.target.value)}
-              />
-              {formErrors.client && <div className={componentStyles.errorText}>{formErrors.client}</div>}
-            </div>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Status</label>
-              <select
-                className={componentStyles.select}
-                value={formData.status}
-                onChange={(e) => handleInputChange("status", e.target.value)}
-              >
-                {statusOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Priority</label>
-              <select
-                className={componentStyles.select}
-                value={formData.priority}
-                onChange={(e) => handleInputChange("priority", e.target.value)}
-              >
-                {priorityOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Start Date *</label>
-              <input
-                type="date"
-                className={`${componentStyles.input} ${formErrors.startDate ? componentStyles.inputError : ""}`}
-                value={formData.startDate}
-                onChange={(e) => handleInputChange("startDate", e.target.value)}
-              />
-              {formErrors.startDate && <div className={componentStyles.errorText}>{formErrors.startDate}</div>}
-            </div>
-
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>End Date *</label>
-              <input
-                type="date"
-                className={`${componentStyles.input} ${formErrors.endDate ? componentStyles.inputError : ""}`}
-                value={formData.endDate}
-                onChange={(e) => handleInputChange("endDate", e.target.value)}
-              />
-              {formErrors.endDate && <div className={componentStyles.errorText}>{formErrors.endDate}</div>}
-            </div>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Budget ($) *</label>
-              <input
-                type="number"
-                min="0"
-                step="1000"
-                className={`${componentStyles.input} ${formErrors.budget ? componentStyles.inputError : ""}`}
-                placeholder="50000"
-                value={formData.budget}
-                onChange={(e) => handleInputChange("budget", e.target.value)}
-              />
-              {formErrors.budget && <div className={componentStyles.errorText}>{formErrors.budget}</div>}
-            </div>
-
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Progress (%)</label>
-              <input
-                type="number"
-                min="0"
-                max="100"
-                className={componentStyles.input}
-                value={formData.progress}
-                onChange={(e) => handleInputChange("progress", e.target.value)}
-              />
-            </div>
-
-            <div className={componentStyles.formGroup}>
-              <label className={componentStyles.label}>Team Size</label>
-              <input
-                type="number"
-                min="1"
-                className={componentStyles.input}
-                value={formData.teamSize}
-                onChange={(e) => handleInputChange("teamSize", e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Department *</label>
-            <select
-              className={`${componentStyles.select} ${formErrors.department ? componentStyles.inputError : ""}`}
-              value={formData.department}
-              onChange={(e) => handleInputChange("department", e.target.value)}
-            >
-              <option value="">Select department</option>
-              {departmentOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            {formErrors.department && <div className={componentStyles.errorText}>{formErrors.department}</div>}
-          </div>
-
-          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-end", marginTop: "1.5rem" }}>
-            <button
-              type="button"
-              className={`${componentStyles.button} ${componentStyles.buttonSecondary}`}
-              onClick={closeModal}
-            >
-              Cancel
-            </button>
-            <button type="submit" className={`${componentStyles.button} ${componentStyles.buttonPrimary}`}>
-              {editingProject ? "Update Project" : "Create Project"}
-            </button>
-          </div>
-        </form> */}
+      
         <form onSubmit={handleSubmit}>
           <div className={componentStyles.formGroup}>
             <label className={componentStyles.label}>Project Name *</label>

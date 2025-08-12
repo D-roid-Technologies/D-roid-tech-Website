@@ -65,7 +65,7 @@ const offer = [
       "Investor pitch support",
     ],
     businessImpact:
-      "Save $200K+ annually vs. full-time CTO hire while gaining enterprise-level expertise",
+      "Save ₦200K+ annually vs. full-time CTO hire while gaining enterprise-level expertise",
   },
   {
     title: "Security & Infrastructure Review",
@@ -81,7 +81,7 @@ const offer = [
       "Remediation action plan",
     ],
     businessImpact:
-      "Prevent potential data breaches that cost companies $4.45M on average",
+      "Prevent potential data breaches that cost companies ₦4.45M on average",
   },
   {
     title: "Scalability & Performance Optimization",
