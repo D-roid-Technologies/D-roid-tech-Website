@@ -1214,52 +1214,6 @@ export class AuthService {
         }
     }
 
-    // async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
-    //     try {
-    //         onAuthStateChanged(auth, async (currentUser) => {
-    //             if (!currentUser) {
-    //                 toast.error("User not authenticated", {
-    //                     style: { background: "#ff4d4f", color: "#fff" },
-    //                 });
-    //                 return;
-    //             }
-
-    //             const userId = currentUser.uid;
-    //             const staffDocRef = doc(db, "droidaccount", userId);
-    //             const staffSnapshot = await getDoc(staffDocRef);
-
-    //             if (!staffSnapshot.exists()) {
-    //                 toast.error("Staff record not found", {
-    //                     style: { background: "#ff4d4f", color: "#fff" },
-    //                 });
-    //                 return;
-    //             }
-
-    //             const currentData = staffSnapshot.data();
-    //             const updatedDetails = {
-    //                 ...currentData?.staff?.staffDetails,
-    //                 ...partialDetails,
-    //             };
-
-    //             await updateDoc(staffDocRef, {
-    //                 "staff.staffDetails": updatedDetails,
-    //             });
-
-    //             // ✅ Update Redux state
-    //             store.dispatch(setStaffDetails(updatedDetails));
-
-    //             toast.success("Staff details updated successfully", {
-    //                 style: { background: "#4BB543", color: "#fff" },
-    //             });
-    //         });
-    //     } catch (error: any) {
-    //         console.error("Error updating staff details:", error.message);
-    //         toast.error("Failed to update staff details", {
-    //             style: { background: "#ff4d4f", color: "#fff" },
-    //         });
-    //     }
-    // }
-
     async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
         try {
             console.log(auth.currentUser); // ✅ for debugging

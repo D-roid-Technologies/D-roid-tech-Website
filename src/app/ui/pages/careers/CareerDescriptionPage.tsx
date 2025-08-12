@@ -79,7 +79,7 @@ const CareerDescriptionPage: React.FC = () => {
         {!showForm && (
           <button onClick={() => {
             if (!isUserLoggedIn) {
-              toast.error('Please log in or sign up.', {
+              toast.error('No user details found, redirecting you to sign up.', {
                 style: {
                   background: '#ff4d4f',
                   color: '#fff',

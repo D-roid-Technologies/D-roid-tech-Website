@@ -8,6 +8,7 @@ import {
   UsersIcon,
 } from "../../components/dashboard-card/Icons";
 import CreateTasks from "./CreateTasks";
+import TasksList from "./TaskList";
 
 const TaskSchedulerDashboard: React.FC = () => {
   const [itemsOne, setItemsOne] = useState<boolean>(true);
@@ -20,12 +21,14 @@ const TaskSchedulerDashboard: React.FC = () => {
       case "Create Tasks":
         return (
           <CreateTasks
-            onBack={() => setItemsTitle("default")} 
+            onBack={() => setItemsTitle("default")}
             onSubmit={(taskData) => console.log("Submitted Task:", taskData)}
           />
         );
       case "View All Tasks":
-        return "This is View All Tasks";
+        return (
+          <TasksList />
+        );
       case "Reminders":
         return "This is Edit Task";
       case "Complete Goals":
@@ -42,32 +45,32 @@ const TaskSchedulerDashboard: React.FC = () => {
       icon: <GraduationCapIcon />,
       title: "View All Tasks",
       description:
-        "Courses, schedules, progress tracking, and K-Coin rewards via KnowledgeCity.",
+        "Displays a complete list of tasks, allowing you to review and manage all current and pending items in one place.",
     },
     {
       icon: <ClockIcon />,
       title: "Create Tasks",
       description:
-        "Time tracking, payslips, onboarding, and staff logs in one place.",
+        "Add and organize new action items or to-dos for completion.",
     },
-    {
-      icon: <UsersIcon />,
-      title: "Reminders",
-      description:
-        "Join discussions, events, diaries, and announcements to stay connected.",
-    },
-    {
-      icon: <PaletteIcon />,
-      title: "Complete Goals",
-      description:
-        "Explore music, tools, resources, and calculators to boost your creativity.",
-    },
-    {
-      icon: <BriefcaseIcon />,
-      title: "Track Progress",
-      description:
-        "Find job listings, events, and challenges through LunchBox.",
-    },
+    // {
+    //   icon: <UsersIcon />,
+    //   title: "Reminders",
+    //   description:
+    //     "Join discussions, events, diaries, and announcements to stay connected.",
+    // },
+    // {
+    //   icon: <PaletteIcon />,
+    //   title: "Complete Goals",
+    //   description:
+    //     "Explore music, tools, resources, and calculators to boost your creativity.",
+    // },
+    // {
+    //   icon: <BriefcaseIcon />,
+    //   title: "Track Progress",
+    //   description:
+    //     "Find job listings, events, and challenges through LunchBox.",
+    // },
   ];
 
   return (

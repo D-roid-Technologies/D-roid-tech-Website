@@ -23,6 +23,8 @@ import {
   Repeat,
 } from "lucide-react"
 import styles from "./CreateTasks.module.css"
+import { authService } from "../../../redux/configuration/auth.service"
+import { Task } from "../../../utils/Types"
 
 interface ChecklistItem {
   id: string
@@ -203,28 +205,32 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, onSubmit, initialD
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-
+    e.preventDefault();
+  
+    if (!validateForm()) return;
+  
+    setIsSubmitting(true);
+  
     try {
-      const processedData = {
+      const processedData: any = {
         ...formData,
         tags: formData.tags.filter((item) => item.trim() !== ""),
         checklist: formData.checklist.filter((item) => item.title.trim() !== ""),
-      }
-
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      onSubmit(processedData)
+      };
+  
+      // Call handleCreateTask instead of simulating API
+      const result = await authService.handleCreateTask(processedData);
+  
+      // if (result) {
+      //   // Optionally: Call onSubmit if you still need to trigger parent logic
+      //   onSubmit(result);
+      // }
     } catch (error) {
-      console.error("Error submitting form:", error)
+      console.error("Error submitting form:", error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };  
 
 
   const handleReset = () => {

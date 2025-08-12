@@ -356,13 +356,13 @@ export type Task = {
   description: string;
   type?: "task" | "event" | "appointment" | "reminder" | "habit" | "note";
   status:
-    | "pending"
-    | "in_progress"
-    | "completed"
-    | "cancelled"
-    | "archived"
-    | "on_hold"
-    | "reopened";
+  | "pending"
+  | "in_progress"
+  | "completed"
+  | "cancelled"
+  | "archived"
+  | "on_hold"
+  | "reopened";
   priority: "low" | "medium" | "high" | "urgent" | "critical";
   category?: string; // e.g., 'work', 'personal', 'health', 'study', 'finance', etc.
   groupId?: string; // formerly 'projectId', can be a project, list, or team
@@ -403,11 +403,12 @@ export type Task = {
     url: string;
   }[];
   auditTrail?: TaskHistoryEntry[];
-  createdBy: UserRef;
-  dateCreated: string;
+  createdBy?: UserRef;       // made optional here
+  dateCreated?: string;      // made optional here
   dateModified?: string;
   dateDeleted?: string;
 };
+
 
 export type TechStackItem = {
   icon: JSX.Element;
