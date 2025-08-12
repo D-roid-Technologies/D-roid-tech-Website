@@ -1,6 +1,6 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { DimensionSlice } from "./slices/Dimension";
 import { AppEntrySlice } from "./slices/AppEntrySlice";
 import themeReducer from "./slices/ThemeSlice";
@@ -15,13 +15,14 @@ import { payslipSlice } from "./slices/paySlipSlice";
 import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
 import tasksReducer from "./slices/tasksSlice";
 import announcementsReducer from "./slices/Annoucements";
-import { trainingSlice } from './slices/TrainingsSlice';
-import { scheduleTask } from './slices/scheduleTask';
+import { trainingSlice } from "./slices/TrainingsSlice";
+import { scheduleTask } from "./slices/scheduleTask";
+import ProgressionSlice from "./slices/ProgressionSlice";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['user'], // only persist user slice
+  whitelist: ["user"], // only persist user slice
 };
 
 const rootReducer = combineReducers({
@@ -41,6 +42,7 @@ const rootReducer = combineReducers({
   announcements: announcementsReducer,
   trainings: trainingSlice.reducer,
   scheduleTask: scheduleTask.reducer,
+  progression: ProgressionSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -58,4 +60,3 @@ export const persistor = persistStore(store);
 // Types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
