@@ -12,7 +12,6 @@
   line-height: 1.5;
 }
 
-
 .allUsers-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -163,7 +162,8 @@
 .allUsers-user-info {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
+  flex-direction: column;
   width: 100%;
   margin-bottom: 4px;
 }
@@ -172,6 +172,77 @@
   font-weight: bold;
   font-size: 14px;
   color: #333;
+}
+
+.allUsers-user-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.allUsers-edit-button,
+.allUsers-delete-button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid;
+  outline: none;
+}
+
+.allUsers-edit-button {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+.allUsers-edit-button:hover {
+  background-color: #357abd;
+  border-color: #357abd;
+  transform: translateY(-1px);
+}
+
+.allUsers-delete-button {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.allUsers-delete-button:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+  transform: translateY(-1px);
+}
+
+.allUsers-edit-button:active,
+.allUsers-delete-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .allUsers-user-actions {
+    gap: 6px;
+  }
+
+  .allUsers-edit-button,
+  .allUsers-delete-button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .allUsers-user-actions {
+    gap: 4px;
+  }
+
+  .allUsers-edit-button,
+  .allUsers-delete-button {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
 }
 
 .allUsers-user-type {
