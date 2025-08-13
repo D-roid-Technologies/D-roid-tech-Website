@@ -13,27 +13,9 @@ import {
   FaUserShield,
   FaArrowLeft,
 } from "react-icons/fa";
-import "./AllUsers.css"; 
+import "./AllUsers.css";
+import { StatCard } from "../micro-ui/stat-card";
 
-const DashboardCard: React.FC<{
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  onClick?: () => void;
-}> = ({ icon, title, description, onClick }) => (
-  <div
-    onClick={onClick}
-    className={`allUsers-dashboard-card ${
-      !onClick ? "allUsers-dashboard-card--disabled" : ""
-    }`}
-  >
-    <div className="allUsers-card-header">
-      <div className="allUsers-card-icon">{icon}</div>
-      <h3 className="allUsers-card-title">{title}</h3>
-    </div>
-    <p className="allUsers-card-description">{description}</p>
-  </div>
-);
 
 interface UserStats {
   total: number;
@@ -185,55 +167,55 @@ const AllUsers: React.FC = () => {
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  // Account type cards data
-  const accountTypeCards = [
+  // Stats data for StatCard
+  const statsData = [
     {
-      icon: <FaUsers />,
       title: "Total Users",
-      description: `${userStats.total} users registered in the system`,
-      type: "Total",
+      value: userStats.total.toString(),
+      change: "users registered in the system",
+      icon: FaUsers,
     },
     {
-      icon: <FaUserTie />,
       title: "Staff Accounts",
-      description: `${userStats.staff} staff members in the organization`,
-      type: "Staff",
+      value: userStats.staff.toString(),
+      change: "staff members in the organization",
+      icon: FaUserTie,
     },
     {
-      icon: <FaUser />,
       title: "Member Accounts",
-      description: `${userStats.member} members registered`,
-      type: "Member",
+      value: userStats.member.toString(),
+      change: "members registered",
+      icon: FaUser,
     },
     {
-      icon: <FaBuilding />,
       title: "Organization Accounts",
-      description: `${userStats.organisation} organizational accounts`,
-      type: "Organisation",
+      value: userStats.organisation.toString(),
+      change: "organizational accounts",
+      icon: FaBuilding,
     },
     {
-      icon: <FaUserShield />,
       title: "Super Admin Accounts",
-      description: `${userStats.superadmin} super admin accounts`,
-      type: "Superadmin",
+      value: userStats.superadmin.toString(),
+      change: "super admin accounts",
+      icon: FaUserShield,
     },
     {
-      icon: <FaBuilding />,
       title: "School Organizations",
-      description: `${userStats.school} school-type organizations`,
-      type: "School",
+      value: userStats.school.toString(),
+      change: "school-type organizations",
+      icon: FaBuilding,
     },
     {
-      icon: <FaBuilding />,
       title: "Business Organizations",
-      description: `${userStats.business} business-type organizations`,
-      type: "Business",
+      value: userStats.business.toString(),
+      change: "business-type organizations",
+      icon: FaBuilding,
     },
     {
-      icon: <FaBuilding />,
       title: "NGO Organizations",
-      description: `${userStats.ngo} non-profit organizations`,
-      type: "NGO",
+      value: userStats.ngo.toString(),
+      change: "non-profit organizations",
+      icon: FaBuilding,
     },
   ];
 
@@ -246,18 +228,26 @@ const AllUsers: React.FC = () => {
         </p>
 
         <div className="allUsers-cards-grid">
-          {accountTypeCards.map((card, index) => (
-            <DashboardCard
+          {statsData.map((stat, index) => (
+            <div
               key={index}
-              icon={card.icon}
-              title={card.title}
-              description={card.description}
-              onClick={
-                card.type !== "Total"
-                  ? () => handleAccountTypeClick(card.type)
-                  : undefined
-              }
-            />
+              onClick={() => handleAccountTypeClick(stat.title.split(" ")[0])}
+              style={{ cursor: "pointer" }}
+              tabIndex={0}
+              role="button"
+              onKeyPress={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  handleAccountTypeClick(stat.title.split(" ")[0]);
+                }
+              }}
+            >
+              <StatCard
+                title={stat.title}
+                value={stat.value}
+                change={stat.change}
+                icon={stat.icon}
+              />
+            </div>
           ))}
         </div>
       </div>
