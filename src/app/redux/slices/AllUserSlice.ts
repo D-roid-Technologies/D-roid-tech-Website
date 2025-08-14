@@ -2,21 +2,23 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserType } from "../../utils/Types";
 
 interface UsersState {
-    allUsers: UserType[];
+  allUsers: UserType[];
 }
 
 const initialState: UsersState = {
-    allUsers: [],
+  allUsers: [],
 };
 
 export const allUsersSlice = createSlice({
-    name: "allUsers",
-    initialState,
-    reducers: {
-        setAllUsers(state, action: PayloadAction<UserType[]>) {
-            state.allUsers = action.payload;
-        },
+  name: "allUsers",
+  initialState,
+  reducers: {
+    setAllUsers(state, action: PayloadAction<UserType[]>) {
+      state.allUsers = action.payload;
+
+      //   console.log("AllUsers Line 19", state.allUsers);
     },
+  },
 });
 
 export const { setAllUsers } = allUsersSlice.actions;

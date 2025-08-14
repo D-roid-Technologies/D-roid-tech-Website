@@ -63,6 +63,7 @@ const AllUsers: React.FC = () => {
 
       snapshot.forEach((doc) => {
         const data = doc.data();
+        // console.log("logging data on line 66", data);
         if (data?.user?.primaryInformation) {
           usersList.push(data.user.primaryInformation);
         }
@@ -316,8 +317,7 @@ const AllUsers: React.FC = () => {
                       e.stopPropagation();
                       console.log(
                         "Delete button clicked for user:",
-                        user.firstName,
-                        user.lastName
+                        user
                       );
                     }}
                     title="Delete User"

@@ -26,6 +26,7 @@ import {
 } from "react-icons/fa";
 import "./StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
+import { Modal } from "../micro-ui/modal";
 import { useSelector } from "react-redux";
 import { UserType } from "../../../../utils/Types";
 import { RootState } from "../../../../redux/Store";
@@ -174,6 +175,13 @@ const StaffUserHomePage: React.FC = () => {
   const announcements = useSelector((state: RootState) => state.announcements);
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const [currentTime] = useState(new Date());
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<{
+    title: string;
+    description: string;
+    data: any;
+    type?: string;
+  } | null>(null);
 
   //  Calculate task statistics
   const completedTasks = tasks.filter(
@@ -217,6 +225,112 @@ const StaffUserHomePage: React.FC = () => {
       color: "purple",
     },
   ];
+
+  // Handle quick action clicks
+  const handleQuickAction = (actionTitle: string) => {
+    let modalData = null;
+    let modalType = "";
+
+    switch (actionTitle) {
+      case "Clock In/Out":
+        modalType = "clockin";
+        modalData = {
+          title: "Clock In/Out Details",
+          description: "Your work hours and attendance information",
+          data: {
+            currentStatus: "Clocked Out",
+            lastClockIn: "08:30 AM",
+            lastClockOut: "17:15 PM",
+            todayHours: "8h 45m",
+            weeklyHours: "42h 15m",
+            monthlyHours: "168h 30m",
+            attendanceRate: "96%",
+            lateArrivals: 2,
+            earlyDepartures: 1,
+            ...userDetails,
+          },
+        };
+        break;
+
+      case "View Payslip":
+        modalType = "payslip";
+        modalData = {
+          title: "Payslip Information",
+          description: "Your salary and payment details",
+          data: {
+            currentMonth: "August 2025",
+            basicSalary: "₦150,000",
+            allowances: "₦25,000",
+            deductions: "₦15,000",
+            netPay: "₦160,000",
+            paymentStatus: "Paid",
+            paymentDate: "30th Aug 2025",
+            taxDeducted: "₦12,000",
+            pensionContribution: "₦3,000",
+            ...userDetails,
+          },
+        };
+        break;
+
+      case "Submit Timesheet":
+        modalType = "timesheet";
+        modalData = {
+          title: "Timesheet Submission",
+          description: "Your weekly work hour logs",
+          data: {
+            weekEnding: "August 16, 2025",
+            totalHours: "40h",
+            regularHours: "40h",
+            overtimeHours: "0h",
+            status: "Pending Approval",
+            submittedDate: "August 13, 2025",
+            approver: "John Manager",
+            projects: [
+              { name: "Project Alpha", hours: "20h" },
+              { name: "Project Beta", hours: "15h" },
+              { name: "Administrative", hours: "5h" },
+            ],
+            ...userDetails,
+          },
+        };
+        break;
+
+      case "Start Training":
+        modalType = "training";
+        modalData = {
+          title: "Training Progress",
+          description: "Your learning and development status",
+          data: {
+            currentCourse: "Advanced React Development",
+            progress: "75%",
+            completedModules: 6,
+            totalModules: 8,
+            certificatesEarned: 3,
+            skillsBadges: 5,
+            nextDeadline: "August 30, 2025",
+            estimatedCompletion: "2 weeks",
+            courses: [
+              { name: "React Fundamentals", status: "Completed", score: "95%" },
+              {
+                name: "Advanced JavaScript",
+                status: "Completed",
+                score: "88%",
+              },
+              { name: "Node.js Backend", status: "In Progress", score: "75%" },
+            ],
+            ...userDetails,
+          },
+        };
+        break;
+
+      default:
+        console.log(`Clicked: ${actionTitle}`);
+        return;
+    }
+
+    setModalContent(modalData);
+    setModalOpen(true);
+  };
 
   const quickActions = [
     {
@@ -314,6 +428,208 @@ const StaffUserHomePage: React.FC = () => {
     navigate("/tasks");
   };
 
+  const closeModal = () => {
+    setModalOpen(false);
+    setModalContent(null);
+  };
+
+  // Render modal content based on type
+  const renderModalContent = () => {
+    if (!modalContent) return null;
+
+    const { data, type } = modalContent;
+
+    return (
+      <div className="shp-user-detail">
+        <div className="shp-detail-section">
+          <h4 className="shp-section-title">Personal Information</h4>
+          <div className="shp-detail-grid">
+            <div className="shp-detail-item">
+              <label>Full Name:</label>
+              <span>
+                {data.firstName} {data.middleName} {data.lastName}
+              </span>
+            </div>
+            <div className="shp-detail-item">
+              <label>Employee ID:</label>
+              <span>{data.uniqueId}</span>
+            </div>
+            <div className="shp-detail-item">
+              <label>Email:</label>
+              <span>{data.email}</span>
+            </div>
+            <div className="shp-detail-item">
+              <label>Phone:</label>
+              <span>{data.phone}</span>
+            </div>
+            <div className="shp-detail-item">
+              <label>Department:</label>
+              <span>{data.userType}</span>
+            </div>
+            <div className="shp-detail-item">
+              <label>Location:</label>
+              <span>
+                {data.city}, {data.state}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {type === "clockin" && (
+          <div className="shp-detail-section">
+            <h4 className="shp-section-title">Attendance Details</h4>
+            <div className="shp-detail-grid">
+              <div className="shp-detail-item">
+                <label>Current Status:</label>
+                <span className="shp-status-badge clocked-out">
+                  {data.currentStatus}
+                </span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Last Clock In:</label>
+                <span>{data.lastClockIn}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Last Clock Out:</label>
+                <span>{data.lastClockOut}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Today's Hours:</label>
+                <span>{data.todayHours}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>This Week:</label>
+                <span>{data.weeklyHours}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>This Month:</label>
+                <span>{data.monthlyHours}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {type === "payslip" && (
+          <div className="shp-detail-section">
+            <h4 className="shp-section-title">Salary Breakdown</h4>
+            <div className="shp-detail-grid">
+              <div className="shp-detail-item">
+                <label>Pay Period:</label>
+                <span>{data.currentMonth}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Basic Salary:</label>
+                <span>{data.basicSalary}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Allowances:</label>
+                <span>{data.allowances}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Deductions:</label>
+                <span>{data.deductions}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Net Pay:</label>
+                <span className="shp-net-pay">{data.netPay}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Payment Status:</label>
+                <span className="shp-status-badge paid">
+                  {data.paymentStatus}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {type === "timesheet" && (
+          <div className="shp-detail-section">
+            <h4 className="shp-section-title">Timesheet Summary</h4>
+            <div className="shp-detail-grid">
+              <div className="shp-detail-item">
+                <label>Week Ending:</label>
+                <span>{data.weekEnding}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Total Hours:</label>
+                <span>{data.totalHours}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Regular Hours:</label>
+                <span>{data.regularHours}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Overtime:</label>
+                <span>{data.overtimeHours}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Status:</label>
+                <span className="shp-status-badge pending">{data.status}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Approver:</label>
+                <span>{data.approver}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {type === "training" && (
+          <div className="shp-detail-section">
+            <h4 className="shp-section-title">Training Progress</h4>
+            <div className="shp-detail-grid">
+              <div className="shp-detail-item">
+                <label>Current Course:</label>
+                <span>{data.currentCourse}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Progress:</label>
+                <span className="shp-progress">{data.progress}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Completed Modules:</label>
+                <span>
+                  {data.completedModules}/{data.totalModules}
+                </span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Certificates Earned:</label>
+                <span>{data.certificatesEarned}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Next Deadline:</label>
+                <span>{data.nextDeadline}</span>
+              </div>
+              <div className="shp-detail-item">
+                <label>Est. Completion:</label>
+                <span>{data.estimatedCompletion}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="shp-detail-actions">
+          <button
+            className="shp-button shp-button-secondary"
+            onClick={closeModal}
+          >
+            Close
+          </button>
+          <button className="shp-button shp-button-primary">
+            {type === "clockin"
+              ? "Clock In Now"
+              : type === "payslip"
+              ? "Download Payslip"
+              : type === "timesheet"
+              ? "Submit Timesheet"
+              : "Continue Training"}
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="shp-homepage-container">
       {/* Welcome Header */}
@@ -345,7 +661,7 @@ const StaffUserHomePage: React.FC = () => {
               description={action.description}
               icon={action.icon}
               variant={action.variant}
-              onClick={() => console.log(`Clicked: ${action.title}`)}
+              onClick={() => handleQuickAction(action.title)}
             />
           ))}
         </div>
@@ -457,6 +773,16 @@ const StaffUserHomePage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* User Info Modal */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        title={modalContent?.title || ""}
+        description={modalContent?.description || ""}
+      >
+        {renderModalContent()}
+      </Modal>
     </div>
   );
 };
