@@ -114,6 +114,19 @@ const AllUsers: React.FC = () => {
 
   const handleUserClick = (user: UserType) => {
     setSelectedUser(user);
+
+    // Scroll to user details section after a brief delay to allow state update
+    setTimeout(() => {
+      const userDetailsElement = document.querySelector(
+        ".allUsers-user-details"
+      );
+      if (userDetailsElement) {
+        userDetailsElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
   };
 
   const handleAccountTypeClick = (accountType: string) => {
@@ -133,13 +146,15 @@ const AllUsers: React.FC = () => {
     if (!selectedAccountType) return allUsers;
 
     switch (selectedAccountType) {
+      case "Total":
+        return allUsers;
       case "Staff":
         return allUsers.filter((user) => user.userType === "Staff");
       case "Member":
         return allUsers.filter((user) => user.userType === "Member");
-      case "Organisation":
+      case "Organization":
         return allUsers.filter((user) => user.userType === "Organisation");
-      case "Superadmin":
+      case "SuperAdmin":
         return allUsers.filter((user) => user.role === "Superadmin");
       case "School":
         return allUsers.filter(
@@ -167,55 +182,63 @@ const AllUsers: React.FC = () => {
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  // Stats data for StatCard
+  // Stats data for StatCard with proper filter keys
   const statsData = [
     {
       title: "Total Users",
       value: userStats.total.toString(),
       change: "users registered in the system",
       icon: FaUsers,
+      filterKey: "Total",
     },
     {
       title: "Staff Accounts",
       value: userStats.staff.toString(),
       change: "staff members in the organization",
       icon: FaUserTie,
+      filterKey: "Staff",
     },
     {
       title: "Member Accounts",
       value: userStats.member.toString(),
       change: "members registered",
       icon: FaUser,
+      filterKey: "Member",
     },
     {
       title: "Organization Accounts",
       value: userStats.organisation.toString(),
       change: "organizational accounts",
       icon: FaBuilding,
+      filterKey: "Organization",
     },
     {
       title: "Super Admin Accounts",
       value: userStats.superadmin.toString(),
       change: "super admin accounts",
       icon: FaUserShield,
+      filterKey: "SuperAdmin",
     },
     {
       title: "School Organizations",
       value: userStats.school.toString(),
       change: "school-type organizations",
       icon: FaBuilding,
+      filterKey: "School",
     },
     {
       title: "Business Organizations",
       value: userStats.business.toString(),
       change: "business-type organizations",
       icon: FaBuilding,
+      filterKey: "Business",
     },
     {
       title: "NGO Organizations",
       value: userStats.ngo.toString(),
       change: "non-profit organizations",
       icon: FaBuilding,
+      filterKey: "NGO",
     },
   ];
 
@@ -231,13 +254,13 @@ const AllUsers: React.FC = () => {
           {statsData.map((stat, index) => (
             <div
               key={index}
-              onClick={() => handleAccountTypeClick(stat.title.split(" ")[0])}
+              onClick={() => handleAccountTypeClick(stat.filterKey)}
               style={{ cursor: "pointer" }}
               tabIndex={0}
               role="button"
               onKeyPress={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
-                  handleAccountTypeClick(stat.title.split(" ")[0]);
+                  handleAccountTypeClick(stat.filterKey);
                 }
               }}
             >
@@ -315,10 +338,7 @@ const AllUsers: React.FC = () => {
                     className="allUsers-delete-button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      console.log(
-                        "Delete button clicked for user:",
-                        user
-                      );
+                      console.log("Delete button clicked for user:", user);
                     }}
                     title="Delete User"
                   >
