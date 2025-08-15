@@ -766,7 +766,164 @@
     font-size: 1.5rem;
   }
 
-  .shp-welcome-title{
+  .shp-welcome-title {
     font-size: 1.5rem;
+  }
+}
+
+/* User Detail Styles for Modal Content */
+.shp-user-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+}
+
+.shp-detail-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.shp-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 16px 0;
+  /* border-bottom: 2px solid #4a90e2; */
+  padding-bottom: 8px;
+}
+
+.shp-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.shp-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.shp-detail-item label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.shp-detail-item span {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Status Badges */
+.shp-status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.shp-status-badge.clocked-out {
+  background-color: #fee;
+  color: #c53030;
+}
+
+.shp-status-badge.clocked-in {
+  background-color: #e6fffa;
+  color: #38a169;
+}
+
+.shp-status-badge.paid {
+  background-color: #e6fffa;
+  color: #38a169;
+}
+
+.shp-status-badge.pending {
+  background-color: #fef5e7;
+  color: #d69e2e;
+}
+
+/* Special styling for net pay */
+.shp-net-pay {
+  font-weight: 700;
+  color: #38a169;
+  font-size: 16px;
+}
+
+/* Progress styling */
+.shp-progress {
+  font-weight: 600;
+  color: #4a90e2;
+}
+
+/* Action buttons */
+.shp-detail-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.shp-button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.shp-button-primary {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+.shp-button-primary:hover {
+  background-color: #357abd;
+  border-color: #357abd;
+}
+
+.shp-button-secondary {
+  background-color: white;
+  color: #666;
+  border-color: #ddd;
+}
+
+.shp-button-secondary:hover {
+  background-color: #f8f9fa;
+  border-color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shp-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .shp-detail-actions {
+    flex-direction: column;
+  }
+
+  .shp-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .shp-detail-section {
+    padding: 16px;
+  }
+
+  .shp-user-detail {
+    gap: 16px;
   }
 }
