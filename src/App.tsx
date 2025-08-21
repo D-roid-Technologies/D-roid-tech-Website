@@ -11,11 +11,20 @@ import { SiR } from "react-icons/si";
 import ScrollToTop from "./app/ui/components/ScrollToTop/ScrollToTop";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import { WelcomeModal } from "./app/ui/components/LeadModal/WelcomeModal";
 
 function AppContent() {
   const user: UserType = useSelector((state: RootState) => state.user);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [authReady, setAuthReady] = useState<boolean>(false); // <-- new state
+    const [showModal, setShowModal] = useState(false)
+   useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowModal(true)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -62,6 +71,8 @@ function AppContent() {
     return <div style={{ padding: "2rem", textAlign: "center" }}>Loading...</div>;
   }
 
+
+
   return (
     <>
       {!isOnline && (
@@ -79,6 +90,7 @@ function AppContent() {
       <BrowserRouter>
         <ScrollToTop />
         <AppEntry />
+        <WelcomeModal/>
       </BrowserRouter>
     </>
   );

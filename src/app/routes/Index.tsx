@@ -83,6 +83,7 @@ import { RootState } from "../redux/Store";
 import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage";
 import CalenderPage from "../ui/pages/schedule/CalenderPage";
 import Announcements from "../ui/pages/Dashboard/Announcements";
+import LeadForm from "../ui/pages/softwareDevelopment/SoftwarePages/LeadForm";
 
 // Define an enum for all route paths
 
@@ -92,6 +93,7 @@ export enum RoutePaths {
   Careers = "/careers",
   CareersDescriptionPage = "/careers/description",
   StartProjectPage = "/StartProjectPage",
+  LeadForm = "/form",
 
   // Services Routes
   SoftwareDevelopment = "/software-development",
@@ -192,6 +194,7 @@ export enum RoutePaths {
   CrossPlatformApps = "/software-development/cross-platform-apps",
   DatabaseAndCloud = "/software-development/database-and-cloud",
   // PricingPage = "PricingPage",
+
 }
 
 interface DropdownItem {
@@ -246,6 +249,7 @@ const Index: React.FunctionComponent = () => {
       />
       <Route path={RoutePaths.AboutUs} element={<AboutUs />} />
       <Route path={RoutePaths.Careers} element={<CareersPage />} />
+      <Route path={RoutePaths.LeadForm} element={<LeadForm />} />
       <Route
         path={RoutePaths.CareersDescriptionPage}
         element={<CareerDescriptionPage />}

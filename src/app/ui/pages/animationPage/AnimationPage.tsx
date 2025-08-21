@@ -5,6 +5,7 @@ import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
 import bannerStyles from "../../components/global-styles/Banner.module.css";
 import AnimationPrincingCard from "../animations/AnimationPrincingCard";
+import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
 
 export interface Story {
   id: string;
@@ -304,6 +305,7 @@ const AnimationPage: React.FC = () => {
         </a>
       </div>
       <AnimationPrincingCard />
+      <LeadForm/>
     </div>
   );
 };
