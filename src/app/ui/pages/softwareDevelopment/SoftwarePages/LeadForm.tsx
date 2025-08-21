@@ -142,10 +142,10 @@ const LeadForm: React.FC = () => {
     <div className="lf-container">
       <div className="lf-form-wrapper">
         <div className="lf-form-header">
-          <h2>Get Your Project Started</h2>
+          <h2>Your free website</h2>
           <p>
-            Tell us about your project and we'll get back to you with a custom
-            solution.
+            Fill the form below to get a free 1 page website and a free 1 month
+            hosting
           </p>
         </div>
 
