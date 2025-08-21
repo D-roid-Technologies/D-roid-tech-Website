@@ -4,6 +4,7 @@ import { Assets } from "../../../utils/constant/Assets";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
 import TrainingPrincingCard from "./TrainingPrincingCard";
+import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
 
 const programs = [
   {
@@ -245,6 +246,7 @@ const TrainingProgramsPage: React.FC = () => {
         </a>
       </div>
       <TrainingPrincingCard />
+      <LeadForm/>
     </div>
   );
 };
