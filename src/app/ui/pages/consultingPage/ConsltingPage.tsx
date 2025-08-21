@@ -17,6 +17,7 @@ import {
 import { store } from "../../../redux/Store";
 import Testimonial from "../testimonial/Testimonial";
 import ConsultingPrincingCard from "./ConsultingPrincingCard";
+import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
 
 const offer = [
   {
@@ -396,6 +397,7 @@ const ConsultingPage: React.FC = () => {
 
         <Testimonial map="consulting" />
         <ConsultingPrincingCard />
+        <LeadForm/>
       </div>
     </div>
   );
