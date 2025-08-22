@@ -25,6 +25,7 @@ import { RoutePaths } from "../../../routes/Index";
 import bannerStyles from "../../components/global-styles/Banner.module.css";
 import contactStyles from "./StartProjectContactForm.module.css";
 import ContactForm from "../../components/contact/ContactForm";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 
 type Tool = {
   name: string;
@@ -37,31 +38,43 @@ const tools: Tool[] = [
     name: "React Js",
     desc: "A JavaScript library for building fast, interactive user interfaces, mainly for web apps. Built by Facebook, it uses components and a virtual DOM for efficient rendering.",
     icon: <FaReact />,
+    url: "#",
+    onClick: () => window.open("/form", "_blank"),
   },
   {
     name: "Node.js",
     desc: "A runtime environment that allows JavaScript to run on the server-side. Great for building scalable backend services like APIs and real-time apps.",
     icon: <IoLogoNodejs />,
+    url: "#",
+    onClick: () => window.open("/form", "_blank"),
   },
   {
     name: "Figma",
     desc: "A browser-based design tool used for UI/UX design and prototyping. Loved for its real-time collaboration and ease of use for teams.",
     icon: <FaFigma />,
+    url: "#",
+    onClick: () => window.open("/form", "_blank"),
   },
   {
     name: "TypeScript",
     desc: "A superset of JavaScript that adds static typing. Helps catch errors early and makes your code more robust and easier to maintain.",
     icon: <SiTypescript />,
+    url: "#",
+    onClick: () => window.open("/form", "_blank"),
   },
   {
     name: "Python",
     desc: "A versatile, beginner-friendly programming language known for its clean syntax. Widely used in data science, web development, AI, automation, and more.",
     icon: <FaPython />,
+    url: "#",
+    onClick: () => window.open("/form", "_blank"),
   },
   {
     name: "SQL",
     desc: "Structured Query Language — used for managing and querying relational databases. Essential for tasks like data retrieval, insertion, and updates.",
     icon: <SiMysql />,
+    url: "#",
+    onClick: () => window.open("/form", "_blank"),
   },
 ];
 
@@ -228,54 +241,17 @@ const StartProjectPage: React.FC = () => {
           }}
         >
           {tools.map((tool, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: "8px",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                padding: "20px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                transition: "transform 0.3s ease",
-                cursor: "pointer",
-                "&:hover": {
-                  transform: "translateY(-5px)",
-                },
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "4rem",
-                  marginBottom: "6px",
-                  color: Assets.colors.primary,
-                }}
-              >
-                {tool.icon}
-              </div>
-              <h3
-                style={{
-                  fontSize: "1.5rem",
-                  marginBottom: "10px",
-                  color: Assets.colors.primary,
-                  textAlign: "center",
-                }}
-              >
-                {tool.name}
-              </h3>
-              <p
-                style={{
-                  textAlign: "left",
-                  fontSize: "0.8rem",
-                  color: "#666",
-                  lineHeight: "1.5",
-                }}
-              >
-                {tool.desc}
-              </p>
-            </div>
-          ))}
+    <NewwebsiteCard
+      key={index}
+      icon={tool.icon}
+      title={tool.name}
+      description={tool.desc}
+      url={tool.url}
+      link={tool.link}
+      onClick={tool.onClick}
+      className="tool-card"
+    />
+  ))}
         </div>
       </div>
 

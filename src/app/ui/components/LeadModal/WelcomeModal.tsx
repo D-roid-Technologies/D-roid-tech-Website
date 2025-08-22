@@ -1,20 +1,27 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import { useNavigate } from "react-router-dom"
+import { IoCloseSharp } from "react-icons/io5";
+
 import styles from "./welcome-modal.module.css"
 
 export function WelcomeModal() {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
+  const scrollYRef = useRef(0);
 
   useEffect(() => {
     // Check if modal has been shown before
+        scrollYRef.current = window.scrollY;
+
     const hasSeenModal = localStorage.getItem("welcome-modal-seen")
 
     if (!hasSeenModal) {
-      // Show modal after a brief delay for better UX
+      
       const timer = setTimeout(() => {
+              const hasScrolledFar = Math.abs(window.scrollY - scrollYRef.current) > 100;
+
         setIsOpen(true)
       }, 1000)
 
@@ -43,9 +50,9 @@ export function WelcomeModal() {
       <div className={styles.modalContainer}>
         <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
           <div className={styles.modalHeader}>
-            <button onClick={handleClose} className={styles.modalCloseBtn}>
-              ×
-            </button>
+            <div onClick={handleClose} className={styles.modalCloseBtn}>
+             <IoCloseSharp />
+            </div>
             <h2 className={styles.modalTitle}>Get 1 Month Hosting Free!</h2>
           </div>
 
