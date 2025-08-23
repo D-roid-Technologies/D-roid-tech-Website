@@ -16,7 +16,7 @@ const ProjectSection = () => {
 
     if (filteredProjects.length === 0) {
       return (
-        <div className="text-center p-4 text-gray-500 italic">
+        <div className="" style={{color:"black"}}>
           No projects with this status
         </div>
       );

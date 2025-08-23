@@ -1,4 +1,3 @@
-/* Convert regular CSS to CSS Module with camelCase class names */
 .modalBackdrop {
   position: fixed;
   top: 0;
@@ -46,8 +45,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: #6b7280;
-  background: none;
+  color: black;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
@@ -60,9 +58,7 @@
   justify-content: center;
 }
 
-.modalCloseBtn:hover {
-  color: #374151;
-}
+
 
 .modalTitle {
   font-size: 1.5rem;

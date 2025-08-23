@@ -6,7 +6,7 @@ import { RootState } from "./app/redux/Store";
 import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { UserType } from "./app/utils/Types";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 import { SiR } from "react-icons/si";
 import ScrollToTop from "./app/ui/components/ScrollToTop/ScrollToTop";
 import { onAuthStateChanged } from "firebase/auth";
@@ -17,14 +17,6 @@ function AppContent() {
   const user: UserType = useSelector((state: RootState) => state.user);
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
   const [authReady, setAuthReady] = useState<boolean>(false); // <-- new state
-    const [showModal, setShowModal] = useState(false)
-   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowModal(true)
-    }, 500)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -37,15 +29,15 @@ function AppContent() {
   useEffect(() => {
     const handleOnline = () => {
       setIsOnline(true);
-      toast.success('Back Online 🎉', {
-        style: { background: '#4BB543', color: '#fff' },
+      toast.success("Back Online 🎉", {
+        style: { background: "#4BB543", color: "#fff" },
       });
     };
 
     const handleOffline = () => {
       setIsOnline(false);
-      toast.error('No Internet Connection 🚫', {
-        style: { background: '#ff4d4f', color: '#fff' },
+      toast.error("No Internet Connection 🚫", {
+        style: { background: "#ff4d4f", color: "#fff" },
       });
     };
 
@@ -68,21 +60,23 @@ function AppContent() {
 
   if (!authReady) {
     // You can return a loading spinner here
-    return <div style={{ padding: "2rem", textAlign: "center" }}>Loading...</div>;
+    return (
+      <div style={{ padding: "2rem", textAlign: "center" }}>Loading...</div>
+    );
   }
-
-
 
   return (
     <>
       {!isOnline && (
-        <div style={{
-          background: '#ff4d4f',
-          color: '#fff',
-          textAlign: 'center',
-          padding: '10px',
-          fontWeight: '500'
-        }}>
+        <div
+          style={{
+            background: "#ff4d4f",
+            color: "#fff",
+            textAlign: "center",
+            padding: "10px",
+            fontWeight: "500",
+          }}
+        >
           🔌 You're offline. Some features may not work.
         </div>
       )}
@@ -90,7 +84,7 @@ function AppContent() {
       <BrowserRouter>
         <ScrollToTop />
         <AppEntry />
-        <WelcomeModal/>
+        {!user.isLoggedIn && <WelcomeModal />}
       </BrowserRouter>
     </>
   );
