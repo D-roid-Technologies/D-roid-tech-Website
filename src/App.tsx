@@ -11,7 +11,7 @@ import { SiR } from "react-icons/si";
 import ScrollToTop from "./app/ui/components/ScrollToTop/ScrollToTop";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
-import { WelcomeModal } from "./app/ui/components/LeadModal/WelcomeModal";
+import { WelcomeModal } from "./app/ui/components/PromoModule/WelcomeModal";
 
 function AppContent() {
   const user: UserType = useSelector((state: RootState) => state.user);

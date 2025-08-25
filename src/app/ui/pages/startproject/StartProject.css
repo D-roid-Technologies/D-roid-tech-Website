@@ -149,7 +149,9 @@
 }
 
 .project-list {
-  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .project-card {
@@ -158,10 +160,9 @@
   padding: 16px;
   margin-bottom: 16px;
   background-color: #fafafa;
-  display: flex;
-  flex-direction: column;
-  height: 50%; /* Or set a specific minimum height */
-  min-height: 80px; /* Adjust as needed */
+  flex: 1 1 calc(25% - 16px);
+  min-width: 200px;
+  box-sizing: border-box;
 }
 
 .project-image {
@@ -197,12 +198,11 @@
   text-decoration: none;
   background-color: #0a0d31;
   padding: 8px 12px;
-  margin-top: auto; /* This will push the link to the bottom */
+  margin-top: auto;
 }
 
 .project-link:hover {
-  text-decoration: underline;
-  color: #004999;
+  color: #f0f0f0;
 }
 
 /* form section */

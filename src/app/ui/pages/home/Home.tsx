@@ -12,6 +12,7 @@ import Testimonial from "../testimonial/Testimonial";
 import ProductsSmall from "../products/ProductsSmall";
 import KnowledgeCity from "../knowledgecityApp/KnowledgeCity";
 import Partners from "../../components/partners/Partners";
+import PromoSection from "../../components/PromoModule/promo-section";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
@@ -67,6 +68,7 @@ const Home: React.FunctionComponent = () => {
           </div>
         </div>
       </section>
+      <PromoSection/>
     </div>
   );
 };
