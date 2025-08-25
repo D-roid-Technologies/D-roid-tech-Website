@@ -23,7 +23,7 @@ export function WelcomeModal() {
               const hasScrolledFar = Math.abs(window.scrollY - scrollYRef.current) > 100;
 
         setIsOpen(true)
-      }, 1000)
+      }, 10000)
 
       return () => clearTimeout(timer)
     }
