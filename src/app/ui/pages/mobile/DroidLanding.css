@@ -183,7 +183,7 @@ button {
   font-weight: 700;
   text-align: center;
   margin-bottom: 60px;
-  color: var(--secondary);
+  color: var(--secondary) !important;
   position: relative;
   display: inline-block;
   width: 100%;

@@ -197,7 +197,7 @@ const initialState: ProjectState = {
     {
       id: "13",
       title: "D'roid Input Component",
-      status: "Ongoing",
+      status: "Completed",
       descriptionUrl: "/projects/health-wellness-app",
       summary:
         "The DroidInput is a highly customizable input component for React applications. It provides a unified interface for various input types including text fields, textareas, and dropdown selects. This component offers extensive styling options and supports both controlled and uncontrolled forms.",
@@ -212,7 +212,7 @@ const initialState: ProjectState = {
     {
       id: "14",
       title: "D'roid Button Component",
-      status: "Completed",
+      status: "Ongoing",
       descriptionUrl: "https://www.npmjs.com/package/react-ts-droid-button",
       summary:
         "DroidButton is a customizable React component for creating buttons with various styling options. It's written in TypeScript for better type safety and maintainability.",
@@ -227,7 +227,7 @@ const initialState: ProjectState = {
     {
       id: "15",
       title: "D'roid Card Component",
-      status: "Completed",
+      status: "Ongoing",
       descriptionUrl: "https://www.npmjs.com/package/react-ts-droid-card",
       summary:
         "The DriodCard component is a flexible and customizable UI component for displaying content in a card format. It supports various elements such as a title, subtitle, icon, image, content, actions, and tags, making it suitable for a wide range of use cases.",
@@ -242,7 +242,7 @@ const initialState: ProjectState = {
     {
       id: "16",
       title: "D'roid Carousel Component",
-      status: "Completed",
+      status: "Ongoing",
       descriptionUrl: "https://www.npmjs.com/package/react-ts-droid-carousel",
       summary:
         "The Carousel component is a customizable React component that creates a responsive and interactive image slider. It's built with TypeScript and styled-components, providing a smooth sliding experience with navigation controls and indicators.",

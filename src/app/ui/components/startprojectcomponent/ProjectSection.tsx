@@ -16,8 +16,15 @@ const ProjectSection = () => {
 
     if (filteredProjects.length === 0) {
       return (
-        <div className="" style={{color:"black"}}>
-          No projects with this status
+        <div
+          style={{
+            color: "gray",
+            textAlign: "center",
+            padding: "20px",
+            fontSize: "18px",
+          }}
+        >
+          Coming Soon
         </div>
       );
     }

@@ -154,11 +154,11 @@ const Intro: React.FC = () => {
       </section>
       {/* Our Team Section */}
       <div className="wrapper team_sec">
-        <center className="mt-5">
+        {/* <center className="mt-5">
           <span className="title_span" style={{ background: "#fff" }}>
             OUR TEAM
           </span>
-        </center>
+        </center> */}
         <div className="team_decs_container group justify-content-center">
           <div className="block-12 block-md-8 team_decs">
             <h1 style={{ color: "#111724" }}>
@@ -178,11 +178,11 @@ const Intro: React.FC = () => {
               The Fastest way to become a Techie — Only at D'roid Technologies.
             </p>
             <a
-              href={RoutePaths.Careers}
+              href={RoutePaths.Training}
               style={{ backgroundColor: "#071d6a", color: "#fff" }}
               className="navbar-cta"
             >
-              See Careers
+              See Training
             </a>
           </div>
         </div>
