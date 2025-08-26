@@ -195,7 +195,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
         <p style={{ fontSize: "16px", fontWeight: "500", color: "#000000" }}>Send us a Message</p>
       </div>
       <p style={{ fontSize: "14px", color: "#555" }}>
-        Kindly fill the form below to send us your message. Fields marked with * are required.
+        Kindly fill the form below to send us your message.
       </p>
 
       {submitStatus === "success" && (
@@ -258,9 +258,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
               style={{
                 marginTop: "20px",
                 padding: "15px",
-                backgroundColor: "#e3f2fd",
                 borderRadius: "8px",
-                border: "1px solid #bbdefb",
               }}
             >
               <h3
@@ -283,7 +281,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                 }}
               >
                 <div>
-                  <label style={getLabelStyle()}>Subject *</label>
+                  <label style={getLabelStyle()}>Subject</label>
                   <select
                     id="subject"
                     name="subject"
@@ -301,7 +299,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                 </div>
 
                 <div>
-                  <label style={getLabelStyle()}>Full Name *</label>
+                  <label style={getLabelStyle()}>Full Name</label>
                   <input
                     type="text"
                     id="name"
@@ -315,7 +313,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                 </div>
 
                 <div>
-                  <label style={getLabelStyle()}>Email *</label>
+                  <label style={getLabelStyle()}>Email</label>
                   <input
                     type="email"
                     id="email"
@@ -348,25 +346,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
               style={{
                 marginTop: "20px",
                 padding: "15px",
-                backgroundColor: "#f3e5f5",
                 borderRadius: "8px",
-                border: "1px solid #e1bee7",
               }}
             >
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "600",
-                  color: "#7b1fa2",
-                  marginBottom: "15px",
-                  borderBottom: "2px solid #7b1fa2",
-                  paddingBottom: "5px",
-                }}
-              >
-                Your Message
-              </h3>
+             
               <div>
-                <label style={getLabelStyle()}>Message *</label>
+                <label style={getLabelStyle()}>Message</label>
                 <textarea
                   id="message"
                   name="message"

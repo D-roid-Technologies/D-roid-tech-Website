@@ -1,11 +1,13 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import "./DroidLanding.css";
 import Navbar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 
 const DroidLanding = () => {
+  const navigate = useNavigate()  
   // Animation controls
   const controls = useAnimation();
   const [heroRef, heroInView] = useInView({
@@ -111,7 +113,10 @@ const DroidLanding = () => {
       },
     },
   };
-
+ 
+  const handleOrdernow = () => {
+    navigate('/under-development')
+  }
   // Trigger animations when in view
   useEffect(() => {
     if (heroInView) controls.start("visible");
@@ -327,7 +332,7 @@ const DroidLanding = () => {
           <div className="cta-content">
             <h2>Ready to Experience D'roid?</h2>
             <p>Join the next generation of mobile technology today.</p>
-            <button className="cta-primary">Order Now</button>
+            <button onClick={handleOrdernow} className="cta-primary">Order Now</button>
           </div>
         </div>
       </section>

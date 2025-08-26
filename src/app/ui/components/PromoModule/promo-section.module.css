@@ -78,6 +78,7 @@
 }
 
 .sectionTitle {
+  text-align: center;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -343,9 +344,12 @@
     font-size: 2rem;
   }
 
-  .sectionTitle {
+  /* .sectionTitle {
+   
+    align-items: center;
+    text-align: center;
     font-size: 1.75rem;
-  }
+  } */
 
   .ctaButton {
     font-size: 1rem;
