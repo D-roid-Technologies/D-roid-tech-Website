@@ -9,7 +9,9 @@ import NavBar from "../../components/navbar/NavBar";
 import ContactSoftware from "../contact/ContactSection/ContactSoftware";
 import ContactPartnersClients from "./ContactPartnersClients";
 import styles from "../../components/global-styles/Banner.module.css";
+import "../Dashboard/DashboardContent.module.css";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../../components/button/BackButton";
 
 const logos = [
   {
@@ -36,7 +38,7 @@ const clientLogos = [
     alt: "Access Bank",
   },
   {
-    src: Assets.images.sanwoPay, 
+    src: Assets.images.sanwoPay,
     alt: "Sanwo Pay",
   },
 ];
@@ -54,19 +56,7 @@ const PartnersClients: React.FC = () => {
         }}
       >
         <div style={{ margin: "1rem 0 0 3rem" }}>
-          <button
-            onClick={() => navigate(-1)}
-            style={{
-              padding: "10px 16px",
-              backgroundColor: "#071D6A",
-              color: "#fff",
-              border: "1px solid #000000",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            ← Back
-          </button>
+          <BackButton label="Back" />
         </div>
         <div className={styles.bannerContent}>
           <h1>Partners & Clients</h1>
@@ -147,7 +137,10 @@ const PartnersClients: React.FC = () => {
         <h2 style={{ color: "#ffffff" }}>Want to Partner with Us?</h2>
         <p style={{ color: "#ffffff" }}>
           Join our growing network of collaborators who believe in innovation,
-          creativity, and building impactful tech together.
+          creativity, and building impactful tech together.Let’s create
+          something meaningful together. At D'roid Technologies, we’re always
+          open to partnerships that align with our mission to drive digital
+          progress.
         </p>
         <button
           className="soft-cta-button"
@@ -158,11 +151,7 @@ const PartnersClients: React.FC = () => {
                 appTitle: "Become a Partner",
                 appBody: (
                   <>
-                    <p style={{ color: "#000000" }}>
-                      Let’s create something meaningful together. At D'roid
-                      Technologies, we’re always open to partnerships that align
-                      with our mission to drive digital progress.
-                    </p>
+                   
                     <p style={{ color: "#000000" }}>
                       Fill in the form below and our partnership team will get
                       back to you.
