@@ -68,8 +68,8 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.25rem;
   font-weight: 600;
-   color: #333;;
-   border-color: #f8f9fa;
+  color: #333;
+  border-color: #f8f9fa;
 }
 
 .cardDescription {
@@ -228,6 +228,7 @@
   font-size: 0.875rem;
   transition: border-color 0.2s ease;
 }
+
 
 .input:focus {
   outline: none;
@@ -406,7 +407,6 @@
   color: #64748b;
   font-size: 0.875rem;
 }
-
 
 .metricCard {
   display: flex;
@@ -680,7 +680,6 @@
   }
 }
 
-
 /* Tablet Responsive Styles */
 @media (max-width: 1024px) {
   .table {
@@ -776,4 +775,80 @@
   .tableCell {
     padding: 1rem 1.25rem;
   }
+}
+
+/* Custom Dropdown Styles */
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdownButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+    color: black;
+  background-color: #f9f9f9;
+}
+
+.dropdownValueSelected {
+    color: black;
+}
+
+.dropdownValuePlaceholder {
+  color: black;
+}
+
+.dropdownIcon {
+  transition: transform 0.2s ease;
+}
+
+.dropdownIconOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  z-index: 50;
+  width: 100%;
+  margin-top: 0.25rem;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-height: 240px;
+  overflow-y: auto;
+    color: black;
+}
+
+.dropdownOption {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: none;
+    color: black;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownOption:hover {
+  background-color: #f9fafb;
+}
+
+.dropdownOptionSelected {
+  background-color: #f3f4f6;
+}
+
+.dropdownOptionSelected:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdownCheckmark {
+    color: black;
+  font-size: 0.75rem;
 }

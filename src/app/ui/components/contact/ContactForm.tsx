@@ -90,60 +90,60 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     }
   }
 
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleContactSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    setSubmitStatus(null)
+  setSubmitStatus(null);
 
-    if (!validateForm()) {
-      setSubmitStatus("error")
-      return
-    }
-
-    setIsSubmitting(true)
-
-    const templateParams = {
-      name: formData.name,
-      title: `We have received your enquiry with title: ${formData.subject}. 
-
-      See details below:
-      Phone Number: ${formData.phone},
-
-      Message: ${formData.message}.
-
-      Our team will review and get back to you in three working days`,
-      email: formData.email,
-    }
-
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then(
-        () => {
-          toast.success("Message successfully sent!", {
-            style: { background: "#4BB543", color: "#fff" },
-          })
-          setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            subject: "",
-            message: "",
-          })
-          setSubmitStatus("success")
-          setErrors({})
-        },
-        () => {
-          toast.error("Error sending email 🚫", {
-            style: { background: "#ff4d4f", color: "#fff" },
-          })
-          setSubmitStatus("error")
-          setErrors({ submit: "Failed to send message. Please try again." })
-        },
-      )
-      .finally(() => {
-        setIsSubmitting(false)
-      })
+  if (!validateForm()) {
+    setSubmitStatus("error");
+    return;
   }
+
+  setIsSubmitting(true);
+
+  const templateParams = {
+    name: formData.name,
+    title: `We have received your enquiry with title: ${formData.subject}. 
+
+    See details below:
+    Phone Number: ${formData.phone},
+
+    Message: ${formData.message}.
+
+    Our team will review and get back to you in three working days`,
+    email: formData.email,
+  };
+
+  try {
+    await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+    toast.success("Message successfully sent!", {
+      style: { background: "#4BB543", color: "#fff" },
+    });
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
+    setSubmitStatus("success");
+    setErrors({});
+  } catch (error) {
+    console.error("Email send error:", error);
+
+    toast.error("Error sending email 🚫", {
+      style: { background: "#ff4d4f", color: "#fff" },
+    });
+    setSubmitStatus("error");
+    setErrors({ submit: "Failed to send message. Please try again." });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const renderErrorMessage = (fieldName: string) => {
     if (errors[fieldName]) {
