@@ -238,8 +238,9 @@ export const DATA = {
       name: "Faith Ojumola",
       designation: "Product Designer",
       socials: {
-        linkedin: "",
-        twitter: " ",
+        linkedin:
+          "https://www.linkedin.com/in/faith-ojumola-71156b195?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: "https://twitter.com/unicorngal_dam ",
       },
     },
   ],

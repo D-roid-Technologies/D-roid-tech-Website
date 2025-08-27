@@ -388,7 +388,7 @@ const SignUp: React.FunctionComponent = () => {
             >
               <option value="">Select User Type</option>
               <option value="Staff">Staff</option>
-              <option value="Organisation">Organisation</option>
+              {/* <option value="Organisation">Organisation</option> */}
               <option value="Member">Member</option>
             </select>
             {formErrors.userType && (

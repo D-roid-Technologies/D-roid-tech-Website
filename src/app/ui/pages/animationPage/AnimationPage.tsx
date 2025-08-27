@@ -252,7 +252,7 @@ const AnimationPage: React.FC = () => {
         >
           Featured Stories
         </span>
-        <div className="soft-dev-content">
+        <div className="soft-dev-content" style={{ cursor: "pointer" }}>
           {stories.map((story, index) => (
             <div key={index}>
               <CoreValueCardTwo
@@ -305,10 +305,9 @@ const AnimationPage: React.FC = () => {
         </a>
       </div>
       <AnimationPrincingCard />
-      <LeadForm/>
+      <LeadForm />
     </div>
   );
 };
 
 export default AnimationPage;
- 
