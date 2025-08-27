@@ -22,6 +22,7 @@ import { LuFileJson } from "react-icons/lu";
 import { GiPowerGenerator } from "react-icons/gi";
 import { SiLetsencrypt } from "react-icons/si";
 import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
+import AllToolsCard from "../../components/CoreValueCard/AllToolsCard";
 
 export const Alltools = [
   {
@@ -62,8 +63,7 @@ export const Alltools = [
   },
   {
     title: "Color Picker",
-    description:
-      "Select and copy hex/RGB/HSV codes from screen or palette.",
+    description: "Select and copy hex/RGB/HSV codes from screen or palette.",
     icon: CgColorPicker({ size: 24 }),
     component: "ColorPicker",
     category: "Color Tools",
@@ -71,8 +71,7 @@ export const Alltools = [
   },
   {
     title: "Word Counter",
-    description:
-      "Count words, characters, paragraphs, and reading time.",
+    description: "Count words, characters, paragraphs, and reading time.",
     icon: FaFileWord({ size: 24 }),
     component: "WordCounter",
     category: "Text Tools",
@@ -80,8 +79,7 @@ export const Alltools = [
   },
   {
     title: "Currency Converter",
-    description:
-      "Get real-time conversion rates for global currencies.",
+    description: "Get real-time conversion rates for global currencies.",
     icon: BsCurrencyExchange({ size: 24 }),
     component: "CurrencyConverter", // 👈 used in switch
     category: "Calculation Tools",
@@ -89,8 +87,7 @@ export const Alltools = [
   },
   {
     title: "JSON Formatter",
-    description:
-      "Beautify and format JSON with syntax highlighting.",
+    description: "Beautify and format JSON with syntax highlighting.",
     icon: LuFileJson({ size: 24 }),
     component: "JsonFormatter",
     category: "Developer Tools",
@@ -98,8 +95,7 @@ export const Alltools = [
   },
   {
     title: "UUID Generator",
-    description:
-      "Generate UUIDs for development with bulk options.",
+    description: "Generate UUIDs for development with bulk options.",
     icon: GiPowerGenerator({ size: 24 }),
     component: "UUIDGenerator",
     category: "Developer Tools",
@@ -107,8 +103,7 @@ export const Alltools = [
   },
   {
     title: "Base64 Encoder/Decoder",
-    description:
-      "Encode or decode base64 for secure data handling.",
+    description: "Encode or decode base64 for secure data handling.",
     icon: SiLetsencrypt({ size: 24 }),
     component: "Base64EncoderDecoder",
     category: "Developer Tools",
@@ -116,50 +111,45 @@ export const Alltools = [
   },
   {
     title: "AI Background Remover",
-    description:
-      "Remove backgrounds from images using AI precision.",
+    description: "Remove backgrounds from images using AI precision.",
     icon: FaMagic({ size: 24 }),
-    component: "BackgroundRemove", 
+    component: "BackgroundRemove",
     category: "Image Tools",
     link: "/toolbox/ai-background-remover",
     isPremium: true,
   },
   {
     title: "Advanced PDF Editor",
-    description:
-      "Merge, split, sign, and annotate PDFs with advanced tools.",
+    description: "Merge, split, sign, and annotate PDFs with advanced tools.",
     icon: FaFilePdf({ size: 24 }),
-    component: "PDFEditor", 
+    component: "PDFEditor",
     category: "Document Tools",
     link: "/toolbox/advanced-pdf-editor",
     isPremium: true,
   },
   {
     title: "Resume & CV Analyzer",
-    description:
-      "Analyze and score your resume with AI feedback.",
+    description: "Analyze and score your resume with AI feedback.",
     icon: FaUserTie({ size: 24 }),
-    component: "ResumeAnalyzer", 
+    component: "ResumeAnalyzer",
     category: "Career Tools",
     link: "/toolbox/resumeanalyzer",
     isPremium: true,
   },
   {
     title: "Code Complexity Analyzer",
-    description:
-      "Detect code complexity and hotspots in your codebase.",
+    description: "Detect code complexity and hotspots in your codebase.",
     icon: FaCodeBranch({ size: 24 }),
-    component: "CodeComplexityAnalyzer", 
+    component: "CodeComplexityAnalyzer",
     category: "Developer Tools",
     link: "/toolbox/code-complexity",
     isPremium: true,
   },
   {
     title: "Bulk Image Watermarker",
-    description:
-      "Add watermarks to multiple images for branding/copyright.",
+    description: "Add watermarks to multiple images for branding/copyright.",
     icon: FaStamp({ size: 24 }),
-    component: "BulkImageWatermarker", 
+    component: "BulkImageWatermarker",
     category: "Image Tools",
     link: "/toolbox/bulk-image",
     isPremium: true,
@@ -175,7 +165,6 @@ export const tools = [
     component: "ImageResizing",
     category: "Image Tools",
     link: "/toolbox/imageresizing",
-
   },
   {
     title: "Color Converter",
@@ -183,7 +172,7 @@ export const tools = [
       "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready and digital files.",
     icon: FaPalette({ size: 24 }),
     category: "Color Tools",
-     component: "ColorConverter",
+    component: "ColorConverter",
     link: "./colorconverter/ColorConverter",
   },
   {
@@ -192,7 +181,7 @@ export const tools = [
       "Smart compression reduces file sizes up to 90% without quality loss, preserving visual clarity while optimizing storage speed.",
     icon: FaImages({ size: 24 }),
     category: "Image Tools",
-             component: "ImageCompress",
+    component: "ImageCompress",
 
     link: "/toolbox/imagecompressor",
   },
@@ -202,7 +191,7 @@ export const tools = [
       "Trim or cut images to focus on specific parts with precision cropping tools for perfect composition and framing results.",
     icon: BiSolidCrop({ size: 24 }),
     category: "Image Tools",
-         component: "Crop",
+    component: "Crop",
 
     link: "/toolbox/croptool",
   },
@@ -212,7 +201,7 @@ export const tools = [
       "Select and copy hex/RGB/HSV codes from color palettes or screen captures for accurate color matching and design work.",
     icon: CgColorPicker({ size: 24 }),
     category: "Color Tools",
-     component: "ColorPicker",
+    component: "ColorPicker",
     link: "/toolbox/colorPicker",
   },
   {
@@ -221,7 +210,7 @@ export const tools = [
       "Count words, characters, paragraphs, and reading time with detailed statistics for content analysis and optimization.",
     icon: FaFileWord({ size: 24 }),
     category: "Text Tools",
-     component: "WordCounter",
+    component: "WordCounter",
     link: "/toolbox/wordconter",
   },
   {
@@ -239,7 +228,7 @@ export const tools = [
       "Beautify, validate, and format JSON code with syntax highlighting, error detection, and proper indentation structure.",
     icon: LuFileJson({ size: 24 }),
     category: "Developer Tools",
-     component: "JsonFormatter",
+    component: "JsonFormatter",
     link: "/toolbox/jsonformatter",
   },
   {
@@ -247,8 +236,8 @@ export const tools = [
     description:
       "Generate unique identifiers for development projects with multiple UUID versions and bulk generation capabilities.",
     icon: GiPowerGenerator({ size: 24 }),
-     component: "UUIDGenerator", 
-     
+    component: "UUIDGenerator",
+
     category: "Developer Tools",
     link: "/toolbox/uuidgenerator",
   },
@@ -266,7 +255,7 @@ export const tools = [
       "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
     icon: FaMagic({ size: 24 }),
     category: "Image Tools",
-     component: "BackgroundRemove", 
+    component: "BackgroundRemove",
     link: "/toolbox/ai-background-remover",
     isPremium: true,
   },
@@ -276,7 +265,7 @@ export const tools = [
       "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
     icon: FaFilePdf({ size: 24 }),
     category: "Document Tools",
-    component: "PDFEditor", 
+    component: "PDFEditor",
     link: "/toolbox/advanced-pdf-editor",
     isPremium: true,
   },
@@ -286,7 +275,7 @@ export const tools = [
       "Analyze and score your resume against industry standards and job descriptions with detailed feedback and improvement tips.",
     icon: FaUserTie({ size: 24 }),
     category: "Career Tools",
-      component: "ResumeAnalyzer",
+    component: "ResumeAnalyzer",
     link: "/toolbox/resumeanalyzer",
     isPremium: true,
   },
@@ -296,7 +285,7 @@ export const tools = [
       "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
     icon: FaCodeBranch({ size: 24 }),
     category: "Developer Tools",
-        component: "CodeComplexityAnalyzer",
+    component: "CodeComplexityAnalyzer",
 
     link: "/toolbox/code-complexity",
     isPremium: true,
@@ -308,7 +297,7 @@ export const tools = [
     icon: FaStamp({ size: 24 }),
     category: "Image Tools",
     link: "/toolbox/bulk-image",
-        component: "BulkImageWatermarker",
+    component: "BulkImageWatermarker",
 
     isPremium: true,
   },
@@ -345,7 +334,6 @@ const ToolBoxItems: React.FunctionComponent = () => {
 
   return (
     <div>
-    
       <div className="software-main">
         <div className="software-main-content">
           <h1 className="software-header">D'roid ToolBox</h1>
@@ -396,14 +384,18 @@ const ToolBoxItems: React.FunctionComponent = () => {
         {filteredTools.length > 0 ? (
           <div className="soft-dev-content">
             {filteredTools.map((tech, index) => (
-              <CoreValueCardThree
-                key={`${tech.title}-${index}`}
-                title={tech.title}
-                description={tech.description}
-                icon={tech.icon}
-                link={tech.link}
-                className="process-card"
-              />
+              <div key={`${tech.title}-${index}`} className="relative">
+            
+
+                <AllToolsCard
+                  title={tech.title}
+                  description={tech.description}
+                  icon={tech.icon}
+                  isPremium={tech.isPremium}
+                  link={tech.link}
+                  className="process-card"
+                />
+              </div>
             ))}
           </div>
         ) : (

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   updateModal,
   updateModalContent,
@@ -12,6 +12,7 @@ import styles from "../../components/global-styles/Banner.module.css";
 import "../Dashboard/DashboardContent.module.css";
 import { useNavigate } from "react-router-dom";
 import BackButton from "../../components/button/BackButton";
+import ContactPartnersModal from "./ContactPartnersClients";
 
 const logos = [
   {
@@ -45,6 +46,8 @@ const clientLogos = [
 
 const PartnersClients: React.FC = () => {
   const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
 
   return (
     <div>
@@ -142,7 +145,7 @@ const PartnersClients: React.FC = () => {
           open to partnerships that align with our mission to drive digital
           progress.
         </p>
-        <button
+        {/* <button
           className="soft-cta-button"
           onClick={() => {
             store.dispatch(updateModal(true));
@@ -156,13 +159,15 @@ const PartnersClients: React.FC = () => {
                       Fill in the form below and our partnership team will get
                       back to you.
                     </p>
-                    <ContactPartnersClients />
                   </>
                 ),
               })
             );
           }}
         >
+          Partner With Us →
+        </button> */}
+        <button className="soft-cta-button" onClick={() => setIsModalOpen(true)}>
           Partner With Us →
         </button>
       </div>
@@ -223,7 +228,13 @@ const PartnersClients: React.FC = () => {
           </div>
         </div>
       </section>
-
+  {/* Modal Component */}
+      {isModalOpen && (
+        <ContactPartnersModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
       {/* Gallery Section */}
       {/* <div style={{ padding: "3rem 2rem", backgroundColor: "#fff" }}>
         <h2
