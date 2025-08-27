@@ -3,13 +3,12 @@ import NavBar from "../../../components/navbar/NavBar";
 import ImageRezised from "../../../components/toolboxfolder/imageresizing/ImageRezised";
 import { useNavigate } from "react-router-dom";
 import { ToolProps } from "../../../../utils/Types";
-
+import ImageResizeFeatures from "../../../components/toolboxfolder/imageresizing/ImageResizeFeatures";
 
 const ImageResizer = ({ onClose }: ToolProps) => {
   const navigate = useNavigate();
   return (
     <div>
-      {/* <NavBar /> */}
       {/* Hero */}
       <div className="software-main">
         <div className="software-main-content">
@@ -29,9 +28,8 @@ const ImageResizer = ({ onClose }: ToolProps) => {
           </div>
           <h1 className="software-header"> Image Resizer</h1>
           <p>
-            Image Resizer is a fast and user-friendly tool designed to
-            quickly adjust the dimensions of your images without compromising
-            quality.
+            Image Resizer is a fast and user-friendly tool designed to quickly
+            adjust the dimensions of your images without compromising quality.
           </p>
         </div>
       </div>
@@ -39,6 +37,7 @@ const ImageResizer = ({ onClose }: ToolProps) => {
 
       {/* Image resizer */}
       <ImageRezised />
+      <ImageResizeFeatures />
     </div>
   );
 };
