@@ -9,8 +9,6 @@ const DroidJournalPage: React.FC = () => {
 
   return (
     <>
-      {/* <NavBar className="scrolled no-shadow" /> */}
-    
       <Blog />
     </>
   );
