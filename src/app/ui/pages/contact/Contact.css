@@ -83,7 +83,7 @@
 
 .contact-icon {
   font-size: 1.5rem;
-  color: #282a94;
+  color: #282a94 !important;
   margin-top: 0.3rem;
 }
 

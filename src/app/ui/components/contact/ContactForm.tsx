@@ -114,6 +114,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     Our team will review and get back to you in three working days`,
     email: formData.email,
   };
+    console.log("Contact Form Data:", formData);
+  console.log("EmailJS Template Params:", templateParams);
+
 
   try {
     await emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -265,7 +268,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                 style={{
                   fontSize: "16px",
                   fontWeight: "600",
-                  color: "#1565c0",
+                  color: "#282a94",
                   marginBottom: "15px",
                   borderBottom: "2px solid #1565c0",
                   paddingBottom: "5px",

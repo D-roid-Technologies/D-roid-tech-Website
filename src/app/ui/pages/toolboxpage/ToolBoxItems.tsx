@@ -41,7 +41,7 @@ export const Alltools = [
     icon: FaPalette({ size: 24 }),
     component: "ColorConverter",
     category: "Color Tools",
-    link: "./colorconverter/ColorConverter",
+    link: "/toolbox/colorconverter",
   },
   {
     title: "Image Compressor",
@@ -173,7 +173,7 @@ export const tools = [
     icon: FaPalette({ size: 24 }),
     category: "Color Tools",
     component: "ColorConverter",
-    link: "./colorconverter/ColorConverter",
+    link: "/toolbox/colorconverter",
   },
   {
     title: "Image Compressor",
@@ -221,6 +221,7 @@ export const tools = [
     category: "Calculation Tools",
     component: "CurrencyConverter",
     link: "/toolbox/currency-converter",
+    isPremium: true,
   },
   {
     title: "JSON Formatter",
@@ -385,8 +386,6 @@ const ToolBoxItems: React.FunctionComponent = () => {
           <div className="soft-dev-content">
             {filteredTools.map((tech, index) => (
               <div key={`${tech.title}-${index}`} className="relative">
-            
-
                 <AllToolsCard
                   title={tech.title}
                   description={tech.description}

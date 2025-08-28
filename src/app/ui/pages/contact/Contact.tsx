@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
 
   const handleTestimonialSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Testimonial Form Submitted:", testimonialData);
+    console.log("Testimonial Form Submitted:>>>>>>>>>>>>", testimonialData);
     toast.success("Thank you for your testimonial!");
     setTestimonialData({
       name: "",
@@ -131,10 +131,10 @@ const Contact: React.FC = () => {
         <div className="contact-grid">
           {/* Contact Information */}
           <div className="contact-info-card">
-            <h2>Contact Information</h2>
-            <p>
+            {/* <h2>Contact Information</h2> */}
+            {/* <p>
               Fill out the form or reach out directly through these channels:
-            </p>
+            </p> */}
 
             <div className="contact-method">
               <MdEmail className="contact-icon" />
@@ -160,11 +160,12 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="social-links">
+            <div className="social-links ">
               <a
                 href={DATA.socialLinks.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="contact-icon"
               >
                 <FaTwitter />
               </a>
@@ -172,6 +173,7 @@ const Contact: React.FC = () => {
                 href={DATA.socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                 className="contact-icon"
               >
                 <FaInstagram />
               </a>
@@ -179,6 +181,7 @@ const Contact: React.FC = () => {
                 href={DATA.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                 className="contact-icon"
               >
                 <FaLinkedin />
               </a>

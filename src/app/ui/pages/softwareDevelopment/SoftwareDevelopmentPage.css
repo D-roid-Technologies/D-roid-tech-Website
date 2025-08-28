@@ -119,6 +119,11 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+.soft-cta-button:hover{
+  background-color: #071d6a;
+  color:#ffffff; ;
+}
 /* Medium screens (tablets) */
 @media (max-width: 1023px) {
   .software-header {

@@ -5,6 +5,8 @@ import { useInView } from "react-intersection-observer";
 import "./DroidLanding.css";
 import Navbar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
+// import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 
 const DroidLanding = () => {
   const navigate = useNavigate()  
@@ -117,6 +119,13 @@ const DroidLanding = () => {
   const handleOrdernow = () => {
     navigate('/under-development')
   }
+  const handlePreOder = () => {
+
+    
+     toast("feature coming soon...");
+
+    
+  }
   // Trigger animations when in view
   useEffect(() => {
     if (heroInView) controls.start("visible");
@@ -151,8 +160,8 @@ const DroidLanding = () => {
                 sleek, powerful device.
               </motion.p>
               <motion.div className="hero-cta" variants={heroItemVariants}>
-                <button className="cta-primary">Pre-order Now</button>
-                <button className="cta-secondary">Explore Features</button>
+                <button onClick={handlePreOder} className="cta-primary">Pre-order Now</button>
+                <button onClick={handlePreOder} className="cta-secondary">Explore Features</button>
               </motion.div>
               <motion.div className="hero-tagline" variants={heroItemVariants}>
                 <p>Be bold. Be fast. Be D'roid.</p>

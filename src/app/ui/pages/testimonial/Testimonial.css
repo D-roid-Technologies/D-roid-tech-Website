@@ -32,7 +32,7 @@
 }
 
 .testimonial-header h2 {
-  color: #111724;
+  color: #111724 !important;
   font-size: 4rem;
   font-weight: 900;
 }
@@ -51,7 +51,7 @@
   margin-top: 40px;
   line-height: 1.2;
   font-weight: 900;
-  color: #222;
+  color: #222 !important;
   margin: 0;
 }
 
