@@ -45,10 +45,7 @@ const AllToolsCard: React.FC<CoreValueCardProps> = ({
             borderRadius: "0.375rem", 
             fontSize: "0.75rem", 
             fontWeight: 600, 
-            background: isPremium
-              ? "linear-gradient(to right, #facc15, #ca8a04)" // yellow-400 → yellow-600
-              : "linear-gradient(to right, #4ade80, #16a34a)", // green-400 → green-600
-            color: isPremium ? "#713f12" : "#14532d", // text-yellow-900 / text-green-900
+            color: isPremium ? "#713f12" : "#14532d", 
           }}
         >
           {isPremium ? "PREMIUM" : "FREE"}
