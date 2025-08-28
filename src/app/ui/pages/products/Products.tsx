@@ -70,6 +70,7 @@ const Products: React.FC = () => {
                   author={product.author}
                   descriptionUrl={product.descriptionUrl}
                   summary={product.summary}
+                  status={product.status}
                   startDate=""
                   client=""
                   team={[]}
