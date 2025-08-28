@@ -155,15 +155,6 @@ const Blog: React.FC = () => {
               </div>
             ))}
           </div>
-          {/* <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
-            <a
-              href={RoutePaths.Products}
-              style={{ backgroundColor: "#fff", color: "#071d6a" }}
-              className="navbar-cta"
-            >
-              See all Projects
-            </a>
-          </div> */}
         </div>
         <br />
         <br />
