@@ -5,6 +5,7 @@ import { BsPalette2 } from "react-icons/bs";
 import { FiCheckCircle, FiRefreshCw } from "react-icons/fi";
 import { IoCopyOutline } from "react-icons/io5";
 import { ToolProps } from "../../../../utils/Types";
+import ColorConverterFeatures from "./ColorConverterFeatures";
 
 type Format = "hex" | "rgb" | "hsl";
 
@@ -340,6 +341,10 @@ const ColorConv: React.FC = ({ onClose }: ToolProps) => {
             </code>
           </div>
         </div>
+      </div>
+      <div style={{marginTop: "10px"}}>
+
+      <ColorConverterFeatures/>
       </div>
     </div>
   );

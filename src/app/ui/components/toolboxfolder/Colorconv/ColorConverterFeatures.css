@@ -1,7 +1,8 @@
 .image-resizer-features {
   width: 100%;
   background-color: #273771;
-  /* color: #ffffff; */
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  color: #ffffff;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
 }
