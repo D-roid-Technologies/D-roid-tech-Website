@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import WordCounterItem from "./WordCounterItem";
+import WordCounterFeatures from "./WordCounterFeatures";
 
 const WordCounter: React.FC = () => {
     const [text, setText] = useState("");
@@ -52,6 +53,7 @@ const WordCounter: React.FC = () => {
             </div>
 
             <WordCounterItem/>
+            <WordCounterFeatures/>
         </>
     );
 };

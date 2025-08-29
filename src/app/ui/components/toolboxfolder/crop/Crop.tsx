@@ -4,6 +4,7 @@ import type CropperJS from "cropperjs";
 // import type { Cropper as CropperJs } from "cropperjs";
 import "cropperjs/dist/cropper.css";
 import "./Crop.css";
+import CropToolFeatures from "./CropToolFeatures";
 
 const Crop: React.FC = () => {
   const cropperRef = useRef<CropperJS>();
@@ -61,6 +62,7 @@ const Crop: React.FC = () => {
           <img src={croppedImage} alt="Cropped" className="ict-cropped-image" />
         </div>
       )}
+      
     </div>
   );
 };

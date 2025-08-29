@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import JSONFormatterFeatures from "./JSONFormatterFeatures";
 // import "../JsonFormatter/JsonFormatter.css";
 
 const JsonFormatter: React.FC = () => {
@@ -72,6 +73,7 @@ const JsonFormatter: React.FC = () => {
       </div>
 
       <pre style={styles.preview}>{output}</pre>
+    
     </div>
   );
 };

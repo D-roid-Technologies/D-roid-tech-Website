@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./ImageCompress.css";
 import { ToolProps } from "../../../../utils/Types";
 import ImageCompressItem from "./ImageCompressItem";
+import ImageCompressorFeatures from "./ImageCompressorFeatures";
 
 const ImageCompress: React.FC = ({ onClose }: ToolProps) => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const ImageCompress: React.FC = ({ onClose }: ToolProps) => {
 
       {/* Main Content */}
     <ImageCompressItem/>
+    <ImageCompressorFeatures/>
     </div>
   );
 };

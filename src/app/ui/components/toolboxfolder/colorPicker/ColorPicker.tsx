@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ColorPickerItem from "./colorPickerItem";
+import ColorPickerFeatures from "./ColorPickerFeatures";
 
 const ColorPicker: React.FC = () => {
     const [color, setColor] = useState("#0099e5");
@@ -88,6 +89,7 @@ const ColorPicker: React.FC = () => {
                 </div>
             </div>
             <ColorPickerItem/>
+            <ColorPickerFeatures/>
         </>
     );
 };
