@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import CurrencyConverterFeatures from "./CurrencyConverterFeatures";
 
 const ResumeAnalyzerPage: React.FC = () => {
   const navigate = useNavigate();
@@ -157,6 +158,7 @@ const ResumeAnalyzerPage: React.FC = () => {
           </p>
         </div>
       </div>
+      <CurrencyConverterFeatures/>
     </div>
   );
 };

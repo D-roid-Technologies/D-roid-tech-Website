@@ -3,6 +3,7 @@ import NavBar from "../../../components/navbar/NavBar";
 import ImageCompress from "../../../components/toolboxfolder/imagecompress/ImageCompress";
 import JsonFormatter from "../../../components/toolboxfolder/jsonformat/JsonFormater";
 import { useNavigate } from "react-router-dom";
+import JSONFormatterFeatures from "../../../components/toolboxfolder/jsonformat/JSONFormatterFeatures";
 
 const JsonFormating = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const JsonFormating = () => {
 
       {/* Image compressor */}
       <JsonFormatter />
+      <JSONFormatterFeatures/>
     </div>
   );
 };

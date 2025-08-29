@@ -7,6 +7,7 @@ import ReactCrop, { Crop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { ToolProps } from "../../../../utils/Types";
 import CropToolItem from "./CropToolItem";
+import CropToolFeatures from "../../../components/toolboxfolder/crop/CropToolFeatures";
 
 const CropTool: React.FC = ({onClose} : ToolProps) => {
   const [src, setSrc] = useState<string | null>(null);
@@ -69,6 +70,7 @@ const CropTool: React.FC = ({onClose} : ToolProps) => {
         </div>
       </div>
 <CropToolItem/>
+<CropToolFeatures/>
     
     </>
   );
