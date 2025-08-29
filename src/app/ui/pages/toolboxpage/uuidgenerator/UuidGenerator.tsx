@@ -4,6 +4,7 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import { IoCopy } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import UuidGeneratorItem from "./UuidGeneratorItem";
+import UuidGeneratorFeatures from "./UuidGeneratorFeatures";
 
 const UUIDGenerator: React.FC = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const UUIDGenerator: React.FC = () => {
         </div>
       </div>
       <UuidGeneratorItem />
+      <UuidGeneratorFeatures />
     </>
   );
 };

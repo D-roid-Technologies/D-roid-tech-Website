@@ -1,8 +1,8 @@
 .image-resizer-features {
   width: 100%;
-  background-color: #273771;
+  /* background-color: #273771; */
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
-  color: #ffffff;
+  /* color: #ffffff; */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
 }
@@ -23,7 +23,7 @@
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, #ffffff, #e0e7ff);
+  /* background: linear-gradient(45deg, #ffffff, #e0e7ff); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

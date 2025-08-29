@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EncoderItem from "./EncoderItem";
+import Base64ToolFeatures from "./Base64ToolFeatures";
 
 const Base64Tool: React.FC = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const Base64Tool: React.FC = () => {
         </div>
       </div>
       <EncoderItem />
+      <Base64ToolFeatures />
     </>
   );
 };
