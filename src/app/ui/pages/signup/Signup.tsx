@@ -306,20 +306,20 @@ const SignUp: React.FunctionComponent = () => {
             email: updatedFormData.email,
           };
 
-          emailjs
-            .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
-            .then(
-              () => {
-                toast.success("Email successfully sent!", {
-                  style: { background: "#4BB543", color: "#fff" },
-                });
-              },
-              () => {
-                toast.error("Error sending email 🚫", {
-                  style: { background: "#ff4d4f", color: "#fff" },
-                });
-              }
-            );
+          // emailjs
+          //   .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+          //   .then(
+          //     () => {
+          //       toast.success("Email successfully sent!", {
+          //         style: { background: "#4BB543", color: "#fff" },
+          //       });
+          //     },
+          //     () => {
+          //       toast.error("Error sending email 🚫", {
+          //         style: { background: "#ff4d4f", color: "#fff" },
+          //       });
+          //     }
+          //   );
         });
       })
       .catch(() => {

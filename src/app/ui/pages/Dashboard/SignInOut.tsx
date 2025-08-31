@@ -93,12 +93,12 @@ const SignInOut: React.FC = () => {
         email: user.email,
       };
 
-      emailjs.send(
-        "service_o1jbklr",
-        "template_p8h58ur",
-        templateParams,
-        "hcj3DsJ8MfNfUrE8J"
-      );
+      // emailjs.send(
+      //   "service_o1jbklr",
+      //   "template_p8h58ur",
+      //   templateParams,
+      //   "hcj3DsJ8MfNfUrE8J"
+      // );
       toast.success(`${entry.type} recorded!`);
     } catch (error) {
       toast.error("Failed to record sign-in/out.");

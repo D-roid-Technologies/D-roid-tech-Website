@@ -15,6 +15,8 @@ import {
   type FormData,
 } from "../../../../redux/slices/LeadFormSlice";
 import "./LeadForm.css";
+import { toast } from "react-hot-toast";
+import emailjs from "emailjs-com";
 
 const LeadForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,6 +28,10 @@ const LeadForm: React.FC = () => {
   const isSubmitted = useSelector(selectIsSubmitted);
   const submitError = useSelector(selectSubmitError);
 
+  const serviceId = "service_o1jbklr"
+  const templateId = "template_p8h58ur"
+  const publicKey = "hcj3DsJ8MfNfUrE8J"
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -34,7 +40,35 @@ const LeadForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    dispatch(submitLeadForm(formData));
+    // dispatch(submitLeadForm(formData));
+    const templateParams = {
+      name: formData.businessName,
+      title: `We have received your request of ${formData.service} for our ongoing free service plan. 
+  
+      See details below:
+      Phone Number: ${formData.phoneNumber},
+      Email: ${formData.email},
+      Message: ${formData.businessName} would like to start the free 1 page and 1 month hosting plan ${formData.startDate}.
+  
+      Our team will review and get back to you in three working days`,
+      email: formData.email,
+    };
+
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      toast.success("Message successfully sent!", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+
+    } catch (error) {
+      console.error("Email send error:", error);
+      toast.error("Error sending email 🚫", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+
+    } finally {
+
+    }
   };
 
   const handleSubmitAnother = () => {
@@ -183,9 +217,8 @@ const LeadForm: React.FC = () => {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className={`lf-btn lf-btn-primary ${
-              isSubmitting ? "lf-btn-loading" : ""
-            }`}
+            className={`lf-btn lf-btn-primary ${isSubmitting ? "lf-btn-loading" : ""
+              }`}
           >
             {isSubmitting ? (
               <>
