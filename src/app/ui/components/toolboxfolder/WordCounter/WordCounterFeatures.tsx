@@ -1,130 +1,65 @@
-import type React from "react";
-import ToolboxFeatureCard from "../cards/ToolboxFeatureCard";
-import ToolboxSpecCard from "../cards/ToolboxSpecCard";
-import ToolboxStepCard from "../cards/ToolboxStepCard";
-import ToolboxBenefitCard from "../cards/ToolboxBenefitCard";
-import "../imageresizing/ImageResizerFeatures.css";
+// WordCounterFeatures.tsx
+import React from "react";
+import FeaturesTemplate from "../../../pages/toolboxpage/FeaturesTemplate";
+import {
+  FaKeyboard,
+  FaChartBar,
+  FaBroom,
+  FaSave,
+  FaLanguage,
+  FaDownload,
+} from "react-icons/fa";
 
 const WordCounterFeatures: React.FC = () => {
   const features = [
     {
       title: "Real-time Counting",
-      description: "Instantly count words, characters, and sentences",
-      icon: "⌨️",
-      benefits: [
-        "Counts as you type",
-        "Shows total words, characters, and lines",
-        "Handles multiple languages",
-        "Includes/excludes spaces option",
-      ],
+      description: "Instantly count words, characters, sentences, and paragraphs as you type.",
+      icon: <FaKeyboard />,
     },
     {
       title: "Detailed Statistics",
-      description: "Get insights into readability and text composition",
-      icon: "📊",
-      benefits: [
-        "Average word length",
-        "Sentence count",
-        "Paragraph count",
-        "Readability score estimation",
-      ],
+      description: "Get insights into readability, text length, and structure.",
+      icon: <FaChartBar />,
     },
     {
       title: "Text Cleaning Tools",
-      description: "Optimize your text for better counting",
-      icon: "🧹",
-      benefits: [
-        "Trim extra spaces",
-        "Remove duplicate words",
-        "Convert case (upper/lower/title)",
-        "Clean special characters",
-      ],
+      description: "Trim spaces, remove duplicates, and clean special characters.",
+      icon: <FaBroom />,
     },
     {
       title: "Export & Share",
-      description: "Save and share your text analysis easily",
-      icon: "💾",
-      benefits: [
-        "Copy results to clipboard",
-        "Download text and stats",
-        "Share via email or social apps",
-        "Integrate with other writing tools",
-      ],
+      description: "Copy results, download reports, or share text analysis easily.",
+      icon: <FaSave />,
+    },
+    {
+      title: "Multi-Language Support",
+      description: "Accurate counting across multiple languages and writing systems.",
+      icon: <FaLanguage />,
+    },
+    {
+      title: "Download Reports",
+      description: "Export word count statistics as a downloadable file for records.",
+      icon: <FaDownload />,
     },
   ];
 
   const technicalSpecs = [
-    { label: "Supported Input", value: "Plain text, Markdown, Rich text" },
-    { label: "Metrics", value: "Words, Characters, Sentences, Paragraphs" },
-    { label: "Real-time Processing", value: "Client-side, instant updates" },
-    { label: "Languages", value: "Supports multiple languages" },
-    { label: "Export Options", value: "Copy, Download, Share" },
-    { label: "Privacy", value: "100% local processing, no uploads" },
-  ];
-
-  const steps = [
-    { step: 1, title: "Enter Text", description: "Type or paste your text into the input area" },
-    { step: 2, title: "View Counts", description: "See live word, character, sentence, and paragraph counts" },
-    { step: 3, title: "Clean & Optimize", description: "Use text cleaning tools to prepare your content" },
-    { step: 4, title: "Export or Share", description: "Copy, download, or share your text and statistics" },
-  ];
-
-  const benefits = [
-    { icon: "⚡", title: "Instant Feedback", description: "Real-time counting without waiting" },
-    { icon: "🔒", title: "Privacy Protected", description: "All processing happens locally in your browser" },
-    { icon: "🎯", title: "Accurate Metrics", description: "Reliable and professional text analysis" },
-    { icon: "🌐", title: "Cross-Platform", description: "Works on desktop, tablet, and mobile devices" },
+    "Supported Input: Plain text, Markdown, Rich text",
+    "Metrics: Words, Characters, Sentences, Paragraphs",
+    "Real-time Processing: Client-side, instant updates",
+    "Languages: Supports multiple languages",
+    "Export Options: Copy, Download, Share",
+    "Privacy: 100% local processing, no uploads",
   ];
 
   return (
-    <div className="image-resizer-features">
-      <div className="irf-container">
-        {/* Header */}
-        <header className="irf-header">
-          <h2 className="irf-title">Word Counter Features</h2>
-          <p className="irf-subtitle">
-            Count words, characters, sentences, and paragraphs instantly with real-time stats and text tools
-          </p>
-        </header>
-
-        {/* Features */}
-        <section className="irf-features-grid">
-          {features.map((f, i) => (
-            <ToolboxFeatureCard key={i} {...f} />
-          ))}
-        </section>
-
-        {/* Technical Specs */}
-        <section className="irf-technical-specs">
-          <h3 className="irf-specs-title">Technical Specifications</h3>
-          <div className="irf-specs-grid">
-            {technicalSpecs.map((s, i) => (
-              <ToolboxSpecCard key={i} {...s} />
-            ))}
-          </div>
-        </section>
-
-        {/* Steps */}
-        <section className="irf-usage-flow">
-          <h3 className="irf-flow-title">How It Works</h3>
-          <div className="irf-steps">
-            {steps.map((s, i) => (
-              <ToolboxStepCard key={i} {...s} />
-            ))}
-          </div>
-        </section>
-
-        {/* Benefits */}
-        <section className="irf-benefits">
-          <h3 className="irf-benefits-title">Why Choose This Tool?</h3>
-          <div className="irf-benefits-list">
-            {benefits.map((b, i) => (
-              <ToolboxBenefitCard key={i} {...b} />
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
+    <FeaturesTemplate
+      title="Word Counter Features"
+      subtitle="Count words, characters, sentences, and paragraphs instantly with real-time stats and text tools"
+      features={features}
+      technicalSpecs={technicalSpecs}
+    />
   );
 };
 
