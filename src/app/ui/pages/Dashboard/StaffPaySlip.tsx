@@ -262,12 +262,12 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
         email: user.email,
       };
 
-      emailjs.send(
-        "service_o1jbklr",
-        "template_p8h58ur",
-        templateParams,
-        "hcj3DsJ8MfNfUrE8J"
-      );
+      // emailjs.send(
+      //   "service_o1jbklr",
+      //   "template_p8h58ur",
+      //   templateParams,
+      //   "hcj3DsJ8MfNfUrE8J"
+      // );
     } catch (error) {
       console.error(error);
       setMessage("Error generating payslip. Please try again.");

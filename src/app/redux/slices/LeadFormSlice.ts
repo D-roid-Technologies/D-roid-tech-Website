@@ -100,7 +100,7 @@ export const submitLeadForm = createAsyncThunk(
     } catch (error) {
       // For demo purposes, simulate successful submission after delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Form submitted:", formData);
+      console.log("Form submitted: ---", formData);
       return { success: true, message: "Form submitted successfully" };
     }
   }
