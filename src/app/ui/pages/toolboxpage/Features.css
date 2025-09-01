@@ -1,0 +1,200 @@
+.uuid-features-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 4rem 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+}
+
+.uuid-features-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.uuid-features-title {
+  color: #071d6a;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #071d6a, #1e3a8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.uuid-features-subtitle {
+  color: #666;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.uuid-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.uuid-feature-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(7, 29, 106, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.uuid-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #071d6a, #1e3a8a, #3b82f6);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.uuid-feature-card:hover::before {
+  transform: translateX(0);
+}
+
+.uuid-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(7, 29, 106, 0.15);
+}
+
+.uuid-feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+  color: #071d6a;
+}
+
+.uuid-feature-title {
+  color: #071d6a;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.uuid-feature-description {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.uuid-features-technical {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  border-left: 4px solid #071d6a;
+}
+
+.uuid-technical-title {
+  color: #071d6a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.uuid-technical-title::before {
+  content: "⚙️";
+  font-size: 1.2em;
+}
+
+.uuid-technical-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uuid-technical-list li {
+  color: #444;
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.uuid-technical-list li:last-child {
+  border-bottom: none;
+}
+
+.uuid-technical-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4bb543;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .uuid-features-container {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .uuid-features-title {
+    font-size: 2rem;
+  }
+
+  .uuid-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .uuid-feature-card {
+    padding: 1.5rem;
+  }
+
+  .uuid-features-technical {
+    padding: 1.5rem;
+  }
+}
+
+/* Animation for feature cards */
+@keyframes uuid-fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.uuid-feature-card {
+  animation: uuid-fadeInUp 0.6s ease-out;
+}
+
+.uuid-feature-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.uuid-feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.uuid-feature-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.uuid-feature-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.uuid-feature-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.uuid-feature-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
