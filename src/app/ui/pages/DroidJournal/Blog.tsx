@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Blog.css";
-import Navbar from "../../components/navbar/NavBar";
 import { Assets } from "../../../utils/constant/Assets";
 import ProductCard from "../../components/productcard/ProductCard";
 import { RoutePaths } from "../../../routes/Index";
