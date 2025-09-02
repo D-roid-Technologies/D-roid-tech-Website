@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import BackgroundRemoverFeatures from "./BackgroundRemoverFeatures";
 
 const BackgroundRemover: React.FC = () => {
   const navigate = useNavigate();
@@ -165,6 +166,9 @@ const BackgroundRemover: React.FC = () => {
             analytics, and exclusive features
           </p>
         </div>
+      </div>
+      <div>
+        <BackgroundRemoverFeatures className="custom-features-class" />
       </div>
     </div>
   );

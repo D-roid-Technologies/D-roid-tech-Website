@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PDFEditorFeatures from "./PDFEditorFeatures";
 
 const PdfEditor: React.FC = () => {
   const navigate = useNavigate();
@@ -161,6 +162,9 @@ const PdfEditor: React.FC = () => {
             analytics, and exclusive features
           </p>
         </div>
+      </div>
+      <div>
+        <PDFEditorFeatures />
       </div>
     </div>
   );
