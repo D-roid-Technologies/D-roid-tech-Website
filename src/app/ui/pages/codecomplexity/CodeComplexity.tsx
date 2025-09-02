@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import CodeAnalyzerFeatures from "./CodeAnalyzerFeatures";
 
 const CodeComplexity: React.FC = () => {
   const navigate = useNavigate();
@@ -164,6 +165,9 @@ const CodeComplexity: React.FC = () => {
             analytics, and exclusive features
           </p>
         </div>
+      </div>
+      <div>
+        <CodeAnalyzerFeatures />
       </div>
     </div>
   );
