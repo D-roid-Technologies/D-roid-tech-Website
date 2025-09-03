@@ -1,23 +1,27 @@
-import React, { useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { Palette } from "lucide-react";
 
 const ColorPickerItem: React.FC = () => {
-  const [color, setColor] = useState("#0099e5");
+  const [color, setColor] = useState<string>("#071D6A");
   const [rgb, setRgb] = useState("");
   const [hsl, setHsl] = useState("");
-  const navigate = useNavigate();
+  const [touched, setTouched] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    // Populate RGB/HSL for the initial color on mount
+    convertToRgbAndHsl(color);
+  }, []); // run once
 
   const convertToRgbAndHsl = (hex: string) => {
+    if (!hex || hex[0] !== "#" || hex.length !== 7) return;
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
 
-    const rgbString = `rgb(${r}, ${g}, ${b})`;
-    const hslString = rgbToHslString(r, g, b);
-
-    setRgb(rgbString);
-    setHsl(hslString);
+    setRgb(`rgb(${r}, ${g}, ${b})`);
+    setHsl(rgbToHslString(r, g, b));
   };
 
   const rgbToHslString = (r: number, g: number, b: number): string => {
@@ -56,46 +60,57 @@ const ColorPickerItem: React.FC = () => {
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newColor = e.target.value;
     setColor(newColor);
+    setTouched(true);
     convertToRgbAndHsl(newColor);
   };
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        toast.success("Copied to clipboard!", {
-          style: { background: "#4BB543", color: "#fff" },
-        });
-      })
-      .catch(() => {
-        toast.error("Failed to copy", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-      });
+  const handleWrapperKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      inputRef.current?.click();
+      setTouched(true);
+    }
+  };
+
+  const handleCopy = async (text: string) => {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Copied to clipboard!");
+    } catch {
+      toast.error("Copy failed — try again (HTTPS required).");
+    }
   };
 
   return (
     <>
+      {/* Ensure you render <Toaster /> once in your app (root). */}
+      <Toaster position="top-right" />
       <div style={styles.container}>
-        <h2 style={{ color: "#071D6A", fontWeight: "900" }}>
-          Simple Color Picker
-        </h2>
+        <h2 style={{ color: "#071D6A", fontWeight: 900 }}>Simple Color Picker</h2>
 
-        <input
-          type="color"
-          value={"#071d6a"}
-          onChange={handleColorChange}
-          style={{
-            ...styles.inputColor,
-            backgroundColor: "#071d6a",
-            border: "none",
-            outline: "none",
-            boxShadow: "none",
-            WebkitAppearance: "none",
-            MozAppearance: "none", 
-            appearance: "none",
-          }}
-        />
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="Open color picker"
+          onKeyDown={handleWrapperKeyDown}
+          style={{ ...styles.colorPickerWrapper, backgroundColor: color }}
+        >
+          <Palette size={18} style={{ marginRight: 10 }} />
+          {!touched && <span style={styles.placeholder}>Click to pick a color</span>
+
+          /* hidden native input overlays the wrapper so clicks open the picker */
+          }
+          <input
+            ref={inputRef}
+            id="color-input"
+            aria-label="Color input"
+            type="color"
+            value={color}
+            onChange={handleColorChange}
+            style={styles.inputColor}
+          />
+        </div>
 
         <div style={styles.outputGroup}>
           <OutputRow label="HEX" value={color} onCopy={handleCopy} />
@@ -103,8 +118,8 @@ const ColorPickerItem: React.FC = () => {
           <OutputRow label="HSL" value={hsl} onCopy={handleCopy} />
         </div>
 
-        <div style={{ ...styles.preview, backgroundColor: "#071d6a" }}>
-          <p style={{ color: "#fff" }}>Color Preview</p>
+        <div style={{ ...styles.preview, backgroundColor: color }}>
+          <p style={{ color: "#fff", fontWeight: 700 }}>Color Preview</p>
         </div>
       </div>
     </>
@@ -116,70 +131,87 @@ const OutputRow: React.FC<{
   value: string;
   onCopy: (text: string) => void;
 }> = ({ label, value, onCopy }) => (
-  <div style={{ ...styles.outputRow, color: "#000000" }}>
+  <div style={{ ...styles.outputRow, color: "#000" }}>
     <span style={{ fontWeight: "bold" }}>{label}:</span>
     <button
       onClick={() => onCopy(value)}
       style={styles.copyButton}
       disabled={!value}
+      aria-disabled={!value}
     >
-      📋 {value}
+       {value || "—"}
     </button>
   </div>
 );
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    maxWidth: "500px",
+    maxWidth: 500,
     margin: "2rem auto",
     padding: "2rem",
-    backgroundColor: "##071d6a",
-    borderRadius: "10px",
+    backgroundColor: "#f5f7ff",
+    borderRadius: 10,
     textAlign: "center",
-    fontFamily: "sans-serif",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    fontFamily: "Inter, system-ui, Arial, sans-serif",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+  },
+  colorPickerWrapper: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    border: "1px solid rgba(0,0,0,0.12)",
+    borderRadius: 8,
+    padding: "0.75rem 1rem",
+    marginBottom: "1.25rem",
+    cursor: "pointer",
+    minHeight: 48,
+    color: "#fff",
+  },
+  placeholder: {
+    fontSize: 14,
+    color: "rgba(255,255,255,0.9)",
+    flex: 1,
   },
   inputColor: {
+    position: "absolute" as const,
+    top: 0,
+    left: 0,
     width: "100%",
-    height: "60px",
+    height: "100%",
+    opacity: 0,
     border: "none",
-    borderColor: "none",
-    borderRadius: "8px",
+    padding: 0,
+    margin: 0,
     cursor: "pointer",
-    marginBottom: "1.5rem",
-     outline: "none",
-  boxShadow: "none",
-  WebkitAppearance: "none",
-  MozAppearance: "none",
-  appearance: "none",
   },
   outputGroup: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column" as const,
     gap: "1rem",
-    marginBottom: "1.5rem",
+    marginBottom: "1.25rem",
   },
   outputRow: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#fff",
-    border: "1px solid #ccc",
+    border: "1px solid #e6e6e6",
     padding: "0.75rem 1rem",
-    borderRadius: "5px",
+    borderRadius: 6,
   },
   copyButton: {
     backgroundColor: "#071D6A",
     color: "#fff",
     border: "none",
-    padding: "0.5rem 1rem",
-    borderRadius: "5px",
+    padding: "0.45rem 0.9rem",
+    borderRadius: 6,
     cursor: "pointer",
     fontSize: "0.9rem",
   },
   preview: {
-    height: "100px",
-    borderRadius: "8px",
+    height: 100,
+    borderRadius: 8,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

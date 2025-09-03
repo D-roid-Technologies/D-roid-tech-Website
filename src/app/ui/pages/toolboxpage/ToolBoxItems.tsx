@@ -21,8 +21,7 @@ import { BsCurrencyExchange } from "react-icons/bs";
 import { LuFileJson } from "react-icons/lu";
 import { GiPowerGenerator } from "react-icons/gi";
 import { SiLetsencrypt } from "react-icons/si";
-import CoreValueCardThree from "../../components/CoreValueCard/CoreValueCardThree";
-import AllToolsCard from "../../components/CoreValueCard/AllToolsCard";
+import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 
 export const Alltools = [
   {
@@ -158,97 +157,13 @@ export const Alltools = [
 
 export const tools = [
   {
-    title: "Image Resizing",
-    description:
-      "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
-    icon: FaCompressArrowsAlt({ size: 24 }),
-    component: "ImageResizing",
-    category: "Image Tools",
-    link: "/toolbox/imageresizing",
-  },
-  {
-    title: "Color Converter",
-    description:
-      "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready and digital files.",
-    icon: FaPalette({ size: 24 }),
-    category: "Color Tools",
-    component: "ColorConverter",
-    link: "/toolbox/colorconverter",
-  },
-  {
-    title: "Image Compressor",
-    description:
-      "Smart compression reduces file sizes up to 90% without quality loss, preserving visual clarity while optimizing storage speed.",
-    icon: FaImages({ size: 24 }),
-    category: "Image Tools",
-    component: "ImageCompress",
-
-    link: "/toolbox/imagecompressor",
-  },
-  {
     title: "Crop Tool",
     description:
       "Trim or cut images to focus on specific parts with precision cropping tools for perfect composition and framing results.",
     icon: BiSolidCrop({ size: 24 }),
     category: "Image Tools",
     component: "Crop",
-
     link: "/toolbox/croptool",
-  },
-  {
-    title: "Color Picker",
-    description:
-      "Select and copy hex/RGB/HSV codes from color palettes or screen captures for accurate color matching and design work.",
-    icon: CgColorPicker({ size: 24 }),
-    category: "Color Tools",
-    component: "ColorPicker",
-    link: "/toolbox/colorPicker",
-  },
-  {
-    title: "Word Counter",
-    description:
-      "Count words, characters, paragraphs, and reading time with detailed statistics for content analysis and optimization.",
-    icon: FaFileWord({ size: 24 }),
-    category: "Text Tools",
-    component: "WordCounter",
-    link: "/toolbox/wordconter",
-  },
-  {
-    title: "Currency Converter",
-    description:
-      "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
-    icon: BsCurrencyExchange({ size: 24 }),
-    category: "Calculation Tools",
-    component: "CurrencyConverter",
-    link: "/toolbox/currency-converter",
-    isPremium: true,
-  },
-  {
-    title: "JSON Formatter",
-    description:
-      "Beautify, validate, and format JSON code with syntax highlighting, error detection, and proper indentation structure.",
-    icon: LuFileJson({ size: 24 }),
-    category: "Developer Tools",
-    component: "JsonFormatter",
-    link: "/toolbox/jsonformatter",
-  },
-  {
-    title: "UUID Generator",
-    description:
-      "Generate unique identifiers for development projects with multiple UUID versions and bulk generation capabilities.",
-    icon: GiPowerGenerator({ size: 24 }),
-    component: "UUIDGenerator",
-
-    category: "Developer Tools",
-    link: "/toolbox/uuidgenerator",
-  },
-  {
-    title: "Base64 Encoder/Decoder",
-    description:
-      "Encode or decode base64 strings with support for text, files, and URLs for secure data transmission and storage.",
-    icon: SiLetsencrypt({ size: 24 }),
-    category: "Developer Tools",
-    link: "/toolbox/encoderbasetool",
   },
   {
     title: "AI Background Remover",
@@ -261,6 +176,15 @@ export const tools = [
     isPremium: true,
   },
   {
+    title: "Word Counter",
+    description:
+      "Count words, characters, paragraphs, and reading time with detailed statistics for content analysis and optimization.",
+    icon: FaFileWord({ size: 24 }),
+    category: "Text Tools",
+    component: "WordCounter",
+    link: "/toolbox/wordconter",
+  },
+  {
     title: "Advanced PDF Editor",
     description:
       "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
@@ -269,6 +193,52 @@ export const tools = [
     component: "PDFEditor",
     link: "/toolbox/advanced-pdf-editor",
     isPremium: true,
+  },
+  {
+    title: "Color Converter",
+    description:
+      "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready and digital files.",
+    icon: FaPalette({ size: 24 }),
+    category: "Color Tools",
+    component: "ColorConverter",
+    link: "/toolbox/colorconverter",
+  },
+  {
+    title: "Bulk Image Watermarker",
+    description:
+      "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
+    icon: FaStamp({ size: 24 }),
+    category: "Image Tools",
+    link: "/toolbox/bulk-image",
+    component: "BulkImageWatermarker",
+    isPremium: true,
+  },
+  {
+    title: "Currency Converter",
+    description:
+      "Get real-time conversion rates for global currencies with historical data and live exchange rate updates for accuracy.",
+    icon: BsCurrencyExchange({ size: 24 }),
+    category: "Calculation Tools",
+    component: "CurrencyConverter",
+    link: "/toolbox/currency-converter",
+    isPremium: true,
+  },
+  {
+    title: "Base64 Encoder/Decoder",
+    description:
+      "Encode or decode base64 strings with support for text, files, and URLs for secure data transmission and storage.",
+    icon: SiLetsencrypt({ size: 24 }),
+    category: "Developer Tools",
+    link: "/toolbox/encoderbasetool",
+  },
+  {
+    title: "JSON Formatter",
+    description:
+      "Beautify, validate, and format JSON code with syntax highlighting, error detection, and proper indentation structure.",
+    icon: LuFileJson({ size: 24 }),
+    category: "Developer Tools",
+    component: "JsonFormatter",
+    link: "/toolbox/jsonformatter",
   },
   {
     title: "Resume & CV Analyzer",
@@ -281,28 +251,63 @@ export const tools = [
     isPremium: true,
   },
   {
+    title: "Image Resizing",
+    description:
+      "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
+    icon: FaCompressArrowsAlt({ size: 24 }),
+    component: "ImageResizing",
+    category: "Image Tools",
+    link: "/toolbox/imageresizing",
+  },
+  {
+    title: "UUID Generator",
+    description:
+      "Generate unique identifiers for development projects with multiple UUID versions and bulk generation capabilities.",
+    icon: GiPowerGenerator({ size: 24 }),
+    component: "UUIDGenerator",
+    category: "Developer Tools",
+    link: "/toolbox/uuidgenerator",
+  },
+  {
+    title: "Color Picker",
+    description:
+      "Select and copy hex/RGB/HSV codes from color palettes or screen captures for accurate color matching and design work.",
+    icon: CgColorPicker({ size: 24 }),
+    category: "Color Tools",
+    component: "ColorPicker",
+    link: "/toolbox/colorPicker",
+  },
+  {
     title: "Code Complexity Analyzer",
     description:
       "Detect and measure code complexity, maintainability, and hotspots in your codebase with detailed metrics and recommendations.",
     icon: FaCodeBranch({ size: 24 }),
     category: "Developer Tools",
     component: "CodeComplexityAnalyzer",
-
     link: "/toolbox/code-complexity",
     isPremium: true,
   },
   {
-    title: "Bulk Image Watermarker",
+    title: "Image Compressor",
     description:
-      "Apply watermarks to multiple images at once for branding and copyright protection with customizable positioning and opacity.",
-    icon: FaStamp({ size: 24 }),
+      "Smart compression reduces file sizes up to 90% without quality loss, preserving visual clarity while optimizing storage speed.",
+    icon: FaImages({ size: 24 }),
     category: "Image Tools",
-    link: "/toolbox/bulk-image",
-    component: "BulkImageWatermarker",
-
+    component: "ImageCompress",
+    link: "/toolbox/imagecompressor",
+  },
+  {
+    title: "Advanced PDF Editor",
+    description:
+      "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
+    icon: FaFilePdf({ size: 24 }),
+    category: "Document Tools",
+    component: "PDFEditor",
+    link: "/toolbox/advanced-pdf-editor",
     isPremium: true,
   },
 ];
+
 
 const ToolBoxItems: React.FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -339,7 +344,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
         <div className="software-main-content">
           <h1 className="software-header">D'roid ToolBox</h1>
           <p>
-            Toolbox is your ultimate Android companion — a powerful all-in-one
+            Toolbox is your ultimate Android companion, a powerful all-in-one
             utility app designed to help you manage, optimize, and customize
             your tasks with ease.
           </p>
@@ -373,13 +378,14 @@ const ToolBoxItems: React.FunctionComponent = () => {
           />
 
           {/* Results Count */}
-          <div className="text-center">
-            <p className="text-gray-600">
-              {filteredTools.length === tools.length
-                ? `Showing all ${tools.length} tools`
-                : `Found ${filteredTools.length} of ${tools.length} tools`}
-            </p>
-          </div>
+         <div className="text-center">
+  <p style={{ color: "#071d6a" }}>
+    {filteredTools.length === tools.length
+      ? `Showing all ${tools.length} tools`
+      : `Found ${filteredTools.length} of ${tools.length} tools`}
+  </p>
+</div>
+
         </div>
 
         {filteredTools.length > 0 ? (
@@ -399,7 +405,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg mb-4">
+            <p style={{color: "gray"}}>
               No tools found matching your criteria
             </p>
             <button

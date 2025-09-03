@@ -1,36 +1,56 @@
-import React, { ReactNode } from "react";
-import "./CoreValueCardThree.css";
+import type React from "react";
+import { useNavigate } from "react-router-dom";
+import "./AllToolsCard.css";
 
-interface CoreValueCardProps {
+
+interface DashboardCardProps {
+  icon?: React.ReactNode;
   title: string;
   description: string;
-  imageSrc?: string;
   className?: string;
-  icon?: ReactNode;
   url?: string;
   link?: string;
   onClick?: (e: any) => void;
-  onLaunch?: () => void;
-  pressable?: boolean;
-  isPremium?: boolean; // ✅ new prop
+   isPremium?: boolean;
 }
 
-const AllToolsCard: React.FC<CoreValueCardProps> = ({
+export function AllToolsCard({
+  icon,
   title,
   description,
-  imageSrc,
-  className = "",
-  icon,
+  className,
   url,
   link,
   onClick,
-  pressable = false,
-  onLaunch,
-  isPremium = false, // ✅ default = false
-}) => {
+  isPremium = false
+  
+}: DashboardCardProps) {
+  const navigate = useNavigate();
+ const handleCardClick = (e: React.MouseEvent) => {
+    if (url || link) {
+      const targetUrl = url || link;
+      if (targetUrl?.startsWith("http")) {
+        // External link
+        window.open(targetUrl, "_blank", "noopener,noreferrer");
+      } else {
+        // Internal navigation
+        navigate(targetUrl!);
+      }
+    } else if (onClick) {
+      onClick(e);
+    }
+  };
+
   return (
-    <div className={`tools-value-card ${className}`} style={{ position: "relative" }}>
-      {/* Premium/Free Badge */}
+    <div
+      className={`AllToolsCard ${url || link ? "AllToolsCard-clickable-card" : ""} ${
+        className || ""
+      }`}
+      onClick={handleCardClick}
+      style={{ position: "relative", cursor: "pointer" }}  
+      //   style={{ cursor: url || link ? "pointer" : "default" }}
+    >
+       {/* Premium/Free Badge */}
       <div
         style={{
           position: "absolute",
@@ -51,34 +71,75 @@ const AllToolsCard: React.FC<CoreValueCardProps> = ({
           {isPremium ? "PREMIUM" : "FREE"}
         </span>
       </div>
-
-      {imageSrc && (
-        <img src={imageSrc} alt={title} className="tools-value-card-icon" />
-      )}
-      {icon && (
-        <div className="tools-value-card-icon">
-          <div className="tools-value-card-icon-icon">{icon}</div>
+      
+      <div className="AllToolsCard-content">
+        <div className="AllToolsCard-card-icon-containers">
+          <div className="card-icons">{icon}</div>
         </div>
-      )}
-      <div className="tools-value-card-content">
-        <h3 className="tools-value-card-title">{title}</h3>
-        <p className="tools-value-card-description">{description}</p>
-        {(onLaunch || link) && (
-          <div className="launch-button-container">
-            {onLaunch ? (
-              <button className="launch-button" onClick={onLaunch}>
-                Launch
-              </button>
-            ) : (
-              <a href={link} className="launch-button">
-                Launch
-              </a>
-            )}
-          </div>
-        )}
+        <div className="AllToolsCard-card-text">
+          <h3 className="AllToolsCard-card-title">{title}</h3>
+          <p className="AllToolsCard-card-description">{description}</p>
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default AllToolsCard;
+// import type React from "react";
+// import "../CoreValueCard/NewwebsiteCard.css";
+
+// interface DashboardCardProps {
+//   icon?: React.ReactNode;
+//   title: string;
+//   description: string;
+//   className?: string;
+//   url?: string;
+//   link?: string;
+//   onClick?: (e: any) => void;
+//   pressable?: boolean;
+//   readmore?: boolean;
+// }
+
+// export function NewwebsiteCard({
+//   icon,
+//   title,
+//   description,
+//   className,
+//   url,
+//   link,
+//   onClick,
+//   pressable,
+//   readmore,
+// }: DashboardCardProps) {
+//   return (
+//     <div className="dashboard-card">
+//       <div className="card-content">
+//         <div className="card-icon-containers">
+//           <div className="card-icons">{icon}</div>
+//         </div>
+//         <div className="card-text">
+//           <h3 className="card-title">{title}</h3>
+//           <p className="card-description">{description}</p>
+//         </div>
+//         {readmore &&
+//           (pressable === false ? (
+//             <div className="mt-3">
+//               <a
+//                 onClick={onClick}
+//                 href={url || undefined}
+//                 className="custom-link"
+//               >
+//                 Read more
+//               </a>
+//             </div>
+//           ) : (
+//             <div className="mt-3">
+//               <button className="desktop-cta" onClick={onClick}>
+//                 Explore
+//               </button>
+//             </div>
+//           ))}
+//       </div>
+//     </div>
+//   );
+// }
