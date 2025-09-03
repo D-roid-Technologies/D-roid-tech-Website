@@ -354,6 +354,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
       {/* Search Section */}
 
       {/* Tools Grid */}
+      <div style={{marginBottom: "3rem"}}>
       <div className="wrapper soft-wrapper">
         <span
           className="soft-dev-header title_span"
@@ -389,6 +390,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
         </div>
 
         {filteredTools.length > 0 ? (
+        
           <div className="soft-dev-content">
             {filteredTools.map((tech, index) => (
               <div key={`${tech.title}-${index}`} className="relative">
@@ -401,6 +403,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
                   className="process-card"
                 />
               </div>
+              
             ))}
           </div>
         ) : (
@@ -420,6 +423,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
             </button>
           </div>
         )}
+      </div>
       </div>
     </div>
   );
