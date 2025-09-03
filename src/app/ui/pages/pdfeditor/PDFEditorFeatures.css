@@ -1,0 +1,344 @@
+.pdf-features {
+  width: 100%;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
+}
+
+.pdf-features__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Header Section */
+.pdf-features__header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pdf-features__header-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pdf-features__header-icon {
+  font-size: 3.5rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+  animation: pdf-features-pulse 2s ease-in-out infinite;
+}
+
+.pdf-features__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.pdf-features__subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main Features Grid */
+.pdf-features__main {
+  margin-bottom: 4rem;
+}
+
+.pdf-features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.pdf-features__card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-features__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.pdf-features__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-features__card:hover::before {
+  transform: scaleX(1);
+}
+
+.pdf-features__card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.pdf-features__icon-wrapper {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-right: 1rem;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.pdf-features__card-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.pdf-features__card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.pdf-features__card-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.pdf-features__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pdf-features__benefit {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 2rem;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.pdf-features__benefit::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Additional Features Section */
+.pdf-features__additional {
+  margin-bottom: 4rem;
+}
+
+.pdf-features__section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2.5rem;
+}
+
+.pdf-features__additional-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pdf-features__highlight {
+  display: flex;
+  align-items: flex-start;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.pdf-features__highlight:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.pdf-features__highlight-icon {
+  font-size: 2rem;
+  color: #667eea;
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.pdf-features__highlight-content {
+  flex: 1;
+}
+
+.pdf-features__highlight-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.pdf-features__highlight-description {
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Call to Action Section */
+.pdf-features__cta {
+  text-align: center;
+}
+
+.pdf-features__cta-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pdf-features__cta-icon {
+  font-size: 3rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+  animation: pdf-features-bounce 2s ease-in-out infinite;
+}
+
+.pdf-features__cta-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.pdf-features__cta-description {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Animations */
+@keyframes pdf-features-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pdf-features-bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pdf-features__container {
+    padding: 2rem 1rem;
+  }
+
+  .pdf-features__title {
+    font-size: 2rem;
+  }
+
+  .pdf-features__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pdf-features__additional-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-features__card {
+    padding: 1.5rem;
+  }
+
+  .pdf-features__card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pdf-features__icon-wrapper {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .pdf-features__highlight {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pdf-features__highlight-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-features__header-content,
+  .pdf-features__cta-content {
+    padding: 2rem 1rem;
+  }
+
+  .pdf-features__title {
+    font-size: 1.75rem;
+  }
+
+  .pdf-features__section-title {
+    font-size: 1.5rem;
+  }
+}

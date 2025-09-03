@@ -1,0 +1,161 @@
+.raf-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+}
+
+.raf-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.raf-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #081f6d;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.raf-subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.raf-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.raf-feature-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.raf-feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px 0 rgba(8, 31, 109, 0.1);
+  border-color: #081f6d;
+}
+
+.raf-feature-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #081f6d, #1e3a8a);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.raf-feature-icon {
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+}
+
+.raf-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #081f6d;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.raf-feature-description {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.raf-cta-section {
+  background: linear-gradient(135deg, #081f6d, #1e3a8a);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.raf-cta-title {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.raf-cta-description {
+  font-size: 1.125rem;
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .raf-container {
+    padding: 1rem;
+  }
+
+  .raf-title {
+    font-size: 2rem;
+  }
+
+  .raf-subtitle {
+    font-size: 1rem;
+  }
+
+  .raf-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .raf-feature-card {
+    padding: 1.5rem;
+  }
+
+  .raf-cta-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .raf-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .raf-cta-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .raf-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .raf-feature-card {
+    padding: 1.25rem;
+  }
+
+  .raf-feature-icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .raf-feature-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
