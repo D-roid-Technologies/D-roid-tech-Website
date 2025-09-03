@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Lightbulb } from "lucide-react";
+
 import CodeAnalyzerFeatures from "./CodeAnalyzerFeatures";
 
 const CodeComplexity: React.FC = () => {
@@ -46,7 +48,7 @@ const CodeComplexity: React.FC = () => {
       </div>
 
       {/* Access Restriction Notice */}
-      <div
+       <div
         style={{
           maxWidth: "600px",
           margin: "2rem auto",
@@ -55,7 +57,7 @@ const CodeComplexity: React.FC = () => {
           border: "2px solid #f1f3f4",
           borderRadius: "12px",
           textAlign: "center",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+          // boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
         }}
       >
         {/* Lock Icon */}
@@ -125,20 +127,21 @@ const CodeComplexity: React.FC = () => {
             borderRadius: "8px",
             cursor: "pointer",
             transition: "all 0.3s ease",
-            boxShadow: "0 4px 12px rgba(255,107,53,0.3)",
+            // boxShadow: "0 4px 12px rgba(255,107,53,0.3)",
             textTransform: "none",
             letterSpacing: "0.025em",
+            margin: "0 auto",
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.backgroundColor = "grey";
             e.currentTarget.style.transform = "translateY(-2px)";
-            e.currentTarget.style.boxShadow =
-              "0 6px 16px rgba(241, 235, 235, 0.82)";
+            // e.currentTarget.style.boxShadow =
+            //   "0 6px 16px rgba(241, 235, 235, 0.82)";
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = "#bdbdbd";
             e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 0 0 rgba(0,0,0)";
+            // e.currentTarget.style.boxShadow = "0 0 0 rgba(0,0,0)";
           }}
         >
           Create Account Now
@@ -161,8 +164,14 @@ const CodeComplexity: React.FC = () => {
               fontStyle: "italic",
             }}
           >
-            💡 Join our community to unlock all premium tools, advanced
-            analytics, and exclusive features
+            <span>
+              <Lightbulb
+                className="w-4 h-4"
+                style={{ fill: "#facc15", stroke: "#facc15" }}
+              />
+            </span>
+            Join our community to unlock all premium tools, advanced analytics,
+            and exclusive features
           </p>
         </div>
       </div>
