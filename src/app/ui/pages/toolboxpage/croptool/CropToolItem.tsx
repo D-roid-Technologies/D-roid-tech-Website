@@ -15,21 +15,25 @@ interface ImageData {
 }
 
 type AspectRatio = 'free' | '1:1' | '16:9';
+type ResizeHandle = 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w';
 
 const CropToolItem: React.FC = () => {
   const [image, setImage] = useState<ImageData | null>(null);
   const [cropArea, setCropArea] = useState<CropArea>({ x: 0, y: 0, width: 200, height: 200 });
   const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0, cropStart: { x: 0, y: 0, width: 0, height: 0 } });
   const [aspectRatio, setAspectRatio] = useState<AspectRatio>('free');
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
-  const [activeHandle, setActiveHandle] = useState<string | null>(null);
+  const [activeHandle, setActiveHandle] = useState<ResizeHandle | 'move' | null>(null);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const MIN_CROP_SIZE = 50;
 
   // Handle file upload
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,85 +62,158 @@ const CropToolItem: React.FC = () => {
   };
 
   // Apply aspect ratio constraints
-  const applyAspectRatio = useCallback((newCropArea: CropArea): CropArea => {
-    if (aspectRatio === 'free') return newCropArea;
+  const applyAspectRatio = useCallback((newCropArea: CropArea, handle: ResizeHandle | 'move' | null): CropArea => {
+    if (aspectRatio === 'free' || !handle || handle === 'move') return newCropArea;
     
     const ratio = aspectRatio === '1:1' ? 1 : 16/9;
-    const currentRatio = newCropArea.width / newCropArea.height;
     
-    if (currentRatio > ratio) {
+    // For corner handles, adjust both dimensions
+    if (['nw', 'ne', 'se', 'sw'].includes(handle)) {
+      const currentRatio = newCropArea.width / newCropArea.height;
+      
+      if (currentRatio > ratio) {
+        const newWidth = newCropArea.height * ratio;
+        return { ...newCropArea, width: newWidth };
+      } else {
+        const newHeight = newCropArea.width / ratio;
+        return { ...newCropArea, height: newHeight };
+      }
+    }
+    
+    // For edge handles, adjust the other dimension to maintain ratio
+    if (['n', 's'].includes(handle)) {
       const newWidth = newCropArea.height * ratio;
       return { ...newCropArea, width: newWidth };
-    } else {
+    }
+    
+    if (['e', 'w'].includes(handle)) {
       const newHeight = newCropArea.width / ratio;
       return { ...newCropArea, height: newHeight };
     }
+    
+    return newCropArea;
   }, [aspectRatio]);
 
-  // Handle crop area drag
-  const handleMouseDown = (e: React.MouseEvent, handle?: string) => {
+  // Constrain crop area to image bounds
+  const constrainToImage = useCallback((cropArea: CropArea): CropArea => {
+    if (!image) return cropArea;
+    
+    const constrained = { ...cropArea };
+    
+    // Ensure minimum size
+    constrained.width = Math.max(MIN_CROP_SIZE, constrained.width);
+    constrained.height = Math.max(MIN_CROP_SIZE, constrained.height);
+    
+    // Keep within image bounds
+    constrained.x = Math.max(0, Math.min(image.width - constrained.width, constrained.x));
+    constrained.y = Math.max(0, Math.min(image.height - constrained.height, constrained.y));
+    constrained.width = Math.min(image.width - constrained.x, constrained.width);
+    constrained.height = Math.min(image.height - constrained.y, constrained.height);
+    
+    return constrained;
+  }, [image]);
+
+  // Get mouse position relative to image
+  const getImageRelativePosition = useCallback((clientX: number, clientY: number) => {
+    if (!image || !containerRef.current) return { x: 0, y: 0 };
+    
+    const rect = containerRef.current.getBoundingClientRect();
+    const isMobile = window.innerWidth <= 768;
+    const displayWidth = Math.min(isMobile ? window.innerWidth - 80 : 700, image.width);
+    const displayHeight = Math.min(isMobile ? 400 : 500, image.height);
+    
+    const scaleX = image.width / displayWidth;
+    const scaleY = image.height / displayHeight;
+    
+    const relativeX = (clientX - rect.left) * scaleX;
+    const relativeY = (clientY - rect.top) * scaleY;
+    
+    return { x: relativeX, y: relativeY };
+  }, [image]);
+
+  // Handle resize start
+  const handleResizeStart = (e: React.MouseEvent, handle: ResizeHandle | 'move') => {
     if (!image) return;
     
+    e.preventDefault();
     setIsDragging(true);
-    setActiveHandle(handle || null);
+    setActiveHandle(handle);
+    
+    const { x: mouseX, y: mouseY } = getImageRelativePosition(e.clientX, e.clientY);
+    
     setDragStart({
-      x: e.clientX - (handle ? 0 : cropArea.x),
-      y: e.clientY - (handle ? 0 : cropArea.y)
+      x: mouseX,
+      y: mouseY,
+      cropStart: { ...cropArea }
     });
   };
 
+  // Handle mouse move for resizing
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging || !image) return;
+    if (!isDragging || !image || !activeHandle) return;
 
-    const deltaX = e.clientX - dragStart.x;
-    const deltaY = e.clientY - dragStart.y;
+    e.preventDefault();
+    const { x: mouseX, y: mouseY } = getImageRelativePosition(e.clientX, e.clientY);
+    const deltaX = mouseX - dragStart.x;
+    const deltaY = mouseY - dragStart.y;
+    const { cropStart } = dragStart;
 
-    if (activeHandle) {
-      let newCropArea = { ...cropArea };
-      
-      switch (activeHandle) {
-        case 'nw':
-          newCropArea = {
-            x: Math.max(0, deltaX),
-            y: Math.max(0, deltaY),
-            width: cropArea.width + cropArea.x - Math.max(0, deltaX),
-            height: cropArea.height + cropArea.y - Math.max(0, deltaY)
-          };
-          break;
-        case 'ne':
-          newCropArea = {
-            ...cropArea,
-            y: Math.max(0, deltaY),
-            width: Math.min(image.width - cropArea.x, deltaX - cropArea.x),
-            height: cropArea.height + cropArea.y - Math.max(0, deltaY)
-          };
-          break;
-        case 'sw':
-          newCropArea = {
-            x: Math.max(0, deltaX),
-            y: cropArea.y,
-            width: cropArea.width + cropArea.x - Math.max(0, deltaX),
-            height: Math.min(image.height - cropArea.y, deltaY - cropArea.y)
-          };
-          break;
-        case 'se':
-          newCropArea = {
-            ...cropArea,
-            width: Math.min(image.width - cropArea.x, deltaX - cropArea.x),
-            height: Math.min(image.height - cropArea.y, deltaY - cropArea.y)
-          };
-          break;
-      }
+    let newCropArea = { ...cropStart };
 
-      if (newCropArea.width > 50 && newCropArea.height > 50) {
-        setCropArea(applyAspectRatio(newCropArea));
-      }
+    if (activeHandle === 'move') {
+      newCropArea.x = cropStart.x + deltaX;
+      newCropArea.y = cropStart.y + deltaY;
     } else {
-      const newX = Math.max(0, Math.min(image.width - cropArea.width, deltaX));
-      const newY = Math.max(0, Math.min(image.height - cropArea.height, deltaY));
-      setCropArea(prev => ({ ...prev, x: newX, y: newY }));
+      // Handle resizing based on active handle
+      switch (activeHandle) {
+        case 'nw': // Top-left corner
+          newCropArea.x = cropStart.x + deltaX;
+          newCropArea.y = cropStart.y + deltaY;
+          newCropArea.width = cropStart.width - deltaX;
+          newCropArea.height = cropStart.height - deltaY;
+          break;
+          
+        case 'n': // Top edge
+          newCropArea.y = cropStart.y + deltaY;
+          newCropArea.height = cropStart.height - deltaY;
+          break;
+          
+        case 'ne': // Top-right corner
+          newCropArea.y = cropStart.y + deltaY;
+          newCropArea.width = cropStart.width + deltaX;
+          newCropArea.height = cropStart.height - deltaY;
+          break;
+          
+        case 'e': // Right edge
+          newCropArea.width = cropStart.width + deltaX;
+          break;
+          
+        case 'se': // Bottom-right corner
+          newCropArea.width = cropStart.width + deltaX;
+          newCropArea.height = cropStart.height + deltaY;
+          break;
+          
+        case 's': // Bottom edge
+          newCropArea.height = cropStart.height + deltaY;
+          break;
+          
+        case 'sw': // Bottom-left corner
+          newCropArea.x = cropStart.x + deltaX;
+          newCropArea.width = cropStart.width - deltaX;
+          newCropArea.height = cropStart.height + deltaY;
+          break;
+          
+        case 'w': // Left edge
+          newCropArea.x = cropStart.x + deltaX;
+          newCropArea.width = cropStart.width - deltaX;
+          break;
+      }
     }
-  }, [isDragging, dragStart, cropArea, activeHandle, image, applyAspectRatio]);
+
+    // Apply constraints and update
+    const constrainedArea = constrainToImage(applyAspectRatio(newCropArea, activeHandle));
+    setCropArea(constrainedArea);
+  }, [isDragging, image, activeHandle, dragStart, constrainToImage, applyAspectRatio, getImageRelativePosition]);
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -235,9 +312,27 @@ const CropToolItem: React.FC = () => {
     img.src = image.src;
   };
 
+  // Get display dimensions and scaling
+  const getDisplayDimensions = useCallback(() => {
+    if (!image) return { width: 0, height: 0, scaleX: 1, scaleY: 1 };
+    
+    const isMobile = window.innerWidth <= 768;
+    const maxWidth = isMobile ? window.innerWidth - 80 : 700;
+    const maxHeight = isMobile ? 400 : 500;
+    
+    const displayWidth = Math.min(maxWidth, image.width);
+    const displayHeight = Math.min(maxHeight, image.height);
+    
+    return {
+      width: displayWidth,
+      height: displayHeight,
+      scaleX: displayWidth / image.width,
+      scaleY: displayHeight / image.height
+    };
+  }, [image]);
+
   const containerStyle: React.CSSProperties = {
     minHeight: '100vh',
-
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
   };
 
@@ -510,42 +605,62 @@ const CropToolItem: React.FC = () => {
     maxWidth: '100%'
   };
 
+  const { width: displayWidth, height: displayHeight, scaleX, scaleY } = getDisplayDimensions();
+
   const imageDisplayStyle: React.CSSProperties = {
-    width: image ? Math.min(window.innerWidth > 768 ? 700 : window.innerWidth - 80, image.width) : 0,
-    height: image ? Math.min(window.innerWidth > 768 ? 500 : 400, image.height) : 0,
+    width: displayWidth,
+    height: displayHeight,
     backgroundImage: image ? `url(${image.src})` : undefined,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     position: 'relative',
-    cursor: 'crosshair',
-    minHeight: window.innerWidth <= 768 ? '250px' : 'auto'
+    cursor: isDragging ? (activeHandle === 'move' ? 'grabbing' : 'grabbing') : 'crosshair',
+    minHeight: window.innerWidth <= 768 ? '250px' : 'auto',
+    userSelect: 'none'
   };
+
+  // Calculate crop overlay position and size in display coordinates
+  const cropDisplayX = cropArea.x * scaleX;
+  const cropDisplayY = cropArea.y * scaleY;
+  const cropDisplayWidth = cropArea.width * scaleX;
+  const cropDisplayHeight = cropArea.height * scaleY;
 
   const cropOverlayStyle: React.CSSProperties = {
     position: 'absolute',
+    left: cropDisplayX,
+    top: cropDisplayY,
+    width: cropDisplayWidth,
+    height: cropDisplayHeight,
     border: '3px solid #071D6A',
     background: 'rgba(7, 29, 106, 0.1)',
     borderRadius: '8px',
     boxShadow: '0 0 0 2px rgba(255, 255, 255, 0.8), 0 8px 25px rgba(7, 29, 106, 0.3)',
-    cursor: isDragging && !activeHandle ? 'grabbing' : 'grab'
+    cursor: isDragging && activeHandle === 'move' ? 'grabbing' : 'grab'
   };
 
-  const handleStyle: React.CSSProperties = {
+  const handleSize = window.innerWidth <= 768 ? 18 : 14;
+  const handleOffset = handleSize / 2;
+
+  const baseHandleStyle: React.CSSProperties = {
     position: 'absolute',
-    width: window.innerWidth <= 768 ? '18px' : '14px',
-    height: window.innerWidth <= 768 ? '18px' : '14px',
+    width: `${handleSize}px`,
+    height: `${handleSize}px`,
     background: 'linear-gradient(135deg, #071D6A, #4338ca)',
     borderRadius: '50%',
     border: '3px solid white',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-    transition: 'all 0.2s ease'
+    transition: 'all 0.2s ease',
+    cursor: 'pointer'
   };
 
-  const handleHoverStyle: React.CSSProperties = {
-    ...handleStyle,
-    transform: 'scale(1.2)',
-    boxShadow: '0 6px 20px rgba(7, 29, 106, 0.4)'
+  const edgeHandleStyle: React.CSSProperties = {
+    position: 'absolute',
+    background: 'linear-gradient(135deg, #071D6A, #4338ca)',
+    border: '2px solid white',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+    transition: 'all 0.2s ease',
+    cursor: 'pointer'
   };
 
   const moveIconContainerStyle: React.CSSProperties = {
@@ -557,8 +672,9 @@ const CropToolItem: React.FC = () => {
     color: 'white',
     padding: window.innerWidth <= 768 ? '6px' : '8px',
     borderRadius: '8px',
-    opacity: 0.8,
-    pointerEvents: 'none'
+    opacity: activeHandle === 'move' ? 1 : 0.8,
+    pointerEvents: 'none',
+    transition: 'opacity 0.2s ease'
   };
 
   // Responsive grid layout
@@ -590,7 +706,7 @@ const CropToolItem: React.FC = () => {
 
   const [isUploadHovered, setIsUploadHovered] = useState(false);
   const [isDownloadHovered, setIsDownloadHovered] = useState(false);
-  const [hoveredHandle, setHoveredHandle] = useState<string | null>(null);
+  const [hoveredHandle, setHoveredHandle] = useState<ResizeHandle | null>(null);
 
   return (
     <div style={containerStyle}>
@@ -747,73 +863,171 @@ const CropToolItem: React.FC = () => {
             </div>
           ) : (
             <div style={imageContainerStyle}>
-              <div style={imageDisplayStyle}>
+              <div 
+                ref={containerRef}
+                style={imageDisplayStyle}
+                onMouseDown={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = (e.clientX - rect.left) / scaleX;
+                  const y = (e.clientY - rect.top) / scaleY;
+                  
+                  // Check if click is inside crop area for moving
+                  if (x >= cropArea.x && x <= cropArea.x + cropArea.width &&
+                      y >= cropArea.y && y <= cropArea.y + cropArea.height) {
+                    handleResizeStart(e, 'move');
+                  }
+                }}
+              >
                 {/* Crop overlay */}
-                <div
-                  style={{
-                    ...cropOverlayStyle,
-                    left: (cropArea.x / image.width) * Math.min(isMobile ? window.innerWidth - 80 : 700, image.width),
-                    top: (cropArea.y / image.height) * Math.min(isMobile ? 400 : 500, image.height),
-                    width: (cropArea.width / image.width) * Math.min(isMobile ? window.innerWidth - 80 : 700, image.width),
-                    height: (cropArea.height / image.height) * Math.min(isMobile ? 400 : 500, image.height)
-                  }}
-                  onMouseDown={(e) => handleMouseDown(e)}
-                >
-                  {/* Resize handles */}
+                <div style={cropOverlayStyle}>
+                  {/* Corner handles */}
                   <div
                     style={{
-                      ...(hoveredHandle === 'nw' ? handleHoverStyle : handleStyle),
-                      top: isMobile ? '-9px' : '-7px',
-                      left: isMobile ? '-9px' : '-7px',
-                      cursor: 'nw-resize'
+                      ...baseHandleStyle,
+                      top: `-${handleOffset}px`,
+                      left: `-${handleOffset}px`,
+                      cursor: 'nw-resize',
+                      transform: hoveredHandle === 'nw' ? 'scale(1.3)' : 'scale(1)',
+                      zIndex: 10
                     }}
                     onMouseDown={(e) => {
                       e.stopPropagation();
-                      handleMouseDown(e, 'nw');
+                      handleResizeStart(e, 'nw');
                     }}
                     onMouseEnter={() => setHoveredHandle('nw')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
                   <div
                     style={{
-                      ...(hoveredHandle === 'ne' ? handleHoverStyle : handleStyle),
-                      top: isMobile ? '-9px' : '-7px',
-                      right: isMobile ? '-9px' : '-7px',
-                      cursor: 'ne-resize'
+                      ...baseHandleStyle,
+                      top: `-${handleOffset}px`,
+                      right: `-${handleOffset}px`,
+                      cursor: 'ne-resize',
+                      transform: hoveredHandle === 'ne' ? 'scale(1.3)' : 'scale(1)',
+                      zIndex: 10
                     }}
                     onMouseDown={(e) => {
                       e.stopPropagation();
-                      handleMouseDown(e, 'ne');
+                      handleResizeStart(e, 'ne');
                     }}
                     onMouseEnter={() => setHoveredHandle('ne')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
                   <div
                     style={{
-                      ...(hoveredHandle === 'sw' ? handleHoverStyle : handleStyle),
-                      bottom: isMobile ? '-9px' : '-7px',
-                      left: isMobile ? '-9px' : '-7px',
-                      cursor: 'sw-resize'
+                      ...baseHandleStyle,
+                      bottom: `-${handleOffset}px`,
+                      right: `-${handleOffset}px`,
+                      cursor: 'se-resize',
+                      transform: hoveredHandle === 'se' ? 'scale(1.3)' : 'scale(1)',
+                      zIndex: 10
                     }}
                     onMouseDown={(e) => {
                       e.stopPropagation();
-                      handleMouseDown(e, 'sw');
+                      handleResizeStart(e, 'se');
                     }}
-                    onMouseEnter={() => setHoveredHandle('sw')}
+                    onMouseEnter={() => setHoveredHandle('se')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
                   <div
                     style={{
-                      ...(hoveredHandle === 'se' ? handleHoverStyle : handleStyle),
-                      bottom: isMobile ? '-9px' : '-7px',
-                      right: isMobile ? '-9px' : '-7px',
-                      cursor: 'se-resize'
+                      ...baseHandleStyle,
+                      bottom: `-${handleOffset}px`,
+                      left: `-${handleOffset}px`,
+                      cursor: 'sw-resize',
+                      transform: hoveredHandle === 'sw' ? 'scale(1.3)' : 'scale(1)',
+                      zIndex: 10
                     }}
                     onMouseDown={(e) => {
                       e.stopPropagation();
-                      handleMouseDown(e, 'se');
+                      handleResizeStart(e, 'sw');
                     }}
-                    onMouseEnter={() => setHoveredHandle('se')}
+                    onMouseEnter={() => setHoveredHandle('sw')}
+                    onMouseLeave={() => setHoveredHandle(null)}
+                  />
+
+                  {/* Edge handles */}
+                  {/* Top edge */}
+                  <div
+                    style={{
+                      ...edgeHandleStyle,
+                      top: `-4px`,
+                      left: '20%',
+                      width: '60%',
+                      height: '8px',
+                      borderRadius: '4px',
+                      cursor: 'n-resize',
+                      transform: hoveredHandle === 'n' ? 'scaleY(1.5)' : 'scaleY(1)',
+                      zIndex: 9
+                    }}
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      handleResizeStart(e, 'n');
+                    }}
+                    onMouseEnter={() => setHoveredHandle('n')}
+                    onMouseLeave={() => setHoveredHandle(null)}
+                  />
+                  
+                  {/* Right edge */}
+                  <div
+                    style={{
+                      ...edgeHandleStyle,
+                      right: `-4px`,
+                      top: '20%',
+                      width: '8px',
+                      height: '60%',
+                      borderRadius: '4px',
+                      cursor: 'e-resize',
+                      transform: hoveredHandle === 'e' ? 'scaleX(1.5)' : 'scaleX(1)',
+                      zIndex: 9
+                    }}
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      handleResizeStart(e, 'e');
+                    }}
+                    onMouseEnter={() => setHoveredHandle('e')}
+                    onMouseLeave={() => setHoveredHandle(null)}
+                  />
+                  
+                  {/* Bottom edge */}
+                  <div
+                    style={{
+                      ...edgeHandleStyle,
+                      bottom: `-4px`,
+                      left: '20%',
+                      width: '60%',
+                      height: '8px',
+                      borderRadius: '4px',
+                      cursor: 's-resize',
+                      transform: hoveredHandle === 's' ? 'scaleY(1.5)' : 'scaleY(1)',
+                      zIndex: 9
+                    }}
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      handleResizeStart(e, 's');
+                    }}
+                    onMouseEnter={() => setHoveredHandle('s')}
+                    onMouseLeave={() => setHoveredHandle(null)}
+                  />
+                  
+                  {/* Left edge */}
+                  <div
+                    style={{
+                      ...edgeHandleStyle,
+                      left: `-4px`,
+                      top: '20%',
+                      width: '8px',
+                      height: '60%',
+                      borderRadius: '4px',
+                      cursor: 'w-resize',
+                      transform: hoveredHandle === 'w' ? 'scaleX(1.5)' : 'scaleX(1)',
+                      zIndex: 9
+                    }}
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      handleResizeStart(e, 'w');
+                    }}
+                    onMouseEnter={() => setHoveredHandle('w')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
                   
@@ -832,6 +1046,6 @@ const CropToolItem: React.FC = () => {
       <canvas ref={canvasRef} style={{ display: 'none' }} />
     </div>
   );
-}
+};
 
 export default CropToolItem;

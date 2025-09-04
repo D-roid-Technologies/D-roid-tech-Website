@@ -12,18 +12,84 @@ type Format = "hex" | "rgb" | "hsl";
 const ColorConv: React.FC = ({ onClose }: ToolProps) => {
   const [from, setFrom] = useState<Format>("hex");
   const [to, setTo] = useState<Format>("rgb");
-  const [input, setInput] = useState("#3b82f6");
+  const [input, setInput] = useState("#071D6A");
   const [output, setOutput] = useState("");
-  const [preview, setPreview] = useState("#3b82f6");
+  const [preview, setPreview] = useState("#071D6A");
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState("");
 
   // Auto-convert on mount and input changes
-  useEffect(() => {
-    if (input) {
-      convertColor(input, from, to);
+useEffect(() => {
+  if (!input) {
+    setPreview("#ffffff"); // empty input → default preview
+    setOutput("");
+    setError("");
+    return;
+  }
+
+  try {
+    setError("");
+    let r = 0, g = 0, b = 0;
+
+    // HEX
+    if (from === "hex") {
+      const hex = input.replace("#", "");
+      if (!/^([0-9a-f]{3}|[0-9a-f]{6})$/i.test(hex)) throw new Error("Invalid HEX");
+
+      const fullHex = hex.length === 3 ? hex.split("").map(c => c + c).join("") : hex;
+      const intVal = parseInt(fullHex, 16);
+      r = (intVal >> 16) & 255;
+      g = (intVal >> 8) & 255;
+      b = intVal & 255;
     }
-  }, [input, from, to]);
+
+    // RGB
+    else if (from === "rgb") {
+      const match = input.match(/^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/i);
+      if (!match) throw new Error("Invalid RGB");
+      r = parseInt(match[1]);
+      g = parseInt(match[2]);
+      b = parseInt(match[3]);
+    }
+
+    // HSL
+    else if (from === "hsl") {
+      const match = input.match(/^hsl\((\d{1,3}),\s*(\d{1,3})%?,\s*(\d{1,3})%?\)$/i);
+      if (!match) throw new Error("Invalid HSL");
+
+      const h = parseInt(match[1]), s = parseInt(match[2]) / 100, l = parseInt(match[3]) / 100;
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+      const m = l - c / 2;
+      let temp: [number, number, number];
+
+      if (h < 60) temp = [c, x, 0];
+      else if (h < 120) temp = [x, c, 0];
+      else if (h < 180) temp = [0, c, x];
+      else if (h < 240) temp = [0, x, c];
+      else if (h < 300) temp = [x, 0, c];
+      else temp = [c, 0, x];
+
+      [r, g, b] = temp.map(v => Math.round((v + m) * 255));
+    }
+
+    // always update preview
+    setPreview(`rgb(${r}, ${g}, ${b})`);
+
+    // convert to target format
+    const result =
+      to === "hex" ? rgbToHex(r, g, b) :
+      to === "rgb" ? `rgb(${r}, ${g}, ${b})` :
+      rgbToHslString(r, g, b);
+
+    setOutput(result);
+  } catch (err: any) {
+    setError(err.message);
+    setOutput("");
+    setPreview("#071D6A"); // fallback for invalid input
+  }
+}, [input, from, to]);
+
 
   const convertColor = (value: string, from: Format, to: Format) => {
     try {
@@ -162,9 +228,9 @@ const ColorConv: React.FC = ({ onClose }: ToolProps) => {
   const getPlaceholder = (format: Format) => {
     switch (format) {
       case "hex":
-        return "#3b82f6";
+        return "#071D6A";
       case "rgb":
-        return "rgb(59, 130, 246)";
+        return "rgb(7, 29, 106)";
       case "hsl":
         return "hsl(217, 91%, 60%)";
     }
@@ -301,18 +367,17 @@ const ColorConv: React.FC = ({ onClose }: ToolProps) => {
               <label className="color-converter__preview-label">
                 Color preview
               </label>
-              <div
-                className="color-converter__preview"
-                style={{ backgroundColor: preview }}
-              >
+              <div className="color-converter__preview" style={{ 
+                  backgroundColor: preview, 
+                }}>
                 <span
                   className="color-converter__preview-text"
                   style={{
                     color: preview === "#f3f4f6" ? "#6b7280" : "white",
                     backgroundColor:
                       preview === "#f3f4f6"
-                        ? "rgba(255,255,255,0.8)"
-                        : "rgba(0,0,0,0.3)",
+                        ? "rgba(255, 255, 255, 0.8)"
+                        : "rgb(7, 29, 106)",
                   }}
                 >
                   {preview === "#f3f4f6" ? "Enter a valid color" : "Preview"}
@@ -326,7 +391,7 @@ const ColorConv: React.FC = ({ onClose }: ToolProps) => {
         <div className="color-converter__examples">
           <div className="color-converter__example">
             <h3 className="color-converter__example-title">HEX</h3>
-            <code className="color-converter__example-code">#3b82f6</code>
+            <code className="color-converter__example-code">#071D6A</code>
           </div>
           <div className="color-converter__example">
             <h3 className="color-converter__example-title">RGB</h3>
@@ -342,9 +407,8 @@ const ColorConv: React.FC = ({ onClose }: ToolProps) => {
           </div>
         </div>
       </div>
-      <div style={{marginTop: "10px"}}>
-
-      <ColorConverterFeatures/>
+      <div style={{ marginTop: "10px" }}>
+        <ColorConverterFeatures />
       </div>
     </div>
   );
