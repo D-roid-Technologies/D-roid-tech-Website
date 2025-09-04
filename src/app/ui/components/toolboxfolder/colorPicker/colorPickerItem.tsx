@@ -10,9 +10,8 @@ const ColorPickerItem: React.FC = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    // Populate RGB/HSL for the initial color on mount
     convertToRgbAndHsl(color);
-  }, []); // run once
+  }, [color]); // run on mount and whenever color changes
 
   const convertToRgbAndHsl = (hex: string) => {
     if (!hex || hex[0] !== "#" || hex.length !== 7) return;
@@ -57,11 +56,18 @@ const ColorPickerItem: React.FC = () => {
     )}%)`;
   };
 
+  const getContrastYIQ = (hex: string) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 128 ? "#000" : "#fff";
+  };
+
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newColor = e.target.value;
     setColor(newColor);
     setTouched(true);
-    convertToRgbAndHsl(newColor);
   };
 
   const handleWrapperKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -84,7 +90,6 @@ const ColorPickerItem: React.FC = () => {
 
   return (
     <>
-      {/* Ensure you render <Toaster /> once in your app (root). */}
       <Toaster position="top-right" />
       <div style={styles.container}>
         <h2 style={{ color: "#071D6A", fontWeight: 900 }}>Simple Color Picker</h2>
@@ -97,10 +102,7 @@ const ColorPickerItem: React.FC = () => {
           style={{ ...styles.colorPickerWrapper, backgroundColor: color }}
         >
           <Palette size={18} style={{ marginRight: 10 }} />
-          {!touched && <span style={styles.placeholder}>Click to pick a color</span>
-
-          /* hidden native input overlays the wrapper so clicks open the picker */
-          }
+          {!touched && <span style={styles.placeholder}>Click to pick a color</span>}
           <input
             ref={inputRef}
             id="color-input"
@@ -118,8 +120,9 @@ const ColorPickerItem: React.FC = () => {
           <OutputRow label="HSL" value={hsl} onCopy={handleCopy} />
         </div>
 
+        {/* Live Preview */}
         <div style={{ ...styles.preview, backgroundColor: color }}>
-          <p style={{ color: "#fff", fontWeight: 700 }}>Color Preview</p>
+          <p style={{ color: getContrastYIQ(color), fontWeight: 700 }}>Color Preview</p>
         </div>
       </div>
     </>
@@ -139,7 +142,7 @@ const OutputRow: React.FC<{
       disabled={!value}
       aria-disabled={!value}
     >
-       {value || "—"}
+      {value || "—"}
     </button>
   </div>
 );

@@ -26,10 +26,11 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5rem;
-  color: white;
+  color: #071D6A;
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -40,7 +41,8 @@
 }
 
 .img-compressor-back-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
   transform: translateY(-1px);
 }
 
@@ -53,6 +55,7 @@
   font-weight: 800;
   margin: 0 0 1rem 0;
   background: linear-gradient(45deg, #fff, #e2e8f0);
+  color: #071D6A;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -74,6 +77,7 @@
 
 .img-compressor-card {
   background: white;
+  color: #071D6A;
   border-radius: 1rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -113,12 +117,14 @@
   padding: 3rem 2rem;
   text-align: center;
   transition: all 0.2s ease;
-  background: #f8fafc;
+   background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
 }
 
 .img-compressor-upload-area:hover {
-  border-color: #667eea;
-  background: #f1f5f9;
+  border-color: #071D6A;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
 }
 
 .img-compressor-file-input {
@@ -171,6 +177,8 @@
   margin-top: 1rem;
   padding: 1rem;
   background: #f1f5f9;
+    color: #071D6A;
+
   border-radius: 0.5rem;
   border: 1px solid #e2e8f0;
 }
@@ -179,6 +187,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+      color: #071D6A;
+
 }
 
 .img-compressor-file-name {
@@ -189,7 +199,8 @@
 
 .img-compressor-file-size {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #071D6A;
+
   background: #e2e8f0;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
@@ -267,7 +278,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background-color: rgb(118, 118, 252);
+  background: #071D6A;
+    color: #fff;
+
+
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   color: white;
   text-decoration: none;
@@ -336,6 +350,7 @@
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
+    color: #071D6A;
   }
 }
 
@@ -382,38 +397,48 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .img-compressor-card {
-    background: #1e293b;
-    color: white;
+      background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
+     color: #071D6A;
+
   }
 
   .img-compressor-card-title {
-    color: white;
+     color: #071D6A;
+
   }
 
   .img-compressor-card-subtitle {
-    color: #94a3b8;
+      color: #071D6A;
+
   }
 
   .img-compressor-upload-area {
-    background: #334155;
+      background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+  color: #071D6A;
+
     border-color: #475569;
   }
 
   .img-compressor-upload-area:hover {
-    background: #475569;
+     background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
   }
 
   .img-compressor-upload-primary {
-    color: white;
+      color: #071D6A;
+
   }
 
   .img-compressor-file-info {
-    background: #334155;
+     color: #071D6A;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+
     border-color: #475569;
   }
 
   .img-compressor-file-name {
-    color: white;
+    color: #071D6A;
   }
 
   .img-compressor-loading-text {
@@ -421,7 +446,8 @@
   }
 
   .img-compressor-result-title {
-    color: white;
+     color: #071D6A;
+;
   }
 }
 

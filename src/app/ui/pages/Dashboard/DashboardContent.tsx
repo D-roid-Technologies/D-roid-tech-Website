@@ -83,6 +83,7 @@ import StaffUserHomePage from "./staff/StaffUserHomePage";
 import SchoolDashboard from "./organization/SchoolDashboard";
 import BusinessDashboard from "./organization/BusinessDashboard";
 import NGODashboard from "./organization/NGODashboard";
+import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 
 
 // const tools = [
@@ -660,14 +661,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               // Render the tools grid
               <>
                 <div className="soft-dev-content">
-                  {Alltools.map((tech, index) => (
-                    <ToolsCard
+                {Alltools.map((tech, index) => (
+                    <AllToolsCard
                       key={index}
                       title={tech.title}
                       description={tech.description}
                       icon={tech.icon}
-                      link={tech.link}
-                      onLaunch={
+                      onClick={
                         tech.component
                           ? () => handleLaunchTool(tech.component)
                           : undefined
@@ -675,6 +675,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                       className="process-card"
                     />
                   ))}
+                  
                 </div>
               </>
             )}

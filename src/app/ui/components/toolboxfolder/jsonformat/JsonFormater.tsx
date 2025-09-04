@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import JSONFormatterFeatures from "./JSONFormatterFeatures";
+import { FaClipboard } from "react-icons/fa";
+
 // import "../JsonFormatter/JsonFormatter.css";
 
 const JsonFormatter: React.FC = () => {
@@ -45,9 +47,9 @@ const JsonFormatter: React.FC = () => {
               navigator.clipboard
                 .writeText(output)
                 .then(() => {
-                  toast.success("Formatted JSON copied to clipboard. 📋", {
+                  toast.success("Formatted JSON copied to clipboard", {
                     style: {
-                      background: "#4BB543",
+                      background: "#071D6A",
                       color: "#fff",
                     },
                   });
@@ -66,14 +68,21 @@ const JsonFormatter: React.FC = () => {
           disabled={!output || output === "Invalid JSON"}
           title="Click to copy"
         >
-          {output
-            ? `📋 Copy Formatted JSON`
-            : "Formatted output will appear here"}
+          {output ? (
+            <span>
+              <FaClipboard size={15} style={{ paddingRight: "0.3rem" }} />
+              Copy Formatted JSON
+            </span>
+          ) : (
+            "Formatted output will appear here"
+          )}
         </button>
       </div>
 
-      <pre style={styles.preview}>{output}</pre>
-    
+      {output && output.length > 1 && (
+  <pre style={styles.preview}>{output}</pre>
+)}
+
     </div>
   );
 };
@@ -103,7 +112,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "1.1rem",
   },
   copyButton: {
-    backgroundColor: "#000000",
+    backgroundColor: "#071D6A",
     color: "#fff",
     border: "none",
     padding: "0.75rem 1rem",
@@ -116,8 +125,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   preview: {
     textAlign: "left",
-    backgroundColor: "#2d2d2d",
-    color: "#00ff88",
+    backgroundColor: "#071D6A",
+    color: "#fffff",
     padding: "1rem",
     borderRadius: "8px",
     overflowX: "auto",
