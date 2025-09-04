@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { FaClipboard } from 'react-icons/fa';
+
 
 const EncoderItem: React.FC = () => {
   const [text, setText] = useState("");
@@ -82,10 +84,12 @@ const EncoderItem: React.FC = () => {
         {encoded && (
           <OutputRow label="Encoded" value={encoded} onCopy={handleCopy} />
         )}
+        <span style={{color: "black"}}>
 
         {decoded && (
           <OutputRow label="Decoded" value={decoded} onCopy={handleCopy} />
         )}
+        </span>
       </div>
     </>
   );
@@ -99,7 +103,8 @@ const OutputRow: React.FC<{
   <div style={{ ...styles.outputRow, color: "#000000" }}>
     <span style={{ fontWeight: "bold" }}>{label}:</span>
     <button onClick={() => onCopy(label, value)} style={styles.copyButton}>
-      📋 Copy
+                   <FaClipboard size={15}  style={{paddingRight: "0.3rem"}} />
+      Copy
     </button>
   </div>
 );

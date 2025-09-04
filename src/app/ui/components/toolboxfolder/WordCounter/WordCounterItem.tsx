@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { ToolProps } from "../../../../utils/Types";
+import { FaClipboard } from 'react-icons/fa';
+
+
+
 
 
 const WordCounterItem: React.FC = ({ onClose }: ToolProps) => {
@@ -58,7 +62,8 @@ const OutputRow: React.FC<{ label: string, value: string | number, onCopy: (labe
             style={styles.copyButton}
             disabled={!value && value !== 0}
         >
-            📋 {value}
+             <FaClipboard size={15}  style={{paddingRight: "0.1rem"}} />
+      <span>{value}</span>
         </button>
     </div>
 );
