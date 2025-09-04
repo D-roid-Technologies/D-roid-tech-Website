@@ -1,8 +1,9 @@
 .airbg-container {
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
   background: #ffffff;
   min-height: 100vh;
 }
@@ -25,8 +26,8 @@
 }
 
 .airbg-header-icon {
-  width: 48px;
-  height: 48px;
+  width: 28px;
+  height: 28px;
   color: #071d6a;
   filter: drop-shadow(0 4px 8px rgba(7, 29, 106, 0.1));
 }
@@ -70,7 +71,7 @@
 }
 
 .airbg-upload-zone {
-  padding: 80px 40px;
+  padding: 40px 40px;
   text-align: center;
   border: 3px dashed #d1d5db;
   margin: 40px;
@@ -90,8 +91,8 @@
 }
 
 .airbg-upload-icon {
-  width: 64px;
-  height: 64px;
+  width: 34px;
+  height: 34px;
   color: #071d6a;
   margin-bottom: 24px;
 }
@@ -425,7 +426,8 @@
 
 .airbg-transparent-bg {
   background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
-    linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+    linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
     linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
