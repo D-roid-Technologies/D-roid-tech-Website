@@ -249,27 +249,26 @@ const SoftwareDevelopmentPage: React.FC = () => {
           >
             Our Development Process
           </span>
-          <div className="soft-dev-content" style={{ cursor: "pointer" }}>
+          <div className="soft-dev-content">
             {devPhases.map((phase, index) => (
               <NewwebsiteCard
                 key={index}
                 title={phase.title}
                 description={phase.description}
                 icon={phase.icon}
-                onClick={() => {
-                  store.dispatch(updateModal(true));
-                  store.dispatch(
-                    updateModalContent({
-                      appTitle: phase.title,
-                      appBody: (
-                        <>
-                          <span>{phase.description}</span>
-                          {/* <ContactSection /> */}
-                        </>
-                      ),
-                    })
-                  );
-                }}
+                // onClick={() => {
+                //   store.dispatch(updateModal(true));
+                //   store.dispatch(
+                //     updateModalContent({
+                //       appTitle: phase.title,
+                //       appBody: (
+                //         <>
+                //           <span>{phase.description}</span>
+                //         </>
+                //       ),
+                //     })
+                //   );
+                // }}
                 className="process-card"
               />
             ))}

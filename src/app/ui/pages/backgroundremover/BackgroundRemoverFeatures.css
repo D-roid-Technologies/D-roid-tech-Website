@@ -10,7 +10,7 @@
 }
 
 .bgremover-features-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #1e293b;
   margin-bottom: 1rem;
@@ -35,7 +35,7 @@
 
 .bgremover-feature-card {
   background: #ffffff;
-  padding: 2rem;
+  padding: 1.2rem;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -68,17 +68,18 @@
 }
 
 .bgremover-feature-icon {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
   border-radius: 50%;
   margin: 0 auto 1.5rem;
   transition: all 0.3s ease;
+  color: #081f6d;
 }
 
 .bgremover-feature-card:hover .bgremover-feature-icon {
