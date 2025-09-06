@@ -1,6 +1,6 @@
 {
   "name": "droid-tech-int",
-  "version": "3.6.8",
+  "version": "4.8.2",
   "private": true,
   "dependencies": {
     "@babel/parser": "^7.27.5",

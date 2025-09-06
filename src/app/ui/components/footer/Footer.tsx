@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
 
       <div className="footer-bottom">
         <p className="copyright">
-          &copy; {new Date().getFullYear()} D'roid Technologies Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} D'roid Technologies Ltd. All rights reserved. Version {Assets.text.appVersion}
         </p>
       </div>
     </footer>
