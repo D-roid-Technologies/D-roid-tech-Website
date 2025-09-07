@@ -22,7 +22,6 @@ const TaskSchedulerDashboard: React.FC = () => {
         return (
           <CreateTasks
             onBack={() => setItemsTitle("default")}
-            onSubmit={(taskData) => console.log("Submitted Task:", taskData)}
           />
         );
       case "View All Tasks":

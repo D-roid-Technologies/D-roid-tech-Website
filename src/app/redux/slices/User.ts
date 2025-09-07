@@ -8,6 +8,7 @@ const initialState: UserType = {
   initials: "",
   userType: "",
   uniqueId: "",
+  staffId: "",
   email: "",
   phone: "",
   agreeToPolicy: false,

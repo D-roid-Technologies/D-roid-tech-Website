@@ -56,6 +56,7 @@ export type UserType = {
   initials: string;
   userType: string;
   uniqueId: string;
+  staffId: string;
   email: string;
   phone: string;
   agreeToPolicy: boolean;

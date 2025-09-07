@@ -74,6 +74,7 @@ const SignUp: React.FunctionComponent = () => {
     initials: "",
     userType: "",
     uniqueId: "",
+    staffId: "",
     email: "",
     phone: "",
     agreeToPolicy: false,

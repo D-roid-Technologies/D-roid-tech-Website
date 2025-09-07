@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Section = ({ title, children }: { title: string; children: React.ReactNode }) => {
+interface SectionProps {
+    title: string
+    children: React.ReactNode
+    isActive?: boolean
+}
+
+const Section: React.FC<SectionProps> = ({ title, children, isActive = false }) => {
     return (
         <div
             style={{
@@ -10,10 +16,22 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
                 boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
             }}
         >
-            <h3 style={{ color: '#071D6A' }}>{title}</h3>
-            {children}
+            <h3
+                style={{
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    backgroundColor: isActive ? '#2563EB' : 'transparent',
+                    color: isActive ? '#FFFFFF' : '#071D6A',
+                    fontWeight: isActive ? 700 : 500,
+                    display: 'inline-block',
+                    transition: 'all 0.2s ease-in-out',
+                }}
+            >
+                {title}
+            </h3>
+            <div style={{ marginTop: '16px' }}>{children}</div>
         </div>
-    );
+    )
 }
 
 export default Section

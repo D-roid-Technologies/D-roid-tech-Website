@@ -1,6 +1,9 @@
-import React, { useState, useMemo } from "react";
+import { s } from "framer-motion/dist/types.d-DSjX-LJB";
+import React, { useState, useMemo, useEffect } from "react";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
+import { deleteAllTasks, deleteThisTask, TaskMain } from "../../../redux/slices/scheduleTask";
+import { RootState, store } from "../../../redux/Store";
 
 // Icons (simple SVG inline for edit/delete)
 const EditIcon = () => (
@@ -147,13 +150,20 @@ const iconButtonStyle: React.CSSProperties = {
   justifyContent: "center",
 };
 
+
 const iconButtonHoverStyle: React.CSSProperties = {
-  backgroundColor: "#E5E7EB",
-  color: "#111827",
+  backgroundColor: "blue",
+  color: "#ffffff ",
+};
+
+const iconDeleteButtonHoverStyle: React.CSSProperties = {
+  backgroundColor: "#DC2626",
+  color: "#ffffff",
 };
 
 const TasksList: React.FC = () => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  console.log(tasks)
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string | "">("");
@@ -161,19 +171,33 @@ const TasksList: React.FC = () => {
   const [hoveredTask, setHoveredTask] = useState<number | null>(null);
   const [hoveredEdit, setHoveredEdit] = useState<number | null>(null);
   const [hoveredDelete, setHoveredDelete] = useState<number | null>(null);
+  const [filteredTasks, setFilteredTasks] = useState<TaskMain[]>([]);
 
-  const filteredTasks = useMemo(() => {
-    return tasks.filter((task: any) => {
-      const matchesSearch =
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchTerm.toLowerCase());
+  useEffect(() => {
+    const result: any = tasks
+      .map((t) => ({
+        ...t,
+        id: String(t.id)
+      }))
+      .filter((task) => {
+        const matchesSearch =
+          task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          task.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const matchesStatus = statusFilter ? task.status === statusFilter : true;
-      const matchesPriority = priorityFilter ? task.priority === priorityFilter : true;
+        const matchesStatus = statusFilter ? task.status === statusFilter : true;
+        const matchesPriority = priorityFilter ? task.priority === priorityFilter : true;
 
-      return matchesSearch && matchesStatus && matchesPriority;
-    });
+        return matchesSearch && matchesStatus && matchesPriority;
+      });
+
+    setFilteredTasks(result);
   }, [tasks, searchTerm, statusFilter, priorityFilter]);
+
+  const handleItemDelete = (task: string) => {
+    store.dispatch(deleteThisTask(task));
+    // toas¿t
+  }
+
 
   return (
     <div
@@ -185,9 +209,31 @@ const TasksList: React.FC = () => {
         borderRadius: 12,
       }}
     >
-      <h2 style={{ fontSize: 28, fontWeight: "800", marginBottom: 24, color: "#111827" }}>
-        All Tasks
-      </h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+        <h2 style={{ fontSize: 28, fontWeight: "800", color: "#111827" }}>
+          All Tasks
+        </h2>
+        <button
+          onClick={() => {
+            store.dispatch(deleteAllTasks());
+            toast.success(`All Tasks have been deleted`, {
+              style: { background: "#4BB543", color: "#fff" },
+            });
+          }}
+          style={{
+            backgroundColor: "transparent", // red-600
+            color: "#DC2626",
+            fontWeight: "600",
+            padding: "8px 16px",
+            borderRadius: 8,
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Delete All Tasks
+        </button>
+      </div>
+
 
       {/* Filters */}
       <div
@@ -277,7 +323,7 @@ const TasksList: React.FC = () => {
               <div
                 style={{
                   position: "absolute",
-                  top: 12,
+                  top: 8,
                   right: 12,
                   display: "flex",
                   gap: 8,
@@ -298,11 +344,11 @@ const TasksList: React.FC = () => {
                 <div
                   style={{
                     ...iconButtonStyle,
-                    ...(hoveredDelete === task.id ? iconButtonHoverStyle : {}),
+                    ...(hoveredDelete === task.id ? iconDeleteButtonHoverStyle : {}),
                   }}
                   onMouseEnter={() => setHoveredDelete(task.id)}
                   onMouseLeave={() => setHoveredDelete(null)}
-                  onClick={() => alert(`Delete task ${task.id}`)}
+                  onClick={() => handleItemDelete(task.id)}
                   title="Delete Task"
                 >
                   <DeleteIcon />
@@ -314,7 +360,7 @@ const TasksList: React.FC = () => {
                   fontSize: 20,
                   fontWeight: "600",
                   marginBottom: 12,
-                  color: "#111827",
+                  color: "#DC2626",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
@@ -339,63 +385,37 @@ const TasksList: React.FC = () => {
                 {task.description || "No description provided."}
               </p>
 
-              <div style={{ marginBottom: 16, display: "flex", flexWrap: "wrap", gap: 8 }}>
-                <span
-                  style={{
-                    padding: "4px 10px",
-                    borderRadius: 9999,
-                    fontSize: 12,
-                    fontWeight: "600",
-                    ...statusColors[task.status],
-                    userSelect: "none",
-                  }}
-                >
-                  {task.status.replace("_", " ")}
-                </span>
-                <span
-                  style={{
-                    padding: "4px 10px",
-                    borderRadius: 9999,
-                    fontSize: 12,
-                    fontWeight: "600",
-                    ...priorityColors[task.priority],
-                    userSelect: "none",
-                  }}
-                >
-                  Priority: {task.priority}
-                </span>
-                {task.category && (
-                  <span
-                    style={{
-                      padding: "4px 10px",
-                      borderRadius: 9999,
-                      fontSize: 12,
-                      fontWeight: "600",
-                      backgroundColor: "#DBEAFE",
-                      color: "#1E40AF",
-                      userSelect: "none",
-                    }}
-                  >
-                    Category: {task.category}
-                  </span>
-                )}
-              </div>
+              <div
+                style={{
+                  color: "#111827",
+                  fontSize: 14,
+                  lineHeight: 1.4,
+                }}
+              >
+                <div>
+                  <p>
+                    <strong>Created By:</strong>{" "}
+                    {task.createdBy?.name || "Unassigned"}
+                  </p>
+                  <p>
+                    <strong>Start Date:</strong> {task.dateCreated}
+                  </p>
+                </div>
 
-              <div style={{ color: "#111827", fontSize: 14, lineHeight: 1.4 }}>
-                <p>
-                  <strong>Assignee:</strong> {task.assignee?.name || "Unassigned"}
-                </p>
-                <p>
-                  <strong>Start Date:</strong> {formatDate(task.startDate)}
-                </p>
-                <p>
+                {/* <p>
                   <strong>End Date:</strong> {formatDate(task.endDate)}
-                </p>
+                </p> */}
               </div>
             </div>
           ))
         ) : (
-          <p style={{ textAlign: "center", color: "#6B7280", gridColumn: "1 / -1" }}>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#6B7280",
+              gridColumn: "1 / -1",
+            }}
+          >
             No tasks found.
           </p>
         )}

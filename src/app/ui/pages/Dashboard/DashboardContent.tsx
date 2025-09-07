@@ -397,13 +397,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-          { label: "Tasks", icon: FaTasks },
-          { label: "Payslips", icon: FaFileInvoiceDollar },
-          { label: "Onboarding", icon: FaUserPlus },
-          { label: "Training", icon: FaChalkboardTeacher },
-          { label: "Progressions", icon: FaChartLine },
-          { label: "Resource", icon: FaBookOpen },
-        ]
+        { label: "Tasks", icon: FaTasks },
+        { label: "Payslips", icon: FaFileInvoiceDollar },
+        { label: "Onboarding", icon: FaUserPlus },
+        { label: "Training", icon: FaChalkboardTeacher },
+        { label: "Progressions", icon: FaChartLine },
+        { label: "Resource", icon: FaBookOpen },
+      ]
       : []),
   ];
 
@@ -483,8 +483,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="School Dashboard">
-                  
-                    <SchoolDashboard/>
+
+                    <SchoolDashboard />
                   </Section>
                 </>
               );
@@ -492,8 +492,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="Business Dashboard">
-                   
-                    <BusinessDashboard/>
+
+                    <BusinessDashboard />
                   </Section>
                 </>
               );
@@ -501,8 +501,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="NGO Dashboard">
-                    
-                    <NGODashboard/>
+
+                    <NGODashboard />
                   </Section>
                 </>
               );
@@ -546,32 +546,32 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     switch (selectedMenu) {
       case "Users":
         return (
-          <Section title="Users">
+          <Section title="Users" isActive={selectedMenu === "Users"}>
             <AllUsers />
           </Section>
         );
       case "Personal Details":
         return (
-          <Section title="Personal Details">
+          <Section title="Personal Details" isActive={selectedMenu === "Personal Details"}>
             <PersonalDetails />
           </Section>
         );
       case "Announcements":
         return (
-          <Section title="Announcements">
+          <Section title="Announcements" isActive={selectedMenu === "Announcements"}>
             <Announcements />
           </Section>
         );
       case "Tasks":
         return (
-          <Section title="Tasks">
+          <Section title="Tasks" isActive={selectedMenu === "Tasks"}>
             <p style={{ color: "#000000" }}>See all list of all tasks here.</p>
             <Tasks />
           </Section>
         );
       case "Payslips":
         return (
-          <Section title="Payslips">
+          <Section title="Payslips" isActive={selectedMenu === "Payslips"}>
             {grossPay > 0 ? (
               <>
                 <p style={{ color: "#000000" }}>
@@ -589,13 +589,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Onboarding":
         return (
-          <Section title="Onboarding">
+          <Section title="Onboarding" isActive={selectedMenu === "Onboarding"}>
             <Onboarding />
           </Section>
         );
       case "Training":
         return (
-          <Section title="Training">
+          <Section title="Training" isActive={selectedMenu === "Training"}>
             <p style={{ color: "#000000" }}>
               Access your training materials here.
             </p>
@@ -604,7 +604,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Progressions":
         return (
-          <Section title="Progressions">
+          <Section title="Progressions" isActive={selectedMenu === "Progressions"}>
             <p style={{ color: "#000000" }}>
               Track your professional progress here.
             </p>
@@ -613,7 +613,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Resource":
         return (
-          <Section title="Resource">
+          <Section title="Resource" isActive={selectedMenu === "Resource"}>
             <p style={{ color: "#000000" }}>
               Browse useful resources and documents.
             </p>
@@ -622,11 +622,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Schedules":
         return (
-          <Section title="Schedules">
+          <Section title="Schedules" isActive={selectedMenu === "Schedules"}>
             <p style={{ color: "#000000" }}>
               Manage and view your working schedules.
             </p>
-
             <div style={{ marginTop: "10px" }}>
               <AdminScheduleTool />
             </div>
@@ -634,12 +633,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Tool Box":
         return (
-          <Section title="Tool Box">
+          <Section title="Tool Box" isActive={selectedMenu === "Tool Box"}>
             <p style={{ color: "#000000", marginBottom: "20px" }}>
               Access various tools for your tasks
             </p>
             {activeTool ? (
-              // Render the active tool component
               <div>
                 <button
                   onClick={() => setActiveTool(null)}
@@ -658,32 +656,28 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 {renderToolComponent()}
               </div>
             ) : (
-              // Render the tools grid
-              <>
-                <div className="soft-dev-content">
+              <div className="soft-dev-content">
                 {Alltools.map((tech, index) => (
-                    <AllToolsCard
-                      key={index}
-                      title={tech.title}
-                      description={tech.description}
-                      icon={tech.icon}
-                      onClick={
-                        tech.component
-                          ? () => handleLaunchTool(tech.component)
-                          : undefined
-                      }
-                      className="process-card"
-                    />
-                  ))}
-                  
-                </div>
-              </>
+                  <AllToolsCard
+                    key={index}
+                    title={tech.title}
+                    description={tech.description}
+                    icon={tech.icon}
+                    onClick={
+                      tech.component
+                        ? () => handleLaunchTool(tech.component)
+                        : undefined
+                    }
+                    className="process-card"
+                  />
+                ))}
+              </div>
             )}
           </Section>
         );
       case "Calculate":
         return (
-          <Section title="Calculate">
+          <Section title="Calculate" isActive={selectedMenu === "Calculate"}>
             <div
               style={{
                 display: "flex",
@@ -705,7 +699,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               </p>
             </div>
             {activeCalculator ? (
-              // Render the active tool component
               <div>
                 <button
                   onClick={() => setActiveCalculator(null)}
@@ -724,150 +717,143 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 {renderCalculatorComponent()}
               </div>
             ) : (
-              // Render the tools grid
-              <>
-                <div className="soft-dev-content">
-                  {calculators.map((tech, index) => (
-                    <ToolsCard
-                      key={index}
-                      title={tech.title}
-                      description={tech.description}
-                      icon={tech.icon}
-                      link={tech.link}
-                      onLaunch={
-                        tech.component
-                          ? () => handleLaunchCalculator(tech.component)
-                          : undefined
-                      }
-                      className="process-card"
-                    />
-                  ))}
-                </div>
-              </>
+              <div className="soft-dev-content">
+                {calculators.map((tech, index) => (
+                  <ToolsCard
+                    key={index}
+                    title={tech.title}
+                    description={tech.description}
+                    icon={tech.icon}
+                    link={tech.link}
+                    onLaunch={
+                      tech.component
+                        ? () => handleLaunchCalculator(tech.component)
+                        : undefined
+                    }
+                    className="process-card"
+                  />
+                ))}
+              </div>
             )}
           </Section>
         );
       case "Say It":
         return (
-          <Section title="Contact us">
-            {/* <p style={{ color: "#000000" }}>
-                Share your thoughts and feedback here.
-              </p> */}
+          <Section title="Contact us" isActive={selectedMenu === "Say It"}>
             <SayIt />
           </Section>
         );
       case "Classroom":
         return (
-          <Section title="Your Class Room">
+          <Section title="Your Class Room" isActive={selectedMenu === "Classroom"}>
             <ClassRoom />
           </Section>
         );
       case "Staffs":
         return (
-          <Section title="Your Staffs">
+          <Section title="Your Staffs" isActive={selectedMenu === "Staffs"}>
             <Staffs />
           </Section>
         );
       case "Library":
         return (
-          <Section title="Your Library">
+          <Section title="Your Library" isActive={selectedMenu === "Library"}>
             <Library />
           </Section>
         );
       case "Services":
         return (
-          <Section title="Your Services">
-            {/* <Finance /> */}
+          <Section title="Your Services" isActive={selectedMenu === "Services"}>
             <ServicesItems />
           </Section>
         );
       case "Careers":
         return (
-          <Section title="Your Careers">
+          <Section title="Your Careers" isActive={selectedMenu === "Careers"}>
             <CareersDashboard />
           </Section>
         );
       case "Finance":
         return (
-          <Section title="Your Finance">
+          <Section title="Your Finance" isActive={selectedMenu === "Finance"}>
             <Finance />
           </Section>
         );
       case "Volunteers":
         return (
-          <Section title="Your Volunteers">
+          <Section title="Your Volunteers" isActive={selectedMenu === "Volunteers"}>
             <VolunteersSection />
           </Section>
         );
       case "Donations":
         return (
-          <Section title="Your Donations">
+          <Section title="Your Donations" isActive={selectedMenu === "Donations"}>
             <DonationsSection />
           </Section>
         );
       case "Outreach":
         return (
-          <Section title="Your Outreach">
+          <Section title="Your Outreach" isActive={selectedMenu === "Outreach"}>
             <OutreachSection />
           </Section>
         );
       case "Impact":
         return (
-          <Section title="Your Impact">
+          <Section title="Your Impact" isActive={selectedMenu === "Impact"}>
             <ImpactSection />
           </Section>
         );
       case "Partners":
         return (
-          <Section title="Your Partners">
+          <Section title="Your Partners" isActive={selectedMenu === "Partners"}>
             <PartnersSection />
           </Section>
         );
       case "Groups":
         return (
-          <Section title="Your Groups">
+          <Section title="Your Groups" isActive={selectedMenu === "Groups"}>
             <GroupsSection />
           </Section>
         );
       case "Departments":
         return (
-          <Section title="Your Departments">
+          <Section title="Your Departments" isActive={selectedMenu === "Departments"}>
             <DepartmentsSection />
           </Section>
         );
       case "Clients":
         return (
-          <Section title="Your Clients">
+          <Section title="Your Clients" isActive={selectedMenu === "Clients"}>
             <ClientsSection />
           </Section>
         );
       case "Projects":
         return (
-          <Section title="Your Projects">
+          <Section title="Your Projects" isActive={selectedMenu === "Projects"}>
             <ProjectsSection />
           </Section>
         );
       case "Reports":
         return (
-          <Section title="Your Reports">
+          <Section title="Your Reports" isActive={selectedMenu === "Reports"}>
             <ReportsSection />
           </Section>
         );
       default:
         return (
-          <Section title="Dashboard">
+          <Section title="Dashboard" isActive={selectedMenu === "Dashboard"}>
             <p style={{ color: "#000000" }}>Welcome to your dashboard.</p>
           </Section>
         );
     }
+
   };
 
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${
-          isSidebarOpen ? styles.sidebarOpen : ""
-        }`}
+        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
+          }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -875,8 +861,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             {currentTime.getHours() < 12
               ? "Morning"
               : currentTime.getHours() < 18
-              ? "Afternoon"
-              : "Evening"}
+                ? "Afternoon"
+                : "Evening"}
             , {userDetails.firstName}
             {/* Hello, {userDetails.firstName} {userDetails.lastName} */}
           </h3>
@@ -885,7 +871,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <span>{userDetails.userType} Account</span>
             <span>
               <span style={{ fontWeight: "700" }}>ID: </span>
-              {userDetails.uniqueId}
+              {userDetails.staffId}
             </span>
           </div>
         </div>
@@ -894,9 +880,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${
-                selectedMenu === item.label ? styles.navItemActive : ""
-              }`}
+              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
+                }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}
