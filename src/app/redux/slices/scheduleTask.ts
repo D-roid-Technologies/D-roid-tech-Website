@@ -148,7 +148,6 @@ export const scheduleTask = createSlice({
         addTask: (state, action: PayloadAction<TaskMain>) => {
             state.tasks.push(action.payload);
             saveTasksToStorage(state.tasks);
-            console.log(state.tasks);
         },
         updateTask: (state, action: PayloadAction<TaskMain>) => {
             const index = state.tasks.findIndex(

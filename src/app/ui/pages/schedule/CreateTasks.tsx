@@ -61,7 +61,6 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
     dateDeleted: "",
   });
 
-
   const [errors, setErrors] = useState<Partial<TaskMain>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 

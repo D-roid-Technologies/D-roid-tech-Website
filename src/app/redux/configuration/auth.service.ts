@@ -1,10 +1,10 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile, User } from "firebase/auth";
-import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs, arrayRemove } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, Task, UserType } from "../../utils/Types";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
-import { addTask } from "../slices/scheduleTask";
+import { addTask, deleteThisTask } from "../slices/scheduleTask";
 import { setSignInAndOutData, setStaffDetails, setStaffDocuments, setStaffLeave, StaffDetails } from "../slices/SignInAndOutSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
@@ -929,6 +929,63 @@ export class AuthService {
         }
     }
 
+    async handleDeleteTask(task: Task) {
+        try {
+            const currentUser = auth.currentUser;
+
+            if (!currentUser) {
+                toast.error("No authenticated user found.", {
+                    style: { background: "#ff4d4f", color: "#fff" },
+                });
+                return null;
+            }
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, "droidaccount", userId);
+            const userSnapshot = await getDoc(userDocRef);
+
+            if (!userSnapshot.exists()) {
+                toast.error("User document not found.", {
+                    style: { background: "#ff4d4f", color: "#fff" },
+                });
+                return null;
+            }
+
+            const data = userSnapshot.data();
+            const existingTasks: Task[] = data?.schedules?.mySchedles || [];
+
+            // Find the task to delete
+            const taskExists = existingTasks.some(
+                (t: Task) => t.id === task.id
+            );
+
+            if (!taskExists) {
+                toast.error("Task not found.", {
+                    style: { background: "#faad14", color: "#fff" },
+                });
+                return null;
+            }
+
+            // Remove the task from Firestore using arrayRemove
+            await updateDoc(userDocRef, {
+                "schedules.mySchedles": arrayRemove(task),
+            });
+
+            // Update Redux store
+            store.dispatch(deleteThisTask(task.id));
+
+            toast.success("Task deleted successfully 🗑️", {
+                style: { background: "#4BB543", color: "#fff" },
+            });
+
+            return task.id;
+        } catch (error: any) {
+            toast.error(`Error deleting task: ${error.message}`, {
+                style: { background: "#ff4d4f", color: "#fff" },
+            });
+            return null;
+        }
+    }
 }
 
 export const authService = new AuthService()

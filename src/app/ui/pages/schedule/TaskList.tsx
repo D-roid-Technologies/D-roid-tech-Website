@@ -163,22 +163,22 @@ const iconDeleteButtonHoverStyle: React.CSSProperties = {
 
 const TasksList: React.FC = () => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  console.log(tasks)
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string | "">("");
   const [priorityFilter, setPriorityFilter] = useState<string | "">("");
-  const [hoveredTask, setHoveredTask] = useState<number | null>(null);
-  const [hoveredEdit, setHoveredEdit] = useState<number | null>(null);
-  const [hoveredDelete, setHoveredDelete] = useState<number | null>(null);
+  const [hoveredTask, setHoveredTask] = useState<string | null>(null);
+  const [hoveredEdit, setHoveredEdit] = useState<string | null>(null);
+  const [hoveredDelete, setHoveredDelete] = useState<string | null>(null);
+
   const [filteredTasks, setFilteredTasks] = useState<TaskMain[]>([]);
 
+  // 🔹 Keep filteredTasks updated whenever tasks or filters change
   useEffect(() => {
-    const result: any = tasks
-      .map((t) => ({
-        ...t,
-        id: String(t.id)
-      }))
+    const result: any = tasks.map((t) => ({
+      ...t,
+      id: String(t.id),
+    }))
       .filter((task) => {
         const matchesSearch =
           task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -193,11 +193,13 @@ const TasksList: React.FC = () => {
     setFilteredTasks(result);
   }, [tasks, searchTerm, statusFilter, priorityFilter]);
 
-  const handleItemDelete = (task: string) => {
-    store.dispatch(deleteThisTask(task));
-    // toas¿t
-  }
-
+  const handleItemDelete = (taskId: string) => {
+    store.dispatch(deleteThisTask(taskId));
+    window.location.reload();
+    toast.success("Task deleted", {
+      style: { background: "green", color: "#fff" },
+    });
+  };
 
   return (
     <div
@@ -209,7 +211,14 @@ const TasksList: React.FC = () => {
         borderRadius: 12,
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 24,
+        }}
+      >
         <h2 style={{ fontSize: 28, fontWeight: "800", color: "#111827" }}>
           All Tasks
         </h2>
@@ -221,7 +230,7 @@ const TasksList: React.FC = () => {
             });
           }}
           style={{
-            backgroundColor: "transparent", // red-600
+            backgroundColor: "transparent",
             color: "#DC2626",
             fontWeight: "600",
             padding: "8px 16px",
@@ -233,7 +242,6 @@ const TasksList: React.FC = () => {
           Delete All Tasks
         </button>
       </div>
-
 
       {/* Filters */}
       <div
@@ -251,16 +259,12 @@ const TasksList: React.FC = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={inputStyle}
-          onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 3px #60A5FA")}
-          onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
         />
 
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
           style={selectStyle}
-          onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 3px #60A5FA")}
-          onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
         >
           <option value="">All Statuses</option>
           {statusOptions.map((status) => (
@@ -274,8 +278,6 @@ const TasksList: React.FC = () => {
           value={priorityFilter}
           onChange={(e) => setPriorityFilter(e.target.value)}
           style={selectStyle}
-          onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 3px #60A5FA")}
-          onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
         >
           <option value="">All Priorities</option>
           {priorityOptions.map((priority) => (
@@ -292,8 +294,6 @@ const TasksList: React.FC = () => {
             setPriorityFilter("");
           }}
           style={buttonStyle}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor!)}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor!)}
         >
           Reset Filters
         </button>
@@ -308,7 +308,7 @@ const TasksList: React.FC = () => {
         }}
       >
         {filteredTasks.length ? (
-          filteredTasks.map((task: any) => (
+          filteredTasks.map((task) => (
             <div
               key={task.id}
               style={{
@@ -385,26 +385,14 @@ const TasksList: React.FC = () => {
                 {task.description || "No description provided."}
               </p>
 
-              <div
-                style={{
-                  color: "#111827",
-                  fontSize: 14,
-                  lineHeight: 1.4,
-                }}
-              >
-                <div>
-                  <p>
-                    <strong>Created By:</strong>{" "}
-                    {task.createdBy?.name || "Unassigned"}
-                  </p>
-                  <p>
-                    <strong>Start Date:</strong> {task.dateCreated}
-                  </p>
-                </div>
-
-                {/* <p>
-                  <strong>End Date:</strong> {formatDate(task.endDate)}
-                </p> */}
+              <div style={{ color: "#111827", fontSize: 14, lineHeight: 1.4 }}>
+                <p>
+                  <strong>Created By:</strong>{" "}
+                  {task.createdBy?.name || "Unassigned"}
+                </p>
+                <p>
+                  <strong>Start Date:</strong> {task.dateCreated}
+                </p>
               </div>
             </div>
           ))
