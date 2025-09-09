@@ -29,11 +29,16 @@ const Home: React.FunctionComponent = () => {
           <div className="cta-content">
             <h2>Company Management Portal</h2>
             <p>
-              An all-in-one digital platform designed to help organizations efficiently manage their internal operations, staff, and resources. It provides a centralized dashboard for administrators and managers to oversee key business functions such as employee management, project tracking, performance monitoring, compliance, and document control.
+              An all-in-one digital platform designed to help organizations
+              efficiently manage their internal operations, staff, and
+              resources. It provides a centralized dashboard for administrators
+              and managers to oversee key business functions such as employee
+              management, project tracking, performance monitoring, compliance,
+              and document control.
             </p>
-            <button className="cta-primary" onClick={() => navigate("/auth/join-our-community")}>
+            {/* <button className="cta-primary" onClick={() => navigate("/auth/join-our-community")}>
               Get Started
-            </button>
+            </button> */}
           </div>
         </div>
       </section>
@@ -44,8 +49,17 @@ const Home: React.FunctionComponent = () => {
         <div className="container">
           <div className="cta-content">
             <h2>Digital Workbench</h2>
-            <p>A centralized, intelligent platform designed to streamline and support complex digital workflows across teams and departments. It serves as a collaborative environment where users can access tools, data, and resources needed to design, test, and manage digital solutions efficiently.</p>
-            <button className="cta-primary" onClick={() => navigate("/toolbox")}>
+            <p>
+              A centralized, intelligent platform designed to streamline and
+              support complex digital workflows across teams and departments. It
+              serves as a collaborative environment where users can access
+              tools, data, and resources needed to design, test, and manage
+              digital solutions efficiently.
+            </p>
+            <button
+              className="cta-primary"
+              onClick={() => navigate("/toolbox")}
+            >
               Launch ToolBox
             </button>
           </div>
@@ -68,7 +82,7 @@ const Home: React.FunctionComponent = () => {
           </div>
         </div>
       </section>
-      <PromoSection/>
+      <PromoSection />
     </div>
   );
 };

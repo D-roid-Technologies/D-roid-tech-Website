@@ -84,6 +84,8 @@ import SchoolDashboard from "./organization/SchoolDashboard";
 import BusinessDashboard from "./organization/BusinessDashboard";
 import NGODashboard from "./organization/NGODashboard";
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
+import MemberDashboard from "./member/MemberDashboard";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 
 // const tools = [
 //   {
@@ -523,8 +525,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           return (
             <>
               <Section title="Member Dashboard">
-                <p> Member Home Page goes here </p>
-                {/* <MemberHomePage /> */}
+                <MemberDashboard />
               </Section>
             </>
           );
@@ -668,6 +669,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                     title={tech.title}
                     description={tech.description}
                     icon={tech.icon}
+                    isPremium={tech.isPremium}
                     onClick={
                       tech.component
                         ? () => handleLaunchTool(tech.component)
@@ -724,18 +726,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             ) : (
               <div className="soft-dev-content">
                 {calculators.map((tech, index) => (
-                  <ToolsCard
+                  <NewwebsiteCard
                     key={index}
                     title={tech.title}
                     description={tech.description}
                     icon={tech.icon}
-                    link={tech.link}
-                    onLaunch={
+                    className="process-card"
+                    url={tech.link} // ✅ if it’s a link/route
+                    onClick={
                       tech.component
-                        ? () => handleLaunchCalculator(tech.component)
+                        ? () => handleLaunchCalculator(tech.component) // ✅ if it’s a tool component
                         : undefined
                     }
-                    className="process-card"
                   />
                 ))}
               </div>

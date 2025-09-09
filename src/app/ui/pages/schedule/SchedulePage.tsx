@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../../components/navbar/NavBar";
 import "../../components/liteGrid@v1.0/lite-grid.css";
-import { RoutePaths } from "../../../routes/Index";
-import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
-import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+import { useNavigate } from "react-router-dom";
 
 const SchedulePage: React.FunctionComponent = () => {
+  const navigate = useNavigate()
   const schedules = [
     {
       title: "Calendar",
@@ -49,13 +49,14 @@ const SchedulePage: React.FunctionComponent = () => {
         </span>
         <div className="soft-dev-content">
           {schedules.map((tech, index) => (
-            <NoReadMoreCard
+            <NewwebsiteCard
               key={index}
               title={tech.title}
               description={tech.description}
               icon={tech.icon}
-              link={tech.link}
               className="process-card"
+              url={tech.link}
+              onClick={tech.link ? () => navigate(tech.link) : undefined}
             />
           ))}
         </div>
