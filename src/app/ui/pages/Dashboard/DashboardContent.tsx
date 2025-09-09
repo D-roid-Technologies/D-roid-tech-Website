@@ -84,7 +84,8 @@ import SchoolDashboard from "./organization/SchoolDashboard";
 import BusinessDashboard from "./organization/BusinessDashboard";
 import NGODashboard from "./organization/NGODashboard";
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
-
+import MemberDashboard from "./member/MemberDashboard";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 
 // const tools = [
 //   {
@@ -397,13 +398,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-        { label: "Tasks", icon: FaTasks },
-        { label: "Payslips", icon: FaFileInvoiceDollar },
-        { label: "Onboarding", icon: FaUserPlus },
-        { label: "Training", icon: FaChalkboardTeacher },
-        { label: "Progressions", icon: FaChartLine },
-        { label: "Resource", icon: FaBookOpen },
-      ]
+          { label: "Tasks", icon: FaTasks },
+          { label: "Payslips", icon: FaFileInvoiceDollar },
+          { label: "Onboarding", icon: FaUserPlus },
+          { label: "Training", icon: FaChalkboardTeacher },
+          { label: "Progressions", icon: FaChartLine },
+          { label: "Resource", icon: FaBookOpen },
+        ]
       : []),
   ];
 
@@ -483,7 +484,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="School Dashboard">
-
                     <SchoolDashboard />
                   </Section>
                 </>
@@ -492,7 +492,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="Business Dashboard">
-
                     <BusinessDashboard />
                   </Section>
                 </>
@@ -501,7 +500,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               return (
                 <>
                   <Section title="NGO Dashboard">
-
                     <NGODashboard />
                   </Section>
                 </>
@@ -527,8 +525,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           return (
             <>
               <Section title="Member Dashboard">
-                <p> Member Home Page goes here </p>
-                {/* <MemberHomePage /> */}
+                <MemberDashboard />
               </Section>
             </>
           );
@@ -552,13 +549,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Personal Details":
         return (
-          <Section title="Personal Details" isActive={selectedMenu === "Personal Details"}>
+          <Section
+            title="Personal Details"
+            isActive={selectedMenu === "Personal Details"}
+          >
             <PersonalDetails />
           </Section>
         );
       case "Announcements":
         return (
-          <Section title="Announcements" isActive={selectedMenu === "Announcements"}>
+          <Section
+            title="Announcements"
+            isActive={selectedMenu === "Announcements"}
+          >
             <Announcements />
           </Section>
         );
@@ -604,7 +607,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Progressions":
         return (
-          <Section title="Progressions" isActive={selectedMenu === "Progressions"}>
+          <Section
+            title="Progressions"
+            isActive={selectedMenu === "Progressions"}
+          >
             <p style={{ color: "#000000" }}>
               Track your professional progress here.
             </p>
@@ -663,6 +669,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                     title={tech.title}
                     description={tech.description}
                     icon={tech.icon}
+                    isPremium={tech.isPremium}
                     onClick={
                       tech.component
                         ? () => handleLaunchTool(tech.component)
@@ -717,23 +724,24 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 {renderCalculatorComponent()}
               </div>
             ) : (
-              <div className="soft-dev-content">
-                {calculators.map((tech, index) => (
-                  <ToolsCard
-                    key={index}
-                    title={tech.title}
-                    description={tech.description}
-                    icon={tech.icon}
-                    link={tech.link}
-                    onLaunch={
-                      tech.component
-                        ? () => handleLaunchCalculator(tech.component)
-                        : undefined
-                    }
-                    className="process-card"
-                  />
-                ))}
-              </div>
+             <div className="soft-dev-content">
+  {calculators.map((tech, index) => (
+    <NewwebsiteCard
+      key={index}
+      title={tech.title}
+      description={tech.description}
+      icon={tech.icon}
+      className="process-card"
+      url={tech.link} // ✅ if it’s a link/route
+      onClick={
+        tech.component
+          ? () => handleLaunchCalculator(tech.component) // ✅ if it’s a tool component
+          : undefined
+      }
+    />
+  ))}
+</div>
+
             )}
           </Section>
         );
@@ -745,7 +753,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Classroom":
         return (
-          <Section title="Your Class Room" isActive={selectedMenu === "Classroom"}>
+          <Section
+            title="Your Class Room"
+            isActive={selectedMenu === "Classroom"}
+          >
             <ClassRoom />
           </Section>
         );
@@ -781,13 +792,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Volunteers":
         return (
-          <Section title="Your Volunteers" isActive={selectedMenu === "Volunteers"}>
+          <Section
+            title="Your Volunteers"
+            isActive={selectedMenu === "Volunteers"}
+          >
             <VolunteersSection />
           </Section>
         );
       case "Donations":
         return (
-          <Section title="Your Donations" isActive={selectedMenu === "Donations"}>
+          <Section
+            title="Your Donations"
+            isActive={selectedMenu === "Donations"}
+          >
             <DonationsSection />
           </Section>
         );
@@ -817,7 +834,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         );
       case "Departments":
         return (
-          <Section title="Your Departments" isActive={selectedMenu === "Departments"}>
+          <Section
+            title="Your Departments"
+            isActive={selectedMenu === "Departments"}
+          >
             <DepartmentsSection />
           </Section>
         );
@@ -846,14 +866,14 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           </Section>
         );
     }
-
   };
 
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
-          }`}
+        className={`${styles.sidebar} ${
+          isSidebarOpen ? styles.sidebarOpen : ""
+        }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -861,8 +881,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             {currentTime.getHours() < 12
               ? "Morning"
               : currentTime.getHours() < 18
-                ? "Afternoon"
-                : "Evening"}
+              ? "Afternoon"
+              : "Evening"}
             , {userDetails.firstName}
             {/* Hello, {userDetails.firstName} {userDetails.lastName} */}
           </h3>
@@ -880,8 +900,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
-                }`}
+              className={`${styles.navItem} ${
+                selectedMenu === item.label ? styles.navItemActive : ""
+              }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}
