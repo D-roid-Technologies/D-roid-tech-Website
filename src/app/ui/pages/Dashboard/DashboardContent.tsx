@@ -278,7 +278,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "PDFEditor":
         return <PdfEdit onClose={handleCloseTool} />;
       case "ResumeAnalyzer":
-        return <ResumeAnalyzing onClose={handleCloseTool} />;
+        return <ResumeAnalyzing />;
       case "CodeComplexityAnalyzer":
         return <UnderDevelopmentPage />;
       case "BulkImageWatermarker":
@@ -724,24 +724,23 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 {renderCalculatorComponent()}
               </div>
             ) : (
-             <div className="soft-dev-content">
-  {calculators.map((tech, index) => (
-    <NewwebsiteCard
-      key={index}
-      title={tech.title}
-      description={tech.description}
-      icon={tech.icon}
-      className="process-card"
-      url={tech.link} // ✅ if it’s a link/route
-      onClick={
-        tech.component
-          ? () => handleLaunchCalculator(tech.component) // ✅ if it’s a tool component
-          : undefined
-      }
-    />
-  ))}
-</div>
-
+              <div className="soft-dev-content">
+                {calculators.map((tech, index) => (
+                  <NewwebsiteCard
+                    key={index}
+                    title={tech.title}
+                    description={tech.description}
+                    icon={tech.icon}
+                    className="process-card"
+                    url={tech.link} // ✅ if it’s a link/route
+                    onClick={
+                      tech.component
+                        ? () => handleLaunchCalculator(tech.component) // ✅ if it’s a tool component
+                        : undefined
+                    }
+                  />
+                ))}
+              </div>
             )}
           </Section>
         );
