@@ -113,7 +113,21 @@ const CropToolItem: React.FC = () => {
     return constrained;
   }, [image]);
 
-  // Get mouse position relative to image
+  // Get position from mouse or touch event
+  const getClientPosition = useCallback((e: MouseEvent | TouchEvent) => {
+    if ('touches' in e) {
+      return {
+        clientX: e.touches[0]?.clientX || 0,
+        clientY: e.touches[0]?.clientY || 0
+      };
+    }
+    return {
+      clientX: e.clientX,
+      clientY: e.clientY
+    };
+  }, []);
+
+  // Get mouse/touch position relative to image
   const getImageRelativePosition = useCallback((clientX: number, clientY: number) => {
     if (!image || !containerRef.current) return { x: 0, y: 0 };
     
@@ -131,29 +145,34 @@ const CropToolItem: React.FC = () => {
     return { x: relativeX, y: relativeY };
   }, [image]);
 
-  // Handle resize start
-  const handleResizeStart = (e: React.MouseEvent, handle: ResizeHandle | 'move') => {
+  // Handle resize start (both mouse and touch)
+  const handleResizeStart = useCallback((e: React.MouseEvent | React.TouchEvent, handle: ResizeHandle | 'move') => {
     if (!image) return;
     
     e.preventDefault();
+    e.stopPropagation();
+    
     setIsDragging(true);
     setActiveHandle(handle);
     
-    const { x: mouseX, y: mouseY } = getImageRelativePosition(e.clientX, e.clientY);
+    const { clientX, clientY } = getClientPosition(e.nativeEvent);
+    const { x: mouseX, y: mouseY } = getImageRelativePosition(clientX, clientY);
     
     setDragStart({
       x: mouseX,
       y: mouseY,
       cropStart: { ...cropArea }
     });
-  };
+  }, [image, cropArea, getClientPosition, getImageRelativePosition]);
 
-  // Handle mouse move for resizing
-  const handleMouseMove = useCallback((e: MouseEvent) => {
+  // Handle mouse/touch move for resizing
+  const handleMove = useCallback((e: MouseEvent | TouchEvent) => {
     if (!isDragging || !image || !activeHandle) return;
 
     e.preventDefault();
-    const { x: mouseX, y: mouseY } = getImageRelativePosition(e.clientX, e.clientY);
+    
+    const { clientX, clientY } = getClientPosition(e);
+    const { x: mouseX, y: mouseY } = getImageRelativePosition(clientX, clientY);
     const deltaX = mouseX - dragStart.x;
     const deltaY = mouseY - dragStart.y;
     const { cropStart } = dragStart;
@@ -213,23 +232,29 @@ const CropToolItem: React.FC = () => {
     // Apply constraints and update
     const constrainedArea = constrainToImage(applyAspectRatio(newCropArea, activeHandle));
     setCropArea(constrainedArea);
-  }, [isDragging, image, activeHandle, dragStart, constrainToImage, applyAspectRatio, getImageRelativePosition]);
+  }, [isDragging, image, activeHandle, dragStart, constrainToImage, applyAspectRatio, getImageRelativePosition, getClientPosition]);
 
-  const handleMouseUp = useCallback(() => {
+  const handleEnd = useCallback(() => {
     setIsDragging(false);
     setActiveHandle(null);
   }, []);
 
   useEffect(() => {
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      // Add both mouse and touch event listeners
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('mouseup', handleEnd);
+      document.addEventListener('touchmove', handleMove, { passive: false });
+      document.addEventListener('touchend', handleEnd);
+      
       return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('mousemove', handleMove);
+        document.removeEventListener('mouseup', handleEnd);
+        document.removeEventListener('touchmove', handleMove);
+        document.removeEventListener('touchend', handleEnd);
       };
     }
-  }, [isDragging, handleMouseMove, handleMouseUp]);
+  }, [isDragging, handleMove, handleEnd]);
 
   // Update preview
   useEffect(() => {
@@ -617,7 +642,8 @@ const CropToolItem: React.FC = () => {
     position: 'relative',
     cursor: isDragging ? (activeHandle === 'move' ? 'grabbing' : 'grabbing') : 'crosshair',
     minHeight: window.innerWidth <= 768 ? '250px' : 'auto',
-    userSelect: 'none'
+    userSelect: 'none',
+    touchAction: 'none' // Important for touch devices
   };
 
   // Calculate crop overlay position and size in display coordinates
@@ -636,10 +662,11 @@ const CropToolItem: React.FC = () => {
     background: 'rgba(7, 29, 106, 0.1)',
     borderRadius: '8px',
     boxShadow: '0 0 0 2px rgba(255, 255, 255, 0.8), 0 8px 25px rgba(7, 29, 106, 0.3)',
-    cursor: isDragging && activeHandle === 'move' ? 'grabbing' : 'grab'
+    cursor: isDragging && activeHandle === 'move' ? 'grabbing' : 'grab',
+    touchAction: 'none'
   };
 
-  const handleSize = window.innerWidth <= 768 ? 18 : 14;
+  const handleSize = window.innerWidth <= 768 ? 20 : 16;
   const handleOffset = handleSize / 2;
 
   const baseHandleStyle: React.CSSProperties = {
@@ -651,7 +678,8 @@ const CropToolItem: React.FC = () => {
     border: '3px solid white',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.2s ease',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    touchAction: 'none'
   };
 
   const edgeHandleStyle: React.CSSProperties = {
@@ -660,7 +688,8 @@ const CropToolItem: React.FC = () => {
     border: '2px solid white',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.2s ease',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    touchAction: 'none'
   };
 
   const moveIconContainerStyle: React.CSSProperties = {
@@ -670,7 +699,7 @@ const CropToolItem: React.FC = () => {
     transform: 'translate(-50%, -50%)',
     background: 'rgba(7, 29, 106, 0.9)',
     color: 'white',
-    padding: window.innerWidth <= 768 ? '6px' : '8px',
+    padding: window.innerWidth <= 768 ? '8px' : '8px',
     borderRadius: '8px',
     opacity: activeHandle === 'move' ? 1 : 0.8,
     pointerEvents: 'none',
@@ -707,6 +736,24 @@ const CropToolItem: React.FC = () => {
   const [isUploadHovered, setIsUploadHovered] = useState(false);
   const [isDownloadHovered, setIsDownloadHovered] = useState(false);
   const [hoveredHandle, setHoveredHandle] = useState<ResizeHandle | null>(null);
+
+  // Handle crop area move with both mouse and touch
+  const handleCropAreaInteraction = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    if (!image) return;
+    
+    const { clientX, clientY } = getClientPosition(e.nativeEvent);
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    
+    const x = (clientX - rect.left) / scaleX;
+    const y = (clientY - rect.top) / scaleY;
+    
+    // Check if interaction is inside crop area for moving
+    if (x >= cropArea.x && x <= cropArea.x + cropArea.width &&
+        y >= cropArea.y && y <= cropArea.y + cropArea.height) {
+      handleResizeStart(e, 'move');
+    }
+  }, [image, scaleX, cropArea, handleResizeStart, getClientPosition]);
 
   return (
     <div style={containerStyle}>
@@ -866,17 +913,8 @@ const CropToolItem: React.FC = () => {
               <div 
                 ref={containerRef}
                 style={imageDisplayStyle}
-                onMouseDown={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const x = (e.clientX - rect.left) / scaleX;
-                  const y = (e.clientY - rect.top) / scaleY;
-                  
-                  // Check if click is inside crop area for moving
-                  if (x >= cropArea.x && x <= cropArea.x + cropArea.width &&
-                      y >= cropArea.y && y <= cropArea.y + cropArea.height) {
-                    handleResizeStart(e, 'move');
-                  }
-                }}
+                onMouseDown={handleCropAreaInteraction}
+                onTouchStart={handleCropAreaInteraction}
               >
                 {/* Crop overlay */}
                 <div style={cropOverlayStyle}>
@@ -890,10 +928,8 @@ const CropToolItem: React.FC = () => {
                       transform: hoveredHandle === 'nw' ? 'scale(1.3)' : 'scale(1)',
                       zIndex: 10
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'nw');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'nw')}
+                    onTouchStart={(e) => handleResizeStart(e, 'nw')}
                     onMouseEnter={() => setHoveredHandle('nw')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -906,10 +942,8 @@ const CropToolItem: React.FC = () => {
                       transform: hoveredHandle === 'ne' ? 'scale(1.3)' : 'scale(1)',
                       zIndex: 10
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'ne');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'ne')}
+                    onTouchStart={(e) => handleResizeStart(e, 'ne')}
                     onMouseEnter={() => setHoveredHandle('ne')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -922,10 +956,8 @@ const CropToolItem: React.FC = () => {
                       transform: hoveredHandle === 'se' ? 'scale(1.3)' : 'scale(1)',
                       zIndex: 10
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'se');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'se')}
+                    onTouchStart={(e) => handleResizeStart(e, 'se')}
                     onMouseEnter={() => setHoveredHandle('se')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -938,10 +970,8 @@ const CropToolItem: React.FC = () => {
                       transform: hoveredHandle === 'sw' ? 'scale(1.3)' : 'scale(1)',
                       zIndex: 10
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'sw');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'sw')}
+                    onTouchStart={(e) => handleResizeStart(e, 'sw')}
                     onMouseEnter={() => setHoveredHandle('sw')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -954,16 +984,14 @@ const CropToolItem: React.FC = () => {
                       top: `-4px`,
                       left: '20%',
                       width: '60%',
-                      height: '8px',
+                      height: isMobile ? '12px' : '8px',
                       borderRadius: '4px',
                       cursor: 'n-resize',
                       transform: hoveredHandle === 'n' ? 'scaleY(1.5)' : 'scaleY(1)',
                       zIndex: 9
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'n');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'n')}
+                    onTouchStart={(e) => handleResizeStart(e, 'n')}
                     onMouseEnter={() => setHoveredHandle('n')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -974,17 +1002,15 @@ const CropToolItem: React.FC = () => {
                       ...edgeHandleStyle,
                       right: `-4px`,
                       top: '20%',
-                      width: '8px',
+                      width: isMobile ? '12px' : '8px',
                       height: '60%',
                       borderRadius: '4px',
                       cursor: 'e-resize',
                       transform: hoveredHandle === 'e' ? 'scaleX(1.5)' : 'scaleX(1)',
                       zIndex: 9
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'e');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'e')}
+                    onTouchStart={(e) => handleResizeStart(e, 'e')}
                     onMouseEnter={() => setHoveredHandle('e')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -996,16 +1022,14 @@ const CropToolItem: React.FC = () => {
                       bottom: `-4px`,
                       left: '20%',
                       width: '60%',
-                      height: '8px',
+                      height: isMobile ? '12px' : '8px',
                       borderRadius: '4px',
                       cursor: 's-resize',
                       transform: hoveredHandle === 's' ? 'scaleY(1.5)' : 'scaleY(1)',
                       zIndex: 9
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 's');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 's')}
+                    onTouchStart={(e) => handleResizeStart(e, 's')}
                     onMouseEnter={() => setHoveredHandle('s')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
@@ -1016,24 +1040,22 @@ const CropToolItem: React.FC = () => {
                       ...edgeHandleStyle,
                       left: `-4px`,
                       top: '20%',
-                      width: '8px',
+                      width: isMobile ? '12px' : '8px',
                       height: '60%',
                       borderRadius: '4px',
                       cursor: 'w-resize',
                       transform: hoveredHandle === 'w' ? 'scaleX(1.5)' : 'scaleX(1)',
                       zIndex: 9
                     }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                      handleResizeStart(e, 'w');
-                    }}
+                    onMouseDown={(e) => handleResizeStart(e, 'w')}
+                    onTouchStart={(e) => handleResizeStart(e, 'w')}
                     onMouseEnter={() => setHoveredHandle('w')}
                     onMouseLeave={() => setHoveredHandle(null)}
                   />
                   
                   {/* Move icon */}
                   <div style={moveIconContainerStyle}>
-                    <Move size={isMobile ? 14 : 16} />
+                    <Move size={isMobile ? 16 : 16} />
                   </div>
                 </div>
               </div>

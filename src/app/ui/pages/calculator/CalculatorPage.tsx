@@ -2,27 +2,27 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import { FaCalculator } from "react-icons/fa6";
 import { GiCalculator } from "react-icons/gi";
-import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
-import { RoutePaths } from "../../../routes/Index";
-
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+import { useNavigate } from "react-router-dom";
 const CalculatorPage = () => {
+  const navigate = useNavigate();
   const calculators = [
     {
       title: "Scientific Calculator",
       description:
         "Efficiently resize and optimize images for any device or platform. Maintain quality while reducing file size for faster loading.",
-      icon: FaCalculator({ size: 24 }),
-      // link: RoutePaths.ScientificCalculate,
-      link: "/calculators/sciencecalculate",
+      icon: <FaCalculator size={24} />, // ✅ JSX not function call
+      link: "/calculators/sciencecalculate", // ✅ or RoutePaths.ScientificCalculate
     },
     {
       title: "BMI Calculator",
       description:
         "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration. Perfect for print-ready files and digital displays.",
-      icon: GiCalculator({ size: 24 }),
+      icon: <GiCalculator size={24} />,
       link: "/calculators/bmicalcute",
     },
   ];
+
   return (
     <div>
       <NavBar />
@@ -36,6 +36,7 @@ const CalculatorPage = () => {
           </p>
         </div>
       </div>
+
       {/* Items */}
       <div className="wrapper soft-wrapper">
         <span
@@ -46,14 +47,19 @@ const CalculatorPage = () => {
         </span>
         <div className="soft-dev-content">
           {calculators.map((tech, index) => (
-            <CoreValueCardTwo
-              key={index}
-              title={tech.title}
-              description={tech.description}
-              icon={tech.icon}
-              link={tech.link}
-              className="process-card"
-            />
+           <NewwebsiteCard
+                key={index}
+                title={tech.title}
+                description={tech.description}
+                icon={tech.icon}
+                className="process-card"
+                url={tech.link} 
+                onClick={
+                  tech.link
+                    ? () => navigate(tech.link)
+                    : undefined
+                }
+              />
           ))}
         </div>
       </div>

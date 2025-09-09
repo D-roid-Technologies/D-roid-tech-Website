@@ -33,6 +33,15 @@ export const Alltools = [
     category: "Image Tools",
     link: "/toolbox/imageresizing",
   },
+    {
+    title: "AI Background Remover",
+    description: "Remove backgrounds from images using AI precision.",
+    icon: FaMagic({ size: 24 }),
+    component: "BackgroundRemove",
+    category: "Image Tools",
+    link: "/toolbox/ai-background-remover",
+    isPremium: true,
+  },
   {
     title: "Color Converter",
     description:
@@ -61,6 +70,15 @@ export const Alltools = [
     link: "/toolbox/croptool",
   },
   {
+    title: "Bulk Image Watermarker",
+    description: "Add watermarks to multiple images for branding/copyright.",
+    icon: FaStamp({ size: 24 }),
+    component: "BulkImageWatermarker",
+    category: "Image Tools",
+    link: "/toolbox/bulk-image",
+    isPremium: true,
+  },
+  {
     title: "Color Picker",
     description: "Select and copy hex/RGB/HSV codes from screen or palette.",
     icon: CgColorPicker({ size: 24 }),
@@ -75,6 +93,16 @@ export const Alltools = [
     component: "WordCounter",
     category: "Text Tools",
     link: "/toolbox/wordcounter",
+
+  },
+    {
+    title: "AI Background Remover",
+    description: "Remove backgrounds from images using AI precision.",
+    icon: FaMagic({ size: 24 }),
+    component: "BackgroundRemove",
+    category: "Image Tools",
+    link: "/toolbox/ai-background-remover",
+    isPremium: true,
   },
   {
     title: "Currency Converter",
@@ -144,15 +172,7 @@ export const Alltools = [
     link: "/toolbox/code-complexity",
     isPremium: true,
   },
-  {
-    title: "Bulk Image Watermarker",
-    description: "Add watermarks to multiple images for branding/copyright.",
-    icon: FaStamp({ size: 24 }),
-    component: "BulkImageWatermarker",
-    category: "Image Tools",
-    link: "/toolbox/bulk-image",
-    isPremium: true,
-  },
+  
 ];
 
 export const tools = [
