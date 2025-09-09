@@ -7,6 +7,8 @@ export interface FormData {
   phoneNumber: string;
   email: string;
   startDate: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface FormErrors {
@@ -15,6 +17,8 @@ export interface FormErrors {
   phoneNumber?: string;
   email?: string;
   startDate?: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 export interface LeadFormState {
@@ -32,6 +36,8 @@ const initialFormData: FormData = {
   phoneNumber: "",
   email: "",
   startDate: "",
+  firstName: "",
+  lastName: ""
 };
 
 const initialState: LeadFormState = {
@@ -257,10 +263,10 @@ export default leadFormSlice.reducer;
 // Service options and start date options
 export const serviceOptions = [
   { value: "website-development", label: "Website Development" },
-  { value: "mobile-app-development", label: "Mobile App Development" },
-  { value: "company-management-portal", label: "Company Management Portal" },
-  { value: "custom-software", label: "Custom Software" },
-  { value: "ecommerce-website", label: "E-commerce Website" },
+  // { value: "mobile-app-development", label: "Mobile App Development" },
+  // { value: "company-management-portal", label: "Company Management Portal" },
+  // { value: "custom-software", label: "Custom Software" },
+  // { value: "ecommerce-website", label: "E-commerce Website" },
 ];
 
 export const startDateOptions = [

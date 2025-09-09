@@ -32,6 +32,19 @@ const LeadForm: React.FC = () => {
   const templateId = "template_p8h58ur"
   const publicKey = "hcj3DsJ8MfNfUrE8J"
 
+  const generateReferenceNumber = () => {
+    const now = new Date();
+    const pad = (n: number) => n.toString().padStart(2, "0");
+    const date = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(
+      now.getDate()
+    )}`;
+    const time = `${pad(now.getHours())}${pad(now.getMinutes())}${pad(
+      now.getSeconds()
+    )}`;
+    const random = Math.floor(1000 + Math.random() * 9000);
+    return `REF-${date}-${time}-${random}`;
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -40,14 +53,17 @@ const LeadForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    const referenceNumber = generateReferenceNumber();
     // dispatch(submitLeadForm(formData));
     const templateParams = {
-      name: formData.businessName,
+      name: formData.firstName + " " + formData.lastName,
       title: `We have received your request of ${formData.service} for our ongoing free service plan. 
   
       See details below:
+      Full Name: ${formData.firstName} ${formData.lastName},
       Phone Number: ${formData.phoneNumber},
       Email: ${formData.email},
+      Refrence Number: ${referenceNumber}
       Message: ${formData.businessName} would like to start the free 1 page and 1 month hosting plan ${formData.startDate}.
   
       Our team will review and get back to you in three working days`,
@@ -136,6 +152,40 @@ const LeadForm: React.FC = () => {
             )}
           </div>
 
+          <div className="lf-form-group">
+            <label className="lf-label" htmlFor="businessName">
+              What's your First Name? <span className="lf-required">*</span>
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              className={`lf-input ${errors.firstName ? "lf-error" : ""}`}
+              placeholder="Enter your first name"
+            />
+            {errors.businessName && (
+              <span className="lf-error-message">{errors.firstName}</span>
+            )}
+          </div>
+          <div className="lf-form-group">
+            <label className="lf-label" htmlFor="businessName">
+              What's your Last Name? <span className="lf-required">*</span>
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              className={`lf-input ${errors.lastName ? "lf-error" : ""}`}
+              placeholder="Enter your last name"
+            />
+            {errors.businessName && (
+              <span className="lf-error-message">{errors.lastName}</span>
+            )}
+          </div>
           <div className="lf-form-group">
             <label className="lf-label" htmlFor="businessName">
               What's your business name? <span className="lf-required">*</span>
