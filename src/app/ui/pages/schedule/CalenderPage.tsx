@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Calendar from "./Calender";
+import CalendarFeatures from "./CalendarFeatures";
 
 const CalendarPage: React.FC = () => {
     const navigate = useNavigate();
@@ -35,6 +36,7 @@ const CalendarPage: React.FC = () => {
                 </div>
             </div>
             <Calendar />
+            <CalendarFeatures/>
         </div>
     );
 };

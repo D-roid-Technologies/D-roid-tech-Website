@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import BMICalculatorFeatures from "./BMICalculatorFeatures";
 
 const BMICalculator: React.FC = () => {
   const [weight, setWeight] = useState("");
@@ -91,6 +92,10 @@ const BMICalculator: React.FC = () => {
           <OutputRow label="Category" value={category} onCopy={handleCopy} />
         </div>
       </div>
+
+      <BMICalculatorFeatures/>
+
+     
     </>
   );
 };
@@ -107,10 +112,16 @@ const OutputRow: React.FC<{
       style={styles.copyButton}
       disabled={!value && value !== 0}
     >
-      📋 {value}
+       {value}
     </button>
+
+
   </div>
+
+  
+  
 );
+
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
