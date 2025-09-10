@@ -2,6 +2,7 @@ import React from "react";
 
 import ScientificCalculator from "../../../components/scientificcalculator/ScientificCalculator";
 import { useNavigate } from "react-router-dom";
+import ScientificCalculatorFeatures from "./ScientificCalculatorFeatures";
 
 const ScienceCalculate = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const ScienceCalculate = () => {
       {/* scientific calculator */}
       {/* <ScientificCalculator /> */}
       <ScientificCalculator />
+      <ScientificCalculatorFeatures/>
     </div>
   );
 };

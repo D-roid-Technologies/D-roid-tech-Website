@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Taskscheduler from "../../pages/schedule/TaskScheduler";
+import TaskSchedulerFeatures from "./TaskSchedulerFeatures";
 
 const TaskSchedulerPage: React.FC = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const TaskSchedulerPage: React.FC = () => {
         </div>
       </div>
       <Taskscheduler />
+      <TaskSchedulerFeatures/>
     </div>
   );
 };
