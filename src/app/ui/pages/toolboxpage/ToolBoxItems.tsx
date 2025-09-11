@@ -33,7 +33,7 @@ export const Alltools = [
     category: "Image Tools",
     link: "/toolbox/imageresizing",
   },
-    {
+  {
     title: "AI Background Remover",
     description: "Remove backgrounds from images using AI precision.",
     icon: FaMagic({ size: 24 }),
@@ -93,9 +93,8 @@ export const Alltools = [
     component: "WordCounter",
     category: "Text Tools",
     link: "/toolbox/wordcounter",
-
   },
-    {
+  {
     title: "AI Background Remover",
     description: "Remove backgrounds from images using AI precision.",
     icon: FaMagic({ size: 24 }),
@@ -172,7 +171,6 @@ export const Alltools = [
     link: "/toolbox/code-complexity",
     isPremium: true,
   },
-  
 ];
 
 export const tools = [
@@ -316,18 +314,17 @@ export const tools = [
     component: "ImageCompress",
     link: "/toolbox/imagecompressor",
   },
-  {
-    title: "Advanced PDF Editor",
-    description:
-      "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
-    icon: FaFilePdf({ size: 24 }),
-    category: "Document Tools",
-    component: "PDFEditor",
-    link: "/toolbox/advanced-pdf-editor",
-    isPremium: true,
-  },
+  // {
+  //   title: "Advanced PDF Editor",
+  //   description:
+  //     "Merge, split, sign, and annotate PDFs with advanced editing options including forms, passwords, and digital signatures.",
+  //   icon: FaFilePdf({ size: 24 }),
+  //   category: "Document Tools",
+  //   component: "PDFEditor",
+  //   link: "/toolbox/advanced-pdf-editor",
+  //   isPremium: true,
+  // },
 ];
-
 
 const ToolBoxItems: React.FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -374,76 +371,76 @@ const ToolBoxItems: React.FunctionComponent = () => {
       {/* Search Section */}
 
       {/* Tools Grid */}
-      <div style={{marginBottom: "3rem"}}>
-      <div className="wrapper soft-wrapper">
-        <span
-          className="soft-dev-header title_span"
-          style={{ background: "#e2e8f0" }}
-        >
-          Tool collection
-        </span>
-        <div className="" style={{ paddingTop: "2rem", paddingBottom: "1rem" }}>
-          <SearchBar
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Search tools by name, description, or category..."
-            className="mb-6"
-          />
+      <div style={{ marginBottom: "3rem" }}>
+        <div className="wrapper soft-wrapper">
+          <span
+            className="soft-dev-header title_span"
+            style={{ background: "#e2e8f0" }}
+          >
+            Tool collection
+          </span>
+          <div
+            className=""
+            style={{ paddingTop: "2rem", paddingBottom: "1rem" }}
+          >
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search tools by name, description, or category..."
+              className="mb-6"
+            />
 
-          <SearchFilters
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-            showPremiumOnly={showPremiumOnly}
-            onPremiumToggle={setShowPremiumOnly}
-          />
+            <SearchFilters
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
+              showPremiumOnly={showPremiumOnly}
+              onPremiumToggle={setShowPremiumOnly}
+            />
 
-          {/* Results Count */}
-         <div className="text-center">
-  <p style={{ color: "#071d6a" }}>
-    {filteredTools.length === tools.length
-      ? `Showing all ${tools.length} tools`
-      : `Found ${filteredTools.length} of ${tools.length} tools`}
-  </p>
-</div>
+            {/* Results Count */}
+            <div className="text-center">
+              <p style={{ color: "#071d6a" }}>
+                {filteredTools.length === tools.length
+                  ? `Showing all ${tools.length} tools`
+                  : `Found ${filteredTools.length} of ${tools.length} tools`}
+              </p>
+            </div>
+          </div>
 
+          {filteredTools.length > 0 ? (
+            <div className="soft-dev-content">
+              {filteredTools.map((tech, index) => (
+                <div key={`${tech.title}-${index}`} className="relative">
+                  <AllToolsCard
+                    title={tech.title}
+                    description={tech.description}
+                    icon={tech.icon}
+                    isPremium={tech.isPremium}
+                    link={tech.link}
+                    className="process-card"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p style={{ color: "gray" }}>
+                No tools found matching your criteria
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory("All");
+                  setShowPremiumOnly(false);
+                }}
+                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Clear All Filters
+              </button>
+            </div>
+          )}
         </div>
-
-        {filteredTools.length > 0 ? (
-        
-          <div className="soft-dev-content">
-            {filteredTools.map((tech, index) => (
-              <div key={`${tech.title}-${index}`} className="relative">
-                <AllToolsCard
-                  title={tech.title}
-                  description={tech.description}
-                  icon={tech.icon}
-                  isPremium={tech.isPremium}
-                  link={tech.link}
-                  className="process-card"
-                />
-              </div>
-              
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p style={{color: "gray"}}>
-              No tools found matching your criteria
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedCategory("All");
-                setShowPremiumOnly(false);
-              }}
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Clear All Filters
-            </button>
-          </div>
-        )}
-      </div>
       </div>
     </div>
   );
