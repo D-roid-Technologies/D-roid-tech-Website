@@ -5,14 +5,15 @@ import { useState } from "react"
 import {
   FaUser,
   FaIdCard,
-  FaCreditCard,
   FaCalendarAlt,
-  FaUsers,
   FaGift,
   FaBell,
-  FaCheckCircle,
-  FaUserFriends,
   FaAward,
+  FaServicestack,
+  FaBriefcase,
+  FaToolbox,
+  FaBullhorn,
+  FaCommentDots,
 } from "react-icons/fa"
 import "../staff/StaffUserHomePage.css"
 import { StatCard } from "../micro-ui/stat-card"
@@ -76,7 +77,11 @@ const RecentActivityItem = ({ action, details, time, icon: Icon }: RecentActivit
   </div>
 )
 
-const MemberDashboard: React.FC = () => {
+type MemberDashboardProps = {
+  setSelectedMenu: React.Dispatch<React.SetStateAction<string | null>>;
+};
+
+const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) => {
   const [currentTime] = useState(new Date())
 
   const memberStats = [
@@ -112,117 +117,133 @@ const MemberDashboard: React.FC = () => {
 
   const memberQuickActions = [
     {
-      title: "Update Profile",
-      description: "Edit personal information and preferences",
+      title: "Personal Details",
+      description: "View and update your profile information",
       icon: FaUser,
       variant: "primary",
     },
     {
-      title: "Membership Card",
-      description: "View digital membership card",
-      icon: FaIdCard,
+      title: "Services",
+      description: "Explore available member services",
+      icon: FaServicestack,
       variant: "secondary",
     },
     {
-      title: "Payment History",
-      description: "View dues and payment records",
-      icon: FaCreditCard,
+      title: "Careers",
+      description: "Access job opportunities and career resources",
+      icon: FaBriefcase,
       variant: "success",
     },
     {
-      title: "Event Calendar",
-      description: "Browse upcoming member events",
+      title: "Schedules",
+      description: "Check and manage your upcoming schedules",
       icon: FaCalendarAlt,
       variant: "default",
     },
     {
-      title: "Member Directory",
-      description: "Connect with other members",
-      icon: FaUsers,
+      title: "Tool Box",
+      description: "Access calculators and useful member tools",
+      icon: FaToolbox,
       variant: "primary",
     },
     {
-      title: "Rewards Program",
-      description: "Redeem points and view benefits",
-      icon: FaGift,
+      title: "Announcements",
+      description: "Stay updated with the latest news",
+      icon: FaBullhorn,
       variant: "secondary",
+    },
+    {
+      title: "Say It",
+      description: "Share feedback, suggestions, or reports",
+      icon: FaCommentDots,
+      variant: "success",
     },
   ]
 
   const memberNotifications = [
     {
-      title: "Membership Renewal",
-      message: "Your annual membership expires in 30 days",
-      time: "2 hours ago",
-      type: "warning",
-      isRead: false,
-    },
-    {
-      title: "Event Invitation",
-      message: "You're invited to the Annual Gala on September 15th",
-      time: "1 day ago",
+      title: "New Announcement",
+      message: "Quarterly meeting scheduled for September 20th",
+      time: "3 hours ago",
       type: "info",
       isRead: false,
     },
     {
-      title: "Points Earned",
-      message: "You earned 50 points for attending the workshop",
-      time: "3 days ago",
+      title: "Career Update",
+      message: "5 new job opportunities posted in Careers",
+      time: "1 day ago",
+      type: "success",
+      isRead: false,
+    },
+    {
+      title: "Service Request",
+      message: "Your service request has been approved",
+      time: "2 days ago",
       type: "success",
       isRead: true,
     },
     {
-      title: "New Member Benefit",
-      message: "Exclusive discount available at partner restaurants",
+      title: "Schedule Reminder",
+      message: "You have an event scheduled this Friday",
       time: "1 week ago",
-      type: "info",
+      type: "warning",
       isRead: true,
     },
   ]
 
   const memberActivities = [
     {
-      action: "Event Attended",
-      details: "Professional Development Workshop on Leadership",
-      time: "2 days ago",
-      icon: FaCheckCircle,
-    },
-    {
-      action: "Payment Processed",
-      details: "Annual membership dues payment successful",
-      time: "1 week ago",
-      icon: FaCreditCard,
-    },
-    {
       action: "Profile Updated",
-      details: "Added new professional certifications",
-      time: "2 weeks ago",
+      details: "Changed contact information",
+      time: "2 days ago",
       icon: FaUser,
     },
     {
-      action: "Referral Bonus",
-      details: "Earned 100 points for referring new member",
+      action: "Service Accessed",
+      details: "Requested training support service",
+      time: "5 days ago",
+      icon: FaServicestack,
+    },
+    {
+      action: "Career Application",
+      details: "Applied for Software Developer role",
+      time: "1 week ago",
+      icon: FaBriefcase,
+    },
+    {
+      action: "Schedule Added",
+      details: "Booked mentoring session with advisor",
+      time: "2 weeks ago",
+      icon: FaCalendarAlt,
+    },
+    {
+      action: "Announcement Read",
+      details: "Checked notice on policy updates",
       time: "3 weeks ago",
-      icon: FaUserFriends,
+      icon: FaBullhorn,
+    },
+    {
+      action: "Feedback Submitted",
+      details: "Shared feedback on member portal",
+      time: "1 month ago",
+      icon: FaCommentDots,
     },
   ]
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
+  const formatTime = (date: Date) =>
+    date.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
     })
-  }
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-US", {
       weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
     })
-  }
 
   return (
     <div className="shp-homepage-container">
@@ -250,7 +271,7 @@ const MemberDashboard: React.FC = () => {
               description={action.description}
               icon={action.icon}
               variant={action.variant}
-              onClick={() => console.log(`Clicked: ${action.title}`)}
+              onClick={() => setSelectedMenu(action.title)} // 🔑 send string to parent
             />
           ))}
         </div>
@@ -297,7 +318,9 @@ const MemberDashboard: React.FC = () => {
                 <FaBell size={18} />
                 Member Notifications
               </h3>
-              <span className="shp-notification-count">{memberNotifications.filter((n) => !n.isRead).length}</span>
+              <span className="shp-notification-count">
+                {memberNotifications.filter((n) => !n.isRead).length}
+              </span>
             </div>
             <div className="shp-notifications-list">
               {memberNotifications.map((notification, index) => (
