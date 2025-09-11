@@ -38,6 +38,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     return value.trim().length > 0
   }
 
+  const generateReferenceNumber = () => {
+    const now = new Date();
+    const pad = (n: number) => n.toString().padStart(2, "0");
+    const date = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(
+      now.getDate()
+    )}`;
+    const time = `${pad(now.getHours())}${pad(now.getMinutes())}${pad(
+      now.getSeconds()
+    )}`;
+    const random = Math.floor(1000 + Math.random() * 9000);
+    return `REF-${date}-${time}-${random}`;
+  };
+
   const validateField = (name: string, value: string): string => {
     switch (name) {
       case "name":
@@ -91,61 +104,62 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
   }
 
   const handleContactSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    const referenceNumber = generateReferenceNumber();
+    e.preventDefault();
 
-  setSubmitStatus(null);
+    setSubmitStatus(null);
 
-  if (!validateForm()) {
-    setSubmitStatus("error");
-    return;
-  }
+    if (!validateForm()) {
+      setSubmitStatus("error");
+      return;
+    }
 
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  const templateParams = {
-    name: formData.name,
-    title: `We have received your enquiry with title: ${formData.subject}. 
+    const templateParams = {
+      name: formData.name,
+      title: `We have received your enquiry with title: ${formData.subject}. 
 
-    See details below:
-    Phone Number: ${formData.phone},
+      See details below:
+      Phone Number: ${formData.phone},
+      Refrence Number: ${referenceNumber}
+      Message: ${formData.message}.
 
-    Message: ${formData.message}.
+      Our team will review and get back to you in three working days`,
+      email: formData.email,
+    };
+    // console.log("Contact Form Data:", formData);
+    console.log("EmailJS Template Params:", templateParams);
 
-    Our team will review and get back to you in three working days`,
-    email: formData.email,
+
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      toast.success("Message successfully sent!", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+      setSubmitStatus("success");
+      setErrors({});
+    } catch (error) {
+      console.error("Email send error:", error);
+
+      toast.error("Error sending email 🚫", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+      setSubmitStatus("error");
+      setErrors({ submit: "Failed to send message. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-    console.log("Contact Form Data:", formData);
-  console.log("EmailJS Template Params:", templateParams);
-
-
-  try {
-    await emailjs.send(serviceId, templateId, templateParams, publicKey);
-
-    toast.success("Message successfully sent!", {
-      style: { background: "#4BB543", color: "#fff" },
-    });
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setSubmitStatus("success");
-    setErrors({});
-  } catch (error) {
-    console.error("Email send error:", error);
-
-    toast.error("Error sending email 🚫", {
-      style: { background: "#ff4d4f", color: "#fff" },
-    });
-    setSubmitStatus("error");
-    setErrors({ submit: "Failed to send message. Please try again." });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
 
   const renderErrorMessage = (fieldName: string) => {
@@ -352,7 +366,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                 borderRadius: "8px",
               }}
             >
-             
+
               <div>
                 <label style={getLabelStyle()}>Message</label>
                 <textarea
