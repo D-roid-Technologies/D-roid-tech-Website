@@ -525,7 +525,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           return (
             <>
               <Section title="Member Dashboard">
-                <MemberDashboard />
+                <MemberDashboard setSelectedMenu={setSelectedMenu} />
               </Section>
             </>
           );
