@@ -25,7 +25,8 @@ import {
   FaDonate,
   FaServicestack,
 } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoHomeOutline } from "react-icons/io5";
+import { IoHomeSharp } from "react-icons/io5";
 import PersonalDetails from "./PersonalDetails";
 import AllUsers from "./users/AllUsers";
 import { authService } from "../../../redux/configuration/auth.service";
@@ -925,8 +926,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             onClick={() => setSelectedMenu(null)}
           >
             {/* @ts-ignore */}
-            <IoMdArrowRoundBack />
-            Back
+            <IoHomeSharp />
+            Home
           </button>
         )}
         {renderContent()}
