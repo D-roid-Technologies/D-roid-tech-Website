@@ -267,7 +267,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "WordCounter":
         return <WordCounterItem />; //working but onClose={handleCloseTool} is not
       case "CurrencyConverter":
-        return <CurrencyConvert onClose={handleCloseTool} />; //working but No item
+        return <CurrencyConvert />; //working but No item
       case "JsonFormatter":
         return <JsonFormatter />; // working
       case "UUIDGenerator":
@@ -404,7 +404,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           { label: "Onboarding", icon: FaUserPlus },
           { label: "Training", icon: FaChalkboardTeacher },
           { label: "Progressions", icon: FaChartLine },
-          { label: "Resource", icon: FaBookOpen },
+          { label: "Attendance", icon: FaBookOpen },
         ]
       : []),
   ];
