@@ -252,11 +252,22 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">Member Portal</h1>
+            {/* Add Recent Member Activity and Member Notifications side by side here as icons here */}
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
             <div className="shp-current-date">{formatDate(currentTime)}</div>
           </div>
+        </div>
+      </div>
+
+      {/* Member Stats */}
+      <div className="shp-section">
+        <h2 className="shp-section-title">Membership Overview</h2>
+        <div className="shp-stats-grid">
+          {memberStats.map((stat, index) => (
+            <StatCard key={index} title={stat.title} value={stat.value} change={stat.change} icon={stat.icon} />
+          ))}
         </div>
       </div>
 
@@ -277,17 +288,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
         </div>
       </div>
 
-      {/* Member Stats */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Membership Overview</h2>
-        <div className="shp-stats-grid">
-          {memberStats.map((stat, index) => (
-            <StatCard key={index} title={stat.title} value={stat.value} change={stat.change} icon={stat.icon} />
-          ))}
-        </div>
-      </div>
-
       {/* Two Column Layout */}
+      {/* after taking out these two colums and moving them above add add a slide able banner showing all events */}
       <div className="shp-two-column">
         {/* Recent Activity */}
         <div className="shp-activity-section">

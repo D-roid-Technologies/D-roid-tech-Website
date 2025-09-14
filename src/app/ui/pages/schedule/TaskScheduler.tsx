@@ -21,7 +21,7 @@ const TaskScheduler: React.FC = () => {
       {/* Access Restriction Notice */}
       {userLoggedIn === true ? (
         <div>
-          <ScheduleTool/>
+          <ScheduleTool />
         </div>
       ) : (<div
         style={{

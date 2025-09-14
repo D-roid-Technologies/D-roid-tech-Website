@@ -125,7 +125,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
   const { currentMonthDate, previousMonth, payPeriodStart, payPeriodEnd } =
     getCurrentDateInfo();
   const currentMonth = new Date().toLocaleString("default", { month: "long" });
-  
+
   const staffGrossPay = useSelector(
     (state: RootState) => state.SignInO.staffDetails.staffGrossPay
   );
@@ -141,7 +141,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
   const [message, setMessage] = useState("");
   const [validationError, setValidationError] = useState<string | null>(null);
   const [showPayslip, setShowPayslip] = useState(false);
-  
+
   const payslips = useSelector((state: RootState) => state.payslip.payslips);
   const user = useSelector((state: RootState) => state.user);
 
@@ -165,7 +165,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
         `Please fill in the following required fields:\n• ${validation.missingFields.join('\n• ')}`
       );
       setShowPayslip(false);
-      
+
       // // Show alert to user
       // alert(`Payslip cannot be displayed. Missing required information:\n\n• ${validation.missingFields.join('\n• ')}\n\nPlease complete your profile information to view the payslip.`);
     } else {
@@ -250,17 +250,17 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
     try {
       await authService.updateStaffPayslip(payslip);
       setMessage("Payslip generated and updated successfully.");
-      const templateParams = {
-        name: `${user.firstName} ${user.lastName}`,
-        title: `You will be paid ${
-          payslip.netPay
-        } for the month of ${formatMonth(
-          payPeriodStart
-        )} ${currentMonthDate.getFullYear()} on the 9th of ${formatMonth(
-          payPeriodEnd
-        )} ${currentMonthDate.getFullYear()}`,
-        email: user.email,
-      };
+      // const templateParams = {
+      //   name: `${user.firstName} ${user.lastName}`,
+      //   title: `You will be paid ${
+      //     payslip.netPay
+      //   } for the month of ${formatMonth(
+      //     payPeriodStart
+      //   )} ${currentMonthDate.getFullYear()} on the 9th of ${formatMonth(
+      //     payPeriodEnd
+      //   )} ${currentMonthDate.getFullYear()}`,
+      //   email: user.email,
+      // };
 
       // emailjs.send(
       //   "service_o1jbklr",
@@ -806,12 +806,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "500",
     margin: 0,
   },
-  errorNavButton:{
-    color:"white",
-    backgroundColor:"red",
-    marginInline:"auto",
-    fontSize:"14px",
-    marginTop:"1rem"
+  errorNavButton: {
+    color: "white",
+    backgroundColor: "red",
+    marginInline: "auto",
+    fontSize: "14px",
+    marginTop: "1rem"
   },
   payslipTableContainer: {},
   tableWrapper: {

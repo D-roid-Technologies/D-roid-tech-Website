@@ -3,9 +3,15 @@ import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, g
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
 import { LocationState, Task, UserType } from "../../utils/Types";
+import { setKnowledgeCity } from "../slices/knowledgeCity";
+import { setNotifications } from "../slices/notificationSlice";
+import { setOnboarding } from "../slices/onboarding";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
+import { setAllMilestones } from "../slices/ProgressionSlice";
 import { addTask, deleteThisTask } from "../slices/scheduleTask";
 import { setSignInAndOutData, setStaffDetails, setStaffDocuments, setStaffLeave, StaffDetails } from "../slices/SignInAndOutSlice";
+import { setTrainings } from "../slices/TrainingsSlice";
+import { setCalculate, setSchedules, setToolBox } from "../slices/TSCSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
@@ -401,9 +407,9 @@ export class AuthService {
                                 numberOfAdsWatched: 0,
                             },
                         },
-                        courses: {},
-                        notifications: {},
-                        schedules: {},
+                        courses: [],
+                        notifications: [],
+                        schedules: [],
                         diaries: [
                             {
                                 diaryTitle: "The Diary Platform",
@@ -547,6 +553,7 @@ export class AuthService {
             if (userDocSnap.exists()) {
                 const fetchedUserData = userDocSnap.data();
                 const primaryInformation = fetchedUserData.user?.primaryInformation;
+                const userForm = fetchedUserData.user?.userForms;
                 const userType = primaryInformation?.userType;
 
                 // Validate userType against the login intent
@@ -572,14 +579,29 @@ export class AuthService {
                 };
                 const updatedStaffDocuments = updatedData?.user?.staff?.staffDoc || {};
                 const updatedStaffLeave = updatedData?.user?.staff?.staffLeave || [];
+                const updatedKnowledgeCity = updatedData?.user?.knowledgeCity || {};
+                const updatedNotifications = updatedData?.user?.notifications || [];
+                const updatedOnboarding = updatedData?.user?.onboarding || [];
+                const updatedTrainings = updatedData?.user?.trainings || [];
                 const updatedPayslips = updatedData?.user?.payslips?.paySlip || [];
+                const updatedProgressions = updatedData?.user?.progressions || [];
                 const schedleData = updatedData?.schedules?.mySchedules || [];
+                const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
+                const calculateData = updatedData?.calculate?.calculators || [];
                 // console.log("line 577", schedleData)
                 // Store and proceed
                 store.dispatch(setPayslipData(updatedPayslips));
+                store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
+                store.dispatch(setOnboarding(updatedOnboarding));
+                store.dispatch(setTrainings(updatedTrainings));
+                store.dispatch(setNotifications(updatedNotifications));
+                store.dispatch(setAllMilestones(updatedProgressions));
                 store.dispatch(setSignInAndOutData(updatedEntries));
                 store.dispatch(setStaffDetails(updatedStaffDetails));
                 store.dispatch(setStaffDocuments(updatedStaffDocuments));
+                store.dispatch(setToolBox(toolBoxData));
+                store.dispatch(setCalculate(calculateData));
+                store.dispatch(setSchedules(schedleData));
                 store.dispatch(setStaffLeave(updatedStaffLeave));
                 store.dispatch(setUser({ ...primaryInformation, role: primaryInformation.role }));
 

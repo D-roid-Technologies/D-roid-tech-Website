@@ -84,6 +84,7 @@ const TaskActivityItem = ({ task, action, time }: TaskActivityItemProps) => {
   return (
     <div className="shp-activity-item">
       <div className="shp-activity-icon">
+        {/* @ts-ignore */}
         <Icon size={16} />
       </div>
       <div className="shp-activity-content">
@@ -620,10 +621,10 @@ const StaffUserHomePage: React.FC = () => {
             {type === "clockin"
               ? "Clock In Now"
               : type === "payslip"
-              ? "Download Payslip"
-              : type === "timesheet"
-              ? "Submit Timesheet"
-              : "Continue Training"}
+                ? "Download Payslip"
+                : type === "timesheet"
+                  ? "Submit Timesheet"
+                  : "Continue Training"}
           </button>
         </div>
       </div>
@@ -655,6 +656,7 @@ const StaffUserHomePage: React.FC = () => {
         <h2 className="shp-section-title">Quick Links</h2>
         <div className="shp-quick-actions-grid">
           {quickActions.map((action, index) => (
+            // @ts-ignore
             <QuickActionCard
               key={index}
               title={action.title}

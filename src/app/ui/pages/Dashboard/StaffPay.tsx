@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { calculateNetSalary } from '../../../redux/configuration/auth.service';
 import { Entry } from '../../../redux/slices/SignInAndOutSlice';
 import { RootState } from '../../../redux/Store';
-import {StaffPaySlip} from './StaffPaySlip';
+import { StaffPaySlip } from './StaffPaySlip';
 
 const StaffPay: React.FunctionComponent = () => {
     const user = useSelector((state: RootState) => state.user);
@@ -17,8 +17,8 @@ const StaffPay: React.FunctionComponent = () => {
     return (
         <div>
             <StaffPaySlip
-                employeeName={`${user.firstName} ${user.middleName} ${user.lastName}`}
-                employeeId={user.uniqueId}
+                employeeName={`${user?.firstName} ${user?.middleName} ${user?.lastName}`}
+                employeeId={user?.uniqueId}
                 payPeriodStart={lastMonth}
                 payPeriodEnd={thisMonth}
                 totalDeductions={paidSalary?.totalDeductions || 10}
@@ -26,11 +26,11 @@ const StaffPay: React.FunctionComponent = () => {
                 GSalary={paidSalary?.grossSalary || 10}
                 taxesPercent={12}
                 todayMonth={todayMonth}
-                sNumber={user.streetNumber}
-                sName={user.streetName}
-                city={user.city}
-                state={user.state}
-                country={user.country}
+                sNumber={user?.streetNumber}
+                sName={user?.streetName}
+                city={user?.city}
+                state={user?.state}
+                country={user?.country}
             />
         </div>
     )

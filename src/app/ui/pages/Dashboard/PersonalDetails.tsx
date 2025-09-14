@@ -144,9 +144,8 @@ const PersonalDetails: React.FunctionComponent = () => {
         if (!validateRequired(value))
           return `${name.charAt(0).toUpperCase() + name.slice(1)} is required`;
         if (!/^[a-zA-Z\s'-]+$/.test(value))
-          return `${
-            name.charAt(0).toUpperCase() + name.slice(1)
-          } can only contain letters, spaces, hyphens, and apostrophes`;
+          return `${name.charAt(0).toUpperCase() + name.slice(1)
+            } can only contain letters, spaces, hyphens, and apostrophes`;
         break;
 
       case "streetNumber":

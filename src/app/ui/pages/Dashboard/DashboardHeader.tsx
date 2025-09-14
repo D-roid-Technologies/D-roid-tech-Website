@@ -19,6 +19,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ toggleSidebar }) => {
     <header className="dashboard-header">
       <div className="header-content">
         <button className="mobile-menu-button" onClick={toggleSidebar}>
+          {/* @ts-ignore */}
           <IoMdMenu size={24} />
         </button>
         <h2 className="header-title">D'roid One </h2>

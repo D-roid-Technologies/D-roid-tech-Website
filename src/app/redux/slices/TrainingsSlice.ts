@@ -1,5 +1,6 @@
 // src/redux/slices/trainingSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { loadFromLocalStorage, saveToLocalStorage } from "../../utils/localStorage";
 
 export type Training = {
   id: number;
@@ -10,7 +11,10 @@ export type Training = {
   completedDate?: string;
 };
 
-const initialState: Training[] = [
+const LOCAL_KEY = "trainings";
+
+// Default training list
+const defaultTrainings: Training[] = [
   {
     id: 1,
     title: "Workplace Safety",
@@ -66,27 +70,37 @@ const initialState: Training[] = [
   },
 ];
 
+// Load from localStorage (fallback to defaultTrainings if empty)
+const initialState: Training[] = loadFromLocalStorage<Training[]>(LOCAL_KEY, defaultTrainings);
+
 export const trainingSlice = createSlice({
   name: "trainings",
   initialState,
   reducers: {
     markTrainingAsCompleted: (state, action: PayloadAction<Training>) => {
-      const index = state.findIndex(
-        (training) => training.id === action.payload.id
-      );
+      const index = state.findIndex((training) => training.id === action.payload.id);
       if (index !== -1) {
         state[index].completed = true;
         state[index].completedDate = new Date().toISOString().split("T")[0];
+        saveToLocalStorage(LOCAL_KEY, state);
       }
+    },
+    setTrainings: (_, action: PayloadAction<Training[]>) => {
+      saveToLocalStorage(LOCAL_KEY, action.payload);
+      return action.payload;
+    },
+    clearTrainings: () => {
+      saveToLocalStorage(LOCAL_KEY, []);
+      return [];
     },
   },
 });
 
+// Selector
+export const Alltraining = (state: { trainings: Training[] }) => state.trainings;
 
-export const Alltraining = (state: { trainings: Training[] }) =>
-  state.trainings;
+// Actions
+export const { markTrainingAsCompleted, setTrainings, clearTrainings } = trainingSlice.actions;
 
-
-export const { markTrainingAsCompleted } = trainingSlice.actions;
-
-
+// Reducer
+export default trainingSlice.reducer;

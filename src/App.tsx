@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { UserType } from "./app/utils/Types";
 import { BrowserRouter } from "react-router-dom";
-import { SiR } from "react-icons/si";
 import ScrollToTop from "./app/ui/components/ScrollToTop/ScrollToTop";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
@@ -51,7 +50,7 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    if (user.isLoggedIn) {
+    if (user?.isLoggedIn) {
       console.log("User exists");
     } else {
       console.log("No user exists");
@@ -84,7 +83,7 @@ function AppContent() {
       <BrowserRouter>
         <ScrollToTop />
         <AppEntry />
-        {!user.isLoggedIn && <WelcomeModal />}
+        {!user?.isLoggedIn && <WelcomeModal />}
       </BrowserRouter>
     </>
   );

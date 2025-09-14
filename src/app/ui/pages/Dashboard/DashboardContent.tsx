@@ -399,13 +399,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-          { label: "Tasks", icon: FaTasks },
-          { label: "Payslips", icon: FaFileInvoiceDollar },
-          { label: "Onboarding", icon: FaUserPlus },
-          { label: "Training", icon: FaChalkboardTeacher },
-          { label: "Progressions", icon: FaChartLine },
-          { label: "Attendance", icon: FaBookOpen },
-        ]
+        { label: "Tasks", icon: FaTasks },
+        { label: "Payslips", icon: FaFileInvoiceDollar },
+        { label: "Onboarding", icon: FaUserPlus },
+        { label: "Training", icon: FaChalkboardTeacher },
+        { label: "Progressions", icon: FaChartLine },
+        { label: "Attendance", icon: FaBookOpen },
+      ]
       : []),
   ];
 
@@ -514,14 +514,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 </>
               );
           }
-        // case "Organisation":
-        //   return (
-        //     <>
-        //       <Section title="Organization Dashboard">
-        //         <p> Organization Home Page goes here </p>
-        //       </Section>
-        //     </>
-        //   );
         case "Member":
           return (
             <>
@@ -871,9 +863,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${
-          isSidebarOpen ? styles.sidebarOpen : ""
-        }`}
+        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
+          }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -881,8 +872,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             {currentTime.getHours() < 12
               ? "Morning"
               : currentTime.getHours() < 18
-              ? "Afternoon"
-              : "Evening"}
+                ? "Afternoon"
+                : "Evening"}
             , {userDetails.firstName}
             {/* Hello, {userDetails.firstName} {userDetails.lastName} */}
           </h3>
@@ -900,9 +891,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${
-                selectedMenu === item.label ? styles.navItemActive : ""
-              }`}
+              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
+                }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}

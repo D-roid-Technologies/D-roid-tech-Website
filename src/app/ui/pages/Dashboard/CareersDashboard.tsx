@@ -32,26 +32,6 @@ const CareersDashboard: React.FunctionComponent = () => {
     const isUserLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn)
 
     const openings: Job[] = [
-        // {
-        //   title: "Frontend Developer",
-        //   type: "Full-time",
-        //   location: "Fully Remote",
-        //   description: "Join D'roid Technologies Ltd, a leading SaaS company in Nigeria, as a Frontend Developer and contribute to building modern, scalable, and user-friendly web applications. You’ll work closely with cross-functional teams to create intuitive interfaces, implement design systems, and deliver high-performance products that power businesses across Africa.",
-        //   url: "https://droidtechnologies.com/careers/frontend-developer", // Replace with actual URL
-        //   subTitle: "Drive SaaS Innovation with Clean, Scalable Frontend Solutions",
-        //   summary: "We're seeking a talented Frontend Developer with React expertise to join our growing team and help shape the future of business-focused SaaS platforms across Nigeria and beyond.",
-        //   duration: "Permanent",
-        //   level: "Mid-level",
-        //   tools: ["React.js", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Redux", "Tailwind CSS", "RESTful APIs", "Git"],
-        //   mode: "Hybrid (2–3 days in our Lagos office)",
-        //   howToApply: "To apply, visit our careers page and submit your resume and GitHub/portfolio link. Shortlisted candidates will be contacted for a technical interview.",
-        //   benefits: "Competitive salary (₦4.5M–₦7.5M annually based on experience), flexible hybrid work structure, paid time off, learning & development budget, performance bonuses, access to top SaaS tools, and a collaborative, innovation-driven team culture.",
-        //   gallery: [
-        //     "https://droidtechnologies.com/gallery/office1.jpg",
-        //     "https://droidtechnologies.com/gallery/team.jpg",
-        //     "https://droidtechnologies.com/gallery/workspace.jpg"
-        //   ]
-        // },
         {
             //@ts-ignore
             icon: <FaUserGraduate />,

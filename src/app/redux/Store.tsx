@@ -19,6 +19,10 @@ import { trainingSlice } from "./slices/TrainingsSlice";
 import { scheduleTask } from "./slices/scheduleTask";
 import ProgressionSlice from "./slices/ProgressionSlice";
 import LeadFormSlice from "./slices/LeadFormSlice";
+import { TSCSlice } from "./slices/TSCSlice";
+import { userFormsSlice } from "./slices/userFormSlice";
+import { notificationsSlice } from "./slices/notificationSlice";
+import { onboardingSlice } from "./slices/onboarding";
 
 const persistConfig = {
   key: "root",
@@ -45,6 +49,11 @@ const rootReducer = combineReducers({
   scheduleTask: scheduleTask.reducer,
   progression: ProgressionSlice,
   leadForm: LeadFormSlice,
+  TSC: TSCSlice.reducer,
+  form: userFormsSlice.reducer,
+  notifications: notificationsSlice.reducer,
+  onboarding: onboardingSlice.reducer,
+  training: trainingSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

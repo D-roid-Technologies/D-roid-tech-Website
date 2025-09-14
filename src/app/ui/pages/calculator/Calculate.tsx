@@ -74,7 +74,7 @@ const Calculate: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     setInput("");
   };
 
-  const handleShowPayslip = () => {};
+  const handleShowPayslip = () => { };
 
   const handleButtonClick = (value: string) => {
     if (value === "=") {

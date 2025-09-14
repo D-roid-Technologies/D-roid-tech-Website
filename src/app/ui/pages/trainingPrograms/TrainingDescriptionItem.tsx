@@ -25,7 +25,7 @@ const TrainingDescriptionItem: React.FC = () => {
   }
 
   return (
-   <>hello livinus </>
+    <>hello livinus </>
 
   );
 };

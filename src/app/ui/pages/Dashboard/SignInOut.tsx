@@ -59,7 +59,7 @@ const SignInOut: React.FC = () => {
       return;
     }
 
-    if (email !== user.email || employeeId !== user.uniqueId) {
+    if (email !== user?.email || employeeId !== user?.uniqueId) {
       toast.error("Email or ID does not match your account.");
       return;
     }
@@ -87,11 +87,11 @@ const SignInOut: React.FC = () => {
       await authService.logStaffSignInOut(entry);
       setLogs((prev) => [...prev, entry]);
 
-      const templateParams = {
-        name: `${user.firstName} ${user.lastName}`,
-        title: `You have ${entry.type} on your D'roid One Account on ${entry.timestamp}`,
-        email: user.email,
-      };
+      // const templateParams = {
+      //   name: `${user.firstName} ${user.lastName}`,
+      //   title: `You have ${entry.type} on your D'roid One Account on ${entry.timestamp}`,
+      //   email: user.email,
+      // };
 
       // emailjs.send(
       //   "service_o1jbklr",
