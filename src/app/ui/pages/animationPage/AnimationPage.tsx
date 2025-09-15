@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import bannerStyles from "../../components/global-styles/Banner.module.css";
 import AnimationPrincingCard from "../animations/AnimationPrincingCard";
 import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
+import WhatsAppButton from "../../components/WhatsAppButton";
 
 export interface Story {
   id: string;
@@ -306,6 +307,8 @@ const AnimationPage: React.FC = () => {
       </div>
       <AnimationPrincingCard />
       <LeadForm />
+   <WhatsAppButton/>
+   
     </div>
   );
 };

@@ -3,8 +3,8 @@ import Navbar from "../../components/navbar/NavBar";
 import "../../components/liteGrid@v1.0/lite-grid.css";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
-import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 import { useNavigate } from "react-router-dom";
+import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 
 const SchedulePage: React.FunctionComponent = () => {
   const navigate = useNavigate()
@@ -49,7 +49,7 @@ const SchedulePage: React.FunctionComponent = () => {
         </span>
         <div className="soft-dev-content">
           {schedules.map((tech, index) => (
-            <NewwebsiteCard
+            <AllToolsCard
               key={index}
               title={tech.title}
               description={tech.description}

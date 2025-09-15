@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/NavBar";
 import { FaCalculator } from "react-icons/fa6";
 import { GiCalculator } from "react-icons/gi";
 import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 import { useNavigate } from "react-router-dom";
 const CalculatorPage = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const CalculatorPage = () => {
         </span>
         <div className="soft-dev-content">
           {calculators.map((tech, index) => (
-           <NewwebsiteCard
+           <AllToolsCard
                 key={index}
                 title={tech.title}
                 description={tech.description}

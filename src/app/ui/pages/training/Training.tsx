@@ -161,6 +161,7 @@ const Training: React.FC = () => {
         <TechnologiesAndTools />
       </span>
     </div>
+    
   );
 };
 
