@@ -87,6 +87,7 @@ import NGODashboard from "./organization/NGODashboard";
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 import MemberDashboard from "./member/MemberDashboard";
 import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 
 // const tools = [
 //   {
@@ -281,7 +282,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "ResumeAnalyzer":
         return <ResumeAnalyzing />;
       case "CodeComplexityAnalyzer":
-        return <UnderDevelopmentPage />;
+        return <CodeComplex onClose={handleCloseTool} />;
       case "BulkImageWatermarker":
         return <ImageMark onClose={handleCloseTool} />;
       default:
@@ -399,13 +400,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
-        { label: "Tasks", icon: FaTasks },
-        { label: "Payslips", icon: FaFileInvoiceDollar },
-        { label: "Onboarding", icon: FaUserPlus },
-        { label: "Training", icon: FaChalkboardTeacher },
-        { label: "Progressions", icon: FaChartLine },
-        { label: "Attendance", icon: FaBookOpen },
-      ]
+          { label: "Tasks", icon: FaTasks },
+          { label: "Payslips", icon: FaFileInvoiceDollar },
+          { label: "Onboarding", icon: FaUserPlus },
+          { label: "Training", icon: FaChalkboardTeacher },
+          { label: "Progressions", icon: FaChartLine },
+          { label: "Attendance", icon: FaBookOpen },
+        ]
       : []),
   ];
 
@@ -863,8 +864,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   return (
     <div className={styles.dashboardContainer}>
       <aside
-        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""
-          }`}
+        className={`${styles.sidebar} ${
+          isSidebarOpen ? styles.sidebarOpen : ""
+        }`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -872,8 +874,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             {currentTime.getHours() < 12
               ? "Morning"
               : currentTime.getHours() < 18
-                ? "Afternoon"
-                : "Evening"}
+              ? "Afternoon"
+              : "Evening"}
             , {userDetails.firstName}
             {/* Hello, {userDetails.firstName} {userDetails.lastName} */}
           </h3>
@@ -891,8 +893,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""
-                }`}
+              className={`${styles.navItem} ${
+                selectedMenu === item.label ? styles.navItemActive : ""
+              }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}
