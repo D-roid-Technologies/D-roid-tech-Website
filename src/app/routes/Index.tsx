@@ -84,6 +84,7 @@ import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage"
 import CalenderPage from "../ui/pages/schedule/CalenderPage";
 import Announcements from "../ui/pages/Dashboard/Announcements";
 import LeadForm from "../ui/pages/softwareDevelopment/SoftwarePages/LeadForm";
+import QuizePage from "../ui/pages/Quize/Quiz";
 
 // Define an enum for all route paths
 
@@ -153,6 +154,7 @@ export enum RoutePaths {
   Contact = "/contact",
   TrainingPage = "/training",
   TrainingDescriptionPage = "/training/description",
+  QuizePage = "/training/quize",
   DevTools = "/devtools",
   DroidIcons = "/droidicons",
   Staff = "/staff",
@@ -346,6 +348,10 @@ const Index: React.FunctionComponent = () => {
       <Route
         path={RoutePaths.TrainingDescriptionPage}
         element={<TrainingDescriptionPage />}
+      />
+      <Route
+        path={RoutePaths.QuizePage}
+        element={<QuizePage />}
       />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />

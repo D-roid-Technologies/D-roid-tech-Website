@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import TrainingPrincingCard from "./TrainingPrincingCard";
 import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
 import WhatsAppButton from "../../components/WhatsAppButton";
+import { Questions } from "../../../utils/questions";
 
 const programs = [
   {
@@ -246,9 +247,37 @@ const TrainingProgramsPage: React.FC = () => {
           Contact for Enrollment
         </a>
       </div>
+
+      <div className="wrapper soft-wrapper">
+        <span
+          className="soft-dev-header title_span"
+          style={{ background: "#fff" }}
+        >
+          Test Your Knowledge
+        </span>
+        <div className="soft-dev-content">
+          {Array.isArray(Questions) &&
+            Questions.map((prog, index) => (
+              <div
+                key={index}
+                onClick={() => navigate("/training/quize", { state: prog })}
+                style={{ cursor: "pointer" }}
+              >
+                <CoreValueCardTwo
+                  title={`Take ${prog.title} Test`}
+                  description={prog.summary}
+                  url={prog.url}
+                  className="process-card"
+                />
+              </div>
+            ))}
+        </div>
+
+
+      </div>
       <TrainingPrincingCard />
-      <LeadForm/>
-   <WhatsAppButton/>
+      <LeadForm />
+      <WhatsAppButton />
     </div>
   );
 };
