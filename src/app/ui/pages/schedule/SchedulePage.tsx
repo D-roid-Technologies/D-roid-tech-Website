@@ -22,6 +22,9 @@ const SchedulePage: React.FunctionComponent = () => {
         "Stay organized and boost productivity with our intuitive Task Scheduler. Effortlessly plan, prioritize, and manage your daily activities to ensure nothing slips through the cracks.",
       icon: FaTasks({ size: 24 }),
       link: "/schedules/task-scheduler",
+      isPremium : true,
+
+
     },
   ];
   return (
@@ -54,6 +57,7 @@ const SchedulePage: React.FunctionComponent = () => {
               title={tech.title}
               description={tech.description}
               icon={tech.icon}
+              isPremium={tech.isPremium}
               className="process-card"
               url={tech.link}
               onClick={tech.link ? () => navigate(tech.link) : undefined}

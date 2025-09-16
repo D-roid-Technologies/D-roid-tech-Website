@@ -70,7 +70,7 @@ const ConsultingPrincingCard: React.FC = () => {
     },
     {
       name: "Enterprise",
-      price: "₦2,500,000 – ₦6,000,000+",
+      price: "₦2,500,000 – ₦6,000,000",
       period: "per engagement",
       description:
         "Comprehensive consulting for enterprises — strategy, execution, and innovation at scale with full technology leadership support.",

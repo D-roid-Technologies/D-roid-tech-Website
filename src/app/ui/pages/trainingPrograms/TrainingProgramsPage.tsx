@@ -223,7 +223,7 @@ const TrainingProgramsPage: React.FC = () => {
           color: "#fff",
         }}
       >
-        <h2 style={{ fontSize: "2rem", marginBottom: "10px" }}>
+        <h2 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
           Ready to Learn & Level Up?
         </h2>
         <p style={{ fontSize: "1.1rem" }}>

@@ -183,7 +183,7 @@ const initialState: ProjectState = {
       id: "13",
       title: "D'roid Input Component",
       status: "Completed",
-      descriptionUrl: "/projects/health-wellness-app",
+      descriptionUrl: "",
       summary:
         "The DroidInput is a highly customizable input component for React applications. It provides a unified interface for various input types including text fields, textareas, and dropdown selects. This component offers extensive styling options and supports both controlled and uncontrolled forms.",
       startDate: "2025-01-10",
