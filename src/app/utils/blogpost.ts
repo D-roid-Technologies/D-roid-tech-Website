@@ -1,3 +1,5 @@
+import { Assets } from "./constant/Assets";
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -166,6 +168,25 @@ export const businessPosts: BlogPost[] = [
 export const eventsPosts: BlogPost[] = [
   {
     id: 9,
+    title: "CUMSA Financial Summit 2025 – Money Meets Medicine",
+    excerpt: "Think Health, Think Wealth, Think Global.",
+    date: "Wednesday, 17th September 2025",
+    author: "Medical/Tech Events Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/5.jpg",
+    category: "Events",
+    readTime: "6 min read",
+    image: Assets.images.cumsaEvent,
+    featured: true,
+    readMoreLink: generateBlogLink(
+      "events",
+      "CUMSA Financial Summit 2025 – Money Meets Medicine"
+    ),
+    content: [
+      "The Calabar University Medical Students’ Association (CUMSA) through the Office of the Financial Secretary proudly presents the CUMSA Financial Summit 2025. This forward-thinking event is designed to empower medical students and young professionals with the knowledge and tools to merge health, wealth, and global opportunities in today’s fast-evolving world.",
+    ],
+  },
+  {
+    id: 10,
     title: "Code Verse Tech Conference",
     excerpt:
       "Highlights and key takeaways from this year's premier developer event.",
@@ -186,7 +207,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 10,
+    id: 11,
     title: "Front-End Engineering Training",
     excerpt:
       "Don't miss these hands-on learning opportunities happening next month.",
@@ -206,7 +227,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 11,
+    id: 12,
     title: "Clash of Kings - Chess Tournament",
     excerpt:
       "An exciting chess tournament featuring some of the region's top players.",
@@ -226,7 +247,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 12,
+    id: 13,
     title: "Rapid Training Conference",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -246,7 +267,6 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
 ];
-
 
 // All posts combined
 export const allPosts: BlogPost[] = [
