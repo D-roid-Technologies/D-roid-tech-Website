@@ -5,6 +5,7 @@ import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { useNavigate } from "react-router-dom";
 import TrainingPrincingCard from "./TrainingPrincingCard";
 import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
+import WhatsAppButton from "../../components/WhatsAppButton";
 
 const programs = [
   {
@@ -247,6 +248,7 @@ const TrainingProgramsPage: React.FC = () => {
       </div>
       <TrainingPrincingCard />
       <LeadForm/>
+   <WhatsAppButton/>
     </div>
   );
 };

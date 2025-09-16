@@ -18,6 +18,7 @@ import { store } from "../../../redux/Store";
 import Testimonial from "../testimonial/Testimonial";
 import ConsultingPrincingCard from "./ConsultingPrincingCard";
 import LeadForm from "../softwareDevelopment/SoftwarePages/LeadForm";
+import WhatsAppButton from "../../components/WhatsAppButton";
 
 const offer = [
   {
@@ -399,6 +400,7 @@ const ConsultingPage: React.FC = () => {
         <ConsultingPrincingCard />
         <LeadForm/>
       </div>
+    <WhatsAppButton/>
     </div>
   );
 };

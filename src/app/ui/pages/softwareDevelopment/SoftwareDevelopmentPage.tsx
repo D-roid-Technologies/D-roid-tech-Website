@@ -29,6 +29,7 @@ import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
 import SoftwarePricingCard from "./SoftwarePricingCard";
 import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 import LeadForm from "./SoftwarePages/LeadForm";
+import WhatsAppButton from "../../components/WhatsAppButton";
 
 const devPhases = [
   {
@@ -138,15 +139,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
     navigate(tech.url);
   };
 
-  // WhatsApp chat function
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "+2349165275635";
-    const message = encodeURIComponent(
-      "Hello! I'm interested in your software development services. Can we discuss my project?"
-    );
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(whatsappURL, "_blank");
-  };
+
 
   return (
     <div>
@@ -282,77 +275,9 @@ const SoftwareDevelopmentPage: React.FC = () => {
       </div>
       <SoftwarePricingCard />
 
-      {/* WhatsApp Floating Button */}
-      <div
-        className="whatsapp-float"
-        onClick={handleWhatsAppClick}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          width: "60px",
-          height: "60px",
-          backgroundColor: "#25D366",
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          zIndex: 1000,
-          transition: "all 0.3s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.2)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
-        }}
-      >
-        <FaWhatsapp size={28} color="white" />
-      </div>
+      
 
-      {/* WhatsApp Tooltip */}
-      <div
-        className="whatsapp-tooltip"
-        style={{
-          position: "fixed",
-          bottom: "25px",
-          right: "90px",
-          backgroundColor: "#333",
-          color: "white",
-          padding: "8px 12px",
-          borderRadius: "6px",
-          fontSize: "14px",
-          whiteSpace: "nowrap",
-          zIndex: 999,
-          opacity: 0,
-          transform: "translateY(10px)",
-          transition: "all 0.3s ease",
-          pointerEvents: "none",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.opacity = "1";
-          e.currentTarget.style.transform = "translateY(0)";
-        }}
-      >
-        Chat with us on WhatsApp
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "-5px",
-            transform: "translateY(-50%)",
-            width: 0,
-            height: 0,
-            borderLeft: "5px solid #333",
-            borderTop: "5px solid transparent",
-            borderBottom: "5px solid transparent",
-          }}
-        />
-      </div>
+<WhatsAppButton/>
     </div>
   );
 };
