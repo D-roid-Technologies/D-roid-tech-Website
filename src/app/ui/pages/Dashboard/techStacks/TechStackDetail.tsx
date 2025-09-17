@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { ChevronDown, ChevronUp, Clock, Users, Award, BookOpen, Target, Zap } from "lucide-react"
-
+import "./TechStackDetail.css"
 type TechDetailProps = {
   icon: React.ReactElement
   title: string
@@ -64,14 +64,7 @@ const TechDetailPage: React.FC<TechDetailProps> = ({
             }}
           >
             <div style={{ color: "#2667cc", width: "24px", height: "24px" }}>{icon}</div>
-            <h3
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "700",
-                color: "#071d6a",
-                margin: 0,
-              }}
-            >
+            <h3 className="responsive-title">
               {title}
             </h3>
           </div>

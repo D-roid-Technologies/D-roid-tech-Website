@@ -2,6 +2,9 @@
 
 import type React from "react"
 import { useState } from "react"
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../redux/Store";
+
 import {
   FaUser,
   FaIdCard,
@@ -16,6 +19,8 @@ import {
   FaCommentDots,
 } from "react-icons/fa"
 import "../staff/StaffUserHomePage.css"
+import { UserType } from "../../../../utils/Types";
+
 import { StatCard } from "../micro-ui/stat-card"
 
 type QuickActionCardProps = {
@@ -27,6 +32,7 @@ type QuickActionCardProps = {
 }
 
 const QuickActionCard = ({ title, description, icon: Icon, onClick, variant = "default" }: QuickActionCardProps) => (
+
   <div className={`shp-quick-action ${variant}`} onClick={onClick}>
     <div className="shp-action-icon">
       <Icon size={20} />
@@ -83,6 +89,8 @@ type MemberDashboardProps = {
 
 const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) => {
   const [currentTime] = useState(new Date())
+    const userDetails: UserType = useSelector((state: RootState) => state.user);
+
 
   const memberStats = [
     {
@@ -251,7 +259,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
-            <h1 className="shp-welcome-title">Member Portal</h1>
+            <h1 className="shp-welcome-title">Welcome, {userDetails.firstName}
+
+            </h1>
             {/* Add Recent Member Activity and Member Notifications side by side here as icons here */}
           </div>
           <div className="shp-time-info">
