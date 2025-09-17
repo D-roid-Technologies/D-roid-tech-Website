@@ -27,6 +27,21 @@ const ProductCard: React.FC<Project> = ({
   status = "Completed",
 }) => {
   const navigate = useNavigate();
+    const handleExternalClick = () => {
+    if (!descriptionUrl || descriptionUrl.trim() === "") {
+      console.warn("No URL available, not opening tab");
+      return; 
+    }
+    window.open(descriptionUrl, "_blank");
+  };
+
+  const handleInternalClick = () => {
+    if (!descriptionUrl || descriptionUrl.trim() === "") {
+      console.warn("No route available, not navigating");
+      return; 
+    }
+    navigate(descriptionUrl);
+  };
 
   return (
     <div className="product-card" style={{ marginTop: "35px" }}>
@@ -34,14 +49,14 @@ const ProductCard: React.FC<Project> = ({
         <img src={imageUrl} alt={title} />
         {isBtn === false ? (
           <button
-            onClick={() => window.open(`${descriptionUrl}`, "_blank")}
+            onClick={handleExternalClick}
             className="see-product-btn"
           >
             See Product
           </button>
         ) : (
           <button
-            onClick={() => navigate(descriptionUrl)} // Use navigate here
+            onClick={handleInternalClick} 
             className="see-product-btn"
           >
             Let's dive in...

@@ -361,7 +361,7 @@
   }
 
   .sds__service-item {
-    font-size: 1rem;
+    font-size: 15px;
   }
 
   .sds__image-section {
@@ -371,7 +371,7 @@
 
 @media (max-width: 480px) {
   .sds__title {
-    font-size: 1.75rem;
+    font-size: 1.70rem;
   }
 
   .sds__subtitle {

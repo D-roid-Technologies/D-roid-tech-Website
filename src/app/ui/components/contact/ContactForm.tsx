@@ -5,6 +5,10 @@ import type React from "react"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import emailjs from "emailjs-com"
+import { Listbox, Transition } from '@headlessui/react'
+import { ChevronsUpDown, Check } from "lucide-react";
+
+import { Fragment } from 'react'
 
 interface ContactFormProps {
   serviceId: string
@@ -15,6 +19,13 @@ interface ContactFormProps {
 interface ValidationErrors {
   [key: string]: string
 }
+
+const subjectOptions = [
+  { id: 'general', name: 'General Inquiry' },
+  { id: 'drone', name: 'Drone Services' },
+  { id: 'software', name: 'Software Development' },
+  { id: 'training', name: 'Tech Training' },
+]
 
 const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, publicKey }) => {
   const [formData, setFormData] = useState({
@@ -89,7 +100,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     return Object.keys(newErrors).length === 0
   }
 
-  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
@@ -100,6 +111,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     const error = validateField(name, value)
     if (error && value !== "") {
       setErrors((prev) => ({ ...prev, [name]: error }))
+    }
+  }
+
+  const handleSubjectChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, subject: value }))
+    
+    if (errors.subject) {
+      setErrors((prev) => ({ ...prev, subject: "" }))
+    }
+
+    const error = validateField("subject", value)
+    if (error && value !== "") {
+      setErrors((prev) => ({ ...prev, subject: error }))
     }
   }
 
@@ -131,7 +155,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     // console.log("Contact Form Data:", formData);
     console.log("EmailJS Template Params:", templateParams);
 
-
     try {
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
@@ -160,7 +183,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
       setIsSubmitting(false);
     }
   };
-
 
   const renderErrorMessage = (fieldName: string) => {
     if (errors[fieldName]) {
@@ -197,6 +219,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     backgroundColor: errors[fieldName] ? "#fff5f5" : "#fff",
     outline: errors[fieldName] ? "none" : "initial",
   })
+
+  const selectedSubject = subjectOptions.find(option => option.name === formData.subject) || null
 
   return (
     <div>
@@ -299,19 +323,83 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
               >
                 <div>
                   <label style={getLabelStyle()}>Subject</label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleContactChange}
-                    style={getInputStyle("subject")}
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Drone Services">Drone Services</option>
-                    <option value="Software Development">Software Development</option>
-                    <option value="Tech Training">Tech Training</option>
-                  </select>
+                  <Listbox value={selectedSubject} onChange={(option) => handleSubjectChange(option?.name || '')}>
+                    <div style={{ position: "relative" }}>
+                      <Listbox.Button
+                        style={{
+                          ...getInputStyle("subject"),
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          cursor: "pointer",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span style={{ color: selectedSubject ? "#333" : "#999" }}>
+                          {selectedSubject ? selectedSubject.name : "Select a subject"}
+                        </span>
+                        <ChevronsUpDown
+                          style={{ width: "20px", height: "20px", color: "#666" }}
+                          aria-hidden="true"
+                        />
+                      </Listbox.Button>
+                      <Transition
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <Listbox.Options
+                          style={{
+                            position: "absolute",
+                            top: "100%",
+                            left: 0,
+                            right: 0,
+                            zIndex: 50,
+                            marginTop: "4px",
+                            backgroundColor: "#fff",
+                            border: "1px solid #ccc",
+                            borderRadius: "8px",
+                            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                            maxHeight: "200px",
+                            overflowY: "auto",
+                            width: "100%",
+                          }}
+                        >
+                          {subjectOptions.map((option) => (
+                            <Listbox.Option
+                              key={option.id}
+                              value={option}
+                              style={{ cursor: "pointer" }}
+                            >
+                              {({ active, selected }) => (
+                                <div
+                                  style={{
+                                    padding: "12px",
+                                    backgroundColor: active ? "#f0f8ff" : "#fff",
+                                    color: selected ? "#071D6A" : "#333",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <span style={{ fontWeight: selected ? "600" : "400" }}>
+                                    {option.name}
+                                  </span>
+                                  {selected && (
+                                    <Check
+                                      style={{ width: "16px", height: "16px", color: "#071D6A" }}
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                </div>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </Listbox>
                   {renderErrorMessage("subject")}
                 </div>
 
@@ -366,7 +454,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                 borderRadius: "8px",
               }}
             >
-
               <div>
                 <label style={getLabelStyle()}>Message</label>
                 <textarea

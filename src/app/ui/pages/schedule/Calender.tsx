@@ -50,13 +50,13 @@ const Calendar: React.FC = () => {
 
         return (
             <div style={styles.eventBox}>
-                <h4>Events for {dateKey}</h4>
+                <h4 style={{ color: "#000000" }}>Events for {dateKey}</h4>
                 {events.length === 0 ? (
-                    <p>No events scheduled.</p>
+                    <p style={{ color: "#000000" }}>No events scheduled.</p>
                 ) : (
                     <ul>
                         {events.map((event, i) => (
-                            <li key={i}>{event}</li>
+                            <div style={{ color: "#000000" ,textDecoration: "none"}} key={i} >{event}</div>
                         ))}
                     </ul>
                 )}
@@ -71,8 +71,8 @@ const Calendar: React.FC = () => {
                 return (
                     <div style={styles.singleDayBox}>
                         <h3 style={styles.dayHeader}>{selectedDate.format("dddd, MMMM D, YYYY")}</h3>
-                        <p style={{ color: "#000000" }}>All events for this day are shown below 👇</p>
-                        {renderEventDetails()}
+                        <p style={{ color: "#000000" }}>All events for this day are shown below </p>
+                      <div> {renderEventDetails()}</div> 
                     </div>
                 );
 
@@ -225,6 +225,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         margin: "2rem auto",
         padding: "1.5rem",
         background: "#ffffff",
+        color: "#000000",
         borderRadius: "16px",
         boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
         fontFamily: "system-ui, sans-serif",

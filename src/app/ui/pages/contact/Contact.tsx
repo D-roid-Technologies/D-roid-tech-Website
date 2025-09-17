@@ -342,7 +342,7 @@ const Contact: React.FC = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 style={{ fontSize: "3rem", fontWeight: "900" }}>
+            <h2 style={{  fontWeight: "900" }}>
               D'roid Companion
             </h2>
             <p>

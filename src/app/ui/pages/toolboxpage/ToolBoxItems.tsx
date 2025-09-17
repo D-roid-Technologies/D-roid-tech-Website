@@ -425,7 +425,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p style={{ color: "gray" }}>
+              <p style={{ color: "#071d6a",padding:"1rem" }}>
                 No tools found matching your criteria
               </p>
               <button
@@ -434,8 +434,13 @@ const ToolBoxItems: React.FunctionComponent = () => {
                   setSelectedCategory("All");
                   setShowPremiumOnly(false);
                 }}
-                className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-              >
+ style={{
+    padding: "0.5rem 1.5rem", 
+    backgroundColor: "#071d6a", 
+    color: "white", 
+    borderRadius: "0.5rem", 
+    transition: "background-color 0.2s ease-in-out",
+  }}              >
                 Clear All Filters
               </button>
             </div>

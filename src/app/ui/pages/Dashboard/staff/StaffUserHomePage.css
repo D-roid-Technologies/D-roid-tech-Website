@@ -413,6 +413,8 @@
 
   .shp-current-time {
     font-size: 1.75rem;
+    text-align: center;
+    padding-bottom: 5px;
   }
 
   .shp-quick-action {
@@ -767,7 +769,7 @@
   }
 
   .shp-welcome-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
