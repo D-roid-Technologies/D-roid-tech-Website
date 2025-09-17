@@ -87,7 +87,7 @@ const BlogPostView: React.FC = () => {
                   alt={post.author}
                   className={styles.authorAvatar}
                 />
-                <span className={styles.authorName}>{post.author}</span>
+                <span className={styles.postDetails}>{post.author}</span>
               </div>
               <div className={styles.postDetails}>
                 <span>{post.date}</span>

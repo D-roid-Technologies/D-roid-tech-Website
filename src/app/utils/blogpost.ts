@@ -187,18 +187,18 @@ export const eventsPosts: BlogPost[] = [
   },
   {
     id: 10,
-    title: "Code Verse Tech Conference",
+    title: "Lift Off - Tech Conference",
     excerpt:
       "Highlights and key takeaways from this year's premier developer event.",
-    date: "June 15, 2023",
-    author: "Tech Events Team",
+    date: "Monday, 15th June 2026",
+    author: "D'roid Technologies",
     authorAvatar: "https://randomuser.me/api/portraits/lego/5.jpg",
     category: "Events",
     readTime: "6 min read",
     image:
-      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
+      "https://media.istockphoto.com/id/1271984096/vector/help-to-succeed.jpg?s=612x612&w=0&k=20&c=X4MT1Uk3i70u-XOJE1phLMOcAkhjVAFvMA-bKOMLiDQ=",
     featured: true,
-    readMoreLink: generateBlogLink("events", "Code Verse Tech Conference"),
+    readMoreLink: generateBlogLink("events", "Lift Off - Tech Conference"),
     content: [
       "The Code Verse Tech Conference brought together developers, engineers, and innovators from across the globe to explore the latest advancements in technology.",
       "Keynote sessions covered AI in modern development, emerging web standards, and cloud-native architecture trends.",
@@ -206,66 +206,70 @@ export const eventsPosts: BlogPost[] = [
       "The event ended with an inspiring closing speech encouraging developers to embrace creativity and continuous learning.",
     ],
   },
-  {
-    id: 11,
-    title: "Front-End Engineering Training",
-    excerpt:
-      "Don't miss these hands-on learning opportunities happening next month.",
-    date: "May 30, 2023",
-    author: "Community Team",
-    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
-    category: "Events",
-    readTime: "5 min read",
-    image:
-      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
-    readMoreLink: generateBlogLink("events", "Front-End Engineering Training"),
-    content: [
-      "This intensive training program focuses on the latest front-end development technologies and best practices.",
-      "Participants will work on real-world projects using React, TypeScript, and modern CSS techniques.",
-      "Our expert trainers will provide mentorship, feedback, and career guidance to help you become job-ready.",
-      "By the end of the training, you'll have built and deployed your own responsive, production-ready web application.",
-    ],
-  },
+  // {
+  //   id: 11,
+  //   title: "Front-End Engineering Training",
+  //   excerpt:
+  //     "Don't miss these hands-on learning opportunities happening next month.",
+  //   date: "May 30, 2023",
+  //   author: "Community Team",
+  //   authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+  //   category: "Events",
+  //   readTime: "5 min read",
+  //   image:
+  //     "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
+  //   readMoreLink: generateBlogLink("events", "Front-End Engineering Training"),
+  //   content: [
+  //     "This intensive training program focuses on the latest front-end development technologies and best practices.",
+  //     "Participants will work on real-world projects using React, TypeScript, and modern CSS techniques.",
+  //     "Our expert trainers will provide mentorship, feedback, and career guidance to help you become job-ready.",
+  //     "By the end of the training, you'll have built and deployed your own responsive, production-ready web application.",
+  //   ],
+  // },
   {
     id: 12,
     title: "Clash of Kings - Chess Tournament",
     excerpt:
       "An exciting chess tournament featuring some of the region's top players.",
-    date: "May 30, 2023",
-    author: "Community Team",
+    date: "Nov 30, 2025",
+    author: "D'roid Technologies",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
     readTime: "5 min read",
     image:
-      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
+      "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000044838/143e6d84725039834d46216f69c030572203bf34bd1865c7700a17659f349211",
     readMoreLink: generateBlogLink("events", "Clash of Kings Chess Tournament"),
     content: [
-      "The Clash of Kings Chess Tournament brought together some of the most talented chess players in the region.",
-      "Matches were intense, with each move carefully calculated to outwit the opponent.",
-      "The tournament encouraged strategic thinking, patience, and focus among participants of all ages.",
-      "Winners received trophies, cash prizes, and recognition within the competitive chess community.",
-    ],
+      "LiftOff - Tech Conference, organized by D'roid Technologies, is a premier annual event dedicated to empowering individuals and helping them stand on their own two feet through the power of technology. The conference brings together innovators, professionals, entrepreneurs, and learners from across industries, creating an atmosphere of inspiration, collaboration, and transformation.",
+
+      "Every session is designed as a launchpad — from keynote speeches by industry leaders to hands-on workshops and panel discussions — participants are guided to explore cutting-edge innovations, practical tools, and success strategies that can fuel their personal and professional growth. Attendees not only gain valuable insights but also learn actionable skills to apply in real-world scenarios.",
+
+      "Beyond the talks and workshops, LiftOff emphasizes values of independence, resilience, and creativity. It offers participants an opportunity to network, collaborate, and challenge themselves while being supported by a community of like-minded innovators and changemakers.",
+
+      "Individuals register with a participation fee, and the most outstanding participants — including entrepreneurs with innovative solutions, developers with impactful projects, and learners who demonstrate exceptional growth — receive awards, monetary prizes, and recognition on stage. Hosted twice each year, LiftOff stands as a beacon of empowerment, showcasing how technology can inspire people of all ages to rise, stand strong, and create their own path to success."
+    ]
+
   },
-  {
-    id: 13,
-    title: "Rapid Training Conference",
-    excerpt:
-      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
-    date: "May 30, 2023",
-    author: "Community Team",
-    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
-    category: "Events",
-    readTime: "5 min read",
-    image:
-      "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
-    readMoreLink: generateBlogLink("events", "Rapid Training Conference"),
-    content: [
-      "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
-      "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
-      "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
-      "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
-    ],
-  },
+  // {
+  //   id: 13,
+  //   title: "Rapid Training Conference",
+  //   excerpt:
+  //     "A fast-paced event packed with learning opportunities for tech enthusiasts.",
+  //   date: "May 30, 2023",
+  //   author: "Community Team",
+  //   authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+  //   category: "Events",
+  //   readTime: "5 min read",
+  //   image:
+  //     "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
+  //   readMoreLink: generateBlogLink("events", "Rapid Training Conference"),
+  //   content: [
+  //     "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
+  //     "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
+  //     "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
+  //     "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
+  //   ],
+  // },
 ];
 
 // All posts combined

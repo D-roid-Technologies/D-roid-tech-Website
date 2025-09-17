@@ -44,26 +44,33 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
     setVisiblePosts((prev) => prev + 3);
   };
 
+  function checkEventStatus(sampleDateStr: string): string {
+    // Parse the sample date (e.g., "Monday, 15th June 2026")
+    const sampleDate = new Date(sampleDateStr.replace(/(\d+)(st|nd|rd|th)/, "$1"));
+
+    // Get today's date (without time)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Get difference in days
+    const diffInMs = sampleDate.getTime() - today.getTime();
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    if (diffInDays > 1) {
+      return "Event Incoming";
+    } else if (diffInDays === 1) {
+      return "Event Tomorrow";
+    } else if (diffInDays < 0) {
+      return "Event Passed";
+    } else {
+      return "Event Today"; // extra case: same day
+    }
+  }
+
   const showLoadMore = visiblePosts < filteredPosts.length;
 
   return (
     <section className="blog-posts-section">
-      {/* <div className="category-filters">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`category-filter ${
-              activeCategory === category ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveCategory(category);
-              setVisiblePosts(3);
-            }}
-          >
-            {category}
-          </button>
-        ))}
-      </div> */}
 
       <div className="blog-posts-grid">
         {postsToShow.map((post) => (
@@ -75,13 +82,14 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
             <div className="blog-card-content">
               <div className="blog-card-meta">
                 <span className="blog-card-date">{post.date}</span>
+                <span className="blog-card-date">{checkEventStatus(post.date)}</span>
               </div>
               <h3 className="blog-card-title">{post.title}</h3>
               <p className="blog-card-excerpt">{post.excerpt}</p>
               <div className="blog-card-footer">
                 <div className="blog-card-author">
                   <img src={post.authorAvatar} alt={post.author} />
-                  <span>{post.author}</span>
+                  <span className="blog-card-date">{post.author}</span>
                 </div>
                 <Link to={post.readMoreLink} className="read-more-link">
                   Read More →
