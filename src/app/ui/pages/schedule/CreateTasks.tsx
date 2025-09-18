@@ -1,20 +1,19 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { ArrowLeft } from "lucide-react"
-import { Listbox } from "@headlessui/react"
-import { ChevronsUpDown, Check } from "lucide-react"
-import styles from "./CreateTasks.module.css"
+import React, { useState } from "react";
+import { ArrowLeft } from "lucide-react";
+import { Listbox } from "@headlessui/react";
+import { ChevronsUpDown, Check } from "lucide-react";
+import styles from "./CreateTasks.module.css";
 import { authService } from "../../../redux/configuration/auth.service";
 import { TaskMain, UserRef } from "../../../redux/slices/scheduleTask";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 
-
 interface CreateTaskFormProps {
-  onBack: () => void
-  initialData?: TaskMain
-  mode?: "add" | "edit"
+  onBack: () => void;
+  initialData?: TaskMain;
+  mode?: "add" | "edit";
 }
 
 const statusOptions = [
@@ -25,7 +24,7 @@ const statusOptions = [
   { value: "archived", label: "Archived" },
   { value: "on_hold", label: "On Hold" },
   { value: "reopened", label: "Reopened" },
-]
+];
 
 const priorityOptions = [
   { value: "low", label: "Low" },
@@ -33,17 +32,21 @@ const priorityOptions = [
   { value: "high", label: "High" },
   { value: "urgent", label: "Urgent" },
   { value: "critical", label: "Critical" },
-]
+];
 
 const recurrenceOptions = [
   { value: "custom", label: "Custom" },
   { value: "daily", label: "Daily" },
   { value: "weekly", label: "Weekly" },
   { value: "monthly", label: "Monthly" },
-]
+];
 
-const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode = "add" }) => {
-  const user = useSelector((state: RootState) => state.user)
+const CreateTasks: React.FC<CreateTaskFormProps> = ({
+  onBack,
+  initialData,
+  mode = "add",
+}) => {
+  const user = useSelector((state: RootState) => state.user);
   const [formData, setFormData] = useState<TaskMain>({
     id: crypto.randomUUID(),
     title: "",
@@ -81,14 +84,18 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
     feedback: "",
     linkedResources: [],
     auditTrail: [],
-    createdBy: { id: user.staffId, name: user.firstName + " " + user.lastName, email: user.email },
+    createdBy: {
+      id: user.staffId,
+      name: user.firstName + " " + user.lastName,
+      email: user.email,
+    },
     dateCreated: new Date().toLocaleString(),
     dateModified: "",
     dateDeleted: "",
-  })
+  });
 
-  const [errors, setErrors] = useState<Partial<TaskMain>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<Partial<TaskMain>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   React.useEffect(() => {
     if (initialData && mode === "edit") {
@@ -96,111 +103,130 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
         ...initialData,
         tags: initialData.tags?.length ? initialData.tags : [""],
         checklist: initialData.checklist?.length ? initialData.checklist : [],
-      })
+      });
     }
-  }, [initialData, mode])
+  }, [initialData, mode]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value, type, checked } = e.target as HTMLInputElement;
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
-    }))
+    }));
 
     if (errors[name as keyof TaskMain]) {
       setErrors((prev) => ({
         ...prev,
         [name]: "",
-      }))
+      }));
     }
-  }
+  };
 
-  const handleNumberInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof TaskMain) => {
-    const { value } = e.target
+  const handleNumberInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof TaskMain
+  ) => {
+    const { value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [field]: value === "" ? "" : Number.parseFloat(value),
-    }))
+    }));
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
         [field]: "",
-      }))
+      }));
     }
-  }
+  };
 
   const handleArrayChange = (
     field: keyof Pick<TaskMain, "tags" | "checklist" | "linkedResources">,
     index: number,
-    value: any,
+    value: any
   ) => {
     setFormData((prev) => {
-      const updated = [...(prev[field] || [])]
-      updated[index] = value
-      return { ...prev, [field]: updated }
-    })
-  }
+      const updated = [...(prev[field] || [])];
+      updated[index] = value;
+      return { ...prev, [field]: updated };
+    });
+  };
 
-  const addArrayItem = (field: keyof Pick<TaskMain, "tags" | "checklist" | "linkedResources">) => {
+  const addArrayItem = (
+    field: keyof Pick<TaskMain, "tags" | "checklist" | "linkedResources">
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [field]:
         field === "tags"
           ? [...(prev.tags || []), ""]
           : field === "checklist"
-            ? [...(prev.checklist || []), { id: crypto.randomUUID(), title: "", checked: false }]
-            : [...(prev.linkedResources || []), { title: "", url: "" }],
-    }))
-  }
+          ? [
+              ...(prev.checklist || []),
+              { id: crypto.randomUUID(), title: "", checked: false },
+            ]
+          : [...(prev.linkedResources || []), { title: "", url: "" }],
+    }));
+  };
 
-  const removeArrayItem = (field: keyof Pick<TaskMain, "tags" | "checklist" | "linkedResources">, index: number) => {
+  const removeArrayItem = (
+    field: keyof Pick<TaskMain, "tags" | "checklist" | "linkedResources">,
+    index: number
+  ) => {
     setFormData((prev) => {
-      const updated = [...((prev[field] as any[]) || [])].filter((_, i) => i !== index)
+      const updated = [...((prev[field] as any[]) || [])].filter(
+        (_, i) => i !== index
+      );
       return {
         ...prev,
         [field]: updated,
-      }
-    })
-  }
+      };
+    });
+  };
 
   const handleListboxChange = (field: keyof TaskMain, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
-    }))
+    }));
 
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
         [field]: "",
-      }))
+      }));
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
       const processedData: TaskMain = {
         ...formData,
         tags: (formData.tags || []).filter((item) => item.trim() !== ""),
-        checklist: (formData.checklist || []).filter((item) => item.title.trim() !== ""),
-        linkedResources: (formData.linkedResources || []).filter(
-          (res) => res.title.trim() !== "" || res.url.trim() !== "",
+        checklist: (formData.checklist || []).filter(
+          (item) => item.title.trim() !== ""
         ),
-      }
+        linkedResources: (formData.linkedResources || []).filter(
+          (res) => res.title.trim() !== "" || res.url.trim() !== ""
+        ),
+      };
 
       await authService.handleCreateTask(processedData).then(() => {
-        handleReset()
-      })
+        handleReset();
+      });
     } catch (error) {
-      console.error("Error submitting form:", error)
+      console.error("Error submitting form:", error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleReset = () => {
     if (mode === "edit" && initialData) {
@@ -208,7 +234,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
         ...initialData,
         tags: initialData.tags?.length ? initialData.tags : [""],
         checklist: initialData.checklist?.length ? initialData.checklist : [],
-      })
+      });
     } else {
       setFormData({
         id: crypto.randomUUID(),
@@ -255,23 +281,25 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
         dateCreated: new Date().toLocaleString(),
         dateModified: "",
         dateDeleted: "",
-      })
+      });
     }
-    setErrors({})
-  }
+    setErrors({});
+  };
 
-  const isEditMode = mode === "edit"
+  const isEditMode = mode === "edit";
 
   return (
     <div className={styles.addStaffFormContainer}>
-      <button className={styles.backButton} onClick={onBack}>
+      {/* <button className={styles.backButton} onClick={onBack}>
         <ArrowLeft />
         Back to Task Management
-      </button>
+      </button> */}
 
       <div className={styles.formWrapper}>
         <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>{isEditMode ? "Edit Task" : "Create New Task"}</h2>
+          <h2 className={styles.formTitle}>
+            {isEditMode ? "Edit Task" : "Create New Task"}
+          </h2>
           <p className={styles.formSubtitle}>
             {isEditMode
               ? "Update the details below to modify the task information"
@@ -304,13 +332,21 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
 
               <div className="lf-form-group">
                 <label className="lf-label">Status</label>
-                <Listbox value={formData.status} onChange={(value) => handleListboxChange("status", value)}>
+                <Listbox
+                  value={formData.status}
+                  onChange={(value) => handleListboxChange("status", value)}
+                >
                   <div className="lf-dropdown">
                     <Listbox.Button className="lf-dropdown-btn">
                       <span>
-                        {statusOptions.find((option) => option.value === formData.status)?.label || "Select status"}
+                        {statusOptions.find(
+                          (option) => option.value === formData.status
+                        )?.label || "Select status"}
                       </span>
-                      <ChevronsUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <ChevronsUpDown
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
                     </Listbox.Button>
                     <Listbox.Options className="lf-dropdown-options">
                       {statusOptions.map((option) => (
@@ -318,13 +354,17 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""}`
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
+                              selected ? "lf-selected" : ""
+                            }`
                           }
                         >
                           {({ selected }) => (
                             <div className="flex items-center justify-between">
                               <span>{option.label}</span>
-                              {selected && <Check className="h-5 w-5" aria-hidden="true" />}
+                              {selected && (
+                                <Check className="h-5 w-5" aria-hidden="true" />
+                              )}
                             </div>
                           )}
                         </Listbox.Option>
@@ -336,14 +376,21 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
 
               <div className="lf-form-group">
                 <label className="lf-label">Priority</label>
-                <Listbox value={formData.priority} onChange={(value) => handleListboxChange("priority", value)}>
+                <Listbox
+                  value={formData.priority}
+                  onChange={(value) => handleListboxChange("priority", value)}
+                >
                   <div className="lf-dropdown">
                     <Listbox.Button className="lf-dropdown-btn">
                       <span>
-                        {priorityOptions.find((option) => option.value === formData.priority)?.label ||
-                          "Select priority"}
+                        {priorityOptions.find(
+                          (option) => option.value === formData.priority
+                        )?.label || "Select priority"}
                       </span>
-                      <ChevronsUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <ChevronsUpDown
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
                     </Listbox.Button>
                     <Listbox.Options className="lf-dropdown-options">
                       {priorityOptions.map((option) => (
@@ -351,13 +398,17 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""}`
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
+                              selected ? "lf-selected" : ""
+                            }`
                           }
                         >
                           {({ selected }) => (
                             <div className="flex items-center justify-between">
                               <span>{option.label}</span>
-                              {selected && <Check className="h-5 w-5" aria-hidden="true" />}
+                              {selected && (
+                                <Check className="h-5 w-5" aria-hidden="true" />
+                              )}
                             </div>
                           )}
                         </Listbox.Option>
@@ -466,7 +517,12 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
 
             <div className={styles.flexColumn}>
               <label className={styles.checkboxLabel}>
-                <input type="checkbox" name="recurring" checked={formData.recurring} onChange={handleInputChange} />
+                <input
+                  type="checkbox"
+                  name="recurring"
+                  checked={formData.recurring}
+                  onChange={handleInputChange}
+                />
                 Recurring
               </label>
 
@@ -474,15 +530,22 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
                 <label className="lf-label">Recurrence Pattern</label>
                 <Listbox
                   value={formData.recurrencePattern}
-                  onChange={(value) => handleListboxChange("recurrencePattern", value)}
+                  onChange={(value) =>
+                    handleListboxChange("recurrencePattern", value)
+                  }
                 >
                   <div className="lf-dropdown">
                     <Listbox.Button className="lf-dropdown-btn">
                       <span>
-                        {recurrenceOptions.find((option) => option.value === formData.recurrencePattern)?.label ||
-                          "Select pattern"}
+                        {recurrenceOptions.find(
+                          (option) =>
+                            option.value === formData.recurrencePattern
+                        )?.label || "Select pattern"}
                       </span>
-                      <ChevronsUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <ChevronsUpDown
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
                     </Listbox.Button>
                     <Listbox.Options className="lf-dropdown-options">
                       {recurrenceOptions.map((option) => (
@@ -490,13 +553,17 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""}`
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
+                              selected ? "lf-selected" : ""
+                            }`
                           }
                         >
                           {({ selected }) => (
                             <div className="flex items-center justify-between">
                               <span>{option.label}</span>
-                              {selected && <Check className="h-5 w-5" aria-hidden="true" />}
+                              {selected && (
+                                <Check className="h-5 w-5" aria-hidden="true" />
+                              )}
                             </div>
                           )}
                         </Listbox.Option>
@@ -526,12 +593,22 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
 
             <div className={styles.checkboxGroup}>
               <label className={styles.checkboxLabel}>
-                <input type="checkbox" name="isPrivate" checked={formData.isPrivate} onChange={handleInputChange} />
+                <input
+                  type="checkbox"
+                  name="isPrivate"
+                  checked={formData.isPrivate}
+                  onChange={handleInputChange}
+                />
                 Private Task
               </label>
 
               <label className={styles.checkboxLabel}>
-                <input type="checkbox" name="isBlocked" checked={formData.isBlocked} onChange={handleInputChange} />
+                <input
+                  type="checkbox"
+                  name="isBlocked"
+                  checked={formData.isBlocked}
+                  onChange={handleInputChange}
+                />
                 Blocked
               </label>
             </div>
@@ -551,22 +628,24 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
           {/* Feedback */}
           <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Feedback & Scoring</h3>
-            <input
-              type="number"
-              name="score"
-              value={formData.score}
-              onChange={(e) => handleNumberInputChange(e, "score")}
-              placeholder="Score"
-              className={styles.input}
-            />
-            <textarea
-              name="feedback"
-              value={formData.feedback}
-              onChange={handleInputChange}
-              placeholder="Feedback"
-              rows={3}
-              className={styles.textarea}
-            />
+            <div  className={styles.feedbacksection}>
+              <input
+                type="number"
+                name="score"
+                value={formData.score}
+                onChange={(e) => handleNumberInputChange(e, "score")}
+                placeholder="Score"
+                className={styles.input}
+              />
+              <textarea
+                name="feedback"
+                value={formData.feedback}
+                onChange={handleInputChange}
+                placeholder="Feedback"
+                rows={3}
+                className={styles.textarea}
+              />
+            </div>
           </div>
 
           {/* Linked Resources */}
@@ -577,20 +656,34 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
                 <input
                   type="text"
                   value={res.title}
-                  onChange={(e) => handleArrayChange("linkedResources", i, { ...res, title: e.target.value })}
+                  onChange={(e) =>
+                    handleArrayChange("linkedResources", i, {
+                      ...res,
+                      title: e.target.value,
+                    })
+                  }
                   placeholder="Title"
                   className={styles.input}
                 />
                 <input
                   type="url"
                   value={res.url}
-                  onChange={(e) => handleArrayChange("linkedResources", i, { ...res, url: e.target.value })}
+                  onChange={(e) =>
+                    handleArrayChange("linkedResources", i, {
+                      ...res,
+                      url: e.target.value,
+                    })
+                  }
                   placeholder="URL"
                   className={styles.input}
                 />
               </div>
             ))}
-            <button type="button" onClick={() => addArrayItem("linkedResources")} className={styles.addButton}>
+            <button
+              type="button"
+              onClick={() => addArrayItem("linkedResources")}
+              className={styles.addButton}
+            >
               Add Resource
             </button>
           </div>
@@ -599,7 +692,8 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
           <div className={styles.systemMetadata}>
             <h3 className={styles.sectionTitle}>System Metadata</h3>
             <p className={styles.metadataText}>
-              <b>Created By:</b> {formData.createdBy.name} ({formData.createdBy.email})
+              <b>Created By:</b> {formData.createdBy.name} (
+              {formData.createdBy.email})
             </p>
             <p className={styles.metadataText}>
               <b>Date Created:</b> {formData.dateCreated}
@@ -618,17 +712,29 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({ onBack, initialData, mode 
 
           {/* Submit */}
           <div className={styles.buttonGroup}>
-            <button type="button" onClick={handleReset} className={`${styles.button} ${styles.secondaryButton}`}>
+            <button
+              type="button"
+              onClick={handleReset}
+              className={`${styles.button} ${styles.secondaryButton}`}
+            >
               Reset
             </button>
-            <button type="submit" className={`${styles.button} ${styles.primaryButton}`} disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : isEditMode ? "Update Task" : "Create Task"}
+            <button
+              type="submit"
+              className={`${styles.button} ${styles.primaryButton}`}
+              disabled={isSubmitting}
+            >
+              {isSubmitting
+                ? "Submitting..."
+                : isEditMode
+                ? "Update Task"
+                : "Create Task"}
             </button>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateTasks
+export default CreateTasks;
