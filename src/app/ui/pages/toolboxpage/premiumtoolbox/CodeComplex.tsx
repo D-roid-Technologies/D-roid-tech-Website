@@ -1,6 +1,7 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import styles from "./code-complexity-analyzer.module.css";
+import { ClipboardList, Flame, Lightbulb, BookOpen  , Wrench, Brain, Repeat} from "lucide-react"
 
 interface CodeComplexProps {
   onClose: () => void;
@@ -248,7 +249,7 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
       <div className={styles.mainContainer}>
         <div className={styles.codeInputSection}>
           <div className={styles.sectionHeader}>
-            <h3>📝 Code Input</h3>
+            <h3> Code Input</h3>
           </div>
           <textarea
             ref={textareaRef}
@@ -261,7 +262,7 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
 
         <div className={styles.metricsOverview}>
           <div className={styles.sectionHeader}>
-            <h3>📊 Complexity Overview</h3>
+            <h3>Complexity Overview</h3>
           </div>
 
           {isAnalyzing ? (
@@ -383,7 +384,7 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
           ) : (
             <div className={styles.loadingState}>
               <p style={{ color: "#334155" }}>
-                📝 Paste your code in the input area to start analyzing
+                 Paste your code in the input area to start analyzing
               </p>
               <p
                 style={{
@@ -403,39 +404,46 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
       {metrics && (
         <div className={styles.tabsContainer}>
           <div className={styles.tabsHeader}>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "overview" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("overview")}
-            >
-              📋 Overview
-            </button>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "hotspots" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("hotspots")}
-            >
-              🔥 Hotspots
-            </button>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "suggestions" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("suggestions")}
-            >
-              💡 Suggestions
-            </button>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "learn" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("learn")}
-            >
-              📚 Learn More
-            </button>
-          </div>
+  <button
+    className={`${styles.tabButton} ${
+      activeTab === "overview" ? styles.active : ""
+    }`}
+    onClick={() => setActiveTab("overview")}
+  >
+    <ClipboardList className={styles.tabIcon} />
+    Overview
+  </button>
+
+  <button
+    className={`${styles.tabButton} ${
+      activeTab === "hotspots" ? styles.active : ""
+    }`}
+    onClick={() => setActiveTab("hotspots")}
+  >
+    <Flame className={styles.tabIcon} />
+    Hotspots
+  </button>
+
+  <button
+    className={`${styles.tabButton} ${
+      activeTab === "suggestions" ? styles.active : ""
+    }`}
+    onClick={() => setActiveTab("suggestions")}
+  >
+    <Lightbulb className={styles.tabIcon} />
+    Suggestions
+  </button>
+
+  <button
+    className={`${styles.tabButton} ${
+      activeTab === "learn" ? styles.active : ""
+    }`}
+    onClick={() => setActiveTab("learn")}
+  >
+    <BookOpen className={styles.tabIcon} />
+    Learn More
+  </button>
+</div>
 
           <div className={styles.tabContent}>
             {activeTab === "overview" && (
@@ -548,8 +556,9 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
 
                 <div className={styles.explanationBox}>
                   <div className={styles.explanationTitle}>
-                    🔄 Cyclomatic Complexity
-                  </div>
+<h3 className={styles.sectionTitle}>
+  <Repeat className={styles.sectionIcon} /> Cyclomatic Complexity
+</h3>                  </div>
                   <div className={styles.explanationText}>
                     This measures how many different paths your code can take.
                     Think of it like a maze - the more turns and decisions, the
@@ -561,7 +570,9 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
 
                 <div className={styles.explanationBox}>
                   <div className={styles.explanationTitle}>
-                    🧠 Cognitive Complexity
+<h3 className={styles.sectionTitle}>
+  <Brain className={styles.sectionIcon} /> Cognitive Complexity
+</h3>
                   </div>
                   <div className={styles.explanationText}>
                     This measures how hard your code is to understand mentally.
@@ -573,8 +584,9 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
 
                 <div className={styles.explanationBox}>
                   <div className={styles.explanationTitle}>
-                    🔧 Maintainability Index
-                  </div>
+<h3 className={styles.sectionTitle}>
+  <Wrench className={styles.sectionIcon} /> Maintainability Index
+</h3>                  </div>
                   <div className={styles.explanationText}>
                     This is like a health score for your code. It considers
                     complexity, size, and structure. Scores above 80 are
@@ -585,8 +597,9 @@ const CodeComplex: React.FC<CodeComplexProps> = ({ onClose }) => {
 
                 <div className={styles.explanationBox}>
                   <div className={styles.explanationTitle}>
-                    💡 Why This Matters
-                  </div>
+<h3 className={styles.sectionTitle}>
+  <Lightbulb className={styles.sectionIcon} /> Why This Matters
+</h3>                  </div>
                   <div className={styles.explanationText}>
                     Complex code is harder to debug, test, and modify. By
                     keeping complexity low, you make your code more reliable,
