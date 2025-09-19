@@ -246,30 +246,85 @@ export const eventsPosts: BlogPost[] = [
 
       "Beyond the talks and workshops, LiftOff emphasizes values of independence, resilience, and creativity. It offers participants an opportunity to network, collaborate, and challenge themselves while being supported by a community of like-minded innovators and changemakers.",
 
-      "Individuals register with a participation fee, and the most outstanding participants — including entrepreneurs with innovative solutions, developers with impactful projects, and learners who demonstrate exceptional growth — receive awards, monetary prizes, and recognition on stage. Hosted twice each year, LiftOff stands as a beacon of empowerment, showcasing how technology can inspire people of all ages to rise, stand strong, and create their own path to success."
-    ]
-
+      "Individuals register with a participation fee, and the most outstanding participants — including entrepreneurs with innovative solutions, developers with impactful projects, and learners who demonstrate exceptional growth — receive awards, monetary prizes, and recognition on stage. Hosted twice each year, LiftOff stands as a beacon of empowerment, showcasing how technology can inspire people of all ages to rise, stand strong, and create their own path to success.",
+    ],
   },
-  // {
-  //   id: 13,
-  //   title: "Rapid Training Conference",
-  //   excerpt:
-  //     "A fast-paced event packed with learning opportunities for tech enthusiasts.",
-  //   date: "May 30, 2023",
-  //   author: "Community Team",
-  //   authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
-  //   category: "Events",
-  //   readTime: "5 min read",
-  //   image:
-  //     "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
-  //   readMoreLink: generateBlogLink("events", "Rapid Training Conference"),
-  //   content: [
-  //     "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
-  //     "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
-  //     "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
-  //     "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
-  //   ],
-  // },
+  {
+    id: 13,
+    title: "CHESS ONE - Chess Tournament",
+    excerpt:
+      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
+    date: "May 30, 2023",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.chessOne,
+    readMoreLink: generateBlogLink("events", "Rapid Training Conference"),
+    content: [
+      "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
+      "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
+      "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
+      "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
+    ],
+  },
+  {
+    id: 14,
+    title: "CHESS two - Chess Tournament",
+    excerpt:
+      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
+    date: "May 30, 2023",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.chessTwo,
+    readMoreLink: generateBlogLink("events", "CHESS two - Chess Tournament"),
+    content: [
+      "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
+      "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
+      "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
+      "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
+    ],
+  },
+  {
+    id: 15,
+    title: "National ICT Competition 2020",
+    excerpt:
+      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
+    date: "May 30, 2023",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.nationalICT,
+    readMoreLink: generateBlogLink("events", "National ICT Competition 2020"),
+    content: [
+      "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
+      "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
+      "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
+      "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
+    ],
+  },
+  {
+    id: 16,
+    title: "National ICT Competition 2022",
+    excerpt:
+      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
+    date: "May 30, 2023",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.nationalICT2,
+    readMoreLink: generateBlogLink("events", "National ICT Competition 2022"),
+    content: [
+      "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
+      "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
+      "Industry experts will share strategies for staying productive, learning faster, and adapting to changing tech trends.",
+      "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
+    ],
+  },
 ];
 
 // All posts combined

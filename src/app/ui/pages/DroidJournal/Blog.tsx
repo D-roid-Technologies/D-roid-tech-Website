@@ -51,7 +51,7 @@ const Blog: React.FC = () => {
     {
       id: "2",
       title: "Tech News",
-      status: "Ongoing",
+      status: "",
       // descriptionUrl: "https://kcity-c8580.web.app/",
       descriptionUrl: `${RoutePaths.UnderDevelopment}`,
       summary:
@@ -68,7 +68,7 @@ const Blog: React.FC = () => {
     {
       id: "3",
       title: "Business News",
-      status: "Completed",
+      status: "",
       descriptionUrl: `${RoutePaths.UnderDevelopment}`,
       summary:
         "The revamped and enhanced Ecobank Mobile app makes it super easy to bank on the go 24/7. Manage your everyday banking needs anywhere anytime directly from your mobile device. Manage your account, send money, make payments and get help from the Ecobank mobile app in all 33 African countries where Ecobank is present.",
@@ -79,7 +79,7 @@ const Blog: React.FC = () => {
       imageUrl: Assets.images.business,
       category: "News",
       price: "",
-      author: "Eco Bank",
+      author: "D'roid",
     },
   ];
 
