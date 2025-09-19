@@ -18,6 +18,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import "../codecomplexity/CodeAnalyzerFeatures.css";
+import { Wrench, Brain, Repeat } from "lucide-react";
 
 const CodeAnalyzerFeatures: React.FC = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -292,7 +293,9 @@ const CodeAnalyzerFeatures: React.FC = () => {
         <h2 className="caf-section-title">Understanding the Metrics</h2>
         <div className="caf-metrics-grid">
           <div className="caf-metric-explanation">
-            <h3>🔄 Cyclomatic Complexity</h3>
+            <h3 className="sectionTitle">
+  <Wrench className="sectionIcon" /> Maintainability Index
+</h3>
             <div className="caf-metric-ranges">
               <div className="caf-range caf-good">1-5: Excellent</div>
               <div className="caf-range caf-moderate">6-10: Moderate</div>
@@ -301,8 +304,9 @@ const CodeAnalyzerFeatures: React.FC = () => {
             </div>
           </div>
           <div className="caf-metric-explanation">
-            <h3>🧠 Cognitive Complexity</h3>
-            <div className="caf-metric-ranges">
+<h3 className="sectionTitle">
+  <Brain className="sectionIcon" /> Cognitive Complexity
+</h3>            <div className="caf-metric-ranges">
               <div className="caf-range caf-good">1-7: Simple</div>
               <div className="caf-range caf-moderate">8-15: Moderate</div>
               <div className="caf-range caf-high">16-25: Complex</div>
@@ -310,7 +314,9 @@ const CodeAnalyzerFeatures: React.FC = () => {
             </div>
           </div>
           <div className="caf-metric-explanation">
-            <h3>🔧 Maintainability Index</h3>
+            <h3 className="sectionTitle">
+  <Repeat className="sectionIcon" /> Cyclomatic Complexity
+</h3>
             <div className="caf-metric-ranges">
               <div className="caf-range caf-good">80-100: Excellent</div>
               <div className="caf-range caf-moderate">60-79: Good</div>
