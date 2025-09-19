@@ -88,6 +88,7 @@ import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 import MemberDashboard from "./member/MemberDashboard";
 import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
+import TakeTestFolder from "./takeTest/TakeTestFolder";
 
 // const tools = [
 //   {
@@ -855,7 +856,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       default:
         return (
           <Section title="Dashboard" isActive={selectedMenu === "Dashboard"}>
-            <p style={{ color: "#000000" }}>Welcome to your dashboard.</p>
+            <TakeTestFolder />
           </Section>
         );
     }
