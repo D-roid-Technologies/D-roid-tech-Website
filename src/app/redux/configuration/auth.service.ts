@@ -443,7 +443,10 @@ export class AuthService {
                     },
                     notifications: [],
                     paySlip: [],
-                    onboarding: [],
+                    onboard: {
+                        onboarding: [],
+                        memberStatus: []
+                    },
                     trainings: [],
                     progressions: [],
                     staff: {
@@ -581,7 +584,8 @@ export class AuthService {
                 const updatedStaffLeave = updatedData?.user?.staff?.staffLeave || [];
                 const updatedKnowledgeCity = updatedData?.user?.knowledgeCity || {};
                 const updatedNotifications = updatedData?.user?.notifications || [];
-                const updatedOnboarding = updatedData?.user?.onboarding || [];
+                const updatedOnboarding = updatedData?.user?.onboard.onboarding || [];
+                const updatedMemberStatus = updatedData?.user?.onboard.memberStatus || [];
                 const updatedTrainings = updatedData?.user?.trainings || [];
                 const updatedPayslips = updatedData?.user?.payslips?.paySlip || [];
                 const updatedProgressions = updatedData?.user?.progressions || [];
