@@ -8,7 +8,7 @@ import { setNotifications } from "../slices/notificationSlice";
 import { setOnboarding } from "../slices/onboarding";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
 import { setAllMilestones } from "../slices/ProgressionSlice";
-import { addTask, deleteThisTask } from "../slices/scheduleTask";
+import { addTask, deleteAllTasks, deleteThisTask, TaskMain } from "../slices/scheduleTask";
 import { setSignInAndOutData, setStaffDetails, setStaffDocuments, setStaffLeave, StaffDetails } from "../slices/SignInAndOutSlice";
 import { setTrainings } from "../slices/TrainingsSlice";
 import { setCalculate, setSchedules, setToolBox } from "../slices/TSCSlice";
@@ -584,8 +584,8 @@ export class AuthService {
                 const updatedStaffLeave = updatedData?.user?.staff?.staffLeave || [];
                 const updatedKnowledgeCity = updatedData?.user?.knowledgeCity || {};
                 const updatedNotifications = updatedData?.user?.notifications || [];
-                const updatedOnboarding = updatedData?.user?.onboard.onboarding || [];
-                const updatedMemberStatus = updatedData?.user?.onboard.memberStatus || [];
+                const updatedOnboarding = updatedData?.user?.onboard?.onboarding || [];
+                const updatedMemberStatus = updatedData?.user?.onboard?.memberStatus || [];
                 const updatedTrainings = updatedData?.user?.trainings || [];
                 const updatedPayslips = updatedData?.user?.payslips?.paySlip || [];
                 const updatedProgressions = updatedData?.user?.progressions || [];
@@ -888,59 +888,21 @@ export class AuthService {
     async handleCreateTask(task: Task) {
         try {
             const currentUser = auth.currentUser;
-
-            if (!currentUser) {
-                toast.error("No authenticated user found.", {
-                    style: { background: "#ff4d4f", color: "#fff" },
-                });
-                return null;
-            }
+            if (!currentUser) throw new Error("No authenticated user");
 
             const userId = currentUser.uid;
             const userDocRef = doc(db, "droidaccount", userId);
-            const userSnapshot = await getDoc(userDocRef);
 
-            if (!userSnapshot.exists()) {
-                toast.error("User document not found.", {
-                    style: { background: "#ff4d4f", color: "#fff" },
-                });
-                return null;
-            }
-
-            // Clean task to remove undefined fields before saving
+            // Clean task
             const cleanedTask = removeUndefined(task);
 
-            const data = userSnapshot.data();
-            const existingTasks: Task[] = data?.schedules?.mySchedles || [];
-
-            // Optional: Check for duplicate task title & startDate
-            const duplicate = existingTasks.some(
-                (t: Task) =>
-                    t.title === cleanedTask.title && t.startDate === cleanedTask.startDate
-            );
-
-            if (duplicate) {
-                toast.error(
-                    `A task with the same title and start date already exists.`,
-                    {
-                        style: { background: "#faad14", color: "#fff" },
-                    }
-                );
-                return null;
-            }
-
-            // Add new task to schedules.mySchedles
+            // Just push it
             await updateDoc(userDocRef, {
                 "schedules.mySchedles": arrayUnion(cleanedTask),
             });
 
-            // Get updated snapshot and tasks
-            const updatedSnapshot = await getDoc(userDocRef);
-            const updatedData = updatedSnapshot.data();
-            const updatedTasks: Task[] = updatedData?.schedules?.mySchedles || [];
-
-            // Update Redux store
-            store.dispatch(addTask({ ...cleanedTask }));
+            // Update Redux optimistically (no re-fetch)
+            store.dispatch(addTask(cleanedTask));
 
             toast.success("Task added successfully! 🎉", {
                 style: { background: "#4BB543", color: "#fff" },
@@ -955,56 +917,74 @@ export class AuthService {
         }
     }
 
-    async handleDeleteTask(task: Task) {
+    async handleGetTasks() {
         try {
             const currentUser = auth.currentUser;
-
-            if (!currentUser) {
-                toast.error("No authenticated user found.", {
-                    style: { background: "#ff4d4f", color: "#fff" },
-                });
-                return null;
-            }
-
+            if (!currentUser) throw new Error("No authenticated user");
             const userId = currentUser.uid;
             const userDocRef = doc(db, "droidaccount", userId);
             const userSnapshot = await getDoc(userDocRef);
 
             if (!userSnapshot.exists()) {
-                toast.error("User document not found.", {
-                    style: { background: "#ff4d4f", color: "#fff" },
-                });
-                return null;
+                throw new Error("User document not found");
             }
 
             const data = userSnapshot.data();
-            const existingTasks: Task[] = data?.schedules?.mySchedles || [];
+            const tasks = data?.schedules?.mySchedles || [];
+
+            // Normalize each task
+            return tasks.map((t: any) => ({
+                id: t.id || crypto.randomUUID(),
+                title: t.title || "",
+                desc: t.desc || "",
+                dateCreated: t.dateCreated || "",
+                dateModified: t.dateModified || "",
+                dateDeleted: t.dateDeleted || "",
+                completed: t.completed ?? false,
+            }));
+        } catch (error: any) {
+            console.error("Error fetching tasks:", error);
+            throw new Error(error.message || "Failed to fetch tasks");
+        }
+    }
+
+    async handleDeleteTask(taskId: string) {
+        try {
+            const currentUser = auth.currentUser;
+            if (!currentUser) throw new Error("No authenticated user");
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, "droidaccount", userId);
+
+            // Fetch the current tasks
+            const userSnapshot = await getDoc(userDocRef);
+            if (!userSnapshot.exists()) throw new Error("User document not found");
+
+            const tasks: Task[] = userSnapshot.data()?.schedules?.mySchedles || [];
+            // console.log(tasks)
 
             // Find the task to delete
-            const taskExists = existingTasks.some(
-                (t: Task) => t.id === task.id
-            );
-
-            if (!taskExists) {
-                toast.error("Task not found.", {
+            const taskToDelete = tasks.find((t) => t.id === taskId);
+            if (!taskToDelete) {
+                toast.error("Task not found", {
                     style: { background: "#faad14", color: "#fff" },
                 });
                 return null;
             }
 
-            // Remove the task from Firestore using arrayRemove
+            // Remove the task from Firestore
             await updateDoc(userDocRef, {
-                "schedules.mySchedles": arrayRemove(task),
+                "schedules.mySchedles": arrayRemove(taskToDelete),
             });
 
-            // Update Redux store
-            store.dispatch(deleteThisTask(task.id));
+            // Update Redux store optimistically
+            store.dispatch(deleteThisTask(taskId));
 
             toast.success("Task deleted successfully 🗑️", {
                 style: { background: "#4BB543", color: "#fff" },
             });
 
-            return task.id;
+            return taskId;
         } catch (error: any) {
             toast.error(`Error deleting task: ${error.message}`, {
                 style: { background: "#ff4d4f", color: "#fff" },
@@ -1012,6 +992,36 @@ export class AuthService {
             return null;
         }
     }
+
+    async handleUpdateTask(updatedTask: TaskMain) {
+        try {
+            const currentUser = auth.currentUser;
+            if (!currentUser) throw new Error("No authenticated user");
+
+            const userId = currentUser.uid;
+            const userDocRef = doc(db, "droidaccount", userId);
+
+            const userSnapshot = await getDoc(userDocRef);
+            if (!userSnapshot.exists()) throw new Error("User document not found");
+
+            const tasks: TaskMain[] = userSnapshot.data()?.schedules?.mySchedles ?? [];
+
+            // Replace the task with the updated one
+            const updatedTasks = tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t));
+
+            await updateDoc(userDocRef, { "schedules.mySchedles": updatedTasks });
+
+            // Update Redux optimistically
+            store.dispatch(deleteThisTask(updatedTask.id));
+            store.dispatch(addTask(updatedTask));
+
+            return updatedTask;
+        } catch (error: any) {
+            throw new Error(error.message || "Failed to update task");
+        }
+    }
+
+
 }
 
 export const authService = new AuthService()
