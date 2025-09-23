@@ -18,7 +18,7 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: linear-gradient(135deg, #152978, #081C6B);
   border-radius: 50%;
   color: #ffffff;
   margin-bottom: 20px;
@@ -73,7 +73,7 @@
 .pricingSection {
   margin-bottom: 32px;
   padding: 24px;
-  background: linear-gradient(135deg, #fef3c7, #fbbf24);
+  background: linear-gradient(135deg, #081C6B, #081C6B);
   border-radius: 12px;
 }
 
@@ -87,25 +87,25 @@
 .currency {
   font-size: 24px;
   font-weight: 600;
-  color: #92400e;
+  color: #ffffff;
 }
 
 .price {
   font-size: 48px;
   font-weight: 800;
-  color: #92400e;
+  color: #ffffff;
   margin: 0 4px;
 }
 
 .period {
   font-size: 18px;
   font-weight: 500;
-  color: #92400e;
+  color: #ffffff;
 }
 
 .pricingNote {
   font-size: 14px;
-  color: #92400e;
+  color: #ffffff;
   font-weight: 500;
 }
 

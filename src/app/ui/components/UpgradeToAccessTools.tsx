@@ -19,7 +19,7 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({ tool
   const selectedPlan = {
     id:"",
     name: "Premium Tools Access",
-    price: 2999, // Price in kobo (₦29.99)
+    price: 5999, // Price in kobo (₦29.99)
     interval: "month",
     features: [
       "Access to all premium tools",
@@ -92,7 +92,7 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({ tool
       <div className={styles.pricingSection}>
         <div className={styles.priceTag}>
           <span className={styles.currency}>₦</span>
-          <span className={styles.price}>29.99</span>
+          <span className={styles.price}>5000</span>
           <span className={styles.period}>/month</span>
         </div>
         <p className={styles.pricingNote}>Cancel anytime • 30-day money-back guarantee</p>
