@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import type React from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../../../redux/Store";
-import { UserType } from "../../../utils/Types";
+import type { RootState } from "../../../redux/Store";
+import type { UserType } from "../../../utils/Types";
 import {
   FaUser,
   FaTasks,
@@ -25,7 +28,6 @@ import {
   FaDonate,
   FaServicestack,
 } from "react-icons/fa";
-import { IoHomeOutline } from "react-icons/io5";
 import { IoHomeSharp } from "react-icons/io5";
 import PersonalDetails from "./PersonalDetails";
 import AllUsers from "./users/AllUsers";
@@ -42,10 +44,9 @@ import Progression from "./Progressions";
 import styles from "./DashboardContent.module.css";
 import Section from "./Section";
 import { GiCalculator } from "react-icons/gi";
-import { TbCalculator, TbMicroscope } from "react-icons/tb";
+import { TbMicroscope } from "react-icons/tb";
 import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
 import Bmi from "../calculator/Bmi";
-import ToolsCard from "../../components/CoreValueCard/ToolsCard";
 import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
 import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
 import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
@@ -88,7 +89,7 @@ import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 import MemberDashboard from "./member/MemberDashboard";
 import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
-
+import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
 // const tools = [
 //   {
 //     title: "Currency Converter",
@@ -210,50 +211,48 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
     title: string;
     content: string;
-    icon: JSX.Element;
+    icon: ReactNode;
   }>(null);
   const [input, setInput] = useState("");
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const grossPay = parseFloat(staffDetails?.staffGrossPay ?? "0");
+  const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0");
   const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
 
   //Toools
   // Add state for active tool
   const [activeTool, setActiveTool] = useState<string | null>(null);
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(
+    null
+  );
 
   // Update the handleLaunchTool function
-  const handleLaunchTool = (toolComponent: string) => {
+  const handleLaunchTool = (toolComponent: string, isPremium?: boolean) => {
+    if (isPremium) {
+      setShowUpgradePrompt(toolComponent);
+      return;
+    }
     setActiveTool(toolComponent);
   };
 
   // Create a function to handle closing tools
   const handleCloseTool = () => {
     setActiveTool(null);
+    setShowUpgradePrompt(null);
   };
 
   // Create a function to render the active tool component
-  // const renderToolComponent = () => {
-  //   switch (activeTool) {
-  //     case "CurrencyConverter":
-  //       return <CurrencyConvert onClose={handleCloseTool} />;
-  //     case "ResumeAnalyzer":
-  //       return <ResumeAnalyzing onClose={handleCloseTool} />;
-  //     case "BackgroundRemove":
-  //       return <BackgroundRemove onClose={handleCloseTool} />;
-  //     case "PDFEditor":
-  //       return <PdfEdit onClose={handleCloseTool} />;
-  //     case "CodeComplexityAnalyzer":
-  //       return <CodeComplex onClose={handleCloseTool} />;
-  //     case "BulkImageWatermarker":
-  //       return <ImageMark onClose={handleCloseTool} />;
-
-  //     default:
-  //       return null;
-  //   }
-  // };
-
   const renderToolComponent = () => {
+    if (showUpgradePrompt) {
+      const tool = Alltools.find((t) => t.component === showUpgradePrompt);
+      return (
+        <UpgradeToAccessTools
+          toolName={tool?.title || "Premium Tool"}
+          onClose={handleCloseTool}
+        />
+      );
+    }
+
     switch (activeTool) {
       case "ImageResizing":
         return <ImageRezised />; //working but onClose={handleCloseTool}
@@ -637,10 +636,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <p style={{ color: "#000000", marginBottom: "20px" }}>
               Access various tools for your tasks
             </p>
-            {activeTool ? (
+            {activeTool || showUpgradePrompt ? (
               <div>
                 <button
-                  onClick={() => setActiveTool(null)}
+                  onClick={() => {
+                    setActiveTool(null);
+                    setShowUpgradePrompt(null);
+                  }}
                   style={{
                     marginBottom: "20px",
                     padding: "8px 16px",
@@ -666,7 +668,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                     isPremium={tech.isPremium}
                     onClick={
                       tech.component
-                        ? () => handleLaunchTool(tech.component)
+                        ? () => handleLaunchTool(tech.component, tech.isPremium)
                         : undefined
                     }
                     className="process-card"
@@ -729,7 +731,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                     url={tech.link} // ✅ if it’s a link/route
                     onClick={
                       tech.component
-                        ? () => handleLaunchCalculator(tech.component) // ✅ if it’s a tool component
+                        ? () => handleLaunchCalculator(tech.component)
                         : undefined
                     }
                   />
@@ -899,7 +901,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}
-              <item.icon className={styles.navIcon} />
+              {item.icon && <item.icon className={styles.navIcon} />}
               <span>{item.label}</span>
             </button>
           ))}
