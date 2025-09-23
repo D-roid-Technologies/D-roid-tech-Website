@@ -542,7 +542,7 @@
 .shp-quick-action {
   background: white;
   border-radius: 12px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 2px solid transparent;
   cursor: pointer;
@@ -584,8 +584,8 @@
 .shp-action-icon {
   background: #f3f4f6;
   color: #374151;
-  width: 44px;
-  height: 44px;
+  width: 30px;
+  height: 30px;
   border-radius: 10px;
   display: flex;
   align-items: center;

@@ -85,6 +85,7 @@ import CalenderPage from "../ui/pages/schedule/CalenderPage";
 import Announcements from "../ui/pages/Dashboard/Announcements";
 import LeadForm from "../ui/pages/softwareDevelopment/SoftwarePages/LeadForm";
 import QuizePage from "../ui/pages/Quize/Quiz";
+import TestDetailPage from "../ui/pages/Dashboard/takeTest/TestDetailPage";
 
 // Define an enum for all route paths
 
@@ -155,6 +156,7 @@ export enum RoutePaths {
   TrainingPage = "/training",
   TrainingDescriptionPage = "/training/description",
   QuizePage = "/training/quize",
+  TestDetail = "/training/test-detail",
   DevTools = "/devtools",
   DroidIcons = "/droidicons",
   Staff = "/staff",
@@ -196,7 +198,6 @@ export enum RoutePaths {
   CrossPlatformApps = "/software-development/cross-platform-apps",
   DatabaseAndCloud = "/software-development/database-and-cloud",
   // PricingPage = "PricingPage",
-
 }
 
 interface DropdownItem {
@@ -349,10 +350,8 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.TrainingDescriptionPage}
         element={<TrainingDescriptionPage />}
       />
-      <Route
-        path={RoutePaths.QuizePage}
-        element={<QuizePage />}
-      />
+      <Route path={RoutePaths.QuizePage} element={<QuizePage />} />
+      <Route path={RoutePaths.TestDetail} element={<TestDetailPage />} />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
       <Route path={RoutePaths.Staff} element={<Staff />} />
