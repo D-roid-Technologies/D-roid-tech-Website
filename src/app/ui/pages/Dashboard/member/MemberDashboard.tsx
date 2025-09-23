@@ -1,9 +1,9 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/Store";
+import { RootState, store } from "../../../../redux/Store";
 
 import {
   FaUser,
@@ -28,6 +28,7 @@ import { Modal } from "../micro-ui/modal";
 import { FaPenToSquare } from "react-icons/fa6";
 import BlogCards from "../../../components/blogPosts/BlogCards";
 import { eventsPosts } from "../../../../utils/blogpost";
+import { updateStat } from "../../../../redux/slices/memberStatus";
 
 type QuickActionCardProps = {
   title: string;
@@ -115,38 +116,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
   const [currentTime] = useState(new Date());
   const [notesModalOpen, setNotesModalOpen] = useState(false);
   const [notificationModalOpen, setNotificationModalOpen] = useState(false);
-  const userDetails: UserType = useSelector((state: RootState) => state.user);
-
-  const memberStats = [
-    {
-      title: "Membership Status",
-      value: "Active",
-      change: "Premium member since 2023",
-      icon: FaIdCard,
-      color: "green",
-    },
-    {
-      title: "Points Balance",
-      value: "2,450",
-      change: "150 points earned this month",
-      icon: FaGift,
-      color: "blue",
-    },
-    {
-      title: "Events Attended",
-      value: "18",
-      change: "5 events this quarter",
-      icon: FaCalendarAlt,
-      color: "purple",
-    },
-    {
-      title: "Member Level",
-      value: "Gold",
-      change: "Next level: Platinum",
-      icon: FaAward,
-      color: "orange",
-    },
-  ];
+  const memberStats = useSelector((state: RootState) => state.memberStatus);
 
   const memberQuickActions = [
     {
@@ -290,6 +260,12 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       day: "numeric",
     });
 
+  useEffect(() => {
+    store.dispatch(
+      updateStat({ index: 1, value: "0", change: "0 points earned this week" })
+    );
+  }, []);
+
   return (
     <div className="shp-homepage-container">
       {/* Welcome Header */}
@@ -297,7 +273,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              Welcome, {userDetails.firstName}
+              Member Portal
+              {/* Welcome, {userDetails.firstName} */}
             </h1>
             <div className="shp-head-icons-container">
               <div
@@ -306,6 +283,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                 style={{ position: "relative" }}
               >
                 <p>Activities</p>
+                {/* @ts-ignore */}
                 <FiActivity style={{ color: "green", fontWeight: "bold" }} />
                 {recentActivitiesCount > 0 && (
                   <span
@@ -329,7 +307,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                     {recentActivitiesCount}
                   </span>
                 )}
-
                 <Modal
                   isOpen={notesModalOpen}
                   onClose={() => setNotesModalOpen(false)}
@@ -365,6 +342,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                 style={{ position: "relative" }}
               >
                 <p>Notifications</p>
+                {/* @ts-ignore */}
                 <IoIosNotifications
                   style={{ color: "red", fontWeight: "bold" }}
                 />
@@ -401,6 +379,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                   {/* <div className="shp-card"> */}
                   <div className="shp-card-header">
                     <h3 className="shp-card-title">
+                      {/* @ts-ignore */}
                       <FaBell size={18} />
                       Member Notifications
                     </h3>
@@ -448,6 +427,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               value={stat.value}
               change={stat.change}
               icon={stat.icon}
+              onClick={() => {
+                alert(
+                  `clicked on index ${index} - set open the modal and pass the information from the slice to it the modal`
+                );
+              }}
             />
           ))}
         </div>
@@ -472,42 +456,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 
       {/* Two Column Layout */}
       {/* after taking out these two colums and moving them above add add a slide able banner showing all events */}
-      <div className="shp-two-column">
-        {/* Recent Activity */}
-        {/* <div className="shp-activity-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Member Activity</h3>
-              <button className="shp-view-all-btn">View All</button>
-            </div>
-            <div className="shp-activity-list">
-              {memberActivities.map((activity, index) => (
-                <RecentActivityItem
-                  key={index}
-                  action={activity.action}
-                  details={activity.details}
-                  time={activity.time}
-                  icon={activity.icon}
-                />
-              ))}
-            </div>
-          </div>
-        </div> */}
-        {/* Member Quick Actions */}
-        <div className="shp-section">
-          <h2 className="shp-section-title">Our Events</h2>
-          <div className="shp-quick-actions-grid">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <BlogCards posts={eventsPosts} />
-            </div>
-          </div>
+
+      <div>
+        <h2 className="shp-section-title">Our Events</h2>
+        <div className="shp-two-column">
+          <BlogCards posts={eventsPosts} />
         </div>
       </div>
     </div>

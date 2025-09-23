@@ -2,7 +2,8 @@ import { s } from "framer-motion/dist/types.d-DSjX-LJB";
 import React, { useState, useMemo, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { deleteAllTasks, deleteThisTask, TaskMain } from "../../../redux/slices/scheduleTask";
+import { authService } from "../../../redux/configuration/auth.service";
+import { addTask, deleteAllTasks, deleteThisTask, TaskMain } from "../../../redux/slices/scheduleTask";
 import { RootState, store } from "../../../redux/Store";
 
 // Icons (simple SVG inline for edit/delete)
@@ -161,8 +162,271 @@ const iconDeleteButtonHoverStyle: React.CSSProperties = {
   color: "#ffffff",
 };
 
+// const TasksList: React.FC = () => {
+//   const tasks = useSelector((state: RootState) => state.scheduleTask.tasks);
+
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [statusFilter, setStatusFilter] = useState<string | "">("");
+//   const [priorityFilter, setPriorityFilter] = useState<string | "">("");
+//   const [hoveredTask, setHoveredTask] = useState<string | null>(null);
+//   const [hoveredEdit, setHoveredEdit] = useState<string | null>(null);
+//   const [hoveredDelete, setHoveredDelete] = useState<string | null>(null);
+
+//   const [filteredTasks, setFilteredTasks] = useState<TaskMain[]>([]);
+
+//   // 🔹 Keep filteredTasks updated whenever tasks or filters change
+//   useEffect(() => {
+//     const result: any = tasks
+//       .map((t) => ({
+//         ...t,
+//         id: String(t.id),
+//       }))
+//       .filter((task) => {
+//         const title = task.title || "";        // fallback to empty string
+//         const description = task.description || "";
+
+//         const matchesSearch =
+//           title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//           description.toLowerCase().includes(searchTerm.toLowerCase());
+
+//         const matchesStatus = statusFilter ? task.status === statusFilter : true;
+//         const matchesPriority = priorityFilter ? task.priority === priorityFilter : true;
+
+//         return matchesSearch && matchesStatus && matchesPriority;
+//       });
+
+//     setFilteredTasks(result);
+//   }, [tasks, searchTerm, statusFilter, priorityFilter]);
+
+//   const handleItemDelete = async (task: TaskMain) => {
+//     try {
+//       // Call the async Firestore delete function
+//       await authService.handleDeleteTask(task.id);
+
+//       // Redux already updated inside handleDeleteTask, just show toast
+//       toast.success("Task deleted successfully 🗑️", {
+//         style: { background: "green", color: "#fff" },
+//       });
+//     } catch (error: any) {
+//       toast.error(`Failed to delete task: ${error.message}`, {
+//         style: { background: "#ff4d4f", color: "#fff" },
+//       });
+//     }
+//   };
+
+//   return (
+//     <div
+//       style={{
+//         padding: 24,
+//         maxHeight: "80vh",
+//         overflowY: "auto",
+//         backgroundColor: "#F9FAFB",
+//         borderRadius: 12,
+//       }}
+//     >
+//       <div
+//         style={{
+//           display: "flex",
+//           justifyContent: "space-between",
+//           alignItems: "center",
+//           marginBottom: 24,
+//         }}
+//       >
+//         <h2 style={{ fontSize: 28, fontWeight: "800", color: "#111827" }}>
+//           All Tasks
+//         </h2>
+//         <button
+//           onClick={() => {
+//             store.dispatch(deleteAllTasks());
+//             toast.success(`All Tasks have been deleted`, {
+//               style: { background: "#4BB543", color: "#fff" },
+//             });
+//           }}
+//           style={{
+//             backgroundColor: "transparent",
+//             color: "#DC2626",
+//             fontWeight: "600",
+//             padding: "8px 16px",
+//             borderRadius: 8,
+//             border: "none",
+//             cursor: "pointer",
+//           }}
+//         >
+//           Delete All Tasks
+//         </button>
+//       </div>
+
+//       {/* Filters */}
+//       <div
+//         style={{
+//           display: "flex",
+//           flexWrap: "wrap",
+//           gap: 16,
+//           marginBottom: 32,
+//           alignItems: "center",
+//         }}
+//       >
+//         <input
+//           type="text"
+//           placeholder="Search by title or description..."
+//           value={searchTerm}
+//           onChange={(e) => setSearchTerm(e.target.value)}
+//           style={inputStyle}
+//         />
+
+//         <select
+//           value={statusFilter}
+//           onChange={(e) => setStatusFilter(e.target.value)}
+//           style={selectStyle}
+//         >
+//           <option value="">All Statuses</option>
+//           {statusOptions.map((status) => (
+//             <option key={status} value={status}>
+//               {status.replace("_", " ")}
+//             </option>
+//           ))}
+//         </select>
+
+//         <select
+//           value={priorityFilter}
+//           onChange={(e) => setPriorityFilter(e.target.value)}
+//           style={selectStyle}
+//         >
+//           <option value="">All Priorities</option>
+//           {priorityOptions.map((priority) => (
+//             <option key={priority} value={priority}>
+//               {priority.charAt(0).toUpperCase() + priority.slice(1)}
+//             </option>
+//           ))}
+//         </select>
+
+//         <button
+//           onClick={() => {
+//             setSearchTerm("");
+//             setStatusFilter("");
+//             setPriorityFilter("");
+//           }}
+//           style={buttonStyle}
+//         >
+//           Reset Filters
+//         </button>
+//       </div>
+
+//       {/* Tasks grid */}
+//       <div
+//         style={{
+//           display: "grid",
+//           gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+//           gap: 24,
+//         }}
+//       >
+//         {filteredTasks.length ? (
+//           filteredTasks.map((task) => (
+//             <div
+//               key={task.id}
+//               style={{
+//                 ...cardStyle,
+//                 ...(hoveredTask === task.id ? cardHoverStyle : {}),
+//               }}
+//               onMouseEnter={() => setHoveredTask(task.id)}
+//               onMouseLeave={() => setHoveredTask(null)}
+//               title={task.title}
+//             >
+//               {/* Edit/Delete icons container */}
+//               <div
+//                 style={{
+//                   position: "absolute",
+//                   top: 8,
+//                   right: 12,
+//                   display: "flex",
+//                   gap: 8,
+//                 }}
+//               >
+//                 <div
+//                   style={{
+//                     ...iconButtonStyle,
+//                     ...(hoveredEdit === task.id ? iconButtonHoverStyle : {}),
+//                   }}
+//                   onMouseEnter={() => setHoveredEdit(task.id)}
+//                   onMouseLeave={() => setHoveredEdit(null)}
+//                   onClick={() => alert(`Edit task ${task.id}`)}
+//                   title="Edit Task"
+//                 >
+//                   <EditIcon />
+//                 </div>
+//                 <div
+//                   style={{
+//                     ...iconButtonStyle,
+//                     ...(hoveredDelete === task.id ? iconDeleteButtonHoverStyle : {}),
+//                   }}
+//                   onMouseEnter={() => setHoveredDelete(task.id)}
+//                   onMouseLeave={() => setHoveredDelete(null)}
+//                   onClick={() => handleItemDelete(task)}
+//                   title="Delete Task"
+//                 >
+//                   <DeleteIcon />
+//                 </div>
+//               </div>
+
+//               <h3
+//                 style={{
+//                   fontSize: 20,
+//                   fontWeight: "600",
+//                   marginBottom: 12,
+//                   color: "#DC2626",
+//                   overflow: "hidden",
+//                   textOverflow: "ellipsis",
+//                   whiteSpace: "nowrap",
+//                 }}
+//               >
+//                 {task.title}
+//               </h3>
+
+//               <p
+//                 style={{
+//                   color: "#4B5563",
+//                   fontSize: 14,
+//                   marginBottom: 16,
+//                   flexGrow: 1,
+//                   overflow: "hidden",
+//                   display: "-webkit-box",
+//                   WebkitLineClamp: 3,
+//                   WebkitBoxOrient: "vertical",
+//                 }}
+//                 title={task.description || "No description provided."}
+//               >
+//                 {task.description || "No description provided."}
+//               </p>
+
+//               <div style={{ color: "#111827", fontSize: 14, lineHeight: 1.4 }}>
+//                 <p>
+//                   <strong>Created By:</strong>{" "}
+//                   {task.createdBy?.name || "Unassigned"}
+//                 </p>
+//                 <p>
+//                   <strong>Start Date:</strong> {task.dateCreated}
+//                 </p>
+//               </div>
+//             </div>
+//           ))
+//         ) : (
+//           <p
+//             style={{
+//               textAlign: "center",
+//               color: "#6B7280",
+//               gridColumn: "1 / -1",
+//             }}
+//           >
+//             No tasks found.
+//           </p>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
 const TasksList: React.FC = () => {
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const tasks = useSelector((state: RootState) => state.scheduleTask.tasks);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string | "">("");
@@ -172,17 +436,20 @@ const TasksList: React.FC = () => {
   const [hoveredDelete, setHoveredDelete] = useState<string | null>(null);
 
   const [filteredTasks, setFilteredTasks] = useState<TaskMain[]>([]);
+  const [editingTask, setEditingTask] = useState<TaskMain | null>(null); // 🔹 track task being edited
+  const [editTitle, setEditTitle] = useState("");
+  const [editDescription, setEditDescription] = useState("");
 
-  // 🔹 Keep filteredTasks updated whenever tasks or filters change
   useEffect(() => {
-    const result: any = tasks.map((t) => ({
-      ...t,
-      id: String(t.id),
-    }))
+    const result: TaskMain[] = tasks
+      .map((t) => ({ ...t, id: String(t.id) }))
       .filter((task) => {
+        const title = task.title || "";
+        const description = task.description || "";
+
         const matchesSearch =
-          task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          task.description.toLowerCase().includes(searchTerm.toLowerCase());
+          title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          description.toLowerCase().includes(searchTerm.toLowerCase());
 
         const matchesStatus = statusFilter ? task.status === statusFilter : true;
         const matchesPriority = priorityFilter ? task.priority === priorityFilter : true;
@@ -193,223 +460,215 @@ const TasksList: React.FC = () => {
     setFilteredTasks(result);
   }, [tasks, searchTerm, statusFilter, priorityFilter]);
 
-  const handleItemDelete = (taskId: string) => {
-    store.dispatch(deleteThisTask(taskId));
-    window.location.reload();
-    toast.success("Task deleted", {
-      style: { background: "green", color: "#fff" },
-    });
+  const handleItemDelete = async (task: TaskMain) => {
+    try {
+      await authService.handleDeleteTask(task.id);
+      toast.success("Task deleted successfully 🗑️", {
+        style: { background: "green", color: "#fff" },
+      });
+    } catch (error: any) {
+      toast.error(`Failed to delete task: ${error.message}`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    }
+  };
+
+  // 🔹 Save edited task
+  const handleSaveEdit = async () => {
+    if (!editingTask) return;
+
+    try {
+      const updatedTask = { ...editingTask, title: editTitle, description: editDescription };
+      await authService.handleUpdateTask(updatedTask); // implement handleUpdateTask similar to handleCreateTask
+      store.dispatch(deleteThisTask(editingTask.id)); // remove old
+      store.dispatch(addTask(updatedTask)); // add updated
+
+      setEditingTask(null);
+      toast.success("Task updated successfully ✏️", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+    } catch (error: any) {
+      toast.error(`Failed to update task: ${error.message}`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    }
   };
 
   return (
-    <div
-      style={{
-        padding: 24,
-        maxHeight: "80vh",
-        overflowY: "auto",
-        backgroundColor: "#F9FAFB",
-        borderRadius: 12,
-      }}
-    >
+    <div style={{ padding: 24, maxHeight: "80vh", overflowY: "auto", backgroundColor: "#F9FAFB", borderRadius: 12 }}>
+      {/* ...filters here... */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 24,
+          padding: 24,
+          maxHeight: "80vh",
+          overflowY: "auto",
+          backgroundColor: "#F9FAFB",
+          borderRadius: 12,
         }}
       >
-        <h2 style={{ fontSize: 28, fontWeight: "800", color: "#111827" }}>
-          All Tasks
-        </h2>
-        <button
-          onClick={() => {
-            store.dispatch(deleteAllTasks());
-            toast.success(`All Tasks have been deleted`, {
-              style: { background: "#4BB543", color: "#fff" },
-            });
-          }}
+        <div
           style={{
-            backgroundColor: "transparent",
-            color: "#DC2626",
-            fontWeight: "600",
-            padding: "8px 16px",
-            borderRadius: 8,
-            border: "none",
-            cursor: "pointer",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 24,
           }}
         >
-          Delete All Tasks
-        </button>
-      </div>
+          <h2 style={{ fontSize: 28, fontWeight: "800", color: "#111827" }}>
+            All Tasks
+          </h2>
+          <button
+            onClick={() => {
+              store.dispatch(deleteAllTasks());
+              toast.success(`All Tasks have been deleted`, {
+                style: { background: "#4BB543", color: "#fff" },
+              });
+            }}
+            style={{
+              backgroundColor: "transparent",
+              color: "#DC2626",
+              fontWeight: "600",
+              padding: "8px 16px",
+              borderRadius: 8,
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            Delete All Tasks
+          </button>
+        </div>
 
-      {/* Filters */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 16,
-          marginBottom: 32,
-          alignItems: "center",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Search by title or description..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={inputStyle}
-        />
-
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          style={selectStyle}
-        >
-          <option value="">All Statuses</option>
-          {statusOptions.map((status) => (
-            <option key={status} value={status}>
-              {status.replace("_", " ")}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={priorityFilter}
-          onChange={(e) => setPriorityFilter(e.target.value)}
-          style={selectStyle}
-        >
-          <option value="">All Priorities</option>
-          {priorityOptions.map((priority) => (
-            <option key={priority} value={priority}>
-              {priority.charAt(0).toUpperCase() + priority.slice(1)}
-            </option>
-          ))}
-        </select>
-
-        <button
-          onClick={() => {
-            setSearchTerm("");
-            setStatusFilter("");
-            setPriorityFilter("");
+        {/* Filters */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+            marginBottom: 32,
+            alignItems: "center",
           }}
-          style={buttonStyle}
         >
-          Reset Filters
-        </button>
-      </div>
+          <input
+            type="text"
+            placeholder="Search by title or description..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={inputStyle}
+          />
 
-      {/* Tasks grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: 24,
-        }}
-      >
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            style={selectStyle}
+          >
+            <option value="">All Statuses</option>
+            {statusOptions.map((status) => (
+              <option key={status} value={status}>
+                {status.replace("_", " ")}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={priorityFilter}
+            onChange={(e) => setPriorityFilter(e.target.value)}
+            style={selectStyle}
+          >
+            <option value="">All Priorities</option>
+            {priorityOptions.map((priority) => (
+              <option key={priority} value={priority}>
+                {priority.charAt(0).toUpperCase() + priority.slice(1)}
+              </option>
+            ))}
+          </select>
+
+          <button
+            onClick={() => {
+              setSearchTerm("");
+              setStatusFilter("");
+              setPriorityFilter("");
+            }}
+            style={buttonStyle}
+          >
+            Reset Filters
+          </button>
+        </div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
         {filteredTasks.length ? (
           filteredTasks.map((task) => (
             <div
               key={task.id}
-              style={{
-                ...cardStyle,
-                ...(hoveredTask === task.id ? cardHoverStyle : {}),
-              }}
+              style={{ ...cardStyle, ...(hoveredTask === task.id ? cardHoverStyle : {}) }}
               onMouseEnter={() => setHoveredTask(task.id)}
               onMouseLeave={() => setHoveredTask(null)}
-              title={task.title}
             >
-              {/* Edit/Delete icons container */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 8,
-                  right: 12,
-                  display: "flex",
-                  gap: 8,
-                }}
-              >
+              {/* Edit/Delete icons */}
+              <div style={{ position: "absolute", top: 8, right: 12, display: "flex", gap: 8 }}>
                 <div
-                  style={{
-                    ...iconButtonStyle,
-                    ...(hoveredEdit === task.id ? iconButtonHoverStyle : {}),
-                  }}
+                  style={{ ...iconButtonStyle, ...(hoveredEdit === task.id ? iconButtonHoverStyle : {}) }}
                   onMouseEnter={() => setHoveredEdit(task.id)}
                   onMouseLeave={() => setHoveredEdit(null)}
-                  onClick={() => alert(`Edit task ${task.id}`)}
+                  onClick={() => {
+                    setEditingTask(task); // 🔹 enable editing mode
+                    setEditTitle(task.title);
+                    setEditDescription(task.description);
+                  }}
                   title="Edit Task"
                 >
                   <EditIcon />
                 </div>
+
                 <div
-                  style={{
-                    ...iconButtonStyle,
-                    ...(hoveredDelete === task.id ? iconDeleteButtonHoverStyle : {}),
-                  }}
+                  style={{ ...iconButtonStyle, ...(hoveredDelete === task.id ? iconDeleteButtonHoverStyle : {}) }}
                   onMouseEnter={() => setHoveredDelete(task.id)}
                   onMouseLeave={() => setHoveredDelete(null)}
-                  onClick={() => handleItemDelete(task.id)}
+                  onClick={() => handleItemDelete(task)}
                   title="Delete Task"
                 >
                   <DeleteIcon />
                 </div>
               </div>
 
-              <h3
-                style={{
-                  fontSize: 20,
-                  fontWeight: "600",
-                  marginBottom: 12,
-                  color: "#DC2626",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {task.title}
-              </h3>
-
-              <p
-                style={{
-                  color: "#4B5563",
-                  fontSize: 14,
-                  marginBottom: 16,
-                  flexGrow: 1,
-                  overflow: "hidden",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: "vertical",
-                }}
-                title={task.description || "No description provided."}
-              >
-                {task.description || "No description provided."}
-              </p>
-
-              <div style={{ color: "#111827", fontSize: 14, lineHeight: 1.4 }}>
-                <p>
-                  <strong>Created By:</strong>{" "}
-                  {task.createdBy?.name || "Unassigned"}
-                </p>
-                <p>
-                  <strong>Start Date:</strong> {task.dateCreated}
-                </p>
-              </div>
+              {/* 🔹 Edit form */}
+              {editingTask?.id === task.id ? (
+                <div>
+                  <input
+                    type="text"
+                    value={editTitle}
+                    onChange={(e) => setEditTitle(e.target.value)}
+                    style={{ ...inputStyle, marginBottom: 8 }}
+                  />
+                  <textarea
+                    value={editDescription}
+                    onChange={(e) => setEditDescription(e.target.value)}
+                    style={{ ...inputStyle, minHeight: 60 }}
+                  />
+                  <button onClick={handleSaveEdit} style={{ ...buttonStyle, marginTop: 8 }}>
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingTask(null)}
+                    style={{ ...buttonStyle, backgroundColor: "#6B7280", marginTop: 8, marginLeft: 8 }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 12, color: "#DC2626" }}>{task.title}</h3>
+                  <p style={{ color: "#4B5563", fontSize: 14, marginBottom: 16, flexGrow: 1 }}>{task.description}</p>
+                </>
+              )}
             </div>
           ))
         ) : (
-          <p
-            style={{
-              textAlign: "center",
-              color: "#6B7280",
-              gridColumn: "1 / -1",
-            }}
-          >
-            No tasks found.
-          </p>
+          <p style={{ textAlign: "center", color: "#6B7280", gridColumn: "1 / -1" }}>No tasks found.</p>
         )}
       </div>
     </div>
   );
 };
+
 
 export default TasksList;

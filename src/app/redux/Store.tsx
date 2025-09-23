@@ -23,6 +23,7 @@ import { TSCSlice } from "./slices/TSCSlice";
 import { userFormsSlice } from "./slices/userFormSlice";
 import { notificationsSlice } from "./slices/notificationSlice";
 import { onboardingSlice } from "./slices/onboarding";
+import { memberStatsSlice } from "./slices/memberStatus";
 
 const persistConfig = {
   key: "root",
@@ -54,6 +55,7 @@ const rootReducer = combineReducers({
   notifications: notificationsSlice.reducer,
   onboarding: onboardingSlice.reducer,
   training: trainingSlice.reducer,
+  memberStatus: memberStatsSlice.reducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

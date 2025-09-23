@@ -6,10 +6,11 @@ interface StatCardProps {
   value: string
   change: React.ReactNode
   icon: React.ComponentType<any>
+  onClick?: () => void;
 }
 
-export const StatCard: React.FC<StatCardProps> = ({ title, value, change, icon: Icon }) => (
-  <div className={componentStyles.statCard}>
+export const StatCard: React.FC<StatCardProps> = ({ title, value, change, icon: Icon, onClick }) => (
+  <div className={componentStyles.statCard} onClick={onClick} style={{ cursor: "pointer" }}>
     <div className={componentStyles.statCardHeader}>
       <h3 className={componentStyles.statCardTitle}>{title}</h3>
       <Icon className={componentStyles.statCardIcon} />
