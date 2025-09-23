@@ -2,26 +2,17 @@ import React, { useState, useEffect } from "react";
 import { ArrowUpDown, TrendingUp, DollarSign } from "lucide-react";
 import "./CurrencyConvert.css";
 
-interface CurrencyRate {
-  [key: string]: number;
-}
-
-interface CurrencyData {
-  rates: CurrencyRate;
-  base: string;
-  date: string;
-}
+// 👇 Replace with your OpenExchangeRates API key
+const API_KEY = "6b5ed730154a44e183e9a99b0206b0a6";
 
 const CurrencyConvert: React.FC = () => {
   const [amount, setAmount] = useState<string>("1");
   const [fromCurrency, setFromCurrency] = useState<string>("USD");
   const [toCurrency, setToCurrency] = useState<string>("EUR");
-  const [rates, setRates] = useState<CurrencyRate>({});
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<string>("");
 
-  // Popular currencies with their symbols
   const currencies = [
     { code: "USD", name: "US Dollar", symbol: "$" },
     { code: "EUR", name: "Euro", symbol: "€" },
@@ -35,39 +26,38 @@ const CurrencyConvert: React.FC = () => {
     { code: "NGN", name: "Nigerian Naira", symbol: "₦" },
   ];
 
-  // Mock exchange rates (fetch from an API)
+  // Fetch conversion whenever dependencies change
   useEffect(() => {
-    const mockRates: CurrencyRate = {
-      USD: 1,
-      EUR: 0.85,
-      GBP: 0.73,
-      JPY: 110.12,
-      CAD: 1.25,
-      AUD: 1.35,
-      CHF: 0.92,
-      CNY: 6.45,
-      INR: 74.25,
-      NGN: 411.5,
+    const fetchConversion = async () => {
+      try {
+        setLoading(true);
+        const numAmount = parseFloat(amount);
+
+        if (!isNaN(numAmount) && fromCurrency && toCurrency) {
+          const response = await fetch(
+            `https://openexchangerates.org/api/latest.json?app_id=${API_KEY}`
+          );
+          const data = await response.json();
+
+          if (!data.rates[fromCurrency] || !data.rates[toCurrency]) {
+            throw new Error("Invalid currency code");
+          }
+
+          const rate = data.rates[toCurrency] / data.rates[fromCurrency];
+          const result = numAmount * rate;
+
+          setConvertedAmount(result);
+          setLastUpdated(new Date().toLocaleString());
+        }
+      } catch (error) {
+        console.error("Error converting currency:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    setTimeout(() => {
-      setRates(mockRates);
-      setLoading(false);
-      setLastUpdated(new Date().toLocaleString());
-    }, 1000);
-  }, []);
-
-  // Calculate conversion
-  useEffect(() => {
-    if (rates[fromCurrency] && rates[toCurrency] && amount) {
-      const numAmount = parseFloat(amount);
-      if (!isNaN(numAmount)) {
-        const baseAmount = numAmount / rates[fromCurrency];
-        const converted = baseAmount * rates[toCurrency];
-        setConvertedAmount(converted);
-      }
-    }
-  }, [amount, fromCurrency, toCurrency, rates]);
+    fetchConversion();
+  }, [amount, fromCurrency, toCurrency]);
 
   const handleSwapCurrencies = () => {
     setFromCurrency(toCurrency);
@@ -97,13 +87,15 @@ const CurrencyConvert: React.FC = () => {
             <DollarSign size={28} />
             Currency Converter
           </h1>
-          <p className="premium-converter-subtitle">Real-time exchange rates</p>
+          <p className="premium-converter-subtitle">
+            Powered by OpenExchangeRates
+          </p>
         </div>
 
         {loading ? (
           <div className="premium-converter-loading">
             <div className="premium-converter-loading-spinner"></div>
-            Loading exchange rates...
+            Converting...
           </div>
         ) : (
           <div className="premium-converter-body">
@@ -146,7 +138,7 @@ const CurrencyConvert: React.FC = () => {
               <div className="premium-converter-input-wrapper">
                 <input
                   type="text"
-                  value="1.00"
+                  value={convertedAmount.toFixed(2)}
                   readOnly
                   className="premium-converter-amount-input"
                   style={{ opacity: 0.6 }}
@@ -171,19 +163,12 @@ const CurrencyConvert: React.FC = () => {
               </div>
               <div className="premium-converter-result-amount">
                 {formatCurrency(convertedAmount, toCurrency)}
-                <TrendingUp
-                  size={20}
-                  className="premium-converter-trend-icon"
-                />
+                <TrendingUp size={20} className="premium-converter-trend-icon" />
               </div>
             </div>
 
             <div className="premium-converter-rate-info">
-              1 {fromCurrency} ={" "}
-              {(rates[toCurrency] / rates[fromCurrency]).toFixed(4)}{" "}
-              {toCurrency}
-              <br />
-              <small>Last updated: {lastUpdated}</small>
+              Last updated: {lastUpdated}
             </div>
           </div>
         )}
