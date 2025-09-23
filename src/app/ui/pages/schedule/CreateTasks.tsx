@@ -164,11 +164,11 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
         field === "tags"
           ? [...(prev.tags || []), ""]
           : field === "checklist"
-          ? [
+            ? [
               ...(prev.checklist || []),
               { id: crypto.randomUUID(), title: "", checked: false },
             ]
-          : [...(prev.linkedResources || []), { title: "", url: "" }],
+            : [...(prev.linkedResources || []), { title: "", url: "" }],
     }));
   };
 
@@ -207,26 +207,51 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
     setIsSubmitting(true);
 
     try {
-      const processedData: TaskMain = {
-        ...formData,
-        tags: (formData.tags || []).filter((item) => item.trim() !== ""),
-        checklist: (formData.checklist || []).filter(
-          (item) => item.title.trim() !== ""
-        ),
-        linkedResources: (formData.linkedResources || []).filter(
-          (res) => res.title.trim() !== "" || res.url.trim() !== ""
-        ),
-      };
+      // const processedData: TaskMain = {
+      //   ...formData,
+      //   tags: (formData.tags || []).filter((item) => item.trim() !== ""),
+      //   checklist: (formData.checklist || []).filter(
+      //     (item) => item.title.trim() !== ""
+      //   ),
+      //   linkedResources: (formData.linkedResources || []).filter(
+      //     (res) => res.title.trim() !== "" || res.url.trim() !== ""
+      //   ),
+      // };
+      const newTask = { ...formData }
 
-      await authService.handleCreateTask(processedData).then(() => {
+      await authService.handleCreateTask(newTask).then(() => {
+
         handleReset();
       });
+      console.log(formData)
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // const createTask = async () => {
+  //   if (!title.trim()) return;
+
+  //   const now = new Date().toISOString();
+
+  //   const newTask: Task = {
+  //     id: crypto.randomUUID(),  // generate unique id here
+  //     title: title.trim(),
+  //     desc: desc.trim(),
+  //     completed: false,
+  //     dateCreated: now,
+  //     dateModified: now,
+  //   };
+
+  //   console.log(newTask);
+
+  //   await authService.handleCreateTask(user.uniqueId, newTask);
+
+  //   setTitle('');
+  //   setDesc('');
+  // };
 
   const handleReset = () => {
     if (mode === "edit" && initialData) {
@@ -354,8 +379,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                              selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -398,8 +422,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                              selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -553,8 +576,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                              selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -628,7 +650,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
           {/* Feedback */}
           <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Feedback & Scoring</h3>
-            <div  className={styles.feedbacksection}>
+            <div className={styles.feedbacksection}>
               <input
                 type="number"
                 name="score"
@@ -727,8 +749,8 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
               {isSubmitting
                 ? "Submitting..."
                 : isEditMode
-                ? "Update Task"
-                : "Create Task"}
+                  ? "Update Task"
+                  : "Create Task"}
             </button>
           </div>
         </form>

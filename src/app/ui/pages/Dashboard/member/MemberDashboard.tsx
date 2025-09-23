@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
+import type React from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/Store";
+import { RootState, store } from "../../../../redux/Store";
 
 import {
   FaUser,
@@ -17,22 +17,34 @@ import {
   FaToolbox,
   FaBullhorn,
   FaCommentDots,
-} from "react-icons/fa"
-import "../staff/StaffUserHomePage.css"
+} from "react-icons/fa";
+import "../staff/StaffUserHomePage.css";
 import { UserType } from "../../../../utils/Types";
 
-import { StatCard } from "../micro-ui/stat-card"
+import { StatCard } from "../micro-ui/stat-card";
+import { FiActivity } from "react-icons/fi";
+import { IoIosNotifications } from "react-icons/io";
+import { Modal } from "../micro-ui/modal";
+import { FaPenToSquare } from "react-icons/fa6";
+import BlogCards from "../../../components/blogPosts/BlogCards";
+import { eventsPosts } from "../../../../utils/blogpost";
+import { updateStat } from "../../../../redux/slices/memberStatus";
 
 type QuickActionCardProps = {
-  title: string
-  description: string
-  icon: React.ComponentType<{ size?: number }>
-  onClick?: () => void
-  variant?: string
-}
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ size?: number }>;
+  onClick?: () => void;
+  variant?: string;
+};
 
-const QuickActionCard = ({ title, description, icon: Icon, onClick, variant = "default" }: QuickActionCardProps) => (
-
+const QuickActionCard = ({
+  title,
+  description,
+  icon: Icon,
+  onClick,
+  variant = "default",
+}: QuickActionCardProps) => (
   <div className={`shp-quick-action ${variant}`} onClick={onClick}>
     <div className="shp-action-icon">
       <Icon size={20} />
@@ -42,17 +54,23 @@ const QuickActionCard = ({ title, description, icon: Icon, onClick, variant = "d
       <p className="shp-action-description">{description}</p>
     </div>
   </div>
-)
+);
 
 type NotificationItemProps = {
-  title: string
-  message: string
-  time: string
-  type: string
-  isRead: boolean
-}
+  title: string;
+  message: string;
+  time: string;
+  type: string;
+  isRead: boolean;
+};
 
-const NotificationItem = ({ title, message, time, type, isRead }: NotificationItemProps) => (
+const NotificationItem = ({
+  title,
+  message,
+  time,
+  type,
+  isRead,
+}: NotificationItemProps) => (
   <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
     <div className={`shp-notification-indicator ${type}`}></div>
     <div className="shp-notification-content">
@@ -61,16 +79,21 @@ const NotificationItem = ({ title, message, time, type, isRead }: NotificationIt
       <span className="shp-notification-time">{time}</span>
     </div>
   </div>
-)
+);
 
 type RecentActivityItemProps = {
-  action: string
-  details: string
-  time: string
-  icon: React.ComponentType<{ size?: number }>
-}
+  action: string;
+  details: string;
+  time: string;
+  icon: React.ComponentType<{ size?: number }>;
+};
 
-const RecentActivityItem = ({ action, details, time, icon: Icon }: RecentActivityItemProps) => (
+const RecentActivityItem = ({
+  action,
+  details,
+  time,
+  icon: Icon,
+}: RecentActivityItemProps) => (
   <div className="shp-activity-item">
     <div className="shp-activity-icon">
       <Icon size={16} />
@@ -81,47 +104,19 @@ const RecentActivityItem = ({ action, details, time, icon: Icon }: RecentActivit
       <span className="shp-activity-time">{time}</span>
     </div>
   </div>
-)
+);
 
 type MemberDashboardProps = {
   setSelectedMenu: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) => {
-  const [currentTime] = useState(new Date())
-    const userDetails: UserType = useSelector((state: RootState) => state.user);
-
-
-  const memberStats = [
-    {
-      title: "Membership Status",
-      value: "Active",
-      change: "Premium member since 2023",
-      icon: FaIdCard,
-      color: "green",
-    },
-    {
-      title: "Points Balance",
-      value: "2,450",
-      change: "150 points earned this month",
-      icon: FaGift,
-      color: "blue",
-    },
-    {
-      title: "Events Attended",
-      value: "18",
-      change: "5 events this quarter",
-      icon: FaCalendarAlt,
-      color: "purple",
-    },
-    {
-      title: "Member Level",
-      value: "Gold",
-      change: "Next level: Platinum",
-      icon: FaAward,
-      color: "orange",
-    },
-  ]
+const MemberDashboard: React.FC<MemberDashboardProps> = ({
+  setSelectedMenu,
+}) => {
+  const [currentTime] = useState(new Date());
+  const [notesModalOpen, setNotesModalOpen] = useState(false);
+  const [notificationModalOpen, setNotificationModalOpen] = useState(false);
+  const memberStats = useSelector((state: RootState) => state.memberStatus);
 
   const memberQuickActions = [
     {
@@ -166,7 +161,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       icon: FaCommentDots,
       variant: "success",
     },
-  ]
+    {
+      title: "Take Test",
+      description:
+        "Find out if you're ready for your next interview. This test is designed to simulate a real-world technical screening.",
+      icon: FaPenToSquare,
+      variant: "secondary",
+    },
+  ];
 
   const memberNotifications = [
     {
@@ -197,7 +199,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       type: "warning",
       isRead: true,
     },
-  ]
+  ];
 
   const memberActivities = [
     {
@@ -236,14 +238,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       time: "1 month ago",
       icon: FaCommentDots,
     },
-  ]
+  ];
 
   const formatTime = (date: Date) =>
     date.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
-    })
+    });
 
   const formatDate = (date: Date) =>
     date.toLocaleDateString("en-US", {
@@ -251,7 +253,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       year: "numeric",
       month: "long",
       day: "numeric",
-    })
+    });
+
+  useEffect(() => {
+    store.dispatch(updateStat({ index: 1, value: "0", change: "0 points earned this week" }))
+  }, [])
 
   return (
     <div className="shp-homepage-container">
@@ -259,9 +265,95 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
           <div className="shp-greeting">
-            <h1 className="shp-welcome-title">Welcome, {userDetails.firstName}
-
+            <h1 className="shp-welcome-title">
+              Member Portal
+              {/* Welcome, {userDetails.firstName} */}
             </h1>
+            <div className="shp-head-icons-container">
+              <div
+                className="shp-head-icons"
+                onClick={() => setNotesModalOpen(true)}
+              >
+                <p>Activities</p>
+                {/* @ts-ignore */}
+                <FiActivity style={{ color: "green", fontWeight: "bold" }} />
+                <Modal
+                  isOpen={notesModalOpen}
+                  onClose={() => setNotesModalOpen(false)}
+                  title="Activities"
+                  description=""
+                // children={undefined}
+                >
+                  {/* <div className="shp-activity-section"> */}
+                  {/* <div className="shp-card"> */}
+                  <div className="shp-card-header">
+                    <h3 className="shp-card-title">Recent Member Activity</h3>
+                    <button className="shp-view-all-btn">View All</button>
+                  </div>
+                  <div className="shp-activity-list">
+                    {memberActivities.map((activity, index) => (
+                      <RecentActivityItem
+                        key={index}
+                        action={activity.action}
+                        details={activity.details}
+                        time={activity.time}
+                        icon={activity.icon}
+                      />
+                    ))}
+                  </div>
+                  {/* </div> */}
+                  {/* </div> */}
+                </Modal>
+              </div>
+              {/* Notifications */}
+              <div
+                className="shp-head-icons"
+                onClick={() => setNotificationModalOpen(true)}
+              >
+                <p>Notifications</p>
+                {/* @ts-ignore */}
+                <IoIosNotifications
+                  style={{ color: "red", fontWeight: "bold" }}
+                />
+                <Modal
+                  isOpen={notificationModalOpen}
+                  onClose={() => setNotificationModalOpen(false)}
+                  title=""
+                  description=""
+                // children={undefined}
+                >
+                  {/* <div className="shp-notifications-section"> */}
+                  {/* <div className="shp-card"> */}
+                  <div className="shp-card-header">
+                    <h3 className="shp-card-title">
+                      {/* @ts-ignore */}
+                      <FaBell size={18} />
+                      Member Notifications
+                    </h3>
+                    <span className="shp-notification-count">
+                      {memberNotifications.filter((n) => !n.isRead).length}
+                    </span>
+                  </div>
+                  <div className="shp-notifications-list">
+                    {memberNotifications.map((notification, index) => (
+                      <NotificationItem
+                        key={index}
+                        title={notification.title}
+                        message={notification.message}
+                        time={notification.time}
+                        type={notification.type}
+                        isRead={notification.isRead}
+                      />
+                    ))}
+                  </div>
+                  <button className="shp-view-all-notifications">
+                    View All Notifications
+                  </button>
+                  {/* </div> */}
+                  {/* </div> */}
+                </Modal>
+              </div>
+            </div>
             {/* Add Recent Member Activity and Member Notifications side by side here as icons here */}
           </div>
           <div className="shp-time-info">
@@ -276,7 +368,16 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
         <h2 className="shp-section-title">Membership Overview</h2>
         <div className="shp-stats-grid">
           {memberStats.map((stat, index) => (
-            <StatCard key={index} title={stat.title} value={stat.value} change={stat.change} icon={stat.icon} />
+            <StatCard
+              key={index}
+              title={stat.title}
+              value={stat.value}
+              change={stat.change}
+              icon={stat.icon}
+              onClick={() => {
+                alert(`clicked on index ${index} - set open the modal and pass the information from the slice to it the modal`)
+              }}
+            />
           ))}
         </div>
       </div>
@@ -300,58 +401,16 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
 
       {/* Two Column Layout */}
       {/* after taking out these two colums and moving them above add add a slide able banner showing all events */}
-      <div className="shp-two-column">
-        {/* Recent Activity */}
-        <div className="shp-activity-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Member Activity</h3>
-              <button className="shp-view-all-btn">View All</button>
-            </div>
-            <div className="shp-activity-list">
-              {memberActivities.map((activity, index) => (
-                <RecentActivityItem
-                  key={index}
-                  action={activity.action}
-                  details={activity.details}
-                  time={activity.time}
-                  icon={activity.icon}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
 
-        {/* Notifications */}
-        <div className="shp-notifications-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">
-                <FaBell size={18} />
-                Member Notifications
-              </h3>
-              <span className="shp-notification-count">
-                {memberNotifications.filter((n) => !n.isRead).length}
-              </span>
-            </div>
-            <div className="shp-notifications-list">
-              {memberNotifications.map((notification, index) => (
-                <NotificationItem
-                  key={index}
-                  title={notification.title}
-                  message={notification.message}
-                  time={notification.time}
-                  type={notification.type}
-                  isRead={notification.isRead}
-                />
-              ))}
-            </div>
-            <button className="shp-view-all-notifications">View All Notifications</button>
-          </div>
+
+      <div>
+        <h2 className="shp-section-title">Our Events</h2>
+        <div className="shp-two-column">
+          <BlogCards posts={eventsPosts} />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MemberDashboard
+export default MemberDashboard;

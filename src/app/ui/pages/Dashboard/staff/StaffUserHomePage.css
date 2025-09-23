@@ -332,6 +332,21 @@
   color: #111827;
 }
 
+.shp-head-icons-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.shp-head-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .shp-homepage-container {
