@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "../takeTest/TestDetails.css";
 import { Questions } from "../../../../utils/questions";
 
-// Base interface for common properties
 interface BaseQuestion {
   title: string;
   subTitle: string;
@@ -19,7 +18,6 @@ interface BaseQuestion {
   questions: string[];
 }
 
-// Union type for different question variants
 type Question =
   | (BaseQuestion & { benefits: string[]; howToApply?: never })
   | (BaseQuestion & { howToApply: string[]; benefits?: never });
@@ -27,21 +25,18 @@ type Question =
 const TestDetailPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { testTitle } = useParams(); // If using URL params
+  const { testTitle } = useParams();
 
-  // Try to get data from navigation state first
   let testData = location.state as Question;
 
   // If no state data, try to find by URL parameter or use first test as fallback
   if (!testData) {
     if (testTitle) {
-      // Find test by title from URL parameter
       testData =
         Questions.find(
           (q) => q.title.toLowerCase() === testTitle.toLowerCase()
         ) || Questions[0];
     } else {
-      // Fallback to first test (for testing purposes)
       testData = Questions[0];
       console.warn("No test data provided, using first test as fallback");
     }
