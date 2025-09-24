@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./blogCards.css";
+import "../blogPosts/BlogCards.css";
 import { Link } from "react-router-dom";
 
 interface BlogPost {
@@ -30,7 +30,6 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
     ...Array.from(new Set(posts.map((post) => post.category))),
   ];
 
-
   // Filter posts by active category
   const filteredPosts =
     activeCategory === "All"
@@ -46,7 +45,9 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
 
   function checkEventStatus(sampleDateStr: string): string {
     // Parse the sample date (e.g., "Monday, 15th June 2026")
-    const sampleDate = new Date(sampleDateStr.replace(/(\d+)(st|nd|rd|th)/, "$1"));
+    const sampleDate = new Date(
+      sampleDateStr.replace(/(\d+)(st|nd|rd|th)/, "$1")
+    );
 
     // Get today's date (without time)
     const today = new Date();
@@ -71,7 +72,6 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
 
   return (
     <section className="blog-posts-section">
-
       <div className="blog-posts-grid">
         {postsToShow.map((post) => (
           <div key={post.id} className="blog-card">
@@ -82,7 +82,9 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
             <div className="blog-card-content">
               <div className="blog-card-meta">
                 <span className="blog-card-date">{post.date}</span>
-                <span className="blog-card-date">{checkEventStatus(post.date)}</span>
+                <span className="blog-card-date">
+                  {checkEventStatus(post.date)}
+                </span>
               </div>
               <h3 className="blog-card-title">{post.title}</h3>
               <p className="blog-card-excerpt">{post.excerpt}</p>
