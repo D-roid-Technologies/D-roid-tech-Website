@@ -10,10 +10,18 @@ import styles from "./CheckoutPage.module.css"
 interface CheckoutPageProps {
   selectedPlan?: Plan
   onBack?: () => void
+  onPaymentSuccess?: () => void
+  onPaymentInitiated?: () => void
 }
 
-export const CheckoutPage: React.FC<CheckoutPageProps> = ({ selectedPlan, onBack }) => {
+export const CheckoutPage: React.FC<CheckoutPageProps> = ({
+  selectedPlan,
+  onBack,
+  onPaymentSuccess,
+  onPaymentInitiated,
+}) => {
   const plan = selectedPlan || {
+  
     name: "Premium Tools Access",
     price: 2999,
     interval: "month",
@@ -50,6 +58,11 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ selectedPlan, onBack
     if (!isFormValid) return
 
     setIsProcessing(true)
+
+    if (onPaymentInitiated) {
+      onPaymentInitiated()
+    }
+
     const reference = generateReference()
 
     if (paymentMethod === "card") {
@@ -59,8 +72,11 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ selectedPlan, onBack
         reference,
         (response) => {
           setIsProcessing(false)
-          alert("Payment successful! You now have access to premium tools.")
-          if (onBack) onBack()
+          if (onPaymentSuccess) {
+            onPaymentSuccess()
+          } else {
+            alert("Payment successful! You now have access to premium tools.")
+          }
         },
         () => {
           setIsProcessing(false)
@@ -70,8 +86,11 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ selectedPlan, onBack
       // Bank transfer simulation
       setTimeout(() => {
         setIsProcessing(false)
-        alert("Bank transfer instructions sent to your email!")
-        if (onBack) onBack()
+        if (onPaymentSuccess) {
+          onPaymentSuccess()
+        } else {
+          alert("Bank transfer instructions sent to your email!")
+        }
       }, 2000)
     }
   }

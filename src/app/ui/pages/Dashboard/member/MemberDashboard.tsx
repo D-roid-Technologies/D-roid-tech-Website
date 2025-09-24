@@ -18,7 +18,7 @@ import {
   FaBullhorn,
   FaCommentDots,
 } from "react-icons/fa";
-import "../staff/StaffUserHomePage.css";
+// import "../staff/StaffUserHomePage.css";
 import { UserType } from "../../../../utils/Types";
 
 import { StatCard } from "../micro-ui/stat-card";
@@ -29,6 +29,7 @@ import { FaPenToSquare } from "react-icons/fa6";
 import BlogCards from "../../../components/blogPosts/BlogCards";
 import { eventsPosts } from "../../../../utils/blogpost";
 import { updateStat } from "../../../../redux/slices/memberStatus";
+import EventPosts from "../../../components/blogPosts/Events";
 
 type QuickActionCardProps = {
   title: string;
@@ -460,7 +461,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       <div>
         <h2 className="shp-section-title">Our Events</h2>
         <div className="shp-two-column">
-          <BlogCards posts={eventsPosts} />
+          <EventPosts posts={eventsPosts} />
         </div>
       </div>
     </div>
