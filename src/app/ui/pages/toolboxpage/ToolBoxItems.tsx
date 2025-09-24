@@ -24,6 +24,8 @@ import { LuFileJson } from "react-icons/lu"
 import { GiPowerGenerator } from "react-icons/gi"
 import { SiLetsencrypt } from "react-icons/si"
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard"
+import { ConfirmationPage } from "../../components/payment/ConfirmationPage"
+import { PendingConfirmation } from "../../components/payment/PendingConfirmation"
 
 export const Alltools = [
   {
@@ -323,12 +325,18 @@ export const tools = [
   //   isPremium: true,
   // },
 ]
+  type FlowState = null | "upgrade" | "payment" | "success" | "pending"
 
 const ToolBoxItems: React.FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [showPremiumOnly, setShowPremiumOnly] = useState(false)
+    const [flow, setFlow] = useState<FlowState>(null)
+    const [selectedTool, setSelectedTool] = useState<string | null>(null)
+
+
   const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(null)
+
   const navigate = useNavigate()
 
   const categories = useMemo(() => {
@@ -348,15 +356,21 @@ const ToolBoxItems: React.FunctionComponent = () => {
     })
   }, [searchQuery, selectedCategory, showPremiumOnly])
 
-  const handleToolClick = (tool: any) => {
-    if (tool.isPremium) {
-      setShowUpgradePrompt(tool.title)
+ const handleToolClick = (tool: any) => {
+  if (tool.isPremium) {
+    if (flow === "success") {
+      setFlow("pending") // after payment, show pending confirmation
     } else {
-      if (tool.link) {
-        navigate(tool.link)
-      }
+      setFlow("upgrade")
+    }
+    setSelectedTool(tool.title)
+  } else {
+    if (tool.link) {
+      navigate(tool.link)
     }
   }
+}
+
 
   const handleCloseUpgrade = () => {
     setShowUpgradePrompt(null)
@@ -364,24 +378,43 @@ const ToolBoxItems: React.FunctionComponent = () => {
 
   return (
     <div>
-      {showUpgradePrompt && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-        >
-          <UpgradeToAccessTools toolName={showUpgradePrompt} onClose={handleCloseUpgrade} />
-        </div>
-      )}
+     {flow && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 1000,
+    }}
+  >
+    {flow === "upgrade" && (
+      <UpgradeToAccessTools
+        toolName={selectedTool}
+        onUpgrade={() => setFlow("payment")}
+        onClose={() => setFlow(null)}
+      />
+    )}
+
+    {flow === "payment" && (
+      <div>payment</div>
+    )}
+
+    {flow === "success" && (
+      <div>success</div>
+    )}
+
+    {flow === "pending" && (
+          <div>pending</div>
+    )}
+  </div>
+)}
+
 
       <div className="software-main">
         <div className="software-main-content">

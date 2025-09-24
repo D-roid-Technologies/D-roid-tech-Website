@@ -8,18 +8,26 @@ import styles from "./UpgradeToAccessTools.module.css"
 import { CheckoutPage } from "./payment/CheckoutPage"
 
 interface UpgradeToAccessToolsProps {
-  toolName?: string
+  toolName?: string | null
   onClose?: () => void
+  onPaymentSuccess?: () => void
+  onPaymentInitiated?: () => void
+  onUpgrade?: () => void
 }
 
-export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({ toolName = "Premium Tools", onClose }) => {
+export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({
+  toolName = "Premium Tools",
+  onClose,
+  onPaymentSuccess,
+  onPaymentInitiated,
+}) => {
   const navigate = useNavigate()
   const [showCheckout, setShowCheckout] = useState(false)
 
   const selectedPlan = {
-    id:"",
+    id:"1",
     name: "Premium Tools Access",
-    price: 5999, // Price in kobo (₦29.99)
+    price: 2999, // Price in kobo (₦29.99)
     interval: "month",
     features: [
       "Access to all premium tools",
@@ -34,10 +42,24 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({ tool
 
   const handleUpgrade = () => {
     setShowCheckout(true)
+    if (onPaymentInitiated) {
+      onPaymentInitiated()
+    }
   }
 
   const handleBackFromCheckout = () => {
     setShowCheckout(false)
+  }
+
+  const handleCheckoutSuccess = () => {
+    if (onPaymentSuccess) {
+      onPaymentSuccess()
+    }
+    setShowCheckout(false)
+  }
+
+  const handleCheckoutInitiated = () => {
+    // Placeholder for the actual implementation
   }
 
   if (showCheckout) {
@@ -46,7 +68,12 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({ tool
         <button className={styles.backButton} onClick={handleBackFromCheckout}>
           ← Back to Upgrade
         </button>
-        <CheckoutPage selectedPlan={selectedPlan} onBack={handleBackFromCheckout} />
+        <CheckoutPage
+          selectedPlan={selectedPlan}
+          onBack={handleBackFromCheckout}
+          onPaymentSuccess={handleCheckoutSuccess}
+          onPaymentInitiated={handleCheckoutInitiated}
+        />
       </div>
     )
   }
@@ -92,7 +119,7 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({ tool
       <div className={styles.pricingSection}>
         <div className={styles.priceTag}>
           <span className={styles.currency}>₦</span>
-          <span className={styles.price}>5000</span>
+          <span className={styles.price}>29.99</span>
           <span className={styles.period}>/month</span>
         </div>
         <p className={styles.pricingNote}>Cancel anytime • 30-day money-back guarantee</p>

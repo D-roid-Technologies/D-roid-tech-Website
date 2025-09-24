@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../blogPosts/BlogCards.css";
+import "./Events.css";
 import { Link } from "react-router-dom";
 
-interface BlogPost {
+interface eventPost {
   id: number;
   title: string;
   excerpt: string;
@@ -16,11 +16,11 @@ interface BlogPost {
   readMoreLink: string;
 }
 
-interface BlogCardProps {
-  posts: BlogPost[]; // Required prop
+interface eventCardProps {
+  posts: eventPost[]; // Required prop
 }
 
-const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
+const EventPosts: React.FC<eventCardProps> = ({ posts }) => {
   const [visiblePosts, setVisiblePosts] = useState<number>(4);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
@@ -29,6 +29,7 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
     "All",
     ...Array.from(new Set(posts.map((post) => post.category))),
   ];
+
 
   // Filter posts by active category
   const filteredPosts =
@@ -45,9 +46,7 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
 
   function checkEventStatus(sampleDateStr: string): string {
     // Parse the sample date (e.g., "Monday, 15th June 2026")
-    const sampleDate = new Date(
-      sampleDateStr.replace(/(\d+)(st|nd|rd|th)/, "$1")
-    );
+    const sampleDate = new Date(sampleDateStr.replace(/(\d+)(st|nd|rd|th)/, "$1"));
 
     // Get today's date (without time)
     const today = new Date();
@@ -71,27 +70,26 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
   const showLoadMore = visiblePosts < filteredPosts.length;
 
   return (
-    <section className="blog-posts-section">
-      <div className="blog-posts-grid">
+    <section className="event-posts-section">
+
+      <div className="event-posts-grid">
         {postsToShow.map((post) => (
-          <div key={post.id} className="blog-card">
-            <div className="blog-card-image">
+          <div key={post.id} className="event-card">
+            <div className="event-card-image">
               <img src={post.image} alt={post.title} />
-              <span className="blog-card-category">{post.category}</span>
+              <span className="event-card-category">{post.category}</span>
             </div>
-            <div className="blog-card-content">
-              <div className="blog-card-meta">
-                <span className="blog-card-date">{post.date}</span>
-                <span className="blog-card-date">
-                  {checkEventStatus(post.date)}
-                </span>
+            <div className="event-card-content">
+              <div className="event-card-meta">
+                <span className="event-card-date">{post.date}</span>
+                <span className="event-card-date">{checkEventStatus(post.date)}</span>
               </div>
-              <h3 className="blog-card-title">{post.title}</h3>
-              <p className="blog-card-excerpt">{post.excerpt}</p>
-              <div className="blog-card-footer">
-                <div className="blog-card-author">
+              <h3 className="event-card-title">{post.title}</h3>
+              <p className="event-card-excerpt">{post.excerpt}</p>
+              <div className="event-card-footer">
+                <div className="event-card-author">
                   <img src={post.authorAvatar} alt={post.author} />
-                  <span className="blog-card-date">{post.author}</span>
+                  <span className="event-card-date">{post.author}</span>
                 </div>
                 <Link to={post.readMoreLink} className="read-more-link">
                   Read More →
@@ -113,4 +111,4 @@ const BlogCards: React.FC<BlogCardProps> = ({ posts }) => {
   );
 };
 
-export default BlogCards;
+export default EventPosts;
