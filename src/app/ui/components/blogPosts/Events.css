@@ -32,20 +32,18 @@
 }
 
 .event-posts-grid {
-    display: grid;
+  display: grid;
   grid-template-columns: repeat(3, minmax(280px, 1fr));
   gap: 1.5rem;
   justify-content: start;
 }
 
 .event-card {
-    
   background: white;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
 
- 
   transition: transform 0.3s ease;
 }
 
@@ -145,13 +143,14 @@
   margin-top: 1rem;
 }
 
-.read-more-link {
+.read-more-event-link {
   color: #111724;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
   font-size: 0.8rem;
   margin-bottom: -16px;
+  cursor: pointer;
 }
 
 .read-more-link:hover {
@@ -164,12 +163,180 @@
   font-size: 0.4rem;
 }
 
-.event-card-meta {
+.event-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: space-between;
-  color: #6b7280;
-  font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
+.event-modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
 
+.event-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Added styles for event detail view component */
+.event-detail-view {
+  max-width: 800px;
+  width: 250%;
+  margin: 0 auto;
+  padding: 2rem;
+
+}
+
+.back-to-events-btn {
+  background: #071d6a;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: background 0.3s ease;
+}
+
+.back-to-events-btn:hover {
+  background: #08258e;
+}
+
+.event-detail-content {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-detail-header {
+  padding: 2rem 2rem 1rem 2rem;
+}
+
+.event-detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.event-detail-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.event-detail-meta span {
+  padding: 0.25rem 0.75rem;
+  background: #f3f4f6;
+  border-radius: 20px;
+}
+
+.event-detail-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.event-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-detail-body {
+  padding: 2rem;
+}
+
+.event-detail-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.event-detail-author img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #111827;
+  display: block;
+}
+
+.read-time {
+  font-size: 0.8rem;
+  color: #6b7280;
+  display: block;
+}
+
+.event-detail-excerpt {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.event-detail-content-body {
+  color: #374151;
+  line-height: 1.7;
+}
+
+.content-paragraph {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.content-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive design for event detail view */
+@media (max-width: 768px) {
+  .event-detail-view {
+    padding: 1rem;
+  }
+
+  .event-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .event-detail-header,
+  .event-detail-body {
+    padding: 1.5rem;
+  }
+
+  .event-detail-image {
+    height: 200px;
+  }
+}

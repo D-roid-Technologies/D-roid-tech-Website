@@ -416,3 +416,18 @@ export type TechStackItem = {
   title: string;
   description: string;
 };
+
+export type eventPost = {
+  id: number
+  title: string
+  excerpt: string
+  date: string
+  author: string
+  authorAvatar: string
+  category: string
+  readTime?: string
+  image: string
+  featured?: boolean
+  readMoreLink: string
+  content?: string[]
+}
