@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect, type ReactNode } from "react"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import type { RootState } from "../../../redux/Store"
-import type { UserType } from "../../../utils/Types"
+import type React from "react";
+import { useState, useEffect, type ReactNode } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import type { RootState } from "../../../redux/Store";
+import type { UserType } from "../../../utils/Types";
 import {
   FaUser,
   FaTasks,
@@ -27,70 +27,71 @@ import {
   FaHeart,
   FaDonate,
   FaServicestack,
-} from "react-icons/fa"
-import { IoHomeSharp } from "react-icons/io5"
-import PersonalDetails from "./PersonalDetails"
-import AllUsers from "./users/AllUsers"
-import { authService } from "../../../redux/configuration/auth.service"
-import SignInOut from "./SignInOut"
-import StaffPay from "./StaffPay"
-import WelcomePage from "./WelcomePage"
-import Onboarding from "./Onboarding"
-import Tasks from "./Tasks"
-import Announcements from "./Announcements"
-import SayIt from "./SayIt"
-import Trainings from "./Trainings"
-import Progression from "./Progressions"
-import styles from "./DashboardContent.module.css"
-import Section from "./Section"
-import { GiCalculator } from "react-icons/gi"
-import { TbMicroscope } from "react-icons/tb"
-import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator"
-import Bmi from "../calculator/Bmi"
-import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing"
-import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit"
-import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert"
-import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark"
-import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater"
-import { FaWallet } from "react-icons/fa6"
-import ClassRoom from "./ClassRoom"
-import Staffs from "./Staffs"
-import Library from "./Library"
-import Finance from "./Finance"
-import CareersDashboard from "./CareersDashboard"
-import ColorConv from "../../components/toolboxfolder/Colorconv/ColorConv"
-import WordCounterItem from "../../components/toolboxfolder/WordCounter/WordCounterItem"
-import UuidGeneratorItem from "../toolboxpage/uuidgenerator/UuidGeneratorItem"
-import EncoderItem from "../toolboxpage/Encoder/EncoderItem"
-import { Alltools } from "../toolboxpage/ToolBoxItems"
-import ImageRezised from "../../components/toolboxfolder/imageresizing/ImageRezised"
-import ImageCompressItem from "../../components/toolboxfolder/imagecompress/ImageCompressItem"
-import CropToolItem from "../toolboxpage/croptool/CropToolItem"
-import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPickerItem"
-import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem"
-import AdminScheduleTool from "../schedule/AdminScheduleTool"
-import ServicesItems from "./Services"
-import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage"
-import { VolunteersSection } from "./volunteers-section"
-import { DonationsSection } from "./donations-section"
-import { GroupsSection } from "./groups-section"
-import { ImpactSection } from "./impact-section"
-import { OutreachSection } from "./outreach-section"
-import { PartnersSection } from "./partners-section"
-import { ClientsSection } from "./clients-section"
-import { DepartmentsSection } from "./departments-section"
-import { ProjectsSection } from "./projects-section"
-import { ReportsSection } from "./reports-section"
-import StaffUserHomePage from "./staff/StaffUserHomePage"
-import SchoolDashboard from "./organization/SchoolDashboard"
-import BusinessDashboard from "./organization/BusinessDashboard"
-import NGODashboard from "./organization/NGODashboard"
-import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard"
-import MemberDashboard from "./member/MemberDashboard"
-import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard"
-import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex"
-import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools"
-import { PendingConfirmation } from "../../components/payment/PendingConfirmation"
+} from "react-icons/fa";
+import { IoHomeSharp } from "react-icons/io5";
+import PersonalDetails from "./PersonalDetails";
+import AllUsers from "./users/AllUsers";
+import { authService } from "../../../redux/configuration/auth.service";
+import SignInOut from "./SignInOut";
+import StaffPay from "./StaffPay";
+import WelcomePage from "./WelcomePage";
+import Onboarding from "./Onboarding";
+import Tasks from "./Tasks";
+import Announcements from "./Announcements";
+import SayIt from "./SayIt";
+import Trainings from "./Trainings";
+import Progression from "./Progressions";
+import styles from "./DashboardContent.module.css";
+import Section from "./Section";
+import { GiCalculator } from "react-icons/gi";
+import { TbMicroscope } from "react-icons/tb";
+import ScientificCalculator from "../../components/scientificcalculator/ScientificCalculator";
+import Bmi from "../calculator/Bmi";
+import ResumeAnalyzing from "../toolboxpage/premiumtoolbox/ResumeAnalyzing";
+import PdfEdit from "../toolboxpage/premiumtoolbox/PdfEdit";
+import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
+import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
+import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater";
+import { FaWallet } from "react-icons/fa6";
+import ClassRoom from "./ClassRoom";
+import Staffs from "./Staffs";
+import Library from "./Library";
+import Finance from "./Finance";
+import CareersDashboard from "./CareersDashboard";
+import ColorConv from "../../components/toolboxfolder/Colorconv/ColorConv";
+import WordCounterItem from "../../components/toolboxfolder/WordCounter/WordCounterItem";
+import UuidGeneratorItem from "../toolboxpage/uuidgenerator/UuidGeneratorItem";
+import EncoderItem from "../toolboxpage/Encoder/EncoderItem";
+import { Alltools } from "../toolboxpage/ToolBoxItems";
+import ImageRezised from "../../components/toolboxfolder/imageresizing/ImageRezised";
+import ImageCompressItem from "../../components/toolboxfolder/imagecompress/ImageCompressItem";
+import CropToolItem from "../toolboxpage/croptool/CropToolItem";
+import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPickerItem";
+import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem";
+import AdminScheduleTool from "../schedule/AdminScheduleTool";
+import ServicesItems from "./Services";
+import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage";
+import { VolunteersSection } from "./volunteers-section";
+import { DonationsSection } from "./donations-section";
+import { GroupsSection } from "./groups-section";
+import { ImpactSection } from "./impact-section";
+import { OutreachSection } from "./outreach-section";
+import { PartnersSection } from "./partners-section";
+import { ClientsSection } from "./clients-section";
+import { DepartmentsSection } from "./departments-section";
+import { ProjectsSection } from "./projects-section";
+import { ReportsSection } from "./reports-section";
+import StaffUserHomePage from "./staff/StaffUserHomePage";
+import SchoolDashboard from "./organization/SchoolDashboard";
+import BusinessDashboard from "./organization/BusinessDashboard";
+import NGODashboard from "./organization/NGODashboard";
+import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
+import MemberDashboard from "./member/MemberDashboard";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
+import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
+import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
+import TakeTestFolder from "./takeTest/TakeTestFolder";
 
 // const tools = [
 //   {
@@ -191,102 +192,115 @@ const calculators = [
   //   title: "OhmsLawCalculator",
   //   content: "Calculate voltage, current, and resistance using Ohm's Law.",
   // },
-]
+];
 
 interface DashboardContentProps {
-  isSidebarOpen: boolean
-  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>
-  onClose?: () => void
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose?: () => void;
 }
 
-const DashboardContent: React.FC<DashboardContentProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const navigate = useNavigate()
-  const [currentTime] = useState(new Date())
+const DashboardContent: React.FC<DashboardContentProps> = ({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}) => {
+  const navigate = useNavigate();
+  const [currentTime] = useState(new Date());
 
-  const userDetails: UserType = useSelector((state: RootState) => state.user)
-  const staffDetails = useSelector((state: RootState) => state.SignInO.staffDetails)
+  const userDetails: UserType = useSelector((state: RootState) => state.user);
+  const staffDetails = useSelector(
+    (state: RootState) => state.SignInO.staffDetails
+  );
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
-    title: string
-    content: string
-    icon: ReactNode
-  }>(null)
-  const [input, setInput] = useState("")
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null)
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0")
-  const [activeCalculator, setActiveCalculator] = useState<string | null>(null)
+    title: string;
+    content: string;
+    icon: ReactNode;
+  }>(null);
+  const [input, setInput] = useState("");
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0");
+  const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
 
   //Toools
   // Add state for active tool
-  const [activeTool, setActiveTool] = useState<string | null>(null)
-  const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(null)
+  const [activeTool, setActiveTool] = useState<string | null>(null);
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(
+    null
+  );
   const [paymentStatus, setPaymentStatus] = useState<{
-    [toolId: string]: "none" | "pending" | "confirmed" | "failed"
-  }>({})
-const [searchQuery, setSearchQuery] = useState("");
+    [toolId: string]: "none" | "pending" | "confirmed" | "failed";
+  }>({});
+  const [searchQuery, setSearchQuery] = useState("");
 
-// filter tools by title or description
-const filteredTools = Alltools.filter((tool) =>
-  tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  tool.description.toLowerCase().includes(searchQuery.toLowerCase())
-);
+  // filter tools by title or description
+  const filteredTools = Alltools.filter(
+    (tool) =>
+      tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   // Update the handleLaunchTool function
   const handleLaunchTool = (toolComponent: string, isPremium?: boolean) => {
     if (isPremium) {
-      const currentStatus = paymentStatus[toolComponent] || "none"
+      const currentStatus = paymentStatus[toolComponent] || "none";
 
       if (currentStatus === "pending") {
         // Show pending confirmation if payment is pending
-        setShowUpgradePrompt(`pending_${toolComponent}`)
-        return
+        setShowUpgradePrompt(`pending_${toolComponent}`);
+        return;
       } else if (currentStatus === "confirmed") {
         // Allow access to tool if payment is confirmed
-        setActiveTool(toolComponent)
-        return
+        setActiveTool(toolComponent);
+        return;
       } else {
         // Show upgrade prompt for unpaid premium tools
-        setShowUpgradePrompt(toolComponent)
-        return
+        setShowUpgradePrompt(toolComponent);
+        return;
       }
     }
-    setActiveTool(toolComponent)
-  }
+    setActiveTool(toolComponent);
+  };
 
   // Create a function to handle closing tools
   const handleCloseTool = () => {
-    setActiveTool(null)
-    setShowUpgradePrompt(null)
-  }
+    setActiveTool(null);
+    setShowUpgradePrompt(null);
+  };
 
   const handlePaymentSuccess = (toolComponent: string) => {
     setPaymentStatus((prev) => ({
       ...prev,
       [toolComponent]: "confirmed",
-    }))
-    setShowUpgradePrompt(null)
-    setActiveTool(toolComponent)
-  }
+    }));
+    setShowUpgradePrompt(null);
+    setActiveTool(toolComponent);
+  };
 
   const handlePaymentInitiated = (toolComponent: string) => {
     setPaymentStatus((prev) => ({
       ...prev,
       [toolComponent]: "pending",
-    }))
-  }
+    }));
+  };
 
   // Create a function to render the active tool component
   const renderToolComponent = () => {
     if (showUpgradePrompt) {
       // Check if it's a pending confirmation state
       if (showUpgradePrompt.startsWith("pending_")) {
-        const toolComponent = showUpgradePrompt.replace("pending_", "")
-        const tool = Alltools.find((t) => t.component === toolComponent)
-        return <PendingConfirmation toolName={tool?.title || "Premium Tool"} onClose={handleCloseTool} />
+        const toolComponent = showUpgradePrompt.replace("pending_", "");
+        const tool = Alltools.find((t) => t.component === toolComponent);
+        return (
+          <PendingConfirmation
+            toolName={tool?.title || "Premium Tool"}
+            onClose={handleCloseTool}
+          />
+        );
       }
 
       // Regular upgrade prompt
-      const tool = Alltools.find((t) => t.component === showUpgradePrompt)
+      const tool = Alltools.find((t) => t.component === showUpgradePrompt);
       return (
         <UpgradeToAccessTools
           toolName={tool?.title || "Premium Tool"}
@@ -294,55 +308,55 @@ const filteredTools = Alltools.filter((tool) =>
           onPaymentSuccess={() => handlePaymentSuccess(showUpgradePrompt)}
           onPaymentInitiated={() => handlePaymentInitiated(showUpgradePrompt)}
         />
-      )
+      );
     }
 
     switch (activeTool) {
       case "ImageResizing":
-        return <ImageRezised />
+        return <ImageRezised />;
       case "ColorConverter":
-        return <ColorConv />
+        return <ColorConv />;
       case "ImageCompressor":
-        return <ImageCompressItem />
+        return <ImageCompressItem />;
       case "CropTool":
-        return <CropToolItem />
+        return <CropToolItem />;
       case "ColorPicker":
-        return <ColorPickerItem />
+        return <ColorPickerItem />;
       case "WordCounter":
-        return <WordCounterItem />
+        return <WordCounterItem />;
       case "CurrencyConverter":
-        return <CurrencyConvert />
+        return <CurrencyConvert />;
       case "JsonFormatter":
-        return <JsonFormatter />
+        return <JsonFormatter />;
       case "UUIDGenerator":
-        return <UuidGeneratorItem />
+        return <UuidGeneratorItem />;
       case "Base64EncoderDecoder":
-        return <EncoderItem />
+        return <EncoderItem />;
       case "BackgroundRemove":
-        return <BackgroundRemoverItem onClose={handleCloseTool} />
+        return <BackgroundRemoverItem onClose={handleCloseTool} />;
       case "PDFEditor":
-        return <PdfEdit onClose={handleCloseTool} />
+        return <PdfEdit onClose={handleCloseTool} />;
       case "ResumeAnalyzer":
-        return <ResumeAnalyzing />
+        return <ResumeAnalyzing />;
       case "CodeComplexityAnalyzer":
-        return <CodeComplex onClose={handleCloseTool} />
+        return <CodeComplex onClose={handleCloseTool} />;
       case "BulkImageWatermarker":
-        return <ImageMark onClose={handleCloseTool} />
+        return <ImageMark onClose={handleCloseTool} />;
       default:
-        return <p>Select a tool to get started.</p>
+        return <p>Select a tool to get started.</p>;
     }
-  }
+  };
 
   //Calculator
   // Update the handleLaunchTool function
   const handleLaunchCalculator = (calculatorComponent: string) => {
-    setActiveCalculator(calculatorComponent)
-  }
+    setActiveCalculator(calculatorComponent);
+  };
 
   // Create a function to handle closing tools
   const handleCloseCalculator = () => {
-    setActiveCalculator(null)
-  }
+    setActiveCalculator(null);
+  };
 
   // Create a function to render the active tool component
   const renderCalculatorComponent = () => {
@@ -350,40 +364,47 @@ const filteredTools = Alltools.filter((tool) =>
       // case "Calculate":
       //   return <Calculate onClose={handleCloseCalculator} />;
       case "ScientificCalculator":
-        return <ScientificCalculator onClose={handleCloseCalculator} />
+        return <ScientificCalculator onClose={handleCloseCalculator} />;
       case "Bmi":
-        return <Bmi onClose={handleCloseCalculator} />
+        return <Bmi onClose={handleCloseCalculator} />;
       case "OhmslawCalculator":
-        return <UnderDevelopmentPage />
+        return <UnderDevelopmentPage />;
 
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth)
+      setWindowWidth(window.innerWidth);
       if (window.innerWidth > 768) {
-        setIsSidebarOpen(true)
+        setIsSidebarOpen(true);
       } else {
-        setIsSidebarOpen(false)
+        setIsSidebarOpen(false);
       }
-    }
+    };
 
-    window.addEventListener("resize", handleResize)
-    handleResize() // Initialize
-    return () => window.removeEventListener("resize", handleResize)
-  }, [setIsSidebarOpen])
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setIsSidebarOpen]);
 
-  const isUserStaff = userDetails.userType === "Staff"
-  const isUserRole = userDetails.role === "Superadmin"
-  const userType = userDetails.userType
-  const orgType = userDetails.organisationalType?.toLowerCase() as "school" | "business" | "ngo" | undefined
+  const isUserStaff = userDetails.userType === "Staff";
+  const isUserRole = userDetails.role === "Superadmin";
+  const userType = userDetails.userType;
+  const orgType = userDetails.organisationalType?.toLowerCase() as
+    | "school"
+    | "business"
+    | "ngo"
+    | undefined;
 
-  const organizationType: "school" | "business" | "ngo" = "school"
+  const organizationType: "school" | "business" | "ngo" = "school";
 
-  const orgSpecificItems: Record<"school" | "business" | "ngo", { label: string; icon: any }[]> = {
+  const orgSpecificItems: Record<
+    "school" | "business" | "ngo",
+    { label: string; icon: any }[]
+  > = {
     school: [
       { label: "Classroom", icon: FaChalkboard },
       // { label: "Students", icon: FaUsers },
@@ -407,7 +428,7 @@ const filteredTools = Alltools.filter((tool) =>
       { label: "Partners", icon: FaUsers },
       { label: "Groups", icon: FaUsers },
     ],
-  }
+  };
 
   const menuItems = [
     ...(isUserRole ? [{ label: "Users", icon: FaUser }] : []),
@@ -424,7 +445,9 @@ const filteredTools = Alltools.filter((tool) =>
       label: "Personal Details",
       icon: FaUser,
     },
-    ...(userType === "Organisation" && orgType && orgSpecificItems[orgType] ? orgSpecificItems[orgType] : []),
+    ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
+      ? orgSpecificItems[orgType]
+      : []),
     { label: "Services", icon: FaServicestack },
     { label: "Careers", icon: FaBriefcase },
     { label: "Schedules", icon: FaCalendarAlt },
@@ -442,21 +465,21 @@ const filteredTools = Alltools.filter((tool) =>
           { label: "Attendance", icon: FaBookOpen },
         ]
       : []),
-  ]
+  ];
 
   const handleMenuClick = (label: string) => {
-    setSelectedMenu(label)
+    setSelectedMenu(label);
     if (windowWidth <= 768) {
-      setIsSidebarOpen(false)
+      setIsSidebarOpen(false);
     }
-  }
+  };
 
   const handleSignOut = async () => {
     await authService
       .handleUserSignout()
       .then(() => navigate("/auth/join-our-community"))
-      .catch((err) => console.error(err))
-  }
+      .catch((err) => console.error(err));
+  };
 
   const rightMenuItems = [
     {
@@ -479,7 +502,7 @@ const filteredTools = Alltools.filter((tool) =>
       content: "Set your personal preferences.",
       icon: <i className="fas fa-cog"></i>,
     },
-  ]
+  ];
 
   const calculateItems = [
     {
@@ -500,7 +523,7 @@ const filteredTools = Alltools.filter((tool) =>
       icon: GiCalculator({ size: 24 }),
       link: "/calculators/bmicalcute",
     },
-  ]
+  ];
 
   const renderContent = () => {
     if (!selectedMenu) {
@@ -512,7 +535,7 @@ const filteredTools = Alltools.filter((tool) =>
                 <StaffUserHomePage />
               </Section>
             </>
-          )
+          );
         case "Organisation":
           // Check organization type and render appropriate home page
           switch (orgType) {
@@ -523,7 +546,7 @@ const filteredTools = Alltools.filter((tool) =>
                     <SchoolDashboard />
                   </Section>
                 </>
-              )
+              );
             case "business":
               return (
                 <>
@@ -531,7 +554,7 @@ const filteredTools = Alltools.filter((tool) =>
                     <BusinessDashboard />
                   </Section>
                 </>
-              )
+              );
             case "ngo":
               return (
                 <>
@@ -539,7 +562,7 @@ const filteredTools = Alltools.filter((tool) =>
                     <NGODashboard />
                   </Section>
                 </>
-              )
+              );
             default:
               return (
                 <>
@@ -547,7 +570,7 @@ const filteredTools = Alltools.filter((tool) =>
                     <p>Please configure your organization type in settings.</p>
                   </Section>
                 </>
-              )
+              );
           }
         case "Member":
           return (
@@ -556,7 +579,7 @@ const filteredTools = Alltools.filter((tool) =>
                 <MemberDashboard setSelectedMenu={setSelectedMenu} />
               </Section>
             </>
-          )
+          );
         default:
           return (
             <>
@@ -564,7 +587,7 @@ const filteredTools = Alltools.filter((tool) =>
                 <WelcomePage />
               </Section>
             </>
-          )
+          );
       }
     }
 
@@ -574,146 +597,171 @@ const filteredTools = Alltools.filter((tool) =>
           <Section title="Users" isActive={selectedMenu === "Users"}>
             <AllUsers />
           </Section>
-        )
+        );
       case "Personal Details":
         return (
-          <Section title="Personal Details" isActive={selectedMenu === "Personal Details"}>
+          <Section
+            title="Personal Details"
+            isActive={selectedMenu === "Personal Details"}
+          >
             <PersonalDetails />
           </Section>
-        )
+        );
       case "Announcements":
         return (
-          <Section title="Announcements" isActive={selectedMenu === "Announcements"}>
+          <Section
+            title="Announcements"
+            isActive={selectedMenu === "Announcements"}
+          >
             <Announcements />
           </Section>
-        )
+        );
       case "Tasks":
         return (
           <Section title="Tasks" isActive={selectedMenu === "Tasks"}>
             <p style={{ color: "#000000" }}>See all list of all tasks here.</p>
             <Tasks />
           </Section>
-        )
+        );
       case "Payslips":
         return (
           <Section title="Payslips" isActive={selectedMenu === "Payslips"}>
             {grossPay > 0 ? (
               <>
-                <p style={{ color: "#000000" }}>View your salary payslips here.</p>
+                <p style={{ color: "#000000" }}>
+                  View your salary payslips here.
+                </p>
                 <StaffPay />
               </>
             ) : (
-              <p style={{ color: "#ff4d4f" }}>Gross pay data is missing or zero — please complete onboarding first.</p>
+              <p style={{ color: "#ff4d4f" }}>
+                Gross pay data is missing or zero — please complete onboarding
+                first.
+              </p>
             )}
           </Section>
-        )
+        );
       case "Onboarding":
         return (
           <Section title="Onboarding" isActive={selectedMenu === "Onboarding"}>
             <Onboarding />
           </Section>
-        )
+        );
       case "Training":
         return (
           <Section title="Training" isActive={selectedMenu === "Training"}>
-            <p style={{ color: "#000000" }}>Access your training materials here.</p>
+            <p style={{ color: "#000000" }}>
+              Access your training materials here.
+            </p>
             <Trainings />
           </Section>
-        )
+        );
       case "Progressions":
         return (
-          <Section title="Progressions" isActive={selectedMenu === "Progressions"}>
-            <p style={{ color: "#000000" }}>Track your professional progress here.</p>
+          <Section
+            title="Progressions"
+            isActive={selectedMenu === "Progressions"}
+          >
+            <p style={{ color: "#000000" }}>
+              Track your professional progress here.
+            </p>
             <Progression />
           </Section>
-        )
+        );
       case "Resource":
         return (
           <Section title="Resource" isActive={selectedMenu === "Resource"}>
-            <p style={{ color: "#000000" }}>Browse useful resources and documents.</p>
+            <p style={{ color: "#000000" }}>
+              Browse useful resources and documents.
+            </p>
             <SignInOut />
           </Section>
-        )
+        );
       case "Schedules":
         return (
           <Section title="Schedules" isActive={selectedMenu === "Schedules"}>
-            <p style={{ color: "#000000" }}>Manage and view your working schedules.</p>
+            <p style={{ color: "#000000" }}>
+              Manage and view your working schedules.
+            </p>
             <div style={{ marginTop: "10px" }}>
               <AdminScheduleTool />
             </div>
           </Section>
-        )
+        );
       case "Tool Box":
         return (
           <Section title="Tool Box" isActive={selectedMenu === "Tool Box"}>
-  <p style={{ color: "#000000", marginBottom: "20px" }}>
-    Access various tools for your tasks
-  </p>
+            <p style={{ color: "#000000", marginBottom: "20px" }}>
+              Access various tools for your tasks
+            </p>
 
-  {/* 🔎 Search Input */}
-  {!activeTool && !showUpgradePrompt && (
-    <input
-      type="text"
-      placeholder="Search tools..."
-      value={searchQuery}
-      onChange={(e) => setSearchQuery(e.target.value)}
-      style={{
-        width: "100%",
-        padding: "10px",
-        marginBottom: "20px",
-        borderRadius: "6px",
-        border: "1px solid #ccc",
-        fontSize: "14px",
-      }}
-    />
-  )}
+            {/* 🔎 Search Input */}
+            {!activeTool && !showUpgradePrompt && (
+              <input
+                type="text"
+                placeholder="Search tools..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  marginBottom: "20px",
+                  borderRadius: "6px",
+                  border: "1px solid #ccc",
+                  fontSize: "14px",
+                }}
+              />
+            )}
 
-  {activeTool || showUpgradePrompt ? (
-    <div>
-      <button
-        onClick={() => {
-          setActiveTool(null)
-          setShowUpgradePrompt(null)
-        }}
-        style={{
-          marginBottom: "20px",
-          padding: "8px 16px",
-          backgroundColor: "#f0f0f0",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          cursor: "pointer",
-          color: "#333",
-        }}
-      >
-        ← Back to Tools
-      </button>
-      {renderToolComponent()}
-    </div>
-  ) : (
-    <div className="soft-dev-content">
-      {filteredTools.map((tech, index) => (
-        <AllToolsCard
-          key={index}
-          title={tech.title}
-          description={tech.description}
-          icon={tech.icon}
-          isPremium={tech.isPremium}
-          onClick={
-            tech.component ? () => handleLaunchTool(tech.component, tech.isPremium) : undefined
-          }
-          className="process-card"
-        />
-      ))}
+            {activeTool || showUpgradePrompt ? (
+              <div>
+                <button
+                  onClick={() => {
+                    setActiveTool(null);
+                    setShowUpgradePrompt(null);
+                  }}
+                  style={{
+                    marginBottom: "20px",
+                    padding: "8px 16px",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    cursor: "pointer",
+                    color: "#333",
+                  }}
+                >
+                  ← Back to Tools
+                </button>
+                {renderToolComponent()}
+              </div>
+            ) : (
+              <div className="soft-dev-content">
+                {filteredTools.map((tech, index) => (
+                  <AllToolsCard
+                    key={index}
+                    title={tech.title}
+                    description={tech.description}
+                    icon={tech.icon}
+                    isPremium={tech.isPremium}
+                    onClick={
+                      tech.component
+                        ? () => handleLaunchTool(tech.component, tech.isPremium)
+                        : undefined
+                    }
+                    className="process-card"
+                  />
+                ))}
 
-      {/* Show message if no tools match */}
-      {filteredTools.length === 0 && (
-        <p style={{ color: "#888", marginTop: "10px" }}>No tools found</p>
-      )}
-    </div>
-  )}
-</Section>
-
-        )
+                {/* Show message if no tools match */}
+                {filteredTools.length === 0 && (
+                  <p style={{ color: "#888", marginTop: "10px" }}>
+                    No tools found
+                  </p>
+                )}
+              </div>
+            )}
+          </Section>
+        );
       case "Calculate":
         return (
           <Section title="Calculate" isActive={selectedMenu === "Calculate"}>
@@ -765,131 +813,156 @@ const filteredTools = Alltools.filter((tool) =>
                     icon={tech.icon}
                     className="process-card"
                     url={tech.link} // ✅ if it’s a link/route
-                    onClick={tech.component ? () => handleLaunchCalculator(tech.component) : undefined}
+                    onClick={
+                      tech.component
+                        ? () => handleLaunchCalculator(tech.component)
+                        : undefined
+                    }
                   />
                 ))}
               </div>
             )}
           </Section>
-        )
+        );
       case "Say It":
         return (
           <Section title="Contact us" isActive={selectedMenu === "Say It"}>
             <SayIt />
           </Section>
-        )
+        );
       case "Classroom":
         return (
-          <Section title="Your Class Room" isActive={selectedMenu === "Classroom"}>
+          <Section
+            title="Your Class Room"
+            isActive={selectedMenu === "Classroom"}
+          >
             <ClassRoom />
           </Section>
-        )
+        );
       case "Staffs":
         return (
           <Section title="Your Staffs" isActive={selectedMenu === "Staffs"}>
             <Staffs />
           </Section>
-        )
+        );
       case "Library":
         return (
           <Section title="Your Library" isActive={selectedMenu === "Library"}>
             <Library />
           </Section>
-        )
+        );
       case "Services":
         return (
           <Section title="Your Services" isActive={selectedMenu === "Services"}>
             <ServicesItems />
           </Section>
-        )
+        );
       case "Careers":
         return (
           <Section title="Your Careers" isActive={selectedMenu === "Careers"}>
             <CareersDashboard />
           </Section>
-        )
+        );
       case "Finance":
         return (
           <Section title="Your Finance" isActive={selectedMenu === "Finance"}>
             <Finance />
           </Section>
-        )
+        );
       case "Volunteers":
         return (
-          <Section title="Your Volunteers" isActive={selectedMenu === "Volunteers"}>
+          <Section
+            title="Your Volunteers"
+            isActive={selectedMenu === "Volunteers"}
+          >
             <VolunteersSection />
           </Section>
-        )
+        );
       case "Donations":
         return (
-          <Section title="Your Donations" isActive={selectedMenu === "Donations"}>
+          <Section
+            title="Your Donations"
+            isActive={selectedMenu === "Donations"}
+          >
             <DonationsSection />
           </Section>
-        )
+        );
       case "Outreach":
         return (
           <Section title="Your Outreach" isActive={selectedMenu === "Outreach"}>
             <OutreachSection />
           </Section>
-        )
+        );
       case "Impact":
         return (
           <Section title="Your Impact" isActive={selectedMenu === "Impact"}>
             <ImpactSection />
           </Section>
-        )
+        );
       case "Partners":
         return (
           <Section title="Your Partners" isActive={selectedMenu === "Partners"}>
             <PartnersSection />
           </Section>
-        )
+        );
       case "Groups":
         return (
           <Section title="Your Groups" isActive={selectedMenu === "Groups"}>
             <GroupsSection />
           </Section>
-        )
+        );
       case "Departments":
         return (
-          <Section title="Your Departments" isActive={selectedMenu === "Departments"}>
+          <Section
+            title="Your Departments"
+            isActive={selectedMenu === "Departments"}
+          >
             <DepartmentsSection />
           </Section>
-        )
+        );
       case "Clients":
         return (
           <Section title="Your Clients" isActive={selectedMenu === "Clients"}>
             <ClientsSection />
           </Section>
-        )
+        );
       case "Projects":
         return (
           <Section title="Your Projects" isActive={selectedMenu === "Projects"}>
             <ProjectsSection />
           </Section>
-        )
+        );
       case "Reports":
         return (
           <Section title="Your Reports" isActive={selectedMenu === "Reports"}>
             <ReportsSection />
           </Section>
-        )
+        );
       default:
         return (
           <Section title="Dashboard" isActive={selectedMenu === "Dashboard"}>
-            <p style={{ color: "#000000" }}>Welcome to your dashboard.</p>
+            <TakeTestFolder />
           </Section>
-        )
+        );
     }
-  }
+  };
 
   return (
     <div className={styles.dashboardContainer}>
-      <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""}`}>
+      <aside
+        className={`${styles.sidebar} ${
+          isSidebarOpen ? styles.sidebarOpen : ""
+        }`}
+      >
         <div className={styles.userInfo}>
           <h3>
-            Good {currentTime.getHours() < 12 ? "Morning" : currentTime.getHours() < 18 ? "Afternoon" : "Evening"},{" "}
-            {userDetails.firstName}
+            Good{" "}
+            {currentTime.getHours() < 12
+              ? "Morning"
+              : currentTime.getHours() < 18
+              ? "Afternoon"
+              : "Evening"}
+            , {userDetails.firstName}
             {/* Hello, {userDetails.firstName} {userDetails.lastName} */}
           </h3>
           <p>{userDetails.email}</p>
@@ -906,7 +979,9 @@ const filteredTools = Alltools.filter((tool) =>
           {menuItems.map((item) => (
             <button
               key={item.label}
-              className={`${styles.navItem} ${selectedMenu === item.label ? styles.navItemActive : ""}`}
+              className={`${styles.navItem} ${
+                selectedMenu === item.label ? styles.navItemActive : ""
+              }`}
               onClick={() => handleMenuClick(item.label)}
             >
               {/* @ts-ignore */}
@@ -925,7 +1000,10 @@ const filteredTools = Alltools.filter((tool) =>
 
       <main className={styles.mainContent}>
         {selectedMenu && (
-          <button className={styles.backButton} onClick={() => setSelectedMenu(null)}>
+          <button
+            className={styles.backButton}
+            onClick={() => setSelectedMenu(null)}
+          >
             {/* @ts-ignore */}
             <IoHomeSharp />
             Home
@@ -934,7 +1012,7 @@ const filteredTools = Alltools.filter((tool) =>
         {renderContent()}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardContent
+export default DashboardContent;
