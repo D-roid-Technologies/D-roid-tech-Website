@@ -19,13 +19,12 @@ interface eventPost {
   content?: string[]
 }
 
-
 interface eventCardProps {
   posts: eventPost[] // Required prop
   onEventSelect?: (event: eventPost) => void
 }
 
-const EventPosts: React.FC<eventCardProps> = ({ posts,onEventSelect }) => {
+const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
   const [visiblePosts, setVisiblePosts] = useState<number>(4)
   const [activeCategory, setActiveCategory] = useState<string>("All")
   const [activePost, setActivePost] = useState<eventPost | null>(null)
@@ -70,7 +69,7 @@ const EventPosts: React.FC<eventCardProps> = ({ posts,onEventSelect }) => {
 
   return (
     <section className="event-posts-section">
-     {activePost && !onEventSelect ? (
+      {activePost && !onEventSelect ? (
         <div className="event-detail-view">
           <button className="back-to-events-btn" onClick={() => setActivePost(null)}>
             ← Back to Events
@@ -114,6 +113,18 @@ const EventPosts: React.FC<eventCardProps> = ({ posts,onEventSelect }) => {
         </div>
       ) : (
         <>
+          <div className="category-filters">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`category-filter ${activeCategory === category ? "active" : ""}`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
           <div className="event-posts-grid">
             {postsToShow.map((post) => (
               <div key={post.id} className="event-card">
@@ -124,14 +135,14 @@ const EventPosts: React.FC<eventCardProps> = ({ posts,onEventSelect }) => {
                 <div className="event-card-content">
                   <div className="event-card-meta">
                     <span className="event-card-date">{post.date}</span>
-                    <span className="event-card-date">{checkEventStatus(post.date)}</span>
+                    <span className="event-card-status">{checkEventStatus(post.date)}</span>
                   </div>
                   <h3 className="event-card-title">{post.title}</h3>
                   <p className="event-card-excerpt">{post.excerpt}</p>
                   <div className="event-card-footer">
                     <div className="event-card-author">
                       <img src={post.authorAvatar || "/placeholder.svg"} alt={post.author} />
-                      <span className="event-card-date">{post.author}</span>
+                      <span className="event-card-author-name">{post.author}</span>
                     </div>
                     <div className="read-more-event-link" onClick={() => setActivePost(post)}>
                       Read More →
@@ -144,7 +155,7 @@ const EventPosts: React.FC<eventCardProps> = ({ posts,onEventSelect }) => {
 
           {showLoadMore && (
             <div className="load-more-container">
-              <button className="navbar-cta" onClick={handleLoadMore}>
+              <button className="navbar-cta load-more-btn" onClick={handleLoadMore}>
                 Load More
               </button>
             </div>
