@@ -134,7 +134,63 @@
   font-size: 15px;
 }
 
-/* Learn list */
+/* Learn list mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm*/
+
+/* .ttf-test-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ttf-test-item {
+  flex: 1 1 280px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ttf-test-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ttf-no-tests {
+  color: #666;
+  text-align: center;
+  font-size: 16px;
+  padding: 40px 20px;
+} */
+.ttf-test-list {
+  display: flex;
+  flex-wrap: wrap; /* allows next row when screen is smaller */
+  justify-content: center; /* centers the row horizontally */
+  gap: 20px; /* space between cards */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ttf-test-item {
+  flex: 0 0 calc(33.333% - 20px); /* three cards per row */
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ttf-test-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ttf-no-tests {
+  color: #666;
+  text-align: center;
+  font-size: 16px;
+  padding: 40px 20px;
+}
+
 .ttf-learn-list {
   list-style: none;
   padding: 0;
@@ -162,7 +218,7 @@
 }
 
 .ttf-question-item {
-  color: #000;
+  color: #666;
   margin-bottom: 12px;
   padding: 15px;
   background-color: #f8f9fa;
