@@ -1,8 +1,9 @@
 /* Event Cards */
 .event-posts-section {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+    width: 210%;
+  max-width: 1200px;
 }
 
 .category-filters {
@@ -39,7 +40,7 @@
 
 .event-posts-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   justify-content: center;
 }
@@ -347,6 +348,9 @@
   }
 
   .event-posts-section {
+      width: 200%;
+    max-width: none;
+
     padding: 1.5rem 1rem;
   }
 
@@ -364,6 +368,9 @@
 @media (max-width: 768px) {
   .event-posts-section {
     padding: 1rem 0.75rem;
+       width: 120%;
+    max-width: none;
+
   }
 
   .category-filters {
@@ -395,7 +402,7 @@
 
   .event-card {
     width: 100%;
-    min-width: 320px;
+    /* min-width: 320px; */
   }
 
   .event-card-content {
@@ -475,6 +482,9 @@
 @media (max-width: 480px) {
   .event-posts-section {
     padding: 0.75rem 0.5rem;
+     width: 126%;
+        margin-left: -2rem;
+
   }
 
   .event-posts-grid {

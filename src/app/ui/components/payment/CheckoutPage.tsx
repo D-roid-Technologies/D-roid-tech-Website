@@ -14,6 +14,7 @@ interface CheckoutPageProps {
   onPaymentInitiated?: () => void
 }
 
+
 interface CardDetails {
   number: string
   expiry: string
