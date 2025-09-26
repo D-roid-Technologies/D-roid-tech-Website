@@ -431,7 +431,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   )
 }
 
-export default MemberDashboard
 
 // "use client";
 
@@ -898,3 +897,4 @@ export default MemberDashboard
 // };
 
 // export default MemberDashboard;
+export default MemberDashboard;
