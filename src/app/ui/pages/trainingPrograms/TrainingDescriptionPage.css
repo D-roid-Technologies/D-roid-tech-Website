@@ -1,0 +1,105 @@
+/* layout.css */
+
+.wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.software-main {
+  background-color: #f9f9f9;
+}
+
+.software-main-content {
+  text-align: left;
+}
+
+.back-button-container {
+  margin: 1rem 0;
+}
+
+.back-button {
+  padding: 10px 16px;
+  background-color: blue;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.software-header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.software-summary {
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.program-details {
+  padding: 2rem 0;
+}
+
+.section-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.section-subheading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  margin-top: 2rem;
+}
+
+.section-text {
+  color: #000;
+  line-height: 1.6;
+}
+
+.program-list {
+  color: #000;
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.apply-button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #071d6a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.apply-button:hover {
+  background-color: #0a238a;
+}
+
+.form-container {
+  margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-wrapper {
+    width: 100%;
+  }
+  .software-header {
+    font-size: 1.5rem;
+  }
+
+  .section-heading,
+  .section-subheading {
+    font-size: 1.2rem;
+  }
+
+  .apply-button {
+    width: 100%;
+    text-align: center;
+  }
+}

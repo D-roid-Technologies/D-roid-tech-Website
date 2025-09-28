@@ -1,0 +1,138 @@
+.history-container {
+  /* max-width: 1250px; */
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: #030617;
+  /* background: linear-gradient(to bottom right, #0a1232, #000d41); */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+.history-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.history-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.history-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #4361ee, #3a0ca3);
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
+}
+
+.history-timeline {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.timeline-marker {
+  flex: 0 0 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.year {
+  background: #4361ee;
+  color: white;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+}
+
+.timeline-marker::after {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 10px;
+}
+
+.history-cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.history-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #4361ee;
+  backdrop-filter: blur(10px);
+  line-height: 1.6;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.founder-name {
+  color: #6ee7b7;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .history-container {
+    padding: 3rem 1.5rem;
+  }
+
+  .history-title {
+    font-size: 2.2rem;
+  }
+
+  .history-timeline {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .timeline-marker {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-marker::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-container {
+    padding: 2rem 1rem;
+  }
+
+  .history-title {
+    font-size: 1.8rem;
+  }
+
+  .history-card {
+    padding: 1.2rem;
+  }
+}

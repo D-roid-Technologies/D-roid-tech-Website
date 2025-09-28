@@ -1,0 +1,176 @@
+.core-value-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* padding: 24px; */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.core-value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.core-value-card-icon {
+  /* max-width: 100%;
+ height: auto;
+  object-fit: contain;
+  margin-bottom: 16px; */
+
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.core-value-card-icon-icon {
+  width: 120px;
+  height: 80px;
+  /* margin-bottom: 16px; */
+  padding-top: 24px;
+  padding-left: 24px;
+  color: #2d3559;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.core-value-card-icon-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.core-value-card-icon-icon * {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.core-value-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #071d6a;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.core-value-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: #4285f4;
+}
+
+.core-value-card-description {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Section styling for development process */
+.soft-dev-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+/* Section styling for what we build section */
+.tech-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 30px;
+}
+
+/* Different color schemes for different card sections */
+.process-card .core-value-card-title::after {
+  background-color: #4285f4;
+}
+
+.tech-card .core-value-card-title::after {
+  background-color: #34a853;
+}
+
+/* Link section */
+.custom-link {
+  color: #3b82f6;
+  transition: color 0.2s ease-in-out;
+  text-decoration: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.custom-link:hover {
+  color: #1d4ed8;
+}
+.launch-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #081d67;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.launch-button:hover {
+  background-color: #2e4dbd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .core-value-card {
+    background-color: none;
+  }
+  .soft-dev-content,
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  .core-value-card-icon-icon {
+    width: 100px;
+    height: 65px;
+    font-size: 40px;
+  }
+
+  .core-value-card-icon-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .core-value-card-icon-icon * {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .core-value-card {
+    background-color: none;
+  }
+
+  .core-value-card-icon-icon {
+    width: 80px;
+    height: 50px;
+    font-size: 32px;
+  }
+
+  .core-value-card-icon-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .core-value-card-icon-icon * {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}

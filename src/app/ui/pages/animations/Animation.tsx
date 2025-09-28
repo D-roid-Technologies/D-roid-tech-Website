@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { ChangeEvent, useState } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "./Animation.css";
@@ -21,6 +23,7 @@ import { fadeIn } from "../../../utils/constant/Variants";
 import { title } from "process";
 import AppInput from "../../components/textInput/AppInput";
 import { useNavigate } from "react-router-dom";
+import AnimationPrincingCard from "./AnimationPrincingCard";
 
 interface product {
   title: string;

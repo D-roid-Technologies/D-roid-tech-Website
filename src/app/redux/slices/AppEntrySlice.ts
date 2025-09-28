@@ -15,27 +15,21 @@ export const AppEntrySlice = createSlice({
     updateModal: (state, action) => {
       const showModal = action.payload;
       state.showModal = showModal;
-      console.log("getting modal state from App entry slice", showModal);
     },
     updateToast: (state, action) => {
       const showToast = action.payload;
       state.showToast = showToast;
-      console.log("getting toast state from App entry slice", showToast);
+      // console.log("getting toast state from App entry slice", showToast);
     },
     updateModalContent: (state, action) => {
       const { appTitle, appBody } = action.payload;
       state.appTitle = appTitle;
       state.appBody = appBody;
-      console.log(
-        "getting modal content from App entry slice",
-        appTitle,
-        appBody
-      );
     },
     updateToastTitle: (state, action) => {
       const toastTitle = action.payload;
       state.toastTitle = toastTitle;
-      console.log("getting toast title from App entry slice", toastTitle);
+      // console.log("getting toast title from App entry slice", toastTitle);
     },
   },
 });

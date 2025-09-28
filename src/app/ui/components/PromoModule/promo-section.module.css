@@ -1,0 +1,362 @@
+.promoSection {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  color: #1e293b;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.promoSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(7, 29, 106, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(38, 103, 204, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.badge {
+  display: inline-block;
+  background: #071d6a;
+  color: white;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite;
+}
+
+.badgeText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.highlight {
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* Why Section */
+.whySection {
+  text-align: left;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.sectionText {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+/* Features Grid */
+.featuresGrid {
+  margin-bottom: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.featureCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  animation: slideInUp 0.6s ease-out;
+}
+
+.featureCard:hover {
+  transform: translateY(-3px);
+  border-color: #2667cc;
+  background: white;
+  box-shadow: 0 10px 20px rgba(38, 103, 204, 0.1);
+}
+
+.featureIcon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.iconSvg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #2667cc;
+  animation: bounce 2s infinite;
+}
+
+.featureTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1e293b;
+}
+
+.featureText {
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 0.875rem;
+}
+
+/* CTA Section */
+.ctaButtonSection {
+  text-align: center;
+
+  margin-top: 2rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+.ctaButtonSection a{
+  text-decoration: none;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #071d6a 0%, #2667cc 100%);
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 20px rgba(7, 29, 106, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(7, 29, 106, 0.4);
+  background: linear-gradient(135deg, #0a2080 0%, #2d70d9 100%);
+}
+
+.ctaIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover .ctaIcon {
+  transform: translateX(3px);
+}
+
+.urgencyText {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+  font-weight: 500;
+  animation: pulse 2s infinite;
+}
+
+/* Promo Card */
+.promoCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  width: 100%;
+}
+
+.promoCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(7, 29, 106, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(38, 103, 204, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cardContent {
+  padding: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .formFields {
+    flex-direction: row;
+  }
+
+  .input {
+    flex: 1;
+  }
+
+  .ctaSection {
+    padding: 4rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .desktopLayout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .promoSection {
+    padding: 2rem 1rem;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    padding: 1.25rem;
+  }
+
+  .cardContent {
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  /* .sectionTitle {
+   
+    align-items: center;
+    text-align: center;
+    font-size: 1.75rem;
+  } */
+
+  .ctaButton {
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+  }
+
+  .whySection {
+    text-align: center;
+  }
+}

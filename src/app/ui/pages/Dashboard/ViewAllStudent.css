@@ -1,0 +1,650 @@
+.vas-students-container {
+  min-height: 100vh;
+  padding: 10px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.vas-students-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.vas-page-header-top {
+  padding: 16px 24px;
+}
+
+/* Back Button */
+.vas-back-button {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 24px;
+  transition: all 0.2s ease;
+  /* border-bottom: 1px solid #e5e7eb; */
+}
+
+.vas-back-button:hover {
+  color: #071d69;
+  background: #f8fafc;
+}
+
+/* Page Header */
+.vas-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 24px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  color: #333333;
+}
+
+.vas-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.vas-page-description {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Stats Grid */
+.vas-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Buttons */
+.vas-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.vas-button-primary {
+  background: #071d69;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.vas-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+.vas-button-secondary {
+  background: #f8fafc;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.vas-button-secondary:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.vas-button-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.vas-button-danger:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.vas-button-small {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* Card Components */
+.vas-card {
+  margin: 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: white;
+  overflow: hidden;
+}
+
+.vas-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.vas-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.vas-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vas-card-content {
+  padding: 24px;
+}
+
+/* Table Styles */
+.vas-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.vas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.vas-table-header {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.vas-table-header-cell {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.vas-table-row {
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.vas-table-row:hover {
+  background: #f8fafc;
+}
+
+.vas-table-cell {
+  padding: 16px 20px;
+  vertical-align: middle;
+}
+
+/* Student Info Styles */
+.vas-student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vas-student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #071d69;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.vas-student-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.vas-student-email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Contact Info */
+.vas-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vas-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* Guardian Info */
+.vas-guardian-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vas-guardian-name {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.vas-guardian-phone {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Grade Info */
+.vas-grade-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.vas-grade-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 32px;
+}
+
+.vas-grade-a {
+  background: #dcfce7;
+  color: #166534;
+}
+.vas-grade-b {
+  background: #dbeafe;
+  color: #071d69;
+}
+.vas-grade-c {
+  background: #fef3c7;
+  color: #92400e;
+}
+.vas-grade-d {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.vas-grade-f {
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+.vas-score {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Badge Styles */
+.vas-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.vas-badge-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.vas-badge-secondary {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.vas-badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Action Buttons */
+.vas-table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.vas-action-button {
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  color: #6b7280;
+}
+
+.vas-action-button:hover {
+  background: #e5e7eb;
+  color: #374151;
+  transform: translateY(-1px);
+}
+
+.vas-action-button-danger {
+  color: #dc2626;
+}
+
+.vas-action-button-danger:hover {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Form Styles */
+.vas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vas-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.vas-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vas-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.vas-input,
+.vas-select,
+.vas-textarea {
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.vas-input:focus,
+.vas-select:focus,
+.vas-textarea:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.vas-input-error {
+  border-color: #dc2626;
+}
+
+.vas-error-text {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vas-form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Student Detail Styles */
+.vas-student-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.vas-detail-section {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.vas-detail-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vas-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #071d69;
+}
+
+.vas-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.vas-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vas-detail-full {
+  grid-column: 1 / -1;
+}
+
+.vas-detail-item label {
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vas-detail-item span {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.vas-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Confirmation Text */
+.vas-confirm-text {
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 16px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vas-students-container {
+    padding: 12px;
+  }
+
+  .vas-students-wrapper {
+    border-radius: 12px;
+  }
+
+  .vas-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .vas-stats-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .vas-card {
+    margin: 16px;
+  }
+
+  .vas-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .vas-header-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .vas-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .vas-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vas-table-container {
+    font-size: 12px;
+  }
+
+  .vas-table-header-cell,
+  .vas-table-cell {
+    padding: 12px 8px;
+  }
+
+  .vas-student-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .vas-contact-info,
+  .vas-guardian-info {
+    gap: 2px;
+  }
+
+  .vas-table-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .vas-action-button {
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vas-page-title {
+    font-size: 24px;
+  }
+
+  .vas-page-description {
+    font-size: 14px;
+  }
+
+  .vas-card-content {
+    padding: 16px;
+  }
+
+  .vas-form-actions {
+    flex-direction: column;
+  }
+}
+
+/* Animation Classes */
+.vas-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading States */
+.vas-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Focus States for Accessibility */
+.vas-button:focus,
+.vas-action-button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .vas-students-container {
+    background: white;
+    padding: 0;
+  }
+
+  .vas-students-wrapper {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .vas-page-header {
+    background: white;
+    color: black;
+    border-bottom: 2px solid #000;
+  }
+
+  .vas-button,
+  .vas-action-button,
+  .vas-back-button {
+    display: none;
+  }
+
+  .vas-table-row:hover {
+    background: transparent;
+  }
+}

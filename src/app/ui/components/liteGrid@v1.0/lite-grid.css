@@ -91,7 +91,9 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
 }
-
+.no-shadow {
+  box-shadow: none !important;
+}
 .block {
   flex: 1 0 0%;
 }
@@ -1352,6 +1354,15 @@
 .image-fluid {
   max-width: 100%;
   height: auto;
+  padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .image-fluid {
+    max-width: 120%;
+    margin-left: -2rem;
+    padding: 0;
+  }
 }
 
 /* PADDING AND MARGIN  */

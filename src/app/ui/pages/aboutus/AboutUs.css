@@ -1,14 +1,12 @@
-/* @import url("https://fonts.googleapis.com/css?family=Rubik");
-@import url("https://fonts.googleapis.com/css?family=Playpen Sans");
-@import url("https://db.onlinewebfonts.com/c/eb5b5ee332420add9a40ee988cb6ac37?family=Rubik-Regular"); */
-
+.our-historyy {
+  margin: 1em 0;
+}
 .aboutus-bg-color {
   background-color: #f9f9f9;
 }
 .about-main {
   padding-left: 100px;
   padding-right: 100px;
-  margin-top: 2em;
 }
 /* SECTION ONE OUR HISTORY */
 .aboutus-marginbutton {
@@ -18,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1.8em;
+  padding-top: 8em;
 }
 .image-sized {
   width: 600px;
@@ -28,10 +26,8 @@
 .about-history {
   padding: 70px 30px;
   text-align: center;
-
   border-radius: 10px;
-  /* background: rgba(240, 240, 240, 0.5); */
-  background-color: #111724;
+  background-color: #000d41;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .about-history-heading {
@@ -39,7 +35,7 @@
   line-height: 10px;
   font-size: 35px !important;
   font-weight: 700;
-  color: #071d6a;
+  color: #ffffff;
   font-family: "Rubik";
 }
 .about-histoy-details {
@@ -48,6 +44,7 @@
   font-family: "Rubik";
   text-align: justify;
   line-height: 30px;
+  color: #e0e6ed;
 }
 .about-history-details-div {
   padding: 70px 30px;
@@ -58,20 +55,7 @@
 
 /* VISION AND MISSION SECTION */
 .vision-marginbuttom {
-  padding: 70px 0;
-  /* padding: 0 0; */
-  border-bottom: 1px solid #071d6a;
-  border-top: 1px solid #071d6a;
-  /* border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
-  /* background-color: #ffffff;
-  margin-bottom: 50px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: box-shadow 0.3s ease;
-  flex-basis: calc(23% - 2%); */
+  padding-bottom: 70px;
 }
 .vision {
   text-align: center;
@@ -88,7 +72,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 10px;
   gap: 30px;
 }
 /* BOX ONE */
@@ -97,16 +80,11 @@
   margin-bottom: 1.2em;
   line-height: 10px;
   font-size: 32px;
-  color: #071d6a;
-  text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-family: "Rubik";
 }
 
 .vision-main {
   padding: 40px 0;
-  border-radius: 10px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .vision-box {
@@ -114,25 +92,27 @@
 }
 
 .vision-box p {
-  font-size: 1.2rem;
-  font-weight: 200;
-  /* color: #333; */
-  font-family: "Rubik";
+  line-height: 1.8;
+  color: #555;
+  font-size: 1.05rem;
+
+  /* font-family: "Rubik"; */
   text-align: left;
-  line-height: 1.5;
+  /* line-height: 1.5; */
 }
 /* CORE VALUES */
 .core-value-vision-main {
   margin-bottom: 100px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 .core-value-vision-header {
   text-align: center;
   margin-bottom: 0.8em;
+  margin-top: 1rem;
   line-height: 10px;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #071d6a;
+  color: #ffffff;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-family: "Rubik";
 }
@@ -141,21 +121,21 @@
   margin-bottom: 1.2em;
   line-height: 10px;
   font-size: 1.7rem;
-  color: #282a94;
+  color: #e0e6ed;
   font-family: "Rubik";
   margin-top: 10px;
 }
 .core-value-icons {
   font-size: 40px;
   font-weight: 700;
-  color: #282a94;
+  color: #4dd0e1;
 }
 
 .core-value-vision-box {
-  padding: 40px 20px;
-  border-radius: 10px;
-  background: #111724;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 50px 20px;
+  /* border-radius: 10px; */
+  background: #030617;
+  /* box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 
 .core-value-vision-box p {
@@ -227,61 +207,7 @@
   color: #071d6a;
   text-shadow: 0px 4px 4px rgba(255, 177, 0, 0.25);
   font-weight: 700;
-} /*
-.team-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-  margin-bottom: 50px;
 }
-
-.team {
-  padding: 10px 20px;
-  background: rgba(240, 240, 240, 0.5);
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 30px;
-  text-align: center;
-}
-
-.team-image {
-  width: 200px;
-  height: 230px;
-  text-align: center;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.team-details {
-  margin-top: 5px;
-}
-
-.team-name {
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-
-.team-designation {
-  font-size: 1em;
-  color: #777;
-}
-
-.team-socials {
-  margin-top: 5px;
-}
-
-.social-link {
-  margin: 0 5px;
-}
-.twitter {
-  color: #000000;
-}
-
-.social-link {
-  width: 20px;
-  height: 20px;
-} */
 
 /* Tablet: On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
@@ -330,7 +256,8 @@
 
   /* VISION AND MISSION SECTION */
   .vision-marginbuttom {
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
+    background-color: none;
     margin-bottom: 25px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -442,6 +369,9 @@
 
 /*Mobile:  On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
+  .vision-marginbuttom {
+    background-color: none;
+  }
   .about-main {
     padding-left: 20px;
     padding-right: 20px;
@@ -511,7 +441,7 @@
     align-items: center;
     padding-top: 0;
     gap: 30px;
-    background-color: #040711;
+    /* background-color: #040711; */
   }
   .vision-main {
     padding: 0;
@@ -532,21 +462,6 @@
     font-family: "Rubik";
   }
 
-  /* .vision-box {
-    padding: 25px 10px;
-    box-shadow: none;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  .vision-box p {
-    padding: 0 5px;
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgb(186, 184, 184);
-    font-family: "Rubik";
-    text-align: left;
-    line-height: 1.5;
-  } */
   .vision-box {
     padding: 20px 15px;
   }
@@ -577,7 +492,7 @@
     margin-bottom: 1em;
     line-height: 10px;
     font-size: 25px;
-    color: #282a94;
+    color: #e0e6ed;
     font-family: "Rubik";
   }
 
@@ -639,75 +554,14 @@
     font-weight: 600;
     font-size: 1.2rem;
   }
-  /* Droid staff */
-  /* .team-heading {
-    text-align: center;
-    margin-bottom: 0.6em;
-    font-family: "Rubik";
-    font-size: 2rem;
-    color: #282a94;
-  }
-  .team-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin-bottom: 50px;
-  }
-
-  .team {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .team-image {
-    width: 200px;
-    height: 200px;
-    padding: 0;
-    object-fit: contain;
-  }
-
-  .team-details {
-    margin-top: 10px;
-  }
-
-  .team-name {
-    font-size: 1.5em;
-    margin: 10px 0;
-  }
-
-  .team-designation {
-    font-size: 1em;
-    color: #777;
-  }
-
-  .team-socials {
-    margin-top: 10px;
-  }
-
-  .social-link {
-    margin: 0 5px;
-  }
-  .twitter {
-    color: #000000;
-  }
-
-  .social-link {
-    width: 24px;
-    height: 24px;
-  } */
 }
 
 .team-card {
+  /* padding: 0 20px; */
   position: relative;
   width: 100%;
   height: 400px;
-  margin: 10px;
+  /* margin: 10px; */
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */

@@ -1,0 +1,81 @@
+.AllToolsCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+/* .clickable-card:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #d1d5db;
+} */
+
+/* .dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #d1d5db;
+} */
+
+.AllToolsCard-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.AllToolsCard-card-icon-containers {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .card-icons {
+  width: 10px;
+  height: 10px;
+  color: #3b82f6;
+} */
+.AllToolsCard-card-icons {
+  width: 100%;
+  height: 100%;
+  /* color: #3b82f6; */
+  color: #081c6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AllToolsCard-card-icons svg {
+  width: 24px;
+  height: 24px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.AllToolsCard-card-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.AllToolsCard-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.AllToolsCard-card-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}

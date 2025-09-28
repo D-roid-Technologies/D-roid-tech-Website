@@ -1,0 +1,186 @@
+.container {
+  min-height: 100vh;
+  background-color: #071d6a;
+  color: #ffffff;
+}
+
+.innerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.content {
+  max-width: 32rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.successAnimation {
+  margin-bottom: 2rem;
+  transform: scale(0.5);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.successAnimation.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.successIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 8rem;
+  background-color: #10b981;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.titleSection {
+  transform: translateY(2rem);
+  opacity: 0;
+  transition: all 1s ease 0.3s;
+}
+
+.titleSection.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transform: translateY(2rem);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.card.orderDetails {
+  transition-delay: 0.5s;
+}
+
+.card.nextSteps {
+  transition-delay: 0.7s;
+}
+
+.card.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailLabel {
+  color: #d1d5db;
+}
+
+.detailValue {
+  font-weight: 600;
+}
+
+.referenceValue {
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stepIcon {
+  flex-shrink: 0;
+}
+
+.stepIcon.mail {
+  color: #60a5fa;
+}
+
+.stepIcon.download {
+  color: #34d399;
+}
+
+.stepIcon.check {
+  color: #a78bfa;
+}
+
+.actionSection {
+  transform: translateY(2rem);
+  opacity: 0;
+  transition: all 1s ease 1s;
+}
+
+.actionSection.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.homeButton {
+  width: 100%;
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.homeButton:hover {
+  background: linear-gradient(to right, #1d4ed8, #6d28d9);
+  transform: scale(1.05);
+}
+
+.supportText {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}

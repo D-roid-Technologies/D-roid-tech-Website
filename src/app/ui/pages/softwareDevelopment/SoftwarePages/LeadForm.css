@@ -1,0 +1,350 @@
+.lf-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.lf-form-wrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+}
+
+.lf-form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.lf-form-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.lf-form-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.lf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lf-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lf-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.lf-required {
+  color: #dc2626;
+  font-weight: 400;
+}
+
+.lf-optional {
+  color: #6b7280;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.lf-input,
+.lf-select {
+  padding: 12px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #071d69;
+  box-sizing: border-box;
+}
+
+.lf-input:focus,
+.lf-select:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.lf-input::placeholder {
+  color: #9ca3af;
+}
+
+.lf-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+.lf-input.lf-error,
+.lf-select.lf-error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.lf-input.lf-error:focus,
+.lf-select.lf-error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.lf-error-message {
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.lf-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.lf-btn-primary {
+  background: #071d69;
+  color: white;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+}
+
+.lf-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.35);
+}
+
+.lf-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.lf-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.lf-btn-loading {
+  cursor: not-allowed;
+}
+
+.lf-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: lf-spin 1s linear infinite;
+}
+
+@keyframes lf-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.lf-success-message {
+  text-align: center;
+  padding: 48px 32px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.lf-success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+}
+
+.lf-success-message h2 {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.lf-success-message p {
+  margin: 0 0 32px 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* Dropdown */
+.lf-dropdown {
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+}
+
+.lf-dropdown-btn {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff !important;
+  color: #071d69;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Added focus and error states for Listbox button */
+.lf-dropdown-btn:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.lf-dropdown-btn.lf-error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.lf-dropdown-btn.lf-error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.lf-dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 4px;
+  background: #ffffff;
+  color: #071d69;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 50;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lf-dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lf-dropdown-item:hover,
+.lf-dropdown-item.lf-active {
+  background: #f3f4f6; /* light gray hover */
+}
+
+.lf-dropdown-item.lf-selected {
+  font-weight: 600;
+  color: #071d69;
+  background: #f0f4ff; /* subtle blue background */
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .lf-container {
+    padding: 16px;
+  }
+
+  .lf-form-wrapper {
+    padding: 24px;
+  }
+
+  .lf-form-header h2 {
+    font-size: 24px;
+  }
+
+  .lf-form-header p {
+    font-size: 14px;
+  }
+
+  .lf-input,
+  .lf-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .lf-btn {
+    padding: 16px 24px;
+  }
+}
+
+/* Focus indicators for accessibility */
+.lf-input:focus-visible,
+.lf-select:focus-visible,
+.lf-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .lf-input,
+  .lf-select {
+    border-width: 2px;
+  }
+
+  .lf-btn-primary {
+    background: #1d4ed8;
+    border: 2px solid #1d4ed8;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .lf-input,
+  .lf-select,
+  .lf-btn {
+    transition: none;
+  }
+
+  .lf-spinner {
+    animation: none;
+  }
+
+  .lf-btn-primary:hover:not(:disabled) {
+    transform: none;
+  }
+}

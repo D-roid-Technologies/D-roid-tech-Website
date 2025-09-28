@@ -1,0 +1,79 @@
+.contactSection {
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+}
+
+.contactWrapper {
+  max-width: 650px;
+  margin: 0 auto;
+}
+.contactSection > h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #071d6a;
+  text-align: center;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.errorText {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.submitButton {
+  background-color: #071d6a;
+  color: #fff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #122c8a;
+}
+
+@media (min-width: 768px) {
+  .contactSection h2 {
+    font-size: 2.5rem;
+  }
+
+  .contactForm {
+    gap: 24px;
+  }
+}

@@ -1,42 +1,25 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import "../home/Home.css";
+import { useNavigate } from "react-router-dom";
 import "../../components/liteGrid@v1.0/lite-grid.css";
-import AboutSection from "./aboutsection/AboutSection";
-import CustomerFeedBack from "./customerfeedback/CustomerFeedBack";
-import Button from "../../components/button/Button";
 import { RootState } from "../../../redux/Store";
 import { useSelector } from "react-redux";
-import { Assets } from "../../../utils/constant/Assets";
-import { FaMobileRetro } from "react-icons/fa6";
-import { FaPeopleRoof } from "react-icons/fa6";
-import { PiDesktopTowerFill } from "react-icons/pi";
-import { GiSpiderWeb } from "react-icons/gi";
-import { FaRegCalendarPlus } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../../utils/constant/Variants";
-import ButtonAlt from "../../components/button-alt/ButtonAlt";
-import ProductSlider from "../../components/productSlider/ProductSlider";
+import CompanyCarousel from "../companycarousel/CompanyCarousel";
+import Intro from "./intro/Intro";
+import Products from "../products/Products";
+import Testimonial from "../testimonial/Testimonial";
+import ProductsSmall from "../products/ProductsSmall";
+import KnowledgeCity from "../knowledgecityApp/KnowledgeCity";
+import Partners from "../../components/partners/Partners";
+import PromoSection from "../../components/PromoModule/promo-section";
 
 const Home: React.FunctionComponent = () => {
   const appEntry = useSelector((state: RootState) => state.appEntry);
-  // console.log(companyBanner);
-  // const modal = appEntry.showModal;
-  // const aTitle = appEntry.appTitle;
-  // const aBody = appEntry.appBody;
-
-  // const onSuccessTitle = "Our Products";
-  // const onFailedTitle = "Failed";
-  // const onSuccessBody = (
-  //   <>
-  //     <p> D'roid Website </p>
-  //     <p> Drone Services</p>
-  //     <p> Equipment </p>
-  //   </>
-  // );
-  // const onFailedBody = "Your login was unsuccessful, kindly try again or contact your Admin!";
+  const navigate = useNavigate(); // Initialize useNavigate
 
   return (
+<<<<<<< HEAD
     <div style={{ backgroundColor: "#203499" }}>
       <NavBar />
       <div className="home_banner">
@@ -69,14 +52,72 @@ const Home: React.FunctionComponent = () => {
             <br />
             Let’s create something extraordinary together!
           </p>
+=======
+    <div>
+      <NavBar />
+      <CompanyCarousel />
+      <Intro />
+      <ProductsSmall />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Company Management Portal</h2>
+            <p>
+              An all-in-one digital platform designed to help organizations
+              efficiently manage their internal operations, staff, and
+              resources. It provides a centralized dashboard for administrators
+              and managers to oversee key business functions such as employee
+              management, project tracking, performance monitoring, compliance,
+              and document control.
+            </p>
+            {/* <button className="cta-primary" onClick={() => navigate("/auth/join-our-community")}>
+              Get Started
+            </button> */}
+          </div>
+>>>>>>> 6ae8deb2137a566a5fc388a453fb3632ad0059ae
         </div>
-        <ButtonAlt href="https://calendly.com/droidtechint">
-          Schedule an Appointment
-        </ButtonAlt>
-      </div>
-      <ProductSlider />
-      <AboutSection />
-      <CustomerFeedBack />
+      </section>
+      <KnowledgeCity />
+
+      <Partners />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Digital Workbench</h2>
+            <p>
+              A centralized, intelligent platform designed to streamline and
+              support complex digital workflows across teams and departments. It
+              serves as a collaborative environment where users can access
+              tools, data, and resources needed to design, test, and manage
+              digital solutions efficiently.
+            </p>
+            <button
+              className="cta-primary"
+              onClick={() => navigate("/toolbox")}
+            >
+              Launch ToolBox
+            </button>
+          </div>
+        </div>
+      </section>
+      <Testimonial />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>D'roid Companion</h2>
+            <p>
+              Experience technology that adapts to your lifestyle. The D'roid
+              Companion is more than just a phone — it's your creative
+              companion, productivity partner, and entertainment powerhouse, all
+              in one sleek, powerful device.
+            </p>
+            <button className="cta-primary" onClick={() => navigate("/mobile")}>
+              See More
+            </button>
+          </div>
+        </div>
+      </section>
+      <PromoSection />
     </div>
   );
 };

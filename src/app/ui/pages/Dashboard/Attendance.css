@@ -1,0 +1,705 @@
+.att-attendance-container {
+  min-height: 100vh;
+  padding: 10px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+.att-attendance-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.att-page-header-top {
+  padding: 16px 24px;
+}
+
+/* Back Button */
+.att-back-button {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 24px;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.att-back-button:hover {
+  color: #071d69;
+  background: #f8fafc;
+}
+
+/* Page Header */
+.att-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 24px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #333333;
+}
+
+.att-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.att-page-description {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.att-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Date Input */
+.att-date-input {
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: white;
+  color: #374151;
+  font-weight: 500;
+}
+
+.att-date-input:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 3px rgba(7, 29, 105, 0.1);
+}
+
+/* Stats Grid */
+.att-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Buttons */
+.att-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.att-button-primary {
+  background: #071d69;
+  color: white;
+  box-shadow: 0 4px 12px rgba(7, 29, 105, 0.4);
+}
+
+.att-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(7, 29, 105, 0.6);
+}
+
+.att-button-secondary {
+  background: #f8fafc;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.att-button-secondary:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.att-button-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.att-button-danger:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.att-button-small {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.att-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Bulk Actions Bar */
+.att-bulk-actions-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.att-bulk-selection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.att-bulk-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.att-bulk-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  color: #374151;
+}
+
+.att-bulk-select:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 2px rgba(7, 29, 105, 0.1);
+}
+
+/* Checkbox Styles */
+.att-checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.att-checkbox-container input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.att-checkbox-container input[type="checkbox"]:checked {
+  background: #071d69;
+  border-color: #071d69;
+}
+
+.att-checkbox-container input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.att-header-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+/* Card Components */
+.att-card {
+  margin: 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: white;
+  overflow: hidden;
+}
+
+.att-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.att-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.att-card-content {
+  padding: 24px;
+}
+
+.att-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Table Styles */
+.att-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.att-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.att-table-header {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.att-table-header-cell {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.att-checkbox-column {
+  width: 50px;
+}
+
+.att-table-row {
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.att-table-row:hover {
+  background: #f8fafc;
+}
+
+.att-table-cell {
+  padding: 16px 20px;
+  vertical-align: middle;
+}
+
+/* Student Info Styles */
+.att-student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.att-student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #071d69;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.att-student-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.att-student-email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Roll Number */
+.att-roll-number {
+  padding: 4px 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #071d69;
+}
+
+/* Contact Info */
+.att-contact-info {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* Radio Group for Attendance Status */
+.att-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.att-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.att-radio-option:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+}
+
+.att-radio-selected {
+  border-color: #071d69 !important;
+  background: rgba(7, 29, 105, 0.05) !important;
+}
+
+.att-radio-input {
+  display: none;
+}
+
+.att-radio-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.att-marked-time {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Action Button */
+.att-action-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  color: #6b7280;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.att-action-button:hover {
+  background: #e5e7eb;
+  color: #374151;
+  transform: translateY(-1px);
+}
+
+/* Form Styles */
+.att-notes-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.att-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.att-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.att-textarea {
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background: white;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.att-textarea:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 3px rgba(7, 29, 105, 0.1);
+}
+
+.att-form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Animation Classes */
+.att-fade-in {
+  animation: attFadeIn 0.3s ease-in-out;
+}
+
+@keyframes attFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading States */
+.att-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Focus States for Accessibility */
+.att-button:focus,
+.att-action-button:focus,
+.att-back-button:focus {
+  outline: 2px solid #071d69;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .att-attendance-container {
+    padding: 12px;
+  }
+
+  .att-attendance-wrapper {
+    border-radius: 12px;
+  }
+
+  .att-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .att-header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .att-date-input {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .att-stats-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .att-bulk-actions-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .att-bulk-controls {
+    justify-content: space-between;
+  }
+
+  .att-card {
+    margin: 16px;
+  }
+
+  .att-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .att-action-buttons {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .att-card-content {
+    padding: 16px;
+  }
+
+  .att-table-container {
+    font-size: 12px;
+  }
+
+  .att-table-header-cell,
+  .att-table-cell {
+    padding: 12px 8px;
+  }
+
+  .att-student-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .att-radio-group {
+    gap: 6px;
+  }
+
+  .att-radio-option {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .att-form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .att-page-title {
+    font-size: 24px;
+  }
+
+  .att-page-description {
+    font-size: 14px;
+  }
+
+  .att-header-actions {
+    flex-direction: column;
+  }
+
+  .att-bulk-select {
+    width: 100%;
+  }
+
+  .att-checkbox-container {
+    font-size: 13px;
+  }
+
+  .att-student-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .att-radio-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .att-radio-option {
+    flex: 1;
+    min-width: 80px;
+    justify-content: center;
+    padding: 6px 4px;
+  }
+
+  .att-radio-label {
+    display: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .att-attendance-container {
+    background: white;
+    padding: 0;
+  }
+
+  .att-attendance-wrapper {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .att-page-header {
+    background: white;
+    color: black;
+    border-bottom: 2px solid #000;
+  }
+
+  .att-button,
+  .att-action-button,
+  .att-back-button,
+  .att-bulk-actions-bar {
+    display: none;
+  }
+
+  .att-table-row:hover {
+    background: transparent;
+  }
+
+  .att-radio-option {
+    border: 1px solid #000;
+  }
+}
+
+/* Dark mode support (optional) */
+/* @media (prefers-color-scheme: dark) {
+  .att-attendance-wrapper {
+    background: #1f2937;
+    color: #f9fafb;
+  }
+
+  .att-card {
+    background: #374151;
+    border-color: #4b5563;
+  }
+
+  .att-table-header {
+    background: #4b5563;
+  }
+
+  .att-table-row:hover {
+    background: #4b5563;
+  }
+
+  .att-student-name,
+  .att-page-title,
+  .att-card-title {
+    color: #f9fafb;
+  }
+} */

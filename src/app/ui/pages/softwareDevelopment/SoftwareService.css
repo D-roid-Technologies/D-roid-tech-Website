@@ -1,0 +1,405 @@
+.sds__container {
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  padding: 3rem 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+.sds__content {
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: calc(100vh - 4rem);
+}
+
+/* Text Section */
+.sds__text-section {
+  color: #333;
+  z-index: 2;
+}
+
+.sds__title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.sds__subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.sds__services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+}
+
+.sds__service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.sds__bullet {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-top: 0.1em;
+}
+
+.sds__cta-button {
+  background-color: #1a237e;
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
+}
+
+.sds__cta-button:hover {
+  background-color: #0d47a1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 35, 126, 0.4);
+}
+
+/* Image Section */
+.sds__image-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 600px;
+}
+
+/* Code Window */
+.sds__code-window {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  flex: 1;
+  max-height: 350px;
+}
+
+.sds__window-header {
+  background-color: #2d2d2d;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #404040;
+}
+
+.sds__window-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sds__control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.sds__control--red {
+  background-color: #ff5f57;
+}
+
+.sds__control--yellow {
+  background-color: #ffbd2e;
+}
+
+.sds__control--green {
+  background-color: #28ca42;
+}
+
+.sds__window-title {
+  color: #cccccc;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sds__code-content {
+  padding: 1rem;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-y: auto;
+  max-height: 280px;
+}
+
+.sds__code-line {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.sds__line-number {
+  color: #858585;
+  width: 20px;
+  text-align: right;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.sds__code-text {
+  color: #d4d4d4;
+}
+
+.sds__keyword {
+  color: #569cd6;
+  font-weight: 600;
+}
+
+.sds__string {
+  color: #ce9178;
+}
+
+.sds__function {
+  color: #dcdcaa;
+}
+
+.sds__operator {
+  color: #d4d4d4;
+}
+
+.sds__tag {
+  color: #569cd6;
+}
+
+.sds__attribute {
+  color: #92c5f7;
+}
+
+.sds__indent {
+  color: transparent;
+}
+
+/* Dashboard Window */
+.sds__dashboard-window {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  flex: 1;
+  max-height: 230px;
+}
+
+.sds__dashboard-header {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+}
+
+.sds__dashboard-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sds__dashboard-content {
+  padding: 1.5rem;
+  color: white;
+}
+
+.sds__metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.sds__metric {
+  text-align: center;
+}
+
+.sds__metric-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.sds__metric-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.sds__chart-placeholder {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.sds__chart-bar {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  flex: 1;
+  animation: chartGrow 1.5s ease-out;
+}
+
+.sds__chart-bar--1 {
+  height: 30%;
+}
+
+.sds__chart-bar--2 {
+  height: 60%;
+}
+
+.sds__chart-bar--3 {
+  height: 100%;
+}
+
+.sds__chart-bar--4 {
+  height: 45%;
+}
+
+@keyframes chartGrow {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--final-height);
+  }
+}
+
+.sds__activate-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.sds__activate-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.sds__activate-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sds__activate-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .sds__content {
+    gap: 3rem;
+  }
+
+  .sds__title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .sds__content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .sds__title {
+    font-size: 2.5rem;
+  }
+
+  .sds__image-section {
+    height: auto;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .sds__container {
+    padding: 1rem;
+  }
+
+  .sds__content {
+    gap: 2rem;
+  }
+
+  .sds__title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sds__subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .sds__service-item {
+    font-size: 15px;
+  }
+
+  .sds__image-section {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sds__title {
+    font-size: 1.70rem;
+  }
+
+  .sds__subtitle {
+    font-size: 1rem;
+  }
+
+  .sds__cta-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .sds__code-content {
+    font-size: 0.8rem;
+  }
+
+  .sds__metrics {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sds__activate-section {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .sds__activate-btn {
+    width: 100%;
+  }
+}

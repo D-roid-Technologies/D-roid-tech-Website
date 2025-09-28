@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState } from "react";
 import { Assets } from "../../../utils/constant/Assets";
 import Button from "../../components/button/Button";
@@ -5,6 +7,7 @@ import { TrainingPhoto } from "../../../utils/Types";
 import { useThemeColor } from "../../../utils/hooks/useThemeColor";
 import "./TrainingHero.css";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import ButtonAlt from "../button-alt/ButtonAlt";
 
 const photos: TrainingPhoto[] = [
   {
@@ -42,11 +45,14 @@ const TrainingHero: React.FC = () => {
       <div className="training-hero">
         <div className="t-hero">
           <div>
-            <h1 className="trinig-hero-head">
+            <h1
+              className="trinig-hero-head"
+              style={{ color: Assets.colors.flat }}
+            >
               {photos[currentPhotoIndex].text}
             </h1>
             <div className="t-hero-btn">
-              <Button
+              {/* <Button
                 title="Explore Now"
                 bgColor="#071d6a"
                 color="#ffffff"
@@ -59,10 +65,25 @@ const TrainingHero: React.FC = () => {
                 onClickButton={() => {
                   console.log("Explore Now clicked!");
                 }}
-              />
+              /> */}
+              <ButtonAlt
+                style={{
+                  width: "100%",
+                  background: "#071d6a",
+                  color: "#b8b5b5",
+                  textAlign: "center",
+                  padding: "20px 25px",
+                  fontSize: "0.9rem",
+                }}
+                onClick={() =>
+                  console.log("Button clicked from TrainingHero component")
+                }
+              >
+                Explore Now
+              </ButtonAlt>
             </div>
             <div className="navigation-buttons">
-              <Button
+              {/* <Button
                 title="<"
                 //  <FiArrowLeft size={24} />
                 bgColor={"#071D6A"}
@@ -74,8 +95,32 @@ const TrainingHero: React.FC = () => {
                 mLeft={0}
                 mRight={0}
                 className="t-nav-btn"
-              />
-              <Button
+              /> */}
+              <ButtonAlt
+                // className="t-nav-btn"
+                style={{
+                  background: "#071D6A",
+                  color: "#989494",
+                  // fontSize: "px",
+                  lineHeight: "14px",
+                }}
+                onClick={handlePreviousPhoto}
+              >
+                <FiArrowLeft size={17} />
+              </ButtonAlt>
+              <ButtonAlt
+                // className="t-nav-btn"
+                style={{
+                  background: "#071D6A",
+                  color: "#989494",
+                  // fontSize: "px",
+                  lineHeight: "14px",
+                }}
+                onClick={handleNextPhoto}
+              >
+                <FiArrowRight size={17} />
+              </ButtonAlt>
+              {/* <Button
                 title=">"
                 bgColor={"#071D6A"}
                 color={getColor("light")}
@@ -86,7 +131,7 @@ const TrainingHero: React.FC = () => {
                 mLeft={0}
                 mRight={0}
                 style={{ fontSize: "24px" }}
-              />
+              /> */}
             </div>
           </div>
 

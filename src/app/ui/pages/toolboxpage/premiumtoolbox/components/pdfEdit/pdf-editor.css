@@ -1,0 +1,1575 @@
+.pdf-editor {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+}
+
+.pdf-editor-header {
+  background-color: #9ca4b1;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 2rem;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.file-counter {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.pdf-editor-nav {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 2rem;
+}
+
+.nav-tabs {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.nav-tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  background-color: #f8f9ff;
+}
+
+.tab-icon {
+  font-size: 1rem;
+}
+
+.pdf-editor-main {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tab-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* PDF Viewer Styles */
+.pdf-viewer,
+.simple-pdf-viewer {
+  position: relative;
+}
+
+.pdf-viewer-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pdf-viewer-error {
+  padding: 1.5rem;
+  text-align: center;
+  color: #f44336;
+}
+
+.pdf-viewer-error button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pdf-viewer-empty {
+  padding: 1.5rem;
+  text-align: center;
+  color: #666;
+}
+
+.pdf-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.pdf-info {
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* File Upload Styles */
+.file-upload {
+  padding: 1.5rem;
+}
+
+.upload-section {
+  margin-bottom: 2rem;
+}
+
+.drop-zone {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: #667eea;
+  background-color: #f8f9ff;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.drop-zone h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.drop-zone p {
+  margin: 0;
+  color: #666;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.files-section h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.no-files {
+  text-align: center;
+  padding: 1.5rem;
+  color: #666;
+}
+
+.no-files-icon {
+  font-size: 3rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-item:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.file-item.selected {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.file-icon {
+  font-size: 1.5rem;
+  color: #f44336;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.file-size {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.file-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #1976d2;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* PDF Merger Styles */
+.pdf-merger {
+  padding: 1.5rem;
+}
+
+.merger-header {
+  margin-bottom: 2rem;
+}
+
+.merger-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.section-icon {
+  color: #667eea;
+}
+
+.merger-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.available-files h3,
+.merge-queue h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.no-files-message {
+  color: #666;
+  font-style: italic;
+}
+
+.files-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.add-btn {
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.add-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.empty-queue {
+  color: #666;
+  font-style: italic;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.item-order {
+  background-color: #667eea;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.pages-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pages-input label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.pages-input input {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  width: 120px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.move-btn,
+.remove-btn {
+  padding: 0.25rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.move-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.move-btn:hover:not(:disabled) {
+  background-color: #1976d2;
+}
+
+.move-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.remove-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.remove-btn:hover {
+  background-color: #d32f2f;
+}
+
+.merge-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.output-name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.output-name label {
+  font-weight: 500;
+  color: #333;
+}
+
+.output-name input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.merge-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.merge-btn:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.merge-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* PDF Splitter Styles */
+.pdf-splitter {
+  padding: 1.5rem;
+}
+
+.no-file-selected {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-file-icon {
+  font-size: 4rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.splitter-header {
+  margin-bottom: 2rem;
+}
+
+.splitter-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.splitter-content {
+  max-width: 600px;
+}
+
+.method-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.pages-method,
+.ranges-method {
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.input-group input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ranges-help {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  border-left: 4px solid #2196f3;
+}
+
+.ranges-help p {
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+  color: #333;
+}
+
+.ranges-help ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.ranges-help li {
+  margin-bottom: 0.25rem;
+  color: #666;
+}
+
+.split-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.split-btn:hover:not(:disabled) {
+  background-color: #f57c00;
+}
+
+.split-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* PDF Annotator Styles */
+.pdf-annotator {
+  padding: 1.5rem;
+}
+
+.annotator-header {
+  margin-bottom: 1rem;
+}
+
+.annotator-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.annotator-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tool-group label {
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
+.tool-btn {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.tool-btn.active {
+  background-color: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.color-palette {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.color-btn {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-btn.active {
+  border-color: #333;
+  transform: scale(1.1);
+}
+
+.tool-group input[type="range"] {
+  width: 80px;
+}
+
+.action-btn {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+.annotator-canvas-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: auto;
+  max-height: 800px;
+}
+
+.pdf-container {
+  position: relative;
+  display: inline-block;
+}
+
+.annotation-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+  pointer-events: auto;
+}
+
+.annotation-stats {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-all-btn {
+  padding: 0.5rem 1rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-all-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* PDF Signer Styles */
+.pdf-signer {
+  padding: 1.5rem;
+}
+
+.signer-header {
+  margin-bottom: 1rem;
+}
+
+.signer-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.signer-toolbar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.create-signature-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #9c27b0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.create-signature-btn:hover {
+  background-color: #7b1fa2;
+}
+
+.signature-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.signature-modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.signature-modal-content h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.signature-mode-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.signature-pad,
+.signature-text {
+  margin-bottom: 1rem;
+}
+
+.signature-canvas {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: crosshair;
+  display: block;
+  width: 100%;
+}
+
+.signature-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.signature-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.clear-btn,
+.cancel-btn,
+.save-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.clear-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.clear-btn:hover {
+  background-color: #f57c00;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #bbb;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+.pdf-canvas-container {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: auto;
+  max-height: 600px;
+}
+
+.pdf-canvas {
+  display: block;
+  cursor: pointer;
+}
+
+.canvas-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* PDF Form Editor Styles */
+.pdf-form-editor {
+  padding: 1.5rem;
+}
+
+.form-editor-header {
+  margin-bottom: 1rem;
+}
+
+.form-editor-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.form-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.field-type-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field-type-selector label {
+  font-weight: 500;
+  color: #333;
+}
+
+.field-type-selector select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-field-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.add-field-btn:hover {
+  background-color: #1976d2;
+}
+
+.add-field-btn.active {
+  background-color: #ff9800;
+}
+
+.add-field-btn.active:hover {
+  background-color: #f57c00;
+}
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.generate-btn:hover {
+  background-color: #45a049;
+}
+
+.form-editor-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1rem;
+}
+
+.canvas-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: auto;
+  max-height: 600px;
+}
+
+.form-canvas {
+  display: block;
+  cursor: pointer;
+}
+
+.field-editor {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  height: fit-content;
+}
+
+.field-editor h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.field-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.property-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.property-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.property-group input,
+.property-group textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.property-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.field-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.delete-field-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.delete-field-btn:hover {
+  background-color: #d32f2f;
+}
+
+.close-editor-btn {
+  padding: 0.5rem 1rem;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.close-editor-btn:hover {
+  background-color: #bbb;
+}
+
+.fields-list {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+}
+
+.fields-list h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.no-fields {
+  color: #666;
+  font-style: italic;
+}
+
+.fields-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.field-summary:hover {
+  background-color: #f5f5f5;
+}
+
+.field-summary.selected {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.field-summary-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field-type {
+  background-color: #667eea;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.field-label {
+  font-weight: 500;
+}
+
+.required-indicator {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.delete-summary-btn {
+  padding: 0.25rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-summary-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* PDF Password Protector Styles */
+.pdf-password-protector {
+  padding: 1.5rem;
+}
+
+.protector-header {
+  margin-bottom: 2rem;
+}
+
+.protector-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.protector-content {
+  max-width: 800px;
+}
+
+.password-section,
+.permissions-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.password-section h3,
+.permissions-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.subsection-icon {
+  color: #667eea;
+}
+
+.password-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.password-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.password-field label {
+  font-weight: 500;
+  color: #333;
+}
+
+.password-input-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.password-input-container input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.password-toggle,
+.generate-password {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.password-toggle:hover,
+.generate-password:hover {
+  background-color: #f0f0f0;
+}
+
+.encryption-level {
+  margin-top: 1rem;
+}
+
+.encryption-level label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.permission-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.permission-item:hover {
+  background-color: #f5f5f5;
+}
+
+.permission-item input[type="checkbox"] {
+  margin-top: 0.25rem;
+}
+
+.permission-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.permission-title {
+  font-weight: 500;
+  color: #333;
+}
+
+.permission-description {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.protection-summary {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f0f8ff;
+}
+
+.protection-summary h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summary-item strong {
+  color: #333;
+}
+
+.summary-item ul {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.summary-item li {
+  margin-bottom: 0.25rem;
+  color: #666;
+}
+
+.protection-actions {
+  text-align: center;
+}
+
+.protect-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.protect-btn:hover:not(:disabled) {
+  background-color: #d32f2f;
+}
+
+.protect-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo h1 {
+    font-size: 1rem;
+  }
+  .file-counter {
+    font-size: 0.7rem;
+  }
+  .pdf-editor-header {
+    padding: 1rem;
+  }
+
+  .pdf-header-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .pdf-editor-nav {
+    padding: 0 1rem;
+  }
+
+  .nav-tabs {
+    justify-content: flex-start;
+  }
+
+  .pdf-editor-main {
+    padding: 1rem 0;
+  }
+
+  .merger-content {
+    grid-template-columns: 1fr;
+  }
+
+  .form-editor-content {
+    grid-template-columns: 1fr;
+  }
+
+  .field-editor {
+    order: -1;
+  }
+
+  .annotator-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .tool-group {
+    justify-content: center;
+  }
+
+  .permissions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .tab-icon {
+    font-size: 0.9rem;
+  }
+
+  .file-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .file-actions {
+    justify-content: center;
+  }
+
+  .queue-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .item-actions {
+    justify-content: center;
+  }
+}

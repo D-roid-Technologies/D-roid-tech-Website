@@ -1,0 +1,193 @@
+.bgremover-features-container {
+  width: 100%;
+  padding: 3rem 1rem;
+  margin: 2rem 0;
+}
+
+.bgremover-features-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.bgremover-features-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.bgremover-features-subtitle {
+  font-size: 1.125rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.bgremover-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bgremover-feature-card {
+  background: #ffffff;
+  padding: 1.2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bgremover-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bgremover-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.bgremover-feature-card:hover::before {
+  opacity: 1;
+}
+
+.bgremover-feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+  color: #081f6d;
+}
+
+.bgremover-feature-card:hover .bgremover-feature-icon {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ddd6fe 0%, #c7d2fe 100%);
+}
+
+.bgremover-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.bgremover-feature-description {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bgremover-features-container {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+
+  .bgremover-features-title {
+    font-size: 2rem;
+  }
+
+  .bgremover-features-subtitle {
+    font-size: 1rem;
+  }
+
+  .bgremover-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .bgremover-feature-card {
+    padding: 1.5rem;
+  }
+
+  .bgremover-feature-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bgremover-features-container {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .bgremover-features-title {
+    font-size: 1.75rem;
+  }
+
+  .bgremover-feature-card {
+    padding: 1.25rem;
+  }
+
+  .bgremover-feature-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+  }
+
+  .bgremover-feature-title {
+    font-size: 1.125rem;
+  }
+}
+
+/* Animation for when features come into view */
+@keyframes bgremover-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bgremover-feature-card {
+  animation: bgremover-fade-in-up 0.6s ease-out;
+}
+
+.bgremover-feature-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.bgremover-feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bgremover-feature-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.bgremover-feature-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.bgremover-feature-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.bgremover-feature-card:nth-child(6) {
+  animation-delay: 0.6s;
+}

@@ -90,14 +90,14 @@ export const DATA = {
       Button: "LEARN MORE",
     },
   ],
-  FeaturedDroneServices: [
-    {
-      video: require("../../images/videos/dronevideo.mp4"),
-      title: "AERIAL PHOTOGRAPHY AND VIDEOGRAPHY",
-      content:
-        "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
-    },
-  ],
+  // FeaturedDroneServices: [
+  //   {
+  //     video: require("../../images/videos/dronevideo.mp4"),
+  //     title: "AERIAL PHOTOGRAPHY AND VIDEOGRAPHY",
+  //     content:
+  //       "Capture stunning aerial images and videos for marketing, advertising, and promotional purposes.",
+  //   },
+  // ],
   MappingSurveying: [
     {
       // image: require("../../images/png/drone survey.png"),
@@ -192,18 +192,10 @@ export const DATA = {
 
   droidStaff: [
     {
-      image: require("../../images/png/uzo-onyekwelu.jpeg"),
-      name: "Uzochukwu Felix",
-      designation: "Frontend Developer",
-      socials: {
-        linkedin: "https://www.linkedin.com/in/uzochukwu-felix",
-        twitter: "",
-      },
-    },
-    {
       image: require("../../images/png/stella-eneh-two.jpg"),
       name: "Stella Eneh",
-      designation: "Frontend Developer",
+      // designation: "Frontend Developer",
+      designation: "Engineering",
       socials: {
         linkedin: "https://www.linkedin.com/in/stella-eneh/",
         twitter: "https://twitter.com/StellaEneh_",
@@ -211,42 +203,46 @@ export const DATA = {
     },
 
     {
-      image: require("../../images/png/princewill-image-two.jpeg"),
-      name: "Princewill Godwin",
-      designation: "Product Designer",
+      image: require("../../images/png/Livinus.jpg"),
+      name: "Livinus Ekene",
+      // designation: "Frontend Developer",
+      designation: "Engineering",
       socials: {
-        linkedin: "http://www.linkedin.com/in/princewill-godwin-uiuxdesigner",
-        twitter: "https://x.com/princewill1_g ",
+        linkedin:
+          "https://www.linkedin.com/in/ugwuja-livinus-ekene-frontenddeveloper/",
+        twitter: "https://x.com/livinusonyenso ",
       },
     },
     {
-      image: require("../../images/png/Amarachi-image-resize.jpg"),
-      name: "Amarachi Abams",
-      designation: "Product Designer",
+      image: require("../../images/png/Rebecca.jpg"),
+      name: "Rebecca Ebianga",
+      designation: "Executive Assistant",
       socials: {
-        linkedin: "http://www.linkedin.com/in/amarachiabams",
-        twitter: "https://x.com/Zibah_grafix?t=CH87kJA3wKHtvYLATLtApw&s=09 ",
+        linkedin:
+          "https://www.linkedin.com/in/rebeccaebianga?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: "https://x.com/RebeccaEbianga?t=D-cGUwlZer3VEPZoVc3yFw&s=09",
       },
     },
-    {
-      image: require("../../images/png/chisom-iwuh-image.jpeg"),
-      name: "Chisom Iwuh",
-      designation: "Product Designer",
-      socials: {
-        linkedin: "https://www.linkedin.com/in/iwuh-chisom-884905218/",
-        twitter: "",
-      },
-    },
+
     // {
-    //   image: require("../../images/png/chidinmma.jpg"),
-    //   name: "Chidinma Okoli",
-    //   designation: "Digital Maketer",
+    //   image: require("../../images/png/"),
+    //   name: "Richard",
+    //   designation: "Frontend Developer",
     //   socials: {
-    //     linkedin:
-    //       "https://www.linkedin.com/in/chidinma-okoli-16b24832a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    //     twitter: "https://x.com/NightB80193?t=8niahHpoo5TpZDZcGm2bmQ&s=09 ",
+    //     linkedin: "",
+    //     twitter: "",
     //   },
     // },
+    {
+      image: require("../../images/png/Faith(product).jpg"),
+      name: "Faith Ojumola",
+      designation: "Product Designer",
+      socials: {
+        linkedin:
+          "https://www.linkedin.com/in/faith-ojumola-71156b195?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        twitter: "https://twitter.com/unicorngal_dam ",
+      },
+    },
   ],
 };
 
@@ -510,7 +506,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["Reactjs", "Nextjs", "HTML", "Css", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
@@ -571,7 +567,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
@@ -632,7 +628,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",
@@ -693,7 +689,7 @@ export const softwareDevMain: SoftwareDevelopmentType[] = [
     price: [864.99, 785.99, 792.99],
     category: ["FinTech", "E-Commerce", "E-Learning,"],
     tools: ["React Native", "Flutter", "Javascript", "Typescript"],
-    currency: ["$", "N", "e"],
+    currency: ["₦", "N", "e"],
     procedure: [
       {
         title: "Why Choose Our Web Development Service",

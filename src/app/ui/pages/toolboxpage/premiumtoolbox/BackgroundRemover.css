@@ -1,0 +1,717 @@
+.airbg-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+.airbg-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(7, 29, 106, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.airbg-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.airbg-header-icon {
+  width: 28px;
+  height: 28px;
+  color: #071d6a;
+  filter: drop-shadow(0 4px 8px rgba(7, 29, 106, 0.1));
+}
+
+.airbg-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #071d6a;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.airbg-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.airbg-api-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  color: #166534;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.airbg-main {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(7, 29, 106, 0.1);
+  overflow: hidden;
+  margin-bottom: 40px;
+  border: 1px solid #e5e7eb;
+}
+
+.airbg-upload-zone {
+  padding: 40px 40px;
+  text-align: center;
+  border: 3px dashed #d1d5db;
+  margin: 40px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  position: relative;
+}
+
+.airbg-upload-zone:hover,
+.airbg-drag-active {
+  border-color: #071d6a;
+  background: #f0f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(7, 29, 106, 0.15);
+}
+
+.airbg-upload-icon {
+  width: 34px;
+  height: 34px;
+  color: #071d6a;
+  margin-bottom: 24px;
+}
+
+.airbg-upload-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.airbg-upload-text {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+}
+
+.airbg-upload-formats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 16px;
+}
+
+.airbg-removebg-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(7, 29, 106, 0.1);
+  border: 1px solid rgba(7, 29, 106, 0.2);
+  border-radius: 8px;
+  color: #071d6a;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.airbg-file-input {
+  display: none;
+}
+
+.airbg-editor {
+  padding: 40px;
+}
+
+.airbg-editor-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+}
+
+.airbg-reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.airbg-reset-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* Settings Panel Styles */
+.airbg-settings-panel {
+  margin-bottom: 32px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.airbg-settings-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.airbg-settings-toggle:hover {
+  background: #f9fafb;
+}
+
+.airbg-settings-toggle svg:last-child {
+  transition: transform 0.2s ease;
+}
+
+.airbg-settings-toggle svg:last-child.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.airbg-settings-content {
+  padding: 20px;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.airbg-setting-group {
+  margin-bottom: 20px;
+}
+
+.airbg-setting-group:last-child {
+  margin-bottom: 0;
+}
+
+.airbg-setting-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+/* API Key Styles */
+.airbg-api-key-display {
+  margin-bottom: 8px;
+}
+
+.airbg-api-key-masked {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #166534;
+}
+
+.airbg-change-key-btn {
+  margin-left: auto;
+  padding: 4px 12px;
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  border-radius: 4px;
+  color: #166534;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.airbg-change-key-btn:hover {
+  background: #f0fdf4;
+}
+
+.airbg-api-key-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.airbg-setting-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.airbg-setting-input:focus {
+  outline: none;
+  border-color: #071d6a;
+  box-shadow: 0 0 0 3px rgba(7, 29, 106, 0.1);
+}
+
+.airbg-save-key-btn {
+  padding: 12px 20px;
+  background: #071d6a;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.airbg-save-key-btn:hover {
+  background: #1e3a8a;
+}
+
+.airbg-api-help {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #1e40af;
+}
+
+.airbg-link {
+  color: #1e40af;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.airbg-link:hover {
+  color: #1d4ed8;
+}
+
+.airbg-setting-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.airbg-setting-select:focus {
+  outline: none;
+  border-color: #071d6a;
+  box-shadow: 0 0 0 3px rgba(7, 29, 106, 0.1);
+}
+
+.airbg-setting-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.airbg-setting-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #071d6a;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.airbg-setting-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #071d6a;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.airbg-quality-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.airbg-setting-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #92400e;
+}
+
+.airbg-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.airbg-image-panel {
+  background: #f9fafb;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.airbg-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.airbg-image-container {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  position: relative;
+}
+
+.airbg-transparent-bg {
+  background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+    linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+    linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.airbg-image {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(7, 29, 106, 0.1);
+}
+
+.airbg-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.airbg-placeholder-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+}
+
+.airbg-placeholder-subtext {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.airbg-processing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.airbg-spinner {
+  width: 48px;
+  height: 48px;
+  color: #071d6a;
+  animation: airbg-spin 1s linear infinite;
+}
+
+@keyframes airbg-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.airbg-progress-info {
+  width: 100%;
+  text-align: center;
+}
+
+.airbg-progress-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.airbg-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.airbg-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #071d6a, #1e3a8a);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.airbg-progress-percent {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.airbg-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.airbg-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.airbg-btn-primary {
+  background: linear-gradient(135deg, #071d6a 0%, #1e3a8a 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(7, 29, 106, 0.4);
+}
+
+.airbg-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(7, 29, 106, 0.6);
+}
+
+.airbg-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.airbg-btn-success {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
+}
+
+.airbg-btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.6);
+}
+
+.airbg-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 8px;
+  margin: 20px 40px;
+  font-weight: 500;
+  border: 1px solid #fecaca;
+}
+
+.airbg-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.airbg-feature {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(7, 29, 106, 0.05);
+}
+
+.airbg-feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(7, 29, 106, 0.15);
+  border-color: #071d6a;
+}
+
+.airbg-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.airbg-feature h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #071d6a;
+  margin: 0 0 12px 0;
+}
+
+.airbg-feature p {
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .airbg-container {
+    padding: 16px;
+  }
+
+  .airbg-title {
+    font-size: 2rem;
+  }
+
+  .airbg-image-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .airbg-editor {
+    padding: 24px;
+  }
+
+  .airbg-upload-zone {
+    padding: 40px 24px;
+    margin: 24px;
+  }
+
+  .airbg-upload-formats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .airbg-btn {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .airbg-actions {
+    flex-direction: column;
+  }
+
+  .airbg-settings-panel {
+    margin-bottom: 24px;
+  }
+
+  .airbg-settings-toggle {
+    padding: 14px 16px;
+  }
+
+  .airbg-settings-content {
+    padding: 16px;
+  }
+
+  .airbg-api-key-input {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .airbg-header {
+    padding: 24px 16px;
+  }
+
+  .airbg-title {
+    font-size: 1.75rem;
+  }
+
+  .airbg-subtitle {
+    font-size: 1rem;
+  }
+
+  .airbg-upload-zone {
+    padding: 32px 16px;
+    margin: 16px;
+  }
+
+  .airbg-upload-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .airbg-upload-title {
+    font-size: 1.25rem;
+  }
+
+  .airbg-settings-toggle {
+    padding: 12px 14px;
+    font-size: 0.8rem;
+  }
+
+  .airbg-settings-content {
+    padding: 14px;
+  }
+}

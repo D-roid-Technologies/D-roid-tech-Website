@@ -1,0 +1,405 @@
+.image-resizer-features {
+  width: 100%;
+  background-color: #273771;
+  /* color: #ffffff; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.irf-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Header Styles */
+.irf-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.irf-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ffffff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.irf-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* Features Grid */
+.irf-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.irf-feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.irf-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.irf-feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.irf-feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.irf-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.irf-feature-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.irf-feature-description {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.irf-feature-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.irf-benefit-item {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.irf-benefit-item::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4ecdc4;
+  font-weight: bold;
+}
+
+/* Technical Specs */
+.irf-technical-specs {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.irf-specs-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.irf-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.irf-spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.irf-spec-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.irf-spec-label {
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.irf-spec-value {
+  font-weight: 600;
+  color: #4ecdc4;
+}
+
+/* Usage Flow */
+.irf-usage-flow {
+  margin-bottom: 4rem;
+}
+
+.irf-flow-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.irf-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.irf-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.irf-step:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+.irf-step-number {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.irf-step-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.irf-step-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+/* Benefits Section */
+.irf-benefits {
+  text-align: center;
+}
+
+.irf-benefits-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.irf-benefits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.irf-benefit-highlight {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.irf-benefit-highlight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.irf-benefit-highlight:hover::after {
+  left: 100%;
+}
+
+.irf-benefit-highlight:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.irf-benefit-highlight h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.irf-benefit-highlight p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .irf-container {
+    padding: 2rem 1rem;
+  }
+
+  .irf-title {
+    font-size: 2rem;
+  }
+
+  .irf-subtitle {
+    font-size: 1rem;
+  }
+
+  .irf-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .irf-feature-card {
+    padding: 1.5rem;
+  }
+
+  .irf-specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .irf-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .irf-benefits-list {
+    grid-template-columns: 1fr;
+  }
+
+  .irf-spec-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .irf-container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .irf-feature-card,
+  .irf-technical-specs,
+  .irf-benefit-highlight {
+    padding: 1.25rem;
+  }
+
+  .irf-step {
+    padding: 1.25rem;
+  }
+
+  .irf-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Animation for scroll reveal */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.irf-feature-card,
+.irf-step,
+.irf-benefit-highlight {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Stagger animation delays */
+.irf-feature-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.irf-feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.irf-feature-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.irf-feature-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.irf-feature-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.irf-feature-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Focus states for accessibility */
+.irf-feature-card:focus,
+.irf-benefit-highlight:focus {
+  outline: 2px solid #4ecdc4;
+  outline-offset: 4px;
+}

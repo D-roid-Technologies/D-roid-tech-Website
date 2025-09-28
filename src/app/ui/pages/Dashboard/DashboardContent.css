@@ -1,0 +1,39 @@
+.dashboard-content-container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Tablet screens */
+@media (max-width: 1024px) {
+  .dashboard-content-container {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+  .dashboard-content-container {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .dashboard-content-container {
+    padding: 8px;
+    gap: 8px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .dashboard-content-container {
+    padding: 4px;
+    gap: 4px;
+  }
+}

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect } from "react";
 // Richard liteGrid CSS for responsiveness
 import "../../../components/liteGrid@v1.0/lite-grid.css";
@@ -102,7 +104,7 @@ const Section: React.FunctionComponent = () => {
           <div className="approach">
             <p className="our-approach"> Our Approach</p>
             <p className="approach-details">
-              At D'roid Technologies International, we take a collaborative
+              At D'roid Technologies Ltd, we take a collaborative
               approach to software development. We work closely with our clients
               to gain a deep understanding of the business needs and goals, and
               we use that knowledge to develope tailored solutions that meet

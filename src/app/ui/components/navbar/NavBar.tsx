@@ -1,189 +1,340 @@
-import React, { useEffect } from "react";
+// @ts-nocheck
+
+import React, { useState, useEffect } from "react";
 import "../navbar/NavBar.css";
-// Richard liteGrid CSS for responsiveness
-import "../liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../utils/constant/Assets";
-import { DATA } from "../../../utils/constant/Data";
-import { useNavigate } from "react-router-dom";
-import { FaSun, FaMoon } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/Store";
-import { HiMenu, HiX } from "react-icons/hi";
-import { CiMenuFries } from "react-icons/ci";
-import { useThemeColor } from "../../../utils/hooks/useThemeColor";
-import { storage } from "../../../../firebase";
-import { listAll, ref, getDownloadURL } from "firebase/storage";
-import { url } from "inspector";
+import { HiMenu, HiX, HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
+import { FaFacebook, FaLinkedin, FaInstagramSquare } from "react-icons/fa";
+import Flag from "react-world-flags"; // Import Flag component
+import { dropdownItems, RoutePaths } from "../../../routes/Index";
 
-const NavBar: React.FunctionComponent = () => {
-  const [showDropDown, setShowDropDown] = React.useState<boolean>(false);
-  const [showMenuBtn, setShowMenuBtn] = React.useState<boolean>(false);
-  const [showMobileNav, setShowMobileNav] = React.useState<boolean>(false);
+interface NavBarProps {
+  className?: string;
+  logo?: "default" | "logoTwo";
+}
 
-  const [companyLogo, setCompanyLogo] = React.useState<string[]>([]);
+const Navbar: React.FC<NavbarProps> = ({ className, logo = "default" }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [userCountry, setUserCountry] = useState<string>("");
+  const [isScrolledLogo, setIsScrolledLogo] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
-  const imageListRef = ref(storage, "droidlogo/");
-  // console.log(companyLogo);
-
-  const dimension = useSelector((state: RootState) => state.dimension);
-  const navigate = useNavigate();
-  const { getColor, toggleTheme, isDarkMode } = useThemeColor();
-
-  const navMap = () => {
-    return DATA.navLinks.map((item, index) => {
-      return (
-        <li key={index} className="list-container">
-          <div
-            onClick={() => {
-              if (item.link === "More") {
-                setShowDropDown(!showDropDown);
-              } else {
-                navigate(item.path);
-                setShowMenuBtn(false);
-              }
-            }}
-            className="nav-list"
-            style={{
-              color:
-                window.location.pathname === item.path
-                  ? Assets.colors.substitute
-                  : Assets.colors.flat,
-            }}
-          >
-            {item.link}
-          </div>
-        </li>
-      );
-    });
-  };
-
-  const navMapMobile = () => {
-    return DATA.navLinks.map((item, index) => {
-      return (
-        <li key={index} className="list-container">
-          <div
-            onClick={() => {
-              if (item.link === "More") {
-                setShowMobileNav(!showMobileNav);
-              } else {
-                navigate(item.path);
-                setShowMenuBtn(false);
-              }
-            }}
-            className="nav-list"
-            style={{
-              color: Assets.colors.substitute,
-            }}
-          >
-            {item.link}
-          </div>
-        </li>
-      );
-    });
-  };
-
-  const dropDownLinks = () => {
-    return DATA.dropDownLinks.map((i, j) => {
-      return (
-        <li key={j} className="list-container">
-          <div
-            onClick={() => {
-              navigate(i.path);
-            }}
-            style={{
-              color:
-                window.location.pathname === i.path
-                  ? Assets.colors.primary
-                  : Assets.colors.substitute,
-            }}
-          >
-            {i.link}
-          </div>
-        </li>
-      );
-    });
-  };
-
+  // Scroll effect
   useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((items) => {
-        getDownloadURL(items).then((url) => {
-          setCompanyLogo((prev) => [...prev, url]);
-        });
-      });
-    });
+    const handleScrollLogo = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolledLogo(scrollTop > 0); // true when user scrolls down
+    };
+
+    window.addEventListener("scroll", handleScrollLogo);
+
+    // Clean up the event listener
+    return () => window.removeEventListener("scroll", handleScrollLogo);
   }, []);
 
+  // Extract country code from user's locale
+  useEffect(() => {
+    const country = navigator.language.split("-")[1]; // Extract country code
+    setUserCountry(country || "US"); // Default to 'US' if country code is not found
+  }, []);
+
+  // Toggle the menu for mobile
+  const toggleMenu = (): void => {
+    setIsMenuOpen(!isMenuOpen);
+    setActiveDropdown(null);
+  };
+
+  // Toggle the dropdown visibility
+  const toggleDropdown = (dropdown: string): void => {
+    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+  };
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = (): void => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const getLogoSource = () => {
+    if (logo === "logoTwo") {
+      return Assets.images.companyLogoTwoAlt;
+    }
+
+    return isLogoHovered
+      ? Assets.images.companyLogoTwoAlt
+      : isScrolledLogo
+      ? Assets.images.companyLogoTwoAlt
+      : Assets.images.companyLogoAltTwoWhite;
+  };
+
   return (
-    <div className="wrapper-fluid">
-      <div className="nav-main">
-        <div
-          className="logo-image"
-          style={{ marginTop: "10px", cursor: "pointer" }}
-        >
-          <a
-            onClick={() => {
-              navigate("/");
+    <nav
+      className={`navbar ${className || ""} ${
+        isScrolled || isHovered ? "scrolled" : ""
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setActiveDropdown(null);
+      }}
+    >
+      <div
+        className="navbar-container"
+        onMouseEnter={() => setIsLogoHovered(true)}
+        onMouseLeave={() => setIsLogoHovered(false)}
+      >
+        <a href="/" className="navbar-logo">
+          <img src={getLogoSource()} alt="D-roidTech Logo" />
+        </a>
+
+        <div className="desktop-nav-links">
+          <ul className="navbar-links">
+            <li>
+              <a href={RoutePaths.AboutUs}>About</a>
+            </li>
+            <li
+              className="dropdown-trigger"
+              onMouseEnter={() => toggleDropdown("services")}
+              onClick={() => toggleDropdown("services")}
+            >
+              <div className="dropdown-title">
+                Services
+                {activeDropdown === "services" ? (
+                  <HiChevronUp />
+                ) : (
+                  <HiChevronDown />
+                )}
+              </div>
+              {activeDropdown === "services" && (
+                <ul className="dropdown-menu">
+                  {dropdownItems.services.map((item, index) => (
+                    <li key={index}>
+                      <a href={item.link}>{item.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+            <li
+              className="dropdown-trigger"
+              onMouseEnter={() => toggleDropdown("resources")}
+              onClick={() => toggleDropdown("resources")}
+            >
+              <div className="dropdown-title">
+                Resources
+                {activeDropdown === "resources" ? (
+                  <HiChevronUp />
+                ) : (
+                  <HiChevronDown />
+                )}
+              </div>
+              {activeDropdown === "resources" && (
+                <ul className="dropdown-menu">
+                  {dropdownItems.resources.map((item, index) => (
+                    <li key={index}>
+                      <a href={item.link}>{item.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+            <li>
+              <a href={RoutePaths.MobilePhone}>Mobile</a>
+            </li>
+            <li>
+              <a href="/careers">Careers</a>
+            </li>
+            <li
+              className="dropdown-trigger"
+              onMouseEnter={() => toggleDropdown("more")}
+              onClick={() => toggleDropdown("more")}
+            >
+              <div className="dropdown-title">
+                More
+                {activeDropdown === "more" ? (
+                  <HiChevronUp />
+                ) : (
+                  <HiChevronDown />
+                )}
+              </div>
+              {activeDropdown === "more" && (
+                <ul className="dropdown-menu">
+                  {dropdownItems.more.map((item, index) => (
+                    <li key={index}>
+                      <a href={item.link}>{item.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          </ul>
+        </div>
+
+        <div className="desktop-cta">
+          <a href={RoutePaths.StartProjectPage} className="navbar-cta">
+            Start a project
+          </a>
+          {/* <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            {companyLogo.length > 0 ? (
-              <img
-                src={companyLogo[0]}
-                alt="D'roid Logo"
-                width={60}
-                height={60}
-              />
-            ) : (
-              <>... Loading Image</>
+            <Flag code={userCountry} style={{ width: "30px", height: "20px" }} />
+            <span style={{ color: "white", fontSize: "14px" }}>{userCountry}</span>
+          </div> */}
+        </div>
+        <button className="mobile-menu-button" onClick={toggleMenu}>
+          {isMenuOpen ? (
+            <HiX size={28} />
+          ) : (
+            <HiOutlineBars3CenterLeft size={28} />
+          )}
+        </button>
+      </div>
+
+      <div className={`mobile-nav ${isMenuOpen ? "open" : ""}`}>
+        <ul>
+          <li>
+            <a href="aboutus" onClick={toggleMenu}>
+              About
+            </a>
+          </li>
+          <li
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-services" ? "active" : ""
+            }`}
+          >
+            <div
+              className="mobile-dropdown-title"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDropdown("mobile-services");
+              }}
+            >
+              Services
+              {activeDropdown === "mobile-services" ? (
+                <HiChevronUp />
+              ) : (
+                <HiChevronDown />
+              )}
+            </div>
+            {activeDropdown === "mobile-services" && (
+              <ul className="mobile-dropdown-menu">
+                {dropdownItems.services.map((item, index) => (
+                  <li key={index}>
+                    <a href={item.link} onClick={toggleMenu}>
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             )}
+          </li>
+          <li
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-resources" ? "active" : ""
+            }`}
+          >
+            <div
+              className="mobile-dropdown-title"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDropdown("mobile-resources");
+              }}
+            >
+              Resources
+              {activeDropdown === "mobile-resources" ? (
+                <HiChevronUp />
+              ) : (
+                <HiChevronDown />
+              )}
+            </div>
+            {activeDropdown === "mobile-resources" && (
+              <ul className="mobile-dropdown-menu">
+                {dropdownItems.resources.map((item, index) => (
+                  <li key={index}>
+                    <a href={item.link} onClick={toggleMenu}>
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+          <li>
+            <a href="/careers" onClick={toggleMenu}>
+              Careers
+            </a>
+          </li>
+          <li
+            className={`mobile-dropdown ${
+              activeDropdown === "mobile-more" ? "active" : ""
+            }`}
+          >
+            <div
+              className="mobile-dropdown-title"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDropdown("mobile-more");
+              }}
+            >
+              More
+              {activeDropdown === "mobile-more" ? (
+                <HiChevronUp />
+              ) : (
+                <HiChevronDown />
+              )}
+            </div>
+            {activeDropdown === "mobile-more" && (
+              <ul className="mobile-dropdown-menu">
+                {dropdownItems.more.map((item, index) => (
+                  <li key={index}>
+                    <a href={item.link} onClick={toggleMenu}>
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        </ul>
+        <center>
+          <a
+            href={RoutePaths.StartProjectPage}
+            className="navbar-cta"
+            style={{
+              width: "250px",
+              textAlign: "center",
+              marginTop: "30px",
+              color: "#fff",
+            }}
+          >
+            Start a project
+          </a>
+        </center>
+        <div className="social-icons">
+          <a href="#">
+            <FaFacebook />
+          </a>
+          <a href="#">
+            <FaLinkedin />
+          </a>
+          <a href="#">
+            <FaInstagramSquare />
           </a>
         </div>
-        <div className="nav-link-container">
-          <ul className="list"> {navMap()} </ul>
-          <div>
-            <span className="version">{Assets.text.appVersion}</span>
-          </div>
-          <div className="icons-right">
-            {/* {isDarkMode ? (
-              <FaSun className="dark-mode" onClick={toggleTheme} />
-            ) : (
-              <FaMoon className="dark-mode" onClick={toggleTheme} />
-            )} */}
-            <CiMenuFries
-              className="menu-button"
-              onClick={() => setShowMenuBtn(true)}
-            />
-          </div>
-        </div>
-        {showDropDown ? (
-          <div className="drop-down-links">
-            <ul>{dropDownLinks()}</ul>
-          </div>
-        ) : null}
-        {showMenuBtn ? (
-          <>
-            <div className="mobile-nav">
-              <div style={{ display: "flex", justifyContent: "right" }}>
-                <HiX
-                  className="mobile-x"
-                  onClick={() => setShowMenuBtn(false)}
-                />
-              </div>
-              <ul>{navMapMobile()}</ul>
-              {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
-            </div>
-          </>
-        ) : null}
-        {showMenuBtn ? (
-          <div className={`mobile-nav ${showMenuBtn ? "active" : ""}`}>
-            <HiX className="mobile-x" onClick={() => setShowMenuBtn(false)} />
-            <ul>{navMapMobile()}</ul>
-            {showMobileNav ? <ul>{dropDownLinks()}</ul> : null}
-          </div>
-        ) : null}
       </div>
-    </div>
+    </nav>
   );
 };
 
-export default NavBar;
+export default Navbar;

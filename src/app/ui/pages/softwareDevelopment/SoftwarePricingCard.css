@@ -1,0 +1,276 @@
+.techsoft-pricing {
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.techsoft-pricing__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.techsoft-pricing__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.techsoft-pricing__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.techsoft-pricing__subtitle {
+  font-size: 1.25rem;
+  color: #767a7a;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.techsoft-pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.techsoft-pricing__card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.techsoft-pricing__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+}
+
+.techsoft-pricing__card--popular {
+  border-color: #0b1a6d;
+  transform: scale(1.05);
+  /* box-shadow: 0 32px 64px rgba(102, 126, 234, 0.25); */
+}
+
+.techsoft-pricing__card--popular:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.techsoft-pricing__popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0b1a6d;
+  color: white;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.techsoft-pricing__card-header {
+  margin-bottom: 32px;
+}
+
+.techsoft-pricing__tier-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.techsoft-pricing__tier-icon {
+  width: 32px;
+  height: 32px;
+  color: #0b1a6d;
+}
+
+.techsoft-pricing__tier-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.techsoft-pricing__price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.techsoft-pricing__price-amount {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.techsoft-pricing__price-period {
+  font-size: 1.125rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.techsoft-pricing__description {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.techsoft-pricing__features {
+  margin-bottom: 40px;
+}
+
+.techsoft-pricing__features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.techsoft-pricing__feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.95rem;
+  color: #374151;
+  transition: color 0.2s ease;
+}
+
+.techsoft-pricing__feature:last-child {
+  border-bottom: none;
+}
+
+.techsoft-pricing__feature--disabled {
+  color: #9ca3af;
+}
+
+.techsoft-pricing__check-icon {
+  width: 20px;
+  height: 20px;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.techsoft-pricing__check-icon--disabled {
+  color: #d1d5db;
+}
+
+.techsoft-pricing__card-footer {
+  margin-top: auto;
+}
+
+.techsoft-pricing__button {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.techsoft-pricing__button--primary {
+  background: linear-gradient(135deg, #667eea, #0b1a6d);
+  color: white;
+}
+
+.techsoft-pricing__button--primary:hover {
+  background: linear-gradient(135deg, #5a67d8, #0b1a6d);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.techsoft-pricing__button--secondary {
+  background: #f8fafc;
+  color: #0b1a6d;
+  border: 2px solid #0b1a6d;
+}
+
+.techsoft-pricing__button--secondary:hover {
+  background: #0b1a6d;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.techsoft-pricing__footer {
+  text-align: center;
+}
+
+.techsoft-pricing__footer-text {
+  color: #767a7a;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .techsoft-pricing {
+    padding: 60px 16px;
+  }
+
+  .techsoft-pricing__title {
+    font-size: 2.25rem;
+  }
+
+  .techsoft-pricing__subtitle {
+    font-size: 1.125rem;
+  }
+
+  .techsoft-pricing__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .techsoft-pricing__card {
+    padding: 32px 24px;
+  }
+
+  .techsoft-pricing__card--popular {
+    transform: none;
+  }
+
+  .techsoft-pricing__card--popular:hover {
+    transform: translateY(-8px);
+  }
+
+  .techsoft-pricing__price-amount {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .techsoft-pricing__card {
+    padding: 24px 20px;
+  }
+
+  .techsoft-pricing__title {
+    font-size: 2rem;
+  }
+
+  .techsoft-pricing__price-amount {
+    font-size: 1rem;
+  }
+
+  .techsoft-pricing__tier-name{
+     font-size: 1rem;
+  }
+}

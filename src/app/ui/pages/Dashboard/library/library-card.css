@@ -1,0 +1,105 @@
+.library-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.library-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #3182ce;
+}
+
+.library-card:focus {
+  outline: 2px solid #3182ce;
+  outline-offset: 2px;
+}
+
+.library-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.icon-text {
+  font-size: 1.5rem;
+}
+
+.library-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.library-summary {
+  color: #4a5568;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.library-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.stat-item {
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+.stat-item strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+.view-details {
+  color: #3182ce;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.library-card:hover .view-details {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .library-card {
+    padding: 1.25rem;
+  }
+
+  .library-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .library-title {
+    font-size: 1.1rem;
+  }
+}

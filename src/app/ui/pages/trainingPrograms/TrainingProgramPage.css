@@ -1,0 +1,8 @@
+.soft-wrapper {
+  padding: 40px;
+}
+.soft-dev-content {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

@@ -1,0 +1,160 @@
+/* Base Styling */
+.blog-post-view {
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  color: #1e1e1e;
+  padding: 10px;
+}
+
+.post-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* Blog Title */
+.blog-post-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+/* Author & Meta Info */
+.blog-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.post-details {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.blog-post-date,
+.blog-post-category,
+.blog-post-readtime {
+  background-color: #f0f2f5;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Blog Excerpt / Content */
+.post-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+  margin-top: 2rem;
+}
+
+.blog-post-excerpt {
+  font-size: 1.1rem;
+  color: #444;
+  font-weight: 400;
+}
+
+/* Not Found */
+.not-found-container {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #444;
+}
+
+.not-found-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.not-found-container p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.back-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #1a73e8;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+  background-color: #0d5bd3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-post-title {
+    font-size: 2rem;
+  }
+
+  .blog-post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .post-details {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-post-view {
+    padding: 1.5rem 1rem;
+  }
+
+  .blog-post-title {
+    font-size: 1rem;
+  }
+
+  .author-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .blog-post-excerpt {
+    font-size: 1rem;
+  }
+
+  .back-link {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+

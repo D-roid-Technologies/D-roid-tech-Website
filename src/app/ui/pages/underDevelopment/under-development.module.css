@@ -1,0 +1,310 @@
+.container {
+  min-height: 100vh;
+  background-color: white;
+  color: #1e293b;
+  font-family: "Courier New", monospace;
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      rgba(59, 130, 246, 0.3) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  animation: scan 3s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+}
+
+.content {
+  max-width: 600px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  margin-top: 3rem;
+}
+
+.mainMessage {
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 15px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #1e293b;
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.statusDisplay {
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.statusLine {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-family: "Courier New", monospace;
+}
+
+.statusLine:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #94a3b8;
+  font-weight: bold;
+  min-width: 140px;
+  font-size: 0.9rem;
+}
+
+.status {
+  color: #10b981;
+  font-weight: bold;
+  animation: statusBlink 2s infinite;
+}
+
+@keyframes statusBlink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 4px;
+  margin: 0 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  width: 73%;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  border-radius: 4px;
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.percentage {
+  color: #3b82f6;
+  font-weight: bold;
+  min-width: 40px;
+}
+
+.currentTask {
+  color: #f59e0b;
+  font-style: italic;
+}
+
+.description {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.description p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.featureItem {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.featureItem:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  background: linear-gradient(145deg, #071c6ad7, #071d6a);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.secondaryButton {
+  background: rgba(100, 116, 139, 0.2);
+  color: #e2e8f0;
+  border: 1px solid rgba(100, 116, 139, 0.5);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(100, 116, 139, 0.3);
+  transform: translateY(-2px);
+}
+
+.footer {
+  border-top: 1px solid rgba(100, 116, 139, 0.3);
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.eta {
+  margin-bottom: 0.5rem;
+  color: #f59e0b;
+}
+
+.contact {
+  color: #94a3b8;
+  margin: 0;
+}
+
+.contact strong {
+  color: #3b82f6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .mainMessage {
+    padding: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .statusLine {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .progressBar {
+    margin: 0;
+    width: 100%;
+  }
+}

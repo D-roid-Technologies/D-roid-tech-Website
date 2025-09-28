@@ -1,0 +1,411 @@
+.rca-container {
+  min-height: 100vh;
+  background: #f5f9fc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+}
+
+.rca-header {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 2rem 0;
+}
+
+.rca-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rca-logo {
+  color: #727982;
+}
+
+.rca-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.rca-subtitle {
+  color: #727982;
+  margin: 0.5rem 0 0 0;
+  font-size: 1.1rem;
+}
+
+.rca-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.rca-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.rca-upload-section {
+  margin-bottom: 3rem;
+}
+
+.rca-upload-area {
+  border: 2px dashed #d1d5db;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.rca-upload-area:hover {
+  border-color: #727982;
+  background: #fafbfc;
+}
+
+.rca-upload-dragging {
+  border-color: #727982 !important;
+  background: #f0f9ff !important;
+  transform: scale(1.02);
+}
+
+.rca-upload-has-file {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+.rca-file-input {
+  display: none;
+}
+
+.rca-upload-content h3 {
+  font-size: 1.5rem;
+  color: #374151;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.rca-upload-content p {
+  color: #727982;
+  font-size: 1rem;
+}
+
+.rca-upload-icon {
+  color: #727982;
+}
+
+.rca-file-preview {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.rca-preview-image {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+}
+
+.rca-file-info h4 {
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.rca-file-info p {
+  color: #727982;
+  margin: 0;
+}
+
+.rca-analyze-btn {
+  width: 100%;
+  background: #727982;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.rca-analyze-btn:hover:not(:disabled) {
+  background: #5a6269;
+  transform: translateY(-2px);
+}
+
+.rca-analyze-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.rca-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rca-results {
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rca-score-section {
+  margin-bottom: 3rem;
+}
+
+.rca-score-card {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.rca-score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rca-score-inner {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rca-score-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.rca-score-label {
+  font-size: 0.875rem;
+  color: #727982;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rca-score-info h3 {
+  font-size: 1.75rem;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+}
+
+.rca-score-info p {
+  color: #727982;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.rca-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.rca-analysis-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.rca-full-width {
+  grid-column: 1 / -1;
+}
+
+.rca-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.rca-card-header svg {
+  color: #727982;
+}
+
+.rca-card-header h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin: 0;
+}
+
+.rca-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rca-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.rca-list li:last-child {
+  border-bottom: none;
+}
+
+.rca-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.rca-keyword-tag {
+  background: #f0f9ff;
+  color: #0369a1;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.rca-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rca-section-item {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.rca-section-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.rca-section-name {
+  font-weight: 600;
+  color: #374151;
+}
+
+.rca-section-status {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.rca-section-status.present {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.rca-section-status.missing {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.rca-quality-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.rca-quality-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.rca-suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rca-suggestion-item {
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: #fafbfc;
+  border-left: 4px solid #727982;
+  border-radius: 8px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.rca-suggestion-item:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .rca-main {
+    padding: 1rem;
+  }
+
+  .rca-score-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rca-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rca-file-preview {
+    flex-direction: column;
+  }
+}

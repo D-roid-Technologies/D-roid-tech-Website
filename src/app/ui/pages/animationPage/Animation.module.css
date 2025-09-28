@@ -1,0 +1,186 @@
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.thumbnail {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0;
+}
+
+.quickInfo {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.quickInfo h4 {
+  color: #071d6a;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.quickInfo p {
+  margin-bottom: 0.5rem;
+  color: #333333;
+}
+
+.quickInfo p:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  color: #071d6a;
+  margin-bottom: 1rem;
+}
+
+.synopsis {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #333333;
+}
+
+.storyArc {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #333333;
+}
+
+.themeSection {
+  margin-bottom: 3rem;
+}
+
+.themeTitle {
+  color: #071d6a;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.themeCard {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  border-left: 4px solid #071d6a;
+}
+
+.themeCard p {
+  font-size: 12px;
+  margin: 0;
+  font-weight: 500;
+  color: #333333;
+}
+
+.visualStyle,
+.targetAudience,
+.additionalInfo {
+  margin-bottom: 3rem;
+}
+
+.visualStyle p,
+.targetAudience p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #333333;
+}
+
+.additionalInfoTitle {
+  color: #071d6a;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.additionalGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.additionalCard {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.additionalCard h5 {
+  color: #071d6a;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+}
+
+.additionalCard p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333333;
+}
+
+.actionBox {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.actionBox h3 {
+  margin-bottom: 1.5rem;
+  color: #071d6a;
+  font-size: 1.5rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.watchBtn {
+  padding: 12px 24px;
+  background-color: #071d6a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.readBtn {
+  padding: 12px 24px;
+  background-color: #fff;
+  color: #071d6a;
+  border: 2px solid #071d6a;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}

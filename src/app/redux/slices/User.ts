@@ -1,43 +1,159 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserType } from "../../utils/Types";
 
 const initialState: UserType = {
-  sixDigitCode: "584390",
-  sixDigitCodeFromUser: "",
-  userFName: "",
-  userLName: "",
-  message: "",
-  userEmail: "",
+  firstName: "",
+  lastName: "",
+  middleName: "",
+  initials: "",
+  userType: "",
+  uniqueId: "",
+  staffId: "",
+  email: "",
+  phone: "",
+  agreeToPolicy: false,
+  isLoggedIn: false,
+  gender: "",
+  dateOfBirth: "",
+  disability: false,
+  disabilityType: "",
+  photoUrl: "",
+  educationalLevel: "",
+  referralName: "",
+  secondaryEmail: "",
+  securityQuestion: "",
+  securityAnswer: "",
+  verifiedEmail: false,
+  verifyPhoneNumber: false,
+  agreedToTerms: false,
+  twoFactorSettings: false,
+  password: "",
+  role: "",
+  streetNumber: "",
+  streetName: "",
+  city: "",
+  state: "",
+  country: "",
+  organisationalType: "",
+  isCompanyRegistered: "",
+  dateOfRegistration: "",
+  skills: [],
+  certifications: [],
+  accessLevel: "",
+  permissions: [],
+  notificationPreferences: {
+    email: true,
+  },
+
+  // Essential fields for Staff Homepage
+  position: "",
+  department: "",
+  employeeId: "",
+  joinDate: "",
+  performanceScore: 0,
+  attendanceRate: 0,
+  trainingProgress: 0,
+  activeTasks: 0,
+  employmentStatus: "",
+  workLocation: "",
 };
-export const UserSlice = createSlice({
+
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addSixDigitCodeFromUser: (state, action) => {
-      const sixDigitCodeFromUser = action.payload;
-      state.sixDigitCodeFromUser = sixDigitCodeFromUser;
-      console.log("getting 6 digit code from User slice", sixDigitCodeFromUser);
+    setUser(state, action: PayloadAction<Partial<UserType>>) {
+      return { ...state, ...action.payload };
     },
-    addContactInfo: (state, action) => {
-      const { userFName, userLName, message } = action.payload;
-      state.userFName = userFName;
-      state.userLName = userLName;
-      state.message = message;
-      console.log(
-        "getting User contact details from User slice",
-        userFName,
-        userLName,
-        message
+
+    updateStaffInfo(
+      state,
+      action: PayloadAction<{
+        position?: string;
+        department?: string;
+        employeeId?: string;
+        joinDate?: string;
+        employmentStatus?: string;
+        workLocation?: string;
+      }>
+    ) {
+      return { ...state, ...action.payload };
+    },
+
+    updatePerformanceMetrics(
+      state,
+      action: PayloadAction<{
+        performanceScore?: number;
+        attendanceRate?: number;
+        trainingProgress?: number;
+        activeTasks?: number;
+      }>
+    ) {
+      return { ...state, ...action.payload };
+    },
+
+    updateNotificationPreferences(
+      state,
+      action: PayloadAction<
+        Partial<typeof initialState.notificationPreferences>
+      >
+    ) {
+      state.notificationPreferences = {
+        ...state.notificationPreferences,
+        ...action.payload,
+      };
+    },
+
+    addSkill(state, action: PayloadAction<string>) {
+      if (!state.skills.includes(action.payload)) {
+        state.skills.push(action.payload);
+      }
+    },
+
+    removeSkill(state, action: PayloadAction<string>) {
+      state.skills = state.skills.filter((skill) => skill !== action.payload);
+    },
+
+    addCertification(state, action: PayloadAction<string>) {
+      if (!state.certifications.includes(action.payload)) {
+        state.certifications.push(action.payload);
+      }
+    },
+
+    removeCertification(state, action: PayloadAction<string>) {
+      state.certifications = state.certifications.filter(
+        (cert) => cert !== action.payload
       );
     },
-    addUserEmail: (state, action) => {
-      const userEmail = action.payload;
-      state.userEmail = userEmail;
-      console.log("getting user email from User slice", userEmail);
+
+    updateAccessLevel(
+      state,
+      action: PayloadAction<{
+        accessLevel: string;
+        permissions: string[];
+      }>
+    ) {
+      state.accessLevel = action.payload.accessLevel;
+      state.permissions = action.payload.permissions;
+    },
+
+    logoutUser() {
+      return { ...initialState };
     },
   },
 });
 
-export default UserSlice.reducer;
-export const { addSixDigitCodeFromUser, addContactInfo, addUserEmail } =
-  UserSlice.actions;
+export const {
+  setUser,
+  updateStaffInfo,
+  updatePerformanceMetrics,
+  updateNotificationPreferences,
+  addSkill,
+  removeSkill,
+  addCertification,
+  removeCertification,
+  updateAccessLevel,
+  logoutUser,
+} = userSlice.actions;
+
+export default userSlice.reducer;

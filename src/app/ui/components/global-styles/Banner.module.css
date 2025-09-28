@@ -1,0 +1,83 @@
+.bannerWrapper {
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+  align-items: start;
+  padding: 20px;
+}
+
+.bannerContent {
+  width: 100%;
+  display: flex;
+  margin-block: auto;
+  flex-direction: column;
+}
+
+.bannerContent h1 {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.bannerContent p {
+  font-size: 1rem;
+  color: #eee;
+  max-width: 500px;
+}
+
+@media (min-width: 768px) {
+  .bannerWrapper {
+    text-align: left;
+    padding: 40px;
+  }
+  .bannerContent {
+    align-items: start;
+    margin-left: 50px;
+  }
+  .bannerContent h1 {
+    font-size: 3rem;
+  }
+
+  .bannerContent p {
+    font-size: 1.2rem;
+  }
+}
+
+.buttonGroupWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 20px;
+}
+
+/* Reuse or enhance .navbar-cta */
+.navbarCta {
+  background-color: #fff;
+  color: #071d6a;
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbarCta:hover {
+  background-color: #071d6a;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .buttonGroupWrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}

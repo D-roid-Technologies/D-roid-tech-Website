@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.company-journey {
+  font-family: "Poppins", sans-serif;
+  padding: 80px 0;
+  color: #333;
+}
+
+.company-journey-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.company-journey-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.company-section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.company-section-title:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #4a6cf7, #6a88e5);
+}
+
+.company-timeline {
+  position: relative;
+  padding-left: 30px;
+  margin-top: 60px;
+}
+
+.company-timeline:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, #435ca5, #435ca5);
+  border-radius: 3px;
+}
+
+.company-timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.company-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.company-timeline-marker {
+  position: absolute;
+  left: -38px;
+  background: #435ca5;
+  color: white;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  transform: translateY(-50%);
+  top: 30px;
+  box-shadow: 0 3px 10px rgba(74, 108, 247, 0.2);
+  z-index: 2;
+}
+
+.company-timeline-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 4px solid #435ca5;
+}
+
+.company-timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.company-timeline-content p {
+  margin: 0;
+  line-height: 1.8;
+  color: #555;
+  font-size: 1.05rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .company-section-title {
+    font-size: 2rem;
+  }
+
+  .company-timeline {
+    padding-left: 20px;
+  }
+
+  .company-timeline-marker {
+    left: -30px;
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+
+  .company-timeline-content {
+    padding: 20px;
+  }
+
+  .company-timeline-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-section-title {
+    font-size: 1.75rem;
+  }
+
+  .company-timeline {
+    padding-left: 15px;
+  }
+
+  .company-timeline-marker {
+    left: -25px;
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .company-timeline-content {
+    padding: 15px;
+  }
+}
