@@ -222,7 +222,7 @@ export const Assets = {
   colors: {
     basic: "#000000",
     light: "#ffffff",
-    primary: "#071D6A",
+    primary: "#203499",
     secondary: "#479BE8",
     tertiary: "#FF6F61",
     flat: "#97A3B6",
