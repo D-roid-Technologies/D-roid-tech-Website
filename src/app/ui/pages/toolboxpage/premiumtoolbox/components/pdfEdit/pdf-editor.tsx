@@ -1,48 +1,39 @@
-"use client";
+"use client"
 
-import type React from "react";
-import { useState, useCallback } from "react";
-import {
-  FaFilePdf,
-  FaObjectGroup,
-  FaCut,
-  FaEdit,
-  FaSignature,
-  FaWpforms,
-  FaLock,
-  FaUpload,
-} from "react-icons/fa";
-import FileUpload from "./file-upload";
-import PDFMerger from "./pdf-merger";
-import PDFSplitter from "./pdf-splitter";
-import PDFAnnotator from "./pdf-annotator";
-import PDFSigner from "./pdf-signer";
-import PDFFormEditor from "./pdf-form-editor";
-import PDFPasswordProtector from "./pdf-password-protector";
-import "./pdf-editor.css";
+import type React from "react"
+import { useState, useCallback, useEffect } from "react"
+import { FaFilePdf, FaObjectGroup, FaCut, FaEdit, FaSignature, FaWpforms, FaLock, FaUpload } from "react-icons/fa"
+import FileUpload from "./file-upload"
+import PDFMerger from "./pdf-merger"
+import PDFSplitter from "./pdf-splitter"
+import PDFAnnotator from "./pdf-annotator"
+import PDFSigner from "./pdf-signer"
+import PDFFormEditor from "./pdf-form-editor"
+import PDFPasswordProtector from "./pdf-password-protector"
+import "./pdf-editor.css"
 
 export interface PDFFile {
-  id: string;
-  name: string;
-  file: File;
-  pages?: number;
-  url?: string;
+  id: string
+  name: string
+  file: File
+  pages?: number
+  url?: string
 }
 
 const PDFEditor: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>("upload");
-  const [pdfFiles, setPdfFiles] = useState<PDFFile[]>([]);
-  const [selectedFile, setSelectedFile] = useState<PDFFile | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("upload")
+  const [pdfFiles, setPdfFiles] = useState<PDFFile[]>([])
+  const [selectedFile, setSelectedFile] = useState<PDFFile | null>(null)
 
   const tabs = [
     { id: "upload", label: "Upload", icon: FaUpload },
     { id: "merge", label: "Merge", icon: FaObjectGroup },
     { id: "split", label: "Split", icon: FaCut },
-    // { id: "annotate", label: "Annotate", icon: FaEdit },
+    { id: "annotate", label: "Annotate", icon: FaEdit },
     { id: "sign", label: "Sign", icon: FaSignature },
     { id: "forms", label: "Forms", icon: FaWpforms },
     { id: "password", label: "Password", icon: FaLock },
-  ];
+  ]
 
   const addPDFFile = useCallback((file: File) => {
     const newPDFFile: PDFFile = {
@@ -50,19 +41,34 @@ const PDFEditor: React.FC = () => {
       name: file.name,
       file: file,
       url: URL.createObjectURL(file),
-    };
-    setPdfFiles((prev) => [...prev, newPDFFile]);
-  }, []);
+    }
+    setPdfFiles((prev) => [...prev, newPDFFile])
+  }, [])
 
   const removePDFFile = useCallback(
     (id: string) => {
-      setPdfFiles((prev) => prev.filter((file) => file.id !== id));
+      const fileToRemove = pdfFiles.find((f) => f.id === id)
+      if (fileToRemove?.url) {
+        URL.revokeObjectURL(fileToRemove.url)
+      }
+
+      setPdfFiles((prev) => prev.filter((file) => file.id !== id))
       if (selectedFile?.id === id) {
-        setSelectedFile(null);
+        setSelectedFile(null)
       }
     },
-    [selectedFile]
-  );
+    [selectedFile, pdfFiles],
+  )
+
+  useEffect(() => {
+    return () => {
+      pdfFiles.forEach((file) => {
+        if (file.url) {
+          URL.revokeObjectURL(file.url)
+        }
+      })
+    }
+  }, [])
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -75,23 +81,23 @@ const PDFEditor: React.FC = () => {
             selectedFile={selectedFile}
             onFileSelect={setSelectedFile}
           />
-        );
+        )
       case "merge":
-        return <PDFMerger pdfFiles={pdfFiles} />;
+        return <PDFMerger pdfFiles={pdfFiles} />
       case "split":
-        return <PDFSplitter selectedFile={selectedFile} />;
+        return <PDFSplitter selectedFile={selectedFile} />
       case "annotate":
-        return <PDFAnnotator selectedFile={selectedFile} />;
+        return <PDFAnnotator selectedFile={selectedFile} />
       case "sign":
-        return <PDFSigner selectedFile={selectedFile} />;
+        return <PDFSigner selectedFile={selectedFile} />
       case "forms":
-        return <PDFFormEditor selectedFile={selectedFile} />;
+        return <PDFFormEditor selectedFile={selectedFile} />
       case "password":
-        return <PDFPasswordProtector selectedFile={selectedFile} />;
+        return <PDFPasswordProtector selectedFile={selectedFile} />
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   return (
     <div className="pdf-editor">
@@ -126,7 +132,7 @@ const PDFEditor: React.FC = () => {
         <div className="tab-content">{renderTabContent()}</div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default PDFEditor;
+export default PDFEditor

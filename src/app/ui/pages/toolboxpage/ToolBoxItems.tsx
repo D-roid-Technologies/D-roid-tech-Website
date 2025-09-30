@@ -37,15 +37,15 @@ export const Alltools = [
     category: "Image Tools",
     link: "/toolbox/imageresizing",
   },
-  {
-    title: "AI Background Remover",
-    description: "Remove backgrounds from images using AI precision.",
-    icon: FaMagic({ size: 24 }),
-    component: "BackgroundRemove",
-    category: "Image Tools",
-    link: "/toolbox/ai-background-remover",
-    isPremium: true,
-  },
+  // {
+  //   title: "AI Background Remover",
+  //   description: "Remove backgrounds from images using AI precision.",
+  //   icon: FaMagic({ size: 24 }),
+  //   component: "BackgroundRemove",
+  //   category: "Image Tools",
+  //   link: "/toolbox/ai-background-remover",
+  //   isPremium: true,
+  // },
   {
     title: "Color Converter",
     description: "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration.",
@@ -136,15 +136,15 @@ export const Alltools = [
     category: "Developer Tools",
     link: "/toolbox/encoderbasetool",
   },
-  {
-    title: "AI Background Remover",
-    description: "Remove backgrounds from images using AI precision.",
-    icon: FaMagic({ size: 24 }),
-    component: "BackgroundRemove",
-    category: "Image Tools",
-    link: "/toolbox/ai-background-remover",
-    isPremium: true,
-  },
+  // {
+  //   title: "AI Background Remover",
+  //   description: "Remove backgrounds from images using AI precision.",
+  //   icon: FaMagic({ size: 24 }),
+  //   component: "BackgroundRemove",
+  //   category: "Image Tools",
+  //   link: "/toolbox/ai-background-remover",
+  //   isPremium: true,
+  // },
   {
     title: "Advanced PDF Editor",
     description: "Merge, split, sign, and annotate PDFs with advanced tools.",
@@ -184,16 +184,16 @@ export const tools = [
     component: "Crop",
     link: "/toolbox/croptool",
   },
-  {
-    title: "AI Background Remover",
-    description:
-      "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
-    icon: FaMagic({ size: 24 }),
-    category: "Image Tools",
-    component: "BackgroundRemove",
-    link: "/toolbox/ai-background-remover",
-    isPremium: true,
-  },
+  // {
+  //   title: "AI Background Remover",
+  //   description:
+  //     "Automatically remove backgrounds from images using AI with high precision and speed for professional photo editing results.",
+  //   icon: FaMagic({ size: 24 }),
+  //   category: "Image Tools",
+  //   component: "BackgroundRemove",
+  //   link: "/toolbox/ai-background-remover",
+  //   isPremium: true,
+  // },
   {
     title: "Word Counter",
     description:

@@ -1,146 +1,109 @@
-"use client";
+"use client"
 
-import React, { useRef, useEffect, useState } from "react";
+import type React from "react"
+import { useRef, useEffect, useState, useCallback } from "react"
+import * as pdfjsLib from "pdfjs-dist"
+//@ts-ignore
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.min.js"
+
+// 👇 Tell pdf.js to use the worker from node_modules
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.mjs",
+  import.meta.url
+).toString()
 
 interface PDFFile {
-  file: File;
-  name: string;
-  url?: string;
+  file: File
+  name: string
+  url?: string
 }
 
 interface PDFViewerProps {
-  pdfFile: PDFFile | null;
-  className?: string;
+  pdfFile: PDFFile | null
+  className?: string
+  onPageRender?: (pageNumber: number, canvas: HTMLCanvasElement) => void
+  currentPage?: number
+  scale?: number
+  onLoadSuccess?: (numPages: number) => void
 }
 
-const PDFViewer: React.FC<PDFViewerProps> = ({ pdfFile, className = "" }) => {
-  const [parsedText, setParsedText] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+const PDFViewer: React.FC<PDFViewerProps> = ({
+  pdfFile,
+  className = "",
+  onPageRender,
+  currentPage = 1,
+  scale = 1.5,
+  onLoadSuccess,
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [pdfDoc, setPdfDoc] = useState<pdfjsLib.PDFDocumentProxy | null>(null)
+  const [numPages, setNumPages] = useState(0)
 
-  const extractPdfText = async (file: File) => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    setIsLoading(true);
-    setError(null);
-    setParsedText(null);
-
-    try {
-      const res = await fetch("http://localhost:3001/parse-pdf", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (data.text) {
-        setParsedText(data.text);
-      } else {
-        setError("No text extracted from PDF.");
+  const loadPDF = useCallback(
+    async (file: File) => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        const arrayBuffer = await file.arrayBuffer()
+        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer })
+        const pdf = await loadingTask.promise
+        setPdfDoc(pdf)
+        setNumPages(pdf.numPages)
+        onLoadSuccess?.(pdf.numPages)
+      } catch (err) {
+        console.error("PDF load error:", err)
+        setError("Failed to load PDF file.")
+      } finally {
+        setIsLoading(false)
       }
-    } catch (err) {
-      console.error("PDF parse error:", err);
-      setError("Failed to extract text from PDF.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [onLoadSuccess]
+  )
+
+  const renderPage = useCallback(
+    async (pageNum: number) => {
+      if (!pdfDoc || !canvasRef.current) return
+      try {
+        const page = await pdfDoc.getPage(pageNum)
+        const viewport = page.getViewport({ scale })
+        const canvas = canvasRef.current
+        const context = canvas.getContext("2d")
+        if (!context) return
+        canvas.height = viewport.height
+        canvas.width = viewport.width
+        await page.render({ canvasContext: context, viewport }).promise
+        onPageRender?.(pageNum, canvas)
+      } catch (err) {
+        console.error("Page render error:", err)
+        setError("Failed to render PDF page.")
+      }
+    },
+    [pdfDoc, scale, onPageRender]
+  )
 
   useEffect(() => {
-    if (pdfFile?.file) {
-      extractPdfText(pdfFile.file);
+    if (pdfFile?.file) loadPDF(pdfFile.file)
+  }, [pdfFile, loadPDF])
+
+  useEffect(() => {
+    if (pdfDoc && currentPage > 0 && currentPage <= numPages) {
+      renderPage(currentPage)
     }
-  }, [pdfFile]);
+  }, [pdfDoc, currentPage, numPages, renderPage])
 
   if (!pdfFile) {
-    return (
-      <div
-        className={`pdf-viewer-empty ${className}`}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "300px",
-          border: "2px dashed #ccc",
-          borderRadius: "8px",
-          backgroundColor: "#f9f9f9",
-        }}
-      >
-        <p style={{ color: "#666" }}>No PDF selected</p>
-      </div>
-    );
+    return <div>No PDF selected</div>
   }
-
-  if (isLoading) {
-    return (
-      <div
-        className={`pdf-viewer-loading ${className}`}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "300px",
-          gap: "16px",
-        }}
-      >
-        <div
-          style={{
-            width: "40px",
-            height: "40px",
-            border: "4px solid #f3f3f3",
-            borderTop: "4px solid #3498db",
-            borderRadius: "50%",
-            animation: "spin 1s linear infinite",
-          }}
-        />
-        <p style={{ color: "#666" }}>Extracting PDF text...</p>
-        <style>{`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}</style>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div
-        className={`pdf-viewer-error ${className}`}
-        style={{
-          padding: "20px",
-          backgroundColor: "#ffe0e0",
-          border: "1px solid #ffb3b3",
-          borderRadius: "6px",
-          color: "#990000",
-        }}
-      >
-        <strong>Error:</strong> {error}
-      </div>
-    );
-  }
+  if (isLoading) return <div>Loading PDF...</div>
+  if (error) return <div style={{ color: "red" }}>{error}</div>
 
   return (
-    <div
-      className={`pdf-parsed-text ${className}`}
-      style={{
-        whiteSpace: "pre-wrap",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "6px",
-        backgroundColor: "#f9f9f9",
-        fontFamily: "monospace",
-        fontSize: "14px",
-        lineHeight: "1.6",
-        color: "#333",
-      }}
-    >
-      {parsedText || "No text content available."}
+    <div className={`pdf-viewer ${className}`}>
+      <canvas ref={canvasRef} style={{ maxWidth: "100%", height: "auto" }} />
     </div>
-  );
-};
+  )
+}
 
-export default PDFViewer;
+export default PDFViewer
