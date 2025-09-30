@@ -1,4 +1,12 @@
-/* Reset + Base */
+.nav-link-container {
+  margin-top: 7px;
+  display: flex;
+  justify-content: center;
+}
+.wrapper-fluid {
+  background-color: #203499;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -34,12 +42,10 @@
 .navbar-logo img {
   height: 40px;
   width: auto;
-  
+
   z-index: 1001;
   transition: all 0.3s ease;
 }
-
-
 
 /* Desktop Navigation Links */
 .desktop-nav-links {
@@ -200,7 +206,6 @@
 
   .navbar-logo img {
     height: 27px;
-    
   }
 }
 

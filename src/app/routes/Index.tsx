@@ -231,6 +231,7 @@ export const dropdownItems: DropdownItems = {
     { title: "Pricing", link: RoutePaths.Pricing },
     { title: "Partners", link: RoutePaths.Partners },
     { title: "Contact", link: RoutePaths.Contact },
+    { title: "Gallery", link: RoutePaths.Contact },
     { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
   ],
 };

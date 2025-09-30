@@ -206,26 +206,6 @@ export const eventsPosts: BlogPost[] = [
       "The event ended with an inspiring closing speech encouraging developers to embrace creativity and continuous learning.",
     ],
   },
-  // {
-  //   id: 11,
-  //   title: "Front-End Engineering Training",
-  //   excerpt:
-  //     "Don't miss these hands-on learning opportunities happening next month.",
-  //   date: "May 30, 2023",
-  //   author: "Community Team",
-  //   authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
-  //   category: "Events",
-  //   readTime: "5 min read",
-  //   image:
-  //     "https://images.unsplash.com/photo-1541178735493-479c1a27ed24?auto=format&fit=crop&w=1200&q=80",
-  //   readMoreLink: generateBlogLink("events", "Front-End Engineering Training"),
-  //   content: [
-  //     "This intensive training program focuses on the latest front-end development technologies and best practices.",
-  //     "Participants will work on real-world projects using React, TypeScript, and modern CSS techniques.",
-  //     "Our expert trainers will provide mentorship, feedback, and career guidance to help you become job-ready.",
-  //     "By the end of the training, you'll have built and deployed your own responsive, production-ready web application.",
-  //   ],
-  // },
   {
     id: 12,
     title: "Clash of Kings - Chess Tournament",
@@ -248,6 +228,7 @@ export const eventsPosts: BlogPost[] = [
 
       "Individuals register with a participation fee, and the most outstanding participants — including entrepreneurs with innovative solutions, developers with impactful projects, and learners who demonstrate exceptional growth — receive awards, monetary prizes, and recognition on stage. Hosted twice each year, LiftOff stands as a beacon of empowerment, showcasing how technology can inspire people of all ages to rise, stand strong, and create their own path to success.",
     ],
+    
   },
   {
     id: 13,

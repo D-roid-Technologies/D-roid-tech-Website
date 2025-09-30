@@ -74,8 +74,8 @@ const Section: React.FunctionComponent = () => {
 
   return (
     <>
-      <div
-        style={{ maxWidth: "92%", margin: "65px auto" }}
+      {/* <div
+        style={{ maxWidth: "92%", margin: "65px auto", }}
         className="group justify-content-center"
       >
         <div className="block-12 block-lg-6 align-center">
@@ -93,7 +93,6 @@ const Section: React.FunctionComponent = () => {
               individuals.
             </p>
           </section>
-          {/* -----------------  */}
           <div
             style={{
               width: "100%",
@@ -112,43 +111,19 @@ const Section: React.FunctionComponent = () => {
               their unique requirements.
             </p>
           </div>
-          {/* ------------------  */}
           <div className="history-btn">
             <div className="readmore-btn">
-              {/* <Button
-                bgColor="#091d6a"
-                mTop={0}
-                mBottom={0}
-                mLeft={0}
-                mRight={0}
-                title="Read more about us"
-                color="#fff"
-                fWeight={800}
-                bRadius={5}
-                bRadiusColor="#091d6a"
-                icon={<FaBookReader className="style-home-icon" />}
-                onClickButton={() => {
-                  navigate("/aboutus");
-                }}
-              /> */}
               <br />
               <ButtonAlt href="/aboutus">Read more about us</ButtonAlt>
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className="wrapper" style={{ margin: "65px 0" }}></div> */}
-      {/* JOIN TECH TEAM  */}
-      <div className="join-us" style={{ backgroundColor: "#091d6a" }}>
-        {/* <section className="join-container"> */}
+      </div> */}
+      <div className="join-us" style={{ backgroundColor: Assets.colors.primary }}>
         <div>
-          {/* <FaUserGraduate
-            className="icon-test"
-            style={{ color: Assets.colors.substitute }}
-          /> */}
           <p
             className="our-approach-blue-bg"
-            style={{ color: Assets.colors.substitute }}
+            style={{ color: Assets.colors.light }}
           >
             Want to Join our Tech Team?
           </p>
@@ -162,26 +137,10 @@ const Section: React.FunctionComponent = () => {
             <br />
             The Fastest way to become a Techie - Only by D'roid Technologies.
           </p>
-          {/* <div className="div-button"> */}
-          {/* <Button
-              bgColor={Assets.colors.substitute}
-              mTop={0}
-              mBottom={0}
-              mLeft={0}
-              mRight={0}
-              title="Take our Test"
-              color="black"
-              fWeight={800}
-              bRadius={5}
-              bRadiusColor={Assets.colors.substitute}
-              icon={<TbWriting className="icon-styles" />}
-              onClickButton={() => {
-                navigate("/taketest");
-              }}
-            /> */}
+          {/* Stop using br in your code */}
           <br />
           <br />
-          <ButtonAlt style={{ background: "#864733" }} href="/taketest">
+          <ButtonAlt style={{ background: "#ffffff" }} href="/taketest">
             <TbWriting className="icon-styles" /> Take our Test
           </ButtonAlt>
           {/* </div> */}

@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styles from "./BlogPostView.module.css";
 import { allPosts, generateSlug } from "../../../../utils/blogpost";
+import ChessRegistration from "../chessR/ChessRegistration";
 
 const BlogPostView: React.FC = () => {
   const { title } = useParams<{ title: string }>();
@@ -101,6 +102,8 @@ const BlogPostView: React.FC = () => {
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
+            {post.title.includes("Clash of Kings") ? <ChessRegistration /> : null}
+
           </article>
         </main>
 

@@ -2361,6 +2361,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@paystack/inline-js@^2.22.7":
+  version "2.22.7"
+  resolved "https://registry.yarnpkg.com/@paystack/inline-js/-/inline-js-2.22.7.tgz#87807dae9b9924a895d2888611851b44b7e48411"
+  integrity sha512-95/BkaJ61XTiL74k+x+3fp4NGDKHp4JZA9PXL+/DFd8gIPjI0TEA1ocHSjh1FRMIdpcfgpHLoTWMRvfBsQXstQ==
+
 "@pdf-lib/standard-fonts@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@pdf-lib/standard-fonts/-/standard-fonts-1.0.0.tgz"
@@ -3068,6 +3073,11 @@
   version "4.0.2"
   resolved "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.2.tgz"
   integrity sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==
+
+"@types/paystack__inline-js@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/paystack__inline-js/-/paystack__inline-js-1.0.2.tgz#520b9f447ba15a296217774951b05a3b60db65e1"
+  integrity sha512-i7osAkFs+M9iOKLfzhpAMkOxgP0HZd+On4e5VOyvbetuzhWPXhCycYrC5j6IHtMfzXT+Av8tNVaRDQLE3N1Jfw==
 
 "@types/prettier@^2.1.5":
   version "2.7.3"
