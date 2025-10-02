@@ -17,36 +17,46 @@ const FileUpload: React.FC<FileUploadProps> = ({ pdfFiles, onFileAdd, onFileRemo
   const [dragOver, setDragOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setDragOver(false)
+const handleDrop = useCallback(
+  (e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
 
-      const files = Array.from(e.dataTransfer.files)
-      files.forEach((file) => {
-        if (file.type === "application/pdf") {
-          onFileAdd(file)
-        }
-      })
-    },
-    [onFileAdd],
-  )
-
-  const handleFileInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const files = Array.from(e.target.files || [])
-      files.forEach((file) => {
-        if (file.type === "application/pdf") {
-          onFileAdd(file)
-        }
-      })
-      // Reset the input value so the same file can be selected again
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ""
+    const files = Array.from(e.dataTransfer.files)
+    files.forEach((file) => {
+      if (file.type === "application/pdf") {
+        onFileAdd(file)
+        onFileSelect({
+          id: Date.now().toString(),
+          name: file.name,
+          file, // assuming your PDFFile has this field
+        })
       }
-    },
-    [onFileAdd],
-  )
+    })
+  },
+  [onFileAdd, onFileSelect],
+)
+
+
+ const handleFileInput = useCallback(
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    files.forEach((file) => {
+      if (file.type === "application/pdf") {
+        onFileAdd(file)
+        onFileSelect({
+          id: Date.now().toString(),
+          name: file.name,
+          file,
+        })
+      }
+    })
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""
+    }
+  },
+  [onFileAdd, onFileSelect],
+)
 
   const handleDropZoneClick = () => {
     fileInputRef.current?.click()

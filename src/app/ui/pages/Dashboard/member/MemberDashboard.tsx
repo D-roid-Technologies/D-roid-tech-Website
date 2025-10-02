@@ -1,51 +1,39 @@
-"use client";
+"use client"
 
-import type React from "react";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState, store } from "../../../../redux/Store";
+import type React from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { type RootState, store } from "../../../../redux/Store"
 
 import {
   FaUser,
-  FaIdCard,
   FaCalendarAlt,
-  FaGift,
   FaBell,
-  FaAward,
   FaServicestack,
   FaBriefcase,
   FaToolbox,
   FaBullhorn,
   FaCommentDots,
-} from "react-icons/fa";
-// import "../staff/StaffUserHomePage.css";
-import { UserType } from "../../../../utils/Types";
+} from "react-icons/fa"
 
-import { StatCard } from "../micro-ui/stat-card";
-import { FiActivity } from "react-icons/fi";
-import { IoIosNotifications } from "react-icons/io";
-import { Modal } from "../micro-ui/modal";
-import { FaPenToSquare } from "react-icons/fa6";
-import BlogCards from "../../../components/blogPosts/BlogCards";
-import { eventsPosts } from "../../../../utils/blogpost";
-import { updateStat } from "../../../../redux/slices/memberStatus";
-import EventPosts from "../../../components/blogPosts/Events";
+import { StatCard } from "../micro-ui/stat-card"
+import { FiActivity } from "react-icons/fi"
+import { IoIosNotifications } from "react-icons/io"
+import { Modal } from "../micro-ui/modal"
+import { FaPenToSquare } from "react-icons/fa6"
+import { eventsPosts } from "../../../../utils/blogpost"
+import { updateStat } from "../../../../redux/slices/memberStatus"
+import EventPosts from "../../../components/blogPosts/Events"
 
 type QuickActionCardProps = {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ size?: number }>;
-  onClick?: () => void;
-  variant?: string;
-};
+  title: string
+  description: string
+  icon: React.ComponentType<{ size?: number }>
+  onClick?: () => void
+  variant?: string
+}
 
-const QuickActionCard = ({
-  title,
-  description,
-  icon: Icon,
-  onClick,
-  variant = "default",
-}: QuickActionCardProps) => (
+const QuickActionCard = ({ title, description, icon: Icon, onClick, variant = "default" }: QuickActionCardProps) => (
   <div className={`shp-quick-action ${variant}`} onClick={onClick}>
     <div className="shp-action-icon">
       <Icon size={20} />
@@ -55,23 +43,17 @@ const QuickActionCard = ({
       <p className="shp-action-description">{description}</p>
     </div>
   </div>
-);
+)
 
 type NotificationItemProps = {
-  title: string;
-  message: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-};
+  title: string
+  message: string
+  time: string
+  type: string
+  isRead: boolean
+}
 
-const NotificationItem = ({
-  title,
-  message,
-  time,
-  type,
-  isRead,
-}: NotificationItemProps) => (
+const NotificationItem = ({ title, message, time, type, isRead }: NotificationItemProps) => (
   <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
     <div className={`shp-notification-indicator ${type}`}></div>
     <div className="shp-notification-content">
@@ -80,21 +62,16 @@ const NotificationItem = ({
       <span className="shp-notification-time">{time}</span>
     </div>
   </div>
-);
+)
 
 type RecentActivityItemProps = {
-  action: string;
-  details: string;
-  time: string;
-  icon: React.ComponentType<{ size?: number }>;
-};
+  action: string
+  details: string
+  time: string
+  icon: React.ComponentType<{ size?: number }>
+}
 
-const RecentActivityItem = ({
-  action,
-  details,
-  time,
-  icon: Icon,
-}: RecentActivityItemProps) => (
+const RecentActivityItem = ({ action, details, time, icon: Icon }: RecentActivityItemProps) => (
   <div className="shp-activity-item">
     <div className="shp-activity-icon">
       <Icon size={16} />
@@ -105,19 +82,17 @@ const RecentActivityItem = ({
       <span className="shp-activity-time">{time}</span>
     </div>
   </div>
-);
+)
 
 type MemberDashboardProps = {
-  setSelectedMenu: React.Dispatch<React.SetStateAction<string | null>>;
-};
+  setSelectedMenu: React.Dispatch<React.SetStateAction<string | null>>
+}
 
-const MemberDashboard: React.FC<MemberDashboardProps> = ({
-  setSelectedMenu,
-}) => {
-  const [currentTime] = useState(new Date());
-  const [notesModalOpen, setNotesModalOpen] = useState(false);
-  const [notificationModalOpen, setNotificationModalOpen] = useState(false);
-  const memberStats = useSelector((state: RootState) => state.memberStatus);
+const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) => {
+  const [currentTime] = useState(new Date())
+  const [notesModalOpen, setNotesModalOpen] = useState(false)
+  const [notificationModalOpen, setNotificationModalOpen] = useState(false)
+  const memberStats = useSelector((state: RootState) => state.memberStatus)
 
   const memberQuickActions = [
     {
@@ -168,7 +143,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       icon: FaPenToSquare,
       variant: "secondary",
     },
-  ];
+  ]
 
   const memberNotifications = [
     {
@@ -199,7 +174,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       type: "warning",
       isRead: true,
     },
-  ];
+  ]
 
   const memberActivities = [
     {
@@ -238,20 +213,18 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       time: "1 month ago",
       icon: FaCommentDots,
     },
-  ];
+  ]
 
   // Calculate counts
-  const unreadNotificationsCount = memberNotifications.filter(
-    (n) => !n.isRead
-  ).length;
-  const recentActivitiesCount = memberActivities.length;
+  const unreadNotificationsCount = memberNotifications.filter((n) => !n.isRead).length
+  const recentActivitiesCount = memberActivities.length
 
   const formatTime = (date: Date) =>
     date.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
-    });
+    })
 
   const formatDate = (date: Date) =>
     date.toLocaleDateString("en-US", {
@@ -259,13 +232,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       year: "numeric",
       month: "long",
       day: "numeric",
-    });
+    })
 
   useEffect(() => {
-    store.dispatch(
-      updateStat({ index: 1, value: "0", change: "0 points earned this week" })
-    );
-  }, []);
+    store.dispatch(updateStat({ index: 1, value: "0", change: "0 points earned this week" }))
+  }, [])
 
   return (
     <div className="shp-homepage-container">
@@ -278,11 +249,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               {/* Welcome, {userDetails.firstName} */}
             </h1>
             <div className="shp-head-icons-container">
-              <div
-                className="shp-head-icons"
-                onClick={() => setNotesModalOpen(true)}
-                style={{ position: "relative" }}
-              >
+              <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
                 <p>Activities</p>
                 {/* @ts-ignore */}
                 <FiActivity style={{ color: "green", fontWeight: "bold" }} />
@@ -344,9 +311,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               >
                 <p>Notifications</p>
                 {/* @ts-ignore */}
-                <IoIosNotifications
-                  style={{ color: "red", fontWeight: "bold" }}
-                />
+                <IoIosNotifications style={{ color: "red", fontWeight: "bold" }} />
                 {unreadNotificationsCount > 0 && (
                   <span
                     style={{
@@ -400,9 +365,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                       />
                     ))}
                   </div>
-                  <button className="shp-view-all-notifications">
-                    View All Notifications
-                  </button>
+                  <button className="shp-view-all-notifications">View All Notifications</button>
                   {/* </div> */}
                   {/* </div> */}
                 </Modal>
@@ -430,8 +393,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               icon={stat.icon}
               onClick={() => {
                 alert(
-                  `clicked on index ${index} - set open the modal and pass the information from the slice to it the modal`
-                );
+                  `clicked on index ${index} - set open the modal and pass the information from the slice to it the modal`,
+                )
               }}
             />
           ))}
@@ -465,7 +428,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
+
 
 export default MemberDashboard;

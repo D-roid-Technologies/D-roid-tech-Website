@@ -139,7 +139,7 @@
 }
 
 .guarantees p::before {
-  content: '✓';
+  content: "✓";
   color: #16a34a;
   font-weight: 700;
 }
@@ -237,6 +237,131 @@
   color: #64748b;
 }
 
+/* Interactive Card Form Styles */
+.cardForm {
+  background: #f8fafc;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.cardInputGroup {
+  margin-bottom: 1rem;
+}
+
+.cardInputGroup:last-child {
+  margin-bottom: 0;
+}
+
+.inputLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.cardInput {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  transition: all 0.2s ease;
+  font-family: "Monaco", "Menlo", monospace;
+  letter-spacing: 0.5px;
+  width: 100%;
+  padding: 1rem;
+}
+
+.cardInput:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: #ffffff;
+}
+
+.cardRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Bank Transfer Details Styles */
+.bankTransferDetails {
+  background: #f0f9ff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid #bae6fd;
+}
+
+.bankInfo {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e0f2fe;
+}
+
+.bankInfoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f9ff;
+}
+
+.bankInfoItem:last-child {
+  border-bottom: none;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.bankLabel {
+  font-weight: 500;
+  color: #64748b;
+}
+
+.bankValue {
+  font-weight: 600;
+  color: #1e293b;
+  font-family: "Monaco", "Menlo", monospace;
+}
+
+.transferInstructions {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid #e0f2fe;
+}
+
+.transferInstructions h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.transferInstructions h4::before {
+  content: "📋";
+}
+
+.transferInstructions ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #374151;
+}
+
+.transferInstructions li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.transferInstructions li:last-child {
+  margin-bottom: 0;
+}
+
 /* Submit Button Styles */
 .submitButton {
   width: 100%;
@@ -303,27 +428,51 @@
   .container {
     padding: 1rem 0;
   }
-  
+
   .card {
     padding: 1.5rem;
   }
-  
+
   .cardTitle {
     font-size: 1.25rem;
   }
-  
+
   .orderItem {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .total {
     font-size: 1.25rem;
   }
-  
+
   .paymentMethod {
     padding: 1rem;
+  }
+
+  .cardRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .cardForm {
+    padding: 1rem;
+  }
+
+  .bankTransferDetails {
+    padding: 1rem;
+  }
+
+  .bankInfo,
+  .transferInstructions {
+    padding: 1rem;
+  }
+
+  .bankInfoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }
 
@@ -331,8 +480,20 @@
   .innerContainer {
     padding: 0 0.5rem;
   }
-  
+
   .card {
     padding: 1rem;
+  }
+
+  .inputLabel {
+    font-size: 0.8rem;
+  }
+
+  .cardInput {
+    font-size: 0.9rem;
+  }
+
+  .bankValue {
+    font-size: 0.875rem;
   }
 }

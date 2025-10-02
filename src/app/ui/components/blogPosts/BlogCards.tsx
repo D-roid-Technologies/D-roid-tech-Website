@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../blogPosts/BlogCards.css";
+import "./blogCards.css";
 import { Link } from "react-router-dom";
 
 interface BlogPost {
