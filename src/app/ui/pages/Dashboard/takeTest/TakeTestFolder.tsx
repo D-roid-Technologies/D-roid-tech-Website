@@ -280,8 +280,15 @@ const TakeTestFolder = () => {
                   <p>⚠️ Quiz questions are not yet available for this test.</p>
                 </div>
               ) : (
+                // <button
+                //   onClick={() => handleStartTest(selectedTest)}
+                //   className="ttf-start-button"
+                // >
+                //   Start {selectedTest.title} Test ({selectedTest.quiz.length}{" "}
+                //   Questions)
+                // </button>
                 <button
-                  onClick={() => handleStartTest(selectedTest)}
+                  // onClick={() => handleStartTest(selectedTest)}
                   className="ttf-start-button"
                 >
                   Start {selectedTest.title} Test ({selectedTest.quiz.length}{" "}
