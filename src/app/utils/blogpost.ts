@@ -210,18 +210,36 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
+    id: 11,
+    title: "Tech Conference Calabar",
+    excerpt:
+      "A fast-paced event packed with learning opportunities for tech enthusiasts.",
+    date: "Saturday, 29th November 2025",
+    author: "Calabar Tech Community",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.CTC2025,
+    readMoreLink: generateBlogLink("events", "Tech Conference Calabar"),
+    content: [
+      "The Tech Conference Calabar is a premier gathering for innovators, developers, entrepreneurs, and tech enthusiasts from across Nigeria and beyond.",
+      "This event features keynote sessions, workshops, and panel discussions focused on emerging technologies, digital transformation, and real-world applications.",
+      "Attendees will learn directly from industry leaders, connect with startups and established companies, and explore how technology is shaping the future of Africa.",
+      "Hosted in the vibrant city of Calabar, the conference also provides rich networking opportunities, cultural experiences, and inspiration for both beginners and seasoned professionals.",
+    ],
+  },
+  {
     id: 12,
-    title: "Clash of Kings - Chess Tournament",
+    title: "Clash of Kings - Chess Tournament[2025/2026]",
     excerpt:
       "An exciting chess tournament featuring some of the region's top players.",
-    date: "Nov 30, 2025",
+    date: "Sunday, 30th November 2025",
     author: "D'roid Technologies",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
     readTime: "5 min read",
-    image:
-      "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000044838/143e6d84725039834d46216f69c030572203bf34bd1865c7700a17659f349211",
-    readMoreLink: generateBlogLink("events", "Clash of Kings Chess Tournament"),
+    image: Assets.images.chessOne,
+    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2025/2026]"),
     content: [
       "Clash of Kings, organized by D'roid Technologies, is a premier annual chess competition dedicated to empowering minds through strategy, focus, and creativity. The event brings together chess enthusiasts, learners, and masters from across communities, creating an atmosphere of inspiration, competition, and excellence.",
 
@@ -237,16 +255,16 @@ export const eventsPosts: BlogPost[] = [
   },
   {
     id: 13,
-    title: "CHESS ONE - Chess Tournament",
+    title: "Clash of Kings - Chess Tournament[2022/2023]",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
-    date: "May 30, 2023",
+    date: "Thursday, 30th November 2023",
     author: "Community Team",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
     readTime: "5 min read",
     image: Assets.images.chessOne,
-    readMoreLink: generateBlogLink("events", "Rapid Training Conference"),
+    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2022/2023]"),
     content: [
       "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
       "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
@@ -256,16 +274,16 @@ export const eventsPosts: BlogPost[] = [
   },
   {
     id: 14,
-    title: "CHESS two - Chess Tournament",
+    title: "Clash of Kings - Chess Tournament[2021/2022]",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
-    date: "May 30, 2023",
+    date: "Wednesday, 30th November 2022",
     author: "Community Team",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
     readTime: "5 min read",
-    image: Assets.images.chessTwo,
-    readMoreLink: generateBlogLink("events", "CHESS two - Chess Tournament"),
+    image: Assets.images.chessOne,
+    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2021/2022]"),
     content: [
       "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
       "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
