@@ -102,7 +102,27 @@ const BlogPostView: React.FC = () => {
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
-            {post.title.includes("Clash of Kings") ? <ChessRegistration /> : null}
+            {post.title.includes("Clash of Kings") ? (
+              <ChessRegistration />
+            ) : post.title.includes("Tech Conference Calabar") ? (
+              <a
+                href="https://luma.com/5t04wsl8?tk=L47on9"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  backgroundColor: "#003366",
+                  color: "#fff",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                }}
+              >
+                Register for {post.title}
+              </a>
+            ) : null}
+
 
           </article>
         </main>

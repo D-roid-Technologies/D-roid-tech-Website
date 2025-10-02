@@ -367,8 +367,8 @@ const SignUp: React.FunctionComponent = () => {
 
         <h2 className={styles.header}>Join the D'roid Community</h2>
         <p className={styles.subtext}>
-          Connect with other developers or like minded individuals. Learn
-          together, and build amazing things!
+          Connect with other developers or like minded individuals. Learn together,
+          and build amazing things!
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -536,17 +536,15 @@ const SignUp: React.FunctionComponent = () => {
           </div>
 
           {/* Privacy Checkbox */}
-          {/* Privacy Checkbox and Forgot Password */}
-          <div className={` {styles.policyRow}`}>
+          <div className={`${styles.policyRow}`} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", marginTop: "10px" }}>
+            {/* Checkbox + Policies */}
             <label
-              className={``}
               style={{
                 fontSize: "14px",
                 color: "#BAB8B8",
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                marginBottom: "2px",
               }}
             >
               <input
@@ -582,21 +580,24 @@ const SignUp: React.FunctionComponent = () => {
               </span>
             </label>
 
+            {/* Forgot Password */}
             <a
               href={RoutePaths.ForgotPassword}
               style={{
                 fontSize: "14px",
                 color: "#479BE8",
                 textDecoration: "underline",
-                marginBottom: "8px",
+                marginLeft: "15px",
+                whiteSpace: "nowrap",
               }}
             >
               Forgot Password?
             </a>
 
+            {/* Error (will span full width below) */}
             {formErrors.agreeToPolicy && (
               <div
-                className={`block`}
+                className="block"
                 style={{
                   color: "#FF6F61",
                   fontSize: "12px",
@@ -608,6 +609,7 @@ const SignUp: React.FunctionComponent = () => {
               </div>
             )}
           </div>
+
 
           {/* Submit Button */}
           <button
@@ -632,8 +634,46 @@ const SignUp: React.FunctionComponent = () => {
           >
             {text}
           </button>
+          {/* Register with Google Button */}
+          <button
+            type="button"
+            onClick={() => alert("Google Sign-in coming soon 🚀")}
+            style={{
+              backgroundColor: "#FFFFFF",
+              color: "#444",
+              padding: "12px 20px",
+              border: "1px solid #CCCCCC",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "16px",
+              width: "100%",
+              marginTop: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              transition: "all 0.3s ease",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = "#f5f5f5";
+              e.currentTarget.style.borderColor = "#999";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = "#FFFFFF";
+              e.currentTarget.style.borderColor = "#CCCCCC";
+            }}
+          >
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
+              style={{ width: "20px", height: "20px" }}
+            />
+            Register with Google
+          </button>
+
         </form>
       </div>
+
     </div>
   );
 };
