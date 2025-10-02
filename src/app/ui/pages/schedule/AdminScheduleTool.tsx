@@ -24,6 +24,7 @@ const AdminScheduleTool: React.FunctionComponent = () => {
         "Stay organized and boost productivity with our intuitive Task Scheduler. Effortlessly plan, prioritize, and manage your daily activities to ensure nothing slips through the cracks.",
       icon: <FaTasks size={24} />,
       id: "tasks",
+      isPremium: true
     },
   ];
 
@@ -46,13 +47,14 @@ const AdminScheduleTool: React.FunctionComponent = () => {
           <div style={{ marginTop: "-47px" }}>
             <div className="soft-dev-content">
               {schedules.map((tool, index) => (
-                <NewwebsiteCard
+                <AllToolsCard
                   key={index}
                   title={tool.title}
                   description={tool.description}
                   icon={tool.icon}
                   className="process-card"
                   onClick={() => setSelectedTool(tool.id)}
+                  isPremium={tool.isPremium}
                 />
               ))}
             </div>

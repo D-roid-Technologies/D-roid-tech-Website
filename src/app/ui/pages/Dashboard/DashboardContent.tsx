@@ -806,7 +806,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             ) : (
               <div className="soft-dev-content">
                 {calculators.map((tech, index) => (
-                  <NewwebsiteCard
+                  <AllToolsCard
                     key={index}
                     title={tech.title}
                     description={tech.description}
@@ -818,6 +818,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                         ? () => handleLaunchCalculator(tech.component)
                         : undefined
                     }
+                        //  isPremium={tech.isPremium}
                   />
                 ))}
               </div>
