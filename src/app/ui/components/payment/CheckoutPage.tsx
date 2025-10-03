@@ -1,25 +1,21 @@
-"use client"
-
-import type React from "react"
-import { useState } from "react"
-import { ArrowLeft, CreditCard, Building2, User, Shield, Lock, Calendar, CarIcon as CardIcon } from "lucide-react"
-import type { Plan } from "./types"
-import { formatCurrency, initializePaystackPayment, generateReference } from "./utils/paystack"
-import styles from "./CheckoutPage.module.css"
+import type React from "react";
+import { useState } from "react";
+import { ArrowLeft, User, Shield } from "lucide-react";
+import type { Plan } from "./types";
+import { formatCurrency } from "./utils/paystack";
+import styles from "./CheckoutPage.module.css";
 
 interface CheckoutPageProps {
-  selectedPlan?: Plan
-  onBack?: () => void
-  onPaymentSuccess?: () => void
-  onPaymentInitiated?: () => void
+  selectedPlan?: Plan;
+  onBack?: () => void;
+  onPaymentSuccess?: () => void;
+  onPaymentInitiated?: () => void;
 }
 
-
-interface CardDetails {
-  number: string
-  expiry: string
-  cvv: string
-  name: string
+declare global {
+  interface Window {
+    PaystackPop: any;
+  }
 }
 
 export const CheckoutPage: React.FC<CheckoutPageProps> = ({
@@ -41,106 +37,146 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
       "Bulk Image Watermarker",
       "Priority support",
     ],
-  }
+  };
+
+  const SERVICE_ID = "service_o1jbklr";
+  const TEMPLATE_ID = "template_p8h58ur";
+  const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
 
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     email: "",
     phone: "",
-  })
+  });
 
-  const [cardDetails, setCardDetails] = useState<CardDetails>({
-    number: "",
-    expiry: "",
-    cvv: "",
-    name: "",
-  })
-
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "bank_transfer">("card")
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCustomerInfo({
       ...customerInfo,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
-  const handleCardInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    let formattedValue = value
+  const isFormValid = customerInfo.name && customerInfo.email && customerInfo.phone;
 
-    if (name === "number") {
-      // Format card number with spaces
-      formattedValue = value
-        .replace(/\s/g, "")
-        .replace(/(.{4})/g, "$1 ")
-        .trim()
-      if (formattedValue.length > 19) formattedValue = formattedValue.slice(0, 19)
-    } else if (name === "expiry") {
-      // Format expiry as MM/YY
-      formattedValue = value.replace(/\D/g, "").replace(/(\d{2})(\d)/, "$1/$2")
-      if (formattedValue.length > 5) formattedValue = formattedValue.slice(0, 5)
-    } else if (name === "cvv") {
-      // Limit CVV to 4 digits
-      formattedValue = value.replace(/\D/g, "").slice(0, 4)
+  const generateReferenceNumber = (): string => {
+    const prefix = "PT";
+    const timestamp = Date.now().toString(36);
+    const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+    return `${prefix}-${timestamp}-${random}`;
+  };
+
+  const handlePayment = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!customerInfo.email) {
+      alert("Please enter a valid email!");
+      return;
     }
 
-    setCardDetails({
-      ...cardDetails,
-      [name]: formattedValue,
-    })
-  }
-
-  const isFormValid = customerInfo.name && customerInfo.email && customerInfo.phone
-  const isCardValid =
-    paymentMethod === "card"
-      ? cardDetails.number.replace(/\s/g, "").length >= 13 &&
-        cardDetails.expiry.length === 5 &&
-        cardDetails.cvv.length >= 3 &&
-        cardDetails.name.length > 0
-      : true
-
-  const handlePayment = async () => {
-    if (!isFormValid || !isCardValid) return
-
-    setIsProcessing(true)
+    const generatedRef = generateReferenceNumber();
+    setReferenceNumber(generatedRef);
 
     if (onPaymentInitiated) {
-      onPaymentInitiated()
+      onPaymentInitiated();
     }
 
-    const reference = generateReference()
+    setIsProcessing(true);
 
-    if (paymentMethod === "card") {
-      initializePaystackPayment(
-        customerInfo.email,
-        plan.price,
-        reference,
-        (response) => {
-          setIsProcessing(false)
-          if (onPaymentSuccess) {
-            onPaymentSuccess()
-          } else {
-            alert("Payment successful! You now have access to premium tools.")
+    try {
+      const PaystackPop = (await import("@paystack/inline-js")).default;
+      const payStack = new PaystackPop();
+
+      payStack.newTransaction({
+        key: "pk_live_d2b967eddda456841f504b85549767fc33cc9fd4",
+        email: customerInfo.email,
+        amount: plan.price * 100,
+        reference: generatedRef,
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Customer Name",
+              variable_name: "customer_name",
+              value: customerInfo.name,
+            },
+            {
+              display_name: "Phone Number",
+              variable_name: "phone_number",
+              value: customerInfo.phone,
+            },
+            {
+              display_name: "Plan",
+              variable_name: "plan",
+              value: plan.name,
+            },
+          ],
+        },
+        onSuccess: async (response: any) => {
+          console.log("Payment success:", response);
+
+          const emailjs = (await import("emailjs-com")).default;
+
+          const templateParams = {
+            name: customerInfo.name,
+            title: `Thank You for Your Purchase!
+
+            Your subscription to ${plan.name} has been successfully activated. We're excited to have you on board!
+
+            Your Details:
+            • Name: ${customerInfo.name}
+            • Email: ${customerInfo.email}
+            • Phone: ${customerInfo.phone}
+            • Plan: ${plan.name}
+            • Amount Paid: ${formatCurrency(plan.price)}
+            • Reference: ${generatedRef}
+
+            Your premium features are now available! Log in to access all the tools and features included in your plan.
+
+            If you have any questions or need assistance, our support team is available 24/7.
+
+            Thank you for choosing us!`,
+            email: customerInfo.email,
+          };
+
+          try {
+            await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+            alert(`✅ Payment successful! Welcome ${customerInfo.name}. Check your email for confirmation.`);
+
+            if (onPaymentSuccess) {
+              onPaymentSuccess();
+            }
+
+            setCustomerInfo({
+              name: "",
+              email: "",
+              phone: "",
+            });
+          } catch (error) {
+            console.error("Error sending email:", error);
+            alert("Payment successful, but we couldn't send the confirmation email. Please contact support.");
           }
+
+          setIsProcessing(false);
         },
-        () => {
-          setIsProcessing(false)
+        onCancel: () => {
+          console.log("Payment cancelled");
+          alert("❌ Payment was cancelled.");
+          setIsProcessing(false);
         },
-      )
-    } else {
-      // Bank transfer simulation
-      setTimeout(() => {
-        setIsProcessing(false)
-        if (onPaymentSuccess) {
-          onPaymentSuccess()
-        } else {
-          alert("Bank transfer instructions sent to your email!")
-        }
-      }, 2000)
+        onError: (error: any) => {
+          console.error("Payment error:", error);
+          alert(`⚠️ Payment error: ${error.message || "Something went wrong"}`);
+          setIsProcessing(false);
+        },
+      });
+    } catch (error) {
+      console.error("Error initializing payment:", error);
+      alert("Failed to initialize payment. Please try again.");
+      setIsProcessing(false);
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -153,7 +189,6 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
         )}
 
         <div className={styles.gridContainer}>
-          {/* Order Summary */}
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Order Summary</h2>
 
@@ -180,11 +215,9 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             </div>
           </div>
 
-          {/* Checkout Form */}
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Complete Your Order</h2>
 
-            {/* Customer Information */}
             <div className={styles.formSection}>
               <h3 className={styles.sectionTitle}>
                 <User size={20} />
@@ -228,181 +261,40 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               </div>
             </div>
 
-            {/* Payment Methods */}
-            <div className={styles.formSection}>
-              <h3 className={styles.sectionTitle}>
-                <Shield size={20} />
-                Payment Method
-              </h3>
+           <div className={styles.formSection}>
+  <h3 className={styles.sectionTitle}>
+    <Shield size={20} />
+    Payment Information
+  </h3>
 
-              <div className={styles.paymentMethods}>
-                <label className={`${styles.paymentMethod} ${paymentMethod === "card" ? styles.selected : ""}`}>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="card"
-                    checked={paymentMethod === "card"}
-                    onChange={(e) => setPaymentMethod(e.target.value as "card")}
-                  />
-                  <CreditCard size={24} />
-                  <div className={styles.paymentMethodInfo}>
-                    <div className={styles.paymentMethodName}>Card / USSD</div>
-                    <div className={styles.paymentMethodDescription}>Pay with your debit/credit card or USSD</div>
-                  </div>
-                </label>
+  <div className={styles.paymentInfo}>
+    <p>Click the button below to proceed with secure payment via Paystack.</p>
+    <p>You can pay with:</p>
+    <ul>
+      <li>Debit/Credit Card</li>
+      <li>Bank Transfer</li>
+      <li>USSD</li>
+      <li>Mobile Money</li>
+    </ul>
+    <p className={styles.disclaimer}>
+      🔒 We do not store your card or payment details. All transactions are handled securely by Paystack.
+    </p>
+  </div>
+</div>
 
-                <label
-                  className={`${styles.paymentMethod} ${paymentMethod === "bank_transfer" ? styles.selected : ""}`}
-                >
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="bank_transfer"
-                    checked={paymentMethod === "bank_transfer"}
-                    onChange={(e) => setPaymentMethod(e.target.value as "bank_transfer")}
-                  />
-                  <Building2 size={24} />
-                  <div className={styles.paymentMethodInfo}>
-                    <div className={styles.paymentMethodName}>Bank Transfer</div>
-                    <div className={styles.paymentMethodDescription}>Direct bank transfer with account details</div>
-                  </div>
-                </label>
-              </div>
-            </div>
 
-            {paymentMethod === "card" && (
-              <div className={styles.formSection}>
-                <h3 className={styles.sectionTitle}>
-                  <CardIcon size={20} />
-                  Card Details
-                </h3>
-
-                <div className={styles.cardForm}>
-                  <div className={styles.cardInputGroup}>
-                    <label className={styles.inputLabel}>
-                      <Lock size={16} />
-                      Card Number
-                    </label>
-                    <input
-                      type="text"
-                      name="number"
-                      placeholder="1234 5678 9012 3456"
-                      value={cardDetails.number}
-                      onChange={handleCardInputChange}
-                      className={`${styles.input} ${styles.cardInput}`}
-                      maxLength={19}
-                      required
-                    />
-                  </div>
-
-                  <div className={styles.cardRow}>
-                    <div className={styles.cardInputGroup}>
-                      <label className={styles.inputLabel}>
-                        <Calendar size={16} />
-                        Expiry Date
-                      </label>
-                      <input
-                        type="text"
-                        name="expiry"
-                        placeholder="MM/YY"
-                        value={cardDetails.expiry}
-                        onChange={handleCardInputChange}
-                        className={`${styles.input} ${styles.cardInput}`}
-                        maxLength={5}
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.cardInputGroup}>
-                      <label className={styles.inputLabel}>
-                        <Shield size={16} />
-                        CVV
-                      </label>
-                      <input
-                        type="text"
-                        name="cvv"
-                        placeholder="123"
-                        value={cardDetails.cvv}
-                        onChange={handleCardInputChange}
-                        className={`${styles.input} ${styles.cardInput}`}
-                        maxLength={4}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className={styles.cardInputGroup}>
-                    <label className={styles.inputLabel}>
-                      <User size={16} />
-                      Cardholder Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="John Doe"
-                      value={cardDetails.name}
-                      onChange={handleCardInputChange}
-                      className={`${styles.input} ${styles.cardInput}`}
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {paymentMethod === "bank_transfer" && (
-              <div className={styles.formSection}>
-                <h3 className={styles.sectionTitle}>
-                  <Building2 size={20} />
-                  Bank Transfer Details
-                </h3>
-
-                <div className={styles.bankTransferDetails}>
-                  <div className={styles.bankInfo}>
-                    <div className={styles.bankInfoItem}>
-                      <span className={styles.bankLabel}>Bank Name:</span>
-                      <span className={styles.bankValue}>First Bank of Nigeria</span>
-                    </div>
-                    <div className={styles.bankInfoItem}>
-                      <span className={styles.bankLabel}>Account Name:</span>
-                      <span className={styles.bankValue}>Premium Tools Ltd</span>
-                    </div>
-                    <div className={styles.bankInfoItem}>
-                      <span className={styles.bankLabel}>Account Number:</span>
-                      <span className={styles.bankValue}>2034567890</span>
-                    </div>
-                    <div className={styles.bankInfoItem}>
-                      <span className={styles.bankLabel}>Amount:</span>
-                      <span className={styles.bankValue}>{formatCurrency(plan.price)}</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.transferInstructions}>
-                    <h4>Transfer Instructions:</h4>
-                    <ol>
-                      <li>Transfer the exact amount to the account above</li>
-                      <li>Use your email address as the transfer reference</li>
-                      <li>Send proof of payment to payments@premiumtools.com</li>
-                      <li>Your account will be activated within 24 hours</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Submit Button */}
             <button
               onClick={handlePayment}
-              disabled={!isFormValid || !isCardValid || isProcessing}
-              className={`${styles.submitButton} ${isFormValid && isCardValid && !isProcessing ? styles.enabled : styles.disabled}`}
+              disabled={!isFormValid || isProcessing}
+              className={`${styles.submitButton} ${isFormValid && !isProcessing ? styles.enabled : styles.disabled}`}
             >
               {isProcessing ? (
                 <div className={styles.processingSpinner}>
                   <div className={styles.spinner} />
-                  Processing Payment...
+                  Initializing Payment...
                 </div>
               ) : (
-                `Complete Payment - ${formatCurrency(plan.price)}`
+                `Proceed to Payment - ${formatCurrency(plan.price)}`
               )}
             </button>
 
@@ -413,5 +305,5 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
