@@ -19,15 +19,9 @@ const TaskSchedulerDashboard: React.FC = () => {
   const renderSecondContent = () => {
     switch (itemsTitle) {
       case "Create Tasks":
-        return (
-          <CreateTasks
-            onBack={() => setItemsTitle("default")}
-          />
-        );
+        return <CreateTasks onBack={() => setItemsTitle("default")} />;
       case "View All Tasks":
-        return (
-          <TasksList />
-        );
+        return <TasksList />;
       case "Reminders":
         return "This is Edit Task";
       case "Complete Goals":
@@ -114,14 +108,14 @@ const TaskSchedulerDashboard: React.FC = () => {
             style={{
               margin: "2px",
               padding: "8px 16px",
-              backgroundColor: "#f0f0f0",
+              backgroundColor: "#071d69",
               border: "1px solid #ccc",
               borderRadius: "4px",
               cursor: "pointer",
-              color: "#333",
+              color: "#ffffff",
             }}
           >
-            ←
+            Back to Task Scheduler
           </button>
           <h3
             style={{
