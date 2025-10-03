@@ -201,6 +201,24 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   const unreadNotificationsCount = notifications.filter((n) => !n.isRead).length
   const recentActivitiesCount = memberActivities.length
 
+  // Map activity actions to Quick Action menu titles
+  const activityToMenu: Record<string, string> = {
+    "Profile Updated": "Personal Details",
+    "Service Accessed": "Services",
+    "Career Application": "Careers",
+    "Schedule Added": "Schedules",
+    "Announcement Read": "Announcements",
+    "Feedback Submitted": "Say It",
+  }
+
+  const handleActivityClick = (action: string) => {
+    const menu = activityToMenu[action]
+    if (menu) {
+      setSelectedMenu(menu)
+      setNotesModalOpen(false)
+    }
+  }
+
   const formatTime = (date: Date) =>
     date.toLocaleTimeString("en-US", {
       hour: "2-digit",
@@ -302,13 +320,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                   </div>
                   <div className="shp-activity-list">
                     {memberActivities.map((activity, index) => (
-                      <RecentActivityItem
-                        key={index}
-                        action={activity.action}
-                        details={activity.details}
-                        time={activity.time}
-                        icon={activity.icon}
-                      />
+                      <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
+                        <RecentActivityItem
+                          action={activity.action}
+                          details={activity.details}
+                          time={activity.time}
+                          icon={activity.icon}
+                        />
+                      </div>
                     ))}
                   </div>
                   {/* </div> */}
