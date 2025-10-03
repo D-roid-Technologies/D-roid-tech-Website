@@ -293,15 +293,17 @@ const TasksList: React.FC = () => {
                         }}
                         className="tskls__icon-btn tskls__icon-btn--edit"
                         title="Edit Task"
+                        style={{ color: "green" }}
                       >
-                        <EditIcon />
+                        <EditIcon /> Edit
                       </button>
                       <button
                         onClick={() => handleItemDelete(task)}
                         className="tskls__icon-btn tskls__icon-btn--delete"
                         title="Delete Task"
+                        style={{ color: "red" }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon /> Delete
                       </button>
                     </div>
                   </div>

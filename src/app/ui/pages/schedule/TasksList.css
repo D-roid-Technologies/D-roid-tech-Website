@@ -1,20 +1,19 @@
-/* TasksList Component Styles - Unique Prefix: tskls__ */
-
 .tskls__container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-  padding: 2rem;
+  padding: 2rem 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", sans-serif;
 }
 
 /* Header Section */
 .tskls__header {
-  background: linear-gradient(135deg, #071d69 0%, #0a2a8f 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  /* background: linear-gradient(135deg, #071d69 0%, #0a2a8f 100%); */
   border-radius: 16px;
   padding: 2.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 8px 24px rgba(7, 29, 105, 0.15);
+
+  /* box-shadow: 0 8px 24px rgba(7, 29, 105, 0.15); */
 }
 
 .tskls__header-content {
@@ -23,6 +22,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
+  color: red;
 }
 
 .tskls__title-section {
@@ -31,7 +31,7 @@
 }
 
 .tskls__title {
-  color: #ffffff;
+  color: #4d4d4d;
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
@@ -39,7 +39,7 @@
 }
 
 .tskls__subtitle {
-  color: rgba(255, 255, 255, 0.8);
+  color: #4d4d4d;
   font-size: 1rem;
   margin: 0;
   font-weight: 400;
@@ -51,7 +51,7 @@
 }
 
 .tskls__stat-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: #46527e;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
@@ -302,14 +302,25 @@
   cursor: pointer;
   transition: all 0.2s ease;
   background: #f3f4f6;
-  color: #6b7280;
+  /* color: #6b7280; */
 }
+
+/* .tskls__icon-btn--edit {
+  background: #071d69;
+  color: #ffffff;
+  transform: scale(1.05);
+} */
 
 .tskls__icon-btn--edit:hover {
   background: #071d69;
   color: #ffffff;
   transform: scale(1.05);
 }
+/* .tskls__icon-btn--delete {
+  background: #dc2626;
+  color: #ffffff;
+  transform: scale(1.05);
+} */
 
 .tskls__icon-btn--delete:hover {
   background: #dc2626;
