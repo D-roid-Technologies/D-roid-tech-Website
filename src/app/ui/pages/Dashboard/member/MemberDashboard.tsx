@@ -93,6 +93,17 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   const [notesModalOpen, setNotesModalOpen] = useState(false)
   const [notificationModalOpen, setNotificationModalOpen] = useState(false)
   const memberStats = useSelector((state: RootState) => state.memberStatus)
+  type Notification = {
+    title: string
+    message: string
+    time: string
+    type: string
+    isRead: boolean
+  }
+  const notifications = useSelector((state: RootState) => state.notifications as Notification[])
+  const user = useSelector((state: RootState) => state.user)
+  const trainings = useSelector((state: RootState) => state.trainings as any[])
+  const progression = useSelector((state: RootState) => (state as any).progression as { currentPosition?: string })
 
   const memberQuickActions = [
     {
@@ -145,36 +156,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
     },
   ]
 
-  const memberNotifications = [
-    {
-      title: "New Announcement",
-      message: "Quarterly meeting scheduled for September 20th",
-      time: "3 hours ago",
-      type: "info",
-      isRead: false,
-    },
-    {
-      title: "Career Update",
-      message: "5 new job opportunities posted in Careers",
-      time: "1 day ago",
-      type: "success",
-      isRead: false,
-    },
-    {
-      title: "Service Request",
-      message: "Your service request has been approved",
-      time: "2 days ago",
-      type: "success",
-      isRead: true,
-    },
-    {
-      title: "Schedule Reminder",
-      message: "You have an event scheduled this Friday",
-      time: "1 week ago",
-      type: "warning",
-      isRead: true,
-    },
-  ]
+  // Notifications now come from Redux slice `state.notifications`
 
   const memberActivities = [
     {
@@ -216,8 +198,26 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   ]
 
   // Calculate counts
-  const unreadNotificationsCount = memberNotifications.filter((n) => !n.isRead).length
+  const unreadNotificationsCount = notifications.filter((n) => !n.isRead).length
   const recentActivitiesCount = memberActivities.length
+
+  // Map activity actions to Quick Action menu titles
+  const activityToMenu: Record<string, string> = {
+    "Profile Updated": "Personal Details",
+    "Service Accessed": "Services",
+    "Career Application": "Careers",
+    "Schedule Added": "Schedules",
+    "Announcement Read": "Announcements",
+    "Feedback Submitted": "Say It",
+  }
+
+  const handleActivityClick = (action: string) => {
+    const menu = activityToMenu[action]
+    if (menu) {
+      setSelectedMenu(menu)
+      setNotesModalOpen(false)
+    }
+  }
 
   const formatTime = (date: Date) =>
     date.toLocaleTimeString("en-US", {
@@ -235,8 +235,38 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
     })
 
   useEffect(() => {
-    store.dispatch(updateStat({ index: 1, value: "0", change: "0 points earned this week" }))
-  }, [])
+    // Membership Status
+    const membershipStatus = user?.isLoggedIn ? "Active" : "Inactive"
+    const getYear = (d?: string) => {
+      if (!d) return undefined
+      // Try parse as Date; fallback to first 4 digits
+      const dt = new Date(d)
+      if (!isNaN(dt.getTime())) return String(dt.getFullYear())
+      const m = d.match(/\d{4}/)
+      return m ? m[0] : undefined
+    }
+    const joinYear = getYear(user?.joinDate) || getYear((user as any)?.dateOfRegistration) || String(new Date().getFullYear())
+    const statusChange = `Member since ${joinYear}`
+    store.dispatch(updateStat({ index: 0, value: membershipStatus, change: statusChange }))
+
+    // Points Balance (from performanceScore)
+    const points = typeof user?.performanceScore === "number" ? user.performanceScore : 0
+    store.dispatch(
+      updateStat({ index: 1, value: String(points), change: `${points || 0} points earned this week` })
+    )
+
+    // Events Attended (completed trainings)
+    const eventsAttended = Array.isArray(trainings)
+      ? trainings.filter((t: any) => t?.completed).length
+      : 0
+    store.dispatch(
+      updateStat({ index: 2, value: String(eventsAttended), change: `${eventsAttended || 0} events this quarter` })
+    )
+
+    // Member Level (from progression current position)
+    const level = progression?.currentPosition || ""
+    store.dispatch(updateStat({ index: 3, value: level || "N/A", change: level ? "" : "" }))
+  }, [user, trainings, progression])
 
   return (
     <div className="shp-homepage-container">
@@ -290,13 +320,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                   </div>
                   <div className="shp-activity-list">
                     {memberActivities.map((activity, index) => (
-                      <RecentActivityItem
-                        key={index}
-                        action={activity.action}
-                        details={activity.details}
-                        time={activity.time}
-                        icon={activity.icon}
-                      />
+                      <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
+                        <RecentActivityItem
+                          action={activity.action}
+                          details={activity.details}
+                          time={activity.time}
+                          icon={activity.icon}
+                        />
+                      </div>
                     ))}
                   </div>
                   {/* </div> */}
@@ -350,11 +381,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                       Member Notifications
                     </h3>
                     <span className="shp-notification-count">
-                      {memberNotifications.filter((n) => !n.isRead).length}
+                      {notifications.filter((n) => !n.isRead).length}
                     </span>
                   </div>
                   <div className="shp-notifications-list">
-                    {memberNotifications.map((notification, index) => (
+                    {notifications.map((notification, index) => (
                       <NotificationItem
                         key={index}
                         title={notification.title}
