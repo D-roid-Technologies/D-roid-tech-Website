@@ -79,8 +79,8 @@
 .signOutButton {
   margin-top: auto;
   padding: 12px;
-  background-color: rgb(220, 53, 69);
-  color: white;
+  background-color: #fee2e2;
+  color: #991b1b;
   border: none;
   border-radius: 8px;
   cursor: pointer;

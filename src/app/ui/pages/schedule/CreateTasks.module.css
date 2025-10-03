@@ -106,6 +106,7 @@
   font-weight: 600;
   margin: 0 0 15px 0;
   padding-bottom: 5px;
+  color: #000;
   border-bottom: 2px solid currentColor;
 }
 
@@ -213,6 +214,25 @@
   height: 18px;
   cursor: pointer;
   accent-color: #071d6a;
+}
+/* Date Input Styles */
+.dateInputRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.dateInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dateLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
 }
 
 /* Resource Row */
@@ -406,6 +426,7 @@
 
   .sectionTitle {
     font-size: 15px;
+    color: #000;
   }
 }
 

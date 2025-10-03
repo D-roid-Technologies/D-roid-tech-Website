@@ -69,14 +69,14 @@ const AdminScheduleTool: React.FunctionComponent = () => {
               style={{
                 margin: "2px",
                 padding: "8px 16px",
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#071d69",
                 border: "1px solid #ccc",
                 borderRadius: "4px",
                 cursor: "pointer",
-                color: "#333",
+                color: "#ffffff",
               }}
             >
-              ← Back to Tools
+              Back to Schedule
             </button>
             {renderSelectedTool()}
           </>

@@ -164,11 +164,11 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
         field === "tags"
           ? [...(prev.tags || []), ""]
           : field === "checklist"
-            ? [
+          ? [
               ...(prev.checklist || []),
               { id: crypto.randomUUID(), title: "", checked: false },
             ]
-            : [...(prev.linkedResources || []), { title: "", url: "" }],
+          : [...(prev.linkedResources || []), { title: "", url: "" }],
     }));
   };
 
@@ -217,13 +217,12 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
       //     (res) => res.title.trim() !== "" || res.url.trim() !== ""
       //   ),
       // };
-      const newTask = { ...formData }
+      const newTask = { ...formData };
 
       await authService.handleCreateTask(newTask).then(() => {
-
         handleReset();
       });
-      console.log(formData)
+      console.log(formData);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -379,7 +378,8 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
+                              selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -422,7 +422,8 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
+                              selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -441,7 +442,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                 </Listbox>
               </div>
 
-              <input
+              {/* <input
                 type="text"
                 name="category"
                 value={formData.category}
@@ -480,12 +481,12 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                 onChange={handleInputChange}
                 placeholder="Parent Task ID"
                 className={styles.input}
-              />
+              /> */}
             </div>
           </div>
 
           {/* Time Tracking */}
-          <div className={styles.formSection}>
+          {/* <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Time & Scheduling</h3>
 
             <div className={styles.flexRow}>
@@ -576,7 +577,8 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
+                              selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -606,6 +608,33 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                   style={{ maxWidth: "400px" }}
                 />
               )}
+            </div>
+          </div> */}
+          {/* Time Tracking */}
+          <div className={styles.formSection}>
+            <h3 className={styles.sectionTitle}>Time & Scheduling</h3>
+
+            <div className={styles.dateInputRow}>
+              <div className={styles.dateInputWrapper}>
+                <label className={styles.dateLabel}>Start Date</label>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                />
+              </div>
+              <div className={styles.dateInputWrapper}>
+                <label className={styles.dateLabel}>End Date</label>
+                <input
+                  type="date"
+                  name="dueDate"
+                  value={formData.dueDate}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                />
+              </div>
             </div>
           </div>
 
@@ -749,8 +778,8 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
               {isSubmitting
                 ? "Submitting..."
                 : isEditMode
-                  ? "Update Task"
-                  : "Create Task"}
+                ? "Update Task"
+                : "Create Task"}
             </button>
           </div>
         </form>
