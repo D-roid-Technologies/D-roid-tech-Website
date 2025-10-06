@@ -26,31 +26,19 @@ interface eventCardProps {
 
 const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
   const [visiblePosts, setVisiblePosts] = useState<number>(4)
-  const [activeCategory, setActiveCategory] = useState<string>("All")
   const [activePost, setActivePost] = useState<eventPost | null>(null)
 
-  // Get unique categories
-  const categories = ["All", ...Array.from(new Set(posts.map((post) => post.category)))]
-
-  // Filter posts by active category
-  const filteredPosts = activeCategory === "All" ? posts : posts.filter((post) => post.category === activeCategory)
-
-  // Slice posts to show based on visiblePosts count
-  const postsToShow = filteredPosts.slice(0, visiblePosts)
+  // Show only visible posts
+  const postsToShow = posts.slice(0, visiblePosts)
 
   const handleLoadMore = () => {
     setVisiblePosts((prev) => prev + 3)
   }
 
   function checkEventStatus(sampleDateStr: string): string {
-    // Parse the sample date (e.g., "Monday, 15th June 2026")
     const sampleDate = new Date(sampleDateStr.replace(/(\d+)(st|nd|rd|th)/, "$1"))
-
-    // Get today's date (without time)
     const today = new Date()
     today.setHours(0, 0, 0, 0)
-
-    // Get difference in days
     const diffInMs = sampleDate.getTime() - today.getTime()
     const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
 
@@ -61,11 +49,11 @@ const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
     } else if (diffInDays < 0) {
       return "Event Passed"
     } else {
-      return "Event Today" // extra case: same day
+      return "Event Today"
     }
   }
 
-  const showLoadMore = visiblePosts < filteredPosts.length
+  const showLoadMore = visiblePosts < posts.length
 
   return (
     <section className="event-posts-section">
@@ -79,7 +67,6 @@ const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
               <h1 className="event-detail-title">{activePost.title}</h1>
               <div className="event-detail-meta">
                 <span className="event-detail-date">{activePost.date}</span>
-                <span className="event-detail-category">{activePost.category}</span>
                 <span className="event-detail-status">{checkEventStatus(activePost.date)}</span>
               </div>
             </div>
@@ -113,24 +100,11 @@ const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
         </div>
       ) : (
         <>
-          <div className="category-filters">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`category-filter ${activeCategory === category ? "active" : ""}`}
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
           <div className="event-posts-grid">
             {postsToShow.map((post) => (
               <div key={post.id} className="event-card">
                 <div className="event-card-image">
                   <img src={post.image || "/placeholder.svg"} alt={post.title} />
-                  <span className="event-card-category">{post.category}</span>
                 </div>
                 <div className="event-card-content">
                   <div className="event-card-meta">
