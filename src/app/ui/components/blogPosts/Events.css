@@ -2,7 +2,7 @@
 .event-posts-section {
   margin: 0 auto;
   padding: 2rem 1rem;
-    width: 210%;
+  width: 210%;
   max-width: 1200px;
 }
 
@@ -40,7 +40,7 @@
 
 .event-posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(249px, 1fr));
   gap: 1.5rem;
   justify-content: center;
 }
@@ -54,10 +54,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  gap: 0;
+  height: 100%;
 }
 
 .event-card:hover {
@@ -69,6 +67,7 @@
   position: relative;
   height: 200px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .event-card-image img {
@@ -96,6 +95,10 @@
 
 .event-card-content {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .event-card-meta {
@@ -107,6 +110,13 @@
   margin-bottom: 0.75rem;
   flex-wrap: wrap;
   gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.event-card-date {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .event-card-status {
@@ -114,6 +124,8 @@
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .event-card-title {
@@ -121,30 +133,40 @@
   font-weight: 700;
   margin: 0.5rem 0 1rem 0;
   color: #111827;
-  line-height: 1.3;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-word;
+  flex-shrink: 0;
+  min-height: 3.5rem;
 }
 
 .event-card-excerpt {
   color: #4b5563;
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   line-height: 1.6;
+  font-size: 0.95rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-word;
+  flex: 1;
+  min-height: 4.5rem;
 }
 
 .event-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid #f3f4f6;
+  flex-shrink: 0;
 }
 
 .event-card-author {
@@ -153,6 +175,7 @@
   gap: 0.5rem;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .event-card-author img {
@@ -170,6 +193,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .read-more-event-link {
@@ -181,6 +205,7 @@
   white-space: nowrap;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
+  flex-shrink: 0;
 }
 
 .read-more-event-link:hover {
@@ -254,7 +279,9 @@
   font-weight: 800;
   color: #111827;
   margin-bottom: 1rem;
-  line-height: 1.2;
+  line-height: 1.3;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .event-detail-meta {
@@ -302,6 +329,7 @@
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .author-name {
@@ -309,6 +337,8 @@
   color: #111827;
   display: block;
   font-size: 1rem;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .read-time {
@@ -324,6 +354,8 @@
   line-height: 1.7;
   margin-bottom: 2rem;
   font-weight: 500;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .event-detail-content-body {
@@ -334,6 +366,8 @@
 .content-paragraph {
   margin-bottom: 1.5rem;
   font-size: 1rem;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .content-paragraph:last-child {
@@ -348,9 +382,8 @@
   }
 
   .event-posts-section {
-      width: 200%;
+    width: 200%;
     max-width: none;
-
     padding: 1.5rem 1rem;
   }
 
@@ -368,9 +401,8 @@
 @media (max-width: 768px) {
   .event-posts-section {
     padding: 1rem 0.75rem;
-       width: 120%;
+    width: 120%;
     max-width: none;
-
   }
 
   .category-filters {
@@ -402,7 +434,6 @@
 
   .event-card {
     width: 100%;
-    /* min-width: 320px; */
   }
 
   .event-card-content {
@@ -411,10 +442,12 @@
 
   .event-card-title {
     font-size: 1.1rem;
+    min-height: 3rem;
   }
 
   .event-card-excerpt {
     font-size: 0.9rem;
+    min-height: 4rem;
   }
 
   .event-card-footer {
@@ -482,9 +515,8 @@
 @media (max-width: 480px) {
   .event-posts-section {
     padding: 0.75rem 0.5rem;
-     width: 126%;
-        margin-left: -2rem;
-
+    width: 126%;
+    margin-left: -2rem;
   }
 
   .event-posts-grid {
@@ -501,6 +533,10 @@
 
   .event-card-image {
     height: 180px;
+  }
+
+  .event-card-title {
+    font-size: 1.05rem;
   }
 
   .event-detail-header,

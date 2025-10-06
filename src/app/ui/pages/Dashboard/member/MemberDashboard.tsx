@@ -237,6 +237,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   useEffect(() => {
     // Membership Status
     const membershipStatus = user?.isLoggedIn ? "Active" : "Inactive"
+
     const getYear = (d?: string) => {
       if (!d) return undefined
       // Try parse as Date; fallback to first 4 digits
@@ -423,9 +424,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
               change={stat.change}
               icon={stat.icon}
               onClick={() => {
-                alert(
-                  `clicked on index ${index} - set open the modal and pass the information from the slice to it the modal`,
-                )
+                // alert(
+                //   `clicked on index ${index} - set open the modal and pass the information from the slice to it the modal`,
+                // )
               }}
             />
           ))}
