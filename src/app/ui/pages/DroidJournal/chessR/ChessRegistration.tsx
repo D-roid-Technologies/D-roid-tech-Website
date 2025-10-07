@@ -107,7 +107,7 @@ const ChessRegistration: React.FC = () => {
                             })
                         },
                         (error) => {
-                            toast.error(`Error sending email || ${error} `, {
+                            toast.error(`Error sending email ${error} `, {
                                 style: {
                                     background: '#ff4d4f',
                                     color: '#fff',

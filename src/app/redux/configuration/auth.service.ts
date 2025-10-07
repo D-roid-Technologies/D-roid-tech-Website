@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile, User } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from "firebase/auth";
 import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs, arrayRemove } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
@@ -519,27 +519,152 @@ export class AuthService {
         }
     };
 
+    // async handleGoogleSignin() {
+    //     const currentDateTime = getCurrentDateTime();
+    //     const signInData = signInWithPopup(auth, provider)
+    //         .then(
+    //             async (res: {
+    //                 user: {
+    //                     refreshToken: string;
+    //                     providerData: { photoURL: any }[];
+    //                     uid: any;
+    //                 };
+    //             }) => {
+    //                 const providerData = res.user.providerData[0] as FirebaseProviderData;
+    //                 const userDocRef = doc(collection(db, "nerveaccount"), res.user.uid);
+    //                 const gottenNames: string[] = splitFullNameBySpace(
+    //                     providerData.displayName
+    //                 );
+    //                 const allInitials: string[] = getFirstInitials(gottenNames);
+    //                 const nerveAccount = {
+    //                     user: {
+    //                         primaryInformation: {
+    //                             firstName: capitalizeFirstLetter(gottenNames[0]),
+    //                             lastName: capitalizeFirstLetter(gottenNames[1]),
+    //                             middleName: "",
+    //                             email: providerData.email,
+    //                             phone: "",
+    //                             userType: "Buyer",
+    //                             nameInitials: `${allInitials[0].toUpperCase()}${allInitials[1].toUpperCase()}`,
+    //                             uniqueIdentifier: res.user.uid,
+    //                             gender: "",
+    //                             dateOfBirth: "",
+    //                             photoUrl: providerData.photoURL,
+    //                             isLoggedIn: true,
+    //                             agreedToTerms: true,
+    //                             verifiedEmail: false,
+    //                             verifyPhoneNumber: false,
+    //                             twoFactorSettings: false,
+    //                             referralName: "",
+    //                             secondaryEmail: "",
+    //                             securityQuestion: "",
+    //                             securityAnswer: "",
+    //                             disability: false,
+    //                             disabilityType: "",
+    //                             educationalLevel: "",
+    //                             dateOfCreation: currentDateTime,
+    //                         },
+    //                         location: {
+    //                             streetNumber: "",
+    //                             streetName: "",
+    //                             city: "",
+    //                             state: "",
+    //                             country: "",
+    //                             postalCode: "",
+    //                             geoCoordinates: {
+    //                                 latitude: "",
+    //                                 longitude: "",
+    //                             },
+    //                         },
+    //                     },
+    //                     cart: [] as Cart[],
+    //                     notifications: [] as Notification[],
+    //                     orders: [] as OrderInter[],
+    //                     reviews: [] as ReviewInter[],
+    //                     myItems: [] as MyItems[],
+    //                     friends: [] as Friends[],
+    //                     wallet: {} as Wallet,
+    //                 };
+    //                 await setDoc(userDocRef, nerveAccount);
+    //                 const userSnapshot = await getDoc(userDocRef);
+    //                 if (userSnapshot.exists()) {
+    //                     const fetchedUserData = userSnapshot.data();
+    //                     const primaryInformation = fetchedUserData.user.primaryInformation;
+
+    //                     store.dispatch(
+    //                         setUser({
+    //                             providerId: providerData.providerId || "",
+    //                             uid: providerData.uid || "",
+    //                             primaryInformation: {
+    //                                 firstName: capitalizeFirstLetter(gottenNames[0] || ""),
+    //                                 lastName: capitalizeFirstLetter(gottenNames[1] || ""),
+    //                                 middleName: "",
+    //                                 email: providerData.email || "",
+    //                                 phone: providerData.phoneNumber || "",
+    //                                 userType: "both",
+    //                                 nameInitials: `${(gottenNames[0]?.[0] || "").toUpperCase()}${(
+    //                                     gottenNames[1]?.[0] || ""
+    //                                 ).toUpperCase()}`,
+    //                                 uniqueIdentifier: providerData.uid || "",
+    //                                 gender: "",
+    //                                 dateOfBirth: "",
+    //                                 photoUrl: providerData.photoURL || "",
+    //                                 isLoggedIn: true,
+    //                                 agreedToTerms: true,
+    //                                 verifiedEmail: false,
+    //                                 verifyPhoneNumber: false,
+    //                                 twoFactorSettings: false,
+    //                                 referralName: "",
+    //                                 secondaryEmail: "",
+    //                                 securityQuestion: "",
+    //                                 securityAnswer: "",
+    //                                 disability: false,
+    //                                 disabilityType: "",
+    //                                 educationalLevel: "",
+    //                                 dateOfCreation: getCurrentDateTime(),
+    //                             },
+    //                             location: {
+    //                                 streetNumber: "",
+    //                                 streetName: "",
+    //                                 city: "",
+    //                                 state: "",
+    //                                 country: "",
+    //                                 postalCode: "",
+    //                                 geoCoordinates: {
+    //                                     latitude: "",
+    //                                     longitude: "",
+    //                                 },
+    //                             },
+    //                         })
+    //                     );
+
+    //                     toast.success(`Welcome to Nerves ${primaryInformation.firstName}`, {
+    //                         style: { background: "#4BB543", color: "#fff" },
+    //                     });
+
+    //                     return { success: true };
+    //                 } else {
+    //                     toast.error("User Information does not exist 🚫", {
+    //                         style: { background: "#ff4d4f", color: "#fff" },
+    //                     });
+    //                     return null;
+    //                 }
+    //             }
+    //         )
+    //         .catch((err) => {
+    //             console.error("Error during registration:", err);
+    //             toast.error(`Error creating your Account 🚫`, {
+    //                 style: { background: "#ff4d4f", color: "#fff" },
+    //             });
+    //             return null;
+    //         });
+    //     return signInData;
+    // }
+
     async getAllUsersFromFirestore() {
         try {
-            // Step 1: Check if the current user is a Super Admin
-            const user = auth.currentUser; // Get the current authenticated user
+            const user = auth.currentUser;
             console.log(user)
-            // if (!user || user.role !== "superAdmin") {
-            //     throw new Error("You do not have permission to view all users.");
-            // }
-
-            // Step 2: Query Firestore to get all user documents
-            // const userCollectionRef = collection(db, "droidaccount");
-            // const userSnapshot = await getDocs(userCollectionRef);
-            // const usersList: UserType[] = [];
-
-            // userSnapshot.forEach(doc => {
-            //     const userData = doc.data();
-            //     usersList.push(userData.user.primaryInformation);
-            // });
-
-            // // Step 3: Dispatch all the fetched user data to the Redux store
-            // store.dispatch(setAllUsers(usersList)); // Dispatching the data to the protected slice
         } catch (error: any) {
             console.error("Error fetching users:", error.message);
         }
