@@ -185,6 +185,21 @@
   padding-left: 4px;
 }
 
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+background-color: #071d6a !important;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 32px 20px;

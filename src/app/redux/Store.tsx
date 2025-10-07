@@ -24,6 +24,7 @@ import { userFormsSlice } from "./slices/userFormSlice";
 import { notificationsSlice } from "./slices/notificationSlice";
 import { onboardingSlice } from "./slices/onboarding";
 import { memberStatsSlice } from "./slices/memberStatus";
+import { membershipTierSlice } from "./slices/membershipTierSlice";
 
 const persistConfig = {
   key: "root",
@@ -55,7 +56,8 @@ const rootReducer = combineReducers({
   notifications: notificationsSlice.reducer,
   onboarding: onboardingSlice.reducer,
   training: trainingSlice.reducer,
-  memberStatus: memberStatsSlice.reducer
+  memberStatus: memberStatsSlice.reducer,
+  membershipTier: membershipTierSlice.reducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

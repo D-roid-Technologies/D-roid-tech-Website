@@ -104,6 +104,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   const user = useSelector((state: RootState) => state.user)
   const trainings = useSelector((state: RootState) => state.trainings as any[])
   const progression = useSelector((state: RootState) => (state as any).progression as { currentPosition?: string })
+  const membershipTier = useSelector(
+    (state: RootState) => (state as any).membershipTier as { tier?: string; nextTier?: string }
+  )
 
   const memberQuickActions = [
     {
@@ -264,10 +267,13 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       updateStat({ index: 2, value: String(eventsAttended), change: `${eventsAttended || 0} events this quarter` })
     )
 
-    // Member Level (from progression current position)
-    const level = progression?.currentPosition || ""
-    store.dispatch(updateStat({ index: 3, value: level || "N/A", change: level ? "" : "" }))
-  }, [user, trainings, progression])
+    // Member Level (from membershipTier slice)
+    const tier = membershipTier?.tier || "Gold"
+    const nextTier = membershipTier?.nextTier
+    store.dispatch(
+      updateStat({ index: 3, value: tier, change: nextTier ? `Next level: ${nextTier}` : "" })
+    )
+  }, [user, trainings, membershipTier])
 
   return (
     <div className="shp-homepage-container">
