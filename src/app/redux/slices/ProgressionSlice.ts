@@ -141,7 +141,7 @@ const progressionSlice = createSlice({
 
 // Helper to compute current position
 function getCurrentPosition(milestones: Milestone[]): string {
-  let currentPosition = "Unemployed";
+  let currentPosition = "Gold";
   for (const milestone of milestones) {
     if (milestone.achieved) {
       currentPosition = milestone.toPosition;

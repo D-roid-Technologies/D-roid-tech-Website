@@ -723,11 +723,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                   style={{
                     marginBottom: "20px",
                     padding: "8px 16px",
-                    backgroundColor: "#f0f0f0",
+                    backgroundColor: "#071d6a ",
                     border: "1px solid #ccc",
                     borderRadius: "4px",
                     cursor: "pointer",
-                    color: "#333",
+                    color: "#fff",
                   }}
                 >
                   ← Back to Tools
