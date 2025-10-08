@@ -1,0 +1,101 @@
+/* components.module.css */
+
+/* Overlay background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.25s ease-in-out;
+  color: #111827;
+}
+
+/* Modal container */
+.modalContent {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 480px;
+  padding: 24px 28px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease-out;
+    color: #111827;
+
+}
+
+/* Close button */
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+    color: #111827;
+
+}
+
+.modalClose:hover {
+  transform: rotate(90deg);
+}
+
+.modalCloseIcon {
+  color: #8d4141;
+}
+
+/* Header section */
+.modalHeader {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.modalTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.modalDescription {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* Action buttons section */
+.modalActions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

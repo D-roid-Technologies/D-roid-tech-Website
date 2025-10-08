@@ -1,0 +1,86 @@
+.container {
+  padding: 20px;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.value {
+  margin: 4px 0 0;
+  font-size: 32px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+/* Change / Status */
+.change {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Details Section */
+.details {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 20px;
+}
+
+.detailsTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* History Section */
+.historyTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+}
+
+.historyEvent {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.historyDate {
+  font-size: 12px;
+  color: #666;
+}
+
+.noHistory {
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+}
