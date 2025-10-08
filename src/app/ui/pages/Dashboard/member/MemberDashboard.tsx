@@ -286,61 +286,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
               {/* Welcome, {userDetails.firstName} */}
             </h1>
             <div className="shp-head-icons-container">
-              <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
-                <p>Activities</p>
-                {/* @ts-ignore */}
-                <FiActivity style={{ color: "green", fontWeight: "bold" }} />
-                {recentActivitiesCount > 0 && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      backgroundColor: "#ff4444",
-                      color: "white",
-                      borderRadius: "50%",
-                      fontSize: "10px",
-                      fontWeight: "bold",
-                      minWidth: "18px",
-                      height: "18px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "2px solid white",
-                    }}
-                  >
-                    {recentActivitiesCount}
-                  </span>
-                )}
-                <Modal
-                  isOpen={notesModalOpen}
-                  onClose={() => setNotesModalOpen(false)}
-                  title="Activities"
-                  description=""
-                  // children={undefined}
-                >
-                  {/* <div className="shp-activity-section"> */}
-                  {/* <div className="shp-card"> */}
-                  <div className="shp-card-header">
-                    <h3 className="shp-card-title">Recent Member Activity</h3>
-                    <button className="shp-view-all-btn">View All</button>
-                  </div>
-                  <div className="shp-activity-list">
-                    {memberActivities.map((activity, index) => (
-                      <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
-                        <RecentActivityItem
-                          action={activity.action}
-                          details={activity.details}
-                          time={activity.time}
-                          icon={activity.icon}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {/* </div> */}
-                  {/* </div> */}
-                </Modal>
-              </div>
               {/* Notifications */}
               <div
                 className="shp-head-icons"
@@ -408,6 +353,62 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                   {/* </div> */}
                 </Modal>
               </div>
+              <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
+                <p>Activities</p>
+                {/* @ts-ignore */}
+                <FiActivity style={{ color: "green", fontWeight: "bold" }} />
+                {recentActivitiesCount > 0 && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      right: "-8px",
+                      backgroundColor: "#ff4444",
+                      color: "white",
+                      borderRadius: "50%",
+                      fontSize: "10px",
+                      fontWeight: "bold",
+                      minWidth: "18px",
+                      height: "18px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      border: "2px solid white",
+                    }}
+                  >
+                    {recentActivitiesCount}
+                  </span>
+                )}
+                <Modal
+                  isOpen={notesModalOpen}
+                  onClose={() => setNotesModalOpen(false)}
+                  title="Activities"
+                  description=""
+                  // children={undefined}
+                >
+                  {/* <div className="shp-activity-section"> */}
+                  {/* <div className="shp-card"> */}
+                  <div className="shp-card-header">
+                    <h3 className="shp-card-title">Recent Member Activity</h3>
+                    <button className="shp-view-all-btn">View All</button>
+                  </div>
+                  <div className="shp-activity-list">
+                    {memberActivities.map((activity, index) => (
+                      <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
+                        <RecentActivityItem
+                          action={activity.action}
+                          details={activity.details}
+                          time={activity.time}
+                          icon={activity.icon}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  {/* </div> */}
+                  {/* </div> */}
+                </Modal>
+              </div>
+              
             </div>
             {/* Add Recent Member Activity and Member Notifications side by side here as icons here */}
           </div>

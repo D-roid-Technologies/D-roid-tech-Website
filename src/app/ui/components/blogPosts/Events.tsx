@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import "./Events.css"
+import ChessRegistration from "../../pages/DroidJournal/chessR/ChessRegistration"
 
 interface eventPost {
   id: number
@@ -95,6 +96,12 @@ const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
                   ))}
                 </div>
               )}
+
+            {activePost.title?.includes("Chess Tournament") && (
+  <div className="chess-registration-section">
+    <ChessRegistration />
+  </div>
+)}
             </div>
           </div>
         </div>
