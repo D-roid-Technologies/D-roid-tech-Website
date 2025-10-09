@@ -1,0 +1,189 @@
+/* Base Card Styles */
+.card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.5);
+  /* Enhanced shadow for better card elevation */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.card:hover {
+  /* Deeper shadow on hover for pronounced lift effect */
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transform: translateY(-0.25rem);
+  border-color: hsl(var(--border));
+}
+
+/* Interactive States */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+}
+
+.interactive:active {
+  transform: scale(0.98);
+}
+
+/* Image Section */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: hsl(var(--muted) / 0.3);
+}
+
+.image {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+/* Icon Section */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.iconContainer {
+  display: flex;
+  height: 4rem;
+  width: 4rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: hsl(var(--primary) / 0.05);
+  color: hsl(var(--primary));
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .iconContainer {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.iconContainer svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+/* Content Section */
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  color: black;
+}
+
+/* Title */
+.title {
+  position: relative;
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  /* Adjusted title color for better blending with description */
+  color: hsl(var(--foreground));
+  line-height: 1.25;
+  padding-bottom: 0.5rem;
+}
+
+.titleAccent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0.125rem;
+  width: 2.5rem;
+  background-color: hsl(var(--primary));
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .titleAccent {
+  width: 4rem;
+}
+
+/* Description */
+.description {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  /* Softened description color to blend harmoniously with title */
+  color: hsl(var(--foreground) / 0.7);
+}
+
+/* Read More Section */
+.readMoreWrapper {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.readMore,
+.readMoreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--primary));
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.readMoreLink:hover,
+.card:hover .readMore {
+  color: hsl(var(--primary) / 0.8);
+}
+
+.arrow {
+  height: 1rem;
+  width: 1rem;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .arrow {
+  transform: translateX(0.25rem);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .content {
+    padding: 1.25rem;
+    width: 350px;
+  }
+
+  .iconWrapper {
+    padding: 1.25rem 1.25rem 0.5rem 1.25rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .iconContainer {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  .iconContainer svg {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+}

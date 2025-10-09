@@ -409,6 +409,10 @@
   .button {
     width: 100%;
   }
+
+  .dateInputRow {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -427,6 +431,9 @@
   .sectionTitle {
     font-size: 15px;
     color: #000;
+  }
+   .dateInputRow {
+    grid-template-columns: 1fr;
   }
 }
 
