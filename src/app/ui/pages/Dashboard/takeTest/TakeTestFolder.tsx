@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Questions } from "../../../../utils/questions";
 import CoreValueCardTwo from "../../../components/CoreValueCard/CoreValueCardTwo";
+import TestCardTwo from "../../../components/CoreValueCard/Test-card-two";
 import "./TakeTestFolder.css";
 import { useNavigate } from "react-router-dom";
 import QuizComponent from "./QuizComponent";
@@ -180,7 +181,7 @@ const TakeTestFolder = () => {
                   onClick={() => handleTestClick(prog)}
                   className="ttf-test-item"
                 >
-                  <CoreValueCardTwo
+                  <TestCardTwo
                     title={`Take ${prog.title} Test`}
                     description={prog.summary}
                     url={prog.url}

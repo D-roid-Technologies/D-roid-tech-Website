@@ -7,3 +7,17 @@
   gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+
+
+@media screen and (max-width: 768px) {
+  .soft-wrapper {
+    padding: 0;
+  }
+
+}
+@media screen and (max-width: 640px) {
+ .soft-wrapper {
+    padding: 0;
+  }
+  
+}
