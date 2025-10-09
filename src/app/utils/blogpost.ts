@@ -166,6 +166,31 @@ export const businessPosts: BlogPost[] = [
 
 // Events category posts
 export const eventsPosts: BlogPost[] = [
+   {
+    id: 12,
+    title: "Clash of Kings - Chess Tournament[2025/2026]",
+    excerpt:
+      "An exciting chess tournament featuring some of the region's top players.",
+    date: "Sunday, 30th November 2025",
+    author: "D'roid Technologies",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.chessOne,
+    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2025/2026]"),
+    content: [
+      "Clash of Kings, organized by D'roid Technologies, is a premier annual chess competition dedicated to empowering minds through strategy, focus, and creativity. The event brings together chess enthusiasts, learners, and masters from across communities, creating an atmosphere of inspiration, competition, and excellence.",
+
+      "Every round is designed as a battlefield — from intense opening moves to decisive endgames — participants are challenged to test their skills, resilience, and tactical brilliance. Players not only sharpen their chess strategies but also gain valuable lessons in patience, discipline, and problem-solving that extend beyond the board.",
+
+      "Beyond the matches, Clash of Kings emphasizes values of resilience, intelligence, and creativity. It offers participants an opportunity to network, collaborate, and grow while being supported by a community of like-minded competitors and learners.",
+
+      "Winners receive exciting rewards: 1st Place — ₦15,000 + crowned the Chess King 2025 + named Ambassador of D'roid Technologies; 2nd Place — ₦10,000; 3rd Place — ₦5,000. Other prizes include books, pens, and chess boards.",
+
+      "Registration is open to all with a participation fee of ₦1000. Hurry, registration closes on November 30, 2025. Secure your spot, make your moves, and claim your crown in the ultimate Clash of Kings!"
+    ]
+
+  },
   {
     id: 9,
     title: "CUMSA Financial Summit 2025 – Money Meets Medicine",
@@ -228,31 +253,7 @@ export const eventsPosts: BlogPost[] = [
       "Hosted in the vibrant city of Calabar, the conference also provides rich networking opportunities, cultural experiences, and inspiration for both beginners and seasoned professionals.",
     ],
   },
-  {
-    id: 12,
-    title: "Clash of Kings - Chess Tournament[2025/2026]",
-    excerpt:
-      "An exciting chess tournament featuring some of the region's top players.",
-    date: "Sunday, 30th November 2025",
-    author: "D'roid Technologies",
-    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
-    category: "Events",
-    readTime: "5 min read",
-    image: Assets.images.chessOne,
-    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2025/2026]"),
-    content: [
-      "Clash of Kings, organized by D'roid Technologies, is a premier annual chess competition dedicated to empowering minds through strategy, focus, and creativity. The event brings together chess enthusiasts, learners, and masters from across communities, creating an atmosphere of inspiration, competition, and excellence.",
-
-      "Every round is designed as a battlefield — from intense opening moves to decisive endgames — participants are challenged to test their skills, resilience, and tactical brilliance. Players not only sharpen their chess strategies but also gain valuable lessons in patience, discipline, and problem-solving that extend beyond the board.",
-
-      "Beyond the matches, Clash of Kings emphasizes values of resilience, intelligence, and creativity. It offers participants an opportunity to network, collaborate, and grow while being supported by a community of like-minded competitors and learners.",
-
-      "Winners receive exciting rewards: 1st Place — ₦15,000 + crowned the Chess King 2025 + named Ambassador of D'roid Technologies; 2nd Place — ₦10,000; 3rd Place — ₦5,000. Other prizes include books, pens, and chess boards.",
-
-      "Registration is open to all with a participation fee of ₦1000. Hurry, registration closes on **November 30, 2025**. Secure your spot, make your moves, and claim your crown in the ultimate Clash of Kings!"
-    ]
-
-  },
+ 
   {
     id: 13,
     title: "Clash of Kings - Chess Tournament[2022/2023]",
@@ -329,6 +330,26 @@ export const eventsPosts: BlogPost[] = [
       "It's the perfect opportunity for both beginners and seasoned developers to gain valuable insights in a short time.",
     ],
   },
+  {
+  id: 17,
+  title: "Outreach at State Primary School Rukpokwu, Rivers State",
+  excerpt:
+    "Photos of the outreach held on 07/10/25 at State Primary School Rukpokwu, Rivers State — supported by D'ROID Technologies. It was all shades of amazing!",
+  date: "October 7, 2025",
+  author: "Community Team",
+  authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+  category: "Outreach",
+  readTime: "3 min read",
+  image: Assets.images.PrimarySchoolRukpokwu,
+  readMoreLink: generateBlogLink("events", "Outreach at State Primary School Rukpokwu Rivers State"),
+  content: [
+    "Our team, supported by D'ROID Technologies, held an inspiring outreach program at State Primary School, Rukpokwu, Rivers State, on October 7, 2025.",
+    "The event was filled with excitement, learning, and community spirit as pupils engaged in tech awareness activities and motivational sessions.",
+    "It was a day to remember — filled with smiles, shared knowledge, and positive energy.",
+    "A huge thank you to everyone who made this outreach possible. It was truly all shades of amazing!"
+  ],
+},
+
 ];
 
 // All posts combined

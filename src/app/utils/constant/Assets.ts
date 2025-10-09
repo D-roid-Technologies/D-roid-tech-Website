@@ -219,6 +219,7 @@ export const Assets = {
     nationalICT: require("../../images/png/ICT-ONE.png"),
     nationalICT2: require("../../images/png/ICT-TWO.png"),
     CTC2025: require("../../images/png/CTC2025.png"),
+    PrimarySchoolRukpokwu: require("../../images/png/PrimarySchoolRukpokwu.jpeg"),
   },
   colors: {
     basic: "#000000",

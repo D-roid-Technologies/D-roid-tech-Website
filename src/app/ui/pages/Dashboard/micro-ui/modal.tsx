@@ -1,7 +1,7 @@
 
 import type React from "react";
 import { X } from "lucide-react";
-import componentStyles from "../components.module.css";
+import componentStyles from "./components.module.css";
 
 interface ModalProps {
   isOpen: boolean;
