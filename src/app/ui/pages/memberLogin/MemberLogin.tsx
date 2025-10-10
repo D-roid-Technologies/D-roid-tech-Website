@@ -105,7 +105,7 @@ const MemberLogin = () => {
           <button type="submit" className={styles.button}>
             {text}
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={() => alert("Google Sign-in coming soon 🚀")}
             style={{
@@ -139,7 +139,7 @@ const MemberLogin = () => {
               style={{ width: "20px", height: "20px" }}
             />
             Login with Google
-          </button>
+          </button> */}
         </form>
 
         <div className={styles.forgotPasswordLink}>

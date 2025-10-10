@@ -91,9 +91,9 @@ type MemberDashboardProps = {
 const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) => {
   const [currentTime] = useState(new Date())
   const [notesModalOpen, setNotesModalOpen] = useState(false)
-  
+
   const [notificationModalOpen, setNotificationModalOpen] = useState(false)
-  
+
   const [statModalOpen, setStatModalOpen] = useState(false)
   const [selectedStat, setSelectedStat] = useState<{
     title: string
@@ -103,7 +103,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   } | null>(null)
 
   const memberStats = useSelector((state: RootState) => state.memberStatus)
-  
+
   type Notification = {
     title: string
     message: string
@@ -480,7 +480,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
         {selectedStat && (
           <div style={{ padding: "20px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-              {selectedStat.icon && <selectedStat.icon  />}
+              {selectedStat.icon && <selectedStat.icon />}
               <div>
                 <h2 style={{ margin: 0, fontSize: "24px", fontWeight: "bold" }}>{selectedStat.title}</h2>
                 <p style={{ margin: "4px 0 0", fontSize: "32px", fontWeight: "bold", color: "#2563eb" }}>
@@ -488,7 +488,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                 </p>
               </div>
             </div>
-            
+
             <div style={{ marginBottom: "20px" }}>
               <p style={{ fontSize: "14px", color: "#666" }}>{selectedStat.change}</p>
             </div>
@@ -498,7 +498,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
               <p style={{ fontSize: "14px", color: "#666", marginBottom: "20px" }}>
                 {getStatDetails(selectedStat.title).description}
               </p>
-              
+
               {/* <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4> */}
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 {getStatDetails?.(selectedStat?.title).history?.map((item, idx) => (
@@ -542,4 +542,3 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
 }
 
 export default MemberDashboard
-     
