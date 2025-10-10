@@ -73,5 +73,6 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 // Types
-export type RootState = ReturnType<typeof store.getState>;
+// Use rootReducer to infer the pre-persisted state shape for better selector types
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
