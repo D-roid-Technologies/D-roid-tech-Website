@@ -292,11 +292,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       case "Membership Status":
         return {
           description: "Your current membership status and standing with the organization.",
-          history: [
-            { date: "Jan 2023", event: "Membership Activated" },
-            { date: "Jun 2023", event: "Upgraded to Silver" },
-            { date: "Dec 2023", event: "Status: Active" },
-          ],
+          // history: [
+          //   { date: "Jan 2023", event: "Membership Activated" },
+          //   { date: "Jun 2023", event: "Upgraded to Silver" },
+          //   { date: "Dec 2023", event: "Status: Active" },
+          // ],
         }
       case "Points Balance":
         return {
@@ -499,9 +499,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                 {getStatDetails(selectedStat.title).description}
               </p>
               
-              <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4>
+              {/* <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4> */}
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {getStatDetails(selectedStat.title).history.map((item, idx) => (
+                {getStatDetails?.(selectedStat?.title).history?.map((item, idx) => (
                   <div key={idx} style={{ display: "flex", justifyContent: "space-between", padding: "8px", backgroundColor: "#f9fafb", borderRadius: "6px" }}>
                     <span style={{ fontSize: "14px", fontWeight: "500" }}>{item.event}</span>
                     <span style={{ fontSize: "12px", color: "#666" }}>{item.date}</span>
