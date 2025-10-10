@@ -94,7 +94,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
   
   const [notificationModalOpen, setNotificationModalOpen] = useState(false)
   
-  // 🔥 NEW: State for stat detail modal
   const [statModalOpen, setStatModalOpen] = useState(false)
   const [selectedStat, setSelectedStat] = useState<{
     title: string
@@ -151,12 +150,12 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       icon: FaToolbox,
       variant: "primary",
     },
-    {
-      title: "Announcements",
-      description: "Stay updated with the latest news",
-      icon: FaBullhorn,
-      variant: "secondary",
-    },
+    // {
+    //   title: "Announcements",
+    //   description: "Stay updated with the latest news",
+    //   icon: FaBullhorn,
+    //   variant: "secondary",
+    // },
     {
       title: "Say It",
       description: "Share feedback, suggestions, or reports",

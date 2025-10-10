@@ -454,18 +454,17 @@
 
   .shp-info-item {
     flex-direction: column;
-    align-items: flex-start;
     gap: 4px;
   }
 } /* StaffHomePage.css - Unique prefix: shp- */
 
-.shp-homepage-container {
-  min-height: 100vh;
-  background-color: #f9fafb;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  .shp-homepage-container {
+    min-height: 100vh;
+    background-color: #f9fafb;
+    padding: 15px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
 /* Welcome Header Styles */
 .shp-welcome-header {

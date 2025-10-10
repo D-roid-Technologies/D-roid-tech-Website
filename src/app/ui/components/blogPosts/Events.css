@@ -374,6 +374,10 @@
   margin-bottom: 0;
 }
 
+/* ========================================
+   MOBILE RESPONSIVE DESIGN
+   ======================================== */
+
 /* Tablet Responsive */
 @media (max-width: 1024px) {
   .event-posts-grid {
@@ -382,13 +386,13 @@
   }
 
   .event-posts-section {
-    width: 200%;
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
     padding: 1.5rem 1rem;
   }
 
   .event-detail-view {
-    max-width: 900px;
+    max-width: 100%;
   }
 
   .event-card {
@@ -397,12 +401,12 @@
   }
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive - Medium Devices */
 @media (max-width: 768px) {
   .event-posts-section {
-    padding: 1rem 0.75rem;
-    width: 120%;
-    max-width: none;
+    padding: 1.25rem 1rem;
+    width: 100%;
+    max-width: 100%;
   }
 
   .category-filters {
@@ -413,6 +417,7 @@
     margin-bottom: 1.5rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .category-filters::-webkit-scrollbar {
@@ -420,20 +425,25 @@
   }
 
   .category-filter {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.875rem;
     flex-shrink: 0;
   }
 
   .event-posts-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 500px;
+    gap: 1.25rem;
+    max-width: 100%;
     margin: 0 auto;
   }
 
   .event-card {
     width: 100%;
+    max-width: 100%;
+  }
+
+  .event-card-image {
+    height: 220px;
   }
 
   .event-card-content {
@@ -441,40 +451,39 @@
   }
 
   .event-card-title {
-    font-size: 1.1rem;
-    min-height: 3rem;
+    font-size: 1.15rem;
+    min-height: 3.2rem;
   }
 
   .event-card-excerpt {
-    font-size: 0.9rem;
-    min-height: 4rem;
+    font-size: 0.925rem;
+    min-height: 4.2rem;
   }
 
   .event-card-footer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   .event-card-author {
-    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 60%;
   }
 
   .read-more-event-link {
-    text-align: center;
-    padding: 0.5rem;
-    background: #f8fafc;
-    border-radius: 8px;
+    flex: 0 0 auto;
+    padding: 0.5rem 0.75rem;
   }
 
   /* Event Detail Mobile */
   .event-detail-view {
-    padding: 0.75rem;
+    padding: 1rem;
     max-width: 100%;
   }
 
   .event-detail-title {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
     line-height: 1.3;
   }
 
@@ -484,7 +493,7 @@
   }
 
   .event-detail-image {
-    height: 200px;
+    height: 220px;
   }
 
   .event-detail-meta {
@@ -492,8 +501,8 @@
   }
 
   .event-detail-meta span {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.825rem;
   }
 
   .event-detail-author {
@@ -501,7 +510,7 @@
   }
 
   .event-detail-excerpt {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .back-to-events-btn {
@@ -509,34 +518,92 @@
     text-align: center;
     padding: 0.875rem;
   }
+
+  .load-more-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
 }
 
-/* Small Mobile */
+/* Mobile Responsive - Small Devices */
 @media (max-width: 480px) {
   .event-posts-section {
-    padding: 0.75rem 0.5rem;
-    width: 126%;
-    margin-left: -2rem;
+    padding: 1rem 0.75rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .category-filters {
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .category-filter {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 
   .event-posts-grid {
-    max-width: 400px;
+    gap: 1rem;
+    max-width: 100%;
   }
 
-  .event-detail-view {
-    max-width: 100%;
+  .event-card {
+    width: 100%;
+  }
+
+  .event-card-image {
+    height: 200px;
   }
 
   .event-card-content {
     padding: 1rem;
   }
 
-  .event-card-image {
-    height: 180px;
+  .event-card-meta {
+    font-size: 0.75rem;
+    gap: 0.4rem;
   }
 
   .event-card-title {
     font-size: 1.05rem;
+    min-height: 2.8rem;
+    margin: 0.4rem 0 0.8rem 0;
+  }
+
+  .event-card-excerpt {
+    font-size: 0.875rem;
+    min-height: 3.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .event-card-footer {
+    padding-top: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .event-card-author img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .event-card-author-name {
+    font-size: 0.85rem;
+  }
+
+  .read-more-event-link {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  /* Event Detail Small Mobile */
+  .event-detail-view {
+    padding: 0.75rem;
+    max-width: 100%;
+  }
+
+  .event-detail-content {
+    border-radius: 12px;
   }
 
   .event-detail-header,
@@ -544,12 +611,112 @@
     padding: 1.25rem;
   }
 
+  .event-detail-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .event-detail-image {
+    height: 200px;
+  }
+
+  .event-detail-meta {
+    gap: 0.4rem;
+  }
+
+  .event-detail-meta span {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .event-detail-author {
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .event-detail-author img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .author-name {
+    font-size: 0.95rem;
+  }
+
+  .read-time {
+    font-size: 0.8rem;
+  }
+
+  .event-detail-excerpt {
+    font-size: 0.975rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .content-paragraph {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .back-to-events-btn {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .load-more-btn {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .load-more-container {
+    margin-top: 2rem;
+  }
+}
+
+/* Extra Small Mobile - 360px and below */
+@media (max-width: 360px) {
+  .event-posts-section {
+    padding: 0.875rem 0.5rem;
+  }
+
+  .category-filter {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+  }
+
+  .event-card-image {
+    height: 180px;
+  }
+
+  .event-card-content {
+    padding: 0.875rem;
+  }
+
+  .event-card-title {
+    font-size: 1rem;
+    min-height: 2.6rem;
+  }
+
+  .event-card-excerpt {
+    font-size: 0.825rem;
+    min-height: 3.5rem;
+  }
+
+  .event-detail-header,
+  .event-detail-body {
+    padding: 1rem;
+  }
+
+  .event-detail-title {
+    font-size: 1.25rem;
+  }
+
   .event-detail-image {
     height: 180px;
   }
 
-  .load-more-btn {
-    width: 100%;
-    padding: 1rem;
+  .event-detail-excerpt {
+    font-size: 0.925rem;
   }
 }
