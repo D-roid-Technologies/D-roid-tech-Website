@@ -91,9 +91,9 @@ type MemberDashboardProps = {
 const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) => {
   const [currentTime] = useState(new Date())
   const [notesModalOpen, setNotesModalOpen] = useState(false)
+  
   const [notificationModalOpen, setNotificationModalOpen] = useState(false)
   
-  // 🔥 NEW: State for stat detail modal
   const [statModalOpen, setStatModalOpen] = useState(false)
   const [selectedStat, setSelectedStat] = useState<{
     title: string
@@ -150,12 +150,12 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       icon: FaToolbox,
       variant: "primary",
     },
-    {
-      title: "Announcements",
-      description: "Stay updated with the latest news",
-      icon: FaBullhorn,
-      variant: "secondary",
-    },
+    // {
+    //   title: "Announcements",
+    //   description: "Stay updated with the latest news",
+    //   icon: FaBullhorn,
+    //   variant: "secondary",
+    // },
     {
       title: "Say It",
       description: "Share feedback, suggestions, or reports",
@@ -292,11 +292,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       case "Membership Status":
         return {
           description: "Your current membership status and standing with the organization.",
-          history: [
-            { date: "Jan 2023", event: "Membership Activated" },
-            { date: "Jun 2023", event: "Upgraded to Silver" },
-            { date: "Dec 2023", event: "Status: Active" },
-          ],
+          // history: [
+          //   { date: "Jan 2023", event: "Membership Activated" },
+          //   { date: "Jun 2023", event: "Upgraded to Silver" },
+          //   { date: "Dec 2023", event: "Status: Active" },
+          // ],
         }
       case "Points Balance":
         return {
@@ -400,7 +400,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                   <button className="shp-view-all-notifications">View All Notifications</button>
                 </Modal>
               </div>
-              <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
+              {/* <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
                 <p>Activities</p>
                 <FiActivity style={{ color: "green", fontWeight: "bold" }} />
                 {recentActivitiesCount > 0 && (
@@ -448,39 +448,34 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                     ))}
                   </div>
                 </Modal>
-              </div>
+              </div> */}
             </div>
-          </div>
-          <div className="shp-time-info">
-            <div className="shp-current-time">{formatTime(currentTime)}</div>
-            <div className="shp-current-date">{formatDate(currentTime)}</div>
           </div>
         </div>
       </div>
-
       {/* Member Stats */}
       <div className="shp-section">
         <h2 className="shp-section-title">Membership Overview</h2>
         <div className="shp-stats-grid">
-          {memberStats.map((stat, index) => (
-            <StatCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              change={stat.change}
-              icon={stat.icon}
-              onClick={() => handleStatClick(stat)} // 🔥 IMPROVED: Opens modal with stat details
-            />
-          ))}
+          {memberStats
+            .filter((s) => s.title !== "Points Balance" && s.title !== "Events Attended")
+            .map((stat, index) => (
+              <StatCard
+                key={index}
+                title={stat.title}
+                value={stat.value}
+                change={stat.change}
+                icon={stat.icon}
+                onClick={() => handleStatClick(stat)} // 🔥 IMPROVED: Opens modal with stat details
+              />
+            ))}
         </div>
       </div>
-
-      {/* 🔥 NEW: Stat Detail Modal */}
       <Modal
         isOpen={statModalOpen}
         onClose={() => setStatModalOpen(false)}
-        title=""
         description=""
+        title=""
       >
         {selectedStat && (
           <div style={{ padding: "20px" }}>
@@ -504,9 +499,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                 {getStatDetails(selectedStat.title).description}
               </p>
               
-              <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4>
+              {/* <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4> */}
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {getStatDetails(selectedStat.title).history.map((item, idx) => (
+                {getStatDetails?.(selectedStat?.title).history?.map((item, idx) => (
                   <div key={idx} style={{ display: "flex", justifyContent: "space-between", padding: "8px", backgroundColor: "#f9fafb", borderRadius: "6px" }}>
                     <span style={{ fontSize: "14px", fontWeight: "500" }}>{item.event}</span>
                     <span style={{ fontSize: "12px", color: "#666" }}>{item.date}</span>
@@ -547,3 +542,4 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
 }
 
 export default MemberDashboard
+     
