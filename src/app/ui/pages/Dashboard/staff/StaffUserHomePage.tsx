@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaTasks,
   FaFileInvoiceDollar,
@@ -27,11 +27,12 @@ import {
 import "./StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
 import { Modal } from "../micro-ui/modal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { UserType } from "../../../../utils/Types";
 import { RootState } from "../../../../redux/Store";
 import { useNavigate } from "react-router-dom";
 import { Task, TaskStatus } from "../../../../redux/slices/tasksSlice";
+import { setStaffMetrics, fetchStaffMetrics } from "../../../../redux/slices/staffSlice";
 
 type QuickActionCardProps = {
   title: string;
@@ -172,9 +173,16 @@ const RecentActivityItem = ({
 
 const StaffUserHomePage: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const announcements = useSelector((state: RootState) => state.announcements);
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  
+  // Get staff metrics from Redux state
+  const { activeTasks, completedTasks, performanceScore, attendanceRate } = useSelector(
+    (state: RootState) => state.staff
+  );
+  
   const [currentTime] = useState(new Date());
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<{
@@ -184,8 +192,8 @@ const StaffUserHomePage: React.FC = () => {
     type?: string;
   } | null>(null);
 
-  //  Calculate task statistics
-  const completedTasks = tasks.filter(
+  // Calculate task statistics from tasks slice
+  const completedTasksCount = tasks.filter(
     (task) => task.status === "completed"
   ).length;
   const ongoingTasks = tasks.filter((task) => task.status === "ongoing").length;
@@ -194,10 +202,25 @@ const StaffUserHomePage: React.FC = () => {
   ).length;
   const totalTasks = tasks.length;
 
+  // Update Redux state when tasks change
+  useEffect(() => {
+    dispatch(setStaffMetrics({
+      activeTasks: ongoingTasks,
+      completedTasks: completedTasksCount,
+    }));
+  }, [dispatch, ongoingTasks, completedTasksCount]);
+
+  // Optional: Fetch staff metrics from API on component mount
+  useEffect(() => {
+    // Uncomment to fetch from API
+    // dispatch(fetchStaffMetrics(userDetails.uniqueId));
+  }, []);
+
+  // Dashboard stats using Redux state
   const dashboardStats = [
     {
       title: "Active Tasks",
-      value: ongoingTasks.toString(),
+      value: activeTasks.toString(),
       change: `${notStartedTasks} pending`,
       icon: FaTasks,
       color: "blue",
@@ -205,22 +228,20 @@ const StaffUserHomePage: React.FC = () => {
     {
       title: "Completed Tasks",
       value: completedTasks.toString(),
-      change: `${Math.round(
-        (completedTasks / totalTasks) * 100
-      )}% completion rate`,
+      change: `${totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0}% completion rate`,
       icon: FaCheckCircle,
       color: "green",
     },
     {
       title: "Performance Score",
-      value: "4.2/5",
-      change: "Above average",
+      value: performanceScore > 0 ? `${performanceScore}/5` : "N/A",
+      change: performanceScore >= 4 ? "Above average" : performanceScore >= 3 ? "Average" : "Below average",
       icon: FaTrophy,
       color: "gold",
     },
     {
       title: "Attendance Rate",
-      value: "96%",
+      value: attendanceRate > 0 ? `${attendanceRate}%` : "N/A",
       change: "This month",
       icon: FaUserCheck,
       color: "purple",
