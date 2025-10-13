@@ -214,7 +214,7 @@ const TakeTestFolder = () => {
                 ))
               ) : (
                 <div className="ttf-no-results">
-                  <p>No tests match your filters</p>
+                  <p>No tests match your search </p>
                   <button
                     onClick={clearFilters}
                     className="ttf-clear-filters-btn"
