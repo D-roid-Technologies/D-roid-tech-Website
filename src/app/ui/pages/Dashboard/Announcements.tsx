@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck } from 'lucide-react';
 import styles from './Notifications.module.css';
-
+import { useSelector, useDispatch } from "react-redux";
+import { removeAnnouncement, markAsRead } from "../../../redux/slices/Annoucements";
+import { RootState } from "../../../redux/Store";
 interface Announcement {
   id: number;
   title: string;
@@ -16,53 +18,21 @@ type FilterType = 'all' | 'unread' | 'read';
 
 const Notifications: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
-  const [announcements, setAnnouncements] = useState<Announcement[]>([
-    {
-      id: 1,
-      title: 'System Maintenance Scheduled',
-      message: 'We will be performing scheduled maintenance on our servers. Please save your work accordingly.',
-      date: '2025-10-14',
-      time: '10:30 AM',
-      type: 'System',
-      isRead: false,
-    },
-    {
-      id: 2,
-      title: 'New Feature Released',
-      message: 'Check out our latest feature update that includes dark mode support and improved performance.',
-      date: '2025-10-13',
-      time: '2:15 PM',
-      type: 'Feature',
-      isRead: false,
-    },
-    {
-      id: 3,
-      title: 'Monthly Report Available',
-      message: 'Your monthly analytics report is now ready to view. Access it from your dashboard.',
-      date: '2025-10-12',
-      time: '9:00 AM',
-      type: 'Report',
-      isRead: true,
-    },
-    {
-      id: 4,
-      title: 'Security Update',
-      message: 'We have implemented new security measures to keep your account safe. No action required.',
-      date: '2025-10-11',
-      time: '4:45 PM',
-      type: 'Security',
-      isRead: true,
-    },
-  ]);
+ 
+  
+    const announcements = useSelector(
+    (state: RootState) => state.announcements || []
+  );
+  const dispatch = useDispatch();
 
-  const handleRemoveAnnouncement = (id: number) => {
-    setAnnouncements(announcements.filter(a => a.id !== id));
-  };
+
 
   const handleMarkAsRead = (id: number) => {
-    setAnnouncements(
-      announcements.map(a => (a.id === id ? { ...a, isRead: true } : a))
-    );
+    dispatch(markAsRead(id));
+  };
+
+  const handleRemoveAnnouncement = (id: number) => {
+    dispatch(removeAnnouncement(id));
   };
 
   const filteredAnnouncements = announcements.filter(a => {
