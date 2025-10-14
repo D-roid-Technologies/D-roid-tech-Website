@@ -223,7 +223,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
     "Service Accessed": "Services",
     "Career Application": "Careers",
     "Schedule Added": "Schedules",
-    "Announcement Read": "Announcements",
+    "Notifications Read": "Notifications",
     "Feedback Submitted": "Say It",
   }
 
@@ -265,7 +265,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
     })
 
   useEffect(() => {
-    // Check for profile update and add notification if needed
     const profileUpdated = localStorage.getItem("profileUpdated")
     
     if (!profileUpdated) {
@@ -286,8 +285,18 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
         // Add the notification to the existing notifications
         store.dispatch(setNotifications([newNotification, ...notifications]))
       }
+    } else {
+      // Profile is updated, remove the notification if it exists
+      const filteredNotifications = notifications.filter(
+        (n) => n.title !== "Complete Your Profile"
+      )
+      
+      // Only update if the notification was actually removed
+      if (filteredNotifications.length !== notifications.length) {
+        store.dispatch(setNotifications(filteredNotifications))
+      }
     }
-  }, []) // Run only once on mount
+  }, [notifications]) // Re-run when notifications change to detect profile updates
 
   useEffect(() => {
     // Membership Status
