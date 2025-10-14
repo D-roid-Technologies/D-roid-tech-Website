@@ -456,6 +456,10 @@ const PersonalDetails: React.FunctionComponent = () => {
     try {
       await authService.updatePrimaryInformation(formData);
       setSubmitStatus("success");
+            localStorage.setItem("profileUpdated", JSON.stringify(formData));
+            console.log("profileUpdated>>>>>>>>>>>>");
+            
+
       setErrors({});
     } catch (error) {
       setSubmitStatus("error");

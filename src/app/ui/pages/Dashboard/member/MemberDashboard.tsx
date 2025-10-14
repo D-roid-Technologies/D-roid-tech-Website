@@ -24,6 +24,7 @@ import { FaPenToSquare } from "react-icons/fa6"
 import { eventsPosts } from "../../../../utils/blogpost"
 import { updateStat } from "../../../../redux/slices/memberStatus"
 import EventPosts from "../../../components/blogPosts/Events"
+import { setNotifications } from "../../../../redux/slices/notificationSlice"
 
 type QuickActionCardProps = {
   title: string
@@ -51,10 +52,15 @@ type NotificationItemProps = {
   time: string
   type: string
   isRead: boolean
+  onClick?: () => void
 }
 
-const NotificationItem = ({ title, message, time, type, isRead }: NotificationItemProps) => (
-  <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
+const NotificationItem = ({ title, message, time, type, isRead, onClick }: NotificationItemProps) => (
+  <div 
+    className={`shp-notification-item ${isRead ? "read" : "unread"}`}
+    onClick={onClick}
+    style={{ cursor: onClick ? "pointer" : "default" }}
+  >
     <div className={`shp-notification-indicator ${type}`}></div>
     <div className="shp-notification-content">
       <h5 className="shp-notification-title">{title}</h5>
@@ -229,6 +235,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
     }
   }
 
+  // Handle notification click
+  const handleNotificationClick = (notificationTitle: string) => {
+    if (notificationTitle === "Complete Your Profile") {
+      setSelectedMenu("Personal Details")
+      setNotificationModalOpen(false)
+    }
+  }
+
   // 🔥 NEW: Handle stat card click
   const handleStatClick = (stat: typeof memberStats[0]) => {
     setSelectedStat(stat)
@@ -249,6 +263,31 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
       month: "long",
       day: "numeric",
     })
+
+  useEffect(() => {
+    // Check for profile update and add notification if needed
+    const profileUpdated = localStorage.getItem("profileUpdated")
+    
+    if (!profileUpdated) {
+      // Check if the notification already exists to avoid duplicates
+      const profileUpdateNotificationExists = notifications.some(
+        (n) => n.title === "Complete Your Profile"
+      )
+      
+      if (!profileUpdateNotificationExists) {
+        const newNotification = {
+          title: "Complete Your Profile",
+          message: "Please update your profile information to get the most out of your membership.",
+          time: "Just now",
+          type: "warning",
+          isRead: false,
+        }
+        
+        // Add the notification to the existing notifications
+        store.dispatch(setNotifications([newNotification, ...notifications]))
+      }
+    }
+  }, []) // Run only once on mount
 
   useEffect(() => {
     // Membership Status
@@ -394,6 +433,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({ setSelectedMenu }) =>
                         time={notification.time}
                         type={notification.type}
                         isRead={notification.isRead}
+                        onClick={() => handleNotificationClick(notification.title)}
                       />
                     ))}
                   </div>
