@@ -136,6 +136,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     time: string;
     type: string;
     isRead: boolean;
+    id: number
+    date: string
   };
   const notifications = useSelector(
     (state: RootState) => state.notifications as Notification[]
@@ -157,6 +159,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       description: "View and update your profile information",
       icon: FaUser,
       variant: "primary",
+      
     },
     {
       title: "Services",
@@ -268,6 +271,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     if (notificationTitle === "Complete Your Profile") {
       setSelectedMenu("Personal Details");
       setNotificationModalOpen(false);
+    } else {
+      // For all other notifications, navigate to Notifications page
+      setSelectedMenu("Notifications");
+      setNotificationModalOpen(false);
     }
   };
   const handleViewAllNotification = () => {
@@ -307,9 +314,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 
       if (!profileUpdateNotificationExists) {
         const newNotification = {
+          id: Date.now(), // Generate unique ID using timestamp
           title: "Complete Your Profile",
           message:
             "Please update your profile information to get the most out of your membership.",
+          date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
           time: "Just now",
           type: "warning",
           isRead: false,

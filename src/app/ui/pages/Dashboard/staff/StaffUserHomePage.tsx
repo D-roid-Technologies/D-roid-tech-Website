@@ -175,7 +175,7 @@ const StaffUserHomePage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
-  const announcements = useSelector((state: RootState) => state.announcements);
+  const announcements = useSelector((state: RootState) => state.notifications);
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   
   // Get staff metrics from Redux state

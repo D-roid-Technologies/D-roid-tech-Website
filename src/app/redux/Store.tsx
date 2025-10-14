@@ -14,7 +14,6 @@ import { signInAndOutSlice } from "./slices/SignInAndOutSlice";
 import { payslipSlice } from "./slices/paySlipSlice";
 import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
 import tasksReducer from "./slices/tasksSlice";
-import announcementsReducer from "./slices/Annoucements";
 import { trainingSlice } from "./slices/TrainingsSlice";
 import { scheduleTask } from "./slices/scheduleTask";
 import ProgressionSlice from "./slices/ProgressionSlice";
@@ -47,7 +46,6 @@ const rootReducer = combineReducers({
   payslip: payslipSlice.reducer,
   connectedApps: affiliatedAppsSlice.reducer,
   tasks: tasksReducer,
-  announcements: announcementsReducer,
   trainings: trainingSlice.reducer,
   scheduleTask: scheduleTask.reducer,
   progression: ProgressionSlice,

@@ -2,26 +2,16 @@ import React, { useState } from 'react';
 import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck } from 'lucide-react';
 import styles from './Notifications.module.css';
 import { useSelector, useDispatch } from "react-redux";
-import { removeAnnouncement, markAsRead } from "../../../redux/slices/Annoucements";
+import { removeNotification, markAsRead, type Notification } from "../../../redux/slices/notificationSlice";
 import { RootState } from "../../../redux/Store";
-interface Announcement {
-  id: number;
-  title: string;
-  message: string;
-  date: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-}
 
 type FilterType = 'all' | 'unread' | 'read';
 
 const Notifications: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
- 
   
-    const announcements = useSelector(
-    (state: RootState) => state.announcements || []
+  const notifications = useSelector(
+    (state: RootState) => state.notifications || []
   );
   const dispatch = useDispatch();
 
@@ -31,17 +21,17 @@ const Notifications: React.FC = () => {
     dispatch(markAsRead(id));
   };
 
-  const handleRemoveAnnouncement = (id: number) => {
-    dispatch(removeAnnouncement(id));
+  const handleRemoveNotification = (id: number) => {
+    dispatch(removeNotification(id));
   };
 
-  const filteredAnnouncements = announcements.filter(a => {
-    if (activeFilter === 'unread') return !a.isRead;
-    if (activeFilter === 'read') return a.isRead;
+  const filteredNotifications = notifications.filter((n: Notification) => {
+    if (activeFilter === 'unread') return !n.isRead;
+    if (activeFilter === 'read') return n.isRead;
     return true;
   });
 
-  const unreadCount = announcements.filter(a => !a.isRead).length;
+  const unreadCount = notifications.filter((n: Notification) => !n.isRead).length;
 
   return (
     <div className={styles.container}>
@@ -59,7 +49,7 @@ const Notifications: React.FC = () => {
           className={`${styles.tab} ${activeFilter === 'all' ? styles.active : ''}`}
           onClick={() => setActiveFilter('all')}
         >
-          All ({announcements.length})
+          All ({notifications.length})
         </button>
         <button
           className={`${styles.tab} ${activeFilter === 'unread' ? styles.active : ''}`}
@@ -71,11 +61,11 @@ const Notifications: React.FC = () => {
           className={`${styles.tab} ${activeFilter === 'read' ? styles.active : ''}`}
           onClick={() => setActiveFilter('read')}
         >
-          Read ({announcements.length - unreadCount})
+          Read ({notifications.length - unreadCount})
         </button>
       </div>
 
-      {filteredAnnouncements.length === 0 ? (
+      {filteredNotifications.length === 0 ? (
         <div className={styles.emptyState}>
           <Bell className={styles.emptyIcon} />
           <h3 className={styles.emptyTitle}>No notifications</h3>
@@ -89,50 +79,50 @@ const Notifications: React.FC = () => {
         </div>
       ) : (
         <div className={styles.notificationsList}>
-          {filteredAnnouncements.map(announcement => (
+          {filteredNotifications.map((notification: Notification) => (
             <div
-              key={announcement.id}
+              key={notification.id}
               className={`${styles.notificationCard} ${
-                !announcement.isRead ? styles.unread : ''
+                !notification.isRead ? styles.unread : ''
               }`}
             >
               <div className={styles.notificationHeader}>
-                <h2 className={styles.notificationTitle}>{announcement.title}</h2>
+                <h2 className={styles.notificationTitle}>{notification.title}</h2>
                 <div
                   className={`${styles.statusBadge} ${
-                    announcement.isRead ? styles.read : styles.unread
+                    notification.isRead ? styles.read : styles.unread
                   }`}
                 >
                   <span
                     className={`${styles.statusDot} ${
-                      announcement.isRead ? styles.read : styles.unread
+                      notification.isRead ? styles.read : styles.unread
                     }`}
                   ></span>
-                  {announcement.isRead ? 'Read' : 'Unread'}
+                  {notification.isRead ? 'Read' : 'Unread'}
                 </div>
               </div>
 
-              <p className={styles.notificationMessage}>{announcement.message}</p>
+              <p className={styles.notificationMessage}>{notification.message}</p>
 
               <div className={styles.notificationMeta}>
                 <div className={styles.metaItem}>
                   <Calendar className={styles.metaIcon} />
-                  <span>{announcement.date}</span>
+                  <span>{notification.date}</span>
                 </div>
                 <div className={styles.metaItem}>
                   <Clock className={styles.metaIcon} />
-                  <span>{announcement.time}</span>
+                  <span>{notification.time}</span>
                 </div>
                 <div className={styles.typeBadge}>
                   <Tag className={styles.metaIcon} />
-                  <span>{announcement.type}</span>
+                  <span>{notification.type}</span>
                 </div>
               </div>
 
               <div className={styles.actions}>
-                {!announcement.isRead && (
+                {!notification.isRead && (
                   <button
-                    onClick={() => handleMarkAsRead(announcement.id)}
+                    onClick={() => handleMarkAsRead(notification.id)}
                     className={`${styles.actionButton} ${styles.markReadButton}`}
                   >
                     <CheckCheck size={16} />
@@ -140,7 +130,7 @@ const Notifications: React.FC = () => {
                   </button>
                 )}
                 <button
-                  onClick={() => handleRemoveAnnouncement(announcement.id)}
+                  onClick={() => handleRemoveNotification(notification.id)}
                   className={`${styles.actionButton} ${styles.deleteButton}`}
                 >
                   <Trash2 size={16} />
