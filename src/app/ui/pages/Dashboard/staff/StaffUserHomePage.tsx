@@ -234,14 +234,14 @@ const StaffUserHomePage: React.FC = () => {
     },
     {
       title: "Performance Score",
-      value: performanceScore > 0 ? `${performanceScore}/5` : "N/A",
+      value: performanceScore > 0 ? `${performanceScore}/5` : "0",
       change: performanceScore >= 4 ? "Above average" : performanceScore >= 3 ? "Average" : "Below average",
       icon: FaTrophy,
       color: "gold",
     },
     {
       title: "Attendance Rate",
-      value: attendanceRate > 0 ? `${attendanceRate}%` : "N/A",
+      value: attendanceRate > 0 ? `${attendanceRate}%` : "0",
       change: "This month",
       icon: FaUserCheck,
       color: "purple",
@@ -747,7 +747,7 @@ const StaffUserHomePage: React.FC = () => {
               {/* Show message if no activities */}
               {recentTaskActivities.length === 0 && (
                 <div className="shp-no-activities">
-                  <p>No recent activities</p>
+                  <p style={{padding: "1rem" ,color: "black"}}>No recent activities</p>
                 </div>
               )}
             </div>
