@@ -1,0 +1,111 @@
+.container {
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 1rem;
+}
+
+/* Button styling */
+.toggleBtn {
+  background-color: #003366;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.toggleBtn:hover {
+  background-color: #002244;
+}
+
+/* Form container */
+.form {
+  margin: 20px auto 0;
+  padding: 20px;
+  max-width: 400px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  color: #333;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+/* Input fields */
+.field {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.field input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.field input:focus {
+  border-color: #003366;
+  outline: none;
+}
+
+/* Fee text */
+.fee {
+  font-weight: bold;
+  color: #003366;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Submit button */
+.submitBtn {
+  width: 100%;
+  background-color: #28a745;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #218838;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+  .form {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .toggleBtn {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+  }
+
+  .submitBtn {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

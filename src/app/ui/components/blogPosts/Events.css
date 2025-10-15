@@ -599,7 +599,9 @@
   /* Event Detail Small Mobile */
   .event-detail-view {
     padding: 0.75rem;
-    max-width: 100%;
+    max-width: 213%;
+    width: 120%;
+    margin-left: -2rem;
   }
 
   .event-detail-content {

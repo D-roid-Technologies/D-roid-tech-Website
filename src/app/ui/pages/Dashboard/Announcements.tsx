@@ -1,108 +1,148 @@
-import React from "react";
+import React, { useState } from 'react';
+import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck } from 'lucide-react';
+import styles from './Notifications.module.css';
 import { useSelector, useDispatch } from "react-redux";
-import { removeAnnouncement } from "../../../redux/slices/Annoucements";
+import { removeNotification, markAsRead, type Notification } from "../../../redux/slices/notificationSlice";
 import { RootState } from "../../../redux/Store";
 
-interface Announcement {
-  id: number;
-  title: string;
-  message: string;
-  date: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-}
+type FilterType = 'all' | 'unread' | 'read';
 
-const Announcements: React.FC = () => {
-  const announcements = useSelector(
-    (state: RootState) => state.announcements || []
+const Notifications: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  
+  const notifications = useSelector(
+    (state: RootState) => state.notifications || []
   );
   const dispatch = useDispatch();
 
-  const handleRemoveAnnouncement = (id: number) => {
-    dispatch(removeAnnouncement({ id }));
+
+
+  const handleMarkAsRead = (id: number) => {
+    dispatch(markAsRead(id));
   };
 
-  return (
-    <div style={{ maxWidth: "1108px", margin: "0 auto", padding: "24px" }}>
-      {announcements.length === 0 ? (
-        <p style={{ color: "#666", fontStyle: "italic" }}>
-          No announcements available
-        </p>
-      ) : (
-        announcements.map((a: Announcement) => (
-          <div
-            key={a.id}
-            style={{
-              padding: "20px",
-              backgroundColor: "#ffffff",
-              borderRadius: "12px",
-              border: "1px solid #e0e0e0",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
-              marginBottom: "20px",
-              position: "relative",
-            }}
-          >
-            <h2
-              style={{ fontSize: "18px", fontWeight: "600", color: "#071d6a" }}
-            >
-              {a.title}
-            </h2>
-            <p style={{ fontSize: "14px", color: "#4B5563", margin: "8px 0" }}>
-              {a.message}
-            </p>
-            <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{a.date}</p>
-            <p style={{ fontSize: "12px", color: "#9CA3AF" }}>{a.time}</p>
-            <p style={{ fontSize: "12px", color: "#9CA3AF" }}>Type: {a.type}</p>
-            <div
-              style={{
-                position: "absolute",
-                top: "12px",
-                right: "12px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: a.isRead ? "#4CAF50" : "#FF9800",
-                  marginRight: "8px",
-                }}
-              ></span>
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: a.isRead ? "#4CAF50" : "#FF9800",
-                }}
-              >
-                {a.isRead ? "Read" : "Unread"}
-              </span>
-            </div>
+  const handleRemoveNotification = (id: number) => {
+    dispatch(removeNotification(id));
+  };
 
-            <div style={{ display: "flex", gap: "8px", marginTop: "12px" }}>
-              <button
-                onClick={() => handleRemoveAnnouncement(a.id)}
-                style={{
-                  padding: "4px 8px",
-                  backgroundColor: "#d9534f",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                Delete
-              </button>
+  const filteredNotifications = notifications.filter((n: Notification) => {
+    if (activeFilter === 'unread') return !n.isRead;
+    if (activeFilter === 'read') return n.isRead;
+    return true;
+  });
+
+  const unreadCount = notifications.filter((n: Notification) => !n.isRead).length;
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Notifications</h1>
+        <p className={styles.subtitle}>
+          {unreadCount > 0
+            ? `You have ${unreadCount} unread notification${unreadCount > 1 ? 's' : ''}`
+            : 'All caught up!'}
+        </p>
+      </div>
+
+      <div className={styles.tabs}>
+        <button
+          className={`${styles.tab} ${activeFilter === 'all' ? styles.active : ''}`}
+          onClick={() => setActiveFilter('all')}
+        >
+          All ({notifications.length})
+        </button>
+        <button
+          className={`${styles.tab} ${activeFilter === 'unread' ? styles.active : ''}`}
+          onClick={() => setActiveFilter('unread')}
+        >
+          Unread ({unreadCount})
+        </button>
+        <button
+          className={`${styles.tab} ${activeFilter === 'read' ? styles.active : ''}`}
+          onClick={() => setActiveFilter('read')}
+        >
+          Read ({notifications.length - unreadCount})
+        </button>
+      </div>
+
+      {filteredNotifications.length === 0 ? (
+        <div className={styles.emptyState}>
+          <Bell className={styles.emptyIcon} />
+          <h3 className={styles.emptyTitle}>No notifications</h3>
+          <p className={styles.emptyMessage}>
+            {activeFilter === 'unread'
+              ? 'You have no unread notifications'
+              : activeFilter === 'read'
+              ? 'You have no read notifications'
+              : 'You have no notifications at this time'}
+          </p>
+        </div>
+      ) : (
+        <div className={styles.notificationsList}>
+          {filteredNotifications.map((notification: Notification) => (
+            <div
+              key={notification.id}
+              className={`${styles.notificationCard} ${
+                !notification.isRead ? styles.unread : ''
+              }`}
+            >
+              <div className={styles.notificationHeader}>
+                <h2 className={styles.notificationTitle}>{notification.title}</h2>
+                <div
+                  className={`${styles.statusBadge} ${
+                    notification.isRead ? styles.read : styles.unread
+                  }`}
+                >
+                  <span
+                    className={`${styles.statusDot} ${
+                      notification.isRead ? styles.read : styles.unread
+                    }`}
+                  ></span>
+                  {notification.isRead ? 'Read' : 'Unread'}
+                </div>
+              </div>
+
+              <p className={styles.notificationMessage}>{notification.message}</p>
+
+              <div className={styles.notificationMeta}>
+                <div className={styles.metaItem}>
+                  <Calendar className={styles.metaIcon} />
+                  <span>{notification.date}</span>
+                </div>
+                <div className={styles.metaItem}>
+                  <Clock className={styles.metaIcon} />
+                  <span>{notification.time}</span>
+                </div>
+                <div className={styles.typeBadge}>
+                  <Tag className={styles.metaIcon} />
+                  <span>{notification.type}</span>
+                </div>
+              </div>
+
+              <div className={styles.actions}>
+                {!notification.isRead && (
+                  <button
+                    onClick={() => handleMarkAsRead(notification.id)}
+                    className={`${styles.actionButton} ${styles.markReadButton}`}
+                  >
+                    <CheckCheck size={16} />
+                    Mark as Read
+                  </button>
+                )}
+                <button
+                  onClick={() => handleRemoveNotification(notification.id)}
+                  className={`${styles.actionButton} ${styles.deleteButton}`}
+                >
+                  <Trash2 size={16} />
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );
 };
 
-export default Announcements;
+export default Notifications;

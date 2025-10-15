@@ -453,7 +453,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Schedules", icon: FaCalendarAlt },
     { label: "Tool Box", icon: FaToolbox },
     { label: "Calculate", icon: FaCalculator },
-    { label: "Announcements", icon: FaBullhorn },
+    { label: "Notifications", icon: FaBullhorn },
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
@@ -607,11 +607,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <PersonalDetails />
           </Section>
         );
-      case "Announcements":
+      case "Notifications":
         return (
           <Section
-            title="Announcements"
-            isActive={selectedMenu === "Announcements"}
+            title="Notifications"
+            isActive={selectedMenu === "Notifications"}
           >
             <Announcements />
           </Section>
