@@ -172,7 +172,7 @@ const QuizComponents: React.FC<QuizComponentProps> = ({
       <div className="qzcomp-results-container">
         <div className="qzcomp-results-card">
           <div className="qzcomp-results-header">
-            <h1 className="qzcomp-results-title">Quiz Complete! 🎉</h1>
+            <h1 className="qzcomp-results-title">Quiz Complete!</h1>
             <div className="qzcomp-score-circle">
               <div className="qzcomp-score-content">
                 <span className="qzcomp-score-number">
@@ -205,7 +205,7 @@ const QuizComponents: React.FC<QuizComponentProps> = ({
           <div className="qzcomp-performance-badge">
             {percentage >= 90 && (
               <span className="qzcomp-badge qzcomp-badge-excellent">
-                🌟 Excellent Performance!
+                Excellent Performance!
               </span>
             )}
             {percentage >= 70 && percentage < 90 && (
