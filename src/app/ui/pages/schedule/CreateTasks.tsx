@@ -222,7 +222,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
       await authService.handleCreateTask(newTask).then(() => {
         handleReset();
       });
-      console.log(formData);
+      console.log("Submitting task data:", formData);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
