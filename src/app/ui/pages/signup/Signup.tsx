@@ -635,7 +635,7 @@ const SignUp: React.FunctionComponent = () => {
             {text}
           </button>
           {/* Register with Google Button */}
-          <button
+          {/* <button
             type="button"
             onClick={() => alert("Google Sign-in coming soon 🚀")}
             style={{
@@ -669,7 +669,7 @@ const SignUp: React.FunctionComponent = () => {
               style={{ width: "20px", height: "20px" }}
             />
             Register with Google
-          </button>
+          </button> */}
 
         </form>
       </div>
