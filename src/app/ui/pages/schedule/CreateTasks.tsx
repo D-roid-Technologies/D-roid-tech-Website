@@ -222,7 +222,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
       await authService.handleCreateTask(newTask).then(() => {
         handleReset();
       });
-      console.log(formData);
+      console.log("Submitting task data:", formData);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -485,131 +485,6 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
             </div>
           </div>
 
-          {/* Time Tracking */}
-          {/* <div className={styles.formSection}>
-            <h3 className={styles.sectionTitle}>Time & Scheduling</h3>
-
-            <div className={styles.flexRow}>
-              <input
-                type="number"
-                name="estimatedHours"
-                value={formData.estimatedHours}
-                onChange={(e) => handleNumberInputChange(e, "estimatedHours")}
-                placeholder="Estimated Hours"
-                className={styles.input}
-              />
-              <input
-                type="number"
-                name="actualHours"
-                value={formData.actualHours}
-                onChange={(e) => handleNumberInputChange(e, "actualHours")}
-                placeholder="Actual Hours"
-                className={styles.input}
-              />
-            </div>
-
-            <div className={styles.flexRow}>
-              <input
-                type="date"
-                name="startDate"
-                value={formData.startDate}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
-              <input
-                type="date"
-                name="dueDate"
-                value={formData.dueDate}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
-              <input
-                type="date"
-                name="completedAt"
-                value={formData.completedAt}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
-              <input
-                type="date"
-                name="reminderAt"
-                value={formData.reminderAt}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
-            </div>
-
-            <div className={styles.flexColumn}>
-              <label className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  name="recurring"
-                  checked={formData.recurring}
-                  onChange={handleInputChange}
-                />
-                Recurring
-              </label>
-
-              <div className="lf-form-group" style={{ maxWidth: "220px" }}>
-                <label className="lf-label">Recurrence Pattern</label>
-                <Listbox
-                  value={formData.recurrencePattern}
-                  onChange={(value) =>
-                    handleListboxChange("recurrencePattern", value)
-                  }
-                >
-                  <div className="lf-dropdown">
-                    <Listbox.Button className="lf-dropdown-btn">
-                      <span>
-                        {recurrenceOptions.find(
-                          (option) =>
-                            option.value === formData.recurrencePattern
-                        )?.label || "Select pattern"}
-                      </span>
-                      <ChevronsUpDown
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </Listbox.Button>
-                    <Listbox.Options className="lf-dropdown-options">
-                      {recurrenceOptions.map((option) => (
-                        <Listbox.Option
-                          key={option.value}
-                          value={option.value}
-                          className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                              selected ? "lf-selected" : ""
-                            }`
-                          }
-                        >
-                          {({ selected }) => (
-                            <div className="flex items-center justify-between">
-                              <span>{option.label}</span>
-                              {selected && (
-                                <Check className="h-5 w-5" aria-hidden="true" />
-                              )}
-                            </div>
-                          )}
-                        </Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </div>
-                </Listbox>
-              </div>
-
-              {formData.recurrencePattern === "custom" && (
-                <input
-                  type="text"
-                  name="customRecurrenceRule"
-                  value={formData.customRecurrenceRule}
-                  onChange={handleInputChange}
-                  placeholder="Custom RRULE"
-                  className={styles.input}
-                  style={{ maxWidth: "400px" }}
-                />
-              )}
-            </div>
-          </div> */}
           {/* Time Tracking */}
           <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Time & Scheduling</h3>
