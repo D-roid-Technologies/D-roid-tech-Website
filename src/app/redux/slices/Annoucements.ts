@@ -30,7 +30,7 @@ const announcementSlice = createSlice({
     },
     removeAnnouncement: (state, action) => {
       return state.filter(
-        (announcement) => announcement.id !== action.payload.id
+        (announcement) => announcement.id !== action.payload
       );
     },
     updateAnnouncement: (state, action) => {
@@ -41,9 +41,17 @@ const announcementSlice = createSlice({
         state[index] = action.payload;
       }
     },
+    markAsRead: (state, action) => {
+      const announcement = state.find(
+        (announcement) => announcement.id === action.payload
+      );
+      if (announcement) {
+        announcement.isRead = true;
+      }
+    },
   },
 });
 
-export const { addAnnouncement, removeAnnouncement, updateAnnouncement } =
+export const { addAnnouncement, removeAnnouncement, updateAnnouncement, markAsRead } =
   announcementSlice.actions;
 export default announcementSlice.reducer;

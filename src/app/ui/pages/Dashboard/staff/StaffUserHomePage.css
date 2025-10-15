@@ -388,6 +388,7 @@
   .shp-two-column {
     grid-template-columns: 1fr;
     gap: 20px;
+    
   }
 
   .shp-stat-card {

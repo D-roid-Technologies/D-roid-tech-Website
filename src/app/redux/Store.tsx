@@ -14,7 +14,6 @@ import { signInAndOutSlice } from "./slices/SignInAndOutSlice";
 import { payslipSlice } from "./slices/paySlipSlice";
 import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
 import tasksReducer from "./slices/tasksSlice";
-import announcementsReducer from "./slices/Annoucements";
 import { trainingSlice } from "./slices/TrainingsSlice";
 import { scheduleTask } from "./slices/scheduleTask";
 import ProgressionSlice from "./slices/ProgressionSlice";
@@ -25,6 +24,7 @@ import { notificationsSlice } from "./slices/notificationSlice";
 import { onboardingSlice } from "./slices/onboarding";
 import { memberStatsSlice } from "./slices/memberStatus";
 import { membershipTierSlice } from "./slices/membershipTierSlice";
+import staffReducer from "./slices/staffSlice";
 
 const persistConfig = {
   key: "root",
@@ -46,7 +46,6 @@ const rootReducer = combineReducers({
   payslip: payslipSlice.reducer,
   connectedApps: affiliatedAppsSlice.reducer,
   tasks: tasksReducer,
-  announcements: announcementsReducer,
   trainings: trainingSlice.reducer,
   scheduleTask: scheduleTask.reducer,
   progression: ProgressionSlice,
@@ -57,7 +56,8 @@ const rootReducer = combineReducers({
   onboarding: onboardingSlice.reducer,
   training: trainingSlice.reducer,
   memberStatus: memberStatsSlice.reducer,
-  membershipTier: membershipTierSlice.reducer
+  membershipTier: membershipTierSlice.reducer,
+  staff: staffReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
