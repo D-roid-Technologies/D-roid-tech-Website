@@ -4,6 +4,7 @@ import styles from './Notifications.module.css';
 import { useSelector, useDispatch } from "react-redux";
 import { removeNotification, markAsRead, type Notification } from "../../../redux/slices/notificationSlice";
 import { RootState } from "../../../redux/Store";
+import TimeLabel from "../../../utils/TimeLabel";
 
 type FilterType = 'all' | 'unread' | 'read';
 
@@ -117,7 +118,7 @@ const Notifications: React.FC = () => {
                 </div>
                 <div className={styles.metaItem}>
                   <Clock className={styles.metaIcon} />
-                  <span>{notification.time}</span>
+                  <span><TimeLabel date={notification.time} /></span>
                 </div>
                 <div className={styles.typeBadge}>
                   <Tag className={styles.metaIcon} />

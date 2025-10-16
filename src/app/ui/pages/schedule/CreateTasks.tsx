@@ -223,26 +223,22 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
 
       await authService.handleCreateTask(newTask).then(() => {
         // Create notification for task creation
+        const now = new Date();
         const notification = {
           id: Date.now(),
           title: "New Task Created",
           message: `Task "${formData.title}" has been created successfully with ${formData.priority} priority.`,
-          date: new Date().toISOString().split('T')[0],
-          time: "Just now",
+          date: now.toISOString().split('T')[0],
+          time: now.toISOString(), // Store full ISO timestamp for real-time calculation
           type: "info",
           isRead: false,
         };
         
-        console.log("📢 Dispatching notification:", notification);
-        
         // Dispatch notification to Redux store
         dispatch(addNotification(notification));
         
-        console.log("✅ Notification dispatched successfully");
-        
         handleReset();
       });
-      console.log("Submitting task data:", formData);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
