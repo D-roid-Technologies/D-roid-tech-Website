@@ -485,14 +485,14 @@ const QuizComponents: React.FC<QuizComponentProps> = ({
               ))}
             </div>
 
-            {canSubmit && (
+            {/* {canSubmit && (
               <button
                 onClick={handleSubmitQuiz}
                 className="qzcomp-btn qzcomp-btn-success qzcomp-btn-block"
               >
                 Submit All Answers
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>

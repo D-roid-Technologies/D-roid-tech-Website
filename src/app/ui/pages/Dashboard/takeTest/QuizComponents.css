@@ -359,7 +359,6 @@
   padding: 8px 5px;
   border-radius: 12px;
   text-align: center;
-  /* color: white; */
   background: transparent;
   border: 2px solid #e2e8f0;
   color: #64748b;
@@ -396,6 +395,7 @@
   font-weight: 600;
   color: #64748b;
   cursor: pointer;
+  padding: 8px;
   transition: all 0.3s ease;
 }
 
