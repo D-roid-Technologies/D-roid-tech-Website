@@ -29,7 +29,7 @@ import staffReducer from "./slices/staffSlice";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user"], // only persist user slice
+  whitelist: ["user", "notifications"], // persist user and notifications slices
 };
 
 const rootReducer = combineReducers({

@@ -25,6 +25,7 @@ import { eventsPosts } from "../../../../utils/blogpost";
 import { updateStat } from "../../../../redux/slices/memberStatus";
 import EventPosts from "../../../components/blogPosts/Events";
 import { setNotifications } from "../../../../redux/slices/notificationSlice";
+import { getRelativeTime } from "../../../../utils/timeUtils";
 
 type QuickActionCardProps = {
   title: string;
@@ -272,7 +273,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       setSelectedMenu("Personal Details");
       setNotificationModalOpen(false);
     } else {
-      // For all other notifications, navigate to Notifications page
+      // For all other notifications (including task notifications), navigate to Notifications page
       setSelectedMenu("Notifications");
       setNotificationModalOpen(false);
     }
@@ -305,7 +306,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 
   useEffect(() => {
     const profileUpdated = localStorage.getItem("profileUpdated");
-
+const now = new Date();
     if (!profileUpdated) {
       // Check if the notification already exists to avoid duplicates
       const profileUpdateNotificationExists = notifications.some(
@@ -319,7 +320,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
           message:
             "Please update your profile information to get the most out of your membership.",
           date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
-          time: "Just now",
+          time: getRelativeTime(now),
           type: "warning",
           isRead: false,
         };
