@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck } from 'lucide-react';
 import styles from './Notifications.module.css';
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +14,12 @@ const Notifications: React.FC = () => {
     (state: RootState) => state.notifications || []
   );
   const dispatch = useDispatch();
+
+  // Debug: Log notifications when they change
+  useEffect(() => {
+    console.log("🔔 Notifications in Notifications.tsx:", notifications);
+    console.log("🔔 Total notifications count:", notifications.length);
+  }, [notifications]);
 
 
 

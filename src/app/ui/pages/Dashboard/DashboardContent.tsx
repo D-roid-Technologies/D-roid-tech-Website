@@ -37,7 +37,7 @@ import StaffPay from "./StaffPay";
 import WelcomePage from "./WelcomePage";
 import Onboarding from "./Onboarding";
 import Tasks from "./Tasks";
-import Announcements from "./Announcements";
+import Announcements from "./Notifications";
 import SayIt from "./SayIt";
 import Trainings from "./Trainings";
 import Progression from "./Progressions";

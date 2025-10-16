@@ -272,7 +272,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       setSelectedMenu("Personal Details");
       setNotificationModalOpen(false);
     } else {
-      // For all other notifications, navigate to Notifications page
+      // For all other notifications (including task notifications), navigate to Notifications page
       setSelectedMenu("Notifications");
       setNotificationModalOpen(false);
     }

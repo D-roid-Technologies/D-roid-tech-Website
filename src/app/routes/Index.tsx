@@ -82,7 +82,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/Store";
 import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage";
 import CalenderPage from "../ui/pages/schedule/CalenderPage";
-import Announcements from "../ui/pages/Dashboard/Announcements";
+import Announcements from "../ui/pages/Dashboard/Notifications";
 import LeadForm from "../ui/pages/softwareDevelopment/SoftwarePages/LeadForm";
 import QuizePage from "../ui/pages/Quize/Quiz";
 import TestDetailPage from "../ui/pages/Dashboard/takeTest/TestDetailPage";

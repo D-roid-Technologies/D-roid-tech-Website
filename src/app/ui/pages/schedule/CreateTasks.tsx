@@ -7,8 +7,9 @@ import { ChevronsUpDown, Check } from "lucide-react";
 import styles from "./CreateTasks.module.css";
 import { authService } from "../../../redux/configuration/auth.service";
 import { TaskMain, UserRef } from "../../../redux/slices/scheduleTask";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/Store";
+import { addNotification } from "../../../redux/slices/notificationSlice";
 
 interface CreateTaskFormProps {
   onBack: () => void;
@@ -46,6 +47,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
   initialData,
   mode = "add",
 }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
   const [formData, setFormData] = useState<TaskMain>({
     id: crypto.randomUUID(),
@@ -220,6 +222,24 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
       const newTask = { ...formData };
 
       await authService.handleCreateTask(newTask).then(() => {
+        // Create notification for task creation
+        const notification = {
+          id: Date.now(),
+          title: "New Task Created",
+          message: `Task "${formData.title}" has been created successfully with ${formData.priority} priority.`,
+          date: new Date().toISOString().split('T')[0],
+          time: "Just now",
+          type: "info",
+          isRead: false,
+        };
+        
+        console.log("📢 Dispatching notification:", notification);
+        
+        // Dispatch notification to Redux store
+        dispatch(addNotification(notification));
+        
+        console.log("✅ Notification dispatched successfully");
+        
         handleReset();
       });
       console.log("Submitting task data:", formData);
