@@ -137,8 +137,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     time: string;
     type: string;
     isRead: boolean;
-    id: number
-    date: string
+    id: number;
+    date: string;
   };
   const notifications = useSelector(
     (state: RootState) => state.notifications as Notification[]
@@ -160,7 +160,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       description: "View and update your profile information",
       icon: FaUser,
       variant: "primary",
-      
     },
     {
       title: "Services",
@@ -306,7 +305,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 
   useEffect(() => {
     const profileUpdated = localStorage.getItem("profileUpdated");
-const now = new Date();
+    const now = new Date();
     if (!profileUpdated) {
       // Check if the notification already exists to avoid duplicates
       const profileUpdateNotificationExists = notifications.some(
@@ -319,7 +318,7 @@ const now = new Date();
           title: "Complete Your Profile",
           message:
             "Please update your profile information to get the most out of your membership.",
-          date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+          date: new Date().toISOString().split("T")[0], // Current date in YYYY-MM-DD format
           time: getRelativeTime(now),
           type: "warning",
           isRead: false,

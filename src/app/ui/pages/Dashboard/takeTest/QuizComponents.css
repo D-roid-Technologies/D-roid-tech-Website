@@ -481,9 +481,9 @@
 
 /* Results Container */
 .qzcomp-results-container {
-  min-height: 100vh;
-  background: #071d69;
-  padding: 40px 20px;
+  /* min-height: 100vh; */
+  background: #f1f5f9;
+  padding: 10px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -495,7 +495,7 @@
   padding: 40px;
   max-width: 900px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); */
   animation: qzcomp-resultsFadeIn 0.6s ease;
 }
 
@@ -524,14 +524,15 @@
 
 .qzcomp-score-circle {
   width: 180px;
-  height: 180px;
+  height: 150px;
   margin: 0 auto;
   background: #071d69;
+  border: 2px solid #e4e8eb;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+  /* box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4); */
   position: relative;
   animation: qzcomp-scoreRotate 1s ease;
 }
@@ -547,12 +548,12 @@
 
 .qzcomp-score-content {
   text-align: center;
-  color: white;
+  color: #ffffff;
 }
 
 .qzcomp-score-number {
   display: block;
-  font-size: 56px;
+  font-size: 35px;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 8px;
@@ -574,7 +575,7 @@
 
 .qzcomp-stat-item {
   background: #f8fafc;
-  padding: 24px;
+  padding: 10px 24px;
   border-radius: 12px;
   text-align: center;
   border: 2px solid #e2e8f0;
@@ -582,7 +583,7 @@
 
 .qzcomp-stat-value {
   display: block;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   color: #445cc5;
   margin-bottom: 8px;
