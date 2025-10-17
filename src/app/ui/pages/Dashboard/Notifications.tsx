@@ -86,7 +86,7 @@ const Notifications: React.FC = () => {
         </div>
       ) : (
         <div className={styles.notificationsList}>
-          {filteredNotifications.map((notification: Notification) => (
+          {[...filteredNotifications].reverse().map((notification: Notification) => (
             <div
               key={notification.id}
               className={`${styles.notificationCard} ${

@@ -510,7 +510,7 @@ const now = new Date();
                     </span>
                   </div>
                   <div className="shp-notifications-list">
-                    {notifications.map((notification, index) => (
+                    {[...notifications].reverse().map((notification, index) => (
                       <NotificationItem
                         key={index}
                         title={notification.title}
