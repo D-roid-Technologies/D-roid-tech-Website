@@ -20,7 +20,7 @@ const defaultNotifications: Notification[] = [
     title: "System Maintenance",
     message: "Scheduled maintenance this Friday at 10 PM.",
     date: "2025-05-15",
-    time: "1 day ago",
+    time: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), // 1 day ago
     type: "warning",
     isRead: false,
   },
@@ -29,13 +29,51 @@ const defaultNotifications: Notification[] = [
     title: "New Policy Update",
     message: "Please review the updated attendance policy.",
     date: "2025-05-12",
-    time: "2 hours ago",
+    time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
     type: "info",
     isRead: false,
   },
 ];
 
-const initialState: Notification[] = loadFromLocalStorage<Notification[]>(LOCAL_KEY, defaultNotifications);
+// Migration function to fix old notification format
+function migrateNotifications(notifications: Notification[]): Notification[] {
+  if (!Array.isArray(notifications)) {
+    console.error("Invalid notifications data, using defaults");
+    return defaultNotifications;
+  }
+  
+  return notifications.map(notification => {
+    // Ensure notification has required fields
+    if (!notification || typeof notification !== 'object') {
+      console.warn("Invalid notification object, skipping");
+      return null;
+    }
+    
+    // Check if time exists and is valid
+    let validTime = notification.time;
+    
+    if (!notification.time) {
+      console.warn(`Missing time for notification: ${notification.title}, using current time`);
+      validTime = new Date().toISOString();
+    } else {
+      const timeDate = new Date(notification.time);
+      
+      // If invalid, convert to ISO string or use current time
+      if (isNaN(timeDate.getTime())) {
+        console.warn(`Migrating invalid notification time for: ${notification.title}`, notification.time);
+        validTime = new Date().toISOString();
+      }
+    }
+    
+    return {
+      ...notification,
+      time: validTime
+    };
+  }).filter(n => n !== null); // Remove any null entries
+}
+
+const loadedNotifications = loadFromLocalStorage<Notification[]>(LOCAL_KEY, defaultNotifications);
+const initialState: Notification[] = migrateNotifications(loadedNotifications);
 
 export const notificationsSlice = createSlice({
     name: "notifications",

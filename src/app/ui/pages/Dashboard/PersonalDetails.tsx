@@ -2,12 +2,13 @@
 
 import type React from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Listbox } from "@headlessui/react";
 import { ChevronsUpDown, Check } from "lucide-react";
 import { authService } from "../../../redux/configuration/auth.service";
 import type { RootState } from "../../../redux/Store";
 import type { UserType } from "../../../utils/Types";
+import { addNotification } from "../../../redux/slices/notificationSlice";
 import AffiliatedApps from "./AffiliatedApps";
 import DocumentUploadUI from "./DocumentUploadUI";
 import PreferencesUI from "./PreferencesUI";
@@ -36,6 +37,7 @@ const genderOptions = [
   { value: "Prefer not to say", label: "Prefer not to say" },
 ];
 const PersonalDetails: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const userType = userDetails.userType;
   const [formData, setFormData] = useState<UserType | null>(null);
@@ -456,9 +458,23 @@ const PersonalDetails: React.FunctionComponent = () => {
     try {
       await authService.updatePrimaryInformation(formData);
       setSubmitStatus("success");
-            localStorage.setItem("profileUpdated", JSON.stringify(formData));
-            console.log("profileUpdated>>>>>>>>>>>>");
-            
+      localStorage.setItem("profileUpdated", JSON.stringify(formData));
+      console.log("profileUpdated>>>>>>>>>>>>");
+      
+      // Create notification for profile update
+      const now = new Date();
+      const notification = {
+        id: Date.now(),
+        title: "Profile Updated Successfully",
+        message: `Your personal details have been updated. Changes include: ${formData.firstName} ${formData.lastName}, ${formData.email}`,
+        date: now.toISOString().split('T')[0],
+        time: now.toISOString(),
+        type: "success",
+        isRead: false,
+      };
+      
+      // Dispatch notification to Redux store
+      dispatch(addNotification(notification));
 
       setErrors({});
     } catch (error) {

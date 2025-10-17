@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addNotification } from "../../../redux/slices/notificationSlice";
 
 interface ApplicationFormProps {
   programTitle: string;
@@ -10,6 +12,7 @@ interface ApplicationFormProps {
 const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
   programTitle,
 }) => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -76,6 +79,21 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
 
     // Log form data to console
     console.log("Form Submission Data:", completeFormData);
+
+    // Create notification for training application submission
+    const now = new Date();
+    const notification = {
+      id: Date.now(),
+      title: "Training Application Submitted",
+      message: `Your application for "${programTitle}" has been submitted successfully. Reference: ${generatedRef}`,
+      date: now.toISOString().split('T')[0],
+      time: now.toISOString(),
+      type: "success",
+      isRead: false,
+    };
+
+    // Dispatch notification to Redux store
+    dispatch(addNotification(notification));
 
     // Show success toast
     toast.success("Application submitted successfully!", {
