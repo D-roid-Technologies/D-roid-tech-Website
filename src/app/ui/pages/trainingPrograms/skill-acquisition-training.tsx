@@ -2,10 +2,21 @@
 
 import type React from "react"
 import { useState } from "react"
-import { ChevronDown, ChevronUp, Wrench, Clock, Users, Award } from "lucide-react"
+import { ChevronDown, ChevronUp, Wrench, Clock, Users, Award, MessageCircle } from "lucide-react"
 
-export const SkillAcquisitionTraining: React.FC = () => {
+type SkillAcquisitionTrainingProps = {
+  onContactClick?: () => void
+}
+
+export const SkillAcquisitionTraining: React.FC<SkillAcquisitionTrainingProps> = ({ onContactClick }) => {
   const [isExpanded, setIsExpanded] = useState(true)
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (onContactClick) {
+      onContactClick()
+    }
+  }
 
   const skillData = {
     title: "Skill Acquisition Training",
@@ -296,6 +307,39 @@ export const SkillAcquisitionTraining: React.FC = () => {
           </div>
         </div>
       )}
+
+      <button
+        onClick={handleContactClick}
+        style={{
+          marginTop: "1.5rem",
+          padding: "0.875rem 1.5rem",
+          backgroundColor: "#2667cc",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          fontSize: "1rem",
+          fontWeight: "600",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          transition: "all 0.3s ease",
+          boxShadow: "0 4px 12px rgba(38, 103, 204, 0.2)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "#071d6a"
+          e.currentTarget.style.transform = "translateY(-2px)"
+          e.currentTarget.style.boxShadow = "0 6px 16px rgba(38, 103, 204, 0.3)"
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = "#2667cc"
+          e.currentTarget.style.transform = "translateY(0)"
+          e.currentTarget.style.boxShadow = "0 4px 12px rgba(38, 103, 204, 0.2)"
+        }}
+      >
+        <MessageCircle size={18} />
+        Contact Us
+      </button>
     </div>
   )
 }
