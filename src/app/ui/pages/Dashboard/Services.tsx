@@ -18,7 +18,11 @@ import { trainingPrograms } from "./data/trainingPrograms";
 import { consultingItems } from "./data/consultingItems";
 import { animationItems } from "./data/animationItems";
 
-const ServicesItems: React.FC = () => {
+interface ServicesItemsProps {
+  onOpenSayIt?: () => void;
+}
+
+const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
   const [showContentMain, setShowContentMain] = useState<boolean>(true);
   const [showContent, setShowContent] = useState<boolean>(false);
   const [showTitle, setShowTitle] = useState<string>("");
@@ -245,6 +249,7 @@ const ServicesItems: React.FC = () => {
               icon={activeTechDetail.icon}
               title={activeTechDetail.title}
               description={activeTechDetail.description}
+              onContactClick={onOpenSayIt}
             />
           </>
         )}
@@ -443,6 +448,7 @@ const ServicesItems: React.FC = () => {
               icon={activeConsultingDetail.icon}
               title={activeConsultingDetail.title}
               description={activeConsultingDetail.description}
+              onContactClick={onOpenSayIt}
             />
           </>
         )}

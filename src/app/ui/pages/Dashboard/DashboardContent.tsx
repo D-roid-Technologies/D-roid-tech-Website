@@ -855,7 +855,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Services":
         return (
           <Section title="Your Services" isActive={selectedMenu === "Services"}>
-            <ServicesItems />
+            <ServicesItems onOpenSayIt={() => setSelectedMenu("Say It")} />
           </Section>
         );
       case "Careers":
