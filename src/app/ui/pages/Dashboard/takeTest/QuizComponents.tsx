@@ -68,8 +68,8 @@ const QuizComponents: React.FC<QuizComponentProps> = ({
   useEffect(() => {
     const durationMatch = testData.duration.match(/(\d+)/);
     const minutes = durationMatch ? parseInt(durationMatch[1]) : 30;
-    // const minutes = durationMatch ? parseInt(durationMatch[1]) : 30;
     setTimeRemaining(minutes * 60);
+    // setTimeRemaining(30 * 60);
   }, [testData.duration]);
 
   // Timer countdown
