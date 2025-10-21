@@ -287,7 +287,7 @@ export const Questions = [
     subTitle: "Evaluate your web development skills with PHP",
     summary:
       "This PHP test covers server-side scripting, frameworks like Laravel, and database integration.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam assesses your knowledge of PHP fundamentals, object-oriented programming, popular frameworks, and your ability to build dynamic web applications.",
     level: "Beginner to Intermediate",
@@ -868,7 +868,7 @@ export const Questions = [
     subTitle: "Master iOS and macOS app development",
     summary:
       "This Swift test covers iOS development, UIKit, SwiftUI, and modern Swift language features.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam evaluates your understanding of Swift syntax, iOS app architecture, user interface development, and your ability to build native Apple applications.",
     level: "Beginner to Advanced",
@@ -2068,7 +2068,7 @@ export const Questions = [
     subTitle: "Test your skills in web, data, and automation with Python",
     summary:
       "This Python exam covers syntax, OOP, libraries, and frameworks like Flask/Django.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The test measures your knowledge of Python basics, OOP concepts, data handling, and popular frameworks like Flask and Django. Includes both multiple-choice and coding tasks.",
     level: "Beginner to Intermediate",
@@ -4291,7 +4291,7 @@ export const Questions = [
     subTitle: "Assess your modern frontend development skills",
     summary:
       "This React test evaluates your knowledge of components, hooks, state management, and modern React patterns for building dynamic user interfaces.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam measures your React competency, covering JSX, components, hooks, state management, and best practices for modern frontend development.",
     level: "Beginner to Advanced",
