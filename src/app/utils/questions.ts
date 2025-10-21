@@ -101,7 +101,7 @@
 //         subTitle: "Test your skills in web, data, and automation with Python",
 //         summary:
 //             "This Python exam covers syntax, OOP, libraries, and frameworks like Flask/Django.",
-//         duration: "50 minutes",
+//         duration: "30 minutes",
 //         description:
 //             "The test measures your knowledge of Python basics, OOP concepts, data handling, and popular frameworks like Flask and Django. Includes both multiple-choice and coding tasks.",
 //         level: "Beginner to Intermediate",
@@ -224,7 +224,7 @@
 //     subTitle: "Test your skills in web, data, and automation with Python",
 //     summary:
 //       "This Python exam covers syntax, OOP, libraries, and frameworks like Flask/Django.",
-//     duration: "50 minutes",
+//     duration: "30 minutes",
 //     description:
 //       "The test measures your knowledge of Python basics, OOP concepts, data handling, and popular frameworks like Flask and Django. Includes both multiple-choice and coding tasks.",
 //     level: "Beginner to Intermediate",
@@ -374,7 +374,7 @@
 //     subTitle: "Evaluate your web development and server-side scripting skills",
 //     summary:
 //       "This PHP test assesses your knowledge of PHP syntax, frameworks like Laravel, and database integration.",
-//     duration: "50 minutes",
+//     duration: "30 minutes",
 //     description:
 //       "The exam covers PHP fundamentals, object-oriented programming, popular frameworks, and your ability to build dynamic web applications with database connectivity.",
 //     level: "Beginner to Intermediate",
@@ -438,7 +438,7 @@
 //     subTitle: "Master modern frontend development with React",
 //     summary:
 //       "This React test covers components, hooks, state management, and modern React patterns.",
-//     duration: "50 minutes",
+//     duration: "30 minutes",
 //     description:
 //       "The exam evaluates your understanding of React fundamentals, modern hooks, component lifecycle, and your ability to build scalable frontend applications.",
 //     level: "Beginner to Advanced",
@@ -534,7 +534,7 @@
 //     subTitle: "Evaluate your iOS and macOS development skills",
 //     summary:
 //       "This Swift test covers iOS development, SwiftUI, and Apple platform programming.",
-//     duration: "50 minutes",
+//     duration: "30 minutes",
 //     description:
 //       "The exam evaluates your understanding of Swift language features, iOS app development, SwiftUI framework, and Apple's development ecosystem.",
 //     level: "Beginner to Intermediate",
@@ -566,7 +566,7 @@
 //     subTitle: "Test your Android development and JVM programming skills",
 //     summary:
 //       "This Kotlin test assesses your knowledge of Android development, coroutines, and interoperability with Java.",
-//     duration: "50 minutes",
+//     duration: "30 minutes",
 //     description:
 //       "The exam covers Kotlin fundamentals, Android app development, coroutines for async programming, and seamless integration with existing Java codebases.",
 //     level: "Beginner to Intermediate",
@@ -698,7 +698,7 @@ export const Questions = [
     subTitle: "Evaluate your web development skills with PHP",
     summary:
       "This PHP test covers server-side scripting, frameworks like Laravel, and database integration.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam assesses your knowledge of PHP fundamentals, object-oriented programming, popular frameworks, and your ability to build dynamic web applications.",
     level: "Beginner to Intermediate",
@@ -887,7 +887,7 @@ export const Questions = [
     subTitle: "Master iOS and macOS app development",
     summary:
       "This Swift test covers iOS development, UIKit, SwiftUI, and modern Swift language features.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam evaluates your understanding of Swift syntax, iOS app architecture, user interface development, and your ability to build native Apple applications.",
     level: "Beginner to Advanced",
@@ -1304,7 +1304,7 @@ export const Questions = [
     subTitle: "Test your skills in web, data, and automation with Python",
     summary:
       "This Python exam covers syntax, OOP, libraries, and frameworks like Flask/Django.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The test measures your knowledge of Python basics, OOP concepts, data handling, and popular frameworks like Flask and Django. Includes both multiple-choice and coding tasks.",
     level: "Beginner to Intermediate",
@@ -1468,7 +1468,7 @@ export const Questions = [
     subTitle: "Master modern frontend development with React",
     summary:
       "This React test covers components, hooks, state management, and modern React patterns.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam evaluates your understanding of React fundamentals, modern hooks, component lifecycle, and your ability to build scalable frontend applications.",
     level: "Beginner to Advanced",
@@ -1849,7 +1849,7 @@ export const Questions = [
       "Test your proficiency in building high-performance, concurrent applications",
     summary:
       "This Go test evaluates your knowledge of Go fundamentals, goroutines, channels, error handling, and building scalable microservices.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam measures your competency in Go programming, covering syntax, concurrency patterns, error handling, and microservice development.",
     level: "Beginner to Advanced",
@@ -2129,7 +2129,7 @@ export const Questions = [
     subTitle: "Assess your modern frontend development skills",
     summary:
       "This React test evaluates your knowledge of components, hooks, state management, and modern React patterns for building dynamic user interfaces.",
-    duration: "50 minutes",
+    duration: "30 minutes",
     description:
       "The exam measures your React competency, covering JSX, components, hooks, state management, and best practices for modern frontend development.",
     level: "Beginner to Advanced",

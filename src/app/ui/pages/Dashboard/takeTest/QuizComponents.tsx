@@ -58,34 +58,59 @@ const QuizComponents: React.FC<QuizComponentProps> = ({
   const canSubmit = answeredCount === testData.quiz.length;
 
   // Parse duration and set initial time
+
+  //   useEffect(() => {
+  //     const durationMatch = testData.duration.match(/(\d+)/);
+  //     const minutes = durationMatch ? parseInt(durationMatch[1]) : 60;
+  //     setTimeRemaining(minutes * 60);
+  //   }, [testData.duration]);
+
   useEffect(() => {
     const durationMatch = testData.duration.match(/(\d+)/);
-    const minutes = durationMatch ? parseInt(durationMatch[1]) : 60;
+    const minutes = durationMatch ? parseInt(durationMatch[1]) : 30;
     setTimeRemaining(minutes * 60);
+    // setTimeRemaining(30 * 60);
   }, [testData.duration]);
 
   // Timer countdown
+  //   useEffect(() => {
+  //     if (timeRemaining <= 0 && !showResults) {
+  //       // Time's up - only submit if quiz is ready
+  //       if (canSubmit) {
+  //         handleSubmitQuiz();
+  //       }
+  //       return;
+  //     }
+
+  //     const timer = setInterval(() => {
+  //       setTimeRemaining((prev) => {
+  //         if (prev <= 1) {
+  //           clearInterval(timer);
+  //           return 0;
+  //         }
+  //         return prev - 1;
+  //       });
+  //     }, 1000);
+
+  //     return () => clearInterval(timer);
+  //   }, [timeRemaining, showResults, canSubmit]);
   useEffect(() => {
-    if (timeRemaining <= 0 && !showResults) {
-      // Time's up - only submit if quiz is ready
-      if (canSubmit) {
-        handleSubmitQuiz();
-      }
-      return;
-    }
+    if (showResults) return; // Stop timer when results show
 
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
+          handleSubmitQuiz(); // Auto-submit when time is up
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
 
+    // Cleanup when component unmounts or quiz ends
     return () => clearInterval(timer);
-  }, [timeRemaining, showResults, canSubmit]);
+  }, [showResults]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -158,7 +183,6 @@ const QuizComponents: React.FC<QuizComponentProps> = ({
       timeSpent,
     };
 
-    // Show results in this component
     setShowResults(true);
   };
 
