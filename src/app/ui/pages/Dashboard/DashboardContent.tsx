@@ -27,6 +27,7 @@ import {
   FaHeart,
   FaDonate,
   FaServicestack,
+  FaPencilAlt,
 } from "react-icons/fa";
 import { IoHomeSharp } from "react-icons/io5";
 import PersonalDetails from "./PersonalDetails";
@@ -463,6 +464,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           { label: "Training", icon: FaChalkboardTeacher },
           { label: "Progressions", icon: FaChartLine },
           { label: "Attendance", icon: FaBookOpen },
+          { label: "Take Test", icon: FaPencilAlt },
         ]
       : []),
   ];
@@ -532,7 +534,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           return (
             <>
               <Section title="Staff Dashboard">
-                <StaffUserHomePage />
+                <StaffUserHomePage setSelectedMenu={setSelectedMenu} />
               </Section>
             </>
           );
@@ -937,6 +939,24 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Your Reports" isActive={selectedMenu === "Reports"}>
             <ReportsSection />
+          </Section>
+        );
+      case "Attendance":
+        return (
+          <Section title="Attendance" isActive={selectedMenu === "Attendance"}>
+            <p style={{ color: "#000000" }}>
+              Track your sign-in and sign-out times.
+            </p>
+            <SignInOut />
+          </Section>
+        );
+      case "Take Test":
+        return (
+          <Section title="Take Test" isActive={selectedMenu === "Take Test"}>
+            <p style={{ color: "#000000" }}>
+              Access and complete your assigned tests.
+            </p>
+            <TakeTestFolder />
           </Section>
         );
       default:
