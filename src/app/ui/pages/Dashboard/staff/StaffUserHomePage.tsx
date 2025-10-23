@@ -24,8 +24,11 @@ import {
   FaBullhorn,
   FaSpinner,
 } from "react-icons/fa";
+import { IoIosNotifications } from "react-icons/io";
+import { FiActivity } from "react-icons/fi";
 import "./StaffUserHomePage.css";
 import { StatCard } from "../micro-ui/stat-card";
+import { Modal } from "../micro-ui/modal";
 import { useSelector, useDispatch } from "react-redux";
 import { UserType } from "../../../../utils/Types";
 import { RootState } from "../../../../redux/Store";
@@ -96,54 +99,36 @@ const TaskActivityItem = ({ task, action, time }: TaskActivityItemProps) => {
   );
 };
 
-type AnnouncementItemProps = {
-  id: number;
+type NotificationItemProps = {
   title: string;
   message: string;
-  date: string;
   time: string;
   type: string;
   isRead: boolean;
+  onClick?: () => void;
 };
 
-const AnnouncementItem = ({
-  id,
+const NotificationItem = ({
   title,
   message,
-  date,
   time,
   type,
+  isRead,
   onClick,
-}: AnnouncementItemProps & { onClick: () => void }) => {
-  // Calculate time difference for display
-  const getTimeAgo = (dateString: string) => {
-    const announcementDate = new Date(dateString);
-    const now = new Date();
-    const diffInMs = now.getTime() - announcementDate.getTime();
-    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-
-    if (diffInDays === 0) {
-      return "Today";
-    } else if (diffInDays === 1) {
-      return "Yesterday";
-    } else if (diffInDays < 7) {
-      return `${diffInDays} days ago`;
-    } else {
-      return announcementDate.toLocaleDateString();
-    }
-  };
-
-  return (
-    <div className="shp-notification-item unread" onClick={onClick}>
-      <div className="shp-notification-indicator info"></div>
-      <div className="shp-notification-content">
-        <h5 className="shp-notification-title">{title}</h5>
-        <p className="shp-notification-message">{message}</p>
-        <span className="shp-notification-time">{getTimeAgo(date)}</span>
-      </div>
+}: NotificationItemProps) => (
+  <div
+    className={`shp-notification-item ${isRead ? "read" : "unread"}`}
+    onClick={onClick}
+    style={{ cursor: onClick ? "pointer" : "default" }}
+  >
+    <div className={`shp-notification-indicator ${type}`}></div>
+    <div className="shp-notification-content">
+      <h5 className="shp-notification-title">{title}</h5>
+      <p className="shp-notification-message">{message}</p>
+      <span className="shp-notification-time">{time}</span>
     </div>
-  );
-};
+  </div>
+);
 
 type RecentActivityItemProps = {
   action: string;
@@ -178,7 +163,21 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
-  const announcements = useSelector((state: RootState) => state.notifications);
+  
+  // Get notifications from Redux slice
+  type Notification = {
+    title: string;
+    message: string;
+    time: string;
+    type: string;
+    isRead: boolean;
+    id: number;
+    date: string;
+  };
+  const notifications = useSelector(
+    (state: RootState) => state.notifications as Notification[]
+  );
+  
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   
   // Get staff metrics from Redux state
@@ -187,6 +186,8 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
   );
   
   const [currentTime] = useState(new Date());
+  const [notificationModalOpen, setNotificationModalOpen] = useState(false);
+  const [notesModalOpen, setNotesModalOpen] = useState(false);
 
   // Calculate task statistics from tasks slice
   const completedTasksCount = tasks.filter(
@@ -197,6 +198,11 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
     (task) => task.status === "not_started"
   ).length;
   const totalTasks = tasks.length;
+
+  // Calculate unread notifications count
+  const unreadNotificationsCount = notifications.filter(
+    (n) => !n.isRead
+  ).length;
 
   // Update Redux state when tasks change
   useEffect(() => {
@@ -345,21 +351,45 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
     });
   };
 
-  // Sort announcements by date (newest first) and limit to recent ones
-  const recentAnnouncements = [...announcements]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
-
-  const handleViewAllAnnouncements = () => {
-    navigate("/announcements");
+  // Handle notification click
+  const handleNotificationClick = (notificationTitle: string) => {
+    if (notificationTitle === "Complete Your Profile") {
+      setSelectedMenu("Personal Details");
+      setNotificationModalOpen(false);
+    } else {
+      // For all other notifications (including task notifications), navigate to Notifications page
+      setSelectedMenu("Notifications");
+      setNotificationModalOpen(false);
+    }
   };
-  const handleAnnouncementClick = (announcementId: number) => {
-    navigate(`/announcements/${announcementId}`);
+
+  const handleViewAllNotification = () => {
+    setSelectedMenu("Notifications");
+    setNotificationModalOpen(false);
   };
 
   const handleViewAllActivities = () => {
-    navigate("/tasks");
+    setSelectedMenu("Tasks");
+    setNotesModalOpen(false);
   };
+
+  const activityToMenu: Record<string, string> = {
+    "Started Training": "Training",
+    "Updated Profile": "Personal Details",
+    "Completed Task": "Tasks",
+    "Clocked In": "Attendance",
+    "Downloaded Payslip": "Payslips",
+  };
+
+  const handleActivityClick = (action: string) => {
+    const menu = activityToMenu[action];
+    if (menu) {
+      setSelectedMenu(menu);
+      setNotesModalOpen(false);
+    }
+  };
+
+  const recentActivitiesCount = recentTaskActivities.length + otherActivities.length;
 
   return (
     <div className="shp-homepage-container">
@@ -373,6 +403,75 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
             <p className="shp-welcome-subtitle">
               {userDetails.position} {userDetails.department}
             </p>
+            
+            {/* Notification and Activity Icons */}
+            <div className="shp-head-icons-container">
+              {/* Notifications */}
+              <div
+                className="shp-head-icons"
+                onClick={() => setNotificationModalOpen(true)}
+                style={{ position: "relative", cursor: "pointer" }}
+              >
+                <p>Notifications</p>
+                <IoIosNotifications
+                  style={{ color: "red", fontWeight: "bold" }}
+                />
+                {unreadNotificationsCount > 0 && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      right: "-8px",
+                      backgroundColor: "#ff4444",
+                      color: "white",
+                      borderRadius: "50%",
+                      fontSize: "10px",
+                      fontWeight: "bold",
+                      minWidth: "18px",
+                      height: "18px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      border: "2px solid white",
+                    }}
+                  >
+                    {unreadNotificationsCount}
+                  </span>
+                )}
+              </div>
+
+              {/* Activities */}
+              <div
+                className="shp-head-icons"
+                onClick={() => setNotesModalOpen(true)}
+                style={{ position: "relative", cursor: "pointer" }}
+              >
+                <p>Activities</p>
+                <FiActivity style={{ color: "green", fontWeight: "bold" }} />
+                {recentActivitiesCount > 0 && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      right: "-8px",
+                      backgroundColor: "#ff4444",
+                      color: "white",
+                      borderRadius: "50%",
+                      fontSize: "10px",
+                      fontWeight: "bold",
+                      minWidth: "18px",
+                      height: "18px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      border: "2px solid white",
+                    }}
+                  >
+                    {recentActivitiesCount}
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -380,6 +479,79 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
           </div>
         </div>
       </div>
+
+      {/* Notification Modal */}
+      <Modal
+        isOpen={notificationModalOpen}
+        onClose={() => setNotificationModalOpen(false)}
+        title=""
+        description=""
+      >
+        <div className="shp-card-header">
+          <h3 className="shp-card-title">
+            <FaBell size={18} />
+            Staff Notifications
+          </h3>
+          <span className="shp-notification-count">
+            {notifications.filter((n) => !n.isRead).length}
+          </span>
+        </div>
+        <div className="shp-notifications-list">
+          {[...notifications].reverse().map((notification, index) => (
+            <NotificationItem
+              key={index}
+              title={notification.title}
+              message={notification.message}
+              time={notification.time}
+              type={notification.type}
+              isRead={notification.isRead}
+              onClick={() => handleNotificationClick(notification.title)}
+            />
+          ))}
+        </div>
+        <button
+          className="shp-view-all-notifications"
+          onClick={() => handleViewAllNotification()}
+        >
+          View All Notifications
+        </button>
+      </Modal>
+
+      {/* Activities Modal */}
+      <Modal
+        isOpen={notesModalOpen}
+        onClose={() => setNotesModalOpen(false)}
+        title="Activities"
+        description=""
+      >
+        <div className="shp-card-header">
+          <h3 className="shp-card-title">Recent Staff Activity</h3>
+          <button className="shp-view-all-btn" onClick={handleViewAllActivities}>
+            View All
+          </button>
+        </div>
+        <div className="shp-activity-list">
+          {recentTaskActivities.slice(0, 4).map((activity, index) => (
+            <div key={`task-${activity.task.id}`} onClick={() => handleActivityClick("Completed Task")} style={{ cursor: "pointer" }}>
+              <TaskActivityItem
+                task={activity.task}
+                action={activity.action}
+                time={activity.time}
+              />
+            </div>
+          ))}
+          {otherActivities.map((activity, index) => (
+            <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
+              <RecentActivityItem
+                action={activity.action}
+                details={activity.details}
+                time={activity.time}
+                icon={activity.icon}
+              />
+            </div>
+          ))}
+        </div>
+      </Modal>
 
       {/* Quick Actions */}
       <div className="shp-section">
@@ -456,51 +628,49 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
               {/* Show message if no activities */}
               {recentTaskActivities.length === 0 && (
                 <div className="shp-no-activities">
-                  <p style={{padding: "1rem" ,color: "black"}}>No recent activities</p>
+                  <p style={{padding: "1rem", color: "black"}}>No recent activities</p>
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Announcements */}
+        {/* Notifications Summary */}
         <div className="shp-notifications-section">
           <div className="shp-card">
             <div className="shp-card-header">
               <h3 className="shp-card-title">
                 <FaBullhorn size={18} />
-                Announcements
+                Recent Notifications
               </h3>
               <span className="shp-notification-count">
-                {announcements.length}
+                {unreadNotificationsCount}
               </span>
             </div>
             <div className="shp-notifications-list">
-              {recentAnnouncements.length > 0 ? (
-                recentAnnouncements.map((announcement) => (
-                  <AnnouncementItem
-                    key={announcement.id}
-                    id={announcement.id}
-                    title={announcement.title}
-                    message={announcement.message}
-                    date={announcement.date}
-                    time={announcement.date}
-                    type={announcement.type}
-                    isRead={announcement.isRead}
-                    onClick={() => handleAnnouncementClick(announcement.id)}
+              {notifications.length > 0 ? (
+                [...notifications].reverse().slice(0, 3).map((notification) => (
+                  <NotificationItem
+                    key={notification.id}
+                    title={notification.title}
+                    message={notification.message}
+                    time={notification.time}
+                    type={notification.type}
+                    isRead={notification.isRead}
+                    onClick={() => handleNotificationClick(notification.title)}
                   />
                 ))
               ) : (
                 <div className="shp-no-announcements">
-                  <p>No recent announcements</p>
+                  <p style={{padding: "1rem", color: "black"}}>No recent notifications</p>
                 </div>
               )}
             </div>
             <button
               className="shp-view-all-notifications"
-              onClick={handleViewAllAnnouncements}
+              onClick={handleViewAllNotification}
             >
-              View All Announcements
+              View All Notifications
             </button>
           </div>
         </div>
