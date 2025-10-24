@@ -1,0 +1,370 @@
+.sio-wrapper {
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%); */
+  padding: 2rem 1rem;
+}
+
+.sio-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Status Card */
+.sio-status-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid;
+}
+
+.sio-status-card.sio-status-active {
+  border-left-color: #10b981;
+  background: linear-gradient(to right, #f0fdf4 0%, #ffffff 100%);
+}
+
+.sio-status-card.sio-status-inactive {
+  border-left-color: #ef4444;
+  background: linear-gradient(to right, #fef2f2 0%, #ffffff 100%);
+}
+
+.sio-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sio-status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: sio-pulse 2s ease-in-out infinite;
+}
+
+.sio-status-dot.sio-dot-active {
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.sio-status-dot.sio-dot-inactive {
+  background: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+.sio-status-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+@keyframes sio-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Grid Layout */
+.sio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .sio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Card */
+.sio-form-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sio-form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1.5rem 0;
+}
+
+.sio-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sio-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sio-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+
+.sio-input {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1f2937;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.sio-input:focus {
+  outline: none;
+  border-color: #071d69;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.sio-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Toggle Group */
+.sio-toggle-group {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.sio-toggle-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.sio-toggle-label:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.sio-radio {
+  cursor: pointer;
+  accent-color: #071d69;
+}
+
+.sio-radio-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #374151;
+  user-select: none;
+}
+
+.sio-toggle-label:has(.sio-radio:checked) {
+  background: #eef2ff;
+  border-color: #071d69;
+}
+
+.sio-toggle-label:has(.sio-radio:checked) .sio-radio-text {
+  color: #071d69;
+  font-weight: 600;
+}
+
+/* Submit Button */
+.sio-submit-btn {
+  padding: 0.875rem 1.5rem;
+  background: #071d69;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  margin-top: 0.5rem;
+}
+
+.sio-submit-btn:hover {
+  background: #1d2d66;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+  transform: translateY(-1px);
+}
+
+.sio-submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Chart Card */
+.sio-chart-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sio-chart-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1.5rem 0;
+}
+
+.sio-chart-wrapper {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Logs Card */
+.sio-logs-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sio-logs-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1.5rem 0;
+}
+
+.sio-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.sio-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.sio-table-head {
+  background: linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 100%);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sio-table-header {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.sio-table-body {
+  background: #ffffff;
+}
+
+.sio-table-row {
+  transition: background 0.15s ease;
+}
+
+.sio-table-row:hover {
+  background: #f9fafb;
+}
+
+.sio-table-row:not(:last-child) .sio-table-cell {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.sio-table-cell {
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.sio-table-empty {
+  padding: 3rem 1.25rem;
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Badge */
+.sio-badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.sio-badge-in {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.sio-badge-out {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sio-container {
+    padding: 0;
+  }
+
+  .sio-form-card,
+  .sio-chart-card,
+  .sio-logs-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sio-wrapper {
+    padding: 1rem 0.5rem;
+  }
+
+  .sio-status-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .sio-toggle-group {
+    flex-direction: column;
+  }
+
+  .sio-table-header,
+  .sio-table-cell {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .sio-form-title,
+  .sio-chart-title,
+  .sio-logs-title {
+    font-size: 1.125rem;
+  }
+}
