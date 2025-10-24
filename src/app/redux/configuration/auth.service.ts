@@ -936,6 +936,9 @@ export class AuthService {
             // ✅ Check if a payslip for this month already exists
             const duplicate = existingPayslips.some(
                 (item: PaySlip) => item.payPeriod.monthOfPay === payslip.payPeriod.monthOfPay
+
+                //use below  to test and download slip if it shows Payslip for the  already exists.
+                // (item: PaySlip) => item.payPeriod.monthOfPay !== payslip.payPeriod.monthOfPay
             );
 
             if (duplicate) {
