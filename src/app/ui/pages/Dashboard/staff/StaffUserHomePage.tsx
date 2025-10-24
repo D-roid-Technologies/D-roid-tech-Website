@@ -34,7 +34,12 @@ import { UserType } from "../../../../utils/Types";
 import { RootState } from "../../../../redux/Store";
 import { useNavigate } from "react-router-dom";
 import { Task, TaskStatus } from "../../../../redux/slices/tasksSlice";
-import { setStaffMetrics, fetchStaffMetrics } from "../../../../redux/slices/staffSlice";
+import {
+  setStaffMetrics,
+  fetchStaffMetrics,
+} from "../../../../redux/slices/staffSlice";
+import EventPosts from "../../../components/blogPosts/Events";
+import { eventsPosts } from "../../../../utils/blogpost";
 
 type QuickActionCardProps = {
   title: string;
@@ -159,11 +164,13 @@ type StaffUserHomePageProps = {
   setSelectedMenu: (menu: string) => void;
 };
 
-const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }) => {
+const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
+  setSelectedMenu,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
-  
+
   // Get notifications from Redux slice
   type Notification = {
     title: string;
@@ -177,14 +184,13 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
   const notifications = useSelector(
     (state: RootState) => state.notifications as Notification[]
   );
-  
+
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  
+
   // Get staff metrics from Redux state
-  const { activeTasks, completedTasks, performanceScore, attendanceRate } = useSelector(
-    (state: RootState) => state.staff
-  );
-  
+  const { activeTasks, completedTasks, performanceScore, attendanceRate } =
+    useSelector((state: RootState) => state.staff);
+
   const [currentTime] = useState(new Date());
   const [notificationModalOpen, setNotificationModalOpen] = useState(false);
   const [notesModalOpen, setNotesModalOpen] = useState(false);
@@ -206,10 +212,12 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
 
   // Update Redux state when tasks change
   useEffect(() => {
-    dispatch(setStaffMetrics({
-      activeTasks: ongoingTasks,
-      completedTasks: completedTasksCount,
-    }));
+    dispatch(
+      setStaffMetrics({
+        activeTasks: ongoingTasks,
+        completedTasks: completedTasksCount,
+      })
+    );
   }, [dispatch, ongoingTasks, completedTasksCount]);
 
   // Optional: Fetch staff metrics from API on component mount
@@ -230,14 +238,21 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
     {
       title: "Completed Tasks",
       value: completedTasks.toString(),
-      change: `${totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0}% completion rate`,
+      change: `${
+        totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0
+      }% completion rate`,
       icon: FaCheckCircle,
       color: "green",
     },
     {
       title: "Performance Score",
       value: performanceScore > 0 ? `${performanceScore}/5` : "0",
-      change: performanceScore >= 4 ? "Above average" : performanceScore >= 3 ? "Average" : "Below average",
+      change:
+        performanceScore >= 4
+          ? "Above average"
+          : performanceScore >= 3
+          ? "Average"
+          : "Below average",
       icon: FaTrophy,
       color: "gold",
     },
@@ -389,7 +404,8 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
     }
   };
 
-  const recentActivitiesCount = recentTaskActivities.length + otherActivities.length;
+  const recentActivitiesCount =
+    recentTaskActivities.length + otherActivities.length;
 
   return (
     <div className="shp-homepage-container">
@@ -403,7 +419,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
             <p className="shp-welcome-subtitle">
               {userDetails.position} {userDetails.department}
             </p>
-            
+
             {/* Notification and Activity Icons */}
             <div className="shp-head-icons-container">
               {/* Notifications */}
@@ -526,13 +542,20 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
       >
         <div className="shp-card-header">
           <h3 className="shp-card-title">Recent Staff Activity</h3>
-          <button className="shp-view-all-btn" onClick={handleViewAllActivities}>
+          <button
+            className="shp-view-all-btn"
+            onClick={handleViewAllActivities}
+          >
             View All
           </button>
         </div>
         <div className="shp-activity-list">
           {recentTaskActivities.slice(0, 4).map((activity, index) => (
-            <div key={`task-${activity.task.id}`} onClick={() => handleActivityClick("Completed Task")} style={{ cursor: "pointer" }}>
+            <div
+              key={`task-${activity.task.id}`}
+              onClick={() => handleActivityClick("Completed Task")}
+              style={{ cursor: "pointer" }}
+            >
               <TaskActivityItem
                 task={activity.task}
                 action={activity.action}
@@ -541,7 +564,11 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
             </div>
           ))}
           {otherActivities.map((activity, index) => (
-            <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
+            <div
+              key={index}
+              onClick={() => handleActivityClick(activity.action)}
+              style={{ cursor: "pointer" }}
+            >
               <RecentActivityItem
                 action={activity.action}
                 details={activity.details}
@@ -628,7 +655,9 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
               {/* Show message if no activities */}
               {recentTaskActivities.length === 0 && (
                 <div className="shp-no-activities">
-                  <p style={{padding: "1rem", color: "black"}}>No recent activities</p>
+                  <p style={{ padding: "1rem", color: "black" }}>
+                    No recent activities
+                  </p>
                 </div>
               )}
             </div>
@@ -649,20 +678,27 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
             </div>
             <div className="shp-notifications-list">
               {notifications.length > 0 ? (
-                [...notifications].reverse().slice(0, 3).map((notification) => (
-                  <NotificationItem
-                    key={notification.id}
-                    title={notification.title}
-                    message={notification.message}
-                    time={notification.time}
-                    type={notification.type}
-                    isRead={notification.isRead}
-                    onClick={() => handleNotificationClick(notification.title)}
-                  />
-                ))
+                [...notifications]
+                  .reverse()
+                  .slice(0, 3)
+                  .map((notification) => (
+                    <NotificationItem
+                      key={notification.id}
+                      title={notification.title}
+                      message={notification.message}
+                      time={notification.time}
+                      type={notification.type}
+                      isRead={notification.isRead}
+                      onClick={() =>
+                        handleNotificationClick(notification.title)
+                      }
+                    />
+                  ))
               ) : (
                 <div className="shp-no-announcements">
-                  <p style={{padding: "1rem", color: "black"}}>No recent notifications</p>
+                  <p style={{ padding: "1rem", color: "black" }}>
+                    No recent notifications
+                  </p>
                 </div>
               )}
             </div>
@@ -673,6 +709,13 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({ setSelectedMenu }
               View All Notifications
             </button>
           </div>
+        </div>
+        {/* Events Section */}
+      </div>
+      <div>
+        <h2 className="shp-section-title">Our Events</h2>
+        <div className="shp-two-column">
+          <EventPosts posts={eventsPosts} />
         </div>
       </div>
     </div>
