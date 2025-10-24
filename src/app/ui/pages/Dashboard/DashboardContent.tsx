@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 import { useState, useEffect, type ReactNode } from "react";
 import { useSelector } from "react-redux";

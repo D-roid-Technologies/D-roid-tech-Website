@@ -461,7 +461,7 @@
 
   .shp-homepage-container {
     min-height: 100vh;
-    background-color: #f9fafb;
+    background-color: inherit;
     padding: 15px 0;
     max-width: 1200px;
     margin: 0 auto;
