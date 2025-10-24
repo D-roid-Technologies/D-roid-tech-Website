@@ -93,6 +93,7 @@ import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
 import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
 import TakeTestFolder from "./takeTest/TakeTestFolder";
+import CompleteOnboarding from "./CompleteOnbording";
 
 // const tools = [
 //   {
@@ -636,10 +637,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 <StaffPay />
               </>
             ) : (
-              <p style={{ color: "#ff4d4f" }}>
-                Gross pay data is missing or zero — please complete onboarding
-                first.
-              </p>
+              <CompleteOnboarding
+                 handleOnboarding={() => setSelectedMenu("Onboarding")}
+                handleUpdateProfile={() => setSelectedMenu("Personal Details")}
+              />
             )}
           </Section>
         );

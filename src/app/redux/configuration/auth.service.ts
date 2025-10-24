@@ -5,7 +5,6 @@ import { auth, db } from "../../../firebase";
 import { LocationState, Task, UserType } from "../../utils/Types";
 import { setKnowledgeCity } from "../slices/knowledgeCity";
 import { setNotifications } from "../slices/notificationSlice";
-import { setOnboarding } from "../slices/onboarding";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
 import { setAllMilestones } from "../slices/ProgressionSlice";
 import { addTask, deleteAllTasks, deleteThisTask, TaskMain } from "../slices/scheduleTask";
@@ -721,7 +720,7 @@ export class AuthService {
                 // Store and proceed
                 store.dispatch(setPayslipData(updatedPayslips));
                 store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
-                store.dispatch(setOnboarding(updatedOnboarding));
+                // Note: Onboarding data now managed by onboarding slice internally
                 store.dispatch(setTrainings(updatedTrainings));
                 store.dispatch(setNotifications(updatedNotifications));
                 store.dispatch(setAllMilestones(updatedProgressions));
