@@ -31,9 +31,6 @@ const Onboarding: React.FC = () => {
   const { currentStep, loading, formData, formDataNew } = onboardingState;
 
   useEffect(() => {
-    console.log("Onboarding useEffect - staffDetails:", staffDetails);
-    console.log("Onboarding useEffect - formDataNew:", formDataNew);
-    
     dispatch(setFormData({ ...userDetails }));
     // Only set initial staff details if onboarding formDataNew is empty
     if (Object.keys(formDataNew).length === 0) {
