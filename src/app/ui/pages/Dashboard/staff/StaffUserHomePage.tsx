@@ -490,8 +490,8 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             </div>
           </div>
           <div className="shp-time-info">
-            <div className="shp-current-time">{formatTime(currentTime)}</div>
-            <div className="shp-current-date">{formatDate(currentTime)}</div>
+            {/* <div className="shp-current-time">{formatTime(currentTime)}</div> */}
+            {/* <div className="shp-current-date">{formatDate(currentTime)}</div> */}
           </div>
         </div>
       </div>
@@ -665,7 +665,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         </div>
 
         {/* Notifications Summary */}
-        <div className="shp-notifications-section">
+        {/* <div className="shp-notifications-section">
           <div className="shp-card">
             <div className="shp-card-header">
               <h3 className="shp-card-title">
@@ -709,7 +709,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
               View All Notifications
             </button>
           </div>
-        </div>
+        </div> */}
         {/* Events Section */}
       </div>
       <div>
