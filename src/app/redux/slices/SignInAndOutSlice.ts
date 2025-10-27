@@ -9,12 +9,13 @@ export type Entry = {
 };
 
 export type StaffDetails = {
-    staffGrossPay: string;
-    staffTax: string;
-    staffPosition: string;
-    staffBank: string;
-    staffAccountNmber: string;
-    staffAccountName: string;
+  staffGrossPay: string;
+  staffTax: string;
+  staffPosition: string;
+  staffBank: string;
+  staffAccountNmber: string;
+  staffAccountName: string;
+  staffStartDate?: string;
 };
 
 type StaffDocuments = {

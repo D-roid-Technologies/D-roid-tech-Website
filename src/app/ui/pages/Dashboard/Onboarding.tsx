@@ -6,7 +6,8 @@ import { RootState } from "../../../redux/Store";
 import { UserType } from "../../../utils/Types";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
-import "./Onboarding.css"; // Assuming you have a CSS file for styles
+import "./Onboarding.css";
+import toast from "react-hot-toast";
 
 const onboardingSteps = ["View Info", "Personal Info", "Documents", "Leave"];
 
@@ -19,10 +20,21 @@ const Onboarding: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<UserType | null>(null);
   const [formDataNew, setFormDataNew] = useState<Partial<StaffDetails>>({});
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
+  const [hasUpdatedPersonalInfo, setHasUpdatedPersonalInfo] = useState(false);
 
   useEffect(() => {
     setFormData({ ...userDetails });
     setFormDataNew({ ...staffDetails });
+
+    // Check if personal info has been previously updated
+    // You might want to check for actual data presence instead of just assuming
+    const hasData =
+      staffDetails.staffBank &&
+      staffDetails.staffAccountNmber &&
+      staffDetails.staffAccountName;
+    setHasUpdatedPersonalInfo(!!hasData);
   }, [userDetails, staffDetails]);
 
   const handleStaffDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +43,111 @@ const Onboarding: React.FC = () => {
       ...prev,
       [name]: value,
     }));
+    // Clear validation error for this field when user enters data
+    if (value && validationErrors.includes(name)) {
+      setValidationErrors(validationErrors.filter((error) => error !== name));
+    }
   };
+
+  // Safe value getter function to handle TypeScript indexing
+  const getFormValue = (name: string): string => {
+    return (formDataNew as any)[name] || "";
+  };
+
+  const validatePersonalInfo = (): boolean => {
+    const requiredFields = [
+      "staffBank",
+      "staffAccountNmber",
+      "staffAccountName",
+      "staffGrossPay",
+      "staffTax",
+      "staffPosition",
+      "staffStartDate",
+    ];
+
+    const missingFields: string[] = [];
+
+    requiredFields.forEach((fieldName) => {
+      if (!getFormValue(fieldName)) {
+        missingFields.push(fieldName);
+      }
+    });
+
+    setValidationErrors(missingFields);
+
+    if (missingFields.length > 0) {
+      const fieldLabels: { [key: string]: string } = {
+        staffBank: "Bank Name",
+        staffAccountNmber: "Account Number",
+        staffAccountName: "Account Name",
+        staffGrossPay: "Gross Pay",
+        staffTax: "Tax Deduction",
+        staffPosition: "Staff Position",
+        staffStartDate: "Start Date",
+      };
+
+      const missingLabels = missingFields.map((field) => fieldLabels[field]);
+      toast.error(
+        `Please fill in the following required fields: ${missingLabels.join(
+          ", "
+        )}`,
+        {
+          style: { background: "#ff4d4f", color: "#fff" },
+        }
+      );
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate required fields first
+    if (!validatePersonalInfo()) {
+      return;
+    }
+
+    setIsUpdating(true);
+
+    // Show loading toast
+    const loadingToast = toast.loading("Updating personal information...", {
+      style: { background: "#1890ff", color: "#fff" },
+    });
+
+    try {
+      await authService.updateStaffOnboardingDetails(formDataNew);
+
+      toast.dismiss(loadingToast);
+
+      setHasUpdatedPersonalInfo(true);
+    } catch (error) {
+      console.error("Failed to update personal info:", error);
+
+      toast.dismiss(loadingToast);
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const getInputStyle = (fieldName: string) => {
+    const hasError = validationErrors.includes(fieldName);
+    return {
+      ...inputStyle,
+      border: hasError ? "1px solid #EF4444" : "1px solid #D1D5DB",
+    };
+  };
+
+  const personalInfoFields = [
+    { label: "Bank Name", name: "staffBank", required: true },
+    { label: "Account Number", name: "staffAccountNmber", required: true },
+    { label: "Account Name", name: "staffAccountName", required: true },
+    { label: "Gross Pay", name: "staffGrossPay", required: true },
+    { label: "Tax Deduction", name: "staffTax", required: true },
+    { label: "Staff Position", name: "staffPosition", required: true },
+    { label: "Start Date", name: "staffStartDate", required: true },
+  ];
 
   const renderStep = () => {
     switch (currentStep) {
@@ -43,8 +159,10 @@ const Onboarding: React.FC = () => {
               label="Your Position"
               value={staffDetails.staffPosition}
             />
-            <InfoField label="Start Date" value={userDetails.joinDate || ""} />
-
+            <InfoField
+              label="Start Date"
+              value={formDataNew.staffStartDate || ""}
+            />
             <InfoField
               label="Your Monthly Gross Pay"
               value={staffDetails.staffGrossPay}
@@ -55,27 +173,47 @@ const Onboarding: React.FC = () => {
       case 1:
         return (
           <>
-            <h2 style={headingStyle}>Update Personal Information</h2>
-            {[
-              { label: "Bank Name", name: "staffBank" },
-              { label: "Account Number", name: "staffAccountNmber" },
-              { label: "Account Name", name: "staffAccountName" },
-              { label: "Gross Pay", name: "staffGrossPay" },
-              { label: "Tax Deduction", name: "staffTax" },
-              { label: "Staff Position", name: "staffPosition" },
-            ].map(({ label, name }) => (
-              <input
-                key={name}
-                name={name}
-                type="text"
-                placeholder={label}
-                value={formDataNew[name as keyof StaffDetails] || ""}
-                onChange={handleStaffDetailsChange}
-                style={inputStyle}
-              />
+            <h2 style={headingStyle}>
+              {hasUpdatedPersonalInfo
+                ? "Edit Personal Information"
+                : "Update Personal Information"}
+            </h2>
+            {personalInfoFields.map(({ label, name, required }) => (
+              <div key={name} style={{ position: "relative" }}>
+                <input
+                  name={name}
+                  type="text"
+                  placeholder={label}
+                  value={getFormValue(name)}
+                  onChange={handleStaffDetailsChange}
+                  style={getInputStyle(name)}
+                  disabled={isUpdating}
+                />
+                {required && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      right: "10px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "#EF4444",
+                    }}
+                  >
+                    *
+                  </span>
+                )}
+              </div>
             ))}
-            <button onClick={handleSubmit} style={submitButtonStyle}>
-              Save Personal Info
+            <button
+              onClick={handleSubmit}
+              style={{
+                ...submitButtonStyle,
+                backgroundColor: isUpdating ? "#9CA3AF" : "#071D6A",
+                cursor: isUpdating ? "not-allowed" : "pointer",
+              }}
+              disabled={isUpdating}
+            >
+              {isUpdating ? "Updating..." : "Save Personal Info"}
             </button>
           </>
         );
@@ -92,19 +230,6 @@ const Onboarding: React.FC = () => {
         return null;
     }
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await authService.updateStaffOnboardingDetails(formDataNew);
-  };
-
-  //   try {
-  //     // Call the service with a partial update
-
-  //   } catch (error) {
-  //     console.error("Submission failed:", error);
-  //   }
-  // };
 
   return (
     <div style={containerStyle}>
@@ -170,6 +295,7 @@ const submitButtonStyle = {
   borderRadius: "8px",
   fontWeight: "bold",
   cursor: "pointer",
+  width: "100%",
 };
 
 const containerStyle = {
