@@ -582,6 +582,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               </div> */}
             </div>
           </div>
+           <div className="shp-time-info">
+            <div className="shp-current-time">{formatTime(currentTime)}</div>
+            <div className="shp-current-date">{formatDate(currentTime)}</div>
+          </div>
         </div>
       </div>
       {/* Member Stats */}
