@@ -303,8 +303,20 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
         margin: 0.5,
         filename: `payslip_${filteredPayslips[index].employeeDetails.employeeName}_${filteredPayslips[index].payPeriod.monthOfPay}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          letterRendering: true
+        },
+        jsPDF: { 
+          unit: "in", 
+          format: "a4", 
+          orientation: "portrait",
+          compress: true
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
       };
       html2pdf().set(opt).from(ref).save();
     }
@@ -447,7 +459,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
           </ul>
         </section>
 
-        <section style={styles.section}>
+        <section style={styles.payBreakdownSection}>
           <h3 style={styles.subHeader}>Pay Breakdown</h3>
           <table style={styles.table}>
             <tbody>
@@ -637,7 +649,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                 </ul>
               </section>
 
-              <section style={styles.section}>
+              <section style={styles.payBreakdownSection}>
                 <h3 style={styles.subHeader}>Pay Breakdown</h3>
                 <table style={styles.table}>
                   <tbody>
@@ -707,6 +719,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     color: "#222",
+    pageBreakInside: "avoid",
+    breakInside: "avoid",
   },
   letterBlock: {
     display: "flex",
@@ -730,10 +744,18 @@ const styles: { [key: string]: React.CSSProperties } = {
   section: {
     marginBottom: 25,
   },
+  payBreakdownSection: {
+    marginBottom: 25,
+    pageBreakInside: "avoid",
+    breakInside: "avoid",
+    display: "block",
+  },
   table: {
     width: "100%",
     borderCollapse: "collapse",
     fontSize: 16,
+    pageBreakInside: "avoid",
+    breakInside: "avoid",
   },
   label: {
     padding: "10px 15px",

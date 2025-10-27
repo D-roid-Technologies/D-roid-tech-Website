@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { authService } from "../../../redux/configuration/auth.service";
 import { StaffDetails } from "../../../redux/slices/SignInAndOutSlice";
 import { RootState } from "../../../redux/Store";
 import { UserType } from "../../../utils/Types";
+import {
+  setCurrentStep,
+  setLoading,
+  setFormData,
+  setFormDataNew,
+  updateFormField,
+  markStepCompleted,
+  nextStep,
+  previousStep
+} from "../../../redux/slices/onboarding";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
 import "./Onboarding.css";
@@ -12,10 +22,12 @@ import toast from "react-hot-toast";
 const onboardingSteps = ["View Info", "Personal Info", "Documents", "Leave"];
 
 const Onboarding: React.FC = () => {
+  const dispatch = useDispatch();
   const userDetails = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
   );
+  const onboardingState = useSelector((state: RootState) => state.onboarding);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<UserType | null>(null);
@@ -247,7 +259,7 @@ const Onboarding: React.FC = () => {
           {onboardingSteps.map((step, index) => (
             <button
               key={index}
-              onClick={() => setCurrentStep(index)}
+              onClick={() => dispatch(setCurrentStep(index))}
               style={{
                 padding: "12px",
                 borderRadius: "9999px",

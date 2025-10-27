@@ -414,7 +414,8 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              Your Dashboard, {userDetails.firstName}!
+              {/* Your Dashboard, {userDetails.firstName}! */}
+              Staff Portal
             </h1>
             <p className="shp-welcome-subtitle">
               {userDetails.position} {userDetails.department}
@@ -457,7 +458,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
               </div>
 
               {/* Activities */}
-              <div
+              {/* <div
                 className="shp-head-icons"
                 onClick={() => setNotesModalOpen(true)}
                 style={{ position: "relative", cursor: "pointer" }}
@@ -486,7 +487,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
                     {recentActivitiesCount}
                   </span>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="shp-time-info">
@@ -615,103 +616,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
       </div>
 
       {/* Two Column Layout */}
-      <div className="shp-two-column">
-        {/* Recent Activity */}
-        <div className="shp-activity-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Activity</h3>
-              <button
-                className="shp-view-all-btn"
-                onClick={handleViewAllActivities}
-              >
-                View All
-              </button>
-            </div>
-            <div className="shp-activity-list">
-              {/* Show recent task activities */}
-              {recentTaskActivities.slice(0, 4).map((activity, index) => (
-                <TaskActivityItem
-                  key={`task-${activity.task.id}`}
-                  task={activity.task}
-                  action={activity.action}
-                  time={activity.time}
-                />
-              ))}
 
-              {/* Show other activities if there's space */}
-              {otherActivities
-                .slice(0, Math.max(0, 4 - recentTaskActivities.length))
-                .map((activity, index) => (
-                  <RecentActivityItem
-                    key={`other-${index}`}
-                    action={activity.action}
-                    details={activity.details}
-                    time={activity.time}
-                    icon={activity.icon}
-                  />
-                ))}
-
-              {/* Show message if no activities */}
-              {recentTaskActivities.length === 0 && (
-                <div className="shp-no-activities">
-                  <p style={{ padding: "1rem", color: "black" }}>
-                    No recent activities
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Notifications Summary */}
-        <div className="shp-notifications-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">
-                <FaBullhorn size={18} />
-                Recent Notifications
-              </h3>
-              <span className="shp-notification-count">
-                {unreadNotificationsCount}
-              </span>
-            </div>
-            <div className="shp-notifications-list">
-              {notifications.length > 0 ? (
-                [...notifications]
-                  .reverse()
-                  .slice(0, 3)
-                  .map((notification) => (
-                    <NotificationItem
-                      key={notification.id}
-                      title={notification.title}
-                      message={notification.message}
-                      time={notification.time}
-                      type={notification.type}
-                      isRead={notification.isRead}
-                      onClick={() =>
-                        handleNotificationClick(notification.title)
-                      }
-                    />
-                  ))
-              ) : (
-                <div className="shp-no-announcements">
-                  <p style={{ padding: "1rem", color: "black" }}>
-                    No recent notifications
-                  </p>
-                </div>
-              )}
-            </div>
-            <button
-              className="shp-view-all-notifications"
-              onClick={handleViewAllNotification}
-            >
-              View All Notifications
-            </button>
-          </div>
-        </div>
-        {/* Events Section */}
-      </div>
       <div>
         <h2 className="shp-section-title">Our Events</h2>
         <div className="shp-two-column">
@@ -723,4 +628,3 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
 };
 
 export default StaffUserHomePage;
- 
