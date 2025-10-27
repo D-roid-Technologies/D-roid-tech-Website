@@ -69,8 +69,8 @@ const programs = [
       "/images/frontend/3.jpg",
     ],
     price: [
-      "Self Paced Track: ₦1,689,599.00",
-      "Instructor-led track: ₦2,370,299.00",
+      "Self Paced Track: ₦689,599.00",
+      "Instructor-led track: ₦1,370,299.00",
       "Scholarships and group discounts may be available.",
     ],
     learn: [

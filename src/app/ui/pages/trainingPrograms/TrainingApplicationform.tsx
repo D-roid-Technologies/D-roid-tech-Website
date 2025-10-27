@@ -106,13 +106,13 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
     // Send email
     const templateParams = {
       name: completeFormData.fullName,
-      title: `Thank You for Applying! We're excited to receive your application and appreciate your interest in joining one of our training programs. 
+      title: `Thank You for Applying for the position of ${completeFormData.title}! We're excited to receive your application and appreciate your interest in joining the team at D'roid Technologies Ltd. 
     
-            Your application has been successfully submitted. Our team will review your information and contact you via email with the next steps. In the meantime: Ensure your contact details are up-to-date. Check your email (and spam folder) for updates from us. Feel free to explore more about our community and other opportunities.
+            Your application has been successfully submitted. Our team will review and contact you via email with the next steps. In the meantime: Ensure your contact details are up-to-date. Check your email (and spam folder) for updates from us. Feel free to explore more about our community and other opportunities.
     
-            At D'roid Technologies, we believe in learning by doing, empowering people through knowledge, and building a strong community. If you have any questions or need support, don't hesitate to reach out—we're here to help.
+            At D'roid Technologies, we believe in learning by doing, empowering people through knowledge, and building a strong community. Join our WhatsApp community on: https://chat.whatsapp.com/KvtaJzV4756ICtksODITML and https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa?mode=wwt If you have any questions or need support, don't hesitate to reach out. We're here to help.
     
-            We look forward to seeing you grow`,
+            We look forward to seeing you`,
       email: completeFormData.email,
     };
 
