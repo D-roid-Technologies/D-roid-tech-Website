@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { authService } from "../../../redux/configuration/auth.service";
 import { StaffDetails } from "../../../redux/slices/SignInAndOutSlice";
 import { RootState } from "../../../redux/Store";
 import { UserType } from "../../../utils/Types";
+import {
+  setCurrentStep,
+  setLoading,
+  setFormData,
+  setFormDataNew,
+  updateFormField,
+  markStepCompleted,
+  nextStep,
+  previousStep
+} from "../../../redux/slices/onboarding";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
 import "./Onboarding.css"; // Assuming you have a CSS file for styles
@@ -11,26 +21,30 @@ import "./Onboarding.css"; // Assuming you have a CSS file for styles
 const onboardingSteps = ["View Info", "Personal Info", "Documents", "Leave"];
 
 const Onboarding: React.FC = () => {
+  const dispatch = useDispatch();
   const userDetails = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
   );
+  const onboardingState = useSelector((state: RootState) => state.onboarding);
 
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<UserType | null>(null);
-  const [formDataNew, setFormDataNew] = useState<Partial<StaffDetails>>({});
+  const { currentStep, loading, formData, formDataNew } = onboardingState;
 
   useEffect(() => {
-    setFormData({ ...userDetails });
-    setFormDataNew({ ...staffDetails });
-  }, [userDetails, staffDetails]);
+    console.log("Onboarding useEffect - staffDetails:", staffDetails);
+    console.log("Onboarding useEffect - formDataNew:", formDataNew);
+    
+    dispatch(setFormData({ ...userDetails }));
+    // Only set initial staff details if onboarding formDataNew is empty
+    if (Object.keys(formDataNew).length === 0) {
+      console.log("Setting initial formDataNew from staffDetails");
+      dispatch(setFormDataNew({ ...staffDetails }));
+    }
+  }, [userDetails, staffDetails, dispatch, formDataNew]);
 
   const handleStaffDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormDataNew((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatch(updateFormField({ field: name as keyof StaffDetails, value }));
   };
 
   const renderStep = () => {
@@ -74,8 +88,8 @@ const Onboarding: React.FC = () => {
                 style={inputStyle}
               />
             ))}
-            <button onClick={handleSubmit} style={submitButtonStyle}>
-              Save Personal Info
+            <button onClick={handleSubmit} style={submitButtonStyle} disabled={loading} >
+             {loading ?  <span> loading......</span> : <span> Save Personal Info </span>  }
             </button>
           </>
         );
@@ -95,7 +109,22 @@ const Onboarding: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await authService.updateStaffOnboardingDetails(formDataNew);
+    dispatch(setLoading(true));
+    try {
+      await authService.updateStaffOnboardingDetails(formDataNew);
+      console.log("Form data being submitted:", formDataNew);
+      console.log("Current onboarding state:", onboardingState);
+      
+      dispatch(markStepCompleted(currentStep));
+      // Optionally move to next step after successful submission
+      if (currentStep < 3) {
+        dispatch(nextStep());
+      }
+    } catch (error) {
+      console.error("Submission failed:", error);
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
 
   //   try {
@@ -122,7 +151,7 @@ const Onboarding: React.FC = () => {
           {onboardingSteps.map((step, index) => (
             <button
               key={index}
-              onClick={() => setCurrentStep(index)}
+              onClick={() => dispatch(setCurrentStep(index))}
               style={{
                 padding: "12px",
                 borderRadius: "9999px",
