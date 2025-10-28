@@ -416,7 +416,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             <h1 className="shp-welcome-title">
               {/* Your Dashboard, {userDetails.firstName}! */}
               Staff Portal
-
             </h1>
             <p className="shp-welcome-subtitle">
               {userDetails.position} {userDetails.department}
@@ -617,7 +616,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
       </div>
 
       {/* Two Column Layout */}
-    
+
       <div>
         <h2 className="shp-section-title">Our Events</h2>
         <div className="shp-two-column">
