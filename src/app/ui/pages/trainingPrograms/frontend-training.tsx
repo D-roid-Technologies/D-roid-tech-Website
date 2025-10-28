@@ -25,7 +25,7 @@ export const FrontendTraining: React.FC<FrontendTrainingProps> = ({ onContactCli
       "A practical, project-based training program designed to equip you with the core skills and tools needed for modern frontend development using HTML, CSS, JavaScript, and popular frameworks like React.",
     duration: "24 weeks",
     level: "Beginner to Intermediate",
-    price: ["Self Paced Track: ₦1,689,599.00", "Instructor-led track: ₦2,370,299.00"],
+    price: ["Self Paced Track: ₦689,599.00", "Instructor-led track: ₦1,370,299.00"],
     tools: [
       "HTML5 / CSS3 / JavaScript (ES6+)",
       "Git & GitHub",

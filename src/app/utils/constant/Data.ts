@@ -233,16 +233,16 @@ export const DATA = {
     //     twitter: "",
     //   },
     // },
-    {
-      image: require("../../images/png/Faith(product).jpg"),
-      name: "Faith Ojumola",
-      designation: "Product Designer",
-      socials: {
-        linkedin:
-          "https://www.linkedin.com/in/faith-ojumola-71156b195?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        twitter: "https://twitter.com/unicorngal_dam ",
-      },
-    },
+    // {
+    //   image: require("../../images/png/Faith(product).jpg"),
+    //   name: "Faith Ojumola",
+    //   designation: "Product Designer",
+    //   socials: {
+    //     linkedin:
+    //       "https://www.linkedin.com/in/faith-ojumola-71156b195?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    //     twitter: "https://twitter.com/unicorngal_dam ",
+    //   },
+    // },
   ],
 };
 
