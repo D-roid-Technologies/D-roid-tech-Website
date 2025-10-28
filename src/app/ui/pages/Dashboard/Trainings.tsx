@@ -1,179 +1,326 @@
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { PlayCircle, CheckCircle, X } from "lucide-react";
 
-import {
-  Alltraining,
-  markTrainingAsCompleted,
-  Training,
-} from "../../../redux/slices/TrainingsSlice";
-
-// const initialTrainings: Training[] = [
-//     {
-//         id: 1,
-//         title: 'Workplace Safety',
-//         description: 'Learn about safety protocols.',
-//         scheduledDate: '2025-05-22',
-//         completed: true,
-//         completedDate: '2025-05-22',
-//     },
-//     {
-//         id: 2,
-//         title: 'Time Management',
-//         description: 'Strategies to improve productivity.',
-//         scheduledDate: '2025-06-01',
-//         completed: false,
-//     },
-//     {
-//         id: 3,
-//         title: 'Remote Work',
-//         description: 'Best practices for working effectively from home or any remote location.',
-//         scheduledDate: '2025-06-05',
-//         completed: false,
-//     },
-//     {
-//         id: 4,
-//         title: 'Professional Speaking',
-//         description: 'Improve your public speaking and presentation skills.',
-//         scheduledDate: '2025-06-10',
-//         completed: false,
-//     },
-//     {
-//         id: 5,
-//         title: 'Conflict Resolution',
-//         description: 'Learn techniques to manage and resolve workplace conflicts.',
-//         scheduledDate: '2025-06-15',
-//         completed: false,
-//     },
-//     {
-//         id: 6,
-//         title: 'Time Management',
-//         description: 'Strategies to prioritize tasks and manage your time efficiently.',
-//         scheduledDate: '2025-06-20',
-//         completed: false,
-//     },
-//     {
-//         id: 7,
-//         title: 'Team Collaboration',
-//         description: 'Effective ways to collaborate and communicate within a team.',
-//         scheduledDate: '2025-06-25',
-//         completed: false,
-//     }
-// ];
+// ✅ Type definition for a course
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  duration: string;
+  scheduled_date: string;
+  completed: boolean;
+  completed_date?: string;
+}
 
 const Trainings: React.FC = () => {
-  const trainings = useSelector(Alltraining);
-  const dispatch = useDispatch();
+  const [courses, setCourses] = useState<Course[]>([
+    {
+      id: "1",
+      title: "Workplace Safety Fundamentals",
+      description:
+        "Learn the key safety rules and emergency protocols to stay safe and ensure workplace compliance.",
+      thumbnail:
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+      duration: "2h 15m",
+      scheduled_date: "2025-05-22",
+      completed: true,
+      completed_date: "2025-05-22",
+    },
+    {
+      id: "2",
+      title: "Time Management Mastery",
+      description:
+        "Discover proven productivity frameworks and tools to manage your time effectively.",
+      thumbnail:
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+      duration: "1h 30m",
+      scheduled_date: "2025-06-01",
+      completed: false,
+    },
+    {
+      id: "3",
+      title: "Communication in the Workplace",
+      description:
+        "Improve your ability to communicate clearly and collaborate efficiently within any team.",
+      thumbnail:
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+      duration: "2h 45m",
+      scheduled_date: "2025-06-10",
+      completed: false,
+    },
+  ]);
 
-  const handleMarketAsCompleted = (training: Training) => {
-    dispatch(markTrainingAsCompleted(training));
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
+  const handleStartLearning = (course: Course) => {
+    setSelectedCourse(course);
   };
 
-  const TrainingItems = trainings.map((training: Training) => (
-    <div
-      style={{
-        padding: "16px",
-        borderRadius: "8px",
-        border: "1px solid #E5E7EB",
-        backgroundColor: training.completed ? "#ECFDF5" : "#FEF2F2",
-        marginBottom: "12px",
-      }}
-      key={training.id}
-    >
-      <h3
-        style={{
-          fontSize: "16px",
-          fontWeight: "600",
-          color: training.completed ? "#065F46" : "#991B1B",
-        }}
-      >
-        {training.title}
-      </h3>
-<p style={{ fontSize: "16px", color: "rgb(75, 85, 99)", margin: "8px 0px" }}>
-  {training.description}
-</p>
-      <p style={{ fontSize: "13px", color: "#6B7280" }}>
-        {training.completed
-          ? `Completed on: ${training.completedDate}`
-          : "Pending"}
-      </p>
-      <p style={{ fontSize: "13px", color: "#6B7280" }}>
-        Scheduled Date: {training.scheduledDate}
-      </p>
-      <button
-        style={{
-          marginTop: "8px",
-          padding: "8px 12px",
-          backgroundColor: "#2563EB",
-          color: "#fff",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          fontSize: "14px",
-        }}
-        onClick={() => handleMarketAsCompleted(training)}
-      >
-        {training.completed ? "Completed" : "Mark as Completed"}
-      </button>
-    </div>
-  ));
-
-  // Calculate total pages
-  //const totalPages = Math.ceil(trainings.length / itemsPerPage);
-
-  // Get trainings for current page
-  // const currentTrainings = trainings.slice(
-  //     (currentPage - 1) * itemsPerPage,
-  //     currentPage * itemsPerPage
-  // );
-
-  // Handler for page change
-  // const goToPage = (page: number) => {
-  //     if (page < 1 || page > totalPages) return;
-  //     setCurrentPage(page);
-  // };
-
- 
+  const handleMarkAsCompleted = (id: string) => {
+    setCourses((prev) =>
+      prev.map((c) =>
+        c.id === id
+          ? { ...c, completed: true, completed_date: new Date().toISOString().split("T")[0] }
+          : c
+      )
+    );
+  };
 
   return (
-    <div style={{ maxWidth: "768px", margin: "0 auto", padding: "24px" }}>
-      {TrainingItems}
-      {/* Pagination Controls */}
-      {/* {totalPages > 1 && (
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', gap: '8px', color: "#000000" }}>
-                    <button
-                        onClick={() => goToPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        style={{
-                            padding: '8px 12px',
-                            cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                            borderRadius: '4px',
-                            border: '1px solid #ccc',
-                            color: "#000000",
-                            backgroundColor: currentPage === 1 ? '#f3f4f6' : '#fff',
-                        }}
-                    >
-                        Previous
-                    </button>
+    <div
+      style={{
+        maxWidth: "1100px",
+        margin: "0 auto",
+        padding: "40px 20px",
+        fontFamily: "Inter, sans-serif",
+      }}
+    >
+      {/* Header */}
+      <h1
+        style={{
+          fontSize: "32px",
+          fontWeight: 700,
+          marginBottom: "8px",
+          color: "#1E3A8A",
+        }}
+      >
+        My Courses
+      </h1>
+      <p style={{ color: "#6B7280", marginBottom: "24px" }}>
+        Explore your assigned trainings, enhance your skills, and continue learning.
+      </p>
 
-                    <span style={{ padding: '8px 12px', alignSelf: 'center' }}>
-                        Page {currentPage} of {totalPages}
-                    </span>
-
-                    <button
-                        onClick={() => goToPage(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        style={{
-                            padding: '8px 12px',
-                            cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                            borderRadius: '4px',
-                            border: '1px solid #ccc',
-                            color: "#000000",
-                            backgroundColor: currentPage === totalPages ? '#f3f4f6' : '#fff',
-                        }}
-                    >
-                        Next
-                    </button>
+      {/* Grid of courses */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "24px",
+        }}
+      >
+        {courses.map((course) => (
+          <div
+            key={course.id}
+            style={{
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              background: "white",
+              transition: "transform 0.3s ease",
+            }}
+          >
+            {/* Thumbnail */}
+            <div style={{ position: "relative" }}>
+              <img
+                src={course.thumbnail}
+                alt={course.title}
+                style={{
+                  width: "100%",
+                  height: "160px",
+                  objectFit: "cover",
+                }}
+              />
+              {course.completed && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    backgroundColor: "white",
+                    borderRadius: "50%",
+                    padding: "4px",
+                  }}
+                >
+                  <CheckCircle color="#10B981" size={20} />
                 </div>
-            )} */}
+              )}
+            </div>
+
+            {/* Content */}
+            <div style={{ padding: "16px" }}>
+              <h3
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "#111827",
+                  marginBottom: "6px",
+                }}
+              >
+                {course.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#4B5563",
+                  marginBottom: "10px",
+                  lineHeight: 1.5,
+                }}
+              >
+                {course.description}
+              </p>
+
+              <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "8px" }}>
+                Duration: <strong>{course.duration}</strong>
+              </p>
+              <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "14px" }}>
+                Scheduled: {course.scheduled_date}
+              </p>
+
+              <button
+                onClick={() => handleStartLearning(course)}
+                style={{
+                  width: "100%",
+                  backgroundColor: course.completed ? "#9CA3AF" : "#2563EB",
+                  color: "white",
+                  padding: "10px",
+                  border: "none",
+                  borderRadius: "8px",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "background 0.3s ease",
+                }}
+              >
+                {course.completed ? "Completed" : "Start Learning"}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Course modal / player */}
+    {selectedCourse && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.6)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 50,
+      padding: "20px", // prevent edges cutoff on small screens
+    }}
+  >
+    <div
+      style={{
+        background: "white",
+        borderRadius: "12px",
+        padding: "20px",
+        width: "100%",
+        maxWidth: "600px", // smaller width for better focus
+        maxHeight: "90vh", // limit height
+        overflowY: "auto", // scroll if too tall
+        boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+        position: "relative",
+        animation: "fadeIn 0.3s ease",
+      }}
+    >
+      {/* Close button */}
+      <button
+        onClick={() => setSelectedCourse(null)}
+        style={{
+          position: "absolute",
+          top: "12px",
+          right: "12px",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        <X size={22} color="#9CA3AF" />
+      </button>
+
+      {/* Thumbnail */}
+      <img
+        src={selectedCourse.thumbnail}
+        alt={selectedCourse.title}
+        style={{
+          width: "100%",
+          height: "200px", // reduced height
+          borderRadius: "8px",
+          objectFit: "cover",
+          marginBottom: "16px",
+        }}
+      />
+
+      {/* Title */}
+      <h2
+        style={{
+          fontSize: "20px",
+          fontWeight: "700",
+          marginBottom: "8px",
+          color: "#1F2937",
+        }}
+      >
+        {selectedCourse.title}
+      </h2>
+
+      {/* Description */}
+      <p
+        style={{
+          color: "#4B5563",
+          marginBottom: "16px",
+          fontSize: "14px",
+          lineHeight: 1.6,
+        }}
+      >
+        {selectedCourse.description}
+      </p>
+
+      {/* Lesson Section */}
+      <div
+        style={{
+          backgroundColor: "#F9FAFB",
+          borderRadius: "8px",
+          padding: "14px",
+          marginBottom: "16px",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ marginBottom: "8px", color: "#374151", fontWeight: 500 }}>
+          🎥 Lesson Preview (Coming Soon)
+        </p>
+        <div
+          style={{
+            height: "150px",
+            backgroundColor: "#E5E7EB",
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <PlayCircle size={36} color="#2563EB" />
+        </div>
+      </div>
+
+      {/* Action Button */}
+      {!selectedCourse.completed && (
+        <button
+          onClick={() => {
+            handleMarkAsCompleted(selectedCourse.id);
+            setSelectedCourse(null);
+          }}
+          style={{
+            backgroundColor: "#10B981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            padding: "10px 16px",
+            fontWeight: "600",
+            cursor: "pointer",
+            width: "100%",
+            transition: "background 0.3s ease",
+          }}
+        >
+          Mark as Completed
+        </button>
+      )}
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
