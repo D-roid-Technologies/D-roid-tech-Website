@@ -9,11 +9,26 @@ export type Milestone = {
   toPosition: string;
   achieved: boolean;
   completion: number; // percentage completion (e.g. 33, 56, 100)
+  achievedAt?: string; // ISO timestamp when milestone was achieved
+  lastUpdated?: string; // ISO timestamp when milestone was last updated
+};
+
+export type ProgressionHistory = {
+  id: string;
+  timestamp: string; // ISO timestamp
+  action: 'achieved' | 'reset' | 'updated';
+  milestoneId: string;
+  milestoneTitle: string;
+  fromPosition: string | null;
+  toPosition: string;
+  completionPercentage: number;
 };
 
 interface ProgressionState {
   milestones: Milestone[];
   currentPosition: string;
+  progressionHistory: ProgressionHistory[];
+  lastCalculated?: string; // ISO timestamp of last progression calculation
 }
 
 const LOCAL_KEY = "progression";
@@ -49,13 +64,29 @@ const initialMilestones: Milestone[] = [
 const defaultState: ProgressionState = {
   milestones: initialMilestones,
   currentPosition: "Silver",
+  progressionHistory: [],
+  lastCalculated: new Date().toISOString(),
 };
 
-// Load saved progression from localStorage, fallback to default
-const initialState: ProgressionState = loadFromLocalStorage<ProgressionState>(
-  LOCAL_KEY,
-  defaultState
-);
+// Load saved progression from localStorage with migration support
+const loadProgressionState = (): ProgressionState => {
+  const savedState = loadFromLocalStorage<any>(LOCAL_KEY, null);
+  
+  // If no saved state, return default
+  if (!savedState) {
+    return defaultState;
+  }
+  
+  // Migration: Add missing properties for backward compatibility
+  return {
+    milestones: savedState.milestones || defaultState.milestones,
+    currentPosition: savedState.currentPosition || defaultState.currentPosition,
+    progressionHistory: savedState.progressionHistory || [],
+    lastCalculated: savedState.lastCalculated || new Date().toISOString(),
+  };
+};
+
+const initialState: ProgressionState = loadProgressionState();
 
 const progressionSlice = createSlice({
   name: "progression",
@@ -64,8 +95,30 @@ const progressionSlice = createSlice({
     toggleMilestone: (state, action: PayloadAction<string>) => {
       const milestone = state.milestones.find((m) => m.id === action.payload);
       if (milestone) {
+        const now = new Date().toISOString();
         milestone.achieved = !milestone.achieved;
+        milestone.lastUpdated = now;
+        
+        if (milestone.achieved) {
+          milestone.achievedAt = now;
+        } else {
+          milestone.achievedAt = undefined;
+        }
+        
+        // Add to progression history
+        state.progressionHistory.push({
+          id: Date.now().toString(),
+          timestamp: now,
+          action: milestone.achieved ? 'achieved' : 'reset',
+          milestoneId: milestone.id,
+          milestoneTitle: milestone.title,
+          fromPosition: milestone.fromPosition,
+          toPosition: milestone.toPosition,
+          completionPercentage: milestone.completion,
+        });
+        
         state.currentPosition = getCurrentPosition(state.milestones);
+        state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
       }
     },
@@ -73,8 +126,25 @@ const progressionSlice = createSlice({
     achieveMilestone: (state, action: PayloadAction<string>) => {
       const milestone = state.milestones.find((m) => m.id === action.payload);
       if (milestone) {
+        const now = new Date().toISOString();
         milestone.achieved = true;
+        milestone.achievedAt = now;
+        milestone.lastUpdated = now;
+        
+        // Add to progression history
+        state.progressionHistory.push({
+          id: Date.now().toString(),
+          timestamp: now,
+          action: 'achieved',
+          milestoneId: milestone.id,
+          milestoneTitle: milestone.title,
+          fromPosition: milestone.fromPosition,
+          toPosition: milestone.toPosition,
+          completionPercentage: milestone.completion,
+        });
+        
         state.currentPosition = getCurrentPosition(state.milestones);
+        state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
       }
     },
@@ -82,8 +152,25 @@ const progressionSlice = createSlice({
     resetMilestone: (state, action: PayloadAction<string>) => {
       const milestone = state.milestones.find((m) => m.id === action.payload);
       if (milestone) {
+        const now = new Date().toISOString();
         milestone.achieved = false;
+        milestone.achievedAt = undefined;
+        milestone.lastUpdated = now;
+        
+        // Add to progression history
+        state.progressionHistory.push({
+          id: Date.now().toString(),
+          timestamp: now,
+          action: 'reset',
+          milestoneId: milestone.id,
+          milestoneTitle: milestone.title,
+          fromPosition: milestone.fromPosition,
+          toPosition: milestone.toPosition,
+          completionPercentage: milestone.completion,
+        });
+        
         state.currentPosition = getCurrentPosition(state.milestones);
+        state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
       }
     },
@@ -122,6 +209,8 @@ const progressionSlice = createSlice({
       const resetState: ProgressionState = {
         milestones: initialMilestones,
         currentPosition: getCurrentPosition(initialMilestones),
+        progressionHistory: [],
+        lastCalculated: new Date().toISOString(),
       };
       saveToLocalStorage(LOCAL_KEY, resetState);
       return resetState;
@@ -172,6 +261,12 @@ export const selectProgressPercentage = (state: { progression: ProgressionState 
   const achieved = state.progression.milestones.filter((m) => m.achieved).length;
   return total > 0 ? Math.round((achieved / total) * 100) : 0;
 };
+
+export const selectProgressionHistory = (state: { progression: ProgressionState }) =>
+  state.progression.progressionHistory;
+
+export const selectLastCalculated = (state: { progression: ProgressionState }) =>
+  state.progression.lastCalculated;
 
 // Reducer
 export default progressionSlice.reducer;

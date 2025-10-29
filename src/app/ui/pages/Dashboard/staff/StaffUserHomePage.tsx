@@ -16,13 +16,13 @@ import {
   FaGraduationCap,
   FaBell,
   FaClipboardList,
-  FaAward,
   FaUserCheck,
-  FaChevronRight,
   FaDownload,
   FaPlay,
-  FaBullhorn,
   FaSpinner,
+  FaUserCog,
+  FaIdCard,
+  FaStar,
 } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { FiActivity } from "react-icons/fi";
@@ -31,7 +31,7 @@ import { StatCard } from "../micro-ui/stat-card";
 import { Modal } from "../micro-ui/modal";
 import { useSelector, useDispatch } from "react-redux";
 import { UserType } from "../../../../utils/Types";
-import { RootState } from "../../../../redux/Store";
+import { RootState,store } from "../../../../redux/Store";
 import { useNavigate } from "react-router-dom";
 import { Task, TaskStatus } from "../../../../redux/slices/tasksSlice";
 import {
@@ -160,6 +160,8 @@ const RecentActivityItem = ({
   </div>
 );
 
+
+
 type StaffUserHomePageProps = {
   setSelectedMenu: (menu: string) => void;
 };
@@ -170,6 +172,17 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
+  const memberStats = useSelector((state: RootState) => state.memberStatus);
+    const [statModalOpen, setStatModalOpen] = useState(false);
+  
+    const [selectedStat, setSelectedStat] = useState<{
+      title: string;
+      value: string;
+      change: string;
+      icon: React.ComponentType;
+    } | null>(null);
+
+
 
   // Get notifications from Redux slice
   type Notification = {
@@ -186,10 +199,104 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   );
 
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-
+  const user = useSelector((state: RootState) => state.user);
+    const trainings = useSelector((state: RootState) => state.trainings as any[]);
+ const membershipTier = useSelector(
+    (state: RootState) =>
+      (state as any).membershipTier as { tier?: string; nextTier?: string }
+  );
+    const getStatDetails = (title: string) => {
+    switch (title) {
+      case "Membership Status":
+        return {
+          description:
+            "Your current membership status and standing with the organization.",
+          // history: [
+          //   { date: "Jan 2023", event: "Membership Activated" },
+          //   { date: "Jun 2023", event: "Upgraded to Silver" },
+          //   { date: "Dec 2023", event: "Status: Active" },
+          // ],
+        };
+      case "Points Balance":
+        return {
+          description:
+            "Accumulated points from events, activities, and contributions.",
+          history: [
+            {
+              date: "This Week",
+              event: `Earned ${user?.performanceScore || 0} points`,
+            },
+            { date: "Last Month", event: "Redeemed 500 points" },
+            { date: "3 Months Ago", event: "Bonus: 200 points" },
+          ],
+        };
+      case "Events Attended":
+        return {
+          description:
+            "Total events and training sessions you've participated in.",
+          history: trainings
+            .filter((t: any) => t?.completed)
+            .slice(0, 5)
+            .map((t: any) => ({
+              date: t.date || "Recent",
+              event: t.name || "Training Session",
+            })),
+        };
+      case "Member Level":
+        return {
+          description:
+            "Your membership tier and progress toward the next level.",
+          history: [
+            {
+              date: "Current",
+              event: `${membershipTier?.tier || "Silver"} Staff`,
+            },
+            {
+              date: "Next Goal",
+              event: membershipTier?.nextTier || "Gold",
+            },
+            { date: "Requirements", event: "Complete 5 more events" },
+          ],
+        };
+      default:
+        return { description: "", history: [] };
+    }
+  };
   // Get staff metrics from Redux state
   const { activeTasks, completedTasks, performanceScore, attendanceRate } =
     useSelector((state: RootState) => state.staff);
+
+  // Staff-specific stats for overview section
+  const staffStats = [
+    {
+      title: "Employment Status",
+      value: "Active",
+      change: `${userDetails.position || 'Staff'} since 2025`,
+      icon: FaIdCard,
+      color: "green",
+    },
+    // {
+    //   title: "Task Performance",
+    //   value: `${Math.round((completedTasksCount / (totalTasks || 1)) * 100)}%`,
+    //   change: `${completedTasksCount} tasks completed`,
+    //   icon: FaClipboardCheck,
+    //   color: "blue",
+    // },
+    {
+      title: "Training Progress",
+      value: trainings.filter((t: any) => t?.completed).length.toString(),
+      change: `${trainings.length - trainings.filter((t: any) => t?.completed).length} pending`,
+      icon: FaUserCog,
+      color: "purple",
+    },
+    {
+      title: "Staff Level",
+      value: membershipTier?.tier || "Silver",
+      change: `Next level: ${membershipTier?.nextTier || "Gold"}`,
+      icon: FaStar,
+      color: "orange",
+    },
+  ];
 
   const [currentTime] = useState(new Date());
   const [notificationModalOpen, setNotificationModalOpen] = useState(false);
@@ -209,7 +316,10 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   const unreadNotificationsCount = notifications.filter(
     (n) => !n.isRead
   ).length;
-
+  const handleStatClick = (stat: any) => {
+    setSelectedStat(stat);
+    setStatModalOpen(true);
+  };
   // Update Redux state when tasks change
   useEffect(() => {
     dispatch(
@@ -414,8 +524,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">
-              {/* Your Dashboard, {userDetails.firstName}! */}
-              Staff Portal
+              Welcome, {userDetails.firstName}!
             </h1>
             <p className="shp-welcome-subtitle">
               {userDetails.position} {userDetails.department}
@@ -579,6 +688,116 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             </div>
           ))}
         </div>
+      </Modal>
+      {/* Staff Overview */}
+        <div className="shp-section">
+        <h2 className="shp-section-title">Staff Overview</h2>
+        <div className="shp-stats-grid">
+          {staffStats.map((stat, index) => (
+              <StatCard
+                key={index}
+                title={stat.title}
+                value={stat.value}
+                change={stat.change}
+                icon={stat.icon}
+                onClick={() => handleStatClick(stat)}
+              />
+            ))}
+        </div>
+      </div>
+      <Modal
+        isOpen={statModalOpen}
+        onClose={() => setStatModalOpen(false)}
+        description=""
+        title=""
+      >
+        {selectedStat && (
+          <div style={{ padding: "20px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                marginBottom: "20px",
+              }}
+            >
+              {selectedStat.icon && <selectedStat.icon />}
+              <div>
+                <h2 style={{ margin: 0, fontSize: "24px", fontWeight: "bold" }}>
+                  {selectedStat.title}
+                </h2>
+                <p
+                  style={{
+                    margin: "4px 0 0",
+                    fontSize: "32px",
+                    fontWeight: "bold",
+                    color: "#2563eb",
+                  }}
+                >
+                  {selectedStat.value}
+                </p>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: "20px" }}>
+              <p style={{ fontSize: "14px", color: "#666" }}>
+                {selectedStat.change}
+              </p>
+            </div>
+
+            <div style={{ borderTop: "1px solid #e5e7eb", paddingTop: "20px" }}>
+              <h3
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "600",
+                  marginBottom: "12px",
+                }}
+              >
+                Details
+              </h3>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#666",
+                  marginBottom: "20px",
+                }}
+              >
+                {getStatDetails(selectedStat.title).description}
+              </p>
+
+              {/* <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4> */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                {getStatDetails?.(selectedStat?.title).history?.map(
+                  (item, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "8px",
+                        backgroundColor: "#f9fafb",
+                        borderRadius: "6px",
+                      }}
+                    >
+                      <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                        {item.event}
+                      </span>
+                      <span style={{ fontSize: "12px", color: "#666" }}>
+                        {item.date}
+                      </span>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </Modal>
 
       {/* Quick Actions */}
