@@ -8,6 +8,7 @@ export type Milestone = {
   fromPosition: string | null;
   toPosition: string;
   achieved: boolean;
+  completion: number; // percentage completion (e.g. 33, 56, 100)
 };
 
 interface ProgressionState {
@@ -20,48 +21,37 @@ const LOCAL_KEY = "progression";
 const initialMilestones: Milestone[] = [
   {
     id: "1",
-    title: "Employed as Intern",
+    title: "Start as Silver Member",
     fromPosition: null,
-    toPosition: "Intern",
+    toPosition: "Silver",
     achieved: true,
+    completion: 33,
   },
   {
     id: "2",
-    title: "Promoted to Junior Developer",
-    fromPosition: "Intern",
-    toPosition: "Junior Developer",
-    achieved: true,
+    title: "Upgrade to Gold Member",
+    fromPosition: "Silver",
+    toPosition: "Gold",
+    achieved: false,
+    completion: 56,
   },
   {
     id: "3",
-    title: "Promoted to Mid-Level Developer",
-    fromPosition: "Junior Developer",
-    toPosition: "Mid-Level Developer",
+    title: "Upgrade to Platinum Member",
+    fromPosition: "Gold",
+    toPosition: "Platinum",
     achieved: false,
-  },
-  {
-    id: "4",
-    title: "Promoted to Senior Developer",
-    fromPosition: "Mid-Level Developer",
-    toPosition: "Senior Developer",
-    achieved: false,
-  },
-  {
-    id: "5",
-    title: "Promoted to Team Lead",
-    fromPosition: "Senior Developer",
-    toPosition: "Team Lead",
-    achieved: false,
+    completion: 100,
   },
 ];
 
-// Default state (if nothing is in localStorage)
+// Default state — new accounts always start as Silver
 const defaultState: ProgressionState = {
   milestones: initialMilestones,
-  currentPosition: "Junior Developer", // Based on achieved milestones
+  currentPosition: "Silver",
 };
 
-// Load from localStorage (fallback to default)
+// Load saved progression from localStorage, fallback to default
 const initialState: ProgressionState = loadFromLocalStorage<ProgressionState>(
   LOCAL_KEY,
   defaultState
@@ -139,9 +129,9 @@ const progressionSlice = createSlice({
   },
 });
 
-// Helper to compute current position
+// Helper: compute current position based on achieved milestones
 function getCurrentPosition(milestones: Milestone[]): string {
-  let currentPosition = "Gold";
+  let currentPosition = "Silver"; // default start
   for (const milestone of milestones) {
     if (milestone.achieved) {
       currentPosition = milestone.toPosition;
@@ -161,18 +151,22 @@ export const {
   removeMilestone,
   updateMilestone,
   resetProgression,
-  setAllMilestones
+  setAllMilestones,
 } = progressionSlice.actions;
 
 // Selectors
 export const selectMilestones = (state: { progression: ProgressionState }) =>
   state.progression.milestones;
+
 export const selectCurrentPosition = (state: { progression: ProgressionState }) =>
   state.progression.currentPosition;
+
 export const selectAchievedMilestones = (state: { progression: ProgressionState }) =>
   state.progression.milestones.filter((m) => m.achieved);
+
 export const selectPendingMilestones = (state: { progression: ProgressionState }) =>
   state.progression.milestones.filter((m) => !m.achieved);
+
 export const selectProgressPercentage = (state: { progression: ProgressionState }) => {
   const total = state.progression.milestones.length;
   const achieved = state.progression.milestones.filter((m) => m.achieved).length;
