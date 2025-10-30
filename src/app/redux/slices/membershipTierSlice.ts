@@ -6,8 +6,8 @@ export type MembershipTierState = {
 };
 
 const initialState: MembershipTierState = {
-  tier: "Gold",
-  nextTier: "Platinum",
+  tier: "Silver",
+  nextTier: "Gold",
 };
 
 export const membershipTierSlice = createSlice({
