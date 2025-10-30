@@ -1,10 +1,16 @@
 import { SkillAcquisitionTraining } from "./skill-acquisition-training";
 import { FrontendTraining } from "./frontend-training";
-export const TrainingDescriptionData = ({ program }: { program: string }) => {
+
+interface TrainingDescriptionDataProps {
+  program: string;
+  onContactClick?: () => void;
+}
+
+export const TrainingDescriptionData = ({ program, onContactClick }: TrainingDescriptionDataProps) => {
   if (program === "frontend") {
-    return <FrontendTraining/>
+    return <FrontendTraining onContactClick={onContactClick}/>
   } else if (program === "skill") {
-    return <SkillAcquisitionTraining/>
+    return <SkillAcquisitionTraining onContactClick={onContactClick}/>
   } else {
     return <p>No program data found.</p>;
   }

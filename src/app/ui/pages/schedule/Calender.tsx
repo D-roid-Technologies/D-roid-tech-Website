@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+// Calendar.tsx
+import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 
-const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+import { Task, EventsMap, LOCAL_STORAGE_KEY, makeId } from "./types";
+import styles from "./styles";
+import CalendarHeader from "./CalendarHeader";
+import MonthGrid from "./MonthGrid";
+import DayPanel from "./DayPanel";
+import UserSearch from "./UserSearch";
+
 const views = ["Day", "Week", "Month", "Year"];
 
 const Calendar: React.FC = () => {
@@ -13,330 +20,378 @@ const Calendar: React.FC = () => {
     const [view, setView] = useState("Month");
     const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
     const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+    const navigate = useNavigate();
 
-    const [userEvents] = useState<{ [key: string]: string[] }>({
-        [today.format("YYYY-MM-DD")]: ["Doctor appointment at 9AM", "Team meeting at 2PM"],
-        [today.add(1, "day").format("YYYY-MM-DD")]: ["Lunch with Sarah", "Project deadline"],
+    // events
+    const [userEvents, setUserEvents] = useState<EventsMap>(() => {
+        try {
+            const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (raw) return JSON.parse(raw) as EventsMap;
+        } catch { }
+        // demo defaults
+        const defaults: EventsMap = {
+            [today.format("YYYY-MM-DD")]: [
+                {
+                    id: makeId(),
+                    title: "Doctor appointment",
+                    description: "Annual checkup at clinic, bring forms",
+                    type: "Health",
+                    createdAt: dayjs().toISOString(),
+                    startDate: today.format("YYYY-MM-DD"),
+                    endDate: today.format("YYYY-MM-DD"),
+                },
+            ],
+        };
+        return defaults;
     });
 
-    // const startOfMonth = currentMonth.startOf("month");
-    // const startDay = startOfMonth.day();
-    // const daysInMonth = currentMonth.daysInMonth();
+    useEffect(() => {
+        try {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userEvents));
+        } catch { }
+    }, [userEvents]);
 
-    const prevMonth = () => setCurrentMonth(currentMonth.subtract(1, "month"));
-    const nextMonth = () => setCurrentMonth(currentMonth.add(1, "month"));
+    // form state
+    const [formTitle, setFormTitle] = useState("");
+    const [formDescription, setFormDescription] = useState("");
+    const [formType, setFormType] = useState("");
+    const [formStartDate, setFormStartDate] = useState<string>(() => dayjs().format("YYYY-MM-DD"));
+    const [formEndDate, setFormEndDate] = useState<string | "">("");
 
-    // const handleDayClick = (day: number) => {
-    //     const clickedDate = currentMonth.date(day);
-    //     setSelectedDate(clickedDate);
-    // };
+    // viewing/editing state
+    const [viewingTask, setViewingTask] = useState<Task | null>(null);
+    const [editingTask, setEditingTask] = useState<Task | null>(null);
 
-    const navigate = useNavigate()
+    // search state
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState<{ id: string; name: string; title?: string }[]>([]);
+    const [searchLoading, setSearchLoading] = useState(false);
+    const [searchError, setSearchError] = useState<string | null>(null);
 
-    const renderEventDetails = () => {
-        if (!selectedDate) return null;
+    // reset form defaults helper
+    const resetFormDefaults = (forDate?: Dayjs) => {
+        const base = forDate ?? selectedDate ?? currentMonth.startOf("month");
+        setFormTitle("");
+        setFormDescription("");
+        setFormType("");
+        setFormStartDate(base.format("YYYY-MM-DD"));
+        setFormEndDate("");
+        setViewingTask(null);
+        setEditingTask(null);
+    };
 
-        const dateKey = selectedDate.format("YYYY-MM-DD");
-        const events = userEvents[dateKey] || [];
+    useEffect(() => {
+        if (selectedDate) setFormStartDate(selectedDate.format("YYYY-MM-DD"));
+    }, [selectedDate]);
 
-        if (!isLoggedIn) {
-            return (
-                <div style={styles.eventBox}>
-                    <p style={{ color: "#000000", display: "flex", alignItems: "center" }}>Please <button onClick={() => { navigate("/auth/join-our-community") }} style={styles.loginBtn}>log in</button> to see your tasks for {dateKey}.</p>
-                </div>
-            );
+    // Prev / Next behavior depends on current `view`
+    const goPrev = () => {
+        switch (view) {
+            case "Day": {
+                const base = selectedDate ?? today;
+                const newDate = base.subtract(1, "day");
+                setSelectedDate(newDate);
+                if (!newDate.isSame(currentMonth, "month")) setCurrentMonth(newDate);
+                setView("Day");
+                break;
+            }
+            case "Week": {
+                // move week by -7 days; keep to week view
+                const base = selectedDate ?? today;
+                const newDate = base.subtract(7, "day");
+                setSelectedDate(newDate);
+                // if the new week is in different month, update month label
+                if (!newDate.isSame(currentMonth, "month")) setCurrentMonth(newDate);
+                setView("Week");
+                break;
+            }
+            case "Month": {
+                setCurrentMonth((m) => m.subtract(1, "month"));
+                setView("Month");
+                break;
+            }
+            case "Year": {
+                setCurrentMonth((m) => m.subtract(1, "year"));
+                setView("Year");
+                break;
+            }
+            default:
+                setCurrentMonth((m) => m.subtract(1, "month"));
+                break;
         }
+    };
 
+    const goNext = () => {
+        switch (view) {
+            case "Day": {
+                const base = selectedDate ?? today;
+                const newDate = base.add(1, "day");
+                setSelectedDate(newDate);
+                if (!newDate.isSame(currentMonth, "month")) setCurrentMonth(newDate);
+                setView("Day");
+                break;
+            }
+            case "Week": {
+                const base = selectedDate ?? today;
+                const newDate = base.add(7, "day");
+                setSelectedDate(newDate);
+                if (!newDate.isSame(currentMonth, "month")) setCurrentMonth(newDate);
+                setView("Week");
+                break;
+            }
+            case "Month": {
+                setCurrentMonth((m) => m.add(1, "month"));
+                setView("Month");
+                break;
+            }
+            case "Year": {
+                setCurrentMonth((m) => m.add(1, "year"));
+                setView("Year");
+                break;
+            }
+            default:
+                setCurrentMonth((m) => m.add(1, "month"));
+                break;
+        }
+    };
+
+    // create
+    const handleCreateTask = () => {
+        if (!isLoggedIn) {
+            navigate("/auth/join-our-community");
+            return;
+        }
+        const title = formTitle.trim();
+        if (!title) {
+            alert("Please enter a title");
+            return;
+        }
+        const start = formStartDate;
+        const end = formEndDate || start;
+        const task: Task = {
+            id: makeId(),
+            title,
+            description: formDescription.trim() || undefined,
+            type: formType.trim() || undefined,
+            createdAt: dayjs().toISOString(),
+            startDate: start,
+            endDate: end || undefined,
+        };
+        const dateKey = dayjs(start).format("YYYY-MM-DD");
+        setUserEvents((prev) => {
+            const existing = prev[dateKey] ?? [];
+            return {
+                ...prev,
+                [dateKey]: [...existing, task],
+            };
+        });
+        resetFormDefaults(dayjs(start));
+        setSelectedDate(dayjs(start));
+        setView("Day");
+    };
+
+    // delete
+    const handleDeleteTask = (dateKey: string, id: string) => {
+        setUserEvents((prev) => {
+            const arr = prev[dateKey] ?? [];
+            const newArr = arr.filter((t) => t.id !== id);
+            const copy = { ...prev };
+            if (newArr.length > 0) copy[dateKey] = newArr;
+            else delete copy[dateKey];
+            return copy;
+        });
+        if (viewingTask?.id === id) setViewingTask(null);
+        if (editingTask?.id === id) setEditingTask(null);
+    };
+
+    const handleClearTasks = (dateKey: string) => {
+        setUserEvents((prev) => {
+            const copy = { ...prev };
+            delete copy[dateKey];
+            return copy;
+        });
+        setViewingTask(null);
+        setEditingTask(null);
+    };
+
+    // editing
+    const startEditTask = (task: Task) => setEditingTask({ ...task });
+    const saveEditedTask = () => {
+        if (!editingTask) return;
+        if (!editingTask.title.trim()) return alert("Title required");
+        const task = editingTask;
+        const dateKey = dayjs(task.startDate).format("YYYY-MM-DD");
+        setUserEvents((prev) => {
+            const newMap: EventsMap = {};
+            Object.keys(prev).forEach((k) => {
+                newMap[k] = prev[k].filter((t) => t.id !== task.id);
+                if (newMap[k].length === 0) delete newMap[k];
+            });
+            const existing = newMap[dateKey] ?? [];
+            newMap[dateKey] = [...existing, task];
+            return newMap;
+        });
+        setEditingTask(null);
+        setSelectedDate(dayjs(task.startDate));
+        setView("Day");
+    };
+
+    // user search (API then fallback)
+    const searchUsers = async (q: string) => {
+        setSearchError(null);
+        setSearchResults([]);
+        setSearchLoading(true);
+        try {
+            const res = await fetch(`/api/users?query=${encodeURIComponent(q)}`);
+            if (res.ok) {
+                const data = await res.json();
+                setSearchResults(data);
+                setSearchLoading(false);
+                return;
+            }
+        } catch { }
+        const mock = [
+            { id: "u1", name: "DroidOne_Ava", title: "AI Biologist" },
+            { id: "u2", name: "DroidOne_Max", title: "Front-End Dev" },
+            { id: "u3", name: "DroidOne_Rex", title: "Systems Engineer" },
+        ].filter((r) => r.name.toLowerCase().includes(q.toLowerCase()));
+        setTimeout(() => {
+            setSearchResults(mock);
+            setSearchLoading(false);
+            if (mock.length === 0) setSearchError("No D'roid One users found.");
+        }, 250);
+    };
+
+    // Week view rendering helper: produce startOfWeek and seven days
+    const renderWeekGrid = () => {
+        const base = selectedDate ?? today;
+        // startOf('week') uses locale default (Sun). Adjust as needed.
+        const startOfWeek = base.startOf("week");
+        const weekDays = Array.from({ length: 7 }, (_, i) => startOfWeek.add(i, "day"));
         return (
-            <div style={styles.eventBox}>
-                <h4 style={{ color: "#000000" }}>Events for {dateKey}</h4>
-                {events.length === 0 ? (
-                    <p style={{ color: "#000000" }}>No events scheduled.</p>
-                ) : (
-                    <ul>
-                        {events.map((event, i) => (
-                            <div style={{ color: "#000000" ,textDecoration: "none"}} key={i} >{event}</div>
-                        ))}
-                    </ul>
-                )}
-            </div>
+            <>
+                <div style={styles.daysGrid}>
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+                        <div key={d} style={styles.dayLabel}>
+                            {d}
+                        </div>
+                    ))}
+                </div>
+                <div style={{ ...styles.daysGrid, gridTemplateColumns: "repeat(7, 1fr)" }}>
+                    {weekDays.map((date) => {
+                        const isToday = date.isSame(today, "day");
+                        return (
+                            <div
+                                key={date.format("YYYY-MM-DD")}
+                                onClick={() => {
+                                    setSelectedDate(date);
+                                    setView("Day");
+                                }}
+                                style={{
+                                    ...styles.dayCell,
+                                    ...(isToday ? styles.todayCell : {}),
+                                }}
+                            >
+                                <div style={{ fontWeight: 600 }}>{date.format("D")}</div>
+                                <div style={{ fontSize: "0.7rem", color: "#64748b" }}>{date.format("ddd")}</div>
+                                {userEvents[date.format("YYYY-MM-DD")]?.length ? (
+                                    <div style={{ marginTop: "6px", height: 6, width: 6, borderRadius: 3, background: "#10b981", marginLeft: "auto", marginRight: "auto" }} />
+                                ) : null}
+                            </div>
+                        );
+                    })}
+                </div>
+            </>
         );
     };
 
-    const generateCalendarView = () => {
-        switch (view) {
-            case "Day":
-                if (!selectedDate) return <p style={styles.noSelection}>No day selected.</p>;
-                return (
-                    <div style={styles.singleDayBox}>
-                        <h3 style={styles.dayHeader}>{selectedDate.format("dddd, MMMM D, YYYY")}</h3>
-                        <p style={{ color: "#000000" }}>All events for this day are shown below </p>
-                      <div> {renderEventDetails()}</div> 
-                    </div>
-                );
-
-            case "Week": {
-                const baseDate = selectedDate || today;
-                const startOfWeek = baseDate.startOf("week");
-
-                const weekDays = Array.from({ length: 7 }, (_, i) => startOfWeek.add(i, "day"));
-
-                return (
-                    <div style={styles.daysGrid}>
-                        {weekDays.map((date) => {
-                            const isToday = date.isSame(today, "day");
-                            return (
-                                <div
-                                    key={date.format("YYYY-MM-DD")}
-                                    onClick={() => {
-                                        setSelectedDate(date);
-                                        setView("Day");
-                                    }}
-                                    style={{
-                                        ...styles.dayCell,
-                                        ...(isToday ? styles.todayCell : {}),
-                                    }}
-                                >
-                                    {date.format("D")}
-                                    <div style={{ fontSize: "0.7rem", color: "#64748b" }}>
-                                        {date.format("ddd")}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                );
-            }
-
-            case "Year": {
-                const months = Array.from({ length: 12 }, (_, i) => currentMonth.month(i));
-
-                return (
-                    <div style={{ ...styles.daysGrid, gridTemplateColumns: "repeat(3, 1fr)" }}>
-                        {months.map((_, i) => {
-                            const monthDate = dayjs().month(i).startOf("month");
-                            return (
-                                <div
-                                    key={i}
-                                    onClick={() => {
-                                        setCurrentMonth(monthDate);
-                                        setView("Month");
-                                    }}
-                                    style={{
-                                        ...styles.dayCell,
-                                        padding: "1rem",
-                                        fontSize: "0.9rem",
-                                    }}
-                                >
-                                    {monthDate.format("MMMM")}
-                                </div>
-                            );
-                        })}
-                    </div>
-                );
-            }
-
-            case "Month":
-            default:
-                const startOfMonth = currentMonth.startOf("month");
-                const startDay = startOfMonth.day();
-                const daysInMonth = currentMonth.daysInMonth();
-                const days = [];
-
-                for (let i = 0; i < startDay; i++) {
-                    days.push(<div key={`empty-${i}`} style={styles.emptyCell} />);
-                }
-
-                for (let i = 1; i <= daysInMonth; i++) {
-                    const date = currentMonth.date(i);
-                    const isToday = date.isSame(today, "day");
-
-                    days.push(
-                        <div
-                            key={i}
-                            onClick={() => {
-                                setSelectedDate(date);
-                                setView("Day");
-                            }}
-                            style={{
-                                ...styles.dayCell,
-                                ...(isToday ? styles.todayCell : {}),
-                            }}
-                        >
-                            {i}
-                        </div>
-                    );
-                }
-
-                return <div style={styles.daysGrid}>{days}</div>;
-        }
-    };
-
-
     return (
         <div style={styles.calendarWrapper}>
-            {/* Header and View Controls */}
-            <div style={styles.header}>
-                <button style={styles.navButton} onClick={prevMonth}>
-                    ← Prev
-                </button>
-                <h2 style={styles.monthTitle}>
-                    {currentMonth.format("MMMM YYYY")}
-                </h2>
-                <button style={styles.navButton} onClick={nextMonth}>
-                    Next →
-                </button>
+            <div style={{ gridColumn: "1/2" }}>
+                <CalendarHeader currentMonthLabel={currentMonth.format("MMMM YYYY")} view={view} onPrev={goPrev} onNext={goNext} onChangeView={(v) => setView(v)} views={views} />
+                <div style={{ marginTop: 12 }}>
+                    {/* Month view */}
+                    {view === "Month" && (
+                        <MonthGrid
+                            currentMonth={currentMonth}
+                            today={today}
+                            userEvents={userEvents}
+                            onSelectDate={(d) => {
+                                setSelectedDate(d);
+                                setView("Day");
+                            }}
+                            resetFormDefaults={resetFormDefaults}
+                        />
+                    )}
+
+                    {/* Week view */}
+                    {view === "Week" && <div>{renderWeekGrid()}</div>}
+
+                    {/* Day selected box (when in Day view) */}
+                    {view === "Day" && selectedDate && (
+                        <div style={{ marginTop: 12 }}>
+                            <div style={styles.singleDayBox}>
+                                <h3 style={styles.dayHeader}>{selectedDate.format("dddd, MMMM D, YYYY")}</h3>
+                                <p style={{ color: "#000" }}>All tasks & events for this day are shown below</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Year view simple representation: show months grid (click month to go to Month view) */}
+                    {view === "Year" && (
+                        <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+                            {Array.from({ length: 12 }, (_, i) => {
+                                const monthDate = currentMonth.month(i).startOf("month");
+                                return (
+                                    <div
+                                        key={i}
+                                        onClick={() => {
+                                            setCurrentMonth(monthDate);
+                                            setView("Month");
+                                        }}
+                                        style={{ ...styles.dayCell, padding: "1rem", textAlign: "center" }}
+                                    >
+                                        {monthDate.format("MMMM")}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
             </div>
 
-            <div style={styles.viewSwitcher}>
-                {views.map((v) => (
-                    <button
-                        key={v}
-                        onClick={() => setView(v)}
-                        style={{
-                            ...styles.viewButton,
-                            backgroundColor: view === v ? "#3b82f6" : "#e2e8f0",
-                            color: view === v ? "#fff" : "#1e293b",
-                        }}
-                    >
-                        {v}
-                    </button>
-                ))}
-            </div>
+            {/* Right side panel (day panel + user search) */}
+            <DayPanel
+                selectedDate={selectedDate}
+                isLoggedIn={isLoggedIn}
+                userEvents={userEvents}
+                setUserEvents={setUserEvents}
+                formState={{ formTitle, formDescription, formType, formStartDate, formEndDate }}
+                formSetters={{
+                    setFormTitle,
+                    setFormDescription,
+                    setFormType,
+                    setFormStartDate,
+                    setFormEndDate,
+                    resetFormDefaults,
+                }}
+                onCreateTask={handleCreateTask}
+                viewingTask={viewingTask}
+                setViewingTask={setViewingTask}
+                editingTask={editingTask}
+                setEditingTask={setEditingTask}
+                onEditSave={saveEditedTask}
+                onDeleteTask={handleDeleteTask}
+                onClearTasks={handleClearTasks}
+                navigateToLogin={() => navigate("/auth/join-our-community")}
+            />
 
-            {/* Week Days */}
-            <div style={styles.daysGrid}>
-                {daysOfWeek.map((day) => (
-                    <div key={day} style={styles.dayLabel}>
-                        {day}
-                    </div>
-                ))}
+            {/* User search under the panel */}
+            <div style={{ gridColumn: "2/3" }}>
+                <UserSearch query={searchQuery} setQuery={setSearchQuery} results={searchResults} loading={searchLoading} error={searchError} onSearch={searchUsers} navigate={(p) => navigate(p)} />
             </div>
-
-            {generateCalendarView()}
         </div>
     );
 };
-
-const styles: { [key: string]: React.CSSProperties } = {
-    calendarWrapper: {
-        maxWidth: "600px",
-        margin: "2rem auto",
-        padding: "1.5rem",
-        background: "#ffffff",
-        color: "#000000",
-        borderRadius: "16px",
-        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-        fontFamily: "system-ui, sans-serif",
-    },
-    header: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "1rem",
-    },
-    navButton: {
-        backgroundColor: "#e2e8f0",
-        color: "#1e293b",
-        padding: "0.5rem 1rem",
-        fontSize: "0.875rem",
-        fontWeight: 500,
-        border: "none",
-        borderRadius: "8px",
-        cursor: "pointer",
-        transition: "background 0.2s",
-    },
-    monthTitle: {
-        fontSize: "1rem",
-        fontWeight: 600,
-        color: "#1e3a8a",
-        margin: "1rem",
-    },
-    viewSwitcher: {
-        display: "flex",
-        justifyContent: "center",
-        gap: "0.5rem",
-        marginBottom: "1.25rem",
-    },
-    viewButton: {
-        padding: "0.5rem 1rem",
-        borderRadius: "999px",
-        border: "none",
-        fontWeight: 500,
-        cursor: "pointer",
-        transition: "all 0.2s",
-    },
-    daysGrid: {
-        display: "grid",
-        gridTemplateColumns: "repeat(7, 1fr)",
-        gap: "0.5rem",
-        textAlign: "center",
-        marginBottom: "1rem",
-    },
-    dayLabel: {
-        fontWeight: 600,
-        fontSize: "0.8rem",
-        color: "#94a3b8",
-        textTransform: "uppercase",
-    },
-    dayCell: {
-        padding: "0.9rem 0",
-        borderRadius: "10px",
-        fontWeight: 500,
-        color: "#1e293b",
-        backgroundColor: "#f8fafc",
-        border: "1px solid #e2e8f0",
-        cursor: "pointer",
-        transition: "all 0.2s ease-in-out",
-    },
-    todayCell: {
-        backgroundColor: "#3b82f6",
-        color: "#fff",
-        fontWeight: 700,
-        borderColor: "#2563eb",
-    },
-    emptyCell: {
-        padding: "0.9rem 0",
-    },
-    eventBox: {
-        marginTop: "1rem",
-        padding: "1rem",
-        backgroundColor: "#f9fafb",
-        border: "1px solid #e5e7eb",
-        borderRadius: "12px",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
-    },
-    loginBtn: {
-        background: "#3b82f6",
-        color: "#fff",
-        border: "none",
-        padding: "0.35rem 0.75rem",
-        borderRadius: "6px",
-        marginLeft: "6px",
-        cursor: "pointer",
-        fontWeight: 500,
-    },
-    singleDayBox: {
-        padding: "1.25rem",
-        border: "1px solid #e2e8f0",
-        borderRadius: "12px",
-        backgroundColor: "#f8fafc",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.04)",
-        textAlign: "center",
-    },
-    dayHeader: {
-        fontSize: "1.25rem",
-        fontWeight: 600,
-        color: "#1e3a8a",
-        marginBottom: "0.75rem",
-    },
-    noSelection: {
-        textAlign: "center",
-        padding: "1.25rem",
-        fontStyle: "italic",
-        color: "#64748b",
-    },
-};
-
 
 export default Calendar;
