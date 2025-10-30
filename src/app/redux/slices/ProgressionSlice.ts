@@ -8,14 +8,14 @@ export type Milestone = {
   fromPosition: string | null;
   toPosition: string;
   achieved: boolean;
-  completion: number; // percentage completion (e.g. 33, 56, 100)
-  achievedAt?: string; // ISO timestamp when milestone was achieved
-  lastUpdated?: string; // ISO timestamp when milestone was last updated
+  completion: number;
+  achievedAt?: string;
+  lastUpdated?: string;
 };
 
 export type ProgressionHistory = {
   id: string;
-  timestamp: string; // ISO timestamp
+  timestamp: string;
   action: 'achieved' | 'reset' | 'updated';
   milestoneId: string;
   milestoneTitle: string;
@@ -24,11 +24,22 @@ export type ProgressionHistory = {
   completionPercentage: number;
 };
 
+// 🕒 New type for time tracking
+export type TimeTrackingEntry = {
+  id: string;
+  startTime: string;
+  endTime: string | null;
+  durationHours: number;
+};
+
 interface ProgressionState {
   milestones: Milestone[];
   currentPosition: string;
   progressionHistory: ProgressionHistory[];
-  lastCalculated?: string; // ISO timestamp of last progression calculation
+  lastCalculated?: string;
+  // ⏱️ New fields
+  timeTracking: TimeTrackingEntry[];
+  totalHours: number;
 }
 
 const LOCAL_KEY = "progression";
@@ -60,29 +71,27 @@ const initialMilestones: Milestone[] = [
   },
 ];
 
-// Default state — new accounts always start as Silver
 const defaultState: ProgressionState = {
   milestones: initialMilestones,
   currentPosition: "Silver",
   progressionHistory: [],
   lastCalculated: new Date().toISOString(),
+  timeTracking: [],
+  totalHours: 0,
 };
 
-// Load saved progression from localStorage with migration support
+// Load saved progression
 const loadProgressionState = (): ProgressionState => {
   const savedState = loadFromLocalStorage<any>(LOCAL_KEY, null);
-  
-  // If no saved state, return default
-  if (!savedState) {
-    return defaultState;
-  }
-  
-  // Migration: Add missing properties for backward compatibility
+  if (!savedState) return defaultState;
+
   return {
     milestones: savedState.milestones || defaultState.milestones,
     currentPosition: savedState.currentPosition || defaultState.currentPosition,
     progressionHistory: savedState.progressionHistory || [],
     lastCalculated: savedState.lastCalculated || new Date().toISOString(),
+    timeTracking: savedState.timeTracking || [],
+    totalHours: savedState.totalHours || 0,
   };
 };
 
@@ -98,25 +107,19 @@ const progressionSlice = createSlice({
         const now = new Date().toISOString();
         milestone.achieved = !milestone.achieved;
         milestone.lastUpdated = now;
-        
-        if (milestone.achieved) {
-          milestone.achievedAt = now;
-        } else {
-          milestone.achievedAt = undefined;
-        }
-        
-        // Add to progression history
+        milestone.achievedAt = milestone.achieved ? now : undefined;
+
         state.progressionHistory.push({
           id: Date.now().toString(),
           timestamp: now,
-          action: milestone.achieved ? 'achieved' : 'reset',
+          action: milestone.achieved ? "achieved" : "reset",
           milestoneId: milestone.id,
           milestoneTitle: milestone.title,
           fromPosition: milestone.fromPosition,
           toPosition: milestone.toPosition,
           completionPercentage: milestone.completion,
         });
-        
+
         state.currentPosition = getCurrentPosition(state.milestones);
         state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
@@ -130,19 +133,18 @@ const progressionSlice = createSlice({
         milestone.achieved = true;
         milestone.achievedAt = now;
         milestone.lastUpdated = now;
-        
-        // Add to progression history
+
         state.progressionHistory.push({
           id: Date.now().toString(),
           timestamp: now,
-          action: 'achieved',
+          action: "achieved",
           milestoneId: milestone.id,
           milestoneTitle: milestone.title,
           fromPosition: milestone.fromPosition,
           toPosition: milestone.toPosition,
           completionPercentage: milestone.completion,
         });
-        
+
         state.currentPosition = getCurrentPosition(state.milestones);
         state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
@@ -156,19 +158,18 @@ const progressionSlice = createSlice({
         milestone.achieved = false;
         milestone.achievedAt = undefined;
         milestone.lastUpdated = now;
-        
-        // Add to progression history
+
         state.progressionHistory.push({
           id: Date.now().toString(),
           timestamp: now,
-          action: 'reset',
+          action: "reset",
           milestoneId: milestone.id,
           milestoneTitle: milestone.title,
           fromPosition: milestone.fromPosition,
           toPosition: milestone.toPosition,
           completionPercentage: milestone.completion,
         });
-        
+
         state.currentPosition = getCurrentPosition(state.milestones);
         state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
@@ -176,10 +177,7 @@ const progressionSlice = createSlice({
     },
 
     addMilestone: (state, action: PayloadAction<Omit<Milestone, "id">>) => {
-      const newMilestone: Milestone = {
-        ...action.payload,
-        id: Date.now().toString(),
-      };
+      const newMilestone: Milestone = { ...action.payload, id: Date.now().toString() };
       state.milestones.push(newMilestone);
       saveToLocalStorage(LOCAL_KEY, state);
     },
@@ -207,31 +205,53 @@ const progressionSlice = createSlice({
 
     resetProgression: () => {
       const resetState: ProgressionState = {
-        milestones: initialMilestones,
-        currentPosition: getCurrentPosition(initialMilestones),
-        progressionHistory: [],
+        ...defaultState,
         lastCalculated: new Date().toISOString(),
       };
       saveToLocalStorage(LOCAL_KEY, resetState);
       return resetState;
     },
+
+    // 🕓 Start a session
+    startSession: (state) => {
+      const now = new Date().toISOString();
+      state.timeTracking.push({
+        id: Date.now().toString(),
+        startTime: now,
+        endTime: null,
+        durationHours: 0,
+      });
+      saveToLocalStorage(LOCAL_KEY, state);
+    },
+
+    // 🕔 End a session
+    endSession: (state) => {
+      const now = new Date().toISOString();
+      const active = state.timeTracking.find((s) => !s.endTime);
+      if (active) {
+        const durationMs = new Date(now).getTime() - new Date(active.startTime).getTime();
+        const hours = durationMs / (1000 * 60 * 60);
+        active.endTime = now;
+        active.durationHours = parseFloat(hours.toFixed(2));
+        state.totalHours = state.timeTracking.reduce((sum, s) => sum + s.durationHours, 0);
+        state.lastCalculated = now;
+        saveToLocalStorage(LOCAL_KEY, state);
+      }
+    },
   },
 });
 
-// Helper: compute current position based on achieved milestones
+// Helpers
 function getCurrentPosition(milestones: Milestone[]): string {
-  let currentPosition = "Silver"; // default start
+  let currentPosition = "Silver";
   for (const milestone of milestones) {
-    if (milestone.achieved) {
-      currentPosition = milestone.toPosition;
-    } else {
-      break;
-    }
+    if (milestone.achieved) currentPosition = milestone.toPosition;
+    else break;
   }
   return currentPosition;
 }
 
-// Export actions
+// Actions
 export const {
   toggleMilestone,
   achieveMilestone,
@@ -241,32 +261,29 @@ export const {
   updateMilestone,
   resetProgression,
   setAllMilestones,
+  startSession,
+  endSession,
 } = progressionSlice.actions;
 
 // Selectors
-export const selectMilestones = (state: { progression: ProgressionState }) =>
-  state.progression.milestones;
-
-export const selectCurrentPosition = (state: { progression: ProgressionState }) =>
-  state.progression.currentPosition;
-
-export const selectAchievedMilestones = (state: { progression: ProgressionState }) =>
-  state.progression.milestones.filter((m) => m.achieved);
-
-export const selectPendingMilestones = (state: { progression: ProgressionState }) =>
-  state.progression.milestones.filter((m) => !m.achieved);
-
+export const selectMilestones = (state: { progression: ProgressionState }) => state.progression.milestones;
+export const selectCurrentPosition = (state: { progression: ProgressionState }) => state.progression.currentPosition;
 export const selectProgressPercentage = (state: { progression: ProgressionState }) => {
   const total = state.progression.milestones.length;
   const achieved = state.progression.milestones.filter((m) => m.achieved).length;
   return total > 0 ? Math.round((achieved / total) * 100) : 0;
 };
+export const selectProgressionHistory = (state: { progression: ProgressionState }) => state.progression.progressionHistory;
+export const selectLastCalculated = (state: { progression: ProgressionState }) => state.progression.lastCalculated;
 
-export const selectProgressionHistory = (state: { progression: ProgressionState }) =>
-  state.progression.progressionHistory;
+// ⏱️ New selectors
+export const selectTotalHours = (state: { progression: ProgressionState }) => state.progression.totalHours;
+export const selectWeeklyProgressHours = (state: { progression: ProgressionState }) => {
+  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const thisWeekHours = state.progression.timeTracking
+    .filter((entry) => new Date(entry.startTime) >= oneWeekAgo)
+    .reduce((sum, entry) => sum + entry.durationHours, 0);
+  return parseFloat(thisWeekHours.toFixed(2));
+};
 
-export const selectLastCalculated = (state: { progression: ProgressionState }) =>
-  state.progression.lastCalculated;
-
-// Reducer
 export default progressionSlice.reducer;
