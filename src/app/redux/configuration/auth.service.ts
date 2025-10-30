@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from "firebase/auth";
 import { collection, doc, getDoc, setDoc, updateDoc, arrayUnion, query, where, getDocs, arrayRemove } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { auth, db } from "../../../firebase";
@@ -144,6 +144,35 @@ type DroidAccount = {
     resources: {
         resorceses: any[];
     };
+}
+
+function getCurrentUserOnce(timeoutMs = 3000): Promise<User | null> {
+    const auth = getAuth();
+    return new Promise((resolve) => {
+        // If currentUser is already present, resolve immediately
+        if (auth.currentUser) {
+            resolve(auth.currentUser);
+            return;
+        }
+
+        let resolved = false;
+        const unlisten = onAuthStateChanged(auth, (user) => {
+            if (!resolved) {
+                resolved = true;
+                unlisten();
+                resolve(user);
+            }
+        });
+
+        // Fallback timeout (in case onAuthStateChanged doesn't fire quickly)
+        setTimeout(() => {
+            if (!resolved) {
+                resolved = true;
+                unlisten();
+                resolve(auth.currentUser); // may be null
+            }
+        }, timeoutMs);
+    });
 }
 
 
@@ -396,82 +425,69 @@ export class AuthService {
                         locationFromDevice: locationData,
                         currentdateTime: currentDateTime,
                     },
-                    userForms: [],
-                    knowledgeCity: {
-                        kCoin: {
-                            amount: 0,
-                            storeCardDetails: false,
-                            mineCoins: {
-                                numberOfReferals: 0,
-                                numberOfAdsWatched: 0,
+                    security: {
+                    },
+                    affiliates: {
+                        knowledgeCity: {
+                            kCoin: {
+                                amount: 0,
+                                storeCardDetails: false,
+                                mineCoins: {
+                                    numberOfReferals: 0,
+                                    numberOfAdsWatched: 0,
+                                },
                             },
-                        },
-                        courses: [],
-                        notifications: [],
-                        schedules: [],
-                        diaries: [
-                            {
-                                diaryTitle: "The Diary Platform",
-                                description: "Tell us your thoughts",
-                                startDate: currentDateTime.formattedDateTime,
-                                endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
-                            },
-                        ],
-                        lunchBox: {
-                            events: [
+                            courses: [],
+                            notifications: [],
+                            schedules: [],
+                            diaries: [
                                 {
-                                    eventTitle: "D'roid Technologies - Chess Marathon",
-                                    description: "The Chess Marathon of the year",
-                                    imageLink: "",
-                                    attendees: 0,
-                                    createdTime: currentDateTime.time,
-                                    createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+                                    diaryTitle: "The Diary Platform",
+                                    description: "Tell us your thoughts",
+                                    startDate: currentDateTime.formattedDateTime,
+                                    endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
                                 },
                             ],
-                            jobs: [
-                                {
-                                    jobTitle: "Front-End Developer - React Js",
-                                    description: "We are looking for a front end developer in React Js",
-                                    imageLink: "",
-                                    peopleApplied: 0,
-                                    createdTime: currentDateTime.time,
-                                    createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                                },
-                            ],
+                            lunchBox: {
+                                events: [
+                                    {
+                                        eventTitle: "D'roid Technologies - Chess Marathon",
+                                        description: "The Chess Marathon of the year",
+                                        imageLink: "",
+                                        attendees: 0,
+                                        createdTime: currentDateTime.time,
+                                        createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+                                    },
+                                ],
+                                jobs: [
+                                    {
+                                        jobTitle: "Front-End Developer - React Js",
+                                        description: "We are looking for a front end developer in React Js",
+                                        imageLink: "",
+                                        peopleApplied: 0,
+                                        createdTime: currentDateTime.time,
+                                        createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
+                                    },
+                                ],
+                            },
                         },
                     },
-                    notifications: [],
-                    paySlip: [],
                     onboard: {
                         onboarding: [],
-                        memberStatus: []
+                        memberStatus: [],
+                        trainings: [],
+                        progressions: [],
+                        userForms: [],
+                        notifications: [],
                     },
-                    trainings: [],
-                    progressions: [],
                     staff: {
-                        staffDetails: {
-                            staffGrossPay: "",
-                            staffTax: "",
-                            staffPosition: "",
-                            staffBank: "",
-                            staffAccountNmber: "",
-                            staffAccountName: ""
-                        },
-                        staffDoc: {
-                            nationalId: "",
-                            proofOfAddress: "",
-                            secSchCertificate: "",
-                            uniCertificate: "",
-                            birthCertificate: "",
-                            medicalDoc: "",
-                            signatre: "",
-                            pasport: "",
-                            marriageCert: "",
-                            nyscCert: "",
-                            utilityBill: "",
-                        },
+                        paySlip: [],
+                        staffDetails: {},
+                        staffDoc: {},
                         staffLeave: [],
-                        staffSignInAndOut: []
+                        staffSignInAndOut: [],
+                        tasks: [],
+                        tests: []
                     },
                 },
                 toolBox: {
@@ -996,7 +1012,8 @@ export class AuthService {
             };
 
             await updateDoc(staffDocRef, {
-                "staff.staffDetails": updatedDetails,
+                "user.staff.staffDetails": updatedDetails,
+                "user.onboard.onboarding": updatedDetails,
             });
 
             store.dispatch(setStaffDetails(updatedDetails));
@@ -1147,8 +1164,6 @@ export class AuthService {
             throw new Error(error.message || "Failed to update task");
         }
     }
-
-
 }
 
 export const authService = new AuthService()
