@@ -1,6 +1,9 @@
+import { FaJava, FaPhp } from "react-icons/fa";
+
 export const Questions = [
   {
     title: "Java",
+    icon: FaJava({ size: 24 }),
     subTitle:
       "Assess your ability to build robust, scalable, and enterprise-ready applications",
     summary:
@@ -284,6 +287,7 @@ export const Questions = [
   },
   {
     title: "PHP",
+    icon: FaPhp({ size: 24 }),
     subTitle: "Evaluate your web development skills with PHP",
     summary:
       "This PHP test covers server-side scripting, frameworks like Laravel, and database integration.",
@@ -2618,7 +2622,7 @@ export const Questions = [
       },
     ],
   },
- 
+
   {
     title: "Node.js",
     subTitle: "Evaluate your server-side JavaScript expertise",
@@ -3207,808 +3211,808 @@ export const Questions = [
       },
     ],
   },
-   {
-  title: "C++",
-  subTitle:
-    "Test your system programming and performance optimization skills",
-  summary:
-    "This C++ test evaluates your knowledge of memory management, templates, STL, and performance optimization.",
-  duration: "65 minutes",
-  description:
-    "The exam assesses your understanding of C++ fundamentals, advanced features like templates and smart pointers, and your ability to write efficient, performance-critical code.",
-  level: "Intermediate to Advanced",
-  tools: ["C++", "GCC/Clang", "CMake", "Visual Studio Code"],
-  mode: ["Online test", "Performance analysis questions"],
-  url: "",
-  benefits: [
-    "Prove your systems programming capabilities",
-    "Demonstrate memory management expertise",
-    "Show understanding of performance optimization",
-    "Validate knowledge of modern C++ features",
-  ],
-  gallery: ["/images/cpp/1.jpg", "/images/cpp/2.jpg"],
-  learn: [
-    "C++ fundamentals and OOP",
-    "Memory management",
-    "Templates and STL",
-    "Modern C++ features",
-    "Performance optimization",
-  ],
-  questions: [
-    "What is C++?",
-    "Difference between malloc and new?",
-    "What are smart pointers?",
-  ],
-  quiz: [
-    {
-      id: 1,
-      question: "What is the difference between malloc() and new in C++?",
-      options: [
-        "No difference",
-        "malloc is faster than new",
-        "malloc allocates memory, new allocates memory and calls constructor",
-        "new is from C, malloc is from C++",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "malloc() only allocates raw memory, while new allocates memory and calls the constructor. Similarly, free() vs delete() - delete calls the destructor.",
-    },
-    {
-      id: 2,
-      question: "What is RAII in C++?",
-      options: [
-        "Resource Allocation Is Initialization",
-        "Resource Access In Implementation",
-        "Runtime Application Interface Integration",
-        "Rapid Application Integration Infrastructure",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "RAII (Resource Allocation Is Initialization) is a programming idiom where resource management is tied to object lifetime, ensuring automatic cleanup.",
-    },
-    {
-      id: 3,
-      question: "What are smart pointers in C++?",
-      options: [
-        "Pointers that are faster",
-        "Objects that manage memory automatically",
-        "Pointers with better syntax",
-        "Pointers that can do arithmetic",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Smart pointers are objects that manage memory automatically, providing automatic cleanup and helping prevent memory leaks and dangling pointers.",
-    },
-    {
-      id: 4,
-      question: "Which C++ feature allows you to write generic code?",
-      options: ["Inheritance", "Templates", "Polymorphism", "Overloading"],
-      correctAnswer: 1,
-      explanation:
-        "Templates allow you to write generic code that works with different data types, enabling code reuse and type safety at compile time.",
-    },
-    {
-      id: 5,
-      question: "What is the Standard Template Library (STL)?",
-      options: [
-        "A graphics library",
-        "A collection of template classes and functions",
-        "A networking library",
-        "A database interface",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The STL is a powerful library of template-based containers, algorithms, and iterators that provides common data structures and algorithms.",
-    },
-    {
-      id: 6,
-      question: "What is the purpose of a destructor in C++?",
-      options: [
-        "To initialize an object",
-        "To clean up resources when an object is destroyed",
-        "To allocate memory for an object",
-        "To copy data from another object",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Destructors automatically release resources like memory or file handles when an object goes out of scope.",
-    },
-    {
-      id: 7,
-      question: "Which keyword prevents a class from being inherited?",
-      options: ["const", "static", "final", "virtual"],
-      correctAnswer: 2,
-      explanation:
-        "The 'final' keyword prevents further inheritance of a class or overriding of a virtual function.",
-    },
-    {
-      id: 8,
-      question: "What is a virtual function in C++?",
-      options: [
-        "A function that executes in the background",
-        "A function defined inside a namespace",
-        "A function that can be overridden in derived classes",
-        "A function that runs at compile time",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "Virtual functions enable runtime polymorphism, allowing derived classes to override methods and achieve dynamic dispatch.",
-    },
-    {
-      id: 9,
-      question: "Which of the following is NOT a C++ access specifier?",
-      options: ["public", "protected", "private", "internal"],
-      correctAnswer: 3,
-      explanation:
-        "'internal' is used in C#, not C++. C++ access specifiers are public, protected, and private.",
-    },
-    {
-      id: 10,
-      question: "What does the 'mutable' keyword do in C++?",
-      options: [
-        "Allows modification of class members even in const objects",
-        "Makes a variable constant",
-        "Prevents inheritance",
-        "Enables multithreading",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "'mutable' allows a member variable to be modified even when the containing object is declared const.",
-    },
-    {
-      id: 11,
-      question: "What is the use of 'constexpr' in modern C++?",
-      options: [
-        "To define variables or functions evaluated at compile time",
-        "To make a variable constant",
-        "To declare external constants",
-        "To allocate memory on the stack",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "'constexpr' ensures that expressions are evaluated at compile time, improving performance and enabling compile-time computation.",
-    },
-    {
-      id: 12,
-      question: "What is a pure virtual function?",
-      options: [
-        "A function with no implementation",
-        "A static function",
-        "A template function",
-        "A function that always returns void",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "A pure virtual function has no implementation and must be overridden in derived classes, making the class abstract.",
-    },
-    {
-      id: 13,
-      question: "Which of these containers is not part of STL?",
-      options: ["vector", "map", "set", "arraylist"],
-      correctAnswer: 3,
-      explanation:
-        "'arraylist' is from Java. C++ STL containers include vector, map, set, deque, and others.",
-    },
-    {
-      id: 14,
-      question: "What is a lambda expression in C++?",
-      options: [
-        "An inline anonymous function",
-        "A macro replacement",
-        "A preprocessor directive",
-        "A virtual function",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "Lambda expressions define anonymous functions inline, often used with STL algorithms for brevity and clarity.",
-    },
-    {
-      id: 15,
-      question: "What does the 'explicit' keyword prevent?",
-      options: [
-        "Implicit type conversions using constructors",
-        "Function overloading",
-        "Virtual inheritance",
-        "Const correctness",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The 'explicit' keyword prevents implicit conversions, ensuring constructors are called only with direct initialization.",
-    },
-    {
-      id: 16,
-      question: "Which smart pointer allows shared ownership of an object?",
-      options: ["unique_ptr", "shared_ptr", "weak_ptr", "auto_ptr"],
-      correctAnswer: 1,
-      explanation:
-        "'shared_ptr' provides shared ownership, keeping the object alive until all shared_ptr instances are destroyed.",
-    },
-    {
-      id: 17,
-      question: "What is move semantics in C++?",
-      options: [
-        "A feature for transferring resources instead of copying",
-        "A syntax for moving files",
-        "An optimization for recursion",
-        "A type of inheritance",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "Move semantics allow efficient transfer of resources from temporary objects, avoiding unnecessary deep copies.",
-    },
-    {
-      id: 18,
-      question: "Which operator cannot be overloaded in C++?",
-      options: ["+", "=", "::", "[]"],
-      correctAnswer: 2,
-      explanation:
-        "The scope resolution operator (::) cannot be overloaded. Other operators like +, =, and [] can be overloaded.",
-    },
-    {
-      id: 19,
-      question: "What is the main purpose of 'std::move()'?",
-      options: [
-        "To move memory addresses",
-        "To enable move semantics by casting to an rvalue reference",
-        "To copy an object efficiently",
-        "To swap two objects",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "'std::move()' casts an object to an rvalue reference, enabling move semantics for efficient transfers.",
-    },
-    {
-      id: 20,
-      question: "What is the function of 'emplace_back()' in a vector?",
-      options: [
-        "Inserts an element by copying it",
-        "Constructs an element in place at the end of the vector",
-        "Removes the last element",
-        "Reserves memory for new elements",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "'emplace_back()' constructs the element directly in place, avoiding unnecessary copies and improving performance.",
-    },
-  ],
-},
- {
-  title: "Go",
-  subTitle:
-    "Test your proficiency in building high-performance, concurrent applications",
-  summary:
-    "This Go test evaluates your knowledge of Go fundamentals, goroutines, channels, error handling, and building scalable microservices.",
-  duration: "50 minutes",
-  description:
-    "The exam measures your competency in Go programming, covering syntax, concurrency patterns, error handling, and microservice development.",
-  level: "Beginner to Advanced",
-  tools: ["Go", "Gorilla Mux", "GORM", "Docker", "VS Code"],
-  mode: ["Online test", "Timed questions", "Certificate upon passing"],
-  url: "",
-  benefits: [
-    "Validate your Go syntax & concurrency skills",
-    "Showcase microservice development knowledge",
-    "Prove understanding of channels & goroutines",
-    "Demonstrate error handling best practices",
-  ],
-  gallery: ["/images/go/1.jpg", "/images/go/2.jpg"],
-  learn: [
-    "Go fundamentals & syntax",
-    "Goroutines & channels",
-    "Error handling patterns",
-    "HTTP servers & REST APIs",
-    "Testing in Go",
-  ],
-  questions: [
-    "What are goroutines?",
-    "How do channels work?",
-    "What is Go's approach to error handling?",
-  ],
-  quiz: [
-    {
-      id: 1,
-      question: "How do you start a goroutine in Go?",
-      options: [
-        "start functionName()",
-        "go functionName()",
-        "async functionName()",
-        "thread functionName()",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The 'go' keyword is used to start a goroutine in Go, which runs the function concurrently with other goroutines.",
-    },
-    {
-      id: 2,
-      question: "What are channels used for in Go?",
-      options: [
-        "To store data permanently",
-        "To communicate between goroutines",
-        "To handle HTTP requests",
-        "To manage memory",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Channels are used for communication between goroutines, allowing safe data sharing and synchronization in concurrent programs.",
-    },
-    {
-      id: 3,
-      question: "Which keyword is used to handle errors in Go?",
-      options: ["try-catch", "if err != nil", "throw-catch", "error-handle"],
-      correctAnswer: 1,
-      explanation:
-        "Go uses explicit error handling with 'if err != nil' pattern rather than exceptions, making error handling more visible and controlled.",
-    },
-    {
-      id: 4,
-      question: "What is the purpose of Go modules?",
-      options: [
-        "To create web servers",
-        "To manage dependencies and versioning",
-        "To handle concurrent programming",
-        "To optimize performance",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Go modules are used for dependency management and versioning, allowing you to manage external packages and their versions in your Go projects.",
-    },
-    {
-      id: 5,
-      question: "What does the 'defer' keyword do?",
-      options: [
-        "Delays execution until the function returns",
-        "Cancels function execution",
-        "Creates a new goroutine",
-        "Handles panics",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The 'defer' keyword schedules a function call to be executed just before the surrounding function returns, commonly used for cleanup operations.",
-    },
-    {
-      id: 6,
-      question: "What is a goroutine in Go?",
-      options: [
-        "A lightweight thread managed by the Go runtime",
-        "An OS-level process",
-        "A memory allocation unit",
-        "A pointer type",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "Goroutines are lightweight threads managed by the Go runtime, allowing concurrent execution of functions efficiently.",
-    },
-    {
-      id: 7,
-      question: "What is the zero value of an int in Go?",
-      options: ["nil", "0", "undefined", "empty"],
-      correctAnswer: 1,
-      explanation:
-        "Every Go type has a zero value. For int, it’s 0; for string, it’s an empty string; and for pointers, it’s nil.",
-    },
-    {
-      id: 8,
-      question: "Which statement correctly declares a variable in Go?",
-      options: [
-        "int x = 10",
-        "x := 10",
-        "var x := 10",
-        "define x = 10",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The short variable declaration 'x := 10' is the idiomatic way to declare and initialize variables in Go.",
-    },
-    {
-      id: 9,
-      question: "How do you import multiple packages in Go?",
-      options: [
-        "import pkg1, pkg2",
-        "import (\"pkg1\" \"pkg2\")",
-        "include pkg1, pkg2",
-        "require [pkg1, pkg2]",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Multiple packages can be imported using parentheses: import (\"fmt\" \"os\" \"net/http\").",
-    },
-    {
-      id: 10,
-      question: "What does the 'select' statement do in Go?",
-      options: [
-        "Selects a random goroutine",
-        "Waits on multiple channel operations",
-        "Starts multiple goroutines",
-        "Handles runtime errors",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The 'select' statement waits on multiple channel operations, allowing a goroutine to react to whichever channel is ready first.",
-    },
-    {
-      id: 11,
-      question: "How do you create a map in Go?",
-      options: [
-        "map[string]string{}",
-        "make(map[string]string)",
-        "new map[string]string",
-        "[]map[string]string",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Maps are created using the built-in 'make' function, e.g. make(map[string]string).",
-    },
-    {
-      id: 12,
-      question: "What is the capacity of a Go slice?",
-      options: [
-        "The maximum length before reallocation",
-        "The current number of elements",
-        "Always fixed at creation",
-        "The total memory size of the slice",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "A slice’s capacity is the maximum length it can grow before needing to reallocate its underlying array.",
-    },
-    {
-      id: 13,
-      question: "How do you recover from a panic in Go?",
-      options: [
-        "Use try-catch",
-        "Use recover() inside a deferred function",
-        "Use panic() again",
-        "Use handle() function",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The recover() function, when called inside a deferred function, regains control of a panicking goroutine.",
-    },
-    {
-      id: 14,
-      question: "What is a struct in Go?",
-      options: [
-        "A function type",
-        "A collection of fields",
-        "An array of integers",
-        "A constant type",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Structs are composite data types that group together fields under a single type, similar to classes without methods.",
-    },
-    {
-      id: 15,
-      question: "How do you define a method for a struct in Go?",
-      options: [
-        "func (s StructName) methodName() {}",
-        "method StructName.methodName() {}",
-        "StructName.func methodName() {}",
-        "def StructName.methodName() {}",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "Methods are defined with a receiver, e.g., func (s StructName) methodName() {} — allowing functions to operate on struct instances.",
-    },
-    {
-      id: 16,
-      question: "Which package is used to handle HTTP in Go?",
-      options: ["net/http", "httpio", "web", "go/net"],
-      correctAnswer: 0,
-      explanation:
-        "The 'net/http' package provides tools for building HTTP clients and servers in Go.",
-    },
-    {
-      id: 17,
-      question: "What does the 'interface{}' type represent in Go?",
-      options: [
-        "A type that can hold any value",
-        "A string type",
-        "A nil pointer",
-        "A channel type",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "'interface{}' is the empty interface in Go and can hold values of any type, making it the most general type.",
-    },
-    {
-      id: 18,
-      question: "How do you perform testing in Go?",
-      options: [
-        "Using the 'go test' command",
-        "Using 'npm test'",
-        "Using the 'testing' CLI tool",
-        "By importing 'go/unittest'",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The 'go test' command automatically detects and runs test functions in files ending with '_test.go'.",
-    },
-    {
-      id: 19,
-      question: "Which keyword is used to import packages in Go?",
-      options: ["include", "use", "import", "require"],
-      correctAnswer: 2,
-      explanation:
-        "The 'import' keyword is used to include external or standard library packages in Go code.",
-    },
-    {
-      id: 20,
-      question: "What is a Go channel's default behavior when sending data?",
-      options: [
-        "It blocks until another goroutine receives the data",
-        "It stores data indefinitely",
-        "It automatically duplicates data",
-        "It ignores the data if no receiver exists",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "Unbuffered channels in Go block the sender until another goroutine receives the data, ensuring synchronization.",
-    },
-  ],
-}
-,
   {
-  title: "PHP",
-  subTitle:
-    "Evaluate your skills in building dynamic web applications and APIs",
-  summary:
-    "This PHP test covers fundamentals to advanced topics: syntax, OOP, frameworks like Laravel, database integration, and modern PHP practices.",
-  duration: "55 minutes",
-  description:
-    "The exam assesses your PHP programming competency, including object-oriented programming, web development, Laravel framework, and database operations.",
-  level: "Beginner to Advanced",
-  tools: ["PHP", "Laravel", "Composer", "MySQL", "PHPStorm"],
-  mode: ["Online test", "Timed questions", "Certificate upon passing"],
-  url: "",
-  benefits: [
-    "Validate your PHP syntax & OOP skills",
-    "Showcase Laravel framework expertise",
-    "Prove database integration knowledge",
-    "Demonstrate modern PHP best practices",
-  ],
-  gallery: ["/images/php/1.jpg", "/images/php/2.jpg"],
-  learn: [
-    "PHP fundamentals & syntax",
-    "Object-oriented programming",
-    "Laravel framework basics",
-    "Database operations with PDO",
-    "RESTful API development",
-  ],
-  questions: [
-    "What are PHP namespaces?",
-    "How does Laravel's Eloquent ORM work?",
-    "What is the difference between include and require?",
-  ],
-  quiz: [
-    {
-      id: 1,
-      question: "Which symbol is used to declare a variable in PHP?",
-      options: ["@", "$", "#", "&"],
-      correctAnswer: 1,
-      explanation:
-        "In PHP, variables are declared using the dollar sign ($) followed by the variable name, like $variableName.",
-    },
-    {
-      id: 2,
-      question: "What is the correct way to start a PHP script?",
-      options: ["<script>", "<?php", "<php>", "<?="],
-      correctAnswer: 1,
-      explanation:
-        "PHP scripts start with the opening tag '<?php' and optionally end with '?>' when mixed with HTML.",
-    },
-    {
-      id: 3,
-      question: "Which function is used to connect to a MySQL database in PHP?",
-      options: [
-        "mysql_connect()",
-        "mysqli_connect()",
-        "connect_mysql()",
-        "db_connect()",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "mysqli_connect() is the modern way to connect to MySQL databases in PHP, replacing the deprecated mysql_connect().",
-    },
-    {
-      id: 4,
-      question: "What does the 'use' keyword do in PHP?",
-      options: [
-        "Includes a file",
-        "Imports a namespace or trait",
-        "Declares a variable",
-        "Starts a function",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The 'use' keyword is used to import namespaces, classes, or traits, making them available in the current scope without fully qualified names.",
-    },
-    {
-      id: 5,
-      question: "What is Laravel's Artisan?",
-      options: [
-        "A database driver",
-        "A command-line tool",
-        "A templating engine",
-        "An ORM system",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Artisan is Laravel's command-line interface that provides helpful commands for common tasks like generating models, controllers, and running migrations.",
-    },
-    {
-      id: 6,
-      question: "What is the difference between 'include' and 'require' in PHP?",
-      options: [
-        "No difference at all",
-        "require throws a fatal error; include throws a warning",
-        "include is faster",
-        "require only works with OOP",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The 'require' statement stops script execution on failure, while 'include' only emits a warning and continues.",
-    },
-    {
-      id: 7,
-      question: "Which function is used to start a session in PHP?",
-      options: ["session_open()", "start_session()", "session_start()", "open_session()"],
-      correctAnswer: 2,
-      explanation:
-        "The 'session_start()' function is used to start a new session or resume an existing one in PHP.",
-    },
-    {
-      id: 8,
-      question: "How can you declare a constant in PHP?",
-      options: [
-        "const NAME = 'value';",
-        "$NAME = constant('value');",
-        "constant NAME = 'value';",
-        "define const NAME = 'value';",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "Constants can be declared using either 'const' or 'define()', e.g., const PI = 3.14; or define('PI', 3.14);.",
-    },
-    {
-      id: 9,
-      question: "What is the purpose of Composer in PHP?",
-      options: [
-        "To compile PHP code",
-        "To manage PHP packages and dependencies",
-        "To connect databases",
-        "To execute shell scripts",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Composer is PHP’s dependency manager that helps you install, update, and autoload external libraries easily.",
-    },
-    {
-      id: 10,
-      question: "Which of the following is a superglobal variable in PHP?",
-      options: ["$data", "$globals", "$_POST", "$input"],
-      correctAnswer: 2,
-      explanation:
-        "PHP has predefined superglobals like $_POST, $_GET, $_SESSION, and $_SERVER, which are accessible anywhere in the script.",
-    },
-    {
-      id: 11,
-      question: "What does PDO stand for in PHP?",
-      options: [
-        "PHP Data Object",
-        "Programmed Data Operation",
-        "Persistent Data Object",
-        "Process Data Output",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "PDO (PHP Data Object) is a database access layer that provides a uniform interface for multiple database systems.",
-    },
-    {
-      id: 12,
-      question: "Which Laravel file defines the routes for web applications?",
-      options: [
-        "config/routes.php",
-        "routes/web.php",
-        "app/routes.php",
-        "resources/routes.php",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Laravel’s routes for web interfaces are defined in the 'routes/web.php' file.",
-    },
-    {
-      id: 13,
-      question: "How do you define a class in PHP?",
-      options: [
-        "define class MyClass {}",
-        "class MyClass {}",
-        "function MyClass() {}",
-        "create_class MyClass {}",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Classes in PHP are defined using the 'class' keyword, e.g., class MyClass { public function greet() {} }.",
-    },
-    {
-      id: 14,
-      question: "Which method in Laravel handles form validation?",
-      options: ["validate()", "check()", "verify()", "assert()"],
-      correctAnswer: 0,
-      explanation:
-        "The 'validate()' method is used in Laravel controllers to validate incoming form data against defined rules.",
-    },
-    {
-      id: 15,
-      question: "What is a trait in PHP?",
-      options: [
-        "A design pattern",
-        "A reusable piece of code used inside classes",
-        "A type of variable",
-        "A database model",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Traits allow code reuse in PHP by enabling you to include sets of methods in multiple classes without inheritance.",
-    },
-    {
-      id: 16,
-      question: "Which operator is used for concatenating strings in PHP?",
-      options: ["+", ".", "&", "concat"],
-      correctAnswer: 1,
-      explanation:
-        "In PHP, the dot (.) operator is used to concatenate strings, e.g., $fullName = $first . ' ' . $last.",
-    },
-    {
-      id: 17,
-      question: "What is middleware in Laravel?",
-      options: [
-        "A database connection",
-        "A function that filters HTTP requests",
-        "A configuration setting",
-        "A cache layer",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Middleware in Laravel acts as a filter for HTTP requests, allowing logic such as authentication or logging before reaching controllers.",
-    },
-    {
-      id: 18,
-      question: "Which PHP version introduced type declarations?",
-      options: ["5.2", "5.6", "7.0", "8.0"],
-      correctAnswer: 2,
-      explanation:
-        "PHP 7.0 introduced scalar type declarations and return type hints, improving type safety in applications.",
-    },
-    {
-      id: 19,
-      question: "How do you handle exceptions in PHP?",
-      options: [
-        "Using if statements",
-        "Using try-catch blocks",
-        "Using switch-case blocks",
-        "Using error handlers only",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Exceptions in PHP are handled using try-catch blocks, e.g., try { ... } catch (Exception $e) { echo $e->getMessage(); }.",
-    },
-    {
-      id: 20,
-      question: "What does Laravel’s Eloquent ORM provide?",
-      options: [
-        "An advanced caching system",
-        "An expressive database abstraction layer",
-        "A real-time messaging protocol",
-        "A testing framework",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Eloquent ORM in Laravel provides an elegant, ActiveRecord-style interface to interact with databases using models.",
-    },
-  ],
-}
-,
+    title: "C++",
+    subTitle:
+      "Test your system programming and performance optimization skills",
+    summary:
+      "This C++ test evaluates your knowledge of memory management, templates, STL, and performance optimization.",
+    duration: "65 minutes",
+    description:
+      "The exam assesses your understanding of C++ fundamentals, advanced features like templates and smart pointers, and your ability to write efficient, performance-critical code.",
+    level: "Intermediate to Advanced",
+    tools: ["C++", "GCC/Clang", "CMake", "Visual Studio Code"],
+    mode: ["Online test", "Performance analysis questions"],
+    url: "",
+    benefits: [
+      "Prove your systems programming capabilities",
+      "Demonstrate memory management expertise",
+      "Show understanding of performance optimization",
+      "Validate knowledge of modern C++ features",
+    ],
+    gallery: ["/images/cpp/1.jpg", "/images/cpp/2.jpg"],
+    learn: [
+      "C++ fundamentals and OOP",
+      "Memory management",
+      "Templates and STL",
+      "Modern C++ features",
+      "Performance optimization",
+    ],
+    questions: [
+      "What is C++?",
+      "Difference between malloc and new?",
+      "What are smart pointers?",
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: "What is the difference between malloc() and new in C++?",
+        options: [
+          "No difference",
+          "malloc is faster than new",
+          "malloc allocates memory, new allocates memory and calls constructor",
+          "new is from C, malloc is from C++",
+        ],
+        correctAnswer: 2,
+        explanation:
+          "malloc() only allocates raw memory, while new allocates memory and calls the constructor. Similarly, free() vs delete() - delete calls the destructor.",
+      },
+      {
+        id: 2,
+        question: "What is RAII in C++?",
+        options: [
+          "Resource Allocation Is Initialization",
+          "Resource Access In Implementation",
+          "Runtime Application Interface Integration",
+          "Rapid Application Integration Infrastructure",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "RAII (Resource Allocation Is Initialization) is a programming idiom where resource management is tied to object lifetime, ensuring automatic cleanup.",
+      },
+      {
+        id: 3,
+        question: "What are smart pointers in C++?",
+        options: [
+          "Pointers that are faster",
+          "Objects that manage memory automatically",
+          "Pointers with better syntax",
+          "Pointers that can do arithmetic",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Smart pointers are objects that manage memory automatically, providing automatic cleanup and helping prevent memory leaks and dangling pointers.",
+      },
+      {
+        id: 4,
+        question: "Which C++ feature allows you to write generic code?",
+        options: ["Inheritance", "Templates", "Polymorphism", "Overloading"],
+        correctAnswer: 1,
+        explanation:
+          "Templates allow you to write generic code that works with different data types, enabling code reuse and type safety at compile time.",
+      },
+      {
+        id: 5,
+        question: "What is the Standard Template Library (STL)?",
+        options: [
+          "A graphics library",
+          "A collection of template classes and functions",
+          "A networking library",
+          "A database interface",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "The STL is a powerful library of template-based containers, algorithms, and iterators that provides common data structures and algorithms.",
+      },
+      {
+        id: 6,
+        question: "What is the purpose of a destructor in C++?",
+        options: [
+          "To initialize an object",
+          "To clean up resources when an object is destroyed",
+          "To allocate memory for an object",
+          "To copy data from another object",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Destructors automatically release resources like memory or file handles when an object goes out of scope.",
+      },
+      {
+        id: 7,
+        question: "Which keyword prevents a class from being inherited?",
+        options: ["const", "static", "final", "virtual"],
+        correctAnswer: 2,
+        explanation:
+          "The 'final' keyword prevents further inheritance of a class or overriding of a virtual function.",
+      },
+      {
+        id: 8,
+        question: "What is a virtual function in C++?",
+        options: [
+          "A function that executes in the background",
+          "A function defined inside a namespace",
+          "A function that can be overridden in derived classes",
+          "A function that runs at compile time",
+        ],
+        correctAnswer: 2,
+        explanation:
+          "Virtual functions enable runtime polymorphism, allowing derived classes to override methods and achieve dynamic dispatch.",
+      },
+      {
+        id: 9,
+        question: "Which of the following is NOT a C++ access specifier?",
+        options: ["public", "protected", "private", "internal"],
+        correctAnswer: 3,
+        explanation:
+          "'internal' is used in C#, not C++. C++ access specifiers are public, protected, and private.",
+      },
+      {
+        id: 10,
+        question: "What does the 'mutable' keyword do in C++?",
+        options: [
+          "Allows modification of class members even in const objects",
+          "Makes a variable constant",
+          "Prevents inheritance",
+          "Enables multithreading",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "'mutable' allows a member variable to be modified even when the containing object is declared const.",
+      },
+      {
+        id: 11,
+        question: "What is the use of 'constexpr' in modern C++?",
+        options: [
+          "To define variables or functions evaluated at compile time",
+          "To make a variable constant",
+          "To declare external constants",
+          "To allocate memory on the stack",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "'constexpr' ensures that expressions are evaluated at compile time, improving performance and enabling compile-time computation.",
+      },
+      {
+        id: 12,
+        question: "What is a pure virtual function?",
+        options: [
+          "A function with no implementation",
+          "A static function",
+          "A template function",
+          "A function that always returns void",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "A pure virtual function has no implementation and must be overridden in derived classes, making the class abstract.",
+      },
+      {
+        id: 13,
+        question: "Which of these containers is not part of STL?",
+        options: ["vector", "map", "set", "arraylist"],
+        correctAnswer: 3,
+        explanation:
+          "'arraylist' is from Java. C++ STL containers include vector, map, set, deque, and others.",
+      },
+      {
+        id: 14,
+        question: "What is a lambda expression in C++?",
+        options: [
+          "An inline anonymous function",
+          "A macro replacement",
+          "A preprocessor directive",
+          "A virtual function",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "Lambda expressions define anonymous functions inline, often used with STL algorithms for brevity and clarity.",
+      },
+      {
+        id: 15,
+        question: "What does the 'explicit' keyword prevent?",
+        options: [
+          "Implicit type conversions using constructors",
+          "Function overloading",
+          "Virtual inheritance",
+          "Const correctness",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "The 'explicit' keyword prevents implicit conversions, ensuring constructors are called only with direct initialization.",
+      },
+      {
+        id: 16,
+        question: "Which smart pointer allows shared ownership of an object?",
+        options: ["unique_ptr", "shared_ptr", "weak_ptr", "auto_ptr"],
+        correctAnswer: 1,
+        explanation:
+          "'shared_ptr' provides shared ownership, keeping the object alive until all shared_ptr instances are destroyed.",
+      },
+      {
+        id: 17,
+        question: "What is move semantics in C++?",
+        options: [
+          "A feature for transferring resources instead of copying",
+          "A syntax for moving files",
+          "An optimization for recursion",
+          "A type of inheritance",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "Move semantics allow efficient transfer of resources from temporary objects, avoiding unnecessary deep copies.",
+      },
+      {
+        id: 18,
+        question: "Which operator cannot be overloaded in C++?",
+        options: ["+", "=", "::", "[]"],
+        correctAnswer: 2,
+        explanation:
+          "The scope resolution operator (::) cannot be overloaded. Other operators like +, =, and [] can be overloaded.",
+      },
+      {
+        id: 19,
+        question: "What is the main purpose of 'std::move()'?",
+        options: [
+          "To move memory addresses",
+          "To enable move semantics by casting to an rvalue reference",
+          "To copy an object efficiently",
+          "To swap two objects",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "'std::move()' casts an object to an rvalue reference, enabling move semantics for efficient transfers.",
+      },
+      {
+        id: 20,
+        question: "What is the function of 'emplace_back()' in a vector?",
+        options: [
+          "Inserts an element by copying it",
+          "Constructs an element in place at the end of the vector",
+          "Removes the last element",
+          "Reserves memory for new elements",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "'emplace_back()' constructs the element directly in place, avoiding unnecessary copies and improving performance.",
+      },
+    ],
+  },
+  {
+    title: "Go",
+    subTitle:
+      "Test your proficiency in building high-performance, concurrent applications",
+    summary:
+      "This Go test evaluates your knowledge of Go fundamentals, goroutines, channels, error handling, and building scalable microservices.",
+    duration: "50 minutes",
+    description:
+      "The exam measures your competency in Go programming, covering syntax, concurrency patterns, error handling, and microservice development.",
+    level: "Beginner to Advanced",
+    tools: ["Go", "Gorilla Mux", "GORM", "Docker", "VS Code"],
+    mode: ["Online test", "Timed questions", "Certificate upon passing"],
+    url: "",
+    benefits: [
+      "Validate your Go syntax & concurrency skills",
+      "Showcase microservice development knowledge",
+      "Prove understanding of channels & goroutines",
+      "Demonstrate error handling best practices",
+    ],
+    gallery: ["/images/go/1.jpg", "/images/go/2.jpg"],
+    learn: [
+      "Go fundamentals & syntax",
+      "Goroutines & channels",
+      "Error handling patterns",
+      "HTTP servers & REST APIs",
+      "Testing in Go",
+    ],
+    questions: [
+      "What are goroutines?",
+      "How do channels work?",
+      "What is Go's approach to error handling?",
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: "How do you start a goroutine in Go?",
+        options: [
+          "start functionName()",
+          "go functionName()",
+          "async functionName()",
+          "thread functionName()",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "The 'go' keyword is used to start a goroutine in Go, which runs the function concurrently with other goroutines.",
+      },
+      {
+        id: 2,
+        question: "What are channels used for in Go?",
+        options: [
+          "To store data permanently",
+          "To communicate between goroutines",
+          "To handle HTTP requests",
+          "To manage memory",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Channels are used for communication between goroutines, allowing safe data sharing and synchronization in concurrent programs.",
+      },
+      {
+        id: 3,
+        question: "Which keyword is used to handle errors in Go?",
+        options: ["try-catch", "if err != nil", "throw-catch", "error-handle"],
+        correctAnswer: 1,
+        explanation:
+          "Go uses explicit error handling with 'if err != nil' pattern rather than exceptions, making error handling more visible and controlled.",
+      },
+      {
+        id: 4,
+        question: "What is the purpose of Go modules?",
+        options: [
+          "To create web servers",
+          "To manage dependencies and versioning",
+          "To handle concurrent programming",
+          "To optimize performance",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Go modules are used for dependency management and versioning, allowing you to manage external packages and their versions in your Go projects.",
+      },
+      {
+        id: 5,
+        question: "What does the 'defer' keyword do?",
+        options: [
+          "Delays execution until the function returns",
+          "Cancels function execution",
+          "Creates a new goroutine",
+          "Handles panics",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "The 'defer' keyword schedules a function call to be executed just before the surrounding function returns, commonly used for cleanup operations.",
+      },
+      {
+        id: 6,
+        question: "What is a goroutine in Go?",
+        options: [
+          "A lightweight thread managed by the Go runtime",
+          "An OS-level process",
+          "A memory allocation unit",
+          "A pointer type",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "Goroutines are lightweight threads managed by the Go runtime, allowing concurrent execution of functions efficiently.",
+      },
+      {
+        id: 7,
+        question: "What is the zero value of an int in Go?",
+        options: ["nil", "0", "undefined", "empty"],
+        correctAnswer: 1,
+        explanation:
+          "Every Go type has a zero value. For int, it’s 0; for string, it’s an empty string; and for pointers, it’s nil.",
+      },
+      {
+        id: 8,
+        question: "Which statement correctly declares a variable in Go?",
+        options: ["int x = 10", "x := 10", "var x := 10", "define x = 10"],
+        correctAnswer: 1,
+        explanation:
+          "The short variable declaration 'x := 10' is the idiomatic way to declare and initialize variables in Go.",
+      },
+      {
+        id: 9,
+        question: "How do you import multiple packages in Go?",
+        options: [
+          "import pkg1, pkg2",
+          'import ("pkg1" "pkg2")',
+          "include pkg1, pkg2",
+          "require [pkg1, pkg2]",
+        ],
+        correctAnswer: 1,
+        explanation:
+          'Multiple packages can be imported using parentheses: import ("fmt" "os" "net/http").',
+      },
+      {
+        id: 10,
+        question: "What does the 'select' statement do in Go?",
+        options: [
+          "Selects a random goroutine",
+          "Waits on multiple channel operations",
+          "Starts multiple goroutines",
+          "Handles runtime errors",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "The 'select' statement waits on multiple channel operations, allowing a goroutine to react to whichever channel is ready first.",
+      },
+      {
+        id: 11,
+        question: "How do you create a map in Go?",
+        options: [
+          "map[string]string{}",
+          "make(map[string]string)",
+          "new map[string]string",
+          "[]map[string]string",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Maps are created using the built-in 'make' function, e.g. make(map[string]string).",
+      },
+      {
+        id: 12,
+        question: "What is the capacity of a Go slice?",
+        options: [
+          "The maximum length before reallocation",
+          "The current number of elements",
+          "Always fixed at creation",
+          "The total memory size of the slice",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "A slice’s capacity is the maximum length it can grow before needing to reallocate its underlying array.",
+      },
+      {
+        id: 13,
+        question: "How do you recover from a panic in Go?",
+        options: [
+          "Use try-catch",
+          "Use recover() inside a deferred function",
+          "Use panic() again",
+          "Use handle() function",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "The recover() function, when called inside a deferred function, regains control of a panicking goroutine.",
+      },
+      {
+        id: 14,
+        question: "What is a struct in Go?",
+        options: [
+          "A function type",
+          "A collection of fields",
+          "An array of integers",
+          "A constant type",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Structs are composite data types that group together fields under a single type, similar to classes without methods.",
+      },
+      {
+        id: 15,
+        question: "How do you define a method for a struct in Go?",
+        options: [
+          "func (s StructName) methodName() {}",
+          "method StructName.methodName() {}",
+          "StructName.func methodName() {}",
+          "def StructName.methodName() {}",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "Methods are defined with a receiver, e.g., func (s StructName) methodName() {} — allowing functions to operate on struct instances.",
+      },
+      {
+        id: 16,
+        question: "Which package is used to handle HTTP in Go?",
+        options: ["net/http", "httpio", "web", "go/net"],
+        correctAnswer: 0,
+        explanation:
+          "The 'net/http' package provides tools for building HTTP clients and servers in Go.",
+      },
+      {
+        id: 17,
+        question: "What does the 'interface{}' type represent in Go?",
+        options: [
+          "A type that can hold any value",
+          "A string type",
+          "A nil pointer",
+          "A channel type",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "'interface{}' is the empty interface in Go and can hold values of any type, making it the most general type.",
+      },
+      {
+        id: 18,
+        question: "How do you perform testing in Go?",
+        options: [
+          "Using the 'go test' command",
+          "Using 'npm test'",
+          "Using the 'testing' CLI tool",
+          "By importing 'go/unittest'",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "The 'go test' command automatically detects and runs test functions in files ending with '_test.go'.",
+      },
+      {
+        id: 19,
+        question: "Which keyword is used to import packages in Go?",
+        options: ["include", "use", "import", "require"],
+        correctAnswer: 2,
+        explanation:
+          "The 'import' keyword is used to include external or standard library packages in Go code.",
+      },
+      {
+        id: 20,
+        question: "What is a Go channel's default behavior when sending data?",
+        options: [
+          "It blocks until another goroutine receives the data",
+          "It stores data indefinitely",
+          "It automatically duplicates data",
+          "It ignores the data if no receiver exists",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "Unbuffered channels in Go block the sender until another goroutine receives the data, ensuring synchronization.",
+      },
+    ],
+  },
+  // {
+  //   title: "PHP",
+  //   subTitle:
+  //     "Evaluate your skills in building dynamic web applications and APIs",
+  //   summary:
+  //     "This PHP test covers fundamentals to advanced topics: syntax, OOP, frameworks like Laravel, database integration, and modern PHP practices.",
+  //   duration: "55 minutes",
+  //   description:
+  //     "The exam assesses your PHP programming competency, including object-oriented programming, web development, Laravel framework, and database operations.",
+  //   level: "Beginner to Advanced",
+  //   tools: ["PHP", "Laravel", "Composer", "MySQL", "PHPStorm"],
+  //   mode: ["Online test", "Timed questions", "Certificate upon passing"],
+  //   url: "",
+  //   benefits: [
+  //     "Validate your PHP syntax & OOP skills",
+  //     "Showcase Laravel framework expertise",
+  //     "Prove database integration knowledge",
+  //     "Demonstrate modern PHP best practices",
+  //   ],
+  //   gallery: ["/images/php/1.jpg", "/images/php/2.jpg"],
+  //   learn: [
+  //     "PHP fundamentals & syntax",
+  //     "Object-oriented programming",
+  //     "Laravel framework basics",
+  //     "Database operations with PDO",
+  //     "RESTful API development",
+  //   ],
+  //   questions: [
+  //     "What are PHP namespaces?",
+  //     "How does Laravel's Eloquent ORM work?",
+  //     "What is the difference between include and require?",
+  //   ],
+  //   quiz: [
+  //     {
+  //       id: 1,
+  //       question: "Which symbol is used to declare a variable in PHP?",
+  //       options: ["@", "$", "#", "&"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "In PHP, variables are declared using the dollar sign ($) followed by the variable name, like $variableName.",
+  //     },
+  //     {
+  //       id: 2,
+  //       question: "What is the correct way to start a PHP script?",
+  //       options: ["<script>", "<?php", "<php>", "<?="],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "PHP scripts start with the opening tag '<?php' and optionally end with '?>' when mixed with HTML.",
+  //     },
+  //     {
+  //       id: 3,
+  //       question:
+  //         "Which function is used to connect to a MySQL database in PHP?",
+  //       options: [
+  //         "mysql_connect()",
+  //         "mysqli_connect()",
+  //         "connect_mysql()",
+  //         "db_connect()",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "mysqli_connect() is the modern way to connect to MySQL databases in PHP, replacing the deprecated mysql_connect().",
+  //     },
+  //     {
+  //       id: 4,
+  //       question: "What does the 'use' keyword do in PHP?",
+  //       options: [
+  //         "Includes a file",
+  //         "Imports a namespace or trait",
+  //         "Declares a variable",
+  //         "Starts a function",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'use' keyword is used to import namespaces, classes, or traits, making them available in the current scope without fully qualified names.",
+  //     },
+  //     {
+  //       id: 5,
+  //       question: "What is Laravel's Artisan?",
+  //       options: [
+  //         "A database driver",
+  //         "A command-line tool",
+  //         "A templating engine",
+  //         "An ORM system",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Artisan is Laravel's command-line interface that provides helpful commands for common tasks like generating models, controllers, and running migrations.",
+  //     },
+  //     {
+  //       id: 6,
+  //       question:
+  //         "What is the difference between 'include' and 'require' in PHP?",
+  //       options: [
+  //         "No difference at all",
+  //         "require throws a fatal error; include throws a warning",
+  //         "include is faster",
+  //         "require only works with OOP",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'require' statement stops script execution on failure, while 'include' only emits a warning and continues.",
+  //     },
+  //     {
+  //       id: 7,
+  //       question: "Which function is used to start a session in PHP?",
+  //       options: [
+  //         "session_open()",
+  //         "start_session()",
+  //         "session_start()",
+  //         "open_session()",
+  //       ],
+  //       correctAnswer: 2,
+  //       explanation:
+  //         "The 'session_start()' function is used to start a new session or resume an existing one in PHP.",
+  //     },
+  //     {
+  //       id: 8,
+  //       question: "How can you declare a constant in PHP?",
+  //       options: [
+  //         "const NAME = 'value';",
+  //         "$NAME = constant('value');",
+  //         "constant NAME = 'value';",
+  //         "define const NAME = 'value';",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "Constants can be declared using either 'const' or 'define()', e.g., const PI = 3.14; or define('PI', 3.14);.",
+  //     },
+  //     {
+  //       id: 9,
+  //       question: "What is the purpose of Composer in PHP?",
+  //       options: [
+  //         "To compile PHP code",
+  //         "To manage PHP packages and dependencies",
+  //         "To connect databases",
+  //         "To execute shell scripts",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Composer is PHP’s dependency manager that helps you install, update, and autoload external libraries easily.",
+  //     },
+  //     {
+  //       id: 10,
+  //       question: "Which of the following is a superglobal variable in PHP?",
+  //       options: ["$data", "$globals", "$_POST", "$input"],
+  //       correctAnswer: 2,
+  //       explanation:
+  //         "PHP has predefined superglobals like $_POST, $_GET, $_SESSION, and $_SERVER, which are accessible anywhere in the script.",
+  //     },
+  //     {
+  //       id: 11,
+  //       question: "What does PDO stand for in PHP?",
+  //       options: [
+  //         "PHP Data Object",
+  //         "Programmed Data Operation",
+  //         "Persistent Data Object",
+  //         "Process Data Output",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "PDO (PHP Data Object) is a database access layer that provides a uniform interface for multiple database systems.",
+  //     },
+  //     {
+  //       id: 12,
+  //       question: "Which Laravel file defines the routes for web applications?",
+  //       options: [
+  //         "config/routes.php",
+  //         "routes/web.php",
+  //         "app/routes.php",
+  //         "resources/routes.php",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Laravel’s routes for web interfaces are defined in the 'routes/web.php' file.",
+  //     },
+  //     {
+  //       id: 13,
+  //       question: "How do you define a class in PHP?",
+  //       options: [
+  //         "define class MyClass {}",
+  //         "class MyClass {}",
+  //         "function MyClass() {}",
+  //         "create_class MyClass {}",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Classes in PHP are defined using the 'class' keyword, e.g., class MyClass { public function greet() {} }.",
+  //     },
+  //     {
+  //       id: 14,
+  //       question: "Which method in Laravel handles form validation?",
+  //       options: ["validate()", "check()", "verify()", "assert()"],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "The 'validate()' method is used in Laravel controllers to validate incoming form data against defined rules.",
+  //     },
+  //     {
+  //       id: 15,
+  //       question: "What is a trait in PHP?",
+  //       options: [
+  //         "A design pattern",
+  //         "A reusable piece of code used inside classes",
+  //         "A type of variable",
+  //         "A database model",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Traits allow code reuse in PHP by enabling you to include sets of methods in multiple classes without inheritance.",
+  //     },
+  //     {
+  //       id: 16,
+  //       question: "Which operator is used for concatenating strings in PHP?",
+  //       options: ["+", ".", "&", "concat"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "In PHP, the dot (.) operator is used to concatenate strings, e.g., $fullName = $first . ' ' . $last.",
+  //     },
+  //     {
+  //       id: 17,
+  //       question: "What is middleware in Laravel?",
+  //       options: [
+  //         "A database connection",
+  //         "A function that filters HTTP requests",
+  //         "A configuration setting",
+  //         "A cache layer",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Middleware in Laravel acts as a filter for HTTP requests, allowing logic such as authentication or logging before reaching controllers.",
+  //     },
+  //     {
+  //       id: 18,
+  //       question: "Which PHP version introduced type declarations?",
+  //       options: ["5.2", "5.6", "7.0", "8.0"],
+  //       correctAnswer: 2,
+  //       explanation:
+  //         "PHP 7.0 introduced scalar type declarations and return type hints, improving type safety in applications.",
+  //     },
+  //     {
+  //       id: 19,
+  //       question: "How do you handle exceptions in PHP?",
+  //       options: [
+  //         "Using if statements",
+  //         "Using try-catch blocks",
+  //         "Using switch-case blocks",
+  //         "Using error handlers only",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Exceptions in PHP are handled using try-catch blocks, e.g., try { ... } catch (Exception $e) { echo $e->getMessage(); }.",
+  //     },
+  //     {
+  //       id: 20,
+  //       question: "What does Laravel’s Eloquent ORM provide?",
+  //       options: [
+  //         "An advanced caching system",
+  //         "An expressive database abstraction layer",
+  //         "A real-time messaging protocol",
+  //         "A testing framework",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Eloquent ORM in Laravel provides an elegant, ActiveRecord-style interface to interact with databases using models.",
+  //     },
+  //   ],
+  // },
   {
     title: "Docker",
     subTitle: "Test your containerization and deployment skills",
@@ -5095,544 +5099,544 @@ export const Questions = [
       },
     ],
   },
-  {
-    title: "Swift",
-    subTitle: "Test your iOS and macOS development skills",
-    summary:
-      "This Swift test evaluates your knowledge of Swift syntax, iOS development, UIKit, SwiftUI, and building native Apple applications.",
-    duration: "55 minutes",
-    description:
-      "The exam assesses your Swift programming competency, covering language features, iOS frameworks, and mobile app development patterns.",
-    level: "Beginner to Advanced",
-    tools: ["Swift", "Xcode", "UIKit", "SwiftUI", "Core Data"],
-    mode: ["Online test", "Timed questions", "Certificate upon passing"],
-    url: "",
-    benefits: [
-      "Validate your Swift language skills",
-      "Showcase iOS development expertise",
-      "Prove UIKit & SwiftUI knowledge",
-      "Demonstrate mobile app architecture understanding",
-    ],
-    gallery: ["/images/swift/1.jpg", "/images/swift/2.jpg"],
-    learn: [
-      "Swift fundamentals & syntax",
-      "iOS app development basics",
-      "UIKit & SwiftUI frameworks",
-      "Data persistence with Core Data",
-      "App Store deployment process",
-    ],
-    questions: [
-      "What are optionals in Swift?",
-      "How does ARC work?",
-      "What is the difference between UIKit and SwiftUI?",
-    ],
-    quiz: [
-      {
-        id: 1,
-        question: "What is an optional in Swift?",
-        options: [
-          "A required parameter",
-          "A type that can hold either a value or nil",
-          "A function parameter",
-          "A class property",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "An optional in Swift is a type that can hold either a value of a specific type or nil, providing a safe way to handle the absence of values.",
-      },
-      {
-        id: 2,
-        question: "What does ARC stand for in Swift?",
-        options: [
-          "Automatic Reference Counting",
-          "Advanced Runtime Compiler",
-          "Application Resource Controller",
-          "Asynchronous Runtime Control",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "ARC (Automatic Reference Counting) automatically manages memory by tracking and counting references to objects, deallocating them when no longer needed.",
-      },
-      {
-        id: 3,
-        question: "Which keyword is used to unwrap optionals safely?",
-        options: ["unwrap", "if let", "force", "safe"],
-        correctAnswer: 1,
-        explanation:
-          "'if let' provides safe optional binding, allowing you to unwrap an optional and use its value only if it's not nil, avoiding runtime crashes.",
-      },
-      {
-        id: 4,
-        question: "What is SwiftUI?",
-        options: [
-          "A testing framework",
-          "Apple's declarative UI framework",
-          "A database library",
-          "A networking framework",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "SwiftUI is Apple's modern, declarative framework for building user interfaces across all Apple platforms using Swift.",
-      },
-      {
-        id: 5,
-        question: "What is a closure in Swift?",
-        options: [
-          "A class definition",
-          "A self-contained block of functionality",
-          "A variable declaration",
-          "A loop construct",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "A closure in Swift is a self-contained block of functionality that can be passed around and used in your code, similar to lambdas or anonymous functions.",
-      },
-      {
-        id: 6,
-        question: "What keyword is used to declare a constant in Swift?",
-        options: ["var", "let", "const", "immutable"],
-        correctAnswer: 1,
-        explanation:
-          "The 'let' keyword declares constants in Swift, meaning their value cannot be changed after initialization.",
-      },
-      {
-        id: 7,
-        question:
-          "Which data type is used to represent true or false values in Swift?",
-        options: ["Int", "Bool", "String", "Float"],
-        correctAnswer: 1,
-        explanation:
-          "The 'Bool' type represents boolean values — true or false — and is often used in conditions and logical expressions.",
-      },
-      {
-        id: 8,
-        question: "What is the purpose of guard statements in Swift?",
-        options: [
-          "To create loops",
-          "To safely exit a function early when conditions are not met",
-          "To declare constants",
-          "To define classes",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "A 'guard' statement allows you to check conditions and exit early from a function if those conditions aren’t met, improving code clarity.",
-      },
-      {
-        id: 9,
-        question:
-          "What is the main difference between struct and class in Swift?",
-        options: [
-          "Structs support inheritance, classes don’t",
-          "Structs are value types, classes are reference types",
-          "Classes are faster than structs",
-          "Structs can’t have methods",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Structs are value types, meaning they are copied when assigned or passed. Classes are reference types, meaning they share references to the same instance.",
-      },
-      {
-        id: 10,
-        question: "What is optional chaining in Swift?",
-        options: [
-          "Combining multiple functions into one",
-          "Safely accessing properties or methods of an optional",
-          "Declaring optional types",
-          "Handling multiple optionals at once",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Optional chaining lets you safely call properties, methods, or subscripts on an optional that might currently be nil, preventing runtime crashes.",
-      },
-      {
-        id: 11,
-        question: "What is the role of @State in SwiftUI?",
-        options: [
-          "To manage local, mutable state in a view",
-          "To define constants",
-          "To track global state",
-          "To handle network requests",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "The @State property wrapper in SwiftUI allows a view to manage local mutable state and re-render automatically when the state changes.",
-      },
-      {
-        id: 12,
-        question:
-          "Which Swift feature allows pattern matching in switch statements?",
-        options: ["Guards", "Closures", "Enums", "Pattern cases"],
-        correctAnswer: 3,
-        explanation:
-          "Swift's switch statements support powerful pattern matching using 'case' patterns, allowing developers to match complex conditions succinctly.",
-      },
-      {
-        id: 13,
-        question: "What is Combine in Swift?",
-        options: [
-          "A database framework",
-          "A reactive programming framework",
-          "A UI animation library",
-          "A testing tool",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Combine is Apple's reactive programming framework for handling asynchronous events and data streams using publishers and subscribers.",
-      },
-      {
-        id: 14,
-        question: "What does the 'deinit' keyword do in Swift?",
-        options: [
-          "Initializes a class",
-          "Cleans up resources before an instance is deallocated",
-          "Creates a new instance",
-          "Deletes memory manually",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "The 'deinit' method is called automatically before an instance of a class is deallocated, allowing you to perform cleanup tasks.",
-      },
-      {
-        id: 15,
-        question:
-          "Which collection type in Swift is unordered and ensures unique elements?",
-        options: ["Array", "Dictionary", "Set", "Tuple"],
-        correctAnswer: 2,
-        explanation:
-          "A 'Set' is an unordered collection of unique elements, useful when order doesn’t matter but uniqueness does.",
-      },
-      {
-        id: 16,
-        question: "What is Core Data used for?",
-        options: [
-          "UI animations",
-          "Data persistence and object graph management",
-          "Network communication",
-          "Thread management",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Core Data is a powerful framework for managing persistent data and complex object graphs in iOS and macOS applications.",
-      },
-      {
-        id: 17,
-        question: "Which keyword is used to define an enumeration in Swift?",
-        options: ["enum", "enumeration", "case", "switch"],
-        correctAnswer: 0,
-        explanation:
-          "The 'enum' keyword defines an enumeration, a type that groups related values together under a single type name.",
-      },
-      {
-        id: 18,
-        question: "What is the main purpose of extensions in Swift?",
-        options: [
-          "To add new functionality to existing types",
-          "To create subclasses",
-          "To define protocols",
-          "To declare private methods",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "Extensions in Swift allow developers to add new functionality to existing classes, structs, or enums without modifying their original source code.",
-      },
-      {
-        id: 19,
-        question:
-          "What is the difference between synchronous and asynchronous code in Swift?",
-        options: [
-          "Synchronous code runs concurrently, asynchronous does not",
-          "Synchronous code runs sequentially, asynchronous can run in parallel",
-          "Both run at the same time",
-          "They are identical in Swift",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Synchronous code runs one task at a time, while asynchronous code allows multiple tasks to execute concurrently without blocking the main thread.",
-      },
-      {
-        id: 20,
-        question: "What does @Published do in SwiftUI?",
-        options: [
-          "Publishes data changes to subscribers",
-          "Stores global variables",
-          "Handles network calls",
-          "Defines constants",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "The @Published property wrapper automatically notifies SwiftUI views or Combine subscribers when its value changes, enabling reactive updates.",
-      },
-    ],
-  },
-  {
-    title: "Kotlin",
-    subTitle: "Assess your Android development and JVM programming skills",
-    summary:
-      "This Kotlin test evaluates your knowledge of Kotlin syntax, Android development, coroutines, and building modern mobile applications.",
-    duration: "55 minutes",
-    description:
-      "The exam measures your Kotlin competency, covering language features, Android frameworks, and mobile app development best practices.",
-    level: "Beginner to Advanced",
-    tools: ["Kotlin", "Android Studio", "Jetpack Compose", "Room", "Retrofit"],
-    mode: ["Online test", "Timed questions", "Certificate upon passing"],
-    url: "",
-    benefits: [
-      "Validate your Kotlin language skills",
-      "Showcase Android development expertise",
-      "Prove coroutines & async programming knowledge",
-      "Demonstrate modern Android architecture understanding",
-    ],
-    gallery: ["/images/kotlin/1.jpg", "/images/kotlin/2.jpg"],
-    learn: [
-      "Kotlin fundamentals & syntax",
-      "Android app development",
-      "Jetpack Compose UI toolkit",
-      "Coroutines for async programming",
-      "Room database & data persistence",
-    ],
-    questions: [
-      "What are Kotlin coroutines?",
-      "How does null safety work in Kotlin?",
-      "What is Jetpack Compose?",
-    ],
-    quiz: [
-      {
-        id: 1,
-        question: "What makes Kotlin null-safe?",
-        options: [
-          "It doesn't allow variables",
-          "Types are nullable or non-nullable by default",
-          "It uses garbage collection",
-          "It has automatic error handling",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Kotlin's type system distinguishes between nullable (Type?) and non-nullable types, preventing null pointer exceptions at compile time.",
-      },
-      {
-        id: 2,
-        question: "What are coroutines in Kotlin?",
-        options: [
-          "A type of loop",
-          "Lightweight threads for asynchronous programming",
-          "Error handling mechanisms",
-          "Database connections",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Coroutines are lightweight threads that allow for asynchronous programming, making it easier to handle long-running operations without blocking the main thread.",
-      },
-      {
-        id: 3,
-        question:
-          "Which keyword is used to declare a read-only variable in Kotlin?",
-        options: ["const", "val", "var", "final"],
-        correctAnswer: 1,
-        explanation:
-          "The 'val' keyword declares a read-only (immutable) variable in Kotlin, similar to 'final' in Java but more concise.",
-      },
-      {
-        id: 4,
-        question: "What is Jetpack Compose?",
-        options: [
-          "A database library",
-          "Android's modern declarative UI toolkit",
-          "A testing framework",
-          "A networking library",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Jetpack Compose is Android's modern toolkit for building native UI declaratively, simplifying UI development with less code and powerful tools.",
-      },
-      {
-        id: 5,
-        question: "What does the 'suspend' keyword do in Kotlin?",
-        options: [
-          "Pauses the application",
-          "Marks a function that can be suspended and resumed",
-          "Stops error handling",
-          "Delays variable initialization",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "The 'suspend' keyword marks functions that can be suspended without blocking a thread, allowing them to be used with coroutines for asynchronous programming.",
-      },
-      {
-        id: 6,
-        question:
-          "What is the main difference between 'val' and 'var' in Kotlin?",
-        options: [
-          "'val' is mutable, 'var' is immutable",
-          "'val' is immutable, 'var' is mutable",
-          "Both are mutable",
-          "Both are immutable",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "'val' creates a read-only variable (immutable), while 'var' creates a mutable variable that can change after initialization.",
-      },
-      {
-        id: 7,
-        question: "What is the Elvis operator in Kotlin?",
-        options: ["?:", "!!", "?.", "::"],
-        correctAnswer: 0,
-        explanation:
-          "The Elvis operator (?:) provides a default value when an expression on the left is null, helping to avoid null pointer exceptions.",
-      },
-      {
-        id: 8,
-        question: "What is the purpose of 'data class' in Kotlin?",
-        options: [
-          "To define test cases",
-          "To automatically generate equals(), hashCode(), and toString()",
-          "To handle exceptions",
-          "To create immutable lists",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "A 'data class' automatically generates useful methods like equals(), hashCode(), and toString(), simplifying data object creation.",
-      },
-      {
-        id: 9,
-        question: "Which function is used to start a coroutine in Kotlin?",
-        options: ["run()", "launch()", "execute()", "begin()"],
-        correctAnswer: 1,
-        explanation:
-          "The 'launch()' function starts a new coroutine in Kotlin, allowing concurrent execution without blocking the main thread.",
-      },
-      {
-        id: 10,
-        question: "What is the role of 'lateinit' in Kotlin?",
-        options: [
-          "It initializes variables automatically",
-          "It allows late initialization of non-null variables",
-          "It delays class creation",
-          "It prevents memory leaks",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "The 'lateinit' modifier allows you to declare non-null variables that will be initialized later, commonly used with dependency injection.",
-      },
-      {
-        id: 11,
-        question: "What is the 'by lazy' delegate used for?",
-        options: [
-          "To create variables that load immediately",
-          "To initialize variables only when first accessed",
-          "To handle asynchronous loading",
-          "To define immutable constants",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "'by lazy' creates a lazily initialized property that executes its initializer only the first time it's accessed.",
-      },
-      {
-        id: 12,
-        question: "Which Kotlin feature replaces Java's 'checked exceptions'?",
-        options: [
-          "try-catch blocks",
-          "Nothing — Kotlin does not have checked exceptions",
-          "Error handlers",
-          "suspend functions",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Kotlin does not have checked exceptions, simplifying code and reducing unnecessary try-catch boilerplate from Java.",
-      },
-      {
-        id: 13,
-        question: "What is 'sealed class' used for in Kotlin?",
-        options: [
-          "To define a class hierarchy with restricted inheritance",
-          "To create immutable data",
-          "To prevent serialization",
-          "To handle coroutines",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "A 'sealed class' restricts inheritance to the same file, making it useful for representing restricted class hierarchies, like result states.",
-      },
-      {
-        id: 14,
-        question: "What is the purpose of the 'when' expression in Kotlin?",
-        options: [
-          "To replace if-else chains with pattern matching",
-          "To start coroutines",
-          "To handle nulls",
-          "To define constants",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "The 'when' expression is a more powerful alternative to switch statements, allowing flexible pattern matching and concise condition handling.",
-      },
-      {
-        id: 15,
-        question: "Which Android library simplifies API calls in Kotlin?",
-        options: ["Dagger", "Retrofit", "Room", "Compose"],
-        correctAnswer: 1,
-        explanation:
-          "Retrofit is a type-safe HTTP client that simplifies network requests and JSON parsing in Android and Kotlin applications.",
-      },
-      {
-        id: 16,
-        question: "What is Room in Android development?",
-        options: [
-          "A UI framework",
-          "A local database persistence library",
-          "A testing tool",
-          "A network handler",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Room is an ORM (Object Relational Mapping) library for local data persistence, providing a clean abstraction over SQLite databases.",
-      },
-      {
-        id: 17,
-        question: "What does 'companion object' mean in Kotlin?",
-        options: [
-          "It defines static members for a class",
-          "It creates a new thread",
-          "It represents an interface",
-          "It defines coroutine scopes",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "A 'companion object' allows defining static-like members and functions within a class, similar to static methods in Java.",
-      },
-      {
-        id: 18,
-        question: "What is the difference between '=='' and '===' in Kotlin?",
-        options: [
-          "'==' compares references, '===' compares values",
-          "'==' compares values, '===' compares references",
-          "Both compare values",
-          "Both compare references",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "In Kotlin, '==' checks structural equality (values), while '===' checks referential equality (if two references point to the same object).",
-      },
-      {
-        id: 19,
-        question: "What is the default visibility modifier in Kotlin?",
-        options: ["private", "public", "protected", "internal"],
-        correctAnswer: 1,
-        explanation:
-          "'public' is the default visibility modifier in Kotlin, meaning members are visible everywhere unless specified otherwise.",
-      },
-      {
-        id: 20,
-        question: "Which function is used to handle exceptions in coroutines?",
-        options: [
-          "try/catch",
-          "CoroutineExceptionHandler",
-          "exceptionScope",
-          "handleError()",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "CoroutineExceptionHandler is used to handle uncaught exceptions in Kotlin coroutines, providing structured concurrency and better error handling.",
-      },
-    ],
-  },
+  // {
+  //   title: "Swift",
+  //   subTitle: "Test your iOS and macOS development skills",
+  //   summary:
+  //     "This Swift test evaluates your knowledge of Swift syntax, iOS development, UIKit, SwiftUI, and building native Apple applications.",
+  //   duration: "55 minutes",
+  //   description:
+  //     "The exam assesses your Swift programming competency, covering language features, iOS frameworks, and mobile app development patterns.",
+  //   level: "Beginner to Advanced",
+  //   tools: ["Swift", "Xcode", "UIKit", "SwiftUI", "Core Data"],
+  //   mode: ["Online test", "Timed questions", "Certificate upon passing"],
+  //   url: "",
+  //   benefits: [
+  //     "Validate your Swift language skills",
+  //     "Showcase iOS development expertise",
+  //     "Prove UIKit & SwiftUI knowledge",
+  //     "Demonstrate mobile app architecture understanding",
+  //   ],
+  //   gallery: ["/images/swift/1.jpg", "/images/swift/2.jpg"],
+  //   learn: [
+  //     "Swift fundamentals & syntax",
+  //     "iOS app development basics",
+  //     "UIKit & SwiftUI frameworks",
+  //     "Data persistence with Core Data",
+  //     "App Store deployment process",
+  //   ],
+  //   questions: [
+  //     "What are optionals in Swift?",
+  //     "How does ARC work?",
+  //     "What is the difference between UIKit and SwiftUI?",
+  //   ],
+  //   quiz: [
+  //     {
+  //       id: 1,
+  //       question: "What is an optional in Swift?",
+  //       options: [
+  //         "A required parameter",
+  //         "A type that can hold either a value or nil",
+  //         "A function parameter",
+  //         "A class property",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "An optional in Swift is a type that can hold either a value of a specific type or nil, providing a safe way to handle the absence of values.",
+  //     },
+  //     {
+  //       id: 2,
+  //       question: "What does ARC stand for in Swift?",
+  //       options: [
+  //         "Automatic Reference Counting",
+  //         "Advanced Runtime Compiler",
+  //         "Application Resource Controller",
+  //         "Asynchronous Runtime Control",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "ARC (Automatic Reference Counting) automatically manages memory by tracking and counting references to objects, deallocating them when no longer needed.",
+  //     },
+  //     {
+  //       id: 3,
+  //       question: "Which keyword is used to unwrap optionals safely?",
+  //       options: ["unwrap", "if let", "force", "safe"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "'if let' provides safe optional binding, allowing you to unwrap an optional and use its value only if it's not nil, avoiding runtime crashes.",
+  //     },
+  //     {
+  //       id: 4,
+  //       question: "What is SwiftUI?",
+  //       options: [
+  //         "A testing framework",
+  //         "Apple's declarative UI framework",
+  //         "A database library",
+  //         "A networking framework",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "SwiftUI is Apple's modern, declarative framework for building user interfaces across all Apple platforms using Swift.",
+  //     },
+  //     {
+  //       id: 5,
+  //       question: "What is a closure in Swift?",
+  //       options: [
+  //         "A class definition",
+  //         "A self-contained block of functionality",
+  //         "A variable declaration",
+  //         "A loop construct",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "A closure in Swift is a self-contained block of functionality that can be passed around and used in your code, similar to lambdas or anonymous functions.",
+  //     },
+  //     {
+  //       id: 6,
+  //       question: "What keyword is used to declare a constant in Swift?",
+  //       options: ["var", "let", "const", "immutable"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'let' keyword declares constants in Swift, meaning their value cannot be changed after initialization.",
+  //     },
+  //     {
+  //       id: 7,
+  //       question:
+  //         "Which data type is used to represent true or false values in Swift?",
+  //       options: ["Int", "Bool", "String", "Float"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'Bool' type represents boolean values — true or false — and is often used in conditions and logical expressions.",
+  //     },
+  //     {
+  //       id: 8,
+  //       question: "What is the purpose of guard statements in Swift?",
+  //       options: [
+  //         "To create loops",
+  //         "To safely exit a function early when conditions are not met",
+  //         "To declare constants",
+  //         "To define classes",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "A 'guard' statement allows you to check conditions and exit early from a function if those conditions aren’t met, improving code clarity.",
+  //     },
+  //     {
+  //       id: 9,
+  //       question:
+  //         "What is the main difference between struct and class in Swift?",
+  //       options: [
+  //         "Structs support inheritance, classes don’t",
+  //         "Structs are value types, classes are reference types",
+  //         "Classes are faster than structs",
+  //         "Structs can’t have methods",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Structs are value types, meaning they are copied when assigned or passed. Classes are reference types, meaning they share references to the same instance.",
+  //     },
+  //     {
+  //       id: 10,
+  //       question: "What is optional chaining in Swift?",
+  //       options: [
+  //         "Combining multiple functions into one",
+  //         "Safely accessing properties or methods of an optional",
+  //         "Declaring optional types",
+  //         "Handling multiple optionals at once",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Optional chaining lets you safely call properties, methods, or subscripts on an optional that might currently be nil, preventing runtime crashes.",
+  //     },
+  //     {
+  //       id: 11,
+  //       question: "What is the role of @State in SwiftUI?",
+  //       options: [
+  //         "To manage local, mutable state in a view",
+  //         "To define constants",
+  //         "To track global state",
+  //         "To handle network requests",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "The @State property wrapper in SwiftUI allows a view to manage local mutable state and re-render automatically when the state changes.",
+  //     },
+  //     {
+  //       id: 12,
+  //       question:
+  //         "Which Swift feature allows pattern matching in switch statements?",
+  //       options: ["Guards", "Closures", "Enums", "Pattern cases"],
+  //       correctAnswer: 3,
+  //       explanation:
+  //         "Swift's switch statements support powerful pattern matching using 'case' patterns, allowing developers to match complex conditions succinctly.",
+  //     },
+  //     {
+  //       id: 13,
+  //       question: "What is Combine in Swift?",
+  //       options: [
+  //         "A database framework",
+  //         "A reactive programming framework",
+  //         "A UI animation library",
+  //         "A testing tool",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Combine is Apple's reactive programming framework for handling asynchronous events and data streams using publishers and subscribers.",
+  //     },
+  //     {
+  //       id: 14,
+  //       question: "What does the 'deinit' keyword do in Swift?",
+  //       options: [
+  //         "Initializes a class",
+  //         "Cleans up resources before an instance is deallocated",
+  //         "Creates a new instance",
+  //         "Deletes memory manually",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'deinit' method is called automatically before an instance of a class is deallocated, allowing you to perform cleanup tasks.",
+  //     },
+  //     {
+  //       id: 15,
+  //       question:
+  //         "Which collection type in Swift is unordered and ensures unique elements?",
+  //       options: ["Array", "Dictionary", "Set", "Tuple"],
+  //       correctAnswer: 2,
+  //       explanation:
+  //         "A 'Set' is an unordered collection of unique elements, useful when order doesn’t matter but uniqueness does.",
+  //     },
+  //     {
+  //       id: 16,
+  //       question: "What is Core Data used for?",
+  //       options: [
+  //         "UI animations",
+  //         "Data persistence and object graph management",
+  //         "Network communication",
+  //         "Thread management",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Core Data is a powerful framework for managing persistent data and complex object graphs in iOS and macOS applications.",
+  //     },
+  //     {
+  //       id: 17,
+  //       question: "Which keyword is used to define an enumeration in Swift?",
+  //       options: ["enum", "enumeration", "case", "switch"],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "The 'enum' keyword defines an enumeration, a type that groups related values together under a single type name.",
+  //     },
+  //     {
+  //       id: 18,
+  //       question: "What is the main purpose of extensions in Swift?",
+  //       options: [
+  //         "To add new functionality to existing types",
+  //         "To create subclasses",
+  //         "To define protocols",
+  //         "To declare private methods",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "Extensions in Swift allow developers to add new functionality to existing classes, structs, or enums without modifying their original source code.",
+  //     },
+  //     {
+  //       id: 19,
+  //       question:
+  //         "What is the difference between synchronous and asynchronous code in Swift?",
+  //       options: [
+  //         "Synchronous code runs concurrently, asynchronous does not",
+  //         "Synchronous code runs sequentially, asynchronous can run in parallel",
+  //         "Both run at the same time",
+  //         "They are identical in Swift",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Synchronous code runs one task at a time, while asynchronous code allows multiple tasks to execute concurrently without blocking the main thread.",
+  //     },
+  //     {
+  //       id: 20,
+  //       question: "What does @Published do in SwiftUI?",
+  //       options: [
+  //         "Publishes data changes to subscribers",
+  //         "Stores global variables",
+  //         "Handles network calls",
+  //         "Defines constants",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "The @Published property wrapper automatically notifies SwiftUI views or Combine subscribers when its value changes, enabling reactive updates.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Kotlin",
+  //   subTitle: "Assess your Android development and JVM programming skills",
+  //   summary:
+  //     "This Kotlin test evaluates your knowledge of Kotlin syntax, Android development, coroutines, and building modern mobile applications.",
+  //   duration: "55 minutes",
+  //   description:
+  //     "The exam measures your Kotlin competency, covering language features, Android frameworks, and mobile app development best practices.",
+  //   level: "Beginner to Advanced",
+  //   tools: ["Kotlin", "Android Studio", "Jetpack Compose", "Room", "Retrofit"],
+  //   mode: ["Online test", "Timed questions", "Certificate upon passing"],
+  //   url: "",
+  //   benefits: [
+  //     "Validate your Kotlin language skills",
+  //     "Showcase Android development expertise",
+  //     "Prove coroutines & async programming knowledge",
+  //     "Demonstrate modern Android architecture understanding",
+  //   ],
+  //   gallery: ["/images/kotlin/1.jpg", "/images/kotlin/2.jpg"],
+  //   learn: [
+  //     "Kotlin fundamentals & syntax",
+  //     "Android app development",
+  //     "Jetpack Compose UI toolkit",
+  //     "Coroutines for async programming",
+  //     "Room database & data persistence",
+  //   ],
+  //   questions: [
+  //     "What are Kotlin coroutines?",
+  //     "How does null safety work in Kotlin?",
+  //     "What is Jetpack Compose?",
+  //   ],
+  //   quiz: [
+  //     {
+  //       id: 1,
+  //       question: "What makes Kotlin null-safe?",
+  //       options: [
+  //         "It doesn't allow variables",
+  //         "Types are nullable or non-nullable by default",
+  //         "It uses garbage collection",
+  //         "It has automatic error handling",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Kotlin's type system distinguishes between nullable (Type?) and non-nullable types, preventing null pointer exceptions at compile time.",
+  //     },
+  //     {
+  //       id: 2,
+  //       question: "What are coroutines in Kotlin?",
+  //       options: [
+  //         "A type of loop",
+  //         "Lightweight threads for asynchronous programming",
+  //         "Error handling mechanisms",
+  //         "Database connections",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Coroutines are lightweight threads that allow for asynchronous programming, making it easier to handle long-running operations without blocking the main thread.",
+  //     },
+  //     {
+  //       id: 3,
+  //       question:
+  //         "Which keyword is used to declare a read-only variable in Kotlin?",
+  //       options: ["const", "val", "var", "final"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'val' keyword declares a read-only (immutable) variable in Kotlin, similar to 'final' in Java but more concise.",
+  //     },
+  //     {
+  //       id: 4,
+  //       question: "What is Jetpack Compose?",
+  //       options: [
+  //         "A database library",
+  //         "Android's modern declarative UI toolkit",
+  //         "A testing framework",
+  //         "A networking library",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Jetpack Compose is Android's modern toolkit for building native UI declaratively, simplifying UI development with less code and powerful tools.",
+  //     },
+  //     {
+  //       id: 5,
+  //       question: "What does the 'suspend' keyword do in Kotlin?",
+  //       options: [
+  //         "Pauses the application",
+  //         "Marks a function that can be suspended and resumed",
+  //         "Stops error handling",
+  //         "Delays variable initialization",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'suspend' keyword marks functions that can be suspended without blocking a thread, allowing them to be used with coroutines for asynchronous programming.",
+  //     },
+  //     {
+  //       id: 6,
+  //       question:
+  //         "What is the main difference between 'val' and 'var' in Kotlin?",
+  //       options: [
+  //         "'val' is mutable, 'var' is immutable",
+  //         "'val' is immutable, 'var' is mutable",
+  //         "Both are mutable",
+  //         "Both are immutable",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "'val' creates a read-only variable (immutable), while 'var' creates a mutable variable that can change after initialization.",
+  //     },
+  //     {
+  //       id: 7,
+  //       question: "What is the Elvis operator in Kotlin?",
+  //       options: ["?:", "!!", "?.", "::"],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "The Elvis operator (?:) provides a default value when an expression on the left is null, helping to avoid null pointer exceptions.",
+  //     },
+  //     {
+  //       id: 8,
+  //       question: "What is the purpose of 'data class' in Kotlin?",
+  //       options: [
+  //         "To define test cases",
+  //         "To automatically generate equals(), hashCode(), and toString()",
+  //         "To handle exceptions",
+  //         "To create immutable lists",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "A 'data class' automatically generates useful methods like equals(), hashCode(), and toString(), simplifying data object creation.",
+  //     },
+  //     {
+  //       id: 9,
+  //       question: "Which function is used to start a coroutine in Kotlin?",
+  //       options: ["run()", "launch()", "execute()", "begin()"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'launch()' function starts a new coroutine in Kotlin, allowing concurrent execution without blocking the main thread.",
+  //     },
+  //     {
+  //       id: 10,
+  //       question: "What is the role of 'lateinit' in Kotlin?",
+  //       options: [
+  //         "It initializes variables automatically",
+  //         "It allows late initialization of non-null variables",
+  //         "It delays class creation",
+  //         "It prevents memory leaks",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "The 'lateinit' modifier allows you to declare non-null variables that will be initialized later, commonly used with dependency injection.",
+  //     },
+  //     {
+  //       id: 11,
+  //       question: "What is the 'by lazy' delegate used for?",
+  //       options: [
+  //         "To create variables that load immediately",
+  //         "To initialize variables only when first accessed",
+  //         "To handle asynchronous loading",
+  //         "To define immutable constants",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "'by lazy' creates a lazily initialized property that executes its initializer only the first time it's accessed.",
+  //     },
+  //     {
+  //       id: 12,
+  //       question: "Which Kotlin feature replaces Java's 'checked exceptions'?",
+  //       options: [
+  //         "try-catch blocks",
+  //         "Nothing — Kotlin does not have checked exceptions",
+  //         "Error handlers",
+  //         "suspend functions",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Kotlin does not have checked exceptions, simplifying code and reducing unnecessary try-catch boilerplate from Java.",
+  //     },
+  //     {
+  //       id: 13,
+  //       question: "What is 'sealed class' used for in Kotlin?",
+  //       options: [
+  //         "To define a class hierarchy with restricted inheritance",
+  //         "To create immutable data",
+  //         "To prevent serialization",
+  //         "To handle coroutines",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "A 'sealed class' restricts inheritance to the same file, making it useful for representing restricted class hierarchies, like result states.",
+  //     },
+  //     {
+  //       id: 14,
+  //       question: "What is the purpose of the 'when' expression in Kotlin?",
+  //       options: [
+  //         "To replace if-else chains with pattern matching",
+  //         "To start coroutines",
+  //         "To handle nulls",
+  //         "To define constants",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "The 'when' expression is a more powerful alternative to switch statements, allowing flexible pattern matching and concise condition handling.",
+  //     },
+  //     {
+  //       id: 15,
+  //       question: "Which Android library simplifies API calls in Kotlin?",
+  //       options: ["Dagger", "Retrofit", "Room", "Compose"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Retrofit is a type-safe HTTP client that simplifies network requests and JSON parsing in Android and Kotlin applications.",
+  //     },
+  //     {
+  //       id: 16,
+  //       question: "What is Room in Android development?",
+  //       options: [
+  //         "A UI framework",
+  //         "A local database persistence library",
+  //         "A testing tool",
+  //         "A network handler",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "Room is an ORM (Object Relational Mapping) library for local data persistence, providing a clean abstraction over SQLite databases.",
+  //     },
+  //     {
+  //       id: 17,
+  //       question: "What does 'companion object' mean in Kotlin?",
+  //       options: [
+  //         "It defines static members for a class",
+  //         "It creates a new thread",
+  //         "It represents an interface",
+  //         "It defines coroutine scopes",
+  //       ],
+  //       correctAnswer: 0,
+  //       explanation:
+  //         "A 'companion object' allows defining static-like members and functions within a class, similar to static methods in Java.",
+  //     },
+  //     {
+  //       id: 18,
+  //       question: "What is the difference between '=='' and '===' in Kotlin?",
+  //       options: [
+  //         "'==' compares references, '===' compares values",
+  //         "'==' compares values, '===' compares references",
+  //         "Both compare values",
+  //         "Both compare references",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "In Kotlin, '==' checks structural equality (values), while '===' checks referential equality (if two references point to the same object).",
+  //     },
+  //     {
+  //       id: 19,
+  //       question: "What is the default visibility modifier in Kotlin?",
+  //       options: ["private", "public", "protected", "internal"],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "'public' is the default visibility modifier in Kotlin, meaning members are visible everywhere unless specified otherwise.",
+  //     },
+  //     {
+  //       id: 20,
+  //       question: "Which function is used to handle exceptions in coroutines?",
+  //       options: [
+  //         "try/catch",
+  //         "CoroutineExceptionHandler",
+  //         "exceptionScope",
+  //         "handleError()",
+  //       ],
+  //       correctAnswer: 1,
+  //       explanation:
+  //         "CoroutineExceptionHandler is used to handle uncaught exceptions in Kotlin coroutines, providing structured concurrency and better error handling.",
+  //     },
+  //   ],
+  // },
 ];
