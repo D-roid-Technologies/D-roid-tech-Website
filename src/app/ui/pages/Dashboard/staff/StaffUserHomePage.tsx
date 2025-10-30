@@ -205,6 +205,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     (state: RootState) =>
       (state as any).membershipTier as { tier?: string; nextTier?: string }
   );
+
     const getStatDetails = (title: string) => {
     switch (title) {
       case "Membership Status":
@@ -290,7 +291,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
       color: "purple",
     },
     {
-      title: "Staff Level",
+      title: "Memeber Level",
       value: membershipTier?.tier || "Silver",
       change: `Next level: ${membershipTier?.nextTier || "Gold"}`,
       icon: FaStar,
@@ -799,6 +800,21 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
           </div>
         )}
       </Modal>
+         {/* Dashboard Stats */}
+      <div className="shp-section">
+        <h2 className="shp-section-title">Quick Views</h2>
+        <div className="shp-stats-grid">
+          {dashboardStats.map((stat, index) => (
+            <StatCard
+              key={index}
+              title={stat.title}
+              value={stat.value}
+              change={stat.change}
+              icon={stat.icon}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Quick Actions */}
       <div className="shp-section">
@@ -818,21 +834,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         </div>
       </div>
 
-      {/* Dashboard Stats */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Quick Views</h2>
-        <div className="shp-stats-grid">
-          {dashboardStats.map((stat, index) => (
-            <StatCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              change={stat.change}
-              icon={stat.icon}
-            />
-          ))}
-        </div>
-      </div>
+   
 
       {/* Two Column Layout */}
 
