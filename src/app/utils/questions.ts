@@ -1,4 +1,12 @@
-import { FaJava, FaPhp } from "react-icons/fa";
+import { FaJava, FaNode, FaPhp } from "react-icons/fa";
+import { SiRuby, SiKotlin, SiArgo } from "react-icons/si";
+import { GrSwift } from "react-icons/gr";
+import { IoLogoJavascript, IoLogoReact } from "react-icons/io5";
+import { TbBrandCSharp, TbBrandTypescript } from "react-icons/tb";
+import { AiOutlinePython } from "react-icons/ai";
+import { PiFileSqlLight } from "react-icons/pi";
+import { CgCPlusPlus } from "react-icons/cg";
+import { DiDocker } from "react-icons/di";
 
 export const Questions = [
   {
@@ -573,6 +581,7 @@ export const Questions = [
   },
   {
     title: "Ruby",
+    icon: SiRuby({ size: 24 }),
     subTitle: "Test your skills in elegant and productive programming",
     summary:
       "This Ruby test evaluates your knowledge of Ruby syntax, Rails framework, and object-oriented design.",
@@ -869,6 +878,7 @@ export const Questions = [
   },
   {
     title: "Swift",
+    icon: GrSwift({ size: 24 }),
     subTitle: "Master iOS and macOS app development",
     summary:
       "This Swift test covers iOS development, UIKit, SwiftUI, and modern Swift language features.",
@@ -1166,6 +1176,7 @@ export const Questions = [
   },
   {
     title: "Kotlin",
+    icon: SiKotlin({ size: 24 }),
     subTitle: "Evaluate your modern Android development skills",
     summary:
       "This Kotlin test covers Android development, coroutines, and interoperability with Java.",
@@ -1453,43 +1464,9 @@ export const Questions = [
       },
     ],
   },
-  // ];
-
-  // // export default Questions;Which of the following is NOT a primitive data type in Java?",
-  //         options: ["int", "String", "boolean", "char"],
-  //         correctAnswer: 1,
-  //         explanation: "String is not a primitive data type in Java. It's a reference type (object) from the String class."
-  //       },
-  //       {
-  //         id: 3,
-  //         question: "What is the difference between JDK and JRE?",
-  //         options: [
-  //           "JDK is for development, JRE is for runtime",
-  //           "JDK is for runtime, JRE is for development",
-  //           "There is no difference",
-  //           "JDK is older version of JRE"
-  //         ],
-  //         correctAnswer: 0,
-  //         explanation: "JDK (Java Development Kit) includes development tools like compiler, while JRE (Java Runtime Environment) only provides runtime libraries."
-  //       },
-  //       {
-  //         id: 4,
-  //         question: "Which keyword is used to create a subclass in Java?",
-  //         options: ["implements", "extends", "inherits", "super"],
-  //         correctAnswer: 1,
-  //         explanation: "The 'extends' keyword is used to create a subclass that inherits from a parent class in Java."
-  //       },
-  //       {
-  //         id: 5,
-  //         question: "What is the default access modifier for a class member in Java?",
-  //         options: ["private", "public", "protected", "package-private (default)"],
-  //         correctAnswer: 3,
-  //         explanation: "If no access modifier is specified, the default access is package-private, meaning it's accessible within the same package."
-  //       }
-  //     ]
-  //   },
   {
     title: "JavaScript",
+    icon: IoLogoJavascript({ size: 24 }),
     subTitle: "Evaluate your knowledge of the language of the web",
     summary:
       "This JavaScript test measures your understanding of ES6+, DOM manipulation, and async programming.",
@@ -1775,6 +1752,7 @@ export const Questions = [
   },
   {
     title: "TypeScript",
+    icon: TbBrandTypescript({ size: 24 }),
     subTitle: "Verify your ability to build scalable apps with TypeScript",
     summary:
       "This TypeScript test evaluates your skills in types, interfaces, generics, and advanced typing.",
@@ -2069,6 +2047,7 @@ export const Questions = [
   },
   {
     title: "Python",
+    icon: AiOutlinePython({ size: 24 }),
     subTitle: "Test your skills in web, data, and automation with Python",
     summary:
       "This Python exam covers syntax, OOP, libraries, and frameworks like Flask/Django.",
@@ -2339,6 +2318,7 @@ export const Questions = [
   },
   {
     title: "SQL",
+    icon: PiFileSqlLight({ size: 24 }),
     subTitle: "Master database querying and data manipulation",
     summary:
       "This SQL test covers database fundamentals, complex queries, joins, and performance optimization.",
@@ -2625,6 +2605,7 @@ export const Questions = [
 
   {
     title: "Node.js",
+    icon: FaNode({ size: 24 }),
     subTitle: "Evaluate your server-side JavaScript expertise",
     summary:
       "This Node.js test assesses your knowledge of backend development, APIs, and npm ecosystem.",
@@ -2921,6 +2902,7 @@ export const Questions = [
   },
   {
     title: "C#",
+    icon: TbBrandCSharp({ size: 24 }),
     subTitle: "Evaluate your .NET development skills",
     summary:
       "This C# test assesses your knowledge of .NET framework, OOP, LINQ, and ASP.NET development.",
@@ -3213,6 +3195,7 @@ export const Questions = [
   },
   {
     title: "C++",
+    icon: CgCPlusPlus({ size: 24 }),
     subTitle:
       "Test your system programming and performance optimization skills",
     summary:
@@ -3478,6 +3461,7 @@ export const Questions = [
   },
   {
     title: "Go",
+    icon: SiArgo({ size: 24 }),
     subTitle:
       "Test your proficiency in building high-performance, concurrent applications",
     summary:
@@ -3746,275 +3730,9 @@ export const Questions = [
       },
     ],
   },
-  // {
-  //   title: "PHP",
-  //   subTitle:
-  //     "Evaluate your skills in building dynamic web applications and APIs",
-  //   summary:
-  //     "This PHP test covers fundamentals to advanced topics: syntax, OOP, frameworks like Laravel, database integration, and modern PHP practices.",
-  //   duration: "55 minutes",
-  //   description:
-  //     "The exam assesses your PHP programming competency, including object-oriented programming, web development, Laravel framework, and database operations.",
-  //   level: "Beginner to Advanced",
-  //   tools: ["PHP", "Laravel", "Composer", "MySQL", "PHPStorm"],
-  //   mode: ["Online test", "Timed questions", "Certificate upon passing"],
-  //   url: "",
-  //   benefits: [
-  //     "Validate your PHP syntax & OOP skills",
-  //     "Showcase Laravel framework expertise",
-  //     "Prove database integration knowledge",
-  //     "Demonstrate modern PHP best practices",
-  //   ],
-  //   gallery: ["/images/php/1.jpg", "/images/php/2.jpg"],
-  //   learn: [
-  //     "PHP fundamentals & syntax",
-  //     "Object-oriented programming",
-  //     "Laravel framework basics",
-  //     "Database operations with PDO",
-  //     "RESTful API development",
-  //   ],
-  //   questions: [
-  //     "What are PHP namespaces?",
-  //     "How does Laravel's Eloquent ORM work?",
-  //     "What is the difference between include and require?",
-  //   ],
-  //   quiz: [
-  //     {
-  //       id: 1,
-  //       question: "Which symbol is used to declare a variable in PHP?",
-  //       options: ["@", "$", "#", "&"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "In PHP, variables are declared using the dollar sign ($) followed by the variable name, like $variableName.",
-  //     },
-  //     {
-  //       id: 2,
-  //       question: "What is the correct way to start a PHP script?",
-  //       options: ["<script>", "<?php", "<php>", "<?="],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "PHP scripts start with the opening tag '<?php' and optionally end with '?>' when mixed with HTML.",
-  //     },
-  //     {
-  //       id: 3,
-  //       question:
-  //         "Which function is used to connect to a MySQL database in PHP?",
-  //       options: [
-  //         "mysql_connect()",
-  //         "mysqli_connect()",
-  //         "connect_mysql()",
-  //         "db_connect()",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "mysqli_connect() is the modern way to connect to MySQL databases in PHP, replacing the deprecated mysql_connect().",
-  //     },
-  //     {
-  //       id: 4,
-  //       question: "What does the 'use' keyword do in PHP?",
-  //       options: [
-  //         "Includes a file",
-  //         "Imports a namespace or trait",
-  //         "Declares a variable",
-  //         "Starts a function",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'use' keyword is used to import namespaces, classes, or traits, making them available in the current scope without fully qualified names.",
-  //     },
-  //     {
-  //       id: 5,
-  //       question: "What is Laravel's Artisan?",
-  //       options: [
-  //         "A database driver",
-  //         "A command-line tool",
-  //         "A templating engine",
-  //         "An ORM system",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Artisan is Laravel's command-line interface that provides helpful commands for common tasks like generating models, controllers, and running migrations.",
-  //     },
-  //     {
-  //       id: 6,
-  //       question:
-  //         "What is the difference between 'include' and 'require' in PHP?",
-  //       options: [
-  //         "No difference at all",
-  //         "require throws a fatal error; include throws a warning",
-  //         "include is faster",
-  //         "require only works with OOP",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'require' statement stops script execution on failure, while 'include' only emits a warning and continues.",
-  //     },
-  //     {
-  //       id: 7,
-  //       question: "Which function is used to start a session in PHP?",
-  //       options: [
-  //         "session_open()",
-  //         "start_session()",
-  //         "session_start()",
-  //         "open_session()",
-  //       ],
-  //       correctAnswer: 2,
-  //       explanation:
-  //         "The 'session_start()' function is used to start a new session or resume an existing one in PHP.",
-  //     },
-  //     {
-  //       id: 8,
-  //       question: "How can you declare a constant in PHP?",
-  //       options: [
-  //         "const NAME = 'value';",
-  //         "$NAME = constant('value');",
-  //         "constant NAME = 'value';",
-  //         "define const NAME = 'value';",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "Constants can be declared using either 'const' or 'define()', e.g., const PI = 3.14; or define('PI', 3.14);.",
-  //     },
-  //     {
-  //       id: 9,
-  //       question: "What is the purpose of Composer in PHP?",
-  //       options: [
-  //         "To compile PHP code",
-  //         "To manage PHP packages and dependencies",
-  //         "To connect databases",
-  //         "To execute shell scripts",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Composer is PHP’s dependency manager that helps you install, update, and autoload external libraries easily.",
-  //     },
-  //     {
-  //       id: 10,
-  //       question: "Which of the following is a superglobal variable in PHP?",
-  //       options: ["$data", "$globals", "$_POST", "$input"],
-  //       correctAnswer: 2,
-  //       explanation:
-  //         "PHP has predefined superglobals like $_POST, $_GET, $_SESSION, and $_SERVER, which are accessible anywhere in the script.",
-  //     },
-  //     {
-  //       id: 11,
-  //       question: "What does PDO stand for in PHP?",
-  //       options: [
-  //         "PHP Data Object",
-  //         "Programmed Data Operation",
-  //         "Persistent Data Object",
-  //         "Process Data Output",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "PDO (PHP Data Object) is a database access layer that provides a uniform interface for multiple database systems.",
-  //     },
-  //     {
-  //       id: 12,
-  //       question: "Which Laravel file defines the routes for web applications?",
-  //       options: [
-  //         "config/routes.php",
-  //         "routes/web.php",
-  //         "app/routes.php",
-  //         "resources/routes.php",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Laravel’s routes for web interfaces are defined in the 'routes/web.php' file.",
-  //     },
-  //     {
-  //       id: 13,
-  //       question: "How do you define a class in PHP?",
-  //       options: [
-  //         "define class MyClass {}",
-  //         "class MyClass {}",
-  //         "function MyClass() {}",
-  //         "create_class MyClass {}",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Classes in PHP are defined using the 'class' keyword, e.g., class MyClass { public function greet() {} }.",
-  //     },
-  //     {
-  //       id: 14,
-  //       question: "Which method in Laravel handles form validation?",
-  //       options: ["validate()", "check()", "verify()", "assert()"],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "The 'validate()' method is used in Laravel controllers to validate incoming form data against defined rules.",
-  //     },
-  //     {
-  //       id: 15,
-  //       question: "What is a trait in PHP?",
-  //       options: [
-  //         "A design pattern",
-  //         "A reusable piece of code used inside classes",
-  //         "A type of variable",
-  //         "A database model",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Traits allow code reuse in PHP by enabling you to include sets of methods in multiple classes without inheritance.",
-  //     },
-  //     {
-  //       id: 16,
-  //       question: "Which operator is used for concatenating strings in PHP?",
-  //       options: ["+", ".", "&", "concat"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "In PHP, the dot (.) operator is used to concatenate strings, e.g., $fullName = $first . ' ' . $last.",
-  //     },
-  //     {
-  //       id: 17,
-  //       question: "What is middleware in Laravel?",
-  //       options: [
-  //         "A database connection",
-  //         "A function that filters HTTP requests",
-  //         "A configuration setting",
-  //         "A cache layer",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Middleware in Laravel acts as a filter for HTTP requests, allowing logic such as authentication or logging before reaching controllers.",
-  //     },
-  //     {
-  //       id: 18,
-  //       question: "Which PHP version introduced type declarations?",
-  //       options: ["5.2", "5.6", "7.0", "8.0"],
-  //       correctAnswer: 2,
-  //       explanation:
-  //         "PHP 7.0 introduced scalar type declarations and return type hints, improving type safety in applications.",
-  //     },
-  //     {
-  //       id: 19,
-  //       question: "How do you handle exceptions in PHP?",
-  //       options: [
-  //         "Using if statements",
-  //         "Using try-catch blocks",
-  //         "Using switch-case blocks",
-  //         "Using error handlers only",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Exceptions in PHP are handled using try-catch blocks, e.g., try { ... } catch (Exception $e) { echo $e->getMessage(); }.",
-  //     },
-  //     {
-  //       id: 20,
-  //       question: "What does Laravel’s Eloquent ORM provide?",
-  //       options: [
-  //         "An advanced caching system",
-  //         "An expressive database abstraction layer",
-  //         "A real-time messaging protocol",
-  //         "A testing framework",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Eloquent ORM in Laravel provides an elegant, ActiveRecord-style interface to interact with databases using models.",
-  //     },
-  //   ],
-  // },
   {
     title: "Docker",
+    icon: DiDocker({ size: 24 }),
     subTitle: "Test your containerization and deployment skills",
     summary:
       "This Docker test evaluates your knowledge of containerization, image creation, orchestration, and deployment strategies using Docker.",
@@ -4292,6 +4010,7 @@ export const Questions = [
   },
   {
     title: "React",
+    icon: IoLogoReact({ size: 24 }),
     subTitle: "Assess your modern frontend development skills",
     summary:
       "This React test evaluates your knowledge of components, hooks, state management, and modern React patterns for building dynamic user interfaces.",
@@ -4571,270 +4290,6 @@ export const Questions = [
     ],
   },
   {
-    title: "Node.js",
-    subTitle: "Test your backend JavaScript development expertise",
-    summary:
-      "This Node.js test evaluates your knowledge of server-side JavaScript, Express.js, APIs, database integration, and asynchronous programming.",
-    duration: "55 minutes",
-    description:
-      "The exam assesses your Node.js competency, covering runtime fundamentals, Express framework, RESTful APIs, and database operations.",
-    level: "Beginner to Advanced",
-    tools: ["Node.js", "Express.js", "MongoDB", "npm", "VS Code"],
-    mode: ["Online test", "Timed questions", "Certificate upon passing"],
-    url: "",
-    benefits: [
-      "Validate your Node.js runtime knowledge",
-      "Showcase Express.js framework skills",
-      "Prove API development expertise",
-      "Demonstrate async programming mastery",
-    ],
-    gallery: ["/images/nodejs/1.jpg", "/images/nodejs/2.jpg"],
-    learn: [
-      "Node.js fundamentals & runtime",
-      "Express.js framework",
-      "RESTful API development",
-      "Database integration",
-      "Async/await patterns",
-    ],
-    questions: [
-      "What is the event loop?",
-      "How does Node.js handle asynchronous operations?",
-      "What is middleware in Express?",
-    ],
-    quiz: [
-      {
-        id: 1,
-        question: "What is Node.js?",
-        options: [
-          "A JavaScript library",
-          "A JavaScript runtime built on Chrome's V8 engine",
-          "A database",
-          "A web browser",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Node.js is a JavaScript runtime environment that allows you to run JavaScript code outside of a web browser, built on Chrome's V8 JavaScript engine.",
-      },
-      {
-        id: 2,
-        question: "Which method is used to include modules in Node.js?",
-        options: ["import()", "require()", "include()", "load()"],
-        correctAnswer: 1,
-        explanation:
-          "The require() function is used to include modules in Node.js (CommonJS), though ES6 import syntax is also supported in modern versions.",
-      },
-      {
-        id: 3,
-        question: "What is npm?",
-        options: [
-          "Node Package Manager",
-          "New Programming Module",
-          "Network Protocol Manager",
-          "Node Process Monitor",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "npm (Node Package Manager) is the default package manager for Node.js, used to install, share, and manage JavaScript packages.",
-      },
-      {
-        id: 4,
-        question: "What does Express.js middleware do?",
-        options: [
-          "Handles database connections",
-          "Processes requests between client and server",
-          "Manages file uploads only",
-          "Handles authentication only",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "Express.js middleware functions execute during the request-response cycle, allowing you to modify requests/responses, handle authentication, logging, etc.",
-      },
-      {
-        id: 5,
-        question: "What is the purpose of package.json?",
-        options: [
-          "To store application data",
-          "To define project metadata and dependencies",
-          "To configure the server",
-          "To store user credentials",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "package.json contains metadata about the project and lists dependencies, scripts, and other configuration information needed for the Node.js application.",
-      },
-      {
-        id: 6,
-        question:
-          "Which core module is used to create a web server in Node.js?",
-        options: ["net", "fs", "http", "os"],
-        correctAnswer: 2,
-        explanation:
-          "The 'http' module allows you to create web servers and handle HTTP requests and responses in Node.js.",
-      },
-      {
-        id: 7,
-        question: "What is the purpose of the 'fs' module in Node.js?",
-        options: [
-          "File system operations",
-          "Form submission handling",
-          "Frontend styling",
-          "Framework settings",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "The 'fs' module provides an API for interacting with the file system, allowing you to read, write, and manipulate files.",
-      },
-      {
-        id: 8,
-        question: "What is an event emitter in Node.js?",
-        options: [
-          "A type of database",
-          "An object that triggers and listens for named events",
-          "A function for asynchronous iteration",
-          "A logging utility",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "The EventEmitter class allows objects to emit named events that cause functions (listeners) to be called.",
-      },
-      {
-        id: 9,
-        question: "What command initializes a new Node.js project?",
-        options: ["node init", "npm install", "npm init", "node start"],
-        correctAnswer: 2,
-        explanation:
-          "The 'npm init' command creates a package.json file and sets up a new Node.js project with metadata and dependencies.",
-      },
-      {
-        id: 10,
-        question:
-          "Which keyword is used to handle asynchronous errors in Node.js?",
-        options: ["try/catch", "await", "throw", "callback"],
-        correctAnswer: 0,
-        explanation:
-          "In async functions, 'try/catch' is used to handle errors during asynchronous operations wrapped with 'await'.",
-      },
-      {
-        id: 11,
-        question: "Which method sends a JSON response in Express.js?",
-        options: ["res.send()", "res.json()", "res.text()", "res.render()"],
-        correctAnswer: 1,
-        explanation:
-          "The res.json() method sends a JSON response to the client, automatically setting the appropriate headers.",
-      },
-      {
-        id: 12,
-        question: "How do you install a package globally using npm?",
-        options: [
-          "npm install package",
-          "npm install -g package",
-          "npm get package",
-          "npm add package",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "The '-g' flag installs the package globally so it can be accessed from anywhere on the system.",
-      },
-      {
-        id: 13,
-        question: "What is the role of process.env in Node.js?",
-        options: [
-          "Access environment variables",
-          "Start background processes",
-          "Configure middleware",
-          "Render templates",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "process.env provides access to environment variables that can store sensitive or configurable data such as API keys and database URLs.",
-      },
-      {
-        id: 14,
-        question:
-          "Which function is used to read files asynchronously in Node.js?",
-        options: [
-          "fs.read()",
-          "fs.readFileSync()",
-          "fs.readFile()",
-          "fs.loadFile()",
-        ],
-        correctAnswer: 2,
-        explanation:
-          "fs.readFile() reads the file asynchronously, allowing the program to continue executing while waiting for the operation to complete.",
-      },
-      {
-        id: 15,
-        question: "What is a promise in Node.js?",
-        options: [
-          "A synchronous loop",
-          "An object representing eventual completion or failure of an async operation",
-          "A callback replacement",
-          "A JSON parser",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "A promise represents a value that will be available in the future, used for handling asynchronous operations cleanly.",
-      },
-      {
-        id: 16,
-        question: "Which Express method defines a GET route?",
-        options: ["app.get()", "app.route()", "app.fetch()", "app.send()"],
-        correctAnswer: 0,
-        explanation:
-          "app.get() handles GET requests to a specified endpoint in an Express application.",
-      },
-      {
-        id: 17,
-        question: "How can you handle CORS in a Node.js API?",
-        options: [
-          "By installing and configuring the 'cors' middleware",
-          "By adding it to package.json",
-          "By using the fs module",
-          "By disabling headers",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "The 'cors' middleware helps enable Cross-Origin Resource Sharing, allowing your API to be accessed from different origins.",
-      },
-      {
-        id: 18,
-        question:
-          "What is the difference between synchronous and asynchronous code in Node.js?",
-        options: [
-          "Synchronous code blocks execution, async code doesn't",
-          "Async code is faster by default",
-          "Synchronous code runs only in browsers",
-          "There is no difference",
-        ],
-        correctAnswer: 0,
-        explanation:
-          "Synchronous code executes line by line, blocking the thread, while asynchronous code allows non-blocking operations.",
-      },
-      {
-        id: 19,
-        question:
-          "What database driver is commonly used with MongoDB in Node.js?",
-        options: ["pg", "mysql", "mongoose", "sqlite3"],
-        correctAnswer: 2,
-        explanation:
-          "Mongoose is an ODM (Object Data Modeling) library used to interact with MongoDB databases in Node.js.",
-      },
-      {
-        id: 20,
-        question: "What does 'app.listen()' do in Express.js?",
-        options: [
-          "Listens for database queries",
-          "Starts the server and listens for incoming connections",
-          "Logs errors to console",
-          "Creates a new router",
-        ],
-        correctAnswer: 1,
-        explanation:
-          "The app.listen() method binds and listens for connections on the specified host and port, starting the Express server.",
-      },
-    ],
-  },
-  {
     title: "Rust",
     subTitle: "Evaluate your systems programming and memory safety skills",
     summary:
@@ -5099,544 +4554,4 @@ export const Questions = [
       },
     ],
   },
-  // {
-  //   title: "Swift",
-  //   subTitle: "Test your iOS and macOS development skills",
-  //   summary:
-  //     "This Swift test evaluates your knowledge of Swift syntax, iOS development, UIKit, SwiftUI, and building native Apple applications.",
-  //   duration: "55 minutes",
-  //   description:
-  //     "The exam assesses your Swift programming competency, covering language features, iOS frameworks, and mobile app development patterns.",
-  //   level: "Beginner to Advanced",
-  //   tools: ["Swift", "Xcode", "UIKit", "SwiftUI", "Core Data"],
-  //   mode: ["Online test", "Timed questions", "Certificate upon passing"],
-  //   url: "",
-  //   benefits: [
-  //     "Validate your Swift language skills",
-  //     "Showcase iOS development expertise",
-  //     "Prove UIKit & SwiftUI knowledge",
-  //     "Demonstrate mobile app architecture understanding",
-  //   ],
-  //   gallery: ["/images/swift/1.jpg", "/images/swift/2.jpg"],
-  //   learn: [
-  //     "Swift fundamentals & syntax",
-  //     "iOS app development basics",
-  //     "UIKit & SwiftUI frameworks",
-  //     "Data persistence with Core Data",
-  //     "App Store deployment process",
-  //   ],
-  //   questions: [
-  //     "What are optionals in Swift?",
-  //     "How does ARC work?",
-  //     "What is the difference between UIKit and SwiftUI?",
-  //   ],
-  //   quiz: [
-  //     {
-  //       id: 1,
-  //       question: "What is an optional in Swift?",
-  //       options: [
-  //         "A required parameter",
-  //         "A type that can hold either a value or nil",
-  //         "A function parameter",
-  //         "A class property",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "An optional in Swift is a type that can hold either a value of a specific type or nil, providing a safe way to handle the absence of values.",
-  //     },
-  //     {
-  //       id: 2,
-  //       question: "What does ARC stand for in Swift?",
-  //       options: [
-  //         "Automatic Reference Counting",
-  //         "Advanced Runtime Compiler",
-  //         "Application Resource Controller",
-  //         "Asynchronous Runtime Control",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "ARC (Automatic Reference Counting) automatically manages memory by tracking and counting references to objects, deallocating them when no longer needed.",
-  //     },
-  //     {
-  //       id: 3,
-  //       question: "Which keyword is used to unwrap optionals safely?",
-  //       options: ["unwrap", "if let", "force", "safe"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "'if let' provides safe optional binding, allowing you to unwrap an optional and use its value only if it's not nil, avoiding runtime crashes.",
-  //     },
-  //     {
-  //       id: 4,
-  //       question: "What is SwiftUI?",
-  //       options: [
-  //         "A testing framework",
-  //         "Apple's declarative UI framework",
-  //         "A database library",
-  //         "A networking framework",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "SwiftUI is Apple's modern, declarative framework for building user interfaces across all Apple platforms using Swift.",
-  //     },
-  //     {
-  //       id: 5,
-  //       question: "What is a closure in Swift?",
-  //       options: [
-  //         "A class definition",
-  //         "A self-contained block of functionality",
-  //         "A variable declaration",
-  //         "A loop construct",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "A closure in Swift is a self-contained block of functionality that can be passed around and used in your code, similar to lambdas or anonymous functions.",
-  //     },
-  //     {
-  //       id: 6,
-  //       question: "What keyword is used to declare a constant in Swift?",
-  //       options: ["var", "let", "const", "immutable"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'let' keyword declares constants in Swift, meaning their value cannot be changed after initialization.",
-  //     },
-  //     {
-  //       id: 7,
-  //       question:
-  //         "Which data type is used to represent true or false values in Swift?",
-  //       options: ["Int", "Bool", "String", "Float"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'Bool' type represents boolean values — true or false — and is often used in conditions and logical expressions.",
-  //     },
-  //     {
-  //       id: 8,
-  //       question: "What is the purpose of guard statements in Swift?",
-  //       options: [
-  //         "To create loops",
-  //         "To safely exit a function early when conditions are not met",
-  //         "To declare constants",
-  //         "To define classes",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "A 'guard' statement allows you to check conditions and exit early from a function if those conditions aren’t met, improving code clarity.",
-  //     },
-  //     {
-  //       id: 9,
-  //       question:
-  //         "What is the main difference between struct and class in Swift?",
-  //       options: [
-  //         "Structs support inheritance, classes don’t",
-  //         "Structs are value types, classes are reference types",
-  //         "Classes are faster than structs",
-  //         "Structs can’t have methods",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Structs are value types, meaning they are copied when assigned or passed. Classes are reference types, meaning they share references to the same instance.",
-  //     },
-  //     {
-  //       id: 10,
-  //       question: "What is optional chaining in Swift?",
-  //       options: [
-  //         "Combining multiple functions into one",
-  //         "Safely accessing properties or methods of an optional",
-  //         "Declaring optional types",
-  //         "Handling multiple optionals at once",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Optional chaining lets you safely call properties, methods, or subscripts on an optional that might currently be nil, preventing runtime crashes.",
-  //     },
-  //     {
-  //       id: 11,
-  //       question: "What is the role of @State in SwiftUI?",
-  //       options: [
-  //         "To manage local, mutable state in a view",
-  //         "To define constants",
-  //         "To track global state",
-  //         "To handle network requests",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "The @State property wrapper in SwiftUI allows a view to manage local mutable state and re-render automatically when the state changes.",
-  //     },
-  //     {
-  //       id: 12,
-  //       question:
-  //         "Which Swift feature allows pattern matching in switch statements?",
-  //       options: ["Guards", "Closures", "Enums", "Pattern cases"],
-  //       correctAnswer: 3,
-  //       explanation:
-  //         "Swift's switch statements support powerful pattern matching using 'case' patterns, allowing developers to match complex conditions succinctly.",
-  //     },
-  //     {
-  //       id: 13,
-  //       question: "What is Combine in Swift?",
-  //       options: [
-  //         "A database framework",
-  //         "A reactive programming framework",
-  //         "A UI animation library",
-  //         "A testing tool",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Combine is Apple's reactive programming framework for handling asynchronous events and data streams using publishers and subscribers.",
-  //     },
-  //     {
-  //       id: 14,
-  //       question: "What does the 'deinit' keyword do in Swift?",
-  //       options: [
-  //         "Initializes a class",
-  //         "Cleans up resources before an instance is deallocated",
-  //         "Creates a new instance",
-  //         "Deletes memory manually",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'deinit' method is called automatically before an instance of a class is deallocated, allowing you to perform cleanup tasks.",
-  //     },
-  //     {
-  //       id: 15,
-  //       question:
-  //         "Which collection type in Swift is unordered and ensures unique elements?",
-  //       options: ["Array", "Dictionary", "Set", "Tuple"],
-  //       correctAnswer: 2,
-  //       explanation:
-  //         "A 'Set' is an unordered collection of unique elements, useful when order doesn’t matter but uniqueness does.",
-  //     },
-  //     {
-  //       id: 16,
-  //       question: "What is Core Data used for?",
-  //       options: [
-  //         "UI animations",
-  //         "Data persistence and object graph management",
-  //         "Network communication",
-  //         "Thread management",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Core Data is a powerful framework for managing persistent data and complex object graphs in iOS and macOS applications.",
-  //     },
-  //     {
-  //       id: 17,
-  //       question: "Which keyword is used to define an enumeration in Swift?",
-  //       options: ["enum", "enumeration", "case", "switch"],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "The 'enum' keyword defines an enumeration, a type that groups related values together under a single type name.",
-  //     },
-  //     {
-  //       id: 18,
-  //       question: "What is the main purpose of extensions in Swift?",
-  //       options: [
-  //         "To add new functionality to existing types",
-  //         "To create subclasses",
-  //         "To define protocols",
-  //         "To declare private methods",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "Extensions in Swift allow developers to add new functionality to existing classes, structs, or enums without modifying their original source code.",
-  //     },
-  //     {
-  //       id: 19,
-  //       question:
-  //         "What is the difference between synchronous and asynchronous code in Swift?",
-  //       options: [
-  //         "Synchronous code runs concurrently, asynchronous does not",
-  //         "Synchronous code runs sequentially, asynchronous can run in parallel",
-  //         "Both run at the same time",
-  //         "They are identical in Swift",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Synchronous code runs one task at a time, while asynchronous code allows multiple tasks to execute concurrently without blocking the main thread.",
-  //     },
-  //     {
-  //       id: 20,
-  //       question: "What does @Published do in SwiftUI?",
-  //       options: [
-  //         "Publishes data changes to subscribers",
-  //         "Stores global variables",
-  //         "Handles network calls",
-  //         "Defines constants",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "The @Published property wrapper automatically notifies SwiftUI views or Combine subscribers when its value changes, enabling reactive updates.",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Kotlin",
-  //   subTitle: "Assess your Android development and JVM programming skills",
-  //   summary:
-  //     "This Kotlin test evaluates your knowledge of Kotlin syntax, Android development, coroutines, and building modern mobile applications.",
-  //   duration: "55 minutes",
-  //   description:
-  //     "The exam measures your Kotlin competency, covering language features, Android frameworks, and mobile app development best practices.",
-  //   level: "Beginner to Advanced",
-  //   tools: ["Kotlin", "Android Studio", "Jetpack Compose", "Room", "Retrofit"],
-  //   mode: ["Online test", "Timed questions", "Certificate upon passing"],
-  //   url: "",
-  //   benefits: [
-  //     "Validate your Kotlin language skills",
-  //     "Showcase Android development expertise",
-  //     "Prove coroutines & async programming knowledge",
-  //     "Demonstrate modern Android architecture understanding",
-  //   ],
-  //   gallery: ["/images/kotlin/1.jpg", "/images/kotlin/2.jpg"],
-  //   learn: [
-  //     "Kotlin fundamentals & syntax",
-  //     "Android app development",
-  //     "Jetpack Compose UI toolkit",
-  //     "Coroutines for async programming",
-  //     "Room database & data persistence",
-  //   ],
-  //   questions: [
-  //     "What are Kotlin coroutines?",
-  //     "How does null safety work in Kotlin?",
-  //     "What is Jetpack Compose?",
-  //   ],
-  //   quiz: [
-  //     {
-  //       id: 1,
-  //       question: "What makes Kotlin null-safe?",
-  //       options: [
-  //         "It doesn't allow variables",
-  //         "Types are nullable or non-nullable by default",
-  //         "It uses garbage collection",
-  //         "It has automatic error handling",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Kotlin's type system distinguishes between nullable (Type?) and non-nullable types, preventing null pointer exceptions at compile time.",
-  //     },
-  //     {
-  //       id: 2,
-  //       question: "What are coroutines in Kotlin?",
-  //       options: [
-  //         "A type of loop",
-  //         "Lightweight threads for asynchronous programming",
-  //         "Error handling mechanisms",
-  //         "Database connections",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Coroutines are lightweight threads that allow for asynchronous programming, making it easier to handle long-running operations without blocking the main thread.",
-  //     },
-  //     {
-  //       id: 3,
-  //       question:
-  //         "Which keyword is used to declare a read-only variable in Kotlin?",
-  //       options: ["const", "val", "var", "final"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'val' keyword declares a read-only (immutable) variable in Kotlin, similar to 'final' in Java but more concise.",
-  //     },
-  //     {
-  //       id: 4,
-  //       question: "What is Jetpack Compose?",
-  //       options: [
-  //         "A database library",
-  //         "Android's modern declarative UI toolkit",
-  //         "A testing framework",
-  //         "A networking library",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Jetpack Compose is Android's modern toolkit for building native UI declaratively, simplifying UI development with less code and powerful tools.",
-  //     },
-  //     {
-  //       id: 5,
-  //       question: "What does the 'suspend' keyword do in Kotlin?",
-  //       options: [
-  //         "Pauses the application",
-  //         "Marks a function that can be suspended and resumed",
-  //         "Stops error handling",
-  //         "Delays variable initialization",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'suspend' keyword marks functions that can be suspended without blocking a thread, allowing them to be used with coroutines for asynchronous programming.",
-  //     },
-  //     {
-  //       id: 6,
-  //       question:
-  //         "What is the main difference between 'val' and 'var' in Kotlin?",
-  //       options: [
-  //         "'val' is mutable, 'var' is immutable",
-  //         "'val' is immutable, 'var' is mutable",
-  //         "Both are mutable",
-  //         "Both are immutable",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "'val' creates a read-only variable (immutable), while 'var' creates a mutable variable that can change after initialization.",
-  //     },
-  //     {
-  //       id: 7,
-  //       question: "What is the Elvis operator in Kotlin?",
-  //       options: ["?:", "!!", "?.", "::"],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "The Elvis operator (?:) provides a default value when an expression on the left is null, helping to avoid null pointer exceptions.",
-  //     },
-  //     {
-  //       id: 8,
-  //       question: "What is the purpose of 'data class' in Kotlin?",
-  //       options: [
-  //         "To define test cases",
-  //         "To automatically generate equals(), hashCode(), and toString()",
-  //         "To handle exceptions",
-  //         "To create immutable lists",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "A 'data class' automatically generates useful methods like equals(), hashCode(), and toString(), simplifying data object creation.",
-  //     },
-  //     {
-  //       id: 9,
-  //       question: "Which function is used to start a coroutine in Kotlin?",
-  //       options: ["run()", "launch()", "execute()", "begin()"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'launch()' function starts a new coroutine in Kotlin, allowing concurrent execution without blocking the main thread.",
-  //     },
-  //     {
-  //       id: 10,
-  //       question: "What is the role of 'lateinit' in Kotlin?",
-  //       options: [
-  //         "It initializes variables automatically",
-  //         "It allows late initialization of non-null variables",
-  //         "It delays class creation",
-  //         "It prevents memory leaks",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "The 'lateinit' modifier allows you to declare non-null variables that will be initialized later, commonly used with dependency injection.",
-  //     },
-  //     {
-  //       id: 11,
-  //       question: "What is the 'by lazy' delegate used for?",
-  //       options: [
-  //         "To create variables that load immediately",
-  //         "To initialize variables only when first accessed",
-  //         "To handle asynchronous loading",
-  //         "To define immutable constants",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "'by lazy' creates a lazily initialized property that executes its initializer only the first time it's accessed.",
-  //     },
-  //     {
-  //       id: 12,
-  //       question: "Which Kotlin feature replaces Java's 'checked exceptions'?",
-  //       options: [
-  //         "try-catch blocks",
-  //         "Nothing — Kotlin does not have checked exceptions",
-  //         "Error handlers",
-  //         "suspend functions",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Kotlin does not have checked exceptions, simplifying code and reducing unnecessary try-catch boilerplate from Java.",
-  //     },
-  //     {
-  //       id: 13,
-  //       question: "What is 'sealed class' used for in Kotlin?",
-  //       options: [
-  //         "To define a class hierarchy with restricted inheritance",
-  //         "To create immutable data",
-  //         "To prevent serialization",
-  //         "To handle coroutines",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "A 'sealed class' restricts inheritance to the same file, making it useful for representing restricted class hierarchies, like result states.",
-  //     },
-  //     {
-  //       id: 14,
-  //       question: "What is the purpose of the 'when' expression in Kotlin?",
-  //       options: [
-  //         "To replace if-else chains with pattern matching",
-  //         "To start coroutines",
-  //         "To handle nulls",
-  //         "To define constants",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "The 'when' expression is a more powerful alternative to switch statements, allowing flexible pattern matching and concise condition handling.",
-  //     },
-  //     {
-  //       id: 15,
-  //       question: "Which Android library simplifies API calls in Kotlin?",
-  //       options: ["Dagger", "Retrofit", "Room", "Compose"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Retrofit is a type-safe HTTP client that simplifies network requests and JSON parsing in Android and Kotlin applications.",
-  //     },
-  //     {
-  //       id: 16,
-  //       question: "What is Room in Android development?",
-  //       options: [
-  //         "A UI framework",
-  //         "A local database persistence library",
-  //         "A testing tool",
-  //         "A network handler",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "Room is an ORM (Object Relational Mapping) library for local data persistence, providing a clean abstraction over SQLite databases.",
-  //     },
-  //     {
-  //       id: 17,
-  //       question: "What does 'companion object' mean in Kotlin?",
-  //       options: [
-  //         "It defines static members for a class",
-  //         "It creates a new thread",
-  //         "It represents an interface",
-  //         "It defines coroutine scopes",
-  //       ],
-  //       correctAnswer: 0,
-  //       explanation:
-  //         "A 'companion object' allows defining static-like members and functions within a class, similar to static methods in Java.",
-  //     },
-  //     {
-  //       id: 18,
-  //       question: "What is the difference between '=='' and '===' in Kotlin?",
-  //       options: [
-  //         "'==' compares references, '===' compares values",
-  //         "'==' compares values, '===' compares references",
-  //         "Both compare values",
-  //         "Both compare references",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "In Kotlin, '==' checks structural equality (values), while '===' checks referential equality (if two references point to the same object).",
-  //     },
-  //     {
-  //       id: 19,
-  //       question: "What is the default visibility modifier in Kotlin?",
-  //       options: ["private", "public", "protected", "internal"],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "'public' is the default visibility modifier in Kotlin, meaning members are visible everywhere unless specified otherwise.",
-  //     },
-  //     {
-  //       id: 20,
-  //       question: "Which function is used to handle exceptions in coroutines?",
-  //       options: [
-  //         "try/catch",
-  //         "CoroutineExceptionHandler",
-  //         "exceptionScope",
-  //         "handleError()",
-  //       ],
-  //       correctAnswer: 1,
-  //       explanation:
-  //         "CoroutineExceptionHandler is used to handle uncaught exceptions in Kotlin coroutines, providing structured concurrency and better error handling.",
-  //     },
-  //   ],
-  // },
 ];
