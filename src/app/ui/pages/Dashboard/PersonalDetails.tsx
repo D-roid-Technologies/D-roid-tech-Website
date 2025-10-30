@@ -169,9 +169,8 @@ const PersonalDetails: React.FunctionComponent = () => {
         if (!validateRequired(value))
           return `${name.charAt(0).toUpperCase() + name.slice(1)} is required`;
         if (!/^[a-zA-Z\s'-]+$/.test(value))
-          return `${
-            name.charAt(0).toUpperCase() + name.slice(1)
-          } can only contain letters, spaces, hyphens, and apostrophes`;
+          return `${name.charAt(0).toUpperCase() + name.slice(1)
+            } can only contain letters, spaces, hyphens, and apostrophes`;
         break;
 
       case "streetNumber":
@@ -456,27 +455,29 @@ const PersonalDetails: React.FunctionComponent = () => {
     setIsSubmitting(true);
 
     try {
-      await authService.updatePrimaryInformation(formData);
-      setSubmitStatus("success");
-      localStorage.setItem("profileUpdated", JSON.stringify(formData));
-      console.log("profileUpdated>>>>>>>>>>>>");
-      
-      // Create notification for profile update
-      const now = new Date();
-      const notification = {
-        id: Date.now(),
-        title: "Profile Updated Successfully",
-        message: `Your personal details have been updated. Changes include: ${formData.firstName} ${formData.lastName}, ${formData.email}`,
-        date: now.toISOString().split('T')[0],
-        time: now.toISOString(),
-        type: "success",
-        isRead: false,
-      };
-      
-      // Dispatch notification to Redux store
-      dispatch(addNotification(notification));
+      await authService.updatePrimaryInformation(formData).then(() => {
+        setSubmitStatus("success");
+        localStorage.setItem("profileUpdated", JSON.stringify(formData));
+        const now = new Date();
+        const notification = {
+          id: Date.now(),
+          title: "Profile Updated Successfully",
+          message: `Your personal details have been updated. Changes include: ${formData.firstName} ${formData.lastName}, ${formData.email}`,
+          date: now.toISOString().split('T')[0],
+          time: now.toISOString(),
+          type: "success",
+          isRead: false,
+        };
+        dispatch(addNotification(notification));
 
-      setErrors({});
+        setErrors({});
+      })
+
+
+      // console.log("profileUpdated>>>>>>>>>>>>");
+
+      // Create notification for profile update
+
     } catch (error) {
       setSubmitStatus("error");
       setErrors({ submit: "Failed to update information. Please try again." });
@@ -670,9 +671,8 @@ const PersonalDetails: React.FunctionComponent = () => {
               >
                 <div className="lf-dropdown">
                   <Listbox.Button
-                    className={`lf-dropdown-btn ${
-                      errors.employmentStatus ? "lf-error" : ""
-                    }`}
+                    className={`lf-dropdown-btn ${errors.employmentStatus ? "lf-error" : ""
+                      }`}
                   >
                     <span
                       className={
@@ -683,10 +683,10 @@ const PersonalDetails: React.FunctionComponent = () => {
                     >
                       {(formData as any)?.employmentStatus
                         ? employmentStatusOptions.find(
-                            (option) =>
-                              option.value ===
-                              (formData as any)?.employmentStatus
-                          )?.label
+                          (option) =>
+                            option.value ===
+                            (formData as any)?.employmentStatus
+                        )?.label
                         : "Select Employment Status"}
                     </span>
                     <ChevronsUpDown
@@ -700,8 +700,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                         key={option.value}
                         value={option.value}
                         className={({ active, selected }) =>
-                          `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                            selected ? "lf-selected" : ""
+                          `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                           }`
                         }
                       >
@@ -729,9 +728,8 @@ const PersonalDetails: React.FunctionComponent = () => {
               >
                 <div className="lf-dropdown">
                   <Listbox.Button
-                    className={`lf-dropdown-btn ${
-                      errors.workLocation ? "lf-error" : ""
-                    }`}
+                    className={`lf-dropdown-btn ${errors.workLocation ? "lf-error" : ""
+                      }`}
                   >
                     <span
                       className={
@@ -740,9 +738,9 @@ const PersonalDetails: React.FunctionComponent = () => {
                     >
                       {(formData as any)?.workLocation
                         ? workLocationOptions.find(
-                            (option) =>
-                              option.value === (formData as any)?.workLocation
-                          )?.label
+                          (option) =>
+                            option.value === (formData as any)?.workLocation
+                        )?.label
                         : "Select Work Location"}
                     </span>
                     <ChevronsUpDown
@@ -756,8 +754,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                         key={option.value}
                         value={option.value}
                         className={({ active, selected }) =>
-                          `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                            selected ? "lf-selected" : ""
+                          `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                           }`
                         }
                       >
@@ -992,9 +989,8 @@ const PersonalDetails: React.FunctionComponent = () => {
               >
                 <div className="lf-dropdown">
                   <Listbox.Button
-                    className={`lf-dropdown-btn ${
-                      errors.accessLevel ? "lf-error" : ""
-                    }`}
+                    className={`lf-dropdown-btn ${errors.accessLevel ? "lf-error" : ""
+                      }`}
                   >
                     <span
                       className={
@@ -1020,8 +1016,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                         key={option}
                         value={option}
                         className={({ active, selected }) =>
-                          `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                            selected ? "lf-selected" : ""
+                          `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                           }`
                         }
                       >
@@ -1114,8 +1109,7 @@ const PersonalDetails: React.FunctionComponent = () => {
               <Listbox.Option
                 value="Edit Profile"
                 className={({ active, selected }) =>
-                  `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                    selected ? "lf-selected" : ""
+                  `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                   }`
                 }
               >
@@ -1133,8 +1127,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                   key={item.title}
                   value={item.title}
                   className={({ active, selected }) =>
-                    `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                      selected ? "lf-selected" : ""
+                    `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                     }`
                   }
                 >
@@ -1151,8 +1144,7 @@ const PersonalDetails: React.FunctionComponent = () => {
               <Listbox.Option
                 value="Documents"
                 className={({ active, selected }) =>
-                  `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                    selected ? "lf-selected" : ""
+                  `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                   }`
                 }
               >
@@ -1338,53 +1330,53 @@ const PersonalDetails: React.FunctionComponent = () => {
 
                   {/* Gender - only for non-organisation users */}
                   {userType !== "Organisation" && (
-                   <div style={{ marginBottom: "15px" }}>
-  <label style={getLabelStyle()}>Gender *</label>
-  <Listbox
-    value={(formData as any).gender || ""}
-    onChange={(value) =>
-      setFormData((prev: any) => ({
-        ...prev,
-        gender: value,
-      }))
-    }
-  >
-    <div className="lf-dropdown">
-      {/* Button */}
-      <Listbox.Button
-        className={`lf-dropdown-btn ${errors.gender ? "lf-error" : ""}`}
-      >
-        <span
-          className={(formData as any)?.gender ? "" : "text-gray-400"}
-        >
-          {(formData as any)?.gender || "Select Gender"}
-        </span>
-        <ChevronsUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
-      </Listbox.Button>
+                    <div style={{ marginBottom: "15px" }}>
+                      <label style={getLabelStyle()}>Gender *</label>
+                      <Listbox
+                        value={(formData as any).gender || ""}
+                        onChange={(value) =>
+                          setFormData((prev: any) => ({
+                            ...prev,
+                            gender: value,
+                          }))
+                        }
+                      >
+                        <div className="lf-dropdown">
+                          {/* Button */}
+                          <Listbox.Button
+                            className={`lf-dropdown-btn ${errors.gender ? "lf-error" : ""}`}
+                          >
+                            <span
+                              className={(formData as any)?.gender ? "" : "text-gray-400"}
+                            >
+                              {(formData as any)?.gender || "Select Gender"}
+                            </span>
+                            <ChevronsUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                          </Listbox.Button>
 
-      {/* Options */}
-      <Listbox.Options className="lf-dropdown-options">
-        {genderOptions.map((option) => (
-          <Listbox.Option
-            key={option.value}
-            value={option.value}
-            className={({ active }) =>
-              `lf-dropdown-item ${active ? "lf-active" : ""}`
-            }
-          >
-            {({ selected }) => (
-              <div className="flex items-center justify-between">
-                <span>{option.label}</span>
-                {selected && <Check className="h-5 w-5" aria-hidden="true" />}
-              </div>
-            )}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </div>
-  </Listbox>
-  {renderErrorMessage("gender")}
-</div>
+                          {/* Options */}
+                          <Listbox.Options className="lf-dropdown-options">
+                            {genderOptions.map((option) => (
+                              <Listbox.Option
+                                key={option.value}
+                                value={option.value}
+                                className={({ active }) =>
+                                  `lf-dropdown-item ${active ? "lf-active" : ""}`
+                                }
+                              >
+                                {({ selected }) => (
+                                  <div className="flex items-center justify-between">
+                                    <span>{option.label}</span>
+                                    {selected && <Check className="h-5 w-5" aria-hidden="true" />}
+                                  </div>
+                                )}
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </div>
+                      </Listbox>
+                      {renderErrorMessage("gender")}
+                    </div>
 
                   )}
 
@@ -1565,9 +1557,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                     >
                       <div className="lf-dropdown">
                         <Listbox.Button
-                          className={`lf-dropdown-btn ${
-                            errors.disabilityType ? "lf-error" : ""
-                          }`}
+                          className={`lf-dropdown-btn ${errors.disabilityType ? "lf-error" : ""
+                            }`}
                         >
                           <span
                             className={
@@ -1578,10 +1569,10 @@ const PersonalDetails: React.FunctionComponent = () => {
                           >
                             {(formData as any)?.disabilityType
                               ? disabilityTypeOptions.find(
-                                  (option) =>
-                                    option.value ===
-                                    (formData as any)?.disabilityType
-                                )?.label
+                                (option) =>
+                                  option.value ===
+                                  (formData as any)?.disabilityType
+                              )?.label
                               : "Select Disability Type"}
                           </span>
                           <ChevronsUpDown
@@ -1595,8 +1586,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                               key={option.value}
                               value={option.value}
                               className={({ active, selected }) =>
-                                `lf-dropdown-item ${
-                                  active ? "lf-active" : ""
+                                `lf-dropdown-item ${active ? "lf-active" : ""
                                 } ${selected ? "lf-selected" : ""}`
                               }
                             >
@@ -1629,9 +1619,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                     >
                       <div className="lf-dropdown">
                         <Listbox.Button
-                          className={`lf-dropdown-btn ${
-                            errors.educationalLevel ? "lf-error" : ""
-                          }`}
+                          className={`lf-dropdown-btn ${errors.educationalLevel ? "lf-error" : ""
+                            }`}
                         >
                           <span
                             className={
@@ -1642,10 +1631,10 @@ const PersonalDetails: React.FunctionComponent = () => {
                           >
                             {(formData as any)?.educationalLevel
                               ? educationalLevelOptions.find(
-                                  (option) =>
-                                    option.value ===
-                                    (formData as any)?.educationalLevel
-                                )?.label
+                                (option) =>
+                                  option.value ===
+                                  (formData as any)?.educationalLevel
+                              )?.label
                               : "Select Educational Level"}
                           </span>
                           <ChevronsUpDown
@@ -1659,8 +1648,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                               key={option.value}
                               value={option.value}
                               className={({ active, selected }) =>
-                                `lf-dropdown-item ${
-                                  active ? "lf-active" : ""
+                                `lf-dropdown-item ${active ? "lf-active" : ""
                                 } ${selected ? "lf-selected" : ""}`
                               }
                             >
@@ -1723,9 +1711,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                   >
                     <div className="lf-dropdown">
                       <Listbox.Button
-                        className={`lf-dropdown-btn ${
-                          errors.securityQuestion ? "lf-error" : ""
-                        }`}
+                        className={`lf-dropdown-btn ${errors.securityQuestion ? "lf-error" : ""
+                          }`}
                       >
                         <span
                           className={
@@ -1736,10 +1723,10 @@ const PersonalDetails: React.FunctionComponent = () => {
                         >
                           {(formData as any)?.securityQuestion
                             ? securityQuestionOptions.find(
-                                (option) =>
-                                  option.value ===
-                                  (formData as any)?.securityQuestion
-                              )?.label
+                              (option) =>
+                                option.value ===
+                                (formData as any)?.securityQuestion
+                            )?.label
                             : "Select Security Question"}
                         </span>
                         <ChevronsUpDown
@@ -1754,8 +1741,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                             key={option.value}
                             value={option.value}
                             className={({ active, selected }) =>
-                              `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                                selected ? "lf-selected" : ""
+                              `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                               }`
                             }
                           >
