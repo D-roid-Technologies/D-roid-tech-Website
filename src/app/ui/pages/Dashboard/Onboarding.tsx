@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { authService } from "../../../redux/configuration/auth.service";
 import { StaffDetails } from "../../../redux/slices/SignInAndOutSlice";
 import { RootState } from "../../../redux/Store";
 import { UserType } from "../../../utils/Types";
-import {
-  setCurrentStep,
-  setLoading,
-  setFormData,
-  setFormDataNew,
-  updateFormField,
-  markStepCompleted,
-  nextStep,
-  previousStep
-} from "../../../redux/slices/onboarding";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
 import "./Onboarding.css";
@@ -22,12 +12,10 @@ import toast from "react-hot-toast";
 const onboardingSteps = ["View Info", "Personal Info", "Documents", "Leave"];
 
 const Onboarding: React.FC = () => {
-  const dispatch = useDispatch();
   const userDetails = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
   );
-  const onboardingState = useSelector((state: RootState) => state.onboarding);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<UserType | null>(null);
@@ -38,14 +26,20 @@ const Onboarding: React.FC = () => {
 
   useEffect(() => {
     setFormData({ ...userDetails });
+
+    // Always sync with the latest data from Firebase (via Redux)
     setFormDataNew({ ...staffDetails });
 
-    // Check if personal info has been previously updated
-    // You might want to check for actual data presence instead of just assuming
+    // Check if personal info exists in Firebase data
     const hasData =
-      staffDetails.staffBank &&
-      staffDetails.staffAccountNmber &&
-      staffDetails.staffAccountName;
+      staffDetails.staffBank ||
+      staffDetails.staffAccountNmber ||
+      staffDetails.staffAccountName ||
+      staffDetails.staffGrossPay ||
+      staffDetails.staffTax ||
+      staffDetails.staffPosition ||
+      staffDetails.staffStartDate;
+
     setHasUpdatedPersonalInfo(!!hasData);
   }, [userDetails, staffDetails]);
 
@@ -63,7 +57,8 @@ const Onboarding: React.FC = () => {
 
   // Safe value getter function to handle TypeScript indexing
   const getFormValue = (name: string): string => {
-    return (formDataNew as any)[name] || "";
+    // Use the value from formDataNew (user's current input) or fall back to Firebase data
+    return (formDataNew as any)[name] || (staffDetails as any)[name] || "";
   };
 
   const validatePersonalInfo = (): boolean => {
@@ -131,13 +126,17 @@ const Onboarding: React.FC = () => {
     try {
       await authService.updateStaffOnboardingDetails(formDataNew);
 
+      // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
+   
 
       setHasUpdatedPersonalInfo(true);
     } catch (error) {
       console.error("Failed to update personal info:", error);
 
+      // Dismiss loading toast and show error
       toast.dismiss(loadingToast);
+   
     } finally {
       setIsUpdating(false);
     }
@@ -169,17 +168,32 @@ const Onboarding: React.FC = () => {
             <h2 style={headingStyle}>View Personal Information</h2>
             <InfoField
               label="Your Position"
-              value={staffDetails.staffPosition}
+              value={staffDetails.staffPosition || "Not set"}
             />
             <InfoField
               label="Start Date"
-              value={formDataNew.staffStartDate || ""}
+              value={staffDetails.staffStartDate || "Not set"}
             />
             <InfoField
               label="Your Monthly Gross Pay"
-              value={staffDetails.staffGrossPay}
+              value={staffDetails.staffGrossPay || "Not set"}
             />
-            <InfoField label="Your Monthly Tax" value={staffDetails.staffTax} />
+            <InfoField
+              label="Your Monthly Tax"
+              value={staffDetails.staffTax || "Not set"}
+            />
+            <InfoField
+              label="Bank Name"
+              value={staffDetails.staffBank || "Not set"}
+            />
+            <InfoField
+              label="Account Number"
+              value={staffDetails.staffAccountNmber || "Not set"}
+            />
+            <InfoField
+              label="Account Name"
+              value={staffDetails.staffAccountName || "Not set"}
+            />
           </>
         );
       case 1:
@@ -259,7 +273,7 @@ const Onboarding: React.FC = () => {
           {onboardingSteps.map((step, index) => (
             <button
               key={index}
-              onClick={() => dispatch(setCurrentStep(index))}
+              onClick={() => setCurrentStep(index)}
               style={{
                 padding: "12px",
                 borderRadius: "9999px",

@@ -497,7 +497,7 @@ export class AuthService {
 
                 await sendEmailVerification(user);
                 await signOut(auth); // Prevent implicit navigation
-
+ 
                 toast.success(`Your D'roid Account has been successfully created`, {
                     style: { background: "#4BB543", color: "#fff" },
                 });
@@ -980,7 +980,7 @@ export class AuthService {
             const userId = currentUser.uid;
 
             const staffDocRef = doc(db, "droidaccount", userId);
-            const staffSnapshot = await getDoc(staffDocRef);
+            const staffSnapshot = await getDoc(staffDocRef); 
 
             if (!staffSnapshot.exists()) {
                 toast.error("Staff record not found", {
