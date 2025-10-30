@@ -21,7 +21,7 @@ const Trainings: React.FC = () => {
       description:
         "Learn the key safety rules and emergency protocols to stay safe and ensure workplace compliance.",
       thumbnail:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+        "https://cdn.pixabay.com/photo/2021/07/01/16/15/safety-first-6379751_1280.jpg",
       duration: "2h 15m",
       scheduled_date: "2025-05-22",
       completed: true,
@@ -33,7 +33,7 @@ const Trainings: React.FC = () => {
       description:
         "Discover proven productivity frameworks and tools to manage your time effectively.",
       thumbnail:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+        "https://cdn.pixabay.com/photo/2024/10/02/18/24/ai-generated-9091889_1280.jpg",
       duration: "1h 30m",
       scheduled_date: "2025-06-01",
       completed: false,
@@ -44,7 +44,7 @@ const Trainings: React.FC = () => {
       description:
         "Improve your ability to communicate clearly and collaborate efficiently within any team.",
       thumbnail:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+        "https://cdn.pixabay.com/photo/2024/08/21/15/33/ai-generated-8986487_1280.jpg",
       duration: "2h 45m",
       scheduled_date: "2025-06-10",
       completed: false,
