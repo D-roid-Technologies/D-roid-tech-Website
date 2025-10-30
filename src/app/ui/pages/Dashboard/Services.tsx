@@ -276,11 +276,11 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
 
                     if (item.title === "Frontend Developer Training") {
                       setActiveTrainingComponent(
-                        <TrainingDescriptionData program="frontend" />
+                        <TrainingDescriptionData program="frontend" onContactClick={onOpenSayIt} />
                       );
                     } else if (item.title === "Skill Acquisition Training") {
                       setActiveTrainingComponent(
-                        <TrainingDescriptionData program="skill" />
+                        <TrainingDescriptionData program="skill" onContactClick={onOpenSayIt} />
                       );
                     }
                   }}
