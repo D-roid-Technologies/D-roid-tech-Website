@@ -367,8 +367,8 @@ const SignUp: React.FunctionComponent = () => {
 
         <h2 className={styles.header}>Join the D'roid Community</h2>
         <p className={styles.subtext}>
-          Connect with other developers or like minded individuals. Learn together,
-          and build amazing things!
+          Connect with other developers or like minded individuals. Learn
+          together, and build amazing things!
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -536,7 +536,16 @@ const SignUp: React.FunctionComponent = () => {
           </div>
 
           {/* Privacy Checkbox */}
-          <div className={`${styles.policyRow}`} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", marginTop: "10px" }}>
+          <div
+            className={`${styles.policyRow}`}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              marginTop: "10px",
+            }}
+          >
             {/* Checkbox + Policies */}
             <label
               style={{
@@ -610,7 +619,6 @@ const SignUp: React.FunctionComponent = () => {
             )}
           </div>
 
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -655,7 +663,7 @@ const SignUp: React.FunctionComponent = () => {
               transition: "all 0.3s ease",
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = "#f5f5f5";
+              e.currentTarget.style.backgroundColor = "#f9fafc";
               e.currentTarget.style.borderColor = "#999";
             }}
             onMouseOut={(e) => {
@@ -670,10 +678,8 @@ const SignUp: React.FunctionComponent = () => {
             />
             Register with Google
           </button> */}
-
         </form>
       </div>
-
     </div>
   );
 };

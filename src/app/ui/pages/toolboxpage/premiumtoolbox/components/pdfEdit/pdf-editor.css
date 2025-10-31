@@ -75,7 +75,7 @@
 
 .nav-tab:hover {
   color: #333;
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
 }
 
 .nav-tab.active {
@@ -167,7 +167,7 @@
 .pdf-info {
   text-align: center;
   padding: 0.5rem;
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
   border-top: 1px solid #ccc;
   font-size: 0.9rem;
   color: #666;
@@ -259,7 +259,7 @@
 }
 
 .file-item:hover {
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
   border-color: #ccc;
 }
 
@@ -687,7 +687,7 @@
   align-items: center;
   gap: 2rem;
   padding: 1rem;
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
   border-radius: 6px;
   margin-bottom: 1rem;
   flex-wrap: wrap;
@@ -806,7 +806,7 @@
 .annotation-stats {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
   border-radius: 6px;
   display: flex;
   justify-content: space-between;
@@ -1015,7 +1015,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
   border-radius: 6px;
   margin-bottom: 1rem;
 }
@@ -1227,7 +1227,7 @@
 }
 
 .field-summary:hover {
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
 }
 
 .field-summary.selected {
@@ -1396,7 +1396,7 @@
 }
 
 .permission-item:hover {
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
 }
 
 .permission-item input[type="checkbox"] {
