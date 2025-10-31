@@ -1017,6 +1017,10 @@ export class AuthService {
             });
 
             store.dispatch(setStaffDetails(updatedDetails));
+            
+            // Also update the onboarding staffInfo
+            const { setStaffInfo } = await import("../slices/onboarding");
+            store.dispatch(setStaffInfo(updatedDetails));
 
             toast.success("Staff details updated successfully", {
                 style: { background: "#4BB543", color: "#fff" },
