@@ -350,7 +350,7 @@
 }
 
 .allUsers-pagination-button:disabled {
-  background-color: #f5f5f5;
+  background-color: #f9fafc;
   color: #ccc;
   cursor: not-allowed;
   opacity: 0.6;

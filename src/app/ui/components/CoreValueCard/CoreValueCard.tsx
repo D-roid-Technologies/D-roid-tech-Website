@@ -4,6 +4,7 @@ type CoreValueCardProps = {
   imageSrc: string | React.ReactNode;
   title: string;
   description: string;
+  className?: string;
 };
 
 const CoreValueCard: React.FC<CoreValueCardProps> = ({
@@ -17,7 +18,11 @@ const CoreValueCard: React.FC<CoreValueCardProps> = ({
       style={{ marginTop: "35px" }}
     >
       {typeof imageSrc === "string" ? (
-        <img src={imageSrc} alt={title || "core value"} />
+        <img
+          src={imageSrc}
+          alt={title || "core value"}
+          className="core-value-card-responsiveness"
+        />
       ) : (
         imageSrc
       )}

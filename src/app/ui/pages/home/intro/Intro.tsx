@@ -4,6 +4,8 @@ import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
 import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
 import { RoutePaths } from "../../../../routes/Index";
+import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
+import { VscWorkspaceTrusted } from "react-icons/vsc";
 
 interface Counters {
   satisfaction: number;
@@ -11,6 +13,27 @@ interface Counters {
   years: number;
   countries: number;
 }
+
+const coreValues = [
+  {
+    icon: VscWorkspaceTrusted({ size: 24 }),
+    title: "Integrity",
+    description:
+      "At D'roid Technologies, integrity is the cornerstone of our operations. We are committed to conducting our business with the highest ethical standards, ensuring transparency, honesty, and accountability in all our interactions.",
+  },
+  {
+    icon: VscWorkspaceTrusted({ size: 24 }),
+    title: "Innovation",
+    description:
+      "At D'roid Technologies, innovation is at the heart of everything we do. We are committed to pushing the boundaries of technology to deliver groundbreaking solutions that drive progress and create new opportunities.",
+  },
+  {
+    icon: VscWorkspaceTrusted({ size: 24 }),
+    title: "Customer focus",
+    description:
+      "We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence.",
+  },
+];
 
 const Intro: React.FC = () => {
   const [counters, setCounters] = useState<Counters>({
@@ -125,15 +148,25 @@ const Intro: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Core Values Section */}
-        <div
-          className="wrapper"
-          style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
-        >
-          <span className="title_span value_t">CORE VALUES</span>
-
-          <div className="group mt-4 core_value_cards">
+      </section>
+      {/* Core Values Section */}
+      <div
+        className="wrapper"
+        style={{ padding: "20px", marginTop: "24px", marginBottom: "20px" }}
+      >
+        <span className="title_span value_t">CORE VALUES</span>
+        <div className="soft-dev-content">
+          {coreValues.map((phase, index) => (
+            <NewwebsiteCard
+              key={index}
+              title={phase.title}
+              description={phase.description}
+              icon={phase.icon}
+              className="process-card"
+            />
+          ))}
+        </div>
+        {/* <div className="group mt-4 core_value_cards">
             <CoreValueCard
               imageSrc={Assets.images.trustImg}
               title="Integrity"
@@ -149,9 +182,8 @@ const Intro: React.FC = () => {
               title="Customer focus"
               description="We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence."
             />
-          </div>
-        </div>
-      </section>
+          </div> */}
+      </div>
       {/* Our Team Section */}
       <div className="wrapper team_sec">
         {/* <center className="mt-5">
@@ -175,15 +207,17 @@ const Intro: React.FC = () => {
               excellence, and customer focus.
               <br />
               <br />
-              The Fastest way to become a Techie — Only at D'roid Technologies.
+              The Fastest way to become a Techie, Only at D'roid Technologies.
             </p>
-            <a
-              href={RoutePaths.Training}
-              style={{ backgroundColor: "#071d6a", color: "#fff" }}
-              className="navbar-cta"
-            >
-              See Training
-            </a>
+            <div className="mb-core-value-cta-container">
+              <a
+                href={RoutePaths.Training}
+                style={{ backgroundColor: "#071d6a", color: "#fff" }}
+                className="navbar-cta mb-core-value-cta"
+              >
+                See Training
+              </a>
+            </div>
           </div>
         </div>
 
