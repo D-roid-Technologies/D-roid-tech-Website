@@ -9,12 +9,12 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-  {
-    title: "Company Management Portal",
-    description:
-      "A centralized platform designed to streamline and manage all aspects of your organization's operations.",
-    bgImage: Assets.images.homeBannerSlideOne,
-  },
+  // {
+  //   title: "Company Management Portal",
+  //   description:
+  //     "A centralized platform designed to streamline and manage all aspects of your organization's operations.",
+  //   bgImage: Assets.images.homeBannerSlideOne,
+  // },
   {
     title: "Innovative Tech Solutions",
     description:
@@ -28,8 +28,7 @@ const slides: Slide[] = [
   },
   {
     title: "Digital Workbench",
-    description:
-      "A smart workspace for tools you use every day.",
+    description: "A smart workspace for tools you use every day.",
     bgImage: Assets.images.homeBannerSlideThree,
   },
 ];

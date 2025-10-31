@@ -19,10 +19,13 @@ import "../../components/liteGrid@v1.0/lite-grid.css";
 import Management from "../../components/staffandmanagement/Management";
 import AboutDroid from "../../components/aboutdroid/AboutDriod";
 import OurHistory from "../../components/ourhistory/OurHistory";
-// import OurJourney from "../../components/ourjourney/OurJourney";
 import CoreValueCardTwo from "../../components/CoreValueCard/CoreValueCardTwo";
 import { FaBullseye } from "react-icons/fa";
 import { GiNightVision } from "react-icons/gi";
+import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+import { VscWorkspaceTrusted } from "react-icons/vsc";
+import { RiCustomerService2Line } from "react-icons/ri";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 export const companyValues = [
   {
@@ -36,6 +39,26 @@ export const companyValues = [
     description:
       "Our mission is to empower individuals and businesses through innovative technology solutions. We strive to deliver high-quality, scalable, and user-friendly software applications, cutting-edge animation, comprehensive tech training, and advanced drone services. Our commitment is to enhance our clients' capabilities, enabling them to achieve their goals with efficiency and excellence.",
     icon: FaBullseye({ size: 24 }),
+  },
+];
+const coreValues = [
+  {
+    icon: VscWorkspaceTrusted({ size: 24 }),
+    title: "Integrity",
+    description:
+      "At D'roid Technologies, integrity is the cornerstone of our operations. We are committed to conducting our business with the highest ethical standards, ensuring transparency, honesty, and accountability in all our interactions.",
+  },
+  {
+    icon: HiOutlineLightBulb({ size: 24 }),
+    title: "Innovation",
+    description:
+      "At D'roid Technologies, innovation is at the heart of everything we do. We are committed to pushing the boundaries of technology to deliver groundbreaking solutions that drive progress and create new opportunities.",
+  },
+  {
+    icon: RiCustomerService2Line({ size: 24 }),
+    title: "Customer focus",
+    description:
+      "We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence.",
   },
 ];
 
@@ -79,17 +102,16 @@ const AboutUs: React.FunctionComponent = () => {
           </div>
         </div>
         {/* CORE VALUES BOX THREE */}
-        <div className="core-value-vision-main">
-          <div className="core-value-vision-box">
-            <h2 className="core-value-vision-header">Core Values</h2>
+        {/* <div className="core-value-vision-main">
+          <div className="core-value-vision-box"> */}
+        <div>
+          <div>
+            {/* <h2 className="core-value-vision-header">Core Values</h2>
             <div className="core-values">
               <div data-aos="flip-left">
                 <GiRosaShield className="core-value-icons" />
                 <h2 className="core-value-vision-header-small">Integrity</h2>
-                <p
-                  className="about-histoy-details"
-                  // style={{ color: Assets.colors.flat }}
-                >
+                <p className="about-histoy-details">
                   At D'roid Technologies, integrity is the cornerstone of our
                   operations. We are committed to conducting our business with
                   the highest ethical standards, ensuring transparency, honesty,
@@ -99,10 +121,7 @@ const AboutUs: React.FunctionComponent = () => {
               <div data-aos="zoom-in-up">
                 <FaGears className="core-value-icons" />
                 <h2 className="core-value-vision-header-small">Innovation</h2>
-                <p
-                  className="about-histoy-details"
-                  // style={{ color: Assets.colors.flat }}
-                >
+                <p className="about-histoy-details">
                   At D'roid Technologies, innovation is at the heart of
                   everything we do. We are committed to pushing the boundaries
                   of technology to deliver groundbreaking solutions that drive
@@ -114,15 +133,34 @@ const AboutUs: React.FunctionComponent = () => {
                 <h2 className="core-value-vision-header-small">
                   Customer Focus
                 </h2>
-                <p
-                  className="about-histoy-details"
-                  // style={{ color: Assets.colors.flat }}
-                >
+                <p className="about-histoy-details">
                   At D'roid Technologies, our customers are at the heart of
                   everything we do. We are dedicated to understanding and
                   anticipating your needs, delivering tailored solutions that
                   drive success and satisfaction.
                 </p>
+              </div>
+            </div> */}
+            {/* Core Values Section */}
+            <div
+              className="wrapper"
+              style={{
+                padding: "20px",
+                marginTop: "24px",
+                marginBottom: "20px",
+              }}
+            >
+              <span className="title_span value_t">CORE VALUES</span>
+              <div data-aos="zoom-in-up" className="soft-dev-content">
+                {coreValues.map((phase, index) => (
+                  <NewwebsiteCard
+                    key={index}
+                    title={phase.title}
+                    description={phase.description}
+                    icon={phase.icon}
+                    className="process-card"
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -130,7 +168,8 @@ const AboutUs: React.FunctionComponent = () => {
         {/* OUT TEAM */}
         <section>
           <Management />
-          <div className="wrapper-fluid">
+          {/* <div className="wrapper-fluid"> */}
+          <div className="team-bg-layout">
             <div className="group mb-5">
               {DATA.droidStaff.map((item, index) => (
                 <div className="block-12 block-lg-3">

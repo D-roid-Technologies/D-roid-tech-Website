@@ -37,7 +37,7 @@ const initialFormData: FormData = {
   email: "",
   startDate: "",
   firstName: "",
-  lastName: ""
+  lastName: "",
 };
 
 const initialState: LeadFormState = {
@@ -188,6 +188,10 @@ const leadFormSlice = createSlice({
       state.submitError = null;
     },
 
+    setIsSubmitted: (state, action: PayloadAction<boolean>) => {
+      state.isSubmitted = action.payload;
+    },
+
     // Clear submit error
     clearSubmitError: (state) => {
       state.submitError = null;
@@ -238,6 +242,7 @@ export const {
   validateForm,
   resetForm,
   resetSubmissionState,
+  setIsSubmitted,
   clearSubmitError,
 } = leadFormSlice.actions;
 

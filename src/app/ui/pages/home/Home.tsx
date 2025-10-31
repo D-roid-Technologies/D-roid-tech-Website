@@ -20,25 +20,6 @@ const Home: React.FunctionComponent = () => {
   return (
     <div>
       <NavBar />
-
-      {/* <div className="home_banner">
-        <p className="home-heading" style={{ color: "#fff" }}>
-          WE TURN IDEAS INTO REALITY
-        </p>
-
-        <div style={{ width: "80%" }}>
-          <p className="join-approach-details">
-            We don’t just dream, we build. From concept to execution, we
-            transform ideas into powerful, innovative solutions. Whether it’s a
-            mobile app, website, or cutting-edge software, we bring your vision
-            to life with precision and creativity.
-            <br />
-            <br />
-            Let’s create something extraordinary together!
-          </p>
-        </div>
-      </div> */}
-
       {/* main sections */}
       <CompanyCarousel />
       <Intro />

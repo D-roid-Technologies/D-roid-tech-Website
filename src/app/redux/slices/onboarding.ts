@@ -9,6 +9,7 @@ export interface OnboardingState {
     formDataNew: Partial<StaffDetails>;
     completedSteps: boolean[];
     isOnboardingComplete: boolean;
+      staffInfo: Partial<StaffDetails> | null;
 }
 
 const initialState: OnboardingState = {
@@ -18,6 +19,7 @@ const initialState: OnboardingState = {
     formDataNew: {},
     completedSteps: [false, false, false, false], // 4 steps: View Info, Personal Info, Documents, Leave
     isOnboardingComplete: false,
+     staffInfo: null,
 };
 
 export const onboardingSlice = createSlice({
@@ -73,6 +75,14 @@ export const onboardingSlice = createSlice({
             state.completedSteps = [false, false, false, false];
             state.isOnboardingComplete = false;
         },
+
+        setStaffInfo: (state, action: PayloadAction<Partial<StaffDetails>>) => {
+  state.staffInfo = { ...state.staffInfo, ...action.payload };
+},
+resetStaffInfo: (state) => {
+  state.staffInfo = null;
+},
+
     },
 });
 
@@ -88,6 +98,8 @@ export const {
     nextStep,
     previousStep,
     resetOnboarding,
+    setStaffInfo,
+    resetStaffInfo
 } = onboardingSlice.actions;
 
 export default onboardingSlice.reducer;

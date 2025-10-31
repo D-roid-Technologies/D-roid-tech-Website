@@ -139,8 +139,6 @@ const SoftwareDevelopmentPage: React.FC = () => {
     navigate(tech.url);
   };
 
-
-
   return (
     <div>
       <NavBar />
@@ -249,19 +247,6 @@ const SoftwareDevelopmentPage: React.FC = () => {
                 title={phase.title}
                 description={phase.description}
                 icon={phase.icon}
-                // onClick={() => {
-                //   store.dispatch(updateModal(true));
-                //   store.dispatch(
-                //     updateModalContent({
-                //       appTitle: phase.title,
-                //       appBody: (
-                //         <>
-                //           <span>{phase.description}</span>
-                //         </>
-                //       ),
-                //     })
-                //   );
-                // }}
                 className="process-card"
               />
             ))}
@@ -275,9 +260,7 @@ const SoftwareDevelopmentPage: React.FC = () => {
       </div>
       <SoftwarePricingCard />
 
-      
-
-<WhatsAppButton/>
+      <WhatsAppButton />
     </div>
   );
 };
