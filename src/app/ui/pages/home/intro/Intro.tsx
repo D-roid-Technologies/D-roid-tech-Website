@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import "./intro.css";
 import "../../../components/liteGrid@v1.0/lite-grid.css";
 import { Assets } from "../../../../utils/constant/Assets";
-import CoreValueCard from "../../../components/CoreValueCard/CoreValueCard";
 import { RoutePaths } from "../../../../routes/Index";
 import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
+import { RiCustomerService2Line } from "react-icons/ri";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 interface Counters {
   satisfaction: number;
@@ -22,13 +23,13 @@ const coreValues = [
       "At D'roid Technologies, integrity is the cornerstone of our operations. We are committed to conducting our business with the highest ethical standards, ensuring transparency, honesty, and accountability in all our interactions.",
   },
   {
-    icon: VscWorkspaceTrusted({ size: 24 }),
+    icon: HiOutlineLightBulb({ size: 24 }),
     title: "Innovation",
     description:
       "At D'roid Technologies, innovation is at the heart of everything we do. We are committed to pushing the boundaries of technology to deliver groundbreaking solutions that drive progress and create new opportunities.",
   },
   {
-    icon: VscWorkspaceTrusted({ size: 24 }),
+    icon: RiCustomerService2Line({ size: 24 }),
     title: "Customer focus",
     description:
       "We are dedicated to delivering exceptional value to our customers by prioritizing their needs and building lasting relationships through innovation and service excellence.",
@@ -221,7 +222,8 @@ const Intro: React.FC = () => {
           </div>
         </div>
 
-        <div className="group justify-content-center">
+        {/* <div className="group justify-content-center"> */}
+        <div className=" justify-content-center">
           <div className="block-12 block-md-10 team_image_container">
             <img src={Assets.images.tech} alt="Team" className="team_image" />
           </div>
