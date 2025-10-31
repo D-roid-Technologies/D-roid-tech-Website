@@ -456,27 +456,27 @@ const PersonalDetails: React.FunctionComponent = () => {
     setIsSubmitting(true);
 
     try {
-      await authService.updatePrimaryInformation(formData);
-      setSubmitStatus("success");
-      localStorage.setItem("profileUpdated", JSON.stringify(formData));
-      console.log("profileUpdated>>>>>>>>>>>>");
+      await authService.updatePrimaryInformation(formData).then(() => {
+        setSubmitStatus("success");
+        localStorage.setItem("profileUpdated", JSON.stringify(formData));
+        const now = new Date();
+        const notification = {
+          id: Date.now(),
+          title: "Profile Updated Successfully",
+          message: `Your personal details have been updated. Changes include: ${formData.firstName} ${formData.lastName}, ${formData.email}`,
+          date: now.toISOString().split("T")[0],
+          time: now.toISOString(),
+          type: "success",
+          isRead: false,
+        };
+        dispatch(addNotification(notification));
+
+        setErrors({});
+      });
+
+      // console.log("profileUpdated>>>>>>>>>>>>");
 
       // Create notification for profile update
-      const now = new Date();
-      const notification = {
-        id: Date.now(),
-        title: "Profile Updated Successfully",
-        message: `Your personal details have been updated. Changes include: ${formData.firstName} ${formData.lastName}, ${formData.email}`,
-        date: now.toISOString().split("T")[0],
-        time: now.toISOString(),
-        type: "success",
-        isRead: false,
-      };
-
-      // Dispatch notification to Redux store
-      dispatch(addNotification(notification));
-
-      setErrors({});
     } catch (error) {
       setSubmitStatus("error");
       setErrors({ submit: "Failed to update information. Please try again." });
