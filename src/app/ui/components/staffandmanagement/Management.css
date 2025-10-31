@@ -1,23 +1,3 @@
-/* .management-section {
-  text-align: center;
-  padding: 60px 0;
-}
-
-.management-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #111;
-}
-
-.management-description {
-  font-size: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  color: #444;
-  line-height: 1.6;
-} */
-
 /* Base styles */
 .management-section {
   text-align: center;
@@ -26,7 +6,7 @@
 
 .management-title {
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 800;
   margin-bottom: 1.25rem;
   color: #111;
 }
