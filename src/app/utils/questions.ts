@@ -1,5 +1,5 @@
 import { FaJava, FaNode, FaPhp } from "react-icons/fa";
-import { SiRuby, SiKotlin, SiArgo } from "react-icons/si";
+import { SiRuby, SiKotlin, SiArgo, SiRust } from "react-icons/si";
 import { GrSwift } from "react-icons/gr";
 import { IoLogoJavascript, IoLogoReact } from "react-icons/io5";
 import { TbBrandCSharp, TbBrandTypescript } from "react-icons/tb";
@@ -4291,6 +4291,7 @@ export const Questions = [
   },
   {
     title: "Rust",
+    icon: SiRust({ size: 24 }),
     subTitle: "Evaluate your systems programming and memory safety skills",
     summary:
       "This Rust test covers ownership, borrowing, error handling, concurrency, and building high-performance, memory-safe applications.",
