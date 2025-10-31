@@ -92,7 +92,8 @@ import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
 import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
 import TakeTestFolder from "./takeTest/TakeTestFolder";
 import CompleteOnboarding from "./CompleteOnbording";
-
+import { isAboveSixMonths } from "../../../utils/isAboveSixMonths";
+import NotEligibleForTraining from "../../../utils/statusMessages";
 // const tools = [
 //   {
 //     title: "Currency Converter",
@@ -211,6 +212,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
   );
+   const staffInfo = useSelector(
+      (state: RootState) => state.onboarding.staffInfo
+    );
+
+    const isAboveSixMonth = isAboveSixMonths(staffInfo?.staffStartDate)
+
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
     title: string;
     content: string;
@@ -651,10 +658,17 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Training":
         return (
           <Section title="Training" isActive={selectedMenu === "Training"}>
-            <p style={{ color: "#000000" }}>
+            
+
+            { isAboveSixMonth ? ( 
+              <>
+              <p style={{ color: "#000000" }}>
               Access your training materials here.
             </p>
-            <Trainings />
+              <Trainings />
+              </>
+               ): <NotEligibleForTraining/> }
+           
           </Section>
         );
       case "Progressions":
