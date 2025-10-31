@@ -57,7 +57,7 @@ const rootReducer = combineReducers({
   training: trainingSlice.reducer,
   memberStatus: memberStatsSlice.reducer,
   membershipTier: membershipTierSlice.reducer,
-  staff: staffReducer
+  staff: staffReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

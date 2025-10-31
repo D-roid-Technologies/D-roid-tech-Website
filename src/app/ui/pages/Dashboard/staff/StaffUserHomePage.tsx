@@ -31,7 +31,7 @@ import { StatCard } from "../micro-ui/stat-card";
 import { Modal } from "../micro-ui/modal";
 import { useSelector, useDispatch } from "react-redux";
 import { UserType } from "../../../../utils/Types";
-import { RootState,store } from "../../../../redux/Store";
+import { RootState, store } from "../../../../redux/Store";
 import { useNavigate } from "react-router-dom";
 import { Task, TaskStatus } from "../../../../redux/slices/tasksSlice";
 import {
@@ -160,8 +160,6 @@ const RecentActivityItem = ({
   </div>
 );
 
-
-
 type StaffUserHomePageProps = {
   setSelectedMenu: (menu: string) => void;
 };
@@ -173,16 +171,14 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const memberStats = useSelector((state: RootState) => state.memberStatus);
-    const [statModalOpen, setStatModalOpen] = useState(false);
-  
-    const [selectedStat, setSelectedStat] = useState<{
-      title: string;
-      value: string;
-      change: string;
-      icon: React.ComponentType;
-    } | null>(null);
+  const [statModalOpen, setStatModalOpen] = useState(false);
 
-
+  const [selectedStat, setSelectedStat] = useState<{
+    title: string;
+    value: string;
+    change: string;
+    icon: React.ComponentType;
+  } | null>(null);
 
   // Get notifications from Redux slice
   type Notification = {
@@ -200,13 +196,17 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
 
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const user = useSelector((state: RootState) => state.user);
-    const trainings = useSelector((state: RootState) => state.trainings as any[]);
- const membershipTier = useSelector(
+  const trainings = useSelector((state: RootState) => state.trainings as any[]);
+  const membershipTier = useSelector(
     (state: RootState) =>
       (state as any).membershipTier as { tier?: string; nextTier?: string }
   );
 
-    const getStatDetails = (title: string) => {
+  const staffInfo = useSelector(
+    (state: RootState) => state.onboarding.staffInfo
+  );
+
+  const getStatDetails = (title: string) => {
     switch (title) {
       case "Membership Status":
         return {
@@ -258,6 +258,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             },
             { date: "Requirements", event: "Complete 5 more events" },
           ],
+          
         };
       default:
         return { description: "", history: [] };
@@ -266,13 +267,23 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   // Get staff metrics from Redux state
   const { activeTasks, completedTasks, performanceScore, attendanceRate } =
     useSelector((state: RootState) => state.staff);
+console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
 
   // Staff-specific stats for overview section
   const staffStats = [
     {
       title: "Employment Status",
       value: "Active",
-      change: `${userDetails.position || 'Staff'} since 2025`,
+      change: `${
+        staffInfo?.staffPosition || userDetails.position || "Staff"
+      } since ${
+        staffInfo?.staffStartDate
+          ? new Date(staffInfo.staffStartDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+            })
+          : "N/A"
+      }`,
       icon: FaIdCard,
       color: "green",
     },
@@ -283,19 +294,22 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     //   icon: FaClipboardCheck,
     //   color: "blue",
     // },
-    {
-      title: "Training Progress",
-      value: trainings.filter((t: any) => t?.completed).length.toString(),
-      change: `${trainings.length - trainings.filter((t: any) => t?.completed).length} pending`,
-      icon: FaUserCog,
-      color: "purple",
-    },
+    // {
+    //   title: "Training Progress",
+    //   value: trainings.filter((t: any) => t?.completed).length.toString(),
+    //   change: `${
+    //     trainings.length - trainings.filter((t: any) => t?.completed).length
+    //   } pending`,
+    //   icon: FaUserCog,
+    //   color: "purple",
+    // },
     {
       title: "Memeber Level",
       value: membershipTier?.tier || "Silver",
       change: `Next level: ${membershipTier?.nextTier || "Gold"}`,
       icon: FaStar,
       color: "orange",
+       button: true,
     },
   ];
 
@@ -515,6 +529,11 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     }
   };
 
+  const handleUpgradeClick = () => {
+    setSelectedMenu("Progressions");
+    setStatModalOpen(false);
+  };
+
   const recentActivitiesCount =
     recentTaskActivities.length + otherActivities.length;
 
@@ -691,19 +710,21 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         </div>
       </Modal>
       {/* Staff Overview */}
-        <div className="shp-section">
+      <div className="shp-section">
         <h2 className="shp-section-title">Staff Overview</h2>
         <div className="shp-stats-grid">
           {staffStats.map((stat, index) => (
-              <StatCard
-                key={index}
-                title={stat.title}
-                value={stat.value}
-                change={stat.change}
-                icon={stat.icon}
-                onClick={() => handleStatClick(stat)}
-              />
-            ))}
+            <StatCard
+              key={index}
+              title={stat.title}
+              value={stat.value}
+              change={stat.change}
+              icon={stat.icon}
+              onClick={() => handleStatClick(stat)}
+              button={stat.button}
+              onButtonClick={stat.button ? handleUpgradeClick : undefined}
+            />
+          ))}
         </div>
       </div>
       <Modal
@@ -747,15 +768,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             </div>
 
             <div style={{ borderTop: "1px solid #e5e7eb", paddingTop: "20px" }}>
-              <h3
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  marginBottom: "12px",
-                }}
-              >
-                Details
-              </h3>
+            
               <p
                 style={{
                   fontSize: "14px",
@@ -796,11 +809,41 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
                   )
                 )}
               </div>
+
+              {/* Upgrade Button for Member Level */}
+              {selectedStat.title === "Memeber Level" && (
+                <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: "1px solid #e5e7eb" }}>
+                  <button
+                    onClick={handleUpgradeClick}
+                    style={{
+                      width: "100%",
+                      padding: "12px 24px",
+                      backgroundColor: "#2563eb",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "8px",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      transition: "background-color 0.2s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = "#1d4ed8";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = "#2563eb";
+                    }}
+                  >
+                    Upgrade
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}
       </Modal>
-         {/* Dashboard Stats */}
+      
+      {/* Dashboard Stats */}
       <div className="shp-section">
         <h2 className="shp-section-title">Quick Views</h2>
         <div className="shp-stats-grid">
@@ -833,8 +876,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
           ))}
         </div>
       </div>
-
-   
 
       {/* Two Column Layout */}
 
