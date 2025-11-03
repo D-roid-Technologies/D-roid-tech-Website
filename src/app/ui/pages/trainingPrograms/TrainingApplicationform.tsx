@@ -3,37 +3,81 @@ import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addNotification } from "../../../redux/slices/notificationSlice";
+import { Listbox } from "@headlessui/react";
+import { ChevronsUpDown, Check, Upload } from "lucide-react";
+import "../trainingPrograms/TrainingApplicationForm.css";
 
 interface ApplicationFormProps {
   programTitle: string;
 }
 
+interface FormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  gender: string;
+  dob: string;
+  address: string;
+  uniqueId: string;
+  education: string;
+  employmentStatus: string;
+  preferredDate: string;
+  linkedin: string;
+  portfolio: string;
+  resume: File | null;
+  experience: string;
+  motivation: string;
+  referralSource: string;
+  agreeToTerms: boolean;
+}
+
+interface ValidationErrors {
+  [key: string]: string;
+}
+
+const genderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "Other", label: "Other" },
+  { value: "Prefer not to say", label: "Prefer not to say" },
+];
+
+const employmentStatusOptions = [
+  { value: "Student", label: "Student" },
+  { value: "Employed", label: "Employed" },
+  { value: "Unemployed", label: "Unemployed" },
+  { value: "Self-employed", label: "Self-employed" },
+];
+
 const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
   programTitle,
 }) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
     phone: "",
     gender: "",
     dob: "",
     address: "",
-    uniqeId: "",
+    uniqueId: "",
     education: "",
     employmentStatus: "",
     preferredDate: "",
     linkedin: "",
     portfolio: "",
-    resume: null as File | null,
+    resume: null,
     experience: "",
     motivation: "",
     referralSource: "",
-    title: "",
-    refrenceNumber: "",
     agreeToTerms: false,
   });
 
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
@@ -48,384 +92,1191 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
     return `${prefix}-${timestamp}-${random}`;
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+  // Validation functions
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
+    return phoneRegex.test(phone.replace(/[\s\-()]/g, ""));
+  };
+
+  const validateDate = (dateString: string): boolean => {
+    const date = new Date(dateString);
+    const now = new Date();
+    return date instanceof Date && !isNaN(date.getTime()) && date <= now;
+  };
+
+  const validateAge = (dateOfBirth: string): boolean => {
+    const birthDate = new Date(dateOfBirth);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      return age - 1 >= 13;
+    }
+    return age >= 13;
+  };
+
+  const validateRequired = (value: any): boolean => {
+    if (typeof value === "string") {
+      return value.trim().length > 0;
+    }
+    return value !== null && value !== undefined && value !== "";
+  };
+
+  const validateField = (name: string, value: any): string => {
+    switch (name) {
+      case "fullName":
+        if (!validateRequired(value)) return "Full name is required";
+        if (value.length < 3) return "Full name must be at least 3 characters";
+        if (!/^[a-zA-Z\s'-]+$/.test(value))
+          return "Full name can only contain letters, spaces, hyphens, and apostrophes";
+        break;
+
+      case "email":
+        if (!validateRequired(value)) return "Email is required";
+        if (!validateEmail(value)) return "Please enter a valid email address";
+        break;
+
+      case "phone":
+        if (!validateRequired(value)) return "Phone number is required";
+        if (!validatePhone(value))
+          return "Please enter a valid phone number with country code";
+        break;
+
+      case "gender":
+        if (!validateRequired(value)) return "Gender is required";
+        break;
+
+      case "dob":
+        if (!validateRequired(value)) return "Date of birth is required";
+        if (!validateDate(value)) return "Please enter a valid date";
+        if (!validateAge(value)) return "You must be at least 13 years old";
+        break;
+
+      case "address":
+        if (!validateRequired(value)) return "Address is required";
+        if (value.length < 10) return "Please provide a complete address";
+        break;
+
+      case "uniqueId":
+        if (!validateRequired(value)) return "Unique ID is required";
+        break;
+
+      case "education":
+        if (!validateRequired(value))
+          return "Educational background is required";
+        break;
+
+      case "employmentStatus":
+        if (!validateRequired(value)) return "Employment status is required";
+        break;
+
+      case "preferredDate":
+        if (!validateRequired(value)) return "Preferred start date is required";
+        const prefDate = new Date(value);
+        if (prefDate < new Date())
+          return "Preferred date must be in the future";
+        break;
+
+      case "linkedin":
+        if (value && !/^https?:\/\/.+/.test(value))
+          return "Please enter a valid URL starting with http:// or https://";
+        break;
+
+      case "portfolio":
+        if (value && !/^https?:\/\/.+/.test(value))
+          return "Please enter a valid URL starting with http:// or https://";
+        break;
+
+      case "resume":
+        if (!value) return "Resume is required";
+        if (value.size > 5 * 1024 * 1024) return "Resume must be less than 5MB";
+        if (value.type !== "application/pdf")
+          return "Resume must be a PDF file";
+        break;
+
+      case "motivation":
+        if (!validateRequired(value)) return "Motivation is required";
+        if (value.length < 50)
+          return "Please provide at least 50 characters explaining your motivation";
+        break;
+
+      case "agreeToTerms":
+        if (!value) return "You must agree to the terms and privacy policy";
+        break;
+
+      default:
+        break;
+    }
+    return "";
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: ValidationErrors = {};
+
+    const fieldsToValidate = [
+      "fullName",
+      "email",
+      "phone",
+      "gender",
+      "dob",
+      "address",
+      "uniqueId",
+      "education",
+      "employmentStatus",
+      "preferredDate",
+      "resume",
+      "motivation",
+      "agreeToTerms",
+    ];
+
+    fieldsToValidate.forEach((field) => {
+      const error = validateField(field, (formData as any)[field]);
+      if (error) {
+        newErrors[field] = error;
+      }
+    });
+
+    // Validate optional URL fields if they have values
+    if (formData.linkedin) {
+      const error = validateField("linkedin", formData.linkedin);
+      if (error) newErrors.linkedin = error;
+    }
+
+    if (formData.portfolio) {
+      const error = validateField("portfolio", formData.portfolio);
+      if (error) newErrors.portfolio = error;
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
 
-    setFormData({
-      ...formData,
-      [name]:
-        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
-    });
+    let processedValue: any = value;
+
+    if (type === "checkbox") {
+      processedValue = (e.target as HTMLInputElement).checked;
+    } else {
+      processedValue = value;
+    }
+
+    setFormData({ ...formData, [name]: processedValue });
+
+    // Clear error for this field
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+
+    // Real-time validation
+    if (processedValue !== "" && type !== "checkbox") {
+      const error = validateField(name, processedValue);
+      if (error) {
+        setErrors((prev) => ({ ...prev, [name]: error }));
+      }
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData({ ...formData, resume: file });
+
+      // Validate file
+      const error = validateField("resume", file);
+      if (error) {
+        setErrors((prev) => ({ ...prev, resume: error }));
+      } else {
+        setErrors((prev) => ({ ...prev, resume: "" }));
+      }
+    }
+  };
+
+  const handleListboxChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value });
+
+    // Clear error
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: "" }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Generate reference number
-    const generatedRef = generateReferenceNumber();
-    setReferenceNumber(generatedRef);
+    setSubmitStatus(null);
 
-    // Prepare the complete form data with reference number and program title
-    const completeFormData = {
-      ...formData,
-      title: programTitle,
-      referenceNumber: generatedRef,
-    };
+    if (!validateForm()) {
+      setSubmitStatus("error");
+      return;
+    }
 
-    // Log form data to console
-    console.log("Form Submission Data:", completeFormData);
+    setIsSubmitting(true);
 
-    // Create notification for training application submission
-    const now = new Date();
-    const notification = {
-      id: Date.now(),
-      title: "Training Application Submitted",
-      message: `Your application for "${programTitle}" has been submitted successfully. Reference: ${generatedRef}`,
-      date: now.toISOString().split("T")[0],
-      time: now.toISOString(),
-      type: "success",
-      isRead: false,
-    };
+    try {
+      const generatedRef = generateReferenceNumber();
+      setReferenceNumber(generatedRef);
 
-    // Dispatch notification to Redux store
-    dispatch(addNotification(notification));
+      const completeFormData = {
+        ...formData,
+        title: programTitle,
+        referenceNumber: generatedRef,
+      };
 
-    // Show success toast
-    toast.success("Application submitted successfully!", {
-      style: {
-        background: "#4BB543",
-        color: "#fff",
-      },
-    });
+      console.log("Form Submission Data:", completeFormData);
 
-    // Send email
-    const templateParams = {
-      name: completeFormData.fullName,
-      title: `Thank You for Applying for the position of ${completeFormData.title}! We're excited to receive your application and appreciate your interest in joining the team at D'roid Technologies Ltd. 
-    
-            Your application has been successfully submitted. Our team will review and contact you via email with the next steps. In the meantime: Ensure your contact details are up-to-date. Check your email (and spam folder) for updates from us. Feel free to explore more about our community and other opportunities.
-    
-            At D'roid Technologies, we believe in learning by doing, empowering people through knowledge, and building a strong community. Join our WhatsApp community on: https://chat.whatsapp.com/KvtaJzV4756ICtksODITML and https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa?mode=wwt If you have any questions or need support, don't hesitate to reach out. We're here to help.
-    
-            We look forward to seeing you`,
-      email: completeFormData.email,
-    };
+      // Create notification
+      const now = new Date();
+      const notification = {
+        id: Date.now(),
+        title: "Training Application Submitted",
+        message: `Your application for "${programTitle}" has been submitted successfully. Reference: ${generatedRef}`,
+        date: now.toISOString().split("T")[0],
+        time: now.toISOString(),
+        type: "success",
+        isRead: false,
+      };
 
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
-      (result) => {
-        console.log("Email sent successfully:", result);
-        toast.success("Confirmation email sent!", {
-          style: {
-            background: "#4BB543",
-            color: "#fff",
-          },
-        });
-      },
-      (error) => {
-        console.error("Error sending email:", error);
-        toast.error("Error sending confirmation email 🚫", {
-          style: {
-            background: "#ff4d4f",
-            color: "#fff",
-          },
-        });
-      }
-    );
+      dispatch(addNotification(notification));
 
-    setSubmitted(true);
+      // Send email
+      const templateParams = {
+        name: completeFormData.fullName,
+        title: `Thank You for Applying for the position of ${completeFormData.title}! We're excited to receive your application and appreciate your interest in joining the team at D'roid Technologies Ltd.`,
+        email: completeFormData.email,
+      };
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+
+      toast.success("Application submitted successfully!", {
+        style: {
+          background: "#4BB543",
+          color: "#fff",
+        },
+      });
+
+      setSubmitStatus("success");
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus("error");
+      setErrors({ submit: "Failed to submit application. Please try again." });
+
+      toast.error("Error submitting application", {
+        style: {
+          background: "#ff4d4f",
+          color: "#fff",
+        },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  if (submitted) {
+  const renderErrorMessage = (fieldName: string) => {
+    if (errors[fieldName]) {
+      return <span className="af-error-message">{errors[fieldName]}</span>;
+    }
+    return null;
+  };
+
+  const getLabelStyle = () => ({
+    display: "block",
+    marginBottom: "5px",
+    fontSize: "14px",
+    fontWeight: "500",
+    color: "#333",
+  });
+
+  const getInputStyle = (fieldName: string) => ({
+    width: "100%",
+    padding: "12px",
+    borderRadius: "8px",
+    border: `1px solid ${errors[fieldName] ? "#dc3545" : "#ccc"}`,
+    fontSize: "14px",
+    backgroundColor: errors[fieldName] ? "#fff5f5" : "#fff",
+    outline: errors[fieldName] ? "none" : "initial",
+  });
+
+  if (submitted && referenceNumber) {
     return (
-      <div style={{ padding: "2rem" }}>
-        <h2>Thank You for Applying!</h2>
-        <p>
+      <div className="af-success-container">
+        <div className="af-success-icon">✓</div>
+        <h2 className="af-success-title">Thank You for Applying!</h2>
+        <p className="af-success-message">
           Your application for <strong>{programTitle}</strong> has been
           received. We will contact you soon.
         </p>
-        {referenceNumber && (
-          <p>
-            <strong>Your Reference ID:</strong> {referenceNumber}
-          </p>
-        )}
+        <div className="af-reference-box">
+          <strong>Your Reference ID:</strong>
+          <div className="af-reference-number">{referenceNumber}</div>
+        </div>
+        <p className="af-success-note">
+          A confirmation email has been sent to{" "}
+          <strong>{formData.email}</strong>
+        </p>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ maxWidth: "600px", margin: "2rem auto" }}
-    >
-      <h2 style={{ color: "#000000" }}>Application for: {programTitle}</h2>
+    <div className="af-container">
+      <div className="af-header">
+        <p className="af-title">Application for: {programTitle}</p>
+        <p className="af-subtitle">
+          Please fill out all required fields marked with * to complete your
+          application.
+        </p>
+      </div>
 
-      <label style={{ color: "#000000" }}>
-        Full Name:
-        <input
-          type="text"
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your full name"
-        />
-      </label>
-      <label style={{ color: "#000000" }}>
-        Unique ID:
-        <input
-          type="text"
-          name="uniqeId"
-          value={formData.uniqeId}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your Unique ID after registration"
-        />
-      </label>
+      {/* Status Messages */}
+      {submitStatus === "success" && (
+        <div className="af-alert af-alert-success">
+          ✓ Application submitted successfully!
+        </div>
+      )}
 
-      <label style={{ color: "#000000" }}>
-        Email Address:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your Email Address"
-        />
-      </label>
+      {submitStatus === "error" && Object.keys(errors).length > 0 && (
+        <div className="af-alert af-alert-error">
+          ⚠ Please fix the errors below before submitting.
+        </div>
+      )}
 
-      <label style={{ color: "#000000" }}>
-        Phone Number:
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your Phone Number"
-        />
-      </label>
+      <form onSubmit={handleSubmit} className="af-form">
+        {/* Personal Information Section */}
+        <div className="af-section af-section-personal">
+          <h3 className="af-section-title">Personal Information</h3>
 
-      <label style={{ color: "#000000" }}>
-        Gender:
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-        >
-          <option value="">-- Select Gender --</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-          <option value="Prefer not to say">Prefer not to say</option>
-        </select>
-      </label>
+          <div className="af-form-grid">
+            {/* Full Name */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Full Name *</label>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                placeholder="Enter your full name"
+                style={getInputStyle("fullName")}
+              />
+              {renderErrorMessage("fullName")}
+            </div>
 
-      <label style={{ color: "#000000" }}>
-        Date of Birth:
-        <input
-          type="date"
-          name="dob"
-          value={formData.dob}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your date of birth"
-        />
-      </label>
+            {/* Unique ID */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Unique ID *</label>
+              <input
+                type="text"
+                name="uniqueId"
+                value={formData.uniqueId}
+                onChange={handleInputChange}
+                placeholder="Your Unique ID after registration"
+                style={getInputStyle("uniqueId")}
+              />
+              {renderErrorMessage("uniqueId")}
+            </div>
 
-      <label style={{ color: "#000000" }}>
-        Address:
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your address"
-        />
-      </label>
+            {/* Email */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Email Address *</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Your email address"
+                style={getInputStyle("email")}
+              />
+              {renderErrorMessage("email")}
+            </div>
 
-      <label style={{ color: "#000000" }}>
-        Educational Background:
-        <input
-          type="text"
-          name="education"
-          value={formData.education}
-          onChange={handleChange}
-          required
-          placeholder="e.g., BSc Computer Science"
-          style={inputStyle}
-        />
-      </label>
+            {/* Phone */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Phone Number *</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="Enter phone number with country code"
+                style={getInputStyle("phone")}
+              />
+              {renderErrorMessage("phone")}
+            </div>
 
-      <label style={{ color: "#000000" }}>
-        Employment Status:
-        <select
-          name="employmentStatus"
-          value={formData.employmentStatus}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-        >
-          <option value="">-- Select Status --</option>
-          <option value="Student">Student</option>
-          <option value="Employed">Employed</option>
-          <option value="Unemployed">Unemployed</option>
-          <option value="Self-employed">Self-employed</option>
-        </select>
-      </label>
+            {/* Gender */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Gender *</label>
+              <Listbox
+                value={formData.gender}
+                onChange={(value) => handleListboxChange("gender", value)}
+              >
+                <div className="af-dropdown">
+                  <Listbox.Button
+                    className={`af-dropdown-btn ${
+                      errors.gender ? "af-error" : ""
+                    }`}
+                  >
+                    <span className={formData.gender ? "" : "text-gray-400"}>
+                      {formData.gender || "Select Gender"}
+                    </span>
+                    <ChevronsUpDown
+                      className="h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </Listbox.Button>
+                  <Listbox.Options className="af-dropdown-options">
+                    {genderOptions.map((option) => (
+                      <Listbox.Option
+                        key={option.value}
+                        value={option.value}
+                        className={({ active, selected }) =>
+                          `af-dropdown-item ${active ? "af-active" : ""} ${
+                            selected ? "af-selected" : ""
+                          }`
+                        }
+                      >
+                        {({ selected }) => (
+                          <div className="flex items-center justify-between">
+                            <span>{option.label}</span>
+                            {selected && (
+                              <Check className="h-5 w-5" aria-hidden="true" />
+                            )}
+                          </div>
+                        )}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </div>
+              </Listbox>
+              {renderErrorMessage("gender")}
+            </div>
 
-      <label style={{ color: "#000000" }}>
-        Preferred Start Date:
-        <input
-          type="date"
-          name="preferredDate"
-          value={formData.preferredDate}
-          onChange={handleChange}
-          required
-          style={inputStyle}
-          placeholder="Your start date"
-        />
-      </label>
+            {/* Date of Birth */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Date of Birth *</label>
+              <input
+                type="date"
+                name="dob"
+                value={formData.dob}
+                onChange={handleInputChange}
+                style={getInputStyle("dob")}
+              />
+              {renderErrorMessage("dob")}
+            </div>
 
-      <label style={{ color: "#000000" }}>
-        LinkedIn Profile (optional):
-        <input
-          type="url"
-          name="linkedin"
-          value={formData.linkedin}
-          onChange={handleChange}
-          placeholder="https://linkedin.com/in/yourprofile"
-          style={inputStyle}
-        />
-      </label>
+            {/* Address */}
+            <div className="af-form-group af-full-width">
+              <label style={getLabelStyle()}>Address *</label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                placeholder="Enter your complete address"
+                style={getInputStyle("address")}
+              />
+              {renderErrorMessage("address")}
+            </div>
+          </div>
+        </div>
 
-      <label style={{ color: "#000000" }}>
-        GitHub or Portfolio Link (optional):
-        <input
-          type="url"
-          name="portfolio"
-          value={formData.portfolio}
-          onChange={handleChange}
-          placeholder="https://github.com/yourname"
-          style={inputStyle}
-        />
-      </label>
+        {/* Educational & Employment Section */}
+        <div className="af-section af-section-education">
+          <h3 className="af-section-title">
+            Educational & Employment Information
+          </h3>
 
-      <label style={{ color: "#000000" }}>
-        Upload Resume (PDF, max 5MB):
-        <input
-          type="file"
-          name="resume"
-          accept=".pdf"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) {
-              setFormData({ ...formData, resume: file });
-            }
+          <div className="af-form-grid">
+            {/* Education */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Educational Background *</label>
+              <input
+                type="text"
+                name="education"
+                value={formData.education}
+                onChange={handleInputChange}
+                placeholder="e.g., BSc Computer Science"
+                style={getInputStyle("education")}
+              />
+              {renderErrorMessage("education")}
+            </div>
+
+            {/* Employment Status */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Employment Status *</label>
+              <Listbox
+                value={formData.employmentStatus}
+                onChange={(value) =>
+                  handleListboxChange("employmentStatus", value)
+                }
+              >
+                <div className="af-dropdown">
+                  <Listbox.Button
+                    className={`af-dropdown-btn ${
+                      errors.employmentStatus ? "af-error" : ""
+                    }`}
+                  >
+                    <span
+                      className={
+                        formData.employmentStatus ? "" : "text-gray-400"
+                      }
+                    >
+                      {formData.employmentStatus || "Select Status"}
+                    </span>
+                    <ChevronsUpDown
+                      className="h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </Listbox.Button>
+                  <Listbox.Options className="af-dropdown-options">
+                    {employmentStatusOptions.map((option) => (
+                      <Listbox.Option
+                        key={option.value}
+                        value={option.value}
+                        className={({ active, selected }) =>
+                          `af-dropdown-item ${active ? "af-active" : ""} ${
+                            selected ? "af-selected" : ""
+                          }`
+                        }
+                      >
+                        {({ selected }) => (
+                          <div className="flex items-center justify-between">
+                            <span>{option.label}</span>
+                            {selected && (
+                              <Check className="h-5 w-5" aria-hidden="true" />
+                            )}
+                          </div>
+                        )}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </div>
+              </Listbox>
+              {renderErrorMessage("employmentStatus")}
+            </div>
+
+            {/* Preferred Start Date */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>Preferred Start Date *</label>
+              <input
+                type="date"
+                name="preferredDate"
+                value={formData.preferredDate}
+                onChange={handleInputChange}
+                style={getInputStyle("preferredDate")}
+              />
+              {renderErrorMessage("preferredDate")}
+            </div>
+          </div>
+        </div>
+
+        {/* Professional Links Section */}
+        <div className="af-section af-section-links">
+          <h3 className="af-section-title">Professional Links</h3>
+
+          <div className="af-form-grid">
+            {/* LinkedIn */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>LinkedIn Profile (Optional)</label>
+              <input
+                type="url"
+                name="linkedin"
+                value={formData.linkedin}
+                onChange={handleInputChange}
+                placeholder="https://linkedin.com/in/yourprofile"
+                style={getInputStyle("linkedin")}
+              />
+              {renderErrorMessage("linkedin")}
+            </div>
+
+            {/* Portfolio */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>
+                GitHub or Portfolio Link (Optional)
+              </label>
+              <input
+                type="url"
+                name="portfolio"
+                value={formData.portfolio}
+                onChange={handleInputChange}
+                placeholder="https://github.com/yourname"
+                style={getInputStyle("portfolio")}
+              />
+              {renderErrorMessage("portfolio")}
+            </div>
+          </div>
+        </div>
+
+        {/* Resume Upload Section */}
+        <div className="af-section af-section-resume">
+          <h3 className="af-section-title">Resume Upload</h3>
+
+          <div className="af-form-group">
+            <label style={getLabelStyle()}>
+              Upload Resume (PDF, max 5MB) *
+            </label>
+            <div className="af-file-upload">
+              <input
+                type="file"
+                name="resume"
+                accept=".pdf"
+                onChange={handleFileChange}
+                id="resume-upload"
+                className="af-file-input"
+              />
+              <label htmlFor="resume-upload" className="af-file-label">
+                <Upload className="af-upload-icon" />
+                <span className="af-file-text">
+                  {formData.resume
+                    ? formData.resume.name
+                    : "Choose file or drag here"}
+                </span>
+              </label>
+            </div>
+            {renderErrorMessage("resume")}
+          </div>
+        </div>
+
+        {/* Additional Information Section */}
+        <div className="af-section af-section-additional">
+          <h3 className="af-section-title">Additional Information</h3>
+
+          <div className="af-form-grid">
+            {/* Experience */}
+            <div className="af-form-group af-full-width">
+              <label style={getLabelStyle()}>
+                Any prior experience with this field?
+              </label>
+              <textarea
+                name="experience"
+                value={formData.experience}
+                onChange={handleInputChange}
+                rows={4}
+                placeholder="Describe your relevant experience..."
+                className="af-textarea"
+                style={getInputStyle("experience")}
+              />
+              {renderErrorMessage("experience")}
+            </div>
+
+            {/* Motivation */}
+            <div className="af-form-group af-full-width">
+              <label style={getLabelStyle()}>
+                Why are you interested in this position? *
+              </label>
+              <textarea
+                name="motivation"
+                value={formData.motivation}
+                onChange={handleInputChange}
+                rows={5}
+                placeholder="Tell us why you're interested (minimum 50 characters)..."
+                className="af-textarea"
+                style={getInputStyle("motivation")}
+              />
+              {renderErrorMessage("motivation")}
+            </div>
+
+            {/* Referral Source */}
+            <div className="af-form-group">
+              <label style={getLabelStyle()}>How did you hear about us?</label>
+              <input
+                type="text"
+                name="referralSource"
+                value={formData.referralSource}
+                onChange={handleInputChange}
+                placeholder="e.g., Instagram, Friend, Google"
+                style={getInputStyle("referralSource")}
+              />
+              {renderErrorMessage("referralSource")}
+            </div>
+          </div>
+        </div>
+
+        {/* Terms Agreement */}
+        <div className="af-terms-section">
+          <label className="af-checkbox-label">
+            <input
+              type="checkbox"
+              name="agreeToTerms"
+              checked={formData.agreeToTerms}
+              onChange={handleInputChange}
+              className="af-checkbox"
+            />
+            <span>I agree to the terms and privacy policy *</span>
+          </label>
+          {renderErrorMessage("agreeToTerms")}
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="af-submit-btn"
+          style={{
+            opacity: isSubmitting ? 0.7 : 1,
+            cursor: isSubmitting ? "not-allowed" : "pointer",
           }}
-          required
-          style={inputStyle}
-        />
-      </label>
+        >
+          {isSubmitting ? "Submitting Application..." : "Submit Application"}
+        </button>
 
-      <label style={{ color: "#000000" }}>
-        Any prior experience with this field?
-        <textarea
-          name="experience"
-          value={formData.experience}
-          onChange={handleChange}
-          rows={3}
-          style={textareaStyle}
-        />
-      </label>
-
-      <label style={{ color: "#000000" }}>
-        Why are you interested in this Job?
-        <textarea
-          name="motivation"
-          value={formData.motivation}
-          onChange={handleChange}
-          rows={4}
-          required
-          style={textareaStyle}
-        />
-      </label>
-
-      <label style={{ color: "#000000" }}>
-        How did you hear about us?
-        <input
-          type="text"
-          name="referralSource"
-          value={formData.referralSource}
-          onChange={handleChange}
-          placeholder="e.g., Instagram, Friend, Google"
-          style={inputStyle}
-        />
-      </label>
-
-      <label
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginTop: "1rem",
-          color: "#000000",
-        }}
-      >
-        <input
-          type="checkbox"
-          name="agreeToTerms"
-          checked={formData.agreeToTerms}
-          onChange={handleChange}
-          required
-          style={{ marginRight: "8px" }}
-        />
-        I agree to the terms and privacy policy.
-      </label>
-
-      <button type="submit" style={submitStyle}>
-        Submit Application
-      </button>
-    </form>
+        {/* General submit error */}
+        {errors.submit && (
+          <div
+            className="af-alert af-alert-error"
+            style={{ marginTop: "10px" }}
+          >
+            {errors.submit}
+          </div>
+        )}
+      </form>
+    </div>
   );
 };
 
-// Inline Styles
-const inputStyle: React.CSSProperties = {
-  display: "block",
-  width: "100%",
-  padding: "10px",
-  marginBottom: "1rem",
-  border: "1px solid #ccc",
-  borderRadius: "4px",
-};
-
-const textareaStyle: React.CSSProperties = {
-  ...inputStyle,
-  resize: "vertical",
-};
-
-const submitStyle: React.CSSProperties = {
-  marginTop: "1rem",
-  padding: "12px 20px",
-  backgroundColor: "#071d6a",
-  color: "#fff",
-  border: "none",
-  borderRadius: "6px",
-  fontWeight: 600,
-  cursor: "pointer",
-};
-
 export default TrainingApplicationForm;
+
+// import React, { useState } from "react";
+// import emailjs from "emailjs-com";
+// import toast from "react-hot-toast";
+// import { useDispatch } from "react-redux";
+// import { addNotification } from "../../../redux/slices/notificationSlice";
+
+// interface ApplicationFormProps {
+//   programTitle: string;
+// }
+
+// const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
+//   programTitle,
+// }) => {
+//   const dispatch = useDispatch();
+//   const [formData, setFormData] = useState({
+//     fullName: "",
+//     email: "",
+//     phone: "",
+//     gender: "",
+//     dob: "",
+//     address: "",
+//     uniqeId: "",
+//     education: "",
+//     employmentStatus: "",
+//     preferredDate: "",
+//     linkedin: "",
+//     portfolio: "",
+//     resume: null as File | null,
+//     experience: "",
+//     motivation: "",
+//     referralSource: "",
+//     title: "",
+//     refrenceNumber: "",
+//     agreeToTerms: false,
+//   });
+
+//   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
+//   const [submitted, setSubmitted] = useState(false);
+
+//   const SERVICE_ID = "service_o1jbklr";
+//   const TEMPLATE_ID = "template_p8h58ur";
+//   const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
+
+//   const generateReferenceNumber = (): string => {
+//     const prefix = "DT";
+//     const timestamp = Date.now().toString(36);
+//     const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+//     return `${prefix}-${timestamp}-${random}`;
+//   };
+
+//   const handleChange = (
+//     e: React.ChangeEvent<
+//       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+//     >
+//   ) => {
+//     const { name, value, type } = e.target;
+
+//     setFormData({
+//       ...formData,
+//       [name]:
+//         type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+//     });
+//   };
+
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     // Generate reference number
+//     const generatedRef = generateReferenceNumber();
+//     setReferenceNumber(generatedRef);
+
+//     // Prepare the complete form data with reference number and program title
+//     const completeFormData = {
+//       ...formData,
+//       title: programTitle,
+//       referenceNumber: generatedRef,
+//     };
+
+//     // Log form data to console
+//     console.log("Form Submission Data:", completeFormData);
+
+//     // Create notification for training application submission
+//     const now = new Date();
+//     const notification = {
+//       id: Date.now(),
+//       title: "Training Application Submitted",
+//       message: `Your application for "${programTitle}" has been submitted successfully. Reference: ${generatedRef}`,
+//       date: now.toISOString().split("T")[0],
+//       time: now.toISOString(),
+//       type: "success",
+//       isRead: false,
+//     };
+
+//     // Dispatch notification to Redux store
+//     dispatch(addNotification(notification));
+
+//     // Show success toast
+//     toast.success("Application submitted successfully!", {
+//       style: {
+//         background: "#4BB543",
+//         color: "#fff",
+//       },
+//     });
+
+//     // Send email
+//     const templateParams = {
+//       name: completeFormData.fullName,
+//       title: `Thank You for Applying for the position of ${completeFormData.title}! We're excited to receive your application and appreciate your interest in joining the team at D'roid Technologies Ltd.
+
+//             Your application has been successfully submitted. Our team will review and contact you via email with the next steps. In the meantime: Ensure your contact details are up-to-date. Check your email (and spam folder) for updates from us. Feel free to explore more about our community and other opportunities.
+
+//             At D'roid Technologies, we believe in learning by doing, empowering people through knowledge, and building a strong community. Join our WhatsApp community on: https://chat.whatsapp.com/KvtaJzV4756ICtksODITML and https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa?mode=wwt If you have any questions or need support, don't hesitate to reach out. We're here to help.
+
+//             We look forward to seeing you`,
+//       email: completeFormData.email,
+//     };
+
+//     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+//       (result) => {
+//         console.log("Email sent successfully:", result);
+//         toast.success("Confirmation email sent!", {
+//           style: {
+//             background: "#4BB543",
+//             color: "#fff",
+//           },
+//         });
+//       },
+//       (error) => {
+//         console.error("Error sending email:", error);
+//         toast.error("Error sending confirmation email 🚫", {
+//           style: {
+//             background: "#ff4d4f",
+//             color: "#fff",
+//           },
+//         });
+//       }
+//     );
+
+//     setSubmitted(true);
+//   };
+
+//   if (submitted) {
+//     return (
+//       <div style={{ padding: "2rem" }}>
+//         <h2>Thank You for Applying!</h2>
+//         <p>
+//           Your application for <strong>{programTitle}</strong> has been
+//           received. We will contact you soon.
+//         </p>
+//         {referenceNumber && (
+//           <p>
+//             <strong>Your Reference ID:</strong> {referenceNumber}
+//           </p>
+//         )}
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <form
+//       onSubmit={handleSubmit}
+//       style={{ maxWidth: "600px", margin: "2rem auto" }}
+//     >
+//       <h2 style={{ color: "#000000" }}>Application for: {programTitle}</h2>
+
+//       <label style={{ color: "#000000" }}>
+//         Full Name:
+//         <input
+//           type="text"
+//           name="fullName"
+//           value={formData.fullName}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your full name"
+//         />
+//       </label>
+//       <label style={{ color: "#000000" }}>
+//         Unique ID:
+//         <input
+//           type="text"
+//           name="uniqeId"
+//           value={formData.uniqeId}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your Unique ID after registration"
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Email Address:
+//         <input
+//           type="email"
+//           name="email"
+//           value={formData.email}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your Email Address"
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Phone Number:
+//         <input
+//           type="tel"
+//           name="phone"
+//           value={formData.phone}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your Phone Number"
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Gender:
+//         <select
+//           name="gender"
+//           value={formData.gender}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//         >
+//           <option value="">-- Select Gender --</option>
+//           <option value="Male">Male</option>
+//           <option value="Female">Female</option>
+//           <option value="Other">Other</option>
+//           <option value="Prefer not to say">Prefer not to say</option>
+//         </select>
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Date of Birth:
+//         <input
+//           type="date"
+//           name="dob"
+//           value={formData.dob}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your date of birth"
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Address:
+//         <input
+//           type="text"
+//           name="address"
+//           value={formData.address}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your address"
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Educational Background:
+//         <input
+//           type="text"
+//           name="education"
+//           value={formData.education}
+//           onChange={handleChange}
+//           required
+//           placeholder="e.g., BSc Computer Science"
+//           style={inputStyle}
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Employment Status:
+//         <select
+//           name="employmentStatus"
+//           value={formData.employmentStatus}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//         >
+//           <option value="">-- Select Status --</option>
+//           <option value="Student">Student</option>
+//           <option value="Employed">Employed</option>
+//           <option value="Unemployed">Unemployed</option>
+//           <option value="Self-employed">Self-employed</option>
+//         </select>
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Preferred Start Date:
+//         <input
+//           type="date"
+//           name="preferredDate"
+//           value={formData.preferredDate}
+//           onChange={handleChange}
+//           required
+//           style={inputStyle}
+//           placeholder="Your start date"
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         LinkedIn Profile (optional):
+//         <input
+//           type="url"
+//           name="linkedin"
+//           value={formData.linkedin}
+//           onChange={handleChange}
+//           placeholder="https://linkedin.com/in/yourprofile"
+//           style={inputStyle}
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         GitHub or Portfolio Link (optional):
+//         <input
+//           type="url"
+//           name="portfolio"
+//           value={formData.portfolio}
+//           onChange={handleChange}
+//           placeholder="https://github.com/yourname"
+//           style={inputStyle}
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Upload Resume (PDF, max 5MB):
+//         <input
+//           type="file"
+//           name="resume"
+//           accept=".pdf"
+//           onChange={(e) => {
+//             const file = e.target.files?.[0];
+//             if (file) {
+//               setFormData({ ...formData, resume: file });
+//             }
+//           }}
+//           required
+//           style={inputStyle}
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Any prior experience with this field?
+//         <textarea
+//           name="experience"
+//           value={formData.experience}
+//           onChange={handleChange}
+//           rows={3}
+//           style={textareaStyle}
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         Why are you interested in this Job?
+//         <textarea
+//           name="motivation"
+//           value={formData.motivation}
+//           onChange={handleChange}
+//           rows={4}
+//           required
+//           style={textareaStyle}
+//         />
+//       </label>
+
+//       <label style={{ color: "#000000" }}>
+//         How did you hear about us?
+//         <input
+//           type="text"
+//           name="referralSource"
+//           value={formData.referralSource}
+//           onChange={handleChange}
+//           placeholder="e.g., Instagram, Friend, Google"
+//           style={inputStyle}
+//         />
+//       </label>
+
+//       <label
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//           marginTop: "1rem",
+//           color: "#000000",
+//         }}
+//       >
+//         <input
+//           type="checkbox"
+//           name="agreeToTerms"
+//           checked={formData.agreeToTerms}
+//           onChange={handleChange}
+//           required
+//           style={{ marginRight: "8px" }}
+//         />
+//         I agree to the terms and privacy policy.
+//       </label>
+
+//       <button type="submit" style={submitStyle}>
+//         Submit Application
+//       </button>
+//     </form>
+//   );
+// };
+
+// // Inline Styles
+// const inputStyle: React.CSSProperties = {
+//   display: "block",
+//   width: "100%",
+//   padding: "10px",
+//   marginBottom: "1rem",
+//   border: "1px solid #ccc",
+//   borderRadius: "4px",
+// };
+
+// const textareaStyle: React.CSSProperties = {
+//   ...inputStyle,
+//   resize: "vertical",
+// };
+
+// const submitStyle: React.CSSProperties = {
+//   marginTop: "1rem",
+//   padding: "12px 20px",
+//   backgroundColor: "#071d6a",
+//   color: "#fff",
+//   border: "none",
+//   borderRadius: "6px",
+//   fontWeight: 600,
+//   cursor: "pointer",
+// };
+
+// export default TrainingApplicationForm;
