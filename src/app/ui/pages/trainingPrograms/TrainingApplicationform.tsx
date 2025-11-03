@@ -1,4 +1,3 @@
-// src/components/forms/TrainingApplicationForm.tsx
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
@@ -86,7 +85,7 @@ const TrainingApplicationForm: React.FC<ApplicationFormProps> = ({
       id: Date.now(),
       title: "Training Application Submitted",
       message: `Your application for "${programTitle}" has been submitted successfully. Reference: ${generatedRef}`,
-      date: now.toISOString().split('T')[0],
+      date: now.toISOString().split("T")[0],
       time: now.toISOString(),
       type: "success",
       isRead: false,
