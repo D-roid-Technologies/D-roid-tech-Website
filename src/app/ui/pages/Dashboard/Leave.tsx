@@ -82,14 +82,37 @@ const Leave: React.FunctionComponent = () => {
   };
 
   function timeSinceAccountCreation(creationDateStr: string): TimeSinceResult {
-    const creationDate = new Date(creationDateStr.replace(" ", "T")); // Ensure ISO format
+    // Handle different date formats
+    let creationDate: Date;
+
+    // Try to parse the date - handle DD/MM/YY format
+    if (creationDateStr.includes("/")) {
+      const parts = creationDateStr.split("/");
+      if (parts.length === 3) {
+        // DD/MM/YY or DD/MM/YYYY format
+        const day = parseInt(parts[0]);
+        const month = parseInt(parts[1]) - 1; // Months are 0-indexed in JS Date
+        let year = parseInt(parts[2]);
+
+        // Handle 2-digit years (assume 2000s for years < 100)
+        if (year < 100) {
+          year += 2000;
+        }
+
+        creationDate = new Date(year, month, day);
+      } else {
+        creationDate = new Date(creationDateStr.replace(" ", "T"));
+      }
+    } else {
+      // Try standard ISO format
+      creationDate = new Date(creationDateStr.replace(" ", "T"));
+    }
+
     const now = new Date();
 
-    // Total difference in milliseconds
-    const diffMs = now.getTime() - creationDate.getTime();
-
-    if (diffMs < 0) {
-      // Instead of throwing an error, return 0 for all values
+    // Check if the date is valid
+    if (isNaN(creationDate.getTime())) {
+      console.error("Invalid date format:", creationDateStr);
       return {
         months: 0,
         days: 0,
@@ -97,23 +120,51 @@ const Leave: React.FunctionComponent = () => {
       };
     }
 
-    // Constants
-    const MS_PER_HOUR = 1000 * 60 * 60;
-    const MS_PER_DAY = MS_PER_HOUR * 24;
-    const MS_PER_MONTH = MS_PER_DAY * 30.44; // average month length
+    // Total difference in milliseconds
+    const diffMs = now.getTime() - creationDate.getTime();
 
-    const totalMonths = Math.floor(diffMs / MS_PER_MONTH);
-    const remainingMsAfterMonths = diffMs % MS_PER_MONTH;
+    if (diffMs < 0) {
+      // Future date - return 0
+      return {
+        months: 0,
+        days: 0,
+        hours: 0,
+      };
+    }
 
-    const totalDays = Math.floor(remainingMsAfterMonths / MS_PER_DAY);
-    const remainingMsAfterDays = remainingMsAfterMonths % MS_PER_DAY;
+    // Calculate months, days, and hours more accurately
+    let months = 0;
+    let days = 0;
+    let hours = 0;
 
-    const totalHours = Math.floor(remainingMsAfterDays / MS_PER_HOUR);
+    // Start with the creation date
+    let tempDate = new Date(creationDate);
+
+    // Count months
+    while (tempDate <= now) {
+      const nextMonth = new Date(tempDate);
+      nextMonth.setMonth(nextMonth.getMonth() + 1);
+
+      if (nextMonth <= now) {
+        months++;
+        tempDate = nextMonth;
+      } else {
+        break;
+      }
+    }
+
+    // Calculate remaining days
+    const remainingMs = now.getTime() - tempDate.getTime();
+    days = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+
+    // Calculate remaining hours
+    const remainingHoursMs = remainingMs % (1000 * 60 * 60 * 24);
+    hours = Math.floor(remainingHoursMs / (1000 * 60 * 60));
 
     return {
-      months: totalMonths,
-      days: totalDays,
-      hours: totalHours,
+      months,
+      days,
+      hours,
     };
   }
 
