@@ -9,7 +9,7 @@ import { Assets } from "../../../utils/constant/Assets";
 import toast, { Toaster } from "react-hot-toast";
 
 const DroidLanding = () => {
-  const navigate = useNavigate()  
+  const navigate = useNavigate()
   // Animation controls
   const controls = useAnimation();
   const [heroRef, heroInView] = useInView({
@@ -115,16 +115,16 @@ const DroidLanding = () => {
       },
     },
   };
- 
+
   const handleOrdernow = () => {
     navigate('/under-development')
   }
   const handlePreOder = () => {
 
-    
-     toast("feature coming soon...");
 
-    
+    toast("feature coming soon...");
+
+
   }
   // Trigger animations when in view
   useEffect(() => {
@@ -336,7 +336,7 @@ const DroidLanding = () => {
       </motion.section>
 
       {/* CTA Section */}
-      <section className="cta-section">
+      {/* <section className="cta-section">
         <div className="container">
           <div className="cta-content">
             <h2>Ready to Experience D'roid?</h2>
@@ -344,7 +344,7 @@ const DroidLanding = () => {
             <button onClick={handleOrdernow} className="cta-primary">Order Now</button>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

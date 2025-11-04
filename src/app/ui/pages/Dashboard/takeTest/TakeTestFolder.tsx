@@ -5,6 +5,7 @@ import TestCardTwo from "../../../components/CoreValueCard/Test-card-two";
 import "./TakeTestFolder.css";
 import { useNavigate } from "react-router-dom";
 import QuizComponents from "./QuizComponents";
+import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
 
 interface QuizResults {
   score: number;
@@ -209,10 +210,19 @@ const TakeTestFolder = () => {
                     onClick={() => handleTestClick(prog)}
                     className="ttf-test-item"
                   >
-                    <TestCardTwo
+                    {/* <TestCardTwo
                       title={`Take ${prog.title} Test`}
                       description={prog.summary}
                       url={prog.url}
+                      className="process-card"
+                    /> */}
+
+                    <NewwebsiteCard
+                      // key={index}
+                      title={`Take ${prog.title} Test`}
+                      // title={prog.title}
+                      description={prog.description}
+                      icon={prog.icon}
                       className="process-card"
                     />
                   </div>

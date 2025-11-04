@@ -1,33 +1,33 @@
-"use client"
+"use client";
 
-import React, { useState, useRef, useCallback } from "react"
-import { FaWpforms, FaDownload, FaPlus, FaTrash, FaEdit } from "react-icons/fa"
-import type { PDFFile } from "./pdf-editor"
+import React, { useState, useRef, useCallback } from "react";
+import { FaWpforms, FaDownload, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
+import type { PDFFile } from "./pdf-editor";
 
 interface PDFFormEditorProps {
-  selectedFile: PDFFile | null
+  selectedFile: PDFFile | null;
 }
 
 interface FormField {
-  id: string
-  type: "text" | "checkbox" | "radio" | "select" | "textarea"
-  x: number
-  y: number
-  width: number
-  height: number
-  label: string
-  value: string
-  options?: string[]
-  required: boolean
+  id: string;
+  type: "text" | "checkbox" | "radio" | "select" | "textarea";
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  label: string;
+  value: string;
+  options?: string[];
+  required: boolean;
 }
 
 const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [formFields, setFormFields] = useState<FormField[]>([])
-  const [selectedField, setSelectedField] = useState<FormField | null>(null)
-  const [isAddingField, setIsAddingField] = useState(false)
-  const [newFieldType, setNewFieldType] = useState<FormField["type"]>("text")
-  const [showFieldEditor, setShowFieldEditor] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [formFields, setFormFields] = useState<FormField[]>([]);
+  const [selectedField, setSelectedField] = useState<FormField | null>(null);
+  const [isAddingField, setIsAddingField] = useState(false);
+  const [newFieldType, setNewFieldType] = useState<FormField["type"]>("text");
+  const [showFieldEditor, setShowFieldEditor] = useState(false);
 
   const fieldTypes = [
     { value: "text", label: "Text Input" },
@@ -35,18 +35,18 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
     { value: "checkbox", label: "Checkbox" },
     { value: "radio", label: "Radio Button" },
     { value: "select", label: "Dropdown" },
-  ]
+  ];
 
   const addField = useCallback(
     (e: React.MouseEvent<HTMLCanvasElement>) => {
-      if (!isAddingField) return
+      if (!isAddingField) return;
 
-      const canvas = canvasRef.current
-      if (!canvas) return
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-      const rect = canvas.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
       const newField: FormField = {
         id: Date.now().toString(),
@@ -58,176 +58,193 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
         label: `${newFieldType} field`,
         value: "",
         required: false,
-        options: newFieldType === "select" || newFieldType === "radio" ? ["Option 1", "Option 2"] : undefined,
-      }
+        options:
+          newFieldType === "select" || newFieldType === "radio"
+            ? ["Option 1", "Option 2"]
+            : undefined,
+      };
 
-      setFormFields((prev) => [...prev, newField])
-      setIsAddingField(false)
-      setSelectedField(newField)
-      setShowFieldEditor(true)
-      redrawCanvas()
+      setFormFields((prev) => [...prev, newField]);
+      setIsAddingField(false);
+      setSelectedField(newField);
+      setShowFieldEditor(true);
+      redrawCanvas();
     },
-    [isAddingField, newFieldType],
-  )
+    [isAddingField, newFieldType]
+  );
 
   const selectField = useCallback(
     (e: React.MouseEvent<HTMLCanvasElement>) => {
-      if (isAddingField) return
+      if (isAddingField) return;
 
-      const canvas = canvasRef.current
-      if (!canvas) return
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-      const rect = canvas.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
       const clickedField = formFields.find(
-        (field) => x >= field.x && x <= field.x + field.width && y >= field.y && y <= field.y + field.height,
-      )
+        (field) =>
+          x >= field.x &&
+          x <= field.x + field.width &&
+          y >= field.y &&
+          y <= field.y + field.height
+      );
 
       if (clickedField) {
-        setSelectedField(clickedField)
-        setShowFieldEditor(true)
+        setSelectedField(clickedField);
+        setShowFieldEditor(true);
       } else {
-        setSelectedField(null)
+        setSelectedField(null);
       }
 
-      redrawCanvas()
+      redrawCanvas();
     },
-    [formFields, isAddingField],
-  )
+    [formFields, isAddingField]
+  );
 
   const updateField = useCallback((updatedField: FormField) => {
-    setFormFields((prev) => prev.map((field) => (field.id === updatedField.id ? updatedField : field)))
-    setSelectedField(updatedField)
-    redrawCanvas()
-  }, [])
+    setFormFields((prev) =>
+      prev.map((field) => (field.id === updatedField.id ? updatedField : field))
+    );
+    setSelectedField(updatedField);
+    redrawCanvas();
+  }, []);
 
   const deleteField = useCallback(
     (fieldId: string) => {
-      setFormFields((prev) => prev.filter((field) => field.id !== fieldId))
+      setFormFields((prev) => prev.filter((field) => field.id !== fieldId));
       if (selectedField?.id === fieldId) {
-        setSelectedField(null)
-        setShowFieldEditor(false)
+        setSelectedField(null);
+        setShowFieldEditor(false);
       }
-      redrawCanvas()
+      redrawCanvas();
     },
-    [selectedField],
-  )
+    [selectedField]
+  );
 
   const redrawCanvas = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     // Clear and draw PDF background
-    ctx.fillStyle = "#ffffff"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#000000"
-    ctx.font = "16px Arial"
-    ctx.fillText(`PDF: ${selectedFile?.name || "Document"}`, 20, 30)
-    ctx.fillText("(PDF content would be rendered here)", 20, 60)
+    ctx.fillStyle = "#000000";
+    ctx.font = "16px Arial";
+    ctx.fillText(`PDF: ${selectedFile?.name || "Document"}`, 20, 30);
+    ctx.fillText("(PDF content would be rendered here)", 20, 60);
 
     if (isAddingField) {
-      ctx.fillText(`Click to add ${newFieldType} field`, 20, 90)
+      ctx.fillText(`Click to add ${newFieldType} field`, 20, 90);
     } else {
-      ctx.fillText("Click on fields to edit them", 20, 90)
+      ctx.fillText("Click on fields to edit them", 20, 90);
     }
 
     // Draw border
-    ctx.strokeStyle = "#cccccc"
-    ctx.strokeRect(0, 0, canvas.width, canvas.height)
+    ctx.strokeStyle = "#cccccc";
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
     // Draw form fields
     formFields.forEach((field) => {
-      drawFormField(ctx, field, field.id === selectedField?.id)
-    })
-  }, [formFields, selectedField, isAddingField, newFieldType, selectedFile])
+      drawFormField(ctx, field, field.id === selectedField?.id);
+    });
+  }, [formFields, selectedField, isAddingField, newFieldType, selectedFile]);
 
-  const drawFormField = (ctx: CanvasRenderingContext2D, field: FormField, isSelected: boolean) => {
+  const drawFormField = (
+    ctx: CanvasRenderingContext2D,
+    field: FormField,
+    isSelected: boolean
+  ) => {
     // Draw field background
-    ctx.fillStyle = isSelected ? "#e3f2fd" : "#f5f5f5"
-    ctx.fillRect(field.x, field.y, field.width, field.height)
+    ctx.fillStyle = isSelected ? "#e3f2fd" : "#f9fafc";
+    ctx.fillRect(field.x, field.y, field.width, field.height);
 
     // Draw field border
-    ctx.strokeStyle = isSelected ? "#2196f3" : "#cccccc"
-    ctx.lineWidth = isSelected ? 2 : 1
-    ctx.strokeRect(field.x, field.y, field.width, field.height)
+    ctx.strokeStyle = isSelected ? "#2196f3" : "#cccccc";
+    ctx.lineWidth = isSelected ? 2 : 1;
+    ctx.strokeRect(field.x, field.y, field.width, field.height);
 
     // Draw field label
-    ctx.fillStyle = "#333333"
-    ctx.font = "12px Arial"
-    ctx.fillText(field.label, field.x, field.y - 5)
+    ctx.fillStyle = "#333333";
+    ctx.font = "12px Arial";
+    ctx.fillText(field.label, field.x, field.y - 5);
 
     // Draw field type indicator
-    ctx.fillStyle = "#666666"
-    ctx.font = "10px Arial"
-    ctx.fillText(`[${field.type}]`, field.x + field.width - 50, field.y - 5)
+    ctx.fillStyle = "#666666";
+    ctx.font = "10px Arial";
+    ctx.fillText(`[${field.type}]`, field.x + field.width - 50, field.y - 5);
 
     // Draw field content based on type
-    ctx.fillStyle = "#000000"
-    ctx.font = "14px Arial"
+    ctx.fillStyle = "#000000";
+    ctx.font = "14px Arial";
 
     switch (field.type) {
       case "text":
       case "textarea":
         if (field.value) {
-          ctx.fillText(field.value, field.x + 5, field.y + 20)
+          ctx.fillText(field.value, field.x + 5, field.y + 20);
         } else {
-          ctx.fillStyle = "#999999"
-          ctx.fillText("Enter text...", field.x + 5, field.y + 20)
+          ctx.fillStyle = "#999999";
+          ctx.fillText("Enter text...", field.x + 5, field.y + 20);
         }
-        break
+        break;
 
       case "checkbox":
-        ctx.strokeStyle = "#333333"
-        ctx.strokeRect(field.x + 5, field.y + 5, 15, 15)
+        ctx.strokeStyle = "#333333";
+        ctx.strokeRect(field.x + 5, field.y + 5, 15, 15);
         if (field.value === "true") {
-          ctx.fillStyle = "#333333"
-          ctx.fillText("✓", field.x + 8, field.y + 17)
+          ctx.fillStyle = "#333333";
+          ctx.fillText("✓", field.x + 8, field.y + 17);
         }
-        break
+        break;
 
       case "select":
-        ctx.fillStyle = "#999999"
-        ctx.fillText(field.value || "Select option...", field.x + 5, field.y + 20)
-        ctx.fillText("▼", field.x + field.width - 20, field.y + 20)
-        break
+        ctx.fillStyle = "#999999";
+        ctx.fillText(
+          field.value || "Select option...",
+          field.x + 5,
+          field.y + 20
+        );
+        ctx.fillText("▼", field.x + field.width - 20, field.y + 20);
+        break;
     }
-  }
+  };
 
   const generateFormPDF = useCallback(() => {
     // In a real implementation, you would generate a proper PDF with form fields
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    redrawCanvas()
+    redrawCanvas();
 
     setTimeout(() => {
       canvas.toBlob((blob) => {
         if (blob) {
-          const url = URL.createObjectURL(blob)
-          const link = document.createElement("a")
-          link.href = url
-          link.download = `form_${selectedFile?.name || "document"}.png`
-          link.click()
-          URL.revokeObjectURL(url)
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `form_${selectedFile?.name || "document"}.png`;
+          link.click();
+          URL.revokeObjectURL(url);
         }
-      })
-    }, 100)
-  }, [selectedFile, redrawCanvas])
+      });
+    }, 100);
+  }, [selectedFile, redrawCanvas]);
 
   React.useEffect(() => {
     if (selectedFile && canvasRef.current) {
-      const canvas = canvasRef.current
-      canvas.width = 800
-      canvas.height = 1000
-      redrawCanvas()
+      const canvas = canvasRef.current;
+      canvas.width = 800;
+      canvas.height = 1000;
+      redrawCanvas();
     }
-  }, [selectedFile, redrawCanvas])
+  }, [selectedFile, redrawCanvas]);
 
   if (!selectedFile) {
     return (
@@ -235,10 +252,12 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
         <div className="no-file-selected">
           <FaWpforms className="no-file-icon" />
           <h3>No PDF Selected</h3>
-          <p>Please select a PDF file from the Upload tab to add form fields.</p>
+          <p>
+            Please select a PDF file from the Upload tab to add form fields.
+          </p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -254,7 +273,12 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
       <div className="form-editor-toolbar">
         <div className="field-type-selector">
           <label>Field Type:</label>
-          <select value={newFieldType} onChange={(e) => setNewFieldType(e.target.value as FormField["type"])}>
+          <select
+            value={newFieldType}
+            onChange={(e) =>
+              setNewFieldType(e.target.value as FormField["type"])
+            }
+          >
             {fieldTypes.map((type) => (
               <option key={type.value} value={type.value}>
                 {type.label}
@@ -281,7 +305,11 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
 
       <div className="form-editor-content">
         <div className="canvas-container">
-          <canvas ref={canvasRef} className="form-canvas" onClick={isAddingField ? addField : selectField} />
+          <canvas
+            ref={canvasRef}
+            className="form-canvas"
+            onClick={isAddingField ? addField : selectField}
+          />
         </div>
 
         {showFieldEditor && selectedField && (
@@ -334,7 +362,8 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
                 />
               </div>
 
-              {(selectedField.type === "select" || selectedField.type === "radio") && (
+              {(selectedField.type === "select" ||
+                selectedField.type === "radio") && (
                 <div className="property-group">
                   <label>Options (one per line):</label>
                   <textarea
@@ -342,7 +371,9 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
                     onChange={(e) =>
                       updateField({
                         ...selectedField,
-                        options: e.target.value.split("\n").filter((opt) => opt.trim()),
+                        options: e.target.value
+                          .split("\n")
+                          .filter((opt) => opt.trim()),
                       })
                     }
                   />
@@ -366,11 +397,17 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
               </div>
 
               <div className="field-actions">
-                <button className="delete-field-btn" onClick={() => deleteField(selectedField.id)}>
+                <button
+                  className="delete-field-btn"
+                  onClick={() => deleteField(selectedField.id)}
+                >
                   <FaTrash />
                   Delete Field
                 </button>
-                <button className="close-editor-btn" onClick={() => setShowFieldEditor(false)}>
+                <button
+                  className="close-editor-btn"
+                  onClick={() => setShowFieldEditor(false)}
+                >
                   Close
                 </button>
               </div>
@@ -388,22 +425,26 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
             {formFields.map((field) => (
               <div
                 key={field.id}
-                className={`field-summary ${selectedField?.id === field.id ? "selected" : ""}`}
+                className={`field-summary ${
+                  selectedField?.id === field.id ? "selected" : ""
+                }`}
                 onClick={() => {
-                  setSelectedField(field)
-                  setShowFieldEditor(true)
+                  setSelectedField(field);
+                  setShowFieldEditor(true);
                 }}
               >
                 <div className="field-summary-info">
                   <span className="field-type">[{field.type}]</span>
                   <span className="field-label">{field.label}</span>
-                  {field.required && <span className="required-indicator">*</span>}
+                  {field.required && (
+                    <span className="required-indicator">*</span>
+                  )}
                 </div>
                 <button
                   className="delete-summary-btn"
                   onClick={(e) => {
-                    e.stopPropagation()
-                    deleteField(field.id)
+                    e.stopPropagation();
+                    deleteField(field.id);
                   }}
                 >
                   <FaTrash />
@@ -414,7 +455,7 @@ const PDFFormEditor: React.FC<PDFFormEditorProps> = ({ selectedFile }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PDFFormEditor
+export default PDFFormEditor;
