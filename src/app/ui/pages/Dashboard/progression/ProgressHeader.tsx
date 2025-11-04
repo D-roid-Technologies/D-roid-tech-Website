@@ -1,49 +1,46 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { TrendingUp, Clock, Zap } from "lucide-react"
+import type React from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { TrendingUp, Clock, Zap } from "lucide-react";
 import {
-  selectMilestones,
+
   selectCurrentPosition,
   selectProgressPercentage,
-  selectProgressionHistory,
-  selectLastCalculated,
+
   selectTotalHours,
   selectWeeklyProgressHours,
   startSession,
   endSession,
   type Milestone,
-} from "../../../../redux/slices/ProgressionSlice"
-import styles from "./progression-header.module.css"
+} from "../../../../redux/slices/ProgressionSlice";
+import styles from "./progression-header.module.css";
 
 const ProgressionHeader: React.FC = () => {
-  const dispatch = useDispatch()
-  const milestones = useSelector(selectMilestones)
-  const currentPosition = useSelector(selectCurrentPosition)
-  const progressPercentage = useSelector(selectProgressPercentage)
-  const progressionHistory = useSelector(selectProgressionHistory)
-  const lastCalculated = useSelector(selectLastCalculated)
-  const totalHours = useSelector(selectTotalHours)
-  const weeklyHours = useSelector(selectWeeklyProgressHours)
+  const dispatch = useDispatch();
+  const currentPosition = useSelector(selectCurrentPosition);
+  const progressPercentage = useSelector(selectProgressPercentage);
 
-  const [showAnalytics, setShowAnalytics] = useState(false)
-  const [showTimeline, setShowTimeline] = useState(false)
-  const [selectedMilestone, setSelectedMilestone] = useState<Milestone | null>(null)
-  const [showMilestoneModal, setShowMilestoneModal] = useState(false)
+  const totalHours = useSelector(selectTotalHours);
+  const weeklyHours = useSelector(selectWeeklyProgressHours);
+
+
 
   useEffect(() => {
-    dispatch(startSession())
-    const handleUnload = () => dispatch(endSession())
-    window.addEventListener("beforeunload", handleUnload)
+    dispatch(startSession());
+    const handleUnload = () => dispatch(endSession());
+    window.addEventListener("beforeunload", handleUnload);
     return () => {
-      dispatch(endSession())
-      window.removeEventListener("beforeunload", handleUnload)
-    }
-  }, [dispatch])
+      dispatch(endSession());
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, [dispatch]);
 
-  const tierConfig: Record<string, { color: { from: string; to: string }; bgLight: string; icon: string }> = {
+  const tierConfig: Record<
+    string,
+    { color: { from: string; to: string }; bgLight: string; icon: string }
+  > = {
     Silver: {
       color: { from: "#475569", to: "#94a3b8" },
       bgLight: "#f8fafc",
@@ -59,9 +56,9 @@ const ProgressionHeader: React.FC = () => {
       bgLight: "#eff6ff",
       icon: "💎",
     },
-  }
+  };
 
-  const config = tierConfig[currentPosition] || tierConfig.Silver
+  const config = tierConfig[currentPosition] || tierConfig.Silver;
 
   return (
     <div className={styles.container}>
@@ -78,7 +75,9 @@ const ProgressionHeader: React.FC = () => {
               <span className={styles.icon}>{config.icon}</span>
               <h1 className={styles.title}>{currentPosition} Member</h1>
             </div>
-            <p className={styles.subtitle}>You're making great progress on your membership journey</p>
+            <p className={styles.subtitle}>
+              You're making great progress on your membership journey
+            </p>
 
             {/* Progress Bar */}
             <div className={styles.progressContainer}>
@@ -87,7 +86,10 @@ const ProgressionHeader: React.FC = () => {
                 <span>{progressPercentage.toFixed(1)}%</span>
               </div>
               <div className={styles.progressBar}>
-                <div className={styles.progressFill} style={{ width: `${progressPercentage}%` }} />
+                <div
+                  className={styles.progressFill}
+                  style={{ width: `${progressPercentage}%` }}
+                />
               </div>
             </div>
           </div>
@@ -145,7 +147,7 @@ const ProgressionHeader: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProgressionHeader
+export default ProgressionHeader;

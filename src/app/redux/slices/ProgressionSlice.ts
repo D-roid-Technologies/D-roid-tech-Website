@@ -1,6 +1,9 @@
 // src/redux/slices/progressionSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loadFromLocalStorage, saveToLocalStorage } from "../../utils/localStorage";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "../../utils/localStorage";
 
 export type Milestone = {
   id: string;
@@ -16,7 +19,7 @@ export type Milestone = {
 export type ProgressionHistory = {
   id: string;
   timestamp: string;
-  action: 'achieved' | 'reset' | 'updated';
+  action: "achieved" | "reset" | "updated";
   milestoneId: string;
   milestoneTitle: string;
   fromPosition: string | null;
@@ -43,6 +46,22 @@ interface ProgressionState {
 }
 
 const LOCAL_KEY = "progression";
+// Helpers (put near the bottom of the file)
+function startOfWeek(date = new Date()) {
+  // Monday = start of week
+  const d = new Date(date);
+  const day = d.getDay(); // 0=Sun,1=Mon,...6=Sat
+  const diffFromMonday = (day + 6) % 7; // Sun->6, Mon->0, ...
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() - diffFromMonday);
+  return d;
+}
+
+function endOfWeek(from: Date) {
+  const e = new Date(from);
+  e.setDate(e.getDate() + 7); //
+  return e;
+}
 
 const initialMilestones: Milestone[] = [
   {
@@ -177,19 +196,26 @@ const progressionSlice = createSlice({
     },
 
     addMilestone: (state, action: PayloadAction<Omit<Milestone, "id">>) => {
-      const newMilestone: Milestone = { ...action.payload, id: Date.now().toString() };
+      const newMilestone: Milestone = {
+        ...action.payload,
+        id: Date.now().toString(),
+      };
       state.milestones.push(newMilestone);
       saveToLocalStorage(LOCAL_KEY, state);
     },
 
     removeMilestone: (state, action: PayloadAction<string>) => {
-      state.milestones = state.milestones.filter((m) => m.id !== action.payload);
+      state.milestones = state.milestones.filter(
+        (m) => m.id !== action.payload
+      );
       state.currentPosition = getCurrentPosition(state.milestones);
       saveToLocalStorage(LOCAL_KEY, state);
     },
 
     updateMilestone: (state, action: PayloadAction<Milestone>) => {
-      const index = state.milestones.findIndex((m) => m.id === action.payload.id);
+      const index = state.milestones.findIndex(
+        (m) => m.id === action.payload.id
+      );
       if (index !== -1) {
         state.milestones[index] = action.payload;
         state.currentPosition = getCurrentPosition(state.milestones);
@@ -229,11 +255,15 @@ const progressionSlice = createSlice({
       const now = new Date().toISOString();
       const active = state.timeTracking.find((s) => !s.endTime);
       if (active) {
-        const durationMs = new Date(now).getTime() - new Date(active.startTime).getTime();
+        const durationMs =
+          new Date(now).getTime() - new Date(active.startTime).getTime();
         const hours = durationMs / (1000 * 60 * 60);
         active.endTime = now;
         active.durationHours = parseFloat(hours.toFixed(2));
-        state.totalHours = state.timeTracking.reduce((sum, s) => sum + s.durationHours, 0);
+        state.totalHours = state.timeTracking.reduce(
+          (sum, s) => sum + s.durationHours,
+          0
+        );
         state.lastCalculated = now;
         saveToLocalStorage(LOCAL_KEY, state);
       }
@@ -266,23 +296,43 @@ export const {
 } = progressionSlice.actions;
 
 // Selectors
-export const selectMilestones = (state: { progression: ProgressionState }) => state.progression.milestones;
-export const selectCurrentPosition = (state: { progression: ProgressionState }) => state.progression.currentPosition;
-export const selectProgressPercentage = (state: { progression: ProgressionState }) => {
+export const selectMilestones = (state: { progression: ProgressionState }) =>
+  state.progression.milestones;
+export const selectCurrentPosition = (state: {
+  progression: ProgressionState;
+}) => state.progression.currentPosition;
+export const selectProgressPercentage = (state: {
+  progression: ProgressionState;
+}) => {
   const total = state.progression.milestones.length;
-  const achieved = state.progression.milestones.filter((m) => m.achieved).length;
+  const achieved = state.progression.milestones.filter(
+    (m) => m.achieved
+  ).length;
   return total > 0 ? Math.round((achieved / total) * 100) : 0;
 };
-export const selectProgressionHistory = (state: { progression: ProgressionState }) => state.progression.progressionHistory;
-export const selectLastCalculated = (state: { progression: ProgressionState }) => state.progression.lastCalculated;
+export const selectProgressionHistory = (state: {
+  progression: ProgressionState;
+}) => state.progression.progressionHistory;
+export const selectLastCalculated = (state: {
+  progression: ProgressionState;
+}) => state.progression.lastCalculated;
 
 // ⏱️ New selectors
-export const selectTotalHours = (state: { progression: ProgressionState }) => state.progression.totalHours;
-export const selectWeeklyProgressHours = (state: { progression: ProgressionState }) => {
-  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+export const selectTotalHours = (state: { progression: ProgressionState }) =>
+  state.progression.totalHours;
+export const selectWeeklyProgressHours = (state: {
+  progression: ProgressionState;
+}) => {
+  const start = startOfWeek();
+  const end = endOfWeek(start);
+
   const thisWeekHours = state.progression.timeTracking
-    .filter((entry) => new Date(entry.startTime) >= oneWeekAgo)
+    .filter((entry) => {
+      const startTime = new Date(entry.startTime);
+      return startTime >= start && startTime < end;
+    })
     .reduce((sum, entry) => sum + entry.durationHours, 0);
+
   return parseFloat(thisWeekHours.toFixed(2));
 };
 
