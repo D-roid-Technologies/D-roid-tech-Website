@@ -104,7 +104,7 @@ const validatePayslipData = (
 
   return {
     isValid: missingFields.length === 0,
-    missingFields
+    missingFields,
   };
 };
 
@@ -162,7 +162,9 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
 
     if (!validation.isValid) {
       setValidationError(
-        `Please fill in the following required fields:\n• ${validation.missingFields.join('\n• ')}`
+        `Please fill in the following required fields:\n• ${validation.missingFields.join(
+          "\n• "
+        )}`
       );
       setShowPayslip(false);
 
@@ -172,7 +174,18 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
       setValidationError(null);
       setShowPayslip(true);
     }
-  }, [employeeName, employeeId, sNumber, sName, city, state, country, staffGrossPay, staffTax, staffPosition]);
+  }, [
+    employeeName,
+    employeeId,
+    sNumber,
+    sName,
+    city,
+    state,
+    country,
+    staffGrossPay,
+    staffTax,
+    staffPosition,
+  ]);
 
   useEffect(() => {
     const today = new Date();
@@ -240,7 +253,11 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
     );
 
     if (!validation.isValid) {
-      alert(`Cannot generate payslip. Missing required information:\n\n• ${validation.missingFields.join('\n• ')}\n\nPlease complete your profile information first.`);
+      alert(
+        `Cannot generate payslip. Missing required information:\n\n• ${validation.missingFields.join(
+          "\n• "
+        )}\n\nPlease complete your profile information first.`
+      );
       return;
     }
 
@@ -288,7 +305,9 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
     );
     setFilteredPayslips(filtered);
     // Update refs array length
-    payslipRefs.current = filtered.map((_, i) => payslipRefs.current[i] || null);
+    payslipRefs.current = filtered.map(
+      (_, i) => payslipRefs.current[i] || null
+    );
   }, [selectedMonth, payslips]);
 
   const allMonths = Array.from(
@@ -296,29 +315,38 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
   );
 
   // Download handler for filtered payslips
-  const handleDownloadFiltered = (index: number) => {
+  const handleDownloadFiltered = async (index: number) => {
     const ref = payslipRefs.current[index];
-    if (ref) {
+    if (!ref) return;
+
+    setLoading(true); // ✅ Start loading
+    try {
+      // ✅ Find button inside the card and hide it
+      const button = ref.querySelector("button");
+      if (button) button.style.display = "none";
+
       const opt = {
         margin: 0.5,
         filename: `payslip_${filteredPayslips[index].employeeDetails.employeeName}_${filteredPayslips[index].payPeriod.monthOfPay}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { 
-          scale: 2, 
+        html2canvas: {
+          scale: 2,
           useCORS: true,
-          allowTaint: true,
-          logging: false,
-          letterRendering: true
         },
-        jsPDF: { 
-          unit: "in", 
-          format: "a4", 
+        jsPDF: {
+          unit: "in",
+          format: "a4",
           orientation: "portrait",
-          compress: true
         },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
       };
-      html2pdf().set(opt).from(ref).save();
+
+      await html2pdf().set(opt).from(ref).save();
+    } finally {
+      // ✅ Show button back after download
+      const button = ref.querySelector("button");
+      if (button) button.style.display = "inline-block";
+
+      setLoading(false); // ✅ Stop loading
     }
   };
 
@@ -329,14 +357,16 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
         <div style={styles.errorCard}>
           <h2 style={styles.errorTitle}>⚠️ Incomplete Profile Information</h2>
           <p style={styles.errorMessage}>
-            Your payslip cannot be displayed because some required information is missing from your profile.
+            Your payslip cannot be displayed because some required information
+            is missing from your profile.
           </p>
           <div style={styles.errorDetails}>
             <h4>Missing Information:</h4>
             <pre style={styles.errorList}>{validationError}</pre>
           </div>
           <p style={styles.errorInstruction}>
-            Please complete your profile information to view and generate your payslip.
+            Please complete your profile information to view and generate your
+            payslip.
           </p>
         </div>
       </div>
@@ -548,7 +578,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
           filteredPayslips.map((payslip, index) => (
             <div
               key={index}
-              ref={el => payslipRefs.current[index] = el}
+              ref={(el) => (payslipRefs.current[index] = el)}
               style={styles.container}
             >
               {/* Letter Block */}
@@ -558,10 +588,12 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                     <strong>{payslip.employeeDetails.employeeName}</strong>
                   </p>
                   <p>
-                    {payslip.employeeDetails.sNumber}, {payslip.employeeDetails.sName}
+                    {payslip.employeeDetails.sNumber},{" "}
+                    {payslip.employeeDetails.sName}
                   </p>
                   <p>
-                    {payslip.employeeDetails.city}, {payslip.employeeDetails.state} State
+                    {payslip.employeeDetails.city},{" "}
+                    {payslip.employeeDetails.state} State
                   </p>
                   <p>{payslip.employeeDetails.country}</p>
                 </div>
@@ -574,16 +606,29 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                 </div>
               </div>
 
-              <p style={{ marginTop: 20 }}>{formatDateLong(new Date(payslip.payPeriod.todayMonth + ' 1, ' + new Date().getFullYear()))}</p>
+              <p style={{ marginTop: 20 }}>
+                {formatDateLong(
+                  new Date(
+                    payslip.payPeriod.todayMonth +
+                      " 1, " +
+                      new Date().getFullYear()
+                  )
+                )}
+              </p>
               <p>
-                <strong>Dear {payslip.employeeDetails.employeeName.split(" ")[0]},</strong>
+                <strong>
+                  Dear {payslip.employeeDetails.employeeName.split(" ")[0]},
+                </strong>
               </p>
 
               <h2 style={styles.header}>
                 YOUR PAY SLIP FROM D'ROID TECHNOLOGIES LTD
               </h2>
               <p>
-                You will be paid on the 9th of {payslip.payPeriod.todayMonth} {new Date().getFullYear()} for the month of {payslip.payPeriod.monthPaid} {new Date().getFullYear()}. Find below all the necessary information.
+                You will be paid on the 9th of {payslip.payPeriod.todayMonth}{" "}
+                {new Date().getFullYear()} for the month of{" "}
+                {payslip.payPeriod.monthPaid} {new Date().getFullYear()}. Find
+                below all the necessary information.
               </p>
 
               <section style={styles.section}>
@@ -592,16 +637,27 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                   <strong>Name:</strong> {payslip.employeeDetails.employeeName}
                 </p>
                 <p>
-                  <strong>Employee ID:</strong> {payslip.employeeDetails.employeeId}
+                  <strong>Employee ID:</strong>{" "}
+                  {payslip.employeeDetails.employeeId}
                 </p>
                 <p>
-                  <strong>Date of Creation:</strong> {formatDateLong(new Date(payslip.payPeriod.todayMonth + ' 1, ' + new Date().getFullYear()))}
+                  <strong>Date of Creation:</strong>{" "}
+                  {formatDateLong(
+                    new Date(
+                      payslip.payPeriod.todayMonth +
+                        " 1, " +
+                        new Date().getFullYear()
+                    )
+                  )}
                 </p>
                 <p>
-                  <strong>Period of Payment:</strong> 9th {payslip.payPeriod.monthPaid} to 8th {payslip.payPeriod.monthOfPay}
+                  <strong>Period of Payment:</strong> 9th{" "}
+                  {payslip.payPeriod.monthPaid} to 8th{" "}
+                  {payslip.payPeriod.monthOfPay}
                 </p>
                 <p>
-                  <strong>Leave:</strong> 6 Days for the month of {payslip.payPeriod.monthPaid} {new Date().getFullYear()}
+                  <strong>Leave:</strong> 6 Days for the month of{" "}
+                  {payslip.payPeriod.monthPaid} {new Date().getFullYear()}
                 </p>
               </section>
 
@@ -609,19 +665,23 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                 <h3 style={styles.subHeader}>Deductions</h3>
                 <ul>
                   <li>
-                    Absent from meetings: {payslip.deductions.meetingAbsence.toFixed(2)}
+                    Absent from meetings:{" "}
+                    {payslip.deductions.meetingAbsence.toFixed(2)}
                   </li>
                   <li>
-                    Completion of Tasks: {payslip.deductions.taskCompletion.toFixed(2)}
+                    Completion of Tasks:{" "}
+                    {payslip.deductions.taskCompletion.toFixed(2)}
                   </li>
                   <li>
-                    Absent Signing in: {payslip.deductions.totalDeductions.toFixed(2)}
+                    Absent Signing in:{" "}
+                    {payslip.deductions.totalDeductions.toFixed(2)}
                   </li>
                 </ul>
               </section>
 
               <section style={styles.section}>
-                <h3 style={styles.subHeader}>Additional Payments ₦
+                <h3 style={styles.subHeader}>
+                  Additional Payments ₦
                   {payslip.additionalPayments.healthInsurance +
                     payslip.additionalPayments.hotelAccommodation +
                     payslip.additionalPayments.miscellaneous +
@@ -631,20 +691,27 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                 </h3>
                 <ul>
                   <li>
-                    Extra days worked: {payslip.additionalPayments.extraDaysWorked}
-                  </li>
-                  <li>Pension: {payslip.additionalPayments.pension.toFixed(2)}</li>
-                  <li>
-                    Health Insurance: {payslip.additionalPayments.healthInsurance.toFixed(2)}
+                    Extra days worked:{" "}
+                    {payslip.additionalPayments.extraDaysWorked}
                   </li>
                   <li>
-                    Miscellaneous: {payslip.additionalPayments.miscellaneous.toFixed(2)}
+                    Pension: {payslip.additionalPayments.pension.toFixed(2)}
                   </li>
                   <li>
-                    Transportation: {payslip.additionalPayments.transportation.toFixed(2)}
+                    Health Insurance:{" "}
+                    {payslip.additionalPayments.healthInsurance.toFixed(2)}
                   </li>
                   <li>
-                    Hotel Accommodation: {payslip.additionalPayments.hotelAccommodation.toFixed(2)}
+                    Miscellaneous:{" "}
+                    {payslip.additionalPayments.miscellaneous.toFixed(2)}
+                  </li>
+                  <li>
+                    Transportation:{" "}
+                    {payslip.additionalPayments.transportation.toFixed(2)}
+                  </li>
+                  <li>
+                    Hotel Accommodation:{" "}
+                    {payslip.additionalPayments.hotelAccommodation.toFixed(2)}
                   </li>
                 </ul>
               </section>
@@ -655,21 +722,41 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
                   <tbody>
                     <tr>
                       <td style={styles.label}>Gross Pay</td>
-                      <td style={styles.value}>₦{payslip.grossPay.toFixed(2)}</td>
+                      <td style={styles.value}>
+                        ₦{payslip.grossPay.toFixed(2)}
+                      </td>
                     </tr>
                     <tr>
-                      <td style={styles.label}>Taxes({payslip.taxes.percentage}%)</td>
-                      <td style={styles.value}>-₦{payslip.taxes.amount.toFixed(2)}</td>
+                      <td style={styles.label}>
+                        Taxes({payslip.taxes.percentage}%)
+                      </td>
+                      <td style={styles.value}>
+                        -₦{payslip.taxes.amount.toFixed(2)}
+                      </td>
                     </tr>
                     <tr>
                       <td style={styles.label}>Deductions</td>
-                      <td style={styles.value}>-₦{payslip.deductions.totalDeductions.toFixed(2)}</td>
+                      <td style={styles.value}>
+                        -₦{payslip.deductions.totalDeductions.toFixed(2)}
+                      </td>
                     </tr>
                     <tr style={{ borderTop: "3px solid #222" }}>
-                      <td style={{ ...styles.label, fontWeight: "bold", fontSize: 18 }}>
+                      <td
+                        style={{
+                          ...styles.label,
+                          fontWeight: "bold",
+                          fontSize: 18,
+                        }}
+                      >
                         Net Pay
                       </td>
-                      <td style={{ ...styles.value, fontWeight: "bold", fontSize: 18 }}>
+                      <td
+                        style={{
+                          ...styles.value,
+                          fontWeight: "bold",
+                          fontSize: 18,
+                        }}
+                      >
                         ₦{payslip.netPay.toFixed(2)}
                       </td>
                     </tr>
@@ -680,22 +767,24 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
               <div style={{ marginTop: 30, textAlign: "center" }}>
                 <button
                   onClick={() => handleDownloadFiltered(index)}
+                  disabled={loading}
                   style={{
                     padding: "10px 22px",
-                    backgroundColor: "#27ae60",
+                    backgroundColor: loading ? "#7f8c8d" : "#27ae60",
                     color: "#fff",
                     fontSize: 15,
                     border: "none",
                     borderRadius: 6,
-                    cursor: "pointer",
+                    cursor: loading ? "not-allowed" : "pointer",
                   }}
                 >
-                  Download Payslip
+                  {loading ? "Generating PDF..." : "Download Payslip"}
                 </button>
               </div>
 
               <p style={styles.footer}>
-                This is a computer-generated pay slip and does not require a signature.
+                This is a computer-generated pay slip and does not require a
+                signature.
               </p>
             </div>
           ))
@@ -833,13 +922,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: "red",
     marginInline: "auto",
     fontSize: "14px",
-    marginTop: "1rem"
+    marginTop: "1rem",
   },
   payslipTableContainer: {},
   tableWrapper: {
     overflowX: "auto",
     marginTop: 10,
-    color: "#000000"
+    color: "#000000",
   },
   "table th": {
     padding: "10px",

@@ -39,7 +39,7 @@ import Tasks from "./Tasks";
 import Announcements from "./Notifications";
 import SayIt from "./SayIt";
 import Trainings from "./Trainings";
-import Progression from "./Progressions";
+import Progression from "./progression/Progressions";
 import styles from "./DashboardContent.module.css";
 import Section from "./Section";
 import { GiCalculator } from "react-icons/gi";
@@ -217,6 +217,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     );
 
     const isAboveSixMonth = isAboveSixMonths(staffInfo?.staffStartDate)
+    console.log("isAboveSixMonth>>>>>>>>>",isAboveSixMonth);
+    
 
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
     title: string;
@@ -451,7 +453,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     {
       label: "Personal Details",
       icon: FaUser,
+      
     },
+    { label: "Progressions", icon: FaChartLine },
     ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
       ? orgSpecificItems[orgType]
       : []),

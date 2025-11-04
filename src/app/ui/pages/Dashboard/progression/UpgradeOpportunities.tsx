@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { CheckoutPage } from "../../components/payment/CheckoutPage";
+import { CheckoutPage } from "../../../components/payment/CheckoutPage";
 import { X } from "lucide-react";
 
 interface UpgradeOpportunitiesProps {
@@ -66,7 +66,7 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
   const selectedPlan = tiers.find((t) => t.name === selectedTier);
 
   return (
-    <div style={{ marginTop: "40px" }}>
+    <div >
       <h2
         style={{
           fontSize: "20px",
@@ -76,7 +76,7 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
           color: "#374151",
         }}
       >
-        🚀 Upgrade Your Membership
+        Upgrade Your Membership
       </h2>
       <p
         style={{
