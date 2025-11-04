@@ -217,6 +217,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     );
 
     const isAboveSixMonth = isAboveSixMonths(staffInfo?.staffStartDate)
+    console.log("isAboveSixMonth>>>>>>>>>",isAboveSixMonth);
+    
 
   const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
     title: string;

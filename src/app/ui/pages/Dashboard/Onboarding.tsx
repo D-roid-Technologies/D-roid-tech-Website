@@ -125,6 +125,8 @@
 
       try {
         await authService.updateStaffOnboardingDetails(formDataNew);
+        console.log("formDataNew>>>>>",formDataNew);
+        
 
         // Dismiss loading toast and show success
         toast.dismiss(loadingToast);

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectCurrentPosition } from "../../../../redux/slices/ProgressionSlice";
-import { UpgradeOpportunities } from "../UpgradeOpportunities";
+import { UpgradeOpportunities } from "./UpgradeOpportunities";
 import ProgressionHeader from "./ProgressHeader";
 
 const Progression: React.FC = () => {
@@ -8,11 +8,8 @@ const Progression: React.FC = () => {
 
   return (
     <div style={{ maxWidth: "768px", margin: "0 auto", padding: "24px" }}>
-      {/* Header */}
-  <ProgressionHeader />;
-
-      {/* The rest of your previous Progression UI remains unchanged */}
-      {/* You can paste the rest of your Progression.tsx content here unchanged */}
+     
+      <ProgressionHeader />;
       <UpgradeOpportunities currentTier={currentPosition} />
     </div>
   );
