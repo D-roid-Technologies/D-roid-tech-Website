@@ -35,7 +35,7 @@ import SignInOut from "./SignInOut";
 import StaffPay from "./StaffPay";
 import WelcomePage from "./WelcomePage";
 import Onboarding from "./Onboarding";
-import Tasks from "./Tasks";
+import Tasks from "./tasks/Tasks";
 import Announcements from "./Notifications";
 import SayIt from "./SayIt";
 import Trainings from "./Trainings";
