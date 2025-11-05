@@ -780,7 +780,7 @@ const PersonalDetails: React.FunctionComponent = () => {
         </div>
 
         {/* Performance Metrics Section */}
-        <div
+        {/* <div
           style={{
             marginTop: "20px",
             padding: "15px",
@@ -868,10 +868,10 @@ const PersonalDetails: React.FunctionComponent = () => {
               {renderErrorMessage("activeTasks")}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Skills and Certifications Section */}
-        <div
+        {/* <div
           style={{
             marginTop: "20px",
             padding: "15px",
@@ -952,10 +952,10 @@ const PersonalDetails: React.FunctionComponent = () => {
               }}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Access Level Section */}
-        <div
+        {/* <div
           style={{
             marginTop: "20px",
             padding: "15px",
@@ -1067,7 +1067,7 @@ const PersonalDetails: React.FunctionComponent = () => {
               {renderErrorMessage("permissions")}
             </div>
           </div>
-        </div>
+        </div> */}
       </>
     );
   };
