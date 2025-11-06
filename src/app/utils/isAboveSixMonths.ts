@@ -13,3 +13,13 @@ export const isAboveSixMonths = (startDate?: string | Date): boolean => {
   // 6 months ≈ 183 days (accounting for 30.5 days/month average)
   return diffInDays >= 183;
 };
+
+export const formatStartDate = (dateValue: any) => {
+  if (!dateValue) return "";
+  const date = new Date(dateValue);
+  if (isNaN(date.getTime())) return ""; // invalid date fallback -> return empty
+
+  const year = date.getFullYear(); // ✅ always a number
+  const month = date.toLocaleString("en-US", { month: "short" });
+  return `${month} ${year}`;
+};

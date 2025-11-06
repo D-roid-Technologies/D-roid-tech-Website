@@ -104,15 +104,27 @@ const loadProgressionState = (): ProgressionState => {
   const savedState = loadFromLocalStorage<any>(LOCAL_KEY, null);
   if (!savedState) return defaultState;
 
-  return {
-    milestones: savedState.milestones || defaultState.milestones,
+  const state: ProgressionState = {
+milestones:
+  savedState.milestones && savedState.milestones.length > 0
+    ? savedState.milestones
+    : defaultState.milestones,
     currentPosition: savedState.currentPosition || defaultState.currentPosition,
     progressionHistory: savedState.progressionHistory || [],
     lastCalculated: savedState.lastCalculated || new Date().toISOString(),
     timeTracking: savedState.timeTracking || [],
     totalHours: savedState.totalHours || 0,
   };
+
+  // ✅ Recalculate weekly hours on load (auto reset week display)
+  state.totalHours = state.timeTracking.reduce(
+    (sum, s) => sum + s.durationHours,
+    0
+  );
+
+  return state;
 };
+
 
 const initialState: ProgressionState = loadProgressionState();
 
@@ -335,5 +347,6 @@ export const selectWeeklyProgressHours = (state: {
 
   return parseFloat(thisWeekHours.toFixed(2));
 };
+
 
 export default progressionSlice.reducer;
