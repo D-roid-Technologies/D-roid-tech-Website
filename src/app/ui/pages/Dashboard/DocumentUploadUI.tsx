@@ -186,7 +186,7 @@ const DocumentUploadUI: React.FC = () => {
     <div className={styles.container}>
       <h2 className={styles.header}>Upload Required Documents</h2>
       <p className={styles.description}>
-        These documents will be stored securely in your Google Drive folder.
+        These documents will be stored securely.
       </p>
 
       <div className={styles.form}>
