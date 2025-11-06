@@ -1,4 +1,3 @@
-// src/app/redux/slices/SignInAndOutSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Entry = {
@@ -108,7 +107,20 @@ export const signInAndOutSlice = createSlice({
       // Save to localStorage
       localStorage.setItem("staffLeave", JSON.stringify(state.staffLeave));
     },
-    // Add a new action to clear localStorage if needed
+    //  clear specific staff details
+    clearStaffDetails(state) {
+      state.staffDetails = {
+        staffGrossPay: "",
+        staffTax: "",
+        staffPosition: "",
+        staffBank: "",
+        staffAccountNmber: "",
+        staffAccountName: "",
+        staffStartDate: "",
+      };
+      localStorage.setItem("staffDetails", JSON.stringify(state.staffDetails));
+    },
+    //clear localStorage
     clearStaffLocalStorage() {
       localStorage.removeItem("staffDetails");
       localStorage.removeItem("staffDocuments");
@@ -123,6 +135,7 @@ export const {
   setStaffDetails,
   setStaffDocuments,
   setStaffLeave,
+  clearStaffDetails,
   clearStaffLocalStorage,
 } = signInAndOutSlice.actions;
 
