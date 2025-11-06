@@ -174,17 +174,19 @@ const AffiliatedApps: React.FC = () => {
           </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="afa-submit-btn"
-          style={{
-            opacity: isSubmitting ? 0.7 : 1,
-            cursor: isSubmitting ? "not-allowed" : "pointer",
-          }}
-        >
-          {isSubmitting ? "Saving Changes..." : "Save Connected Apps"}
-        </button>
+        <div className="afa-form-actions">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="afa-submit-btn"
+            style={{
+              opacity: isSubmitting ? 0.7 : 1,
+              cursor: isSubmitting ? "not-allowed" : "pointer",
+            }}
+          >
+            {isSubmitting ? "Saving Changes..." : "Save Connected Apps"}
+          </button>
+        </div>
       </form>
     </div>
   );

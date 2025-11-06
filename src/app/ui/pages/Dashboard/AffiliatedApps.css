@@ -43,8 +43,8 @@
 }
 
 .afa-section-apps {
-  background-color: #e3f2fd;
-  border-color: #bbdefb;
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
 }
 
 .afa-section-title {
@@ -52,8 +52,8 @@
   font-weight: 600;
   margin: 0 0 15px 0;
   padding-bottom: 8px;
-  border-bottom: 2px solid #1565c0;
-  color: #1565c0;
+  border-bottom: 2px solid #333;
+  color: #333;
 }
 
 /* Apps Grid Layout */
@@ -73,13 +73,13 @@
 }
 
 .afa-app-card:hover {
-  border-color: #bbdefb;
+  border-color: #999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .afa-app-card-active {
-  border-color: #071d6a;
-  background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+  border-color: #21349a;
+  background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 100%);
 }
 
 .afa-app-header {
@@ -152,7 +152,7 @@
 }
 
 .afa-toggle-input:checked + .afa-toggle-slider {
-  background-color: #071d6a;
+  background-color: #21349a;
 }
 
 .afa-toggle-input:checked + .afa-toggle-slider::before {
@@ -160,7 +160,7 @@
 }
 
 .afa-toggle-input:focus + .afa-toggle-slider {
-  box-shadow: 0 0 0 3px rgba(7, 29, 106, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Status Badge */
@@ -181,15 +181,15 @@
 }
 
 .afa-badge-connected {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background-color: #e8ecff;
+  color: #21349a;
+  border: 1px solid #d0d8ff;
 }
 
 .afa-badge-disconnected {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background-color: #f5f5f5;
+  color: #666;
+  border: 1px solid #e0e0e0;
 }
 
 .afa-badge-icon {
@@ -198,10 +198,16 @@
 }
 
 /* Submit Button */
+
+.afa-form-actions {
+  display: flex;
+  justify-content: end;
+}
+
 .afa-submit-btn {
-  width: 100%;
+  /* width: 100%; */
   padding: 14px 24px;
-  background-color: #071d6a;
+  background-color: #21349a;
   color: white;
   border: none;
   border-radius: 8px;
@@ -213,9 +219,9 @@
 }
 
 .afa-submit-btn:hover:not(:disabled) {
-  background-color: #05205c;
+  background-color: #1a2a7d;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(7, 29, 106, 0.3);
+  box-shadow: 0 6px 12px rgba(33, 52, 154, 0.3);
 }
 
 .afa-submit-btn:active:not(:disabled) {
@@ -243,7 +249,7 @@
 .afa-success-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #21349a 0%, #1a2a7d 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -307,19 +313,19 @@
 }
 
 .afa-status-active {
-  color: #10b981;
+  color: #21349a;
   font-weight: 600;
 }
 
 .afa-status-inactive {
-  color: #ef4444;
+  color: #999;
   font-weight: 600;
 }
 
 .afa-back-btn {
   margin-top: 24px;
   padding: 12px 24px;
-  background-color: #071d6a;
+  background-color: #21349a;
   color: white;
   border: none;
   border-radius: 8px;
@@ -330,9 +336,9 @@
 }
 
 .afa-back-btn:hover {
-  background-color: #05205c;
+  background-color: #1a2a7d;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(7, 29, 106, 0.3);
+  box-shadow: 0 4px 8px rgba(33, 52, 154, 0.3);
 }
 
 /* Responsive Design */
@@ -421,7 +427,7 @@
 .afa-toggle-input:focus-visible + .afa-toggle-slider,
 .afa-submit-btn:focus-visible,
 .afa-back-btn:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #666;
   outline-offset: 2px;
 }
 
@@ -433,7 +439,7 @@
 
   .afa-submit-btn,
   .afa-back-btn {
-    border: 2px solid #071d6a;
+    border: 2px solid #21349a;
   }
 }
 

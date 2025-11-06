@@ -202,17 +202,19 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
           </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="ssu-submit-btn"
-          style={{
-            opacity: isSubmitting ? 0.7 : 1,
-            cursor: isSubmitting ? "not-allowed" : "pointer",
-          }}
-        >
-          {isSubmitting ? "Saving Settings..." : "Save Security Settings"}
-        </button>
+        <div className="ssu-form-actions">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="ssu-submit-btn"
+            style={{
+              opacity: isSubmitting ? 0.7 : 1,
+              cursor: isSubmitting ? "not-allowed" : "pointer",
+            }}
+          >
+            {isSubmitting ? "Saving Settings..." : "Save Security Settings"}
+          </button>
+        </div>
       </form>
     </div>
   );
