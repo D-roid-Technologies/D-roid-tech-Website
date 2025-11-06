@@ -785,6 +785,8 @@ export class AuthService {
             updatedData?.user?.staff?.staffDetails?.staffAccountNmber || "",
           staffAccountName:
             updatedData?.user?.staff?.staffDetails?.staffAccountName || "",
+          staffStartDate:
+            updatedData?.user?.staff?.staffDetails?.staffStartDate || "",
         };
         const updatedStaffDocuments = updatedData?.user?.staff?.staffDoc || {};
         const updatedStaffLeave = updatedData?.user?.staff?.staffLeave || [];
@@ -809,6 +811,13 @@ export class AuthService {
         store.dispatch(setAllMilestones(updatedProgressions));
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
+        // Keep onboarding.staffInfo in sync so StaffUserHomePage gets real data
+        try {
+          const { setStaffInfo } = await import("../slices/onboarding");
+          store.dispatch(setStaffInfo(updatedStaffDetails));
+        } catch (_) {
+          // ignore if slice not loaded
+        }
         store.dispatch(setStaffDocuments(updatedStaffDocuments));
         store.dispatch(setToolBox(toolBoxData));
         store.dispatch(setCalculate(calculateData));

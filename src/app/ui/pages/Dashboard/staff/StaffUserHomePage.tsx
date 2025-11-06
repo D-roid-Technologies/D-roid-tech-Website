@@ -40,6 +40,7 @@ import {
 } from "../../../../redux/slices/staffSlice";
 import EventPosts from "../../../components/blogPosts/Events";
 import { eventsPosts } from "../../../../utils/blogpost";
+import { formatStartDate } from "../../../../utils/isAboveSixMonths";
 
 type QuickActionCardProps = {
   title: string;
@@ -258,7 +259,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             },
             { date: "Requirements", event: "Complete 5 more events" },
           ],
-          
         };
       default:
         return { description: "", history: [] };
@@ -267,23 +267,18 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   // Get staff metrics from Redux state
   const { activeTasks, completedTasks, performanceScore, attendanceRate } =
     useSelector((state: RootState) => state.staff);
-console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
+  console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
+  console.log(">>>>>>>>>>>>>>>>staffInfo:", staffInfo);
 
   // Staff-specific stats for overview section
+  const startSince = formatStartDate(staffInfo?.staffStartDate);
   const staffStats = [
     {
       title: "Employment Status",
       value: "Active",
       change: `${
         staffInfo?.staffPosition || userDetails.position || "Staff"
-      } since ${
-        staffInfo?.staffStartDate
-          ? new Date(staffInfo.staffStartDate).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-            })
-          : "N/A"
-      }`,
+      }${startSince ? ` since ${startSince}` : ""}`,
       icon: FaIdCard,
       color: "green",
     },
@@ -309,7 +304,7 @@ console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
       change: `Next level: ${membershipTier?.nextTier || "Gold"}`,
       icon: FaStar,
       color: "orange",
-       button: true,
+      button: true,
     },
   ];
 
@@ -768,7 +763,6 @@ console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
             </div>
 
             <div style={{ borderTop: "1px solid #e5e7eb", paddingTop: "20px" }}>
-            
               <p
                 style={{
                   fontSize: "14px",
@@ -812,7 +806,13 @@ console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
 
               {/* Upgrade Button for Member Level */}
               {selectedStat.title === "Memeber Level" && (
-                <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: "1px solid #e5e7eb" }}>
+                <div
+                  style={{
+                    marginTop: "20px",
+                    paddingTop: "20px",
+                    borderTop: "1px solid #e5e7eb",
+                  }}
+                >
                   <button
                     onClick={handleUpgradeClick}
                     style={{
@@ -842,7 +842,7 @@ console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
           </div>
         )}
       </Modal>
-      
+
       {/* Dashboard Stats */}
       <div className="shp-section">
         <h2 className="shp-section-title">Quick Views</h2>
