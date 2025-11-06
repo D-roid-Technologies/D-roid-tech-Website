@@ -1,0 +1,460 @@
+.afa-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.afa-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.afa-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #555;
+  margin: 0 0 10px 0;
+}
+
+.afa-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.afa-form {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Styles */
+.afa-section {
+  margin-bottom: 25px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.afa-section-apps {
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+.afa-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #333;
+  color: #333;
+}
+
+/* Apps Grid Layout */
+.afa-apps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* App Card */
+.afa-app-card {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.afa-app-card:hover {
+  border-color: #999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.afa-app-card-active {
+  border-color: #21349a;
+  background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 100%);
+}
+
+.afa-app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.afa-app-info {
+  flex: 1;
+}
+
+.afa-app-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 6px 0;
+}
+
+.afa-app-description {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Toggle Switch */
+.afa-toggle-wrapper {
+  flex-shrink: 0;
+}
+
+.afa-toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.afa-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.afa-toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 28px;
+  transition: all 0.3s ease;
+}
+
+.afa-toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.afa-toggle-input:checked + .afa-toggle-slider {
+  background-color: #21349a;
+}
+
+.afa-toggle-input:checked + .afa-toggle-slider::before {
+  transform: translateX(24px);
+}
+
+.afa-toggle-input:focus + .afa-toggle-slider {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Badge */
+.afa-app-status-badge {
+  display: flex;
+  align-items: center;
+}
+
+.afa-badge-connected,
+.afa-badge-disconnected {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.afa-badge-connected {
+  background-color: #e8ecff;
+  color: #21349a;
+  border: 1px solid #d0d8ff;
+}
+
+.afa-badge-disconnected {
+  background-color: #f5f5f5;
+  color: #666;
+  border: 1px solid #e0e0e0;
+}
+
+.afa-badge-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Submit Button */
+
+.afa-form-actions {
+  display: flex;
+  justify-content: end;
+}
+
+.afa-submit-btn {
+  /* width: 100%; */
+  padding: 14px 24px;
+  background-color: #21349a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.afa-submit-btn:hover:not(:disabled) {
+  background-color: #1a2a7d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(33, 52, 154, 0.3);
+}
+
+.afa-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.afa-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success Container */
+.afa-success-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.afa-success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #21349a 0%, #1a2a7d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+}
+
+.afa-success-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.afa-success-message {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+}
+
+.afa-reference-box {
+  background-color: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.afa-reference-box strong {
+  display: block;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.afa-apps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.afa-app-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.afa-app-status span:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+.afa-status-active {
+  color: #21349a;
+  font-weight: 600;
+}
+
+.afa-status-inactive {
+  color: #999;
+  font-weight: 600;
+}
+
+.afa-back-btn {
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #21349a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.afa-back-btn:hover {
+  background-color: #1a2a7d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(33, 52, 154, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .afa-container {
+    padding: 15px;
+  }
+
+  .afa-form {
+    padding: 20px;
+  }
+
+  .afa-title {
+    font-size: 24px;
+  }
+
+  .afa-subtitle {
+    font-size: 14px;
+  }
+
+  .afa-section {
+    padding: 15px;
+  }
+
+  .afa-section-title {
+    font-size: 16px;
+  }
+
+  .afa-app-card {
+    padding: 16px;
+  }
+
+  .afa-app-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .afa-toggle-wrapper {
+    align-self: flex-start;
+  }
+
+  .afa-success-container {
+    padding: 30px 20px;
+  }
+
+  .afa-success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+
+  .afa-success-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .afa-container {
+    padding: 10px;
+  }
+
+  .afa-form {
+    padding: 15px;
+  }
+
+  .afa-title {
+    font-size: 20px;
+  }
+
+  .afa-submit-btn,
+  .afa-back-btn {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .afa-app-name {
+    font-size: 15px;
+  }
+
+  .afa-app-description {
+    font-size: 12px;
+  }
+}
+
+/* Focus indicators for accessibility */
+.afa-toggle-input:focus-visible + .afa-toggle-slider,
+.afa-submit-btn:focus-visible,
+.afa-back-btn:focus-visible {
+  outline: 2px solid #666;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .afa-app-card {
+    border-width: 3px;
+  }
+
+  .afa-submit-btn,
+  .afa-back-btn {
+    border: 2px solid #21349a;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .afa-app-card,
+  .afa-toggle-slider,
+  .afa-toggle-slider::before,
+  .afa-submit-btn,
+  .afa-back-btn {
+    transition: none;
+  }
+
+  .afa-submit-btn:hover:not(:disabled),
+  .afa-back-btn:hover {
+    transform: none;
+  }
+}

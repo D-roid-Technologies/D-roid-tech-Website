@@ -1,0 +1,434 @@
+.pru-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.pru-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pru-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #555;
+  margin: 0 0 10px 0;
+}
+
+.pru-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.pru-form {
+  /* background: #fafafa; */
+  /* border: 1px solid #e0e0e0; */
+  /* border-radius: 12px; */
+  /* padding: 30px; */
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05); */
+}
+
+/* Section Styles */
+.pru-section {
+  margin-bottom: 25px;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.pru-section-preferences {
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+.pru-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #333;
+  color: #333;
+}
+
+/* Preferences Grid Layout */
+.pru-preferences-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Preference Card */
+.pru-preference-card {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.pru-preference-card:hover {
+  border-color: #999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pru-preference-card:focus-within {
+  border-color: #21349a;
+  box-shadow: 0 0 0 3px rgba(33, 52, 154, 0.1);
+}
+
+.pru-preference-header {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.pru-preference-icon-wrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #21349a 0%, #1a2a7d 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pru-feature-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.pru-preference-content {
+  flex: 1;
+}
+
+.pru-preference-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 6px 0;
+}
+
+.pru-preference-description {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Select and Input Styles */
+.pru-select,
+.pru-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.pru-select:focus,
+.pru-input:focus {
+  outline: none;
+  border-color: #21349a;
+  box-shadow: 0 0 0 3px rgba(33, 52, 154, 0.1);
+}
+
+.pru-select:hover,
+.pru-input:hover {
+  border-color: #666;
+}
+
+.pru-input::placeholder {
+  color: #999;
+}
+
+/* Submit Button */
+.pru-form-actions {
+  display: flex;
+  justify-content: end;
+}
+.pru-submit-btn {
+  /* width: 100%; */
+  padding: 14px 24px;
+  background-color: #21349a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.pru-submit-btn:hover:not(:disabled) {
+  background-color: #1a2a7d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(33, 52, 154, 0.3);
+}
+
+.pru-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pru-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success Container */
+.pru-success-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.pru-success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #21349a 0%, #1a2a7d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+}
+
+.pru-success-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.pru-success-message {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+}
+
+.pru-reference-box {
+  background-color: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.pru-reference-box strong {
+  display: block;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.pru-preferences-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.pru-preference-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.pru-preference-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pru-preference-icon {
+  width: 18px;
+  height: 18px;
+  color: #21349a;
+}
+
+.pru-preference-status span:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+.pru-preference-value {
+  color: #21349a;
+  font-weight: 600;
+}
+
+.pru-back-btn {
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #21349a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pru-back-btn:hover {
+  background-color: #1a2a7d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(33, 52, 154, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pru-container {
+    padding: 15px;
+  }
+
+  .pru-form {
+    padding: 20px;
+  }
+
+  .pru-title {
+    font-size: 24px;
+  }
+
+  .pru-subtitle {
+    font-size: 14px;
+  }
+
+  .pru-section {
+    padding: 15px;
+  }
+
+  .pru-section-title {
+    font-size: 16px;
+  }
+
+  .pru-preference-card {
+    padding: 16px;
+  }
+
+  .pru-preference-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pru-preference-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pru-feature-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .pru-success-container {
+    padding: 30px 20px;
+  }
+
+  .pru-success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+
+  .pru-success-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pru-container {
+    padding: 10px;
+  }
+
+  .pru-form {
+    padding: 15px;
+  }
+
+  .pru-title {
+    font-size: 20px;
+  }
+
+  .pru-submit-btn,
+  .pru-back-btn {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .pru-preference-name {
+    font-size: 15px;
+  }
+
+  .pru-preference-description {
+    font-size: 12px;
+  }
+}
+
+/* Focus indicators for accessibility */
+.pru-select:focus-visible,
+.pru-input:focus-visible,
+.pru-submit-btn:focus-visible,
+.pru-back-btn:focus-visible {
+  outline: 2px solid #666;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .pru-preference-card {
+    border-width: 3px;
+  }
+
+  .pru-select,
+  .pru-input {
+    border-width: 2px;
+  }
+
+  .pru-submit-btn,
+  .pru-back-btn {
+    border: 2px solid #21349a;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pru-preference-card,
+  .pru-select,
+  .pru-input,
+  .pru-submit-btn,
+  .pru-back-btn {
+    transition: none;
+  }
+
+  .pru-submit-btn:hover:not(:disabled),
+  .pru-back-btn:hover {
+    transform: none;
+  }
+}
