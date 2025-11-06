@@ -69,7 +69,7 @@ const DocumentUploadUI: React.FC = () => {
       const fieldLabels: { [key: string]: string } = {
         meansOfIdentification: "Means of Identification",
         proofOfAddress: "Proof of Address",
-        educationCert: "Education Certificate",
+        educationCert: "Educational Certificate",
         resume: "Resume / CV",
         signature: "Signature",
         passport: "Passport",
@@ -170,7 +170,7 @@ const DocumentUploadUI: React.FC = () => {
       required: true,
     },
     { label: "Proof of Address", name: "proofOfAddress", required: true },
-    { label: "Education Certificate", name: "educationCert", required: true },
+    { label: "Educational Certificate", name: "educationCert", required: true },
     { label: "Resume / CV", name: "resume", required: true },
     { label: "Passport", name: "passport", required: true },
     { label: "Offer Letter", name: "offerLetter", required: true },
