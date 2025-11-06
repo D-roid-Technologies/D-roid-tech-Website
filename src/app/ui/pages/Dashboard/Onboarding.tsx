@@ -7,7 +7,7 @@ import { RootState } from "../../../redux/Store";
 import { UserType } from "../../../utils/Types";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
-import "./Onboarding.css";
+import styles from "./Onboarding.module.css";
 import toast from "react-hot-toast";
 
 const onboardingSteps = ["View Info", "Personal Info", "Documents", "Leave"];
@@ -138,7 +138,9 @@ const Onboarding: React.FC = () => {
 
       // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
-     
+      toast.success("Personal information updated successfully!", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
 
       setHasUpdatedPersonalInfo(true);
 
@@ -150,18 +152,12 @@ const Onboarding: React.FC = () => {
 
       // Dismiss loading toast and show error
       toast.dismiss(loadingToast);
-    
+      toast.error("Failed to update personal information. Please try again.", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
     } finally {
       setIsUpdating(false);
     }
-  };
-
-  const getInputStyle = (fieldName: string) => {
-    const hasError = validationErrors.includes(fieldName);
-    return {
-      ...inputStyle,
-      border: hasError ? "1px solid #EF4444" : "1px solid #D1D5DB",
-    };
   };
 
   const personalInfoFields = [
@@ -184,7 +180,7 @@ const Onboarding: React.FC = () => {
       case 0:
         return (
           <>
-            <h2 style={headingStyle}>View Personal Information</h2>
+            <h2 className={styles.heading}>View Personal Information</h2>
             <InfoField
               label="Your Position"
               value={staffDetails.staffPosition || "Not set"}
@@ -218,50 +214,46 @@ const Onboarding: React.FC = () => {
       case 1:
         return (
           <>
-            <h2 style={headingStyle}>
+            <h2 className={styles.heading}>
               {hasUpdatedPersonalInfo
                 ? "Edit Personal Information"
                 : "Update Personal Information"}
             </h2>
-            {personalInfoFields.map(
-              ({ label, name, required, type = "text" }) => (
-                <div key={name} style={{ position: "relative" }}>
-                  <input
-                    name={name}
-                    type={type}
-                    placeholder={label}
-                    value={getFormValue(name)}
-                    onChange={handleStaffDetailsChange}
-                    style={getInputStyle(name)}
-                    disabled={isUpdating}
-                  />
-                  {required && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        right: "10px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        color: "#EF4444",
-                      }}
-                    >
-                      *
-                    </span>
-                  )}
-                </div>
-              )
-            )}
-            <button
-              onClick={handleSubmit}
-              style={{
-                ...submitButtonStyle,
-                backgroundColor: isUpdating ? "#9CA3AF" : "#071D6A",
-                cursor: isUpdating ? "not-allowed" : "pointer",
-              }}
-              disabled={isUpdating}
-            >
-              {isUpdating ? "Updating..." : "Save Personal Info"}
-            </button>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              {personalInfoFields.map(
+                ({ label, name, required, type = "text" }) => {
+                  const inputClass = validationErrors.includes(name)
+                    ? `${styles.input} ${styles.inputError}`
+                    : styles.input;
+
+                  return (
+                    <div key={name} className={styles.inputGroup}>
+                      <input
+                        name={name}
+                        type={type}
+                        placeholder={label}
+                        value={getFormValue(name)}
+                        onChange={handleStaffDetailsChange}
+                        className={inputClass}
+                        disabled={isUpdating}
+                      />
+                      {required && (
+                        <span className={styles.requiredIndicator}>*</span>
+                      )}
+                    </div>
+                  );
+                }
+              )}
+              <button
+                type="submit"
+                className={`${styles.submitButton} ${
+                  isUpdating ? styles.submitButtonLoading : ""
+                }`}
+                disabled={isUpdating}
+              >
+                {isUpdating ? "Updating..." : "Save Personal Info"}
+              </button>
+            </form>
           </>
         );
       case 2:
@@ -269,7 +261,7 @@ const Onboarding: React.FC = () => {
       case 3:
         return (
           <>
-            <h2 style={headingStyle}>Leave Information</h2>
+            <h2 className={styles.heading}>Leave Information</h2>
             <Leave />
           </>
         );
@@ -279,100 +271,42 @@ const Onboarding: React.FC = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={headerStyle}>
-        <span style={{ color: "#6B7280" }}>
-          Complete your onboarding tasks.
-        </span>
-        <span style={{ fontSize: "0.875rem", color: "#6B7280" }}>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <span className={styles.subtitle}>Complete your onboarding tasks.</span>
+        <span className={styles.stepIndicator}>
           Step {currentStep + 1} of {onboardingSteps.length}
         </span>
       </div>
 
-      <div>
-        <div className="stepsStyle">
+      <div className={styles.tabsContainer}>
+        <div className={styles.tabsList}>
           {onboardingSteps.map((step, index) => (
             <button
               key={index}
               onClick={() => setCurrentStep(index)}
-              style={{
-                padding: "12px",
-                borderRadius: "9999px",
-                backgroundColor: currentStep === index ? "#071D6A" : "#E5E7EB",
-                color: currentStep === index ? "#FFFFFF" : "#4B5563",
-                border: "none",
-                cursor: "pointer",
-              }}
+              className={`${styles.tab} ${
+                currentStep === index ? styles.tabActive : ""
+              }`}
             >
               {step}
+              {currentStep === index && <div className={styles.tabIndicator} />}
             </button>
           ))}
         </div>
-        {renderStep()}
       </div>
+
+      <div className={styles.content}>{renderStep()}</div>
     </div>
   );
 };
 
 export default Onboarding;
 
-// --- Styled Components / Reusable Styles ---
-const headingStyle = {
-  fontSize: "1.125rem",
-  fontWeight: 600,
-  marginBottom: "1rem",
-  color: "#000000",
-};
-
-const inputStyle = {
-  padding: "0.75rem",
-  borderRadius: "0.5rem",
-  border: "1px solid #D1D5DB",
-  width: "100%",
-  marginBottom: "0.75rem",
-  fontSize: "0.875rem",
-};
-
-const submitButtonStyle = {
-  marginTop: "20px",
-  padding: "12px",
-  backgroundColor: "#071D6A",
-  color: "white",
-  border: "none",
-  borderRadius: "8px",
-  fontWeight: "bold",
-  cursor: "pointer",
-  width: "100%",
-};
-
-const containerStyle = {
-  maxWidth: "48rem",
-  margin: "2rem auto",
-  padding: "1.5rem",
-  backgroundColor: "#ffffff",
-  borderRadius: "0.75rem",
-  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-};
-
-const headerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "1.5rem",
-};
-
+// InfoField Component
 const InfoField = ({ label, value }: { label: string; value: string }) => (
-  <p
-    style={{
-      padding: "0.75rem",
-      borderRadius: "0.5rem",
-      border: "1px solid #D1D5DB",
-      width: "100%",
-      marginBottom: "0.75rem",
-      fontSize: "0.875rem",
-      color: "#000000",
-    }}
-  >
-    {label}: {value}
-  </p>
+  <div className={styles.infoField}>
+    <div className={styles.infoLabel}>{label}</div>
+    <div className={styles.infoValue}>{value}</div>
+  </div>
 );
