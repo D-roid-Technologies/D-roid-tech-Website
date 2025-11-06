@@ -3,14 +3,17 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { googleAppScriptService } from "../../googleAppScriptService/googleAppScriptService";
+import styles from "./DocumentUploadUI.module.css";
 
 const initialState = {
-  nationalId: null,
+  meansOfIdentification: null,
   proofOfAddress: null,
   educationCert: null,
   resume: null,
   medicalDoc: null,
   signature: null,
+  passport: null,
+  offerLetter: null,
 };
 
 const DocumentUploadUI: React.FC = () => {
@@ -23,11 +26,13 @@ const DocumentUploadUI: React.FC = () => {
   const userDetails = useSelector((state: RootState) => state.user);
 
   const requiredDocuments = [
-    "nationalId",
+    "meansOfIdentification",
     "proofOfAddress",
     "educationCert",
     "resume",
     "signature",
+    "passport",
+    "offerLetter",
   ];
 
   const handleFileChange = (
@@ -62,11 +67,13 @@ const DocumentUploadUI: React.FC = () => {
 
     if (missingDocuments.length > 0) {
       const fieldLabels: { [key: string]: string } = {
-        nationalId: "National ID",
+        meansOfIdentification: "Means of Identification",
         proofOfAddress: "Proof of Address",
         educationCert: "Education Certificate",
         resume: "Resume / CV",
         signature: "Signature",
+        passport: "Passport",
+        offerLetter: "Offer Letter",
       };
 
       const missingLabels = missingDocuments.map((doc) => fieldLabels[doc]);
@@ -135,8 +142,6 @@ const DocumentUploadUI: React.FC = () => {
           duration: 5000,
         });
 
-        // console.log("Upload results:", result);
-
         // Reset form
         setDocuments(initialState);
         document.querySelectorAll('input[type="file"]').forEach((input) => {
@@ -159,103 +164,65 @@ const DocumentUploadUI: React.FC = () => {
   };
 
   const fileFields = [
-    { label: "National ID", name: "nationalId", required: true },
+    {
+      label: "Means of Identification",
+      name: "meansOfIdentification",
+      required: true,
+    },
     { label: "Proof of Address", name: "proofOfAddress", required: true },
     { label: "Education Certificate", name: "educationCert", required: true },
     { label: "Resume / CV", name: "resume", required: true },
+    { label: "Passport", name: "passport", required: true },
+    { label: "Offer Letter", name: "offerLetter", required: true },
     { label: "Medical Documentation", name: "medicalDoc", required: false },
     { label: "Signature", name: "signature", required: true },
   ];
 
-  const getContainerStyle = (fieldName: string, isRequired: boolean) => {
-    const hasError = isRequired && validationErrors.includes(fieldName);
-    return {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "0.75rem",
-      borderRadius: "0.5rem",
-      border: hasError ? "1px solid #EF4444" : "1px solid #D1D5DB",
-      width: "100%",
-      marginBottom: "0.75rem",
-      backgroundColor: "#ffffff",
-      transition: "border-color 0.2s ease",
-    };
-  };
-
-  const labelStyle = {
-    fontSize: "0.875rem",
-    color: "#000000",
-    fontWeight: "500" as const,
-    flex: 1,
-  };
-
-  const fileInputStyle = {
-    fontSize: "0.875rem",
-    color: "#6B7280",
-  };
-
-  const submitButtonStyle = {
-    marginTop: "20px",
-    padding: "12px",
-    backgroundColor: "#071D6A",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    fontWeight: "bold",
-    cursor: "pointer",
-    width: "100%",
+  const getFileStatus = (fileName: string) => {
+    return documents[fileName] ? "Selected" : "Not selected";
   };
 
   return (
-    <div style={{ margin: "auto" }}>
-      <h2
-        style={{
-          color: "#000000",
-          fontSize: "1.125rem",
-          fontWeight: 600,
-          marginBottom: "1rem",
-        }}
-      >
-        Upload Required Documents
-      </h2>
-      <p style={{ fontSize: "14px", color: "#555", marginBottom: "1.5rem" }}>
+    <div className={styles.container}>
+      <h2 className={styles.header}>Upload Required Documents</h2>
+      <p className={styles.description}>
         These documents will be stored securely.
       </p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
-        {fileFields.map((field) => (
-          <div
-            key={field.name}
-            style={getContainerStyle(field.name, field.required)}
-          >
-            <div style={labelStyle}>
-              {field.label}
-              {field.required && (
-                <span style={{ color: "#EF4444", marginLeft: "4px" }}>*</span>
-              )}
-            </div>
+      <div className={styles.form}>
+        {fileFields.map((field) => {
+          const hasError =
+            field.required && validationErrors.includes(field.name);
+          const fieldContainerClass = hasError
+            ? `${styles.fieldContainer} ${styles.fieldContainerError}`
+            : styles.fieldContainer;
 
-            <input
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-              onChange={(e) => handleFileChange(e, field.name)}
-              style={fileInputStyle}
-              disabled={isUploading}
-            />
-          </div>
-        ))}
+          return (
+            <div key={field.name} className={fieldContainerClass}>
+              <div className={styles.label}>
+                {field.label}
+                {field.required && <span className={styles.required}>*</span>}
+              </div>
+
+              <input
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                onChange={(e) => handleFileChange(e, field.name)}
+                className={styles.fileInput}
+                disabled={isUploading}
+              />
+            </div>
+          );
+        })}
 
         <button
           onClick={handleUpload}
-          style={{
-            ...submitButtonStyle,
-            backgroundColor: isUploading ? "#9CA3AF" : "#071D6A",
-            cursor: isUploading ? "not-allowed" : "pointer",
-          }}
+          className={`${styles.submitButton} ${
+            isUploading ? styles.submitButtonLoading : ""
+          }`}
           disabled={isUploading}
         >
-          {isUploading ? "Uploading..." : "Upload"}
+          {isUploading ? "Uploading..." : "Upload Documents"}
         </button>
       </div>
     </div>
