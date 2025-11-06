@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
+import { googleAppScriptService } from "../../googleAppScriptService/googleAppScriptService";
 
 const initialState = {
   nationalId: null,
@@ -17,6 +20,8 @@ const DocumentUploadUI: React.FC = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
+  const userDetails = useSelector((state: RootState) => state.user);
+
   const requiredDocuments = [
     "nationalId",
     "proofOfAddress",
@@ -30,8 +35,15 @@ const DocumentUploadUI: React.FC = () => {
     name: string
   ) => {
     const file = e.target.files?.[0] || null;
+
+    // Validate file size (10MB limit)
+    if (file && file.size > 10 * 1024 * 1024) {
+      toast.error(`File size should be less than 10MB: ${file.name}`);
+      return;
+    }
+
     setDocuments({ ...documents, [name]: file });
-    // Clear validation error for this field when user selects a file
+
     if (file && validationErrors.includes(name)) {
       setValidationErrors(validationErrors.filter((error) => error !== name));
     }
@@ -58,13 +70,36 @@ const DocumentUploadUI: React.FC = () => {
       };
 
       const missingLabels = missingDocuments.map((doc) => fieldLabels[doc]);
-      toast.error(`Please upload the following required documents`, {
-        style: { background: "#ff4d4f", color: "#fff", width: "600px" },
-      });
+      toast.error(
+        `Please upload the following required documents: ${missingLabels.join(
+          ", "
+        )}`,
+        {
+          style: { background: "#ff4d4f", color: "#fff" },
+        }
+      );
       return false;
     }
 
     return true;
+  };
+
+  const getUserIdentifier = () => {
+    return (
+      userDetails.uniqueId || // From primaryInformation
+      userDetails.staffId || // Alternative staff ID
+      userDetails.email || // Email as fallback
+      `user-${Date.now()}` // Final fallback
+    );
+  };
+
+  // Helper function to get user name
+  const getUserName = () => {
+    return (
+      `${userDetails.firstName || ""} ${userDetails.lastName || ""}`.trim() || // First + Last name
+      userDetails.email?.split("@")[0] || // Use email username as fallback
+      "Unknown User" // Final fallback
+    );
   };
 
   const handleUpload = async () => {
@@ -75,28 +110,41 @@ const DocumentUploadUI: React.FC = () => {
 
     setIsUploading(true);
 
-    // Show loading toast
-    const loadingToast = toast.loading("Uploading documents...", {
-      style: { background: "#1890ff", color: "#fff" },
-    });
+    // Show loading toast with longer duration
+    const loadingToast = toast.loading(
+      "Uploading documents... This may take a few minutes for large files.",
+      {
+        style: { background: "#1890ff", color: "#fff" },
+        duration: 120000, // 2 minutes max for loading state
+      }
+    );
 
     try {
-      // Simulate upload process
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const result = await googleAppScriptService.uploadDocuments(
+        documents,
+        getUserIdentifier(),
+        getUserName()
+      );
 
-      for (const [key, file] of Object.entries(documents)) {
-        if (file) {
-          const storageRef = `users/uploads/${key}/${file.name}`;
-          console.log(`Uploading ${file.name} to ${storageRef}`);
-          // Add your actual upload logic here
-        }
-      }
-
-      // Dismiss loading toast and show success
+      // Dismiss loading toast
       toast.dismiss(loadingToast);
-      toast.success("Documents uploaded successfully!", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
+
+      if (result.success) {
+        toast.success("Documents uploaded successfully!", {
+          style: { background: "#4BB543", color: "#fff" },
+          duration: 5000,
+        });
+
+        // console.log("Upload results:", result);
+
+        // Reset form
+        setDocuments(initialState);
+        document.querySelectorAll('input[type="file"]').forEach((input) => {
+          (input as HTMLInputElement).value = "";
+        });
+      } else {
+        throw new Error(result.error || "Upload failed");
+      }
     } catch (error) {
       console.error("Upload failed:", error);
 
@@ -172,8 +220,7 @@ const DocumentUploadUI: React.FC = () => {
         Upload Required Documents
       </h2>
       <p style={{ fontSize: "14px", color: "#555", marginBottom: "1.5rem" }}>
-        These documents will be stored securely - be rest assured your personal
-        documents are in safe hands.
+        These documents will be stored securely.
       </p>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
@@ -182,20 +229,16 @@ const DocumentUploadUI: React.FC = () => {
             key={field.name}
             style={getContainerStyle(field.name, field.required)}
           >
-            {/* Document label on the left */}
             <div style={labelStyle}>
-              {documents[field.name]
-                ? documents[field.name]?.name
-                : field.label}
+              {field.label}
               {field.required && (
                 <span style={{ color: "#EF4444", marginLeft: "4px" }}>*</span>
               )}
             </div>
 
-            {/* File input on the right */}
             <input
               type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
+              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
               onChange={(e) => handleFileChange(e, field.name)}
               style={fileInputStyle}
               disabled={isUploading}
@@ -212,7 +255,7 @@ const DocumentUploadUI: React.FC = () => {
           }}
           disabled={isUploading}
         >
-          {isUploading ? "Uploading..." : "Upload Documents"}
+          {isUploading ? "Uploading..." : "Upload"}
         </button>
       </div>
     </div>
