@@ -361,7 +361,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
             is missing from your profile.
           </p>
           <div style={styles.errorDetails}>
-            <h4>Missing Information:</h4>
+            <h4 style={{color:"#e01947ff",fontWeight:"bold",fontSize:"1rem",textAlign:"center"}}>Missing Information:</h4>
             <pre style={styles.errorList}>{validationError}</pre>
           </div>
           <p style={styles.errorInstruction}>
