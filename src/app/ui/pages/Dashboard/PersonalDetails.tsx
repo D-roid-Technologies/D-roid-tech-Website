@@ -480,6 +480,7 @@ const PersonalDetails: React.FunctionComponent = () => {
     } catch (error) {
       setSubmitStatus("error");
       setErrors({ submit: "Failed to update information. Please try again." });
+      console.log("error>>>>>>>>>>>>>", error);
     } finally {
       setIsSubmitting(false);
     }

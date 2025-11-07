@@ -267,8 +267,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   // Get staff metrics from Redux state
   const { activeTasks, completedTasks, performanceScore, attendanceRate } =
     useSelector((state: RootState) => state.staff);
-  console.log("Start Date in staffInfo:", staffInfo?.staffStartDate);
-  console.log(">>>>>>>>>>>>>>>>staffInfo:", staffInfo);
+  
 
   // Staff-specific stats for overview section
   const startSince = formatStartDate(staffInfo?.staffStartDate);
@@ -397,6 +396,9 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
       case "Submit Timesheet":
         setSelectedMenu("Tasks");
         break;
+      case "Manage Tasks":
+        setSelectedMenu("Tasks");
+        break;
       case "Start Training":
         setSelectedMenu("Training");
         break;
@@ -420,11 +422,17 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
       variant: "secondary",
     },
     {
-      title: "Submit Timesheet",
-      description: "Log your weekly hours",
+      title: "Manage Tasks",
+      description: "Track and update your assigned tasks",
       icon: FaClipboardList,
-      variant: "default",
+      variant: "primary",
     },
+    // {
+    //   title: "Submit Timesheet",
+    //   description: "Log your weekly hours",
+    //   icon: FaClipboardList,
+    //   variant: "default",
+    // },
     {
       title: "Start Training",
       description: "Continue learning modules",

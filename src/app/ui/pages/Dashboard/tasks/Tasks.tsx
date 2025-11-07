@@ -109,7 +109,6 @@ const Tasks: React.FC<TasksProps> = ({ itemsPerPage = 6 }) => {
                 key={status}
                 onClick={() => setActiveTab(status)}
                 className={`${styles.tab} ${activeTab === status ? styles.tabActive : ""}`}
-                aria-selected={activeTab === status}
               >
                 <div className={`${styles.statusBadge} ${styles[statusColors[status]]}`}></div>
                 <span>{label}</span>
