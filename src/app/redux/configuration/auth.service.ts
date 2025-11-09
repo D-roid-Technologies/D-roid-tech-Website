@@ -972,7 +972,7 @@ export class AuthService {
 
       // Add new entry
       await updateDoc(userDocRef, {
-        "staff.staffSignInAndOut": arrayUnion(entry),
+        "user.staff.staffSignInAndOut": arrayUnion(entry),
       });
 
       // Fetch updated document

@@ -22,6 +22,27 @@ const ChessRegistration: React.FC = () => {
     age: "",
   });
 
+  const [formDataTwo, setFormDataTwo] = useState({ email: "" });
+
+
+  const emails = [
+    "vitusvictor41@gmail.com",
+    "eariemi@yahoo.com",
+    "joshuanwachuks@gmail.com",
+    "uzoike08@gmail.com",
+    "buchynwani@gmail.com",
+    "naseefmuhammed537@gmail.com",
+    "ohis.asikhia@gmail.com",
+    "macdonaldvincento414@gmail.com",
+    "ushierapheal502@gmail.com",
+    "bostonhillary@gmail.com",
+    "quadriadewale022@gmail.com",
+    "samuelekam04@gmail.com"
+  ];
+
+
+  const [formOne, setFormOne] = useState(true)
+
   const toggleForm = () => {
     setShowForm((prev) => !prev);
   };
@@ -34,11 +55,43 @@ const ChessRegistration: React.FC = () => {
     });
   };
 
+  const handleChangeA = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormDataTwo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const generateReferenceNumber = (): string => {
     const prefix = "DT";
     const timestamp = Date.now().toString(36); // Base36 for compact form
     const random = Math.random().toString(36).substring(2, 8).toUpperCase();
     return `${prefix}-${timestamp}-${random}`;
+  };
+
+  const [message, setMessage] = useState<string | null>(null);
+  const [reference, setReference] = useState<string | null>(null);
+
+  const generateReference = (): string => {
+    const randomNum = Math.floor(100000 + Math.random() * 900000);
+    return `REF-${randomNum}`;
+  };
+
+  const handleCheck = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // <-- FIX: use formDataTwo (not formData)
+    const userEmail = formDataTwo.email.trim().toLowerCase();
+
+    if (emails.includes(userEmail)) {
+      const ref = generateReference();
+      setReference(ref);
+      setMessage("✅ You are successfully registered!");
+    } else {
+      setReference(null);
+      setMessage("❌ You are not registered yet.");
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -154,83 +207,152 @@ const ChessRegistration: React.FC = () => {
       {/* Registration Form */}
       {/* {showForm && ( */}
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h3 className={styles.title}>Chess Competition Registration</h3>
+        <h3 className={styles.title}>Chess Competition Registration - (Clash of Kings 2025)</h3>
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}>
+          <button onClick={() => {
+            setFormOne(false)
+          }}
+            style={{
+              backgroundColor: "transparent",
+              color: "blue",
+            }}>Check your Registration Update</button>
+        </div>
 
         {/* Form Fields */}
-        <div className={styles.field}>
-          <label>First Name</label>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        {formOne ? (<div>
+          <div className={styles.field}>
+            <label>First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className={styles.field}>
-          <label>Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className={styles.field}>
+            <label>Last Name</label>
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className={styles.field}>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className={styles.field}>
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className={styles.field}>
-          <label>Rating (e.g., FIDE, National, or Estimated)</label>
-          <input
-            type="number"
-            name="rating"
-            value={formData.rating}
-            onChange={handleChange}
-            placeholder="Enter your chess rating"
-            required
-          />
-        </div>
+          <div className={styles.field}>
+            <label>Rating (e.g., FIDE, National, or Estimated)</label>
+            <input
+              type="number"
+              name="rating"
+              value={formData.rating}
+              onChange={handleChange}
+              placeholder="Enter your chess rating"
+              required
+            />
+          </div>
 
-        <div className={styles.field}>
-          <label>Lichess Username</label>
-          <input
-            type="text"
-            name="lichess"
-            value={formData.lichess}
-            onChange={handleChange}
-            placeholder="Enter your lichess.org username"
-            required
-          />
-        </div>
+          <div className={styles.field}>
+            <label>Lichess Username</label>
+            <input
+              type="text"
+              name="lichess"
+              value={formData.lichess}
+              onChange={handleChange}
+              placeholder="Enter your lichess.org username"
+              required
+            />
+          </div>
 
-        <div className={styles.field}>
-          <label>Age</label>
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            min="6"
-            required
-          />
-        </div>
+          <div className={styles.field}>
+            <label>Age</label>
+            <input
+              type="number"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+              min="6"
+              required
+            />
+          </div>
 
-        <p className={styles.fee}>Registration Fee: ₦1000</p>
+          <p className={styles.fee}>Registration Fee: ₦1000</p>
 
-        <button type="submit" className={styles.submitBtn}>
-          Submit & Pay
-        </button>
+          <button type="submit" className={styles.submitBtn}>
+            Submit & Pay
+          </button>
+        </div>) : (<div>
+          <div className={styles.field}>
+            <label>Check Registered Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formDataTwo.email}
+              onChange={handleChangeA}
+              required
+            />
+            <button
+              className={styles.submitBtn}
+              style={{ marginTop: 20 }}
+              onClick={handleCheck}
+            >
+              Check my Registration
+            </button>
+
+            {message && (
+              <div style={{ marginTop: 20 }}>
+                <p>{message}</p>
+
+                {reference && (
+                  <>
+                    <p>
+                      Your reference number: <strong>{reference}</strong>
+                    </p>
+
+                    {/* 👇 Add your next-step instructions here */}
+                    <div style={{ marginTop: 10 }}>
+                      <h4>Next Steps:</h4>
+                      <ul style={{ lineHeight: 1.6 }}>
+                        <li>Save your reference number for future confirmation.</li>
+                        <li>Check your email inbox (and spam folder) for a confirmation message.</li>
+                        <li>Join our Play Arena on Chess.com - https://www.chess.com/club/clash-of-kings-3/join/4e0b3b</li>
+                        <li>Create a video stating your name and that you would be participating in the "Clash of Kings, 2025". and send this to the D'roid Technilogies enail at team@droidtechhq.com.</li>
+                        <li>Finally, send in your reference number on the chess.com group to verify your attendance.</li>
+                      </ul>
+                    </div>
+                  </>
+                )}
+
+                {!reference && (
+                  <div style={{ marginTop: 10 }}>
+                    <p>
+                      If you believe you have registered but your email isn’t found, please
+                      contact our registration support team for assistance.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+          </div>
+        </div>)}
       </form>
       {/* // )} */}
     </div>
