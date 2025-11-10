@@ -122,7 +122,7 @@ const DocumentUploadUI: React.FC = () => {
       "Uploading documents... This may take a few minutes for large files.",
       {
         style: { background: "#1890ff", color: "#fff" },
-        duration: 120000, // 2 minutes max for loading state
+        duration: 600000, 
       }
     );
 

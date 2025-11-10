@@ -26,7 +26,8 @@ export const googleAppScriptService = {
     userName: string
   ): Promise<UploadResponse> {
     const SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbzDEqviSBpH3EV-BQNxY9tnUlLkRgJYDfcymhcbe6MHpisqIhFWsIgUMUpM-iAVCQ/exec";
+      // "https://script.google.com/macros/s/AKfycbzDEqviSBpH3EV-BQNxY9tnUlLkRgJYDfcymhcbe6MHpisqIhFWsIgUMUpM-iAVCQ/exec";
+      "https://script.google.com/macros/s/AKfycbyV49kFEvVJ383DZtYkBJHLVJZKR3bH7gXpGF8tMUZGH5mIYhGhlw7drXnwxJquT6Qb/exec";
 
     // Convert files to base64 and prepare payload
     const documentPayloads: DocumentData[] = [];
