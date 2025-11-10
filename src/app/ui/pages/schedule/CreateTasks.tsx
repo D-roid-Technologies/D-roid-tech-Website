@@ -228,15 +228,15 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
           id: Date.now(),
           title: "New Task Created",
           message: `Task "${formData.title}" has been created successfully with ${formData.priority} priority.`,
-          date: now.toISOString().split('T')[0],
+          date: now.toISOString().split("T")[0],
           time: now.toISOString(), // Store full ISO timestamp for real-time calculation
           type: "info",
           isRead: false,
         };
-        
+
         // Dispatch notification to Redux store
         dispatch(addNotification(notification));
-        
+
         handleReset();
       });
     } catch (error) {
@@ -457,47 +457,6 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                   </div>
                 </Listbox>
               </div>
-
-              {/* <input
-                type="text"
-                name="category"
-                value={formData.category}
-                onChange={handleInputChange}
-                placeholder="Category"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                name="projectId"
-                value={formData.projectId}
-                onChange={handleInputChange}
-                placeholder="Project ID"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                name="boardColumn"
-                value={formData.boardColumn}
-                onChange={handleInputChange}
-                placeholder="Board Column"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                name="sprintId"
-                value={formData.sprintId}
-                onChange={handleInputChange}
-                placeholder="Sprint ID"
-                className={styles.input}
-              />
-              <input
-                type="text"
-                name="parentTaskId"
-                value={formData.parentTaskId}
-                onChange={handleInputChange}
-                placeholder="Parent Task ID"
-                className={styles.input}
-              /> */}
             </div>
           </div>
 

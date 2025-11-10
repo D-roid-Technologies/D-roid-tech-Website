@@ -5,6 +5,7 @@ import { Task, EventsMap, makeId } from "./types";
 import styles from "./styles";
 import { Modal } from "../Dashboard/micro-ui/modal";
 import "../schedule/DayPanel.css";
+import CreateTasks from "./CreateTasks";
 
 type Props = {
   selectedDate: Dayjs | null;
@@ -154,7 +155,11 @@ const DayPanel: React.FC<Props> = ({
               title=""
               description=""
             >
-              <p>task here</p>
+              <CreateTasks
+                onBack={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
               <button className="shp-view-all-notifications">
                 View All Notifications
               </button>

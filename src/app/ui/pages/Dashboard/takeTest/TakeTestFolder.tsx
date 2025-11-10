@@ -120,14 +120,14 @@ const TakeTestFolder = () => {
   };
 
   return (
-    <div className="ttf-wrapper ">
-      {/* <div className="ttf-wrapper soft-dev-wrapper"></div> */}
+    // <div className="ttf-wrapper ">
+    <div className="ttf-wrapper soft-dev-wrapper">
       <span className="ttf-header soft-dev-header title_span">
         Test Your Knowledge
       </span>
 
-      {/* <div className="ttf-content soft-dev-content"> */}
-      <div className="ttf-content ">
+      <div className="ttf-content soft-dev-content">
+        {/* <div className="ttf-content "> */}
         {/* FIXED: Show Quiz Component when showQuiz is true */}
         {showQuiz && selectedTest && !quizResults ? (
           <QuizComponents
