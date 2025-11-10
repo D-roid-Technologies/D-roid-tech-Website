@@ -8,7 +8,10 @@ export type MemberStat = {
   change: string;
   icon: React.ComponentType; // react-icons type
   color: string;
+  button?: boolean;  
+
 };
+
 
 const initialState: MemberStat[] = [
   {
@@ -38,6 +41,7 @@ const initialState: MemberStat[] = [
     change: "Next level: Platinum",
     icon: FaAward,
     color: "orange",
+    button: true,
   },
 ];
 
@@ -47,12 +51,18 @@ export const memberStatsSlice = createSlice({
   reducers: {
     updateStat: (
       state,
-      action: PayloadAction<{ index: number; value: string; change?: string }>
+      action: PayloadAction<{ 
+        index: number; 
+        value: string; 
+        change?: string;
+        button?: boolean;
+      }>
     ) => {
-      const { index, value, change } = action.payload;
+      const { index, value, change, button } = action.payload;
       if (state[index]) {
         state[index].value = value;
         if (typeof change === "string") state[index].change = change;
+        if (typeof button === "boolean") state[index].button = button;  
       }
     },
     resetStats: () => initialState,
