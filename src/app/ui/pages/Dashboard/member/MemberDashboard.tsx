@@ -395,63 +395,65 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     );
   }, [user, trainings, membershipTier]);
 
-  const getStatDetails = (title: string) => {
-    switch (title) {
-      case "Membership Status":
-        return {
-          description:
-            "Your current membership status and standing with the organization.",
-          // history: [
-          //   { date: "Jan 2023", event: "Membership Activated" },
-          //   { date: "Jun 2023", event: "Upgraded to Silver" },
-          //   { date: "Dec 2023", event: "Status: Active" },
-          // ],
-        };
-      case "Points Balance":
-        return {
-          description:
-            "Accumulated points from events, activities, and contributions.",
-          history: [
-            {
-              date: "This Week",
-              event: `Earned ${user?.performanceScore || 0} points`,
-            },
-            { date: "Last Month", event: "Redeemed 500 points" },
-            { date: "3 Months Ago", event: "Bonus: 200 points" },
-          ],
-        };
-      case "Events Attended":
-        return {
-          description:
-            "Total events and training sessions you've participated in.",
-          history: trainings
-            .filter((t: any) => t?.completed)
-            .slice(0, 5)
-            .map((t: any) => ({
-              date: t.date || "Recent",
-              event: t.name || "Training Session",
-            })),
-        };
-      case "Member Level":
-        return {
-          description:
-            "Your membership tier and progress toward the next level.",
-          history: [
-            {
-              date: "Current",
-              event: `${membershipTier?.tier || "Gold"} Member`,
-            },
-            {
-              date: "Next Goal",
-              event: membershipTier?.nextTier || "Platinum",
-            },
-            { date: "Requirements", event: "Complete 5 more events" },
-          ],
-        };
-      default:
-        return { description: "", history: [] };
-    }
-  };
+const handleUpgradeClick = () => {
+  setSelectedMenu("Progressions");
+  setStatModalOpen(false);
+};
+
+// Update the getStatDetails function - find the "Member Level" case and add the button property:
+const getStatDetails = (title: string) => {
+  switch (title) {
+    case "Membership Status":
+      return {
+        description:
+          "Your current membership status and standing with the organization.",
+      };
+    case "Points Balance":
+      return {
+        description:
+          "Accumulated points from events, activities, and contributions.",
+        history: [
+          {
+            date: "This Week",
+            event: `Earned ${user?.performanceScore || 0} points`,
+          },
+          { date: "Last Month", event: "Redeemed 500 points" },
+          { date: "3 Months Ago", event: "Bonus: 200 points" },
+        ],
+      };
+    case "Events Attended":
+      return {
+        description:
+          "Total events and training sessions you've participated in.",
+        history: trainings
+          .filter((t: any) => t?.completed)
+          .slice(0, 5)
+          .map((t: any) => ({
+            date: t.date || "Recent",
+            event: t.name || "Training Session",
+          })),
+      };
+    case "Member Level":
+      return {
+        description:
+          "Your membership tier and progress toward the next level.",
+        history: [
+          {
+            date: "Current",
+            event: `${membershipTier?.tier || "Gold"} Member`,
+          },
+          {
+            date: "Next Goal",
+            event: membershipTier?.nextTier || "Platinum",
+          },
+          { date: "Requirements", event: "Complete 5 more events" },
+        ],
+        button: true, // ✅ Add this
+      };
+    default:
+      return { description: "", history: [] };
+  }
+};
 
   return (
     <div className="shp-homepage-container">
@@ -604,7 +606,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                 value={stat.value}
                 change={stat.change}
                 icon={stat.icon}
-                onClick={() => handleStatClick(stat)} // 🔥 IMPROVED: Opens modal with stat details
+ onClick={() => handleStatClick(stat)}
+        button={stat.button} 
+        onButtonClick={stat.button ? handleUpgradeClick : undefined} 
               />
             ))}
         </div>
