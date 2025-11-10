@@ -395,65 +395,54 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     );
   }, [user, trainings, membershipTier]);
 
-const handleUpgradeClick = () => {
-  setSelectedMenu("Progressions");
-  setStatModalOpen(false);
-};
+  const handleUpgradeClick = () => {
+    setSelectedMenu("Progressions");
+    setStatModalOpen(false);
+  };
 
-// Update the getStatDetails function - find the "Member Level" case and add the button property:
-const getStatDetails = (title: string) => {
-  switch (title) {
-    case "Membership Status":
-      return {
-        description:
-          "Your current membership status and standing with the organization.",
-      };
-    case "Points Balance":
-      return {
-        description:
-          "Accumulated points from events, activities, and contributions.",
-        history: [
-          {
-            date: "This Week",
-            event: `Earned ${user?.performanceScore || 0} points`,
-          },
-          { date: "Last Month", event: "Redeemed 500 points" },
-          { date: "3 Months Ago", event: "Bonus: 200 points" },
-        ],
-      };
-    case "Events Attended":
-      return {
-        description:
-          "Total events and training sessions you've participated in.",
-        history: trainings
-          .filter((t: any) => t?.completed)
-          .slice(0, 5)
-          .map((t: any) => ({
-            date: t.date || "Recent",
-            event: t.name || "Training Session",
-          })),
-      };
-    case "Member Level":
-      return {
-        description:
-          "Your membership tier and progress toward the next level.",
-        history: [
-          {
-            date: "Current",
-            event: `${membershipTier?.tier || "Gold"} Member`,
-          },
-          {
-            date: "Next Goal",
-            event: membershipTier?.nextTier || "Platinum",
-          },
-          { date: "Requirements", event: "Complete 5 more events" },
-        ],
-        button: true, // ✅ Add this
-      };
-    default:
-      return { description: "", history: [] };
-  }
-};
+  // Update the getStatDetails function - find the "Member Level" case and add the button property:
+  const getStatDetails = (title: string) => {
+    switch (title) {
+      case "Membership Status":
+        return {
+          description:
+            "Your current membership status and standing with the organization.",
+        };
+      case "Points Balance":
+        return {
+          description:
+            "Accumulated points from events, activities, and contributions.",
+          history: [
+            {
+              date: "This Week",
+              event: `Earned ${user?.performanceScore || 0} points`,
+            },
+            { date: "Last Month", event: "Redeemed 500 points" },
+            { date: "3 Months Ago", event: "Bonus: 200 points" },
+          ],
+        };
+      case "Events Attended":
+        return {
+          description:
+            "Total events and training sessions you've participated in.",
+          history: trainings
+            .filter((t: any) => t?.completed)
+            .slice(0, 5)
+            .map((t: any) => ({
+              date: t.date || "Recent",
+              event: t.name || "Training Session",
+            })),
+        };
+      case "Member Level":
+        return {
+       
+          button: true,
+          nextTier: membershipTier?.nextTier || "Platinum",
+        };
+      default:
+        return { description: "", history: [] };
+    }
+  };
 
   return (
     <div className="shp-homepage-container">
@@ -584,7 +573,7 @@ const getStatDetails = (title: string) => {
               </div> */}
             </div>
           </div>
-           <div className="shp-time-info">
+          <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
             <div className="shp-current-date">{formatDate(currentTime)}</div>
           </div>
@@ -606,9 +595,9 @@ const getStatDetails = (title: string) => {
                 value={stat.value}
                 change={stat.change}
                 icon={stat.icon}
- onClick={() => handleStatClick(stat)}
-        button={stat.button} 
-        onButtonClick={stat.button ? handleUpgradeClick : undefined} 
+                onClick={() => handleStatClick(stat)}
+                button={stat.button}
+                onButtonClick={stat.button ? handleUpgradeClick : undefined}
               />
             ))}
         </div>
@@ -654,15 +643,7 @@ const getStatDetails = (title: string) => {
             </div>
 
             <div style={{ borderTop: "1px solid #e5e7eb", paddingTop: "20px" }}>
-              <h3
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  marginBottom: "12px",
-                }}
-              >
-                Details
-              </h3>
+             
               <p
                 style={{
                   fontSize: "14px",
@@ -703,6 +684,35 @@ const getStatDetails = (title: string) => {
                   )
                 )}
               </div>
+
+              {/* Upgrade Button - Only shown for Member Level */}
+              {getStatDetails(selectedStat.title).button && (
+                <div style={{ marginTop: "20px" }}>
+                  <button
+                    onClick={handleUpgradeClick}
+                    style={{
+                      width: "100%",
+                      padding: "12px 24px",
+                      backgroundColor: "#2563eb",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "8px",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      transition: "background-color 0.2s",
+                    }}
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.backgroundColor = "#1d4ed8")
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.backgroundColor = "#2563eb")
+                    }
+                  >
+                    Upgrade 
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}
