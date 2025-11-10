@@ -6,6 +6,7 @@ import styles from "./styles";
 import { Modal } from "../Dashboard/micro-ui/modal";
 import "../schedule/DayPanel.css";
 import CreateTasks from "./CreateTasks";
+import CalendarCreateTask from "./CalendarCreateTask";
 
 type Props = {
   selectedDate: Dayjs | null;
@@ -145,7 +146,10 @@ const DayPanel: React.FC<Props> = ({
 
           {/* Create form */}
           <div className="dayPanel-createSection">
-            <button className="dayPanel-createBtn">
+            <button
+              className="dayPanel-createBtn"
+              onClick={() => setNotificationModalOpen(true)}
+            >
               Create a new task / event
             </button>
 
@@ -155,14 +159,16 @@ const DayPanel: React.FC<Props> = ({
               title=""
               description=""
             >
-              <CreateTasks
+              {/* <CreateTasks
+                onBack={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              /> */}
+              <CalendarCreateTask
                 onBack={function (): void {
                   throw new Error("Function not implemented.");
                 }}
               />
-              <button className="shp-view-all-notifications">
-                View All Notifications
-              </button>
             </Modal>
           </div>
 
