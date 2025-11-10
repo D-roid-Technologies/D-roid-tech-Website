@@ -389,6 +389,15 @@
 }
 
 @media (max-width: 480px) {
+  .ttf-test-list {
+    flex-direction: column;
+  }
+
+  .ttf-test-item {
+    width: 100%;
+    /* flex: 0 0 100%; */
+  }
+
   .ttf-details-card {
     padding: 15px;
     margin: 0 5px;

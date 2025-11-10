@@ -30,9 +30,9 @@
 
 .formWrapper {
   min-height: 300px;
-  padding: 30px;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  /* padding: 30px; */
+  /* border: 1px solid #e0e0e0; */
+  /* border-radius: 12px; */
   background-color: #fafafa;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
 }

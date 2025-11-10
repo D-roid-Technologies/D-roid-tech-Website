@@ -1,0 +1,375 @@
+/* DayPanel.css */
+
+.dayPanel-container {
+  /* inherits from styles.sidePanel */
+}
+
+.dayPanel-noSelection {
+  /* inherits from styles.noSelection */
+}
+
+.dayPanel-header {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.dayPanel-eventBox {
+  /* inherits from styles.eventBox */
+}
+
+.dayPanel-loginBtn {
+  /* inherits from styles.loginBtn */
+}
+
+.dayPanel-taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dayPanel-taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #eef2f7;
+  gap: 12px;
+}
+
+.dayPanel-taskTitle {
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.dayPanel-taskMeta {
+  font-size: 0.85rem;
+  color: #64748b;
+  word-break: break-word;
+}
+
+.dayPanel-taskActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.dayPanel-viewBtn {
+  background-color: #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.dayPanel-editBtn {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.dayPanel-deleteBtn {
+  background-color: #ef4444;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.dayPanel-clearAllContainer {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.dayPanel-clearAllBtn {
+  background-color: #ef4444;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dayPanel-createSection {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  border-top: 1px dashed #e6eef6;
+  padding-top: 12px;
+}
+
+.dayPanel-createBtn {
+  color: #374151;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+}
+
+.dayPanel-viewingPanel {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fffaf0;
+  border: 1px solid #f5e1a8;
+}
+
+.dayPanel-viewingTitle {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.dayPanel-viewingMeta {
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.dayPanel-viewingDescription {
+  margin-top: 8px;
+  word-break: break-word;
+}
+
+.dayPanel-viewingDate {
+  font-size: 13px;
+  color: #374151;
+  margin-top: 8px;
+}
+
+.dayPanel-viewingActions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.dayPanel-editingPanel {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f7faff;
+  border: 1px solid #dcecff;
+}
+
+.dayPanel-editingTitle {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.dayPanel-editingForm {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dayPanel-input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dayPanel-textarea {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  resize: vertical;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.dayPanel-dateRow {
+  display: flex;
+  gap: 8px;
+}
+
+.dayPanel-dateField {
+  flex: 1;
+  min-width: 0;
+}
+
+.dayPanel-dateLabel {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.dayPanel-dateInput {
+  width: 100%;
+  padding: 0.45rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.dayPanel-editingActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.dayPanel-cancelBtn {
+  /* inherits from styles.navButton */
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.dayPanel-saveBtn {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Responsive Design - Mobile First */
+
+/* Tablets and smaller (768px and below) */
+@media (max-width: 768px) {
+  .dayPanel-header {
+    font-size: 1.125rem;
+  }
+
+  .dayPanel-taskItem {
+    flex-direction: column;
+    padding: 0.75rem 0;
+  }
+
+  .dayPanel-taskActions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .dayPanel-viewBtn,
+  .dayPanel-editBtn,
+  .dayPanel-deleteBtn {
+    flex: 1;
+    min-width: 70px;
+    text-align: center;
+  }
+
+  .dayPanel-dateRow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dayPanel-dateField {
+    width: 100%;
+  }
+
+  .dayPanel-editingActions {
+    flex-direction: column-reverse;
+  }
+
+  .dayPanel-cancelBtn,
+  .dayPanel-saveBtn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  .dayPanel-viewingActions button {
+    width: 100%;
+  }
+
+  .dayPanel-createBtn {
+    max-width: 100%;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .dayPanel-header {
+    font-size: 1rem;
+  }
+
+  .dayPanel-taskTitle {
+    font-size: 0.95rem;
+  }
+
+  .dayPanel-taskMeta {
+    font-size: 0.8rem;
+  }
+
+  .dayPanel-taskActions {
+    gap: 6px;
+  }
+
+  .dayPanel-viewBtn,
+  .dayPanel-editBtn,
+  .dayPanel-deleteBtn {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .dayPanel-viewingPanel,
+  .dayPanel-editingPanel {
+    padding: 10px;
+  }
+
+  .dayPanel-viewingTitle,
+  .dayPanel-editingTitle {
+    font-size: 1rem;
+  }
+
+  .dayPanel-input,
+  .dayPanel-textarea,
+  .dayPanel-dateInput {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .dayPanel-createBtn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Hover effects for desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .dayPanel-viewBtn:hover {
+    background-color: #cbd5e1;
+  }
+
+  .dayPanel-editBtn:hover {
+    background-color: #2563eb;
+  }
+
+  .dayPanel-deleteBtn:hover,
+  .dayPanel-clearAllBtn:hover {
+    background-color: #dc2626;
+  }
+
+  .dayPanel-createBtn:hover {
+    background-color: #f8fafc;
+  }
+
+  .dayPanel-saveBtn:hover {
+    background-color: #2563eb;
+  }
+
+  .dayPanel-cancelBtn:hover {
+    background-color: #f8fafc;
+  }
+}

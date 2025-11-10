@@ -42,7 +42,7 @@ const recurrenceOptions = [
   { value: "monthly", label: "Monthly" },
 ];
 
-const CreateTasks: React.FC<CreateTaskFormProps> = ({
+const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
   onBack,
   initialData,
   mode = "add",
@@ -489,7 +489,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
           </div>
 
           {/* Privacy & Blocking */}
-          <div className={styles.formSection}>
+          {/* <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Privacy & Blocking</h3>
 
             <div className={styles.checkboxGroup}>
@@ -524,7 +524,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
                 className={styles.input}
               />
             )}
-          </div>
+          </div> */}
 
           {/* Feedback */}
           <div className={styles.formSection}>
@@ -550,7 +550,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
           </div>
 
           {/* Linked Resources */}
-          <div className={styles.formSection}>
+          {/* <div className={styles.formSection}>
             <h3 className={styles.sectionTitle}>Linked Resources</h3>
             {formData.linkedResources?.map((res, i) => (
               <div key={i} className={styles.resourceRow}>
@@ -587,7 +587,7 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
             >
               Add Resource
             </button>
-          </div>
+          </div> */}
 
           {/* System fields */}
           <div className={styles.systemMetadata}>
@@ -638,4 +638,4 @@ const CreateTasks: React.FC<CreateTaskFormProps> = ({
   );
 };
 
-export default CreateTasks;
+export default CalendarCreateTask;
