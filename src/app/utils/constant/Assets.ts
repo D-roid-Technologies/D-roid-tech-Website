@@ -253,6 +253,6 @@ export const Assets = {
     companyInitials: "DT",
     modalTitle: "This is the Modal Heading.",
     modalBody: "This is the Body.",
-    appVersion: "4.8.2",
+    appVersion: "4.8.7",
   },
 };
