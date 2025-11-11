@@ -406,7 +406,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       case "Membership Status":
         return {
           description:
-            "Your current membership status and standing with the organization.",
+            "",
         };
       case "Points Balance":
         return {
