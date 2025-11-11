@@ -14,8 +14,8 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
 }) => {
   const [securitySettings, setSecuritySettings] = useState({
     twoFactorEnabled: false,
-    securityQuestion: "",
-    securityAnswer: "",
+    // securityQuestion: "",
+    // securityAnswer: "",
     loginAlerts: false,
   });
   const [submitted, setSubmitted] = useState(false);
