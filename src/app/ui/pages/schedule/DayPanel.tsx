@@ -159,11 +159,6 @@ const DayPanel: React.FC<Props> = ({
               title=""
               description=""
             >
-              {/* <CreateTasks
-                onBack={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
-              /> */}
               <CalendarCreateTask
                 onBack={function (): void {
                   throw new Error("Function not implemented.");
