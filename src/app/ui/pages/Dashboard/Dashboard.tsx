@@ -8,6 +8,9 @@ const Dashboard: React.FunctionComponent = () => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // ✅ Add this line
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
+
   useEffect(() => {
     // Trap the user on this page
     const trapHistory = () => {
@@ -17,7 +20,6 @@ const Dashboard: React.FunctionComponent = () => {
     trapHistory(); // Initial push
 
     const handlePopState = (e: PopStateEvent) => {
-      // If user presses back, re-trap
       trapHistory();
     };
 
@@ -41,10 +43,18 @@ const Dashboard: React.FunctionComponent = () => {
         backgroundColor: "#F9F9F9",
       }}
     >
-      <DashboardHeader toggleSidebar={toggleSidebar} />
+      {/* ✅ Pass setSelectedMenu and setIsSidebarOpen down */}
+      <DashboardHeader 
+        toggleSidebar={toggleSidebar} 
+        setSelectedMenu={setSelectedMenu}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+
       <DashboardContent
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
+        selectedMenu={selectedMenu}
+        setSelectedMenu={setSelectedMenu}
       />
     </div>
   );

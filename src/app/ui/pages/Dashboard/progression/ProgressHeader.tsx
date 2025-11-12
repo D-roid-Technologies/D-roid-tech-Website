@@ -1,19 +1,16 @@
 "use client";
 
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TrendingUp, Clock, Zap } from "lucide-react";
 import {
-
   selectCurrentPosition,
   selectProgressPercentage,
-
   selectTotalHours,
   selectWeeklyProgressHours,
   startSession,
   endSession,
-  type Milestone,
 } from "../../../../redux/slices/ProgressionSlice";
 import styles from "./progression-header.module.css";
 
@@ -21,11 +18,8 @@ const ProgressionHeader: React.FC = () => {
   const dispatch = useDispatch();
   const currentPosition = useSelector(selectCurrentPosition);
   const progressPercentage = useSelector(selectProgressPercentage);
-
   const totalHours = useSelector(selectTotalHours);
   const weeklyHours = useSelector(selectWeeklyProgressHours);
-
-
 
   useEffect(() => {
     dispatch(startSession());
@@ -39,26 +33,35 @@ const ProgressionHeader: React.FC = () => {
 
   const tierConfig: Record<
     string,
-    { color: { from: string; to: string }; bgLight: string; icon: string }
+    { color: { from: string; to: string }; bgLight: string; icon: string; price: string }
   > = {
+    Free: {
+      color: { from: "#6b7280", to: "#9ca3af" },
+      bgLight: "#f3f4f6",
+      icon: "🎯",
+      price: "Free Tier",
+    },
     Silver: {
       color: { from: "#475569", to: "#94a3b8" },
       bgLight: "#f8fafc",
       icon: "🥈",
+      price: " ₦0/mo",
     },
     Gold: {
       color: { from: "#d97706", to: "#fbbf24" },
       bgLight: "#fffbeb",
       icon: "🥇",
+      price: " ₦5,000/mo",
     },
     Platinum: {
       color: { from: "#2563eb", to: "#60a5fa" },
       bgLight: "#eff6ff",
       icon: "💎",
+      price: " ₦15,000/mo",
     },
   };
 
-  const config = tierConfig[currentPosition] || tierConfig.Silver;
+  const config = tierConfig[currentPosition] || tierConfig.Free;
 
   return (
     <div className={styles.container}>
@@ -92,6 +95,9 @@ const ProgressionHeader: React.FC = () => {
                 />
               </div>
             </div>
+
+            {/* Price Label */}
+            <p className={styles.priceTag}>{config.price}</p>
           </div>
 
           {/* Stats Summary */}
@@ -142,7 +148,7 @@ const ProgressionHeader: React.FC = () => {
             <p className={styles.statLabel}>Current Status</p>
             <Zap className={styles.statIcon} size={20} />
           </div>
-          <p className={styles.statValue}>{currentPosition as string}</p>
+          <p className={styles.statValue}>{currentPosition}</p>
           <p className={styles.statFooter}>Membership tier</p>
         </div>
       </div>

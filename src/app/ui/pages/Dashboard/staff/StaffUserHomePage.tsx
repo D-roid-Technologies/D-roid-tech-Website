@@ -191,9 +191,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     id: number;
     date: string;
   };
-  const notifications = useSelector(
-    (state: RootState) => state.notifications as Notification[]
-  );
+
 
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const user = useSelector((state: RootState) => state.user);
@@ -321,10 +319,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   ).length;
   const totalTasks = tasks.length;
 
-  // Calculate unread notifications count
-  const unreadNotificationsCount = notifications.filter(
-    (n) => !n.isRead
-  ).length;
+
   const handleStatClick = (stat: any) => {
     setSelectedStat(stat);
     setStatModalOpen(true);
@@ -556,38 +551,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             {/* Notification and Activity Icons */}
             <div className="shp-head-icons-container">
               {/* Notifications */}
-              <div
-                className="shp-head-icons"
-                onClick={() => setNotificationModalOpen(true)}
-                style={{ position: "relative", cursor: "pointer" }}
-              >
-                <p>Notifications</p>
-                <IoIosNotifications
-                  style={{ color: "red", fontWeight: "bold" }}
-                />
-                {unreadNotificationsCount > 0 && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      backgroundColor: "#ff4444",
-                      color: "white",
-                      borderRadius: "50%",
-                      fontSize: "10px",
-                      fontWeight: "bold",
-                      minWidth: "18px",
-                      height: "18px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "2px solid white",
-                    }}
-                  >
-                    {unreadNotificationsCount}
-                  </span>
-                )}
-              </div>
+            
 
               {/* Activities */}
               {/* <div
@@ -636,28 +600,8 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         title=""
         description=""
       >
-        <div className="shp-card-header">
-          <h3 className="shp-card-title">
-            <FaBell size={18} />
-            Staff Notifications
-          </h3>
-          <span className="shp-notification-count">
-            {notifications.filter((n) => !n.isRead).length}
-          </span>
-        </div>
-        <div className="shp-notifications-list">
-          {[...notifications].reverse().map((notification, index) => (
-            <NotificationItem
-              key={index}
-              title={notification.title}
-              message={notification.message}
-              time={notification.time}
-              type={notification.type}
-              isRead={notification.isRead}
-              onClick={() => handleNotificationClick(notification.title)}
-            />
-          ))}
-        </div>
+   
+       
         <button
           className="shp-view-all-notifications"
           onClick={() => handleViewAllNotification()}
