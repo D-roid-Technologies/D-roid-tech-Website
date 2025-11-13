@@ -214,7 +214,7 @@ const ChessRegistration: React.FC = () => {
           alignItems: "center"
         }}>
           <button onClick={() => {
-            setFormOne(false)
+            setFormOne(!formOne)
           }}
             style={{
               backgroundColor: "transparent",
