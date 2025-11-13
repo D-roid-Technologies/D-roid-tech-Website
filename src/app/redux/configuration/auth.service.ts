@@ -987,6 +987,98 @@ export class AuthService {
     }
   }
 
+  async updateAffiliatesData(partialAffiliates: Partial<any>) {
+    try {
+      const currentUser = await getCurrentUser();
+      const userId = currentUser.uid;
+
+      const userDocRef = doc(db, "droidaccount", userId);
+      const userSnapshot = await getDoc(userDocRef);
+
+      if (!userSnapshot.exists()) {
+        toast.error("User record not found", {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+        return;
+      }
+
+      const currentData = userSnapshot.data();
+
+      // Merge new affiliate data into existing affiliates object
+      const updatedAffiliates = {
+        ...currentData?.user?.affiliates,
+        ...partialAffiliates,
+      };
+
+      console.log("✅ Updated affiliates data:", updatedAffiliates);
+
+      // Update Firestore
+      await updateDoc(userDocRef, {
+        "user.affiliates": updatedAffiliates,
+      });
+
+      // Optionally update Redux or local state
+      // if (store && store.dispatch && setAffiliatesData) {
+      //   store.dispatch(setAffiliatesData(updatedAffiliates));
+      // }
+
+      toast.success("Affiliates data updated successfully", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+    } catch (error: any) {
+      console.error("🔥 Error updating affiliates:", error?.message || error);
+      toast.error(error?.message || "Failed to update affiliates", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    }
+  }
+
+  async updateSecuritySettings(partialAffiliates: Partial<any>) {
+    try {
+      const currentUser = await getCurrentUser();
+      const userId = currentUser.uid;
+
+      const userDocRef = doc(db, "droidaccount", userId);
+      const userSnapshot = await getDoc(userDocRef);
+
+      if (!userSnapshot.exists()) {
+        toast.error("User record not found", {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+        return;
+      }
+
+      const currentData = userSnapshot.data();
+
+      // Merge new affiliate data into existing affiliates object
+      const updatedAffiliates = {
+        ...currentData?.user?.affiliates,
+        ...partialAffiliates,
+      };
+
+      console.log("✅ Updated security data:", updatedAffiliates);
+
+      // Update Firestore
+      await updateDoc(userDocRef, {
+        "user.security": updatedAffiliates,
+      });
+
+      // Optionally update Redux or local state
+      // if (store && store.dispatch && setAffiliatesData) {
+      //   store.dispatch(setAffiliatesData(updatedAffiliates));
+      // }
+
+      toast.success("Security data updated successfully", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+    } catch (error: any) {
+      console.error("🔥 Error updating security:", error?.message || error);
+      toast.error(error?.message || "Failed to update security", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    }
+  }
+
   async handleCreateTask(task: Task) {
     try {
       const currentUser = auth.currentUser;

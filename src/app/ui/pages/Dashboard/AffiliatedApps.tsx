@@ -7,6 +7,7 @@ import {
 import { AppDispatch, store } from "../../../redux/Store";
 import { Check } from "lucide-react";
 import "./AffiliatedApps.css";
+import { authService } from "../../../redux/configuration/auth.service";
 
 interface ConnectedAppsState {
   knowledgeCity: boolean;
@@ -36,8 +37,9 @@ const AffiliatedApps: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       dispatch(setConnectedApps(connectedApps));
+      await authService.updateAffiliatesData(connectedApps)
       console.log(connectedApps);
       setIsSubmitting(false);
       setSubmitted(true);
@@ -134,11 +136,10 @@ const AffiliatedApps: React.FC = () => {
             ].map(({ name, key, description }) => (
               <div
                 key={key}
-                className={`afa-app-card ${
-                  connectedApps[key as keyof ConnectedAppsState]
-                    ? "afa-app-card-active"
-                    : ""
-                }`}
+                className={`afa-app-card ${connectedApps[key as keyof ConnectedAppsState]
+                  ? "afa-app-card-active"
+                  : ""
+                  }`}
               >
                 <div className="afa-app-header">
                   <div className="afa-app-info">

@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { UserType } from "../../../utils/Types";
 import { Shield, Check, Mail, Smartphone } from "lucide-react";
 import "./SecuritySettingsUI.css";
+import { authService } from "../../../redux/configuration/auth.service";
 
 interface SecuritySettingsUIProps {
   user: UserType | null;
@@ -39,7 +40,8 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    setTimeout(async () => {
+      await authService.updateSecuritySettings(securitySettings)
       console.log("Updated security settings:", securitySettings);
       setIsSubmitting(false);
       setSubmitted(true);
@@ -114,11 +116,10 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
           <div className="ssu-settings-grid">
             {/* Two-Factor Authentication */}
             <div
-              className={`ssu-setting-card ${
-                securitySettings.twoFactorEnabled
+              className={`ssu-setting-card ${securitySettings.twoFactorEnabled
                   ? "ssu-setting-card-active"
                   : ""
-              }`}
+                }`}
             >
               <div className="ssu-setting-header">
                 <div className="ssu-setting-icon-wrapper">
@@ -160,9 +161,8 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
 
             {/* Login Alerts */}
             <div
-              className={`ssu-setting-card ${
-                securitySettings.loginAlerts ? "ssu-setting-card-active" : ""
-              }`}
+              className={`ssu-setting-card ${securitySettings.loginAlerts ? "ssu-setting-card-active" : ""
+                }`}
             >
               <div className="ssu-setting-header">
                 <div className="ssu-setting-icon-wrapper">
