@@ -158,7 +158,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0")
   const [activeCalculator, setActiveCalculator] = useState<string | null>(null)
 
-  // Tools
+  
   const [activeTool, setActiveTool] = useState<string | null>(null)
   const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
@@ -174,13 +174,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     if (isPremium) {
       const access = checkToolAccess(toolComponent, true)
 
-      // Check if tool is locked (2 free uses exceeded)
       if (!access.canAccess) {
         setShowUpgradePrompt(toolComponent)
         return
       }
 
-      // Show warning if limited uses remaining
+
       const warningMessage = getToolAccessMessage(access, toolComponent)
       if (warningMessage) {
         setFreeTierWarning(warningMessage)

@@ -12,7 +12,7 @@ export const useFreeTierTools = () => {
         canAccess: true,
         remainingUses: null,
         isLocked: false,
-        hasUsedBefore: false,   // 🔥 required to fix the TS error
+        hasUsedBefore: false,   
       }
     }
 
