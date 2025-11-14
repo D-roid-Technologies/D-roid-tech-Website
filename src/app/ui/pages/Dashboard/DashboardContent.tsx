@@ -198,12 +198,16 @@ const calculators = [
 interface DashboardContentProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedMenu: string | null;
+  setSelectedMenu: React.Dispatch<React.SetStateAction<string | null>>;
   onClose?: () => void;
 }
 
 const DashboardContent: React.FC<DashboardContentProps> = ({
   isSidebarOpen,
   setIsSidebarOpen,
+  selectedMenu,
+  setSelectedMenu,
 }) => {
   const navigate = useNavigate();
   const [currentTime] = useState(new Date());
@@ -225,7 +229,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     icon: ReactNode;
   }>(null);
   const [input, setInput] = useState("");
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0");
   const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
@@ -454,7 +457,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       icon: FaUser,
       
     },
-    { label: "Progressions", icon: FaChartLine },
+        { label: "Progressions", icon: FaChartLine },
+
     ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
       ? orgSpecificItems[orgType]
       : []),
@@ -463,7 +467,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     { label: "Schedules", icon: FaCalendarAlt },
     { label: "Tool Box", icon: FaToolbox },
     { label: "Calculate", icon: FaCalculator },
-    { label: "Notifications", icon: FaBullhorn },
+    // { label: "Notifications", icon: FaBullhorn },
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
@@ -471,7 +475,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           { label: "Payslips", icon: FaFileInvoiceDollar },
           { label: "Onboarding", icon: FaUserPlus },
           { label: "Training", icon: FaChalkboardTeacher },
-          { label: "Progressions", icon: FaChartLine },
+          // { label: "Progressions", icon: FaChartLine },
           { label: "Attendance", icon: FaBookOpen },
           { label: "Take Test", icon: FaPencilAlt },
         ]

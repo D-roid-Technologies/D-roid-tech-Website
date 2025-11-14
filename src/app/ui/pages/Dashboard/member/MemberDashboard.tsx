@@ -140,9 +140,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     id: number;
     date: string;
   };
-  const notifications = useSelector(
-    (state: RootState) => state.notifications as Notification[]
-  );
+
   const user = useSelector((state: RootState) => state.user);
   const trainings = useSelector((state: RootState) => state.trainings as any[]);
   const progression = useSelector(
@@ -244,9 +242,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     },
   ];
 
-  const unreadNotificationsCount = notifications.filter(
-    (n) => !n.isRead
-  ).length;
   const recentActivitiesCount = memberActivities.length;
 
   const activityToMenu: Record<string, string> = {
@@ -254,7 +249,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     "Service Accessed": "Services",
     "Career Application": "Careers",
     "Schedule Added": "Schedules",
-    "Notifications Read": "Notifications",
+    // "Notifications Read": "Notifications",
     "Feedback Submitted": "Say It",
   };
 
@@ -303,43 +298,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       day: "numeric",
     });
 
-  useEffect(() => {
-    const profileUpdated = localStorage.getItem("profileUpdated");
-    const now = new Date();
-    if (!profileUpdated) {
-      // Check if the notification already exists to avoid duplicates
-      const profileUpdateNotificationExists = notifications.some(
-        (n) => n.title === "Complete Your Profile"
-      );
 
-      if (!profileUpdateNotificationExists) {
-        const newNotification = {
-          id: Date.now(), // Generate unique ID using timestamp
-          title: "Complete Your Profile",
-          message:
-            "Please update your profile information to get the most out of your membership.",
-          date: new Date().toISOString().split("T")[0], // Current date in YYYY-MM-DD format
-          time: getRelativeTime(now),
-          type: "warning",
-          isRead: false,
-        };
 
-        // Add the notification to the existing notifications
-        store.dispatch(setNotifications([newNotification, ...notifications]));
-      }
-    } else {
-      // Profile is updated, remove the notification if it exists
-      const filteredNotifications = notifications.filter(
-        (n) => n.title !== "Complete Your Profile"
-      );
+  
 
-      // Only update if the notification was actually removed
-      if (filteredNotifications.length !== notifications.length) {
-        store.dispatch(setNotifications(filteredNotifications));
-      }
-    }
-  }, [notifications]); // Re-run when notifications change to detect profile updates
-
+  
   useEffect(() => {
     // Membership Status
     const membershipStatus = user?.isLoggedIn ? "Active" : "Inactive";
@@ -406,7 +369,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       case "Membership Status":
         return {
           description:
-            "Your current membership status and standing with the organization.",
+            "",
         };
       case "Points Balance":
         return {
@@ -458,69 +421,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                 onClick={() => setNotificationModalOpen(true)}
                 style={{ position: "relative" }}
               >
-                <p>Notifications</p>
-                <IoIosNotifications
-                  style={{ color: "red", fontWeight: "bold" }}
-                />
-                {unreadNotificationsCount > 0 && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      backgroundColor: "#ff4444",
-                      color: "white",
-                      borderRadius: "50%",
-                      fontSize: "10px",
-                      fontWeight: "bold",
-                      minWidth: "18px",
-                      height: "18px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "2px solid white",
-                    }}
-                  >
-                    {unreadNotificationsCount}
-                  </span>
-                )}
-                <Modal
-                  isOpen={notificationModalOpen}
-                  onClose={() => setNotificationModalOpen(false)}
-                  title=""
-                  description=""
-                >
-                  <div className="shp-card-header">
-                    <h3 className="shp-card-title">
-                      <FaBell size={18} />
-                      Member Notifications
-                    </h3>
-                    <span className="shp-notification-count">
-                      {notifications.filter((n) => !n.isRead).length}
-                    </span>
-                  </div>
-                  <div className="shp-notifications-list">
-                    {[...notifications].reverse().map((notification, index) => (
-                      <NotificationItem
-                        key={index}
-                        title={notification.title}
-                        message={notification.message}
-                        time={notification.time}
-                        type={notification.type}
-                        isRead={notification.isRead}
-                        onClick={() =>
-                          handleNotificationClick(notification.title)
-                        }
-                      />
-                    ))}
-                  </div>
-                  <button
-                    className="shp-view-all-notifications"
-                    onClick={() => handleViewAllNotification()}
-                  >
-                    View All Notifications
-                  </button>
-                </Modal>
               </div>
               {/* <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
                 <p>Activities</p>
@@ -602,121 +502,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
             ))}
         </div>
       </div>
-      <Modal
-        isOpen={statModalOpen}
-        onClose={() => setStatModalOpen(false)}
-        description=""
-        title=""
-      >
-        {selectedStat && (
-          <div style={{ padding: "20px" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                marginBottom: "20px",
-              }}
-            >
-              {selectedStat.icon && <selectedStat.icon />}
-              <div>
-                <h2 style={{ margin: 0, fontSize: "24px", fontWeight: "bold" }}>
-                  {selectedStat.title}
-                </h2>
-                <p
-                  style={{
-                    margin: "4px 0 0",
-                    fontSize: "32px",
-                    fontWeight: "bold",
-                    color: "#2563eb",
-                  }}
-                >
-                  {selectedStat.value}
-                </p>
-              </div>
-            </div>
-
-            <div style={{ marginBottom: "20px" }}>
-              <p style={{ fontSize: "14px", color: "#666" }}>
-                {selectedStat.change}
-              </p>
-            </div>
-
-            <div style={{ borderTop: "1px solid #e5e7eb", paddingTop: "20px" }}>
-             
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "#666",
-                  marginBottom: "20px",
-                }}
-              >
-                {getStatDetails(selectedStat.title).description}
-              </p>
-
-              {/* <h4 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "12px" }}>Recent History</h4> */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "12px",
-                }}
-              >
-                {getStatDetails?.(selectedStat?.title).history?.map(
-                  (item, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        padding: "8px",
-                        backgroundColor: "#f9fafb",
-                        borderRadius: "6px",
-                      }}
-                    >
-                      <span style={{ fontSize: "14px", fontWeight: "500" }}>
-                        {item.event}
-                      </span>
-                      <span style={{ fontSize: "12px", color: "#666" }}>
-                        {item.date}
-                      </span>
-                    </div>
-                  )
-                )}
-              </div>
-
-              {/* Upgrade Button - Only shown for Member Level */}
-              {getStatDetails(selectedStat.title).button && (
-                <div style={{ marginTop: "20px" }}>
-                  <button
-                    onClick={handleUpgradeClick}
-                    style={{
-                      width: "100%",
-                      padding: "12px 24px",
-                      backgroundColor: "#2563eb",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "8px",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      transition: "background-color 0.2s",
-                    }}
-                    onMouseOver={(e) =>
-                      (e.currentTarget.style.backgroundColor = "#1d4ed8")
-                    }
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.backgroundColor = "#2563eb")
-                    }
-                  >
-                    Upgrade 
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </Modal>
+      
 
       {/* Member Quick Actions */}
       <div className="shp-section">

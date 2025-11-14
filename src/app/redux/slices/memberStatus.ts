@@ -1,6 +1,6 @@
 // src/redux/slices/memberStatsSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FaIdCard, FaGift, FaCalendarAlt, FaAward } from "react-icons/fa";
+import { FaIdCard, FaGift, FaCalendarAlt,   FaStar } from "react-icons/fa";
 
 export type MemberStat = {
   title: string;
@@ -39,7 +39,7 @@ const initialState: MemberStat[] = [
     title: "Member Level",
     value: "Gold",
     change: "Next level: Platinum",
-    icon: FaAward,
+    icon:   FaStar,
     color: "orange",
     button: true,
   },
