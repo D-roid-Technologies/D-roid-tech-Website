@@ -47,13 +47,14 @@ export interface TaskMain {
     title: string;
     description: string;
     status:
-    | 'pending'
-    | 'in_progress'
-    | 'completed'
-    | 'cancelled'
-    | 'archived'
-    | 'on_hold'
-    | 'reopened';
+    | 'event'
+    | 'reminder'
+    | 'task'
+    | 'note'
+    | 'appointment'
+    | 'meeting'
+    | 'goal'
+    | 'routine';
     priority: 'low' | 'medium' | 'high' | 'urgent' | 'critical';
     category?: string;
     projectId?: string;

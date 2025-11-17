@@ -19,13 +19,14 @@ interface CreateTaskFormProps {
 }
 
 const statusOptions = [
-  { value: "pending", label: "Pending" },
-  { value: "in_progress", label: "In Progress" },
-  { value: "completed", label: "Completed" },
-  { value: "cancelled", label: "Cancelled" },
-  { value: "archived", label: "Archived" },
-  { value: "on_hold", label: "On Hold" },
-  { value: "reopened", label: "Reopened" },
+  { value: "event", label: "Events" },
+  { value: "reminder", label: "Reminder" },
+  { value: "task", label: "Task" },
+  { value: "note", label: "Note" },
+  { value: "appiontment", label: "Appiontement" },
+  { value: "meeting", label: "Meeting" },
+  { value: "goal", label: "Goal" },
+  { value: "routine", label: "Routine" },
 ];
 
 const priorityOptions = [
@@ -49,7 +50,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
     id: crypto.randomUUID(),
     title: "",
     description: "",
-    status: "pending",
+    status: "event",
     priority: "low",
     category: "",
     projectId: "",
@@ -177,16 +178,16 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
         dateModified: mode === "edit" ? new Date().toLocaleString() : "",
       };
 
-      await authService.handleCreateTask(taskToSave);
+      await authService.handleCreateTask(taskToSave as any);
+
 
       // Create notification
       const now = new Date();
       const notification = {
         id: Date.now(),
         title: mode === "edit" ? "Task Updated" : "New Task Created",
-        message: `Task "${formData.title}" has been ${
-          mode === "edit" ? "updated" : "created"
-        } successfully with ${formData.priority} priority.`,
+        message: `Task "${formData.title}" has been ${mode === "edit" ? "updated" : "created"
+          } successfully with ${formData.priority} priority.`,
         date: now.toISOString().split("T")[0],
         time: now.toISOString(),
         type: "info",
@@ -209,9 +210,8 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
       const errorNotification = {
         id: Date.now(),
         title: "Error",
-        message: `Failed to ${
-          mode === "edit" ? "update" : "create"
-        } task. Please try again.`,
+        message: `Failed to ${mode === "edit" ? "update" : "create"
+          } task. Please try again.`,
         date: new Date().toISOString().split("T")[0],
         time: new Date().toISOString(),
         type: "error",
@@ -235,7 +235,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
         id: crypto.randomUUID(),
         title: "",
         description: "",
-        status: "pending",
+        status: "event",
         priority: "low",
         category: "",
         projectId: "",
@@ -326,7 +326,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
               />
 
               <div className="lf-form-group">
-                <label className="lf-label">Status</label>
+                <label className="lf-label">Type</label>
                 <Listbox
                   value={formData.status}
                   onChange={(value) => handleListboxChange("status", value)}
@@ -336,7 +336,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
                       <span>
                         {statusOptions.find(
                           (option) => option.value === formData.status
-                        )?.label || "Select status"}
+                        )?.label || "Select Type"}
                       </span>
                       <ChevronsUpDown
                         className="h-5 w-5 text-gray-400"
@@ -349,8 +349,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                              selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -369,7 +368,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
                 </Listbox>
               </div>
 
-              <div className="lf-form-group">
+              {/* <div className="lf-form-group">
                 <label className="lf-label">Priority</label>
                 <Listbox
                   value={formData.priority}
@@ -393,8 +392,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
                           key={option.value}
                           value={option.value}
                           className={({ active, selected }) =>
-                            `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                              selected ? "lf-selected" : ""
+                            `lf-dropdown-item ${active ? "lf-active" : ""} ${selected ? "lf-selected" : ""
                             }`
                           }
                         >
@@ -411,7 +409,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
                     </Listbox.Options>
                   </div>
                 </Listbox>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -450,7 +448,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
           </div>
 
           {/* Feedback */}
-          <div className="ct-form-section">
+          {/* <div className="ct-form-section">
             <h3 className="ct-section-title">Feedback & Scoring</h3>
             <div className="ct-feedback-section">
               <input
@@ -470,7 +468,7 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
                 className="ct-textarea"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* System fields */}
           <div className="ct-system-metadata">
@@ -506,8 +504,8 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
               {isSubmitting
                 ? "Submitting..."
                 : isEditMode
-                ? "Update Task"
-                : "Create Task"}
+                  ? "Update Task"
+                  : "Create Task"}
             </button>
           </div>
         </form>

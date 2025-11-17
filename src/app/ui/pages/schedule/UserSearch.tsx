@@ -14,7 +14,7 @@ type Props = {
 const UserSearch: React.FC<Props> = ({ query, setQuery, results, loading, error, onSearch, navigate }) => {
     return (
         <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #eef2f7" }}>
-            <h4 style={{ marginBottom: "0.5rem" }}>Find Someone</h4>
+            <h4 style={{ marginBottom: "0.5rem", color: "#000000" }}>Find Someone on D'roid Scheudles</h4>
             <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
                 <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search by username or name" style={{ flex: 1, padding: "0.5rem", borderRadius: 8, border: "1px solid #e2e8f0" }} />
                 <button onClick={() => onSearch(query.trim())} style={{ ...styles.navButton, backgroundColor: "#3b82f6", color: "#fff" }}>{loading ? "Searching..." : "Search"}</button>
