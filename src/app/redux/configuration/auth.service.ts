@@ -85,13 +85,46 @@ type DroidAccount = {
       role: string;
     };
     location: {
-      locationFromDevice: any; // use a specific type if available
+      locationFromDevice: any;
       currentdateTime: {
         date: number;
         month: number;
         year: number;
         time: string;
         formattedDateTime: string;
+      };
+    };
+    affiliates: {
+      knowledgeCity: {
+        user: boolean;
+        kCoin?: {
+          amount: number;
+          storeCardDetails: boolean;
+          mineCoins: {
+            numberOfReferals: number;
+            numberOfAdsWatched: number;
+          };
+        };
+        courses?: any[];
+        notifications?: any[];
+        schedules?: any[];
+        diaries?: any[];
+        lunchBox?: {
+          events: any[];
+          jobs: any[];
+        };
+      };
+      nerves: {
+        user: boolean;
+        // connections?: any[];
+        // posts?: any[];
+        // preferences?: any;
+      };
+      muzik: {
+        user: boolean;
+        // playlists?: any[];
+        // favorites?: any[];
+        // preferences?: any;
       };
     };
   };
@@ -133,7 +166,7 @@ type DroidAccount = {
     };
   };
   staff: {
-    staffSignInAndOut: any[]; // should be typed if structure is known
+    staffSignInAndOut: any[];
   };
   forms: {
     userForms: any[];
@@ -182,7 +215,6 @@ type DroidAccount = {
 function getCurrentUserOnce(timeoutMs = 3000): Promise<User | null> {
   const auth = getAuth();
   return new Promise((resolve) => {
-    // If currentUser is already present, resolve immediately
     if (auth.currentUser) {
       resolve(auth.currentUser);
       return;
@@ -197,12 +229,11 @@ function getCurrentUserOnce(timeoutMs = 3000): Promise<User | null> {
       }
     });
 
-    // Fallback timeout (in case onAuthStateChanged doesn't fire quickly)
     setTimeout(() => {
       if (!resolved) {
         resolved = true;
         unlisten();
-        resolve(auth.currentUser); // may be null
+        resolve(auth.currentUser);
       }
     }, timeoutMs);
   });
@@ -211,14 +242,13 @@ function getCurrentUserOnce(timeoutMs = 3000): Promise<User | null> {
 const getCurrentDateTime = () => {
   const now = new Date();
 
-  const year = now.getFullYear(); // Retrieves the full year (e.g., 2024)
-  const month = now.getMonth() + 1; // Retrieves the month (0-11), adding 1 to make it 1-12
-  const date = now.getDate(); // Retrieves the day of the month (1-31)
-  const hours = now.getHours(); // Retrieves the hour (0-23)
-  const minutes = now.getMinutes(); // Retrieves the minutes (0-59)
-  const seconds = now.getSeconds(); // Retrieves the seconds (0-59)
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const date = now.getDate();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
 
-  // Formatting the date and time as strings
   const formattedDate = `${year}-${String(month).padStart(2, "0")}-${String(
     date
   ).padStart(2, "0")}`;
@@ -244,11 +274,9 @@ type LogEntry = {
 };
 
 function parseDate(timestamp: string): Date {
-  // Handle both ISO strings and 'DD/MM/YYYY, HH:mm:ss' format
   const isoDate = Date.parse(timestamp);
   if (!isNaN(isoDate)) return new Date(isoDate);
 
-  // Handle manually formatted date
   const [datePart, timePart] = timestamp.split(", ");
   const [day, month, year] = datePart.split("/");
   return new Date(`${year}-${month}-${day}T${timePart}`);
@@ -275,7 +303,7 @@ export function calculateNetSalary(
 
   const dailyDurations: Record<string, number> = {};
   const now = new Date();
-  const currentMonth = now.getMonth(); // 0-indexed
+  const currentMonth = now.getMonth();
   const currentYear = now.getFullYear();
 
   const normalizedLogs = logs.map((log) => ({
@@ -293,7 +321,7 @@ export function calculateNetSalary(
       log.date.getMonth() === currentMonth &&
       log.date.getFullYear() === currentYear
     ) {
-      const key = log.date.toISOString().split("T")[0]; // 'YYYY-MM-DD'
+      const key = log.date.toISOString().split("T")[0];
       if (!logsByDay[key]) logsByDay[key] = [];
       logsByDay[key].push({ type: log.type, date: log.date });
     }
@@ -324,7 +352,7 @@ export function calculateNetSalary(
     for (const hours of Object.values(dailyDurations)) {
       if (hours < 6.5) {
         const shortfall = 6.5 - hours;
-        const deductionUnits = Math.floor(shortfall / (2 / 3)); // 2/3 hour = 40 minutes
+        const deductionUnits = Math.floor(shortfall / (2 / 3));
         totalDeduction += deductionUnits * 0.005;
       }
     }
@@ -348,8 +376,6 @@ export async function getUserDocByUniqueId(uniqueId: string) {
     return null;
   }
 
-  // const userId = currentUser.uid;
-  // const userDocRef = doc(db, "droidaccount", userId);
   const droidAccountCollection = collection(db, "droidaccount");
   const q = query(
     droidAccountCollection,
@@ -359,7 +385,6 @@ export async function getUserDocByUniqueId(uniqueId: string) {
 
   if (querySnapshot.empty) return null;
 
-  // Assuming uniqueId is unique, get the first document
   const docSnap = querySnapshot.docs[0];
   return docSnap;
 }
@@ -483,49 +508,13 @@ export class AuthService {
           security: {},
           affiliates: {
             knowledgeCity: {
-              user: true,
-              kCoin: {
-                amount: 0,
-                storeCardDetails: false,
-                mineCoins: {
-                  numberOfReferals: 0,
-                  numberOfAdsWatched: 0,
-                },
-              },
-              courses: [],
-              notifications: [],
-              schedules: [],
-              diaries: [
-                {
-                  diaryTitle: "The Diary Platform",
-                  description: "Tell us your thoughts",
-                  startDate: currentDateTime.formattedDateTime,
-                  endDate: addDaysToDate(currentDateTime.formattedDateTime, 30),
-                },
-              ],
-              lunchBox: {
-                events: [
-                  {
-                    eventTitle: "D'roid Technologies - Chess Marathon",
-                    description: "The Chess Marathon of the year",
-                    imageLink: "",
-                    attendees: 0,
-                    createdTime: currentDateTime.time,
-                    createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                  },
-                ],
-                jobs: [
-                  {
-                    jobTitle: "Front-End Developer - React Js",
-                    description:
-                      "We are looking for a front end developer in React Js",
-                    imageLink: "",
-                    peopleApplied: 0,
-                    createdTime: currentDateTime.time,
-                    createdDate: `${currentDateTime.date}-${currentDateTime.month}-${currentDateTime.year}`,
-                  },
-                ],
-              },
+              user: false, // Changed from true to false
+            },
+            nerves: {
+              user: false, // Default false
+            },
+            muzik: {
+              user: false, // Default false
             },
           },
           onboard: {
@@ -567,7 +556,7 @@ export class AuthService {
         store.dispatch(setUser({ ...primaryInformation }));
 
         await sendEmailVerification(user);
-        await signOut(auth); // Prevent implicit navigation
+        await signOut(auth);
 
         toast.success(`Your D'roid Account has been successfully created`, {
           style: { background: "#4BB543", color: "#fff" },
@@ -611,7 +600,6 @@ export class AuthService {
       );
       const userDocSnap = await getDoc(userDocRef);
       const updatedData = userDocSnap.data();
-      // console.log(updatedData)
 
       if (userDocSnap.exists()) {
         const fetchedUserData = userDocSnap.data();
@@ -619,7 +607,6 @@ export class AuthService {
         const userForm = fetchedUserData.user?.userForms;
         const userType = primaryInformation?.userType;
 
-        // Validate userType against the login intent
         const isUserActuallyStaff = userType === "Staff";
 
         if (isUserActuallyStaff !== isStaff) {
@@ -660,23 +647,20 @@ export class AuthService {
         const schedleData = updatedData?.schedules?.mySchedules || [];
         const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
         const calculateData = updatedData?.calculate?.calculators || [];
-        // console.log("line 577", schedleData)
-        // Store and proceed
+
         store.dispatch(setPayslipData(updatedPayslips));
         store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
-        // Note: Onboarding data now managed by onboarding slice internally
         store.dispatch(setTrainings(updatedTrainings));
         store.dispatch(setNotifications(updatedNotifications));
         store.dispatch(setAllMilestones(updatedProgressions));
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
-        // Keep onboarding.staffInfo in sync so StaffUserHomePage gets real data
+
         try {
           const { setStaffInfo } = await import("../slices/onboarding");
           store.dispatch(setStaffInfo(updatedStaffDetails));
-        } catch (_) {
-          // ignore if slice not loaded
-        }
+        } catch (_) {}
+
         store.dispatch(setStaffDocuments(updatedStaffDocuments));
         store.dispatch(setToolBox(toolBoxData));
         store.dispatch(setCalculate(calculateData));
@@ -709,7 +693,6 @@ export class AuthService {
   }
 
   async handlePasswordReset(email: string): Promise<void> {
-    // Sending password reset email
     await sendPasswordResetEmail(auth, email)
       .then(() => {
         toast.success(
@@ -788,7 +771,6 @@ export class AuthService {
         "user.primaryInformation": updatedPrimaryInfo,
       });
 
-      // ✅ Update Redux state
       store.dispatch(setUser(updatedPrimaryInfo));
 
       toast.success("User information updated successfully", {
@@ -825,16 +807,12 @@ export class AuthService {
       }
 
       const data = userSnapshot.data();
-
-      // Ensure staff object exists
       const existingEntries = data?.staff?.staffSignInAndOut || [];
 
-      // Add new entry
       await updateDoc(userDocRef, {
         "user.staff.staffSignInAndOut": arrayUnion(entry),
       });
 
-      // Fetch updated document
       const updatedSnapshot = await getDoc(userDocRef);
       const updatedData = updatedSnapshot.data();
       const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
@@ -851,7 +829,6 @@ export class AuthService {
       const updatedStaffDocuments = updatedData?.staff?.staffDoc || {};
       const updatedStaffLeave = updatedData?.staff?.staffLeave || [];
 
-      // Dispatch to Redux
       store.dispatch(setSignInAndOutData(updatedEntries));
       store.dispatch(setStaffDetails(updatedStaffDetails));
       store.dispatch(setStaffDocuments(updatedStaffDocuments));
@@ -895,13 +872,9 @@ export class AuthService {
       const data = userSnapshot.data();
       const existingPayslips = data?.payslips?.paySlip || [];
 
-      // ✅ Check if a payslip for this month already exists
       const duplicate = existingPayslips.some(
         (item: PaySlip) =>
           item.payPeriod.monthOfPay === payslip.payPeriod.monthOfPay
-
-        //use below  to test and download slip if it shows Payslip for the  already exists.
-        // (item: PaySlip) => item.payPeriod.monthOfPay !== payslip.payPeriod.monthOfPay
       );
 
       if (duplicate) {
@@ -914,7 +887,6 @@ export class AuthService {
         return null;
       }
 
-      // ✅ Proceed to update
       await updateDoc(userDocRef, {
         "payslips.paySlip": arrayUnion(payslip),
       });
@@ -943,7 +915,7 @@ export class AuthService {
 
   async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
     try {
-      console.log(auth.currentUser); // ✅ for debugging
+      console.log(auth.currentUser);
 
       const currentUser = await getCurrentUser();
       const userId = currentUser.uid;
@@ -972,7 +944,6 @@ export class AuthService {
 
       store.dispatch(setStaffDetails(updatedDetails));
 
-      // Also update the onboarding staffInfo
       const { setStaffInfo } = await import("../slices/onboarding");
       store.dispatch(setStaffInfo(updatedDetails));
 
@@ -987,7 +958,7 @@ export class AuthService {
     }
   }
 
-  async updateAffiliatesData(partialAffiliates: Partial<any>) {
+  async updateAffiliatesData(partialAffiliates: any) {
     try {
       const currentUser = await getCurrentUser();
       const userId = currentUser.uid;
@@ -1003,11 +974,22 @@ export class AuthService {
       }
 
       const currentData = userSnapshot.data();
+      const currentAffiliates = currentData?.user?.affiliates || {};
 
-      // Merge new affiliate data into existing affiliates object
+      // Deep merge to preserve existing data
       const updatedAffiliates = {
-        ...currentData?.user?.affiliates,
-        ...partialAffiliates,
+        knowledgeCity: {
+          ...currentAffiliates.knowledgeCity,
+          ...partialAffiliates.knowledgeCity,
+        },
+        nerves: {
+          ...currentAffiliates.nerves,
+          ...partialAffiliates.nerves,
+        },
+        muzik: {
+          ...currentAffiliates.muzik,
+          ...partialAffiliates.muzik,
+        },
       };
 
       console.log("✅ Updated affiliates data:", updatedAffiliates);
@@ -1017,23 +999,25 @@ export class AuthService {
         "user.affiliates": updatedAffiliates,
       });
 
-      // Optionally update Redux or local state
-      // if (store && store.dispatch && setAffiliatesData) {
-      //   store.dispatch(setAffiliatesData(updatedAffiliates));
-      // }
-
-      toast.success("Affiliates data updated successfully", {
+      toast.success("Connected apps updated successfully", {
         style: { background: "#4BB543", color: "#fff" },
       });
+
+      return updatedAffiliates;
     } catch (error: any) {
       console.error("🔥 Error updating affiliates:", error?.message || error);
-      toast.error(error?.message || "Failed to update affiliates", {
+      toast.error(error?.message || "Failed to update connected apps", {
         style: { background: "#ff4d4f", color: "#fff" },
       });
+      throw error;
     }
   }
 
-  async updateSecuritySettings(partialAffiliates: Partial<any>) {
+  async getCurrentUser(): Promise<User> {
+    return getCurrentUser();
+  }
+
+  async updateSecuritySettings(partialSecurity: Partial<any>) {
     try {
       const currentUser = await getCurrentUser();
       const userId = currentUser.uid;
@@ -1050,30 +1034,23 @@ export class AuthService {
 
       const currentData = userSnapshot.data();
 
-      // Merge new affiliate data into existing affiliates object
-      const updatedAffiliates = {
-        ...currentData?.user?.affiliates,
-        ...partialAffiliates,
+      const updatedSecurity = {
+        ...currentData?.user?.security,
+        ...partialSecurity,
       };
 
-      console.log("✅ Updated security data:", updatedAffiliates);
+      console.log("✅ Updated security data:", updatedSecurity);
 
-      // Update Firestore
       await updateDoc(userDocRef, {
-        "user.security": updatedAffiliates,
+        "user.security": updatedSecurity,
       });
 
-      // Optionally update Redux or local state
-      // if (store && store.dispatch && setAffiliatesData) {
-      //   store.dispatch(setAffiliatesData(updatedAffiliates));
-      // }
-
-      toast.success("Security data updated successfully", {
+      toast.success("Security settings updated successfully", {
         style: { background: "#4BB543", color: "#fff" },
       });
     } catch (error: any) {
       console.error("🔥 Error updating security:", error?.message || error);
-      toast.error(error?.message || "Failed to update security", {
+      toast.error(error?.message || "Failed to update security settings", {
         style: { background: "#ff4d4f", color: "#fff" },
       });
     }
@@ -1087,15 +1064,12 @@ export class AuthService {
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
 
-      // Clean task
       const cleanedTask = removeUndefined(task);
 
-      // Just push it
       await updateDoc(userDocRef, {
         "schedules.mySchedles": arrayUnion(cleanedTask),
       });
 
-      // Update Redux optimistically (no re-fetch)
       store.dispatch(addTask(cleanedTask));
 
       toast.success("Task added successfully! 🎉", {
@@ -1126,7 +1100,6 @@ export class AuthService {
       const data = userSnapshot.data();
       const tasks = data?.schedules?.mySchedles || [];
 
-      // Normalize each task
       return tasks.map((t: any) => ({
         id: t.id || crypto.randomUUID(),
         title: t.title || "",
@@ -1150,14 +1123,11 @@ export class AuthService {
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
 
-      // Fetch the current tasks
       const userSnapshot = await getDoc(userDocRef);
       if (!userSnapshot.exists()) throw new Error("User document not found");
 
       const tasks: Task[] = userSnapshot.data()?.schedules?.mySchedles || [];
-      // console.log(tasks)
 
-      // Find the task to delete
       const taskToDelete = tasks.find((t) => t.id === taskId);
       if (!taskToDelete) {
         toast.error("Task not found", {
@@ -1166,12 +1136,10 @@ export class AuthService {
         return null;
       }
 
-      // Remove the task from Firestore
       await updateDoc(userDocRef, {
         "schedules.mySchedles": arrayRemove(taskToDelete),
       });
 
-      // Update Redux store optimistically
       store.dispatch(deleteThisTask(taskId));
 
       toast.success("Task deleted successfully 🗑️", {
@@ -1201,14 +1169,12 @@ export class AuthService {
       const tasks: TaskMain[] =
         userSnapshot.data()?.schedules?.mySchedles ?? [];
 
-      // Replace the task with the updated one
       const updatedTasks = tasks.map((t) =>
         t.id === updatedTask.id ? updatedTask : t
       );
 
       await updateDoc(userDocRef, { "schedules.mySchedles": updatedTasks });
 
-      // Update Redux optimistically
       store.dispatch(deleteThisTask(updatedTask.id));
       store.dispatch(addTask(updatedTask));
 
