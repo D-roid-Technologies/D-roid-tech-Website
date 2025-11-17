@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   setConnectedApps,
@@ -7,7 +7,10 @@ import {
 import { AppDispatch, store } from "../../../redux/Store";
 import { Check } from "lucide-react";
 import "./AffiliatedApps.css";
+import { doc, getDoc } from "firebase/firestore";
+import toast from "react-hot-toast";
 import { authService } from "../../../redux/configuration/auth.service";
+import { db } from "../../../../firebase";
 
 interface ConnectedAppsState {
   knowledgeCity: boolean;
@@ -24,27 +27,253 @@ const AffiliatedApps: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
 
-  const handleToggle = (app: keyof ConnectedAppsState) => {
-    setConnectedAppsState((prev) => ({
-      ...prev,
-      [app]: !prev[app],
-    }));
+  // Load initial state from backend
+  useEffect(() => {
+    const loadAffiliatesData = async () => {
+      try {
+        const currentUser = await authService.getCurrentUser();
+        if (!currentUser) return;
+
+        const userId = currentUser.uid;
+        const userDocRef = doc(db, "droidaccount", userId);
+        const userSnapshot = await getDoc(userDocRef);
+
+        if (userSnapshot.exists()) {
+          const userData = userSnapshot.data();
+          const affiliates = userData?.user?.affiliates || {};
+
+          setConnectedAppsState({
+            knowledgeCity: affiliates.knowledgeCity?.user || false,
+            nerves: affiliates.nerves?.user || false,
+            muzik: affiliates.muzik?.user || false,
+          });
+        }
+      } catch (error) {
+        console.error("Failed to load affiliates data:", error);
+      } finally {
+        setInitialLoad(false);
+      }
+    };
+
+    loadAffiliatesData();
+  }, []);
+
+  const handleToggle = async (app: keyof ConnectedAppsState) => {
+    const newValue = !connectedApps[app];
+    const newState = {
+      ...connectedApps,
+      [app]: newValue,
+    };
+
+    setConnectedAppsState(newState);
     store.dispatch(toggleApp(app));
+
+    // Update immediately in Firestore when toggled
+    try {
+      const updateData: any = {};
+      updateData[app] = { user: newValue };
+
+      // Add app-specific data structure when connecting
+      if (newValue) {
+        if (app === "knowledgeCity") {
+          updateData.knowledgeCity = {
+            user: true,
+            kCoin: {
+              amount: 0,
+              storeCardDetails: false,
+              mineCoins: {
+                numberOfReferals: 0,
+                numberOfAdsWatched: 0,
+              },
+            },
+            courses: [],
+            notifications: [],
+            schedules: [],
+            diaries: [
+              {
+                diaryTitle: "The Diary Platform",
+                description: "Tell us your thoughts",
+                startDate: new Date().toISOString(),
+                endDate: new Date(
+                  Date.now() + 30 * 24 * 60 * 60 * 1000
+                ).toISOString(),
+              },
+            ],
+            lunchBox: {
+              events: [
+                {
+                  eventTitle: "D'roid Technologies - Chess Marathon",
+                  description: "The Chess Marathon of the year",
+                  imageLink: "",
+                  attendees: 0,
+                  createdTime: new Date().toLocaleTimeString(),
+                  createdDate: new Date().toLocaleDateString(),
+                },
+              ],
+              jobs: [
+                {
+                  jobTitle: "Front-End Developer - React Js",
+                  description:
+                    "We are looking for a front end developer in React Js",
+                  imageLink: "",
+                  peopleApplied: 0,
+                  createdTime: new Date().toLocaleTimeString(),
+                  createdDate: new Date().toLocaleDateString(),
+                },
+              ],
+            },
+          };
+        } else if (app === "nerves") {
+          updateData.nerves = {
+            user: true,
+            connections: [],
+            posts: [],
+            preferences: {
+              notifications: true,
+              emailUpdates: false,
+            },
+          };
+        } else if (app === "muzik") {
+          updateData.muzik = {
+            user: true,
+            playlists: [],
+            favorites: [],
+            preferences: {
+              autoPlay: true,
+              quality: "high",
+            },
+          };
+        }
+      }
+
+      await authService.updateAffiliatesData(updateData);
+
+      // toast.success(
+      //   `${app} ${newValue ? "connected" : "disconnected"} successfully`,
+      //   {
+      //     style: { background: "#4BB543", color: "#fff" },
+      //   }
+      // );
+    } catch (error) {
+      console.error("Failed to update app connection:", error);
+      // Revert state if update fails
+      setConnectedAppsState((prev) => ({
+        ...prev,
+        [app]: !prev[app],
+      }));
+
+      toast.error(`Failed to update ${app} connection`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(async () => {
+    try {
+      // Update all apps at once to ensure consistency
+      const affiliatesData = {
+        knowledgeCity: {
+          user: connectedApps.knowledgeCity,
+          ...(connectedApps.knowledgeCity && {
+            kCoin: {
+              amount: 0,
+              storeCardDetails: false,
+              mineCoins: {
+                numberOfReferals: 0,
+                numberOfAdsWatched: 0,
+              },
+            },
+            courses: [],
+            notifications: [],
+            schedules: [],
+            diaries: [
+              {
+                diaryTitle: "The Diary Platform",
+                description: "Tell us your thoughts",
+                startDate: new Date().toISOString(),
+                endDate: new Date(
+                  Date.now() + 30 * 24 * 60 * 60 * 1000
+                ).toISOString(),
+              },
+            ],
+            lunchBox: {
+              events: [
+                {
+                  eventTitle: "D'roid Technologies - Chess Marathon",
+                  description: "The Chess Marathon of the year",
+                  imageLink: "",
+                  attendees: 0,
+                  createdTime: new Date().toLocaleTimeString(),
+                  createdDate: new Date().toLocaleDateString(),
+                },
+              ],
+              jobs: [
+                {
+                  jobTitle: "Front-End Developer - React Js",
+                  description:
+                    "We are looking for a front end developer in React Js",
+                  imageLink: "",
+                  peopleApplied: 0,
+                  createdTime: new Date().toLocaleTimeString(),
+                  createdDate: new Date().toLocaleDateString(),
+                },
+              ],
+            },
+          }),
+        },
+        nerves: {
+          user: connectedApps.nerves,
+          ...(connectedApps.nerves && {
+            connections: [],
+            posts: [],
+            preferences: {
+              notifications: true,
+              emailUpdates: false,
+            },
+          }),
+        },
+        muzik: {
+          user: connectedApps.muzik,
+          ...(connectedApps.muzik && {
+            playlists: [],
+            favorites: [],
+            preferences: {
+              autoPlay: true,
+              quality: "high",
+            },
+          }),
+        },
+      };
+
+      await authService.updateAffiliatesData(affiliatesData);
       dispatch(setConnectedApps(connectedApps));
-      await authService.updateAffiliatesData(connectedApps)
-      console.log(connectedApps);
-      setIsSubmitting(false);
+
+      console.log("Connected apps updated:", connectedApps);
       setSubmitted(true);
-    }, 500);
+    } catch (error) {
+      console.error("Failed to save settings:", error);
+      toast.error("Failed to save connected apps settings", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (initialLoad) {
+    return (
+      <div className="afa-container">
+        <div className="afa-loading">
+          <p>Loading your connected apps...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (submitted) {
     return (
@@ -136,10 +365,11 @@ const AffiliatedApps: React.FC = () => {
             ].map(({ name, key, description }) => (
               <div
                 key={key}
-                className={`afa-app-card ${connectedApps[key as keyof ConnectedAppsState]
-                  ? "afa-app-card-active"
-                  : ""
-                  }`}
+                className={`afa-app-card ${
+                  connectedApps[key as keyof ConnectedAppsState]
+                    ? "afa-app-card-active"
+                    : ""
+                }`}
               >
                 <div className="afa-app-header">
                   <div className="afa-app-info">
@@ -194,97 +424,3 @@ const AffiliatedApps: React.FC = () => {
 };
 
 export default AffiliatedApps;
-
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { setConnectedApps, toggleApp } from '../../../redux/slices/affiliatedAppsSlice';
-// import { AppDispatch, store } from '../../../redux/Store';
-
-// interface ConnectedAppsState {
-//     knowledgeCity: boolean;
-//     nerves: boolean;
-//     muzik: boolean;
-// }
-
-// const AffiliatedApps: React.FC = () => {
-//     const dispatch = useDispatch<AppDispatch>();
-//     const [connectedApps, setConnectedAppsState] = useState({
-//         knowledgeCity: false,
-//         nerves: false,
-//         muzik: false,
-//     });
-
-//     // const handleToggle = (app: keyof typeof connectedApps) => {
-
-//     // };
-
-//     const handleToggle = (app: keyof ConnectedAppsState) => {
-//         setConnectedAppsState(prev => ({
-//             ...prev,
-//             [app]: !prev[app],
-//         }));
-//         store.dispatch(toggleApp(app));
-//     };
-
-//     const handleSubmit = () => {
-//         dispatch(setConnectedApps(connectedApps))
-//         console.log(connectedApps)
-//     };
-
-//     return (
-//         <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-//             <h2 style={{ color: "#000000" }}>Connected Applications</h2>
-//             <p style={{ fontSize: "14px", color: "#555" }}>
-//                 Toggle access to applications connected to your account.
-//             </p>
-
-//             <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginTop: "20px" }}>
-//                 {[
-//                     { name: 'Knowledge City', key: 'knowledgeCity' },
-//                     { name: 'Nerves', key: 'nerves' },
-//                     { name: 'Muzik', key: 'muzik' },
-//                 ].map(({ name, key }) => (
-//                     <label
-//                         key={key}
-//                         style={{
-//                             padding: '12px',
-//                             borderRadius: '8px',
-//                             border: '1px solid #ccc',
-//                             fontSize: '14px',
-//                             display: "flex",
-//                             justifyContent: "space-between",
-//                             alignItems: "center",
-//                             color: "#000000",
-//                             backgroundColor: "#ffffff"
-//                         }}>
-//                         <span>{name}</span>
-//                         <input
-//                             type="checkbox"
-//                             checked={connectedApps[key as keyof typeof connectedApps]}
-//                             onChange={() => handleToggle(key as keyof typeof connectedApps)}
-//                             style={{ transform: 'scale(1.2)' }}
-//                         />
-//                     </label>
-//                 ))}
-
-//                 <button
-//                     onClick={handleSubmit}
-//                     style={{
-//                         marginTop: "20px",
-//                         padding: "12px",
-//                         backgroundColor: "#071D6A",
-//                         color: "white",
-//                         border: "none",
-//                         borderRadius: "8px",
-//                         fontWeight: "bold",
-//                         cursor: "pointer"
-//                     }}
-//                 >
-//                     Save Connected Apps
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default AffiliatedApps;
