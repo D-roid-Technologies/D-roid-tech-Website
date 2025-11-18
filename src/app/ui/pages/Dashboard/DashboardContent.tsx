@@ -815,7 +815,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Take Test":
         return (
           <Section title="Take Test" isActive={selectedMenu === "Take Test"}>
-            <p style={{ color: "#000000" }}>Access and complete your assigned tests.</p>
+            <p style={{ color: "#000000",padding: "10px", }}>Access and complete your assigned tests.</p>
             <TakeTestFolder />
           </Section>
         )
