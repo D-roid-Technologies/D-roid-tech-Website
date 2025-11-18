@@ -226,7 +226,9 @@ const DayPanel: React.FC<Props> = ({
 
   return (
     <div style={styles.sidePanel} className="dayPanel-container">
-      <h4 style={{ color: "#000000" }} className="dayPanel-header">Tasks & Events for {dateKey}</h4>
+      <h4 style={{ color: "#000000" }} className="dayPanel-header">
+        Tasks & Events for {dateKey}
+      </h4>
 
       {!isLoggedIn ? (
         <div style={styles.eventBox} className="dayPanel-eventBox">
@@ -245,14 +247,24 @@ const DayPanel: React.FC<Props> = ({
       ) : (
         <>
           {tasks.length === 0 ? (
-            <p style={{ color: "#000000" }}>No tasks or events scheduled for this day.</p>
+            <p style={{ color: "#000000" }}>
+              No tasks or events scheduled for this day.
+            </p>
           ) : (
             <>
               <ul className="dayPanel-taskList">
                 {tasks.map((task) => (
-                  <li key={task.id} className="dayPanel-taskItem">
-                    <div style={{color: "#000000"}}>
-                      <div className="dayPanel-taskTitle">{task.title}</div>
+                  <li key={task.id}>
+                    <div
+                      style={{ color: "#000000" }}
+                      className="dayPanel-taskTitle"
+                    >
+                      {task.title}
+                    </div>
+                    <div
+                      style={{ color: "#000000" }}
+                      className="dayPanel-taskItem"
+                    >
                       <div className="dayPanel-taskMeta">
                         {task.type ?? "General"} • {task.startDate}{" "}
                         {task.endDate ? ` — ${task.endDate}` : ""}
@@ -280,18 +292,27 @@ const DayPanel: React.FC<Props> = ({
                       >
                         Delete
                       </button>
+                      <button
+                        onClick={() => onClearTasks(dateKey)}
+                        style={styles.navButton}
+                        className="dayPanel-clearAllBtn"
+                      >
+                        Clear all
+                      </button>
                     </div>
                   </li>
                 ))}
               </ul>
-              <div className="dayPanel-clearAllContainer">
-                <button
-                  onClick={() => onClearTasks(dateKey)}
-                  style={styles.navButton}
-                  className="dayPanel-clearAllBtn"
-                >
-                  Clear all
-                </button>
+              <div>
+                <div className="dayPanel-clearAllContainer">
+                  <button
+                    onClick={() => onClearTasks(dateKey)}
+                    style={styles.navButton}
+                    className="dayPanel-clearAllBtn"
+                  >
+                    Clear all
+                  </button>
+                </div>
               </div>
             </>
           )}
