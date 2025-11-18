@@ -76,7 +76,7 @@ const loadedNotifications = loadFromLocalStorage<Notification[]>(LOCAL_KEY, defa
 const initialState: Notification[] = migrateNotifications(loadedNotifications);
 
 export const notificationsSlice = createSlice({
-    name: "notifications",
+    name: "nlotifications",
     initialState,
     reducers: {
         setNotifications: (_, action: PayloadAction<Notification[]>) => {
