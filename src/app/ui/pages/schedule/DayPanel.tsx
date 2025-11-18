@@ -85,7 +85,7 @@ const DayPanel: React.FC<Props> = ({
       id: task.id,
       title: task.title,
       description: task.description || "",
-      status: "pending",
+      status: "event",
       priority: "low",
       category: task.type || "",
       projectId: "",
@@ -226,11 +226,11 @@ const DayPanel: React.FC<Props> = ({
 
   return (
     <div style={styles.sidePanel} className="dayPanel-container">
-      <h4 className="dayPanel-header">Tasks & Events for {dateKey}</h4>
+      <h4 style={{ color: "#000000" }} className="dayPanel-header">Tasks & Events for {dateKey}</h4>
 
       {!isLoggedIn ? (
         <div style={styles.eventBox} className="dayPanel-eventBox">
-          <p>
+          <p style={{ color: "#000000" }}>
             Please
             <button
               style={styles.loginBtn}
@@ -245,13 +245,13 @@ const DayPanel: React.FC<Props> = ({
       ) : (
         <>
           {tasks.length === 0 ? (
-            <p>No tasks or events scheduled for this day.</p>
+            <p style={{ color: "#000000" }}>No tasks or events scheduled for this day.</p>
           ) : (
             <>
               <ul className="dayPanel-taskList">
                 {tasks.map((task) => (
                   <li key={task.id} className="dayPanel-taskItem">
-                    <div>
+                    <div style={{color: "#000000"}}>
                       <div className="dayPanel-taskTitle">{task.title}</div>
                       <div className="dayPanel-taskMeta">
                         {task.type ?? "General"} • {task.startDate}{" "}
@@ -297,7 +297,7 @@ const DayPanel: React.FC<Props> = ({
           )}
 
           {/* Create form */}
-          <div className="dayPanel-createSection">
+          <div style={{ color: "#000000" }} className="dayPanel-createSection">
             <button
               className="dayPanel-createBtn"
               onClick={() => setCreateModalOpen(true)}

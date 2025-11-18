@@ -14,6 +14,8 @@ import UserSearch from "./UserSearch";
 
 const views = ["Day", "Week", "Month", "Year"];
 
+const MOBILE_BREAKPOINT = 768; // px
+
 const Calendar: React.FC = () => {
     const today = dayjs();
     const [currentMonth, setCurrentMonth] = useState(dayjs());
@@ -21,6 +23,22 @@ const Calendar: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
     const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
     const navigate = useNavigate();
+
+    // responsive
+    const [isMobile, setIsMobile] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth <= MOBILE_BREAKPOINT : false);
+    const [panelOpen, setPanelOpen] = useState(false);
+
+    useEffect(() => {
+        const onResize = () => {
+            const mobile = window.innerWidth <= MOBILE_BREAKPOINT;
+            setIsMobile(mobile);
+            if (!mobile) setPanelOpen(false); // ensure panel not left open for desktop
+        };
+        window.addEventListener("resize", onResize);
+        // init
+        onResize();
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
 
     // events
     const [userEvents, setUserEvents] = useState<EventsMap>(() => {
@@ -96,11 +114,9 @@ const Calendar: React.FC = () => {
                 break;
             }
             case "Week": {
-                // move week by -7 days; keep to week view
                 const base = selectedDate ?? today;
                 const newDate = base.subtract(7, "day");
                 setSelectedDate(newDate);
-                // if the new week is in different month, update month label
                 if (!newDate.isSame(currentMonth, "month")) setCurrentMonth(newDate);
                 setView("Week");
                 break;
@@ -188,6 +204,7 @@ const Calendar: React.FC = () => {
         resetFormDefaults(dayjs(start));
         setSelectedDate(dayjs(start));
         setView("Day");
+        if (isMobile) setPanelOpen(true); // open drawer on mobile so user sees the created event
     };
 
     // delete
@@ -234,6 +251,7 @@ const Calendar: React.FC = () => {
         setEditingTask(null);
         setSelectedDate(dayjs(task.startDate));
         setView("Day");
+        if (isMobile) setPanelOpen(true);
     };
 
     // user search (API then fallback)
@@ -265,7 +283,6 @@ const Calendar: React.FC = () => {
     // Week view rendering helper: produce startOfWeek and seven days
     const renderWeekGrid = () => {
         const base = selectedDate ?? today;
-        // startOf('week') uses locale default (Sun). Adjust as needed.
         const startOfWeek = base.startOf("week");
         const weekDays = Array.from({ length: 7 }, (_, i) => startOfWeek.add(i, "day"));
         return (
@@ -286,6 +303,7 @@ const Calendar: React.FC = () => {
                                 onClick={() => {
                                     setSelectedDate(date);
                                     setView("Day");
+                                    if (isMobile) setPanelOpen(true);
                                 }}
                                 style={{
                                     ...styles.dayCell,
@@ -305,12 +323,173 @@ const Calendar: React.FC = () => {
         );
     };
 
+    // Inline responsive layout styles
+    const desktopGridStyle: React.CSSProperties = {
+        display: "grid",
+        gridTemplateColumns: "1fr 360px",
+        gap: 16,
+        alignItems: "start",
+    };
+
+    const mobileMainStyle: React.CSSProperties = {
+        display: "block",
+    };
+
+    const fabStyle: React.CSSProperties = {
+        position: "fixed",
+        right: 18,
+        bottom: 18,
+        zIndex: 1200,
+        width: 56,
+        height: 56,
+        borderRadius: 28,
+        background: "#2563eb",
+        color: "#fff",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 20,
+        boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+        border: "none",
+    };
+
+    const drawerStyle: React.CSSProperties = {
+        position: "fixed",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: "20%",
+        zIndex: 1250,
+        background: "#fff",
+        boxShadow: "0 -8px 30px rgba(2,6,23,0.18)",
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        overflowY: "auto",
+        padding: 16,
+    };
+
+    const backdropStyle: React.CSSProperties = {
+        position: "fixed",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        background: "rgba(0,0,0,0.35)",
+        zIndex: 1240,
+    };
+
     return (
-        <div style={styles.calendarWrapper}>
-            <div style={{ gridColumn: "1/2" }}>
-                <CalendarHeader currentMonthLabel={currentMonth.format("MMMM YYYY")} view={view} onPrev={goPrev} onNext={goNext} onChangeView={(v) => setView(v)} views={views} />
-                <div style={{ marginTop: 12 }}>
-                    {/* Month view */}
+        <div style={{ padding: 12 }}>
+            <CalendarHeader
+                currentMonthLabel={currentMonth.format("MMMM YYYY")}
+                view={view}
+                onPrev={goPrev}
+                onNext={goNext}
+                onChangeView={(v) => setView(v)}
+                views={views}
+            />
+
+            {/* DESKTOP / TABLET layout */}
+            {!isMobile && (
+                <div style={{ marginTop: 12, ...desktopGridStyle }}>
+                    <div>
+                        <div style={{ marginTop: 12 }}>
+                            {/* Month view */}
+                            {view === "Month" && (
+                                <MonthGrid
+                                    currentMonth={currentMonth}
+                                    today={today}
+                                    userEvents={userEvents}
+                                    onSelectDate={(d) => {
+                                        setSelectedDate(d);
+                                        setView("Day");
+                                        if (isMobile) setPanelOpen(true);
+                                    }}
+                                    resetFormDefaults={resetFormDefaults}
+                                />
+                            )}
+
+                            {/* Week view */}
+                            {view === "Week" && <div>{renderWeekGrid()}</div>}
+
+                            {/* Day selected box (when in Day view) */}
+                            {view === "Day" && selectedDate && (
+                                <div style={{ marginTop: 12 }}>
+                                    <div style={styles.singleDayBox}>
+                                        <h3 style={styles.dayHeader}>{selectedDate.format("dddd, MMMM D, YYYY")}</h3>
+                                        <p style={{ color: "#000" }}>All tasks & events for this day are shown below</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Year view */}
+                            {view === "Year" && (
+                                <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
+                                    {Array.from({ length: 12 }, (_, i) => {
+                                        const monthDate = currentMonth.month(i).startOf("month");
+                                        return (
+                                            <div
+                                                key={i}
+                                                onClick={() => {
+                                                    setCurrentMonth(monthDate);
+                                                    setView("Month");
+                                                }}
+                                                style={{ ...styles.dayCell, padding: "1rem", textAlign: "center" }}
+                                            >
+                                                {monthDate.format("MMMM")}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right side panel (day panel + user search) */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                        <DayPanel
+                            selectedDate={selectedDate}
+                            isLoggedIn={isLoggedIn}
+                            userEvents={userEvents}
+                            setUserEvents={setUserEvents}
+                            formState={{ formTitle, formDescription, formType, formStartDate, formEndDate }}
+                            formSetters={{
+                                setFormTitle,
+                                setFormDescription,
+                                setFormType,
+                                setFormStartDate,
+                                setFormEndDate,
+                                resetFormDefaults,
+                            }}
+                            onCreateTask={handleCreateTask}
+                            viewingTask={viewingTask}
+                            setViewingTask={setViewingTask}
+                            editingTask={editingTask}
+                            setEditingTask={setEditingTask}
+                            onEditSave={saveEditedTask}
+                            onDeleteTask={handleDeleteTask}
+                            onClearTasks={handleClearTasks}
+                            navigateToLogin={() => navigate("/auth/join-our-community")}
+                        />
+
+                        <UserSearch
+                            query={searchQuery}
+                            setQuery={setSearchQuery}
+                            results={searchResults}
+                            loading={searchLoading}
+                            error={searchError}
+                            onSearch={searchUsers}
+                            navigate={(p) => navigate(p)}
+                        />
+                    </div>
+                </div>
+            )}
+
+            {/* MOBILE layout */}
+            {isMobile && (
+                <div style={{ marginTop: 12, ...mobileMainStyle }}>
+                    {/* Calendar content stacked vertically */}
+                    {/* Month */}
                     {view === "Month" && (
                         <MonthGrid
                             currentMonth={currentMonth}
@@ -319,15 +498,16 @@ const Calendar: React.FC = () => {
                             onSelectDate={(d) => {
                                 setSelectedDate(d);
                                 setView("Day");
+                                setPanelOpen(true);
                             }}
                             resetFormDefaults={resetFormDefaults}
                         />
                     )}
 
-                    {/* Week view */}
+                    {/* Week */}
                     {view === "Week" && <div>{renderWeekGrid()}</div>}
 
-                    {/* Day selected box (when in Day view) */}
+                    {/* Day header */}
                     {view === "Day" && selectedDate && (
                         <div style={{ marginTop: 12 }}>
                             <div style={styles.singleDayBox}>
@@ -337,7 +517,7 @@ const Calendar: React.FC = () => {
                         </div>
                     )}
 
-                    {/* Year view simple representation: show months grid (click month to go to Month view) */}
+                    {/* Year */}
                     {view === "Year" && (
                         <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
                             {Array.from({ length: 12 }, (_, i) => {
@@ -357,39 +537,83 @@ const Calendar: React.FC = () => {
                             })}
                         </div>
                     )}
+
+                    {/* Floating Action Button to open DayPanel / search */}
+                    <button
+                        aria-label="Open panel"
+                        title="Open panel"
+                        style={fabStyle}
+                        onClick={() => setPanelOpen(true)}
+                    >
+                        +
+                    </button>
+
+                    {/* Drawer for DayPanel + UserSearch */}
+                    {panelOpen && (
+                        <>
+                            <div style={backdropStyle} onClick={() => setPanelOpen(false)} />
+                            <div style={drawerStyle}>
+                                <div style={{ color: "#000000", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                                    <strong>Panel</strong>
+                                    <button onClick={() => setPanelOpen(false)} style={{ border: "none", background: "transparent", fontSize: 20, color: "red" }}>
+                                        ✕
+                                    </button>
+                                </div>
+
+                                <DayPanel
+                                    selectedDate={selectedDate}
+                                    isLoggedIn={isLoggedIn}
+                                    userEvents={userEvents}
+                                    setUserEvents={setUserEvents}
+                                    formState={{ formTitle, formDescription, formType, formStartDate, formEndDate }}
+                                    formSetters={{
+                                        setFormTitle,
+                                        setFormDescription,
+                                        setFormType,
+                                        setFormStartDate,
+                                        setFormEndDate,
+                                        resetFormDefaults,
+                                    }}
+                                    onCreateTask={(...args) => {
+                                        handleCreateTask();
+                                        // note: handleCreateTask already opens panel on mobile.
+                                    }}
+                                    viewingTask={viewingTask}
+                                    setViewingTask={setViewingTask}
+                                    editingTask={editingTask}
+                                    setEditingTask={setEditingTask}
+                                    onEditSave={saveEditedTask}
+                                    onDeleteTask={(dateKey: string, id: string) => {
+                                        handleDeleteTask(dateKey, id);
+                                    }}
+                                    onClearTasks={(dateKey: string) => {
+                                        handleClearTasks(dateKey);
+                                    }}
+                                    navigateToLogin={() => {
+                                        setPanelOpen(false);
+                                        navigate("/auth/join-our-community");
+                                    }}
+                                />
+
+                                <div style={{ marginTop: 12 }}>
+                                    <UserSearch
+                                        query={searchQuery}
+                                        setQuery={setSearchQuery}
+                                        results={searchResults}
+                                        loading={searchLoading}
+                                        error={searchError}
+                                        onSearch={searchUsers}
+                                        navigate={(p) => {
+                                            setPanelOpen(false);
+                                            navigate(p);
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
-            </div>
-
-            {/* Right side panel (day panel + user search) */}
-            <DayPanel
-                selectedDate={selectedDate}
-                isLoggedIn={isLoggedIn}
-                userEvents={userEvents}
-                setUserEvents={setUserEvents}
-                formState={{ formTitle, formDescription, formType, formStartDate, formEndDate }}
-                formSetters={{
-                    setFormTitle,
-                    setFormDescription,
-                    setFormType,
-                    setFormStartDate,
-                    setFormEndDate,
-                    resetFormDefaults,
-                }}
-                onCreateTask={handleCreateTask}
-                viewingTask={viewingTask}
-                setViewingTask={setViewingTask}
-                editingTask={editingTask}
-                setEditingTask={setEditingTask}
-                onEditSave={saveEditedTask}
-                onDeleteTask={handleDeleteTask}
-                onClearTasks={handleClearTasks}
-                navigateToLogin={() => navigate("/auth/join-our-community")}
-            />
-
-            {/* User search under the panel */}
-            <div style={{ gridColumn: "2/3" }}>
-                <UserSearch query={searchQuery} setQuery={setSearchQuery} results={searchResults} loading={searchLoading} error={searchError} onSearch={searchUsers} navigate={(p) => navigate(p)} />
-            </div>
+            )}
         </div>
     );
 };

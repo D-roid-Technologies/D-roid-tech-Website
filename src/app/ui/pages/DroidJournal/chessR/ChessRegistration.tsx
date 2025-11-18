@@ -40,7 +40,8 @@ const ChessRegistration: React.FC = () => {
     "ushierapheal502@gmail.com",
     "bostonhillary@gmail.com",
     "quadriadewale022@gmail.com",
-    "victorchinonso21@gmail.com"
+    "victorchinonso21@gmail.com",
+    "savick0987@gmail.com",
   ];
 
 
