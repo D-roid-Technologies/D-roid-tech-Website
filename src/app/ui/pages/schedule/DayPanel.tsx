@@ -5,7 +5,8 @@ import styles from "./styles";
 import { Modal } from "../Dashboard/micro-ui/modal";
 import "../schedule/DayPanel.css";
 import CalendarCreateTask from "./CalendarCreateTask";
-import { TaskMain } from "../../../redux/slices/scheduleTask";
+// import { TaskMain } from "../../../redux/slices/scheduleTask";
+import { TaskMain } from "../../../redux/slices/CalenderTaskSlice";
 
 type Props = {
   selectedDate: Dayjs | null;
@@ -410,12 +411,20 @@ const DayPanel: React.FC<Props> = ({
           {/* Viewing panel */}
           {viewingTask && (
             <div className="dayPanel-viewingPanel">
-              <h5 className="dayPanel-viewingTitle">{viewingTask.title}</h5>
+              <h5
+                className="dayPanel-viewingTitle"
+                style={{ color: "#000000" }}
+              >
+                {viewingTask.title}
+              </h5>
               <div className="dayPanel-viewingMeta">
                 {viewingTask.type ?? "General"} • Created{" "}
                 {dayjs(viewingTask.createdAt).format("YYYY-MM-DD")}
               </div>
-              <p className="dayPanel-viewingDescription">
+              <p
+                className="dayPanel-viewingDescription"
+                style={{ color: "#000000" }}
+              >
                 {viewingTask.description}
               </p>
               <div className="dayPanel-viewingDate">
