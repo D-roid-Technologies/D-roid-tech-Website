@@ -576,6 +576,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             </div>
           </Section>
         )
+        case "Notifications":
+  return (
+    <Section title="Member Notifications" isActive={selectedMenu === "Notifications"}>
+      <Announcements />
+    </Section>
+  );
+
       case "Tool Box":
         return (
           <Section title="Tool Box" isActive={selectedMenu === "Tool Box"}>
