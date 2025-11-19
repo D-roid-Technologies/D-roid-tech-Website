@@ -1,37 +1,38 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit"
-import { persistStore, persistReducer } from "redux-persist"
-import storage from "redux-persist/lib/storage"
-import { DimensionSlice } from "./slices/Dimension"
-import { AppEntrySlice } from "./slices/AppEntrySlice"
-import themeReducer from "./slices/ThemeSlice"
-import { ContactSlice } from "./slices/ContactSlice"
-import { TestimonialSlice } from "./slices/TestimonialSlice"
-import { projectSlice } from "./slices/projectSlice"
-import { userSlice } from "./slices/User"
-import { locationSlice } from "./slices/Location"
-import { allUsersSlice } from "./slices/AllUserSlice"
-import { signInAndOutSlice } from "./slices/SignInAndOutSlice"
-import { payslipSlice } from "./slices/paySlipSlice"
-import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice"
-import tasksReducer from "./slices/tasksSlice"
-import { trainingSlice } from "./slices/TrainingsSlice"
-import { scheduleTask } from "./slices/scheduleTask"
-import ProgressionSlice from "./slices/ProgressionSlice"
-import LeadFormSlice from "./slices/LeadFormSlice"
-import { TSCSlice } from "./slices/TSCSlice"
-import { userFormsSlice } from "./slices/userFormSlice"
-import { notificationsSlice } from "./slices/notificationSlice"
-import { onboardingSlice } from "./slices/onboarding"
-import { memberStatsSlice } from "./slices/memberStatus"
-import { membershipTierSlice } from "./slices/membershipTierSlice"
-import staffReducer from "./slices/staffSlice"
-import freeTierReducer from "./slices/freeTierSlice"
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { DimensionSlice } from "./slices/Dimension";
+import { AppEntrySlice } from "./slices/AppEntrySlice";
+import themeReducer from "./slices/ThemeSlice";
+import { ContactSlice } from "./slices/ContactSlice";
+import { TestimonialSlice } from "./slices/TestimonialSlice";
+import { projectSlice } from "./slices/projectSlice";
+import { userSlice } from "./slices/User";
+import { locationSlice } from "./slices/Location";
+import { allUsersSlice } from "./slices/AllUserSlice";
+import { signInAndOutSlice } from "./slices/SignInAndOutSlice";
+import { payslipSlice } from "./slices/paySlipSlice";
+import { affiliatedAppsSlice } from "./slices/affiliatedAppsSlice";
+import tasksReducer from "./slices/tasksSlice";
+import { trainingSlice } from "./slices/TrainingsSlice";
+import { scheduleTask } from "./slices/scheduleTask";
+import ProgressionSlice from "./slices/ProgressionSlice";
+import LeadFormSlice from "./slices/LeadFormSlice";
+import { TSCSlice } from "./slices/TSCSlice";
+import { userFormsSlice } from "./slices/userFormSlice";
+import { notificationsSlice } from "./slices/notificationSlice";
+import { onboardingSlice } from "./slices/onboarding";
+import { memberStatsSlice } from "./slices/memberStatus";
+import { membershipTierSlice } from "./slices/membershipTierSlice";
+import staffReducer from "./slices/staffSlice";
+import freeTierReducer from "./slices/freeTierSlice";
+import CalenderTaskSlice from "./slices/CalenderTaskSlice";
 
 const persistConfig = {
   key: "root",
   storage,
   whitelist: ["user", "notifications", "onboarding", "freeTier"], // adding freeTier to persist
-}
+};
 
 const rootReducer = combineReducers({
   dimension: DimensionSlice.reducer,
@@ -49,6 +50,7 @@ const rootReducer = combineReducers({
   tasks: tasksReducer,
   trainings: trainingSlice.reducer,
   scheduleTask: scheduleTask.reducer,
+  CalenderTaskSlice: CalenderTaskSlice,
   progression: ProgressionSlice,
   leadForm: LeadFormSlice,
   TSC: TSCSlice.reducer,
@@ -60,9 +62,9 @@ const rootReducer = combineReducers({
   membershipTier: membershipTierSlice.reducer,
   staff: staffReducer,
   freeTier: freeTierReducer, // registering freeTier slice
-})
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -70,11 +72,11 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false, // redux-persist needs this
     }),
-})
+});
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 
 // Types
 // Use rootReducer to infer the pre-persisted state shape for better selector types
-export type RootState = ReturnType<typeof rootReducer>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
