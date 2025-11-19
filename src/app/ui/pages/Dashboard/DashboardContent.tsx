@@ -96,6 +96,7 @@ import { isAboveSixMonths } from "../../../utils/isAboveSixMonths";
 import NotEligibleForTraining from "../../../utils/statusMessages";
 import { getToolAccessMessage } from "../../../redux/utils/toolAccessManager";
 import { useFreeTierTools } from "../../../hooks/useFreeTierTools";
+import { TestNotifications } from "./TestNotifications";
 
 const calculators = [
   {
@@ -516,6 +517,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Personal Details" isActive={selectedMenu === "Personal Details"}>
             <PersonalDetails />
+
+            
           </Section>
         )
       case "Tasks":
@@ -700,6 +703,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section title="Contact us" isActive={selectedMenu === "Say It"}>
             <SayIt />
+            <TestNotifications />
           </Section>
         )
       case "Classroom":
