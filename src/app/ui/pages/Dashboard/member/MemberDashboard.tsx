@@ -26,6 +26,7 @@ import { updateStat } from "../../../../redux/slices/memberStatus";
 import EventPosts from "../../../components/blogPosts/Events";
 import { setNotifications } from "../../../../redux/slices/notificationSlice";
 import { getRelativeTime } from "../../../../utils/timeUtils";
+import SocialNotification from "../../../components/socialLink/SocialNotification";
 
 type QuickActionCardProps = {
   title: string;
@@ -471,6 +472,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                   </div>
                 </Modal>
               </div> */}
+              
+              <SocialNotification/>
             </div>
           </div>
           <div className="shp-time-info">
