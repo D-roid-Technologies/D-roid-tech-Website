@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 
 const SchedulePage: React.FunctionComponent = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const schedules = [
     {
       title: "Calendar",
@@ -15,6 +15,7 @@ const SchedulePage: React.FunctionComponent = () => {
         "Stay organized and ahead with our smart, intuitive calendar. From upcoming events and project deadlines to team meetings and personal reminders, our calendar keeps everything in one place—clear, connected, and customizable.",
       icon: MdOutlineEmojiEvents({ size: 24 }),
       link: "/schedules/calender",
+      isPremium: false,
     },
     {
       title: "Tasks Scheduler",
@@ -22,9 +23,7 @@ const SchedulePage: React.FunctionComponent = () => {
         "Stay organized and boost productivity with our intuitive Task Scheduler. Effortlessly plan, prioritize, and manage your daily activities to ensure nothing slips through the cracks.",
       icon: FaTasks({ size: 24 }),
       link: "/schedules/task-scheduler",
-      isPremium : true,
-
-
+      isPremium: true,
     },
   ];
   return (

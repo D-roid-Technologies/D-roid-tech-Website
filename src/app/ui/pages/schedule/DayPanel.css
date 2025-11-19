@@ -21,6 +21,21 @@
   /* inherits from styles.loginBtn */
 }
 
+/* .daypanel-editBtn {
+  background-color: green;
+  color: #ffffff;
+}
+
+.dayPanel-deleteBtn {
+  background-color: red;
+  color: #ffffff;
+}
+
+.dayPanel-clearAllBtn {
+  background-color: darkred;
+  color: #ffffff;
+} */
+
 .dayPanel-taskList {
   list-style: none;
   padding: 0;
@@ -51,6 +66,7 @@
   display: flex;
   gap: 8px;
   flex-shrink: 0;
+  margin-top: 2rem;
 }
 
 .dayPanel-viewBtn {

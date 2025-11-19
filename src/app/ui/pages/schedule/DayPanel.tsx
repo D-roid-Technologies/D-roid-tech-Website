@@ -276,26 +276,26 @@ const DayPanel: React.FC<Props> = ({
                         style={styles.navButton}
                         className="dayPanel-viewBtn"
                       >
-                        View
+                        View Task
                       </button>
                       <button
                         onClick={() => handleEditClick(task)}
                         style={styles.navButton}
-                        className="dayPanel-editBtn"
+                        className="dayPanel-editBtn daypanel-editBtn "
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDeleteClick(dateKey, task.id)}
                         style={styles.navButton}
-                        className="dayPanel-deleteBtn"
+                        className="dayPanel-deleteBtn dayPanel-deleteBtn"
                       >
                         Delete
                       </button>
                       <button
                         onClick={() => onClearTasks(dateKey)}
                         style={styles.navButton}
-                        className="dayPanel-clearAllBtn"
+                        className="dayPanel-clearAllBtn dayPanel-clearAllBtn"
                       >
                         Clear all
                       </button>
@@ -304,7 +304,7 @@ const DayPanel: React.FC<Props> = ({
                 ))}
               </ul>
               <div>
-                <div className="dayPanel-clearAllContainer">
+                {/* <div className="dayPanel-clearAllContainer">
                   <button
                     onClick={() => onClearTasks(dateKey)}
                     style={styles.navButton}
@@ -312,7 +312,7 @@ const DayPanel: React.FC<Props> = ({
                   >
                     Clear all
                   </button>
-                </div>
+                </div> */}
               </div>
             </>
           )}
