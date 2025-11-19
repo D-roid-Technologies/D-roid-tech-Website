@@ -183,12 +183,12 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       icon: FaToolbox,
       variant: "primary",
     },
-    // {
-    //   title: "Announcements",
-    //   description: "Stay updated with the latest news",
-    //   icon: FaBullhorn,
-    //   variant: "secondary",
-    // },
+    {
+      title: "Announcements",
+      description: "Stay updated with the latest news",
+      icon: FaBullhorn,
+      variant: "secondary",
+    },
     {
       title: "Say It",
       description: "Share feedback, suggestions, or reports",
@@ -249,7 +249,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     "Service Accessed": "Services",
     "Career Application": "Careers",
     "Schedule Added": "Schedules",
-    // "Notifications Read": "Notifications",
+    "Notifications Read": "Notifications",
     "Feedback Submitted": "Say It",
   };
 
