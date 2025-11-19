@@ -1,6 +1,9 @@
-// store/slices/notificationsSlice.ts
+// store/slices/notificationSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loadFromLocalStorage, saveToLocalStorage } from "../../utils/localStorage";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "../../utils/localStorage";
 
 const LOCAL_KEY = "notifications";
 
@@ -14,6 +17,7 @@ export interface Notification {
   isRead: boolean;
 }
 
+// KEEP THE DEFAULT NOTIFICATIONS
 const defaultNotifications: Notification[] = [
   {
     id: 1,
@@ -41,90 +45,95 @@ function migrateNotifications(notifications: Notification[]): Notification[] {
     console.error("Invalid notifications data, using defaults");
     return defaultNotifications;
   }
-  
-  return notifications.map(notification => {
-    // Ensure notification has required fields
-    if (!notification || typeof notification !== 'object') {
-      console.warn("Invalid notification object, skipping");
-      return null;
-    }
-    
-    // Check if time exists and is valid
-    let validTime = notification.time;
-    
-    if (!notification.time) {
-      console.warn(`Missing time for notification: ${notification.title}, using current time`);
-      validTime = new Date().toISOString();
-    } else {
-      const timeDate = new Date(notification.time);
-      
-      // If invalid, convert to ISO string or use current time
-      if (isNaN(timeDate.getTime())) {
-        console.warn(`Migrating invalid notification time for: ${notification.title}`, notification.time);
-        validTime = new Date().toISOString();
+
+  return notifications
+    .map((notification) => {
+      if (!notification || typeof notification !== "object") {
+        console.warn("Invalid notification object, skipping");
+        return null;
       }
-    }
-    
-    return {
-      ...notification,
-      time: validTime
-    };
-  }).filter(n => n !== null); // Remove any null entries
+
+      let validTime = notification.time;
+
+      if (!notification.time) {
+        console.warn(
+          `Missing time for notification: ${notification.title}, using current time`
+        );
+        validTime = new Date().toISOString();
+      } else {
+        const timeDate = new Date(notification.time);
+
+        if (isNaN(timeDate.getTime())) {
+          console.warn(
+            `Migrating invalid notification time for: ${notification.title}`,
+            notification.time
+          );
+          validTime = new Date().toISOString();
+        }
+      }
+
+      return {
+        ...notification,
+        time: validTime,
+      };
+    })
+    .filter((n) => n !== null);
 }
 
-const loadedNotifications = loadFromLocalStorage<Notification[]>(LOCAL_KEY, defaultNotifications);
+// Use empty array as initial state - defaults will be handled by the service
+const loadedNotifications = loadFromLocalStorage<Notification[]>(LOCAL_KEY, []);
 const initialState: Notification[] = migrateNotifications(loadedNotifications);
 
 export const notificationsSlice = createSlice({
-    name: "nlotifications",
-    initialState,
-    reducers: {
-        setNotifications: (_, action: PayloadAction<Notification[]>) => {
-            saveToLocalStorage(LOCAL_KEY, action.payload);
-            return action.payload;
-        },
-        clearNotifications: () => {
-            saveToLocalStorage(LOCAL_KEY, []);
-            return [];
-        },
-        addNotification: (state, action: PayloadAction<Notification>) => {
-            state.push(action.payload);
-            saveToLocalStorage(LOCAL_KEY, state);
-        },
-        removeNotification: (state, action: PayloadAction<number>) => {
-            const filtered = state.filter(
-                (notification) => notification.id !== action.payload
-            );
-            saveToLocalStorage(LOCAL_KEY, filtered);
-            return filtered;
-        },
-        updateNotification: (state, action: PayloadAction<Notification>) => {
-            const index = state.findIndex(
-                (notification) => notification.id === action.payload.id
-            );
-            if (index !== -1) {
-                state[index] = action.payload;
-                saveToLocalStorage(LOCAL_KEY, state);
-            }
-        },
-        markAsRead: (state, action: PayloadAction<number>) => {
-            const notification = state.find(
-                (notification) => notification.id === action.payload
-            );
-            if (notification) {
-                notification.isRead = true;
-                saveToLocalStorage(LOCAL_KEY, state);
-            }
-        },
+  name: "notifications",
+  initialState,
+  reducers: {
+    setNotifications: (_, action: PayloadAction<Notification[]>) => {
+      saveToLocalStorage(LOCAL_KEY, action.payload);
+      return action.payload;
     },
+    clearNotifications: () => {
+      saveToLocalStorage(LOCAL_KEY, []);
+      return [];
+    },
+    addNotification: (state, action: PayloadAction<Notification>) => {
+      state.push(action.payload);
+      saveToLocalStorage(LOCAL_KEY, state);
+    },
+    removeNotification: (state, action: PayloadAction<number>) => {
+      const filtered = state.filter(
+        (notification) => notification.id !== action.payload
+      );
+      saveToLocalStorage(LOCAL_KEY, filtered);
+      return filtered;
+    },
+    updateNotification: (state, action: PayloadAction<Notification>) => {
+      const index = state.findIndex(
+        (notification) => notification.id === action.payload.id
+      );
+      if (index !== -1) {
+        state[index] = action.payload;
+        saveToLocalStorage(LOCAL_KEY, state);
+      }
+    },
+    markAsRead: (state, action: PayloadAction<number>) => {
+      const notification = state.find(
+        (notification) => notification.id === action.payload
+      );
+      if (notification) {
+        notification.isRead = true;
+        saveToLocalStorage(LOCAL_KEY, state);
+      }
+    },
+  },
 });
 
-export const { 
-    setNotifications, 
-    clearNotifications, 
-    addNotification, 
-    removeNotification, 
-    updateNotification, 
-    markAsRead 
+export const {
+  setNotifications,
+  clearNotifications,
+  addNotification,
+  removeNotification,
+  updateNotification,
+  markAsRead,
 } = notificationsSlice.actions;
 export default notificationsSlice.reducer;

@@ -1,26 +1,61 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { UserType } from "../../../utils/Types";
 import { Shield, Check, Mail, Smartphone } from "lucide-react";
 import "./SecuritySettingsUI.css";
 import { authService } from "../../../redux/configuration/auth.service";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../../firebase";
 
 interface SecuritySettingsUIProps {
   user: UserType | null;
   onChange: Dispatch<SetStateAction<UserType | null>>;
 }
 
+interface SecuritySettings {
+  twoFactorEnabled: boolean;
+  loginAlerts: boolean;
+}
+
 const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
   user,
   onChange,
 }) => {
-  const [securitySettings, setSecuritySettings] = useState({
+  const [securitySettings, setSecuritySettings] = useState<SecuritySettings>({
     twoFactorEnabled: false,
-    // securityQuestion: "",
-    // securityAnswer: "",
     loginAlerts: false,
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load security settings from backend on component mount
+  useEffect(() => {
+    loadSecuritySettings();
+  }, []);
+
+  const loadSecuritySettings = async () => {
+    try {
+      setIsLoading(true);
+      const currentUser = await authService.getCurrentUser();
+      const userId = currentUser.uid;
+      const userDocRef = doc(db, "droidaccount", userId);
+      const userSnapshot = await getDoc(userDocRef);
+
+      if (userSnapshot.exists()) {
+        const data = userSnapshot.data();
+        const currentSecurity = data?.user?.security || {};
+
+        setSecuritySettings({
+          twoFactorEnabled: currentSecurity.twoFactorEnabled || false,
+          loginAlerts: currentSecurity.loginAlerts || false,
+        });
+      }
+    } catch (error) {
+      console.error("Error loading security settings:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -29,24 +64,60 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
     const { name, value } = target;
     const isCheckbox =
       target instanceof HTMLInputElement && target.type === "checkbox";
-    const updatedValue = isCheckbox ? target.checked : value;
-    setSecuritySettings((prev) => ({
-      ...prev,
+    const updatedValue = isCheckbox
+      ? (target as HTMLInputElement).checked
+      : value;
+
+    const updatedSettings = {
+      ...securitySettings,
       [name]: updatedValue,
-    }));
+    };
+
+    setSecuritySettings(updatedSettings);
+
+    // Update backend immediately on toggle (real-time)
+    updateSecuritySettingsInBackend(updatedSettings);
+  };
+
+  const updateSecuritySettingsInBackend = async (
+    settings: SecuritySettings
+  ) => {
+    try {
+      await authService.updateSecuritySettings(settings);
+      console.log("✅ Security settings updated in real-time:", settings);
+    } catch (error) {
+      console.error("❌ Failed to update security settings:", error);
+      // Revert local state if backend update fails
+      await loadSecuritySettings();
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(async () => {
-      await authService.updateSecuritySettings(securitySettings)
-      console.log("Updated security settings:", securitySettings);
+    try {
+      // Final confirmation update
+      await authService.updateSecuritySettings(securitySettings);
+      console.log("✅ Final security settings saved:", securitySettings);
+
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 500);
+    } catch (error) {
+      console.error("❌ Failed to save security settings:", error);
+      setIsSubmitting(false);
+    }
   };
+
+  if (isLoading) {
+    return (
+      <div className="ssu-container">
+        <div className="ssu-loading">
+          <p>Loading security settings...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (submitted) {
     return (
@@ -105,7 +176,8 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
       <div className="ssu-header">
         <p className="ssu-title">Account Security</p>
         <p className="ssu-subtitle">
-          Improve your account's security using the settings below.
+          Improve your account's security using the settings below. Changes are
+          saved automatically.
         </p>
       </div>
 
@@ -116,10 +188,11 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
           <div className="ssu-settings-grid">
             {/* Two-Factor Authentication */}
             <div
-              className={`ssu-setting-card ${securitySettings.twoFactorEnabled
+              className={`ssu-setting-card ${
+                securitySettings.twoFactorEnabled
                   ? "ssu-setting-card-active"
                   : ""
-                }`}
+              }`}
             >
               <div className="ssu-setting-header">
                 <div className="ssu-setting-icon-wrapper">
@@ -161,8 +234,9 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
 
             {/* Login Alerts */}
             <div
-              className={`ssu-setting-card ${securitySettings.loginAlerts ? "ssu-setting-card-active" : ""
-                }`}
+              className={`ssu-setting-card ${
+                securitySettings.loginAlerts ? "ssu-setting-card-active" : ""
+              }`}
             >
               <div className="ssu-setting-header">
                 <div className="ssu-setting-icon-wrapper">
@@ -212,7 +286,7 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
               cursor: isSubmitting ? "not-allowed" : "pointer",
             }}
           >
-            {isSubmitting ? "Saving Settings..." : "Save Security Settings"}
+            {isSubmitting ? "Saving Settings..." : "Confirm Security Settings"}
           </button>
         </div>
       </form>
@@ -221,96 +295,3 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
 };
 
 export default SecuritySettingsUI;
-
-// import React, { Dispatch, SetStateAction, useState } from 'react'
-// import { UserType } from '../../../utils/Types'
-
-// interface SecuritySettingsUIProps {
-//     user: UserType | null,
-//     onChange: Dispatch<SetStateAction<UserType | null>>
-// }
-
-// const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({ user, onChange }) => {
-//     const [securitySettings, setSecuritySettings] = useState({
-//         twoFactorEnabled: false,
-//         securityQuestion: "",
-//         securityAnswer: "",
-//         loginAlerts: false,
-//     });
-
-//     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-//         const target = e.target;
-//         const { name, value } = target;
-//         const isChechbox = target instanceof HTMLInputElement && target.type === "checkbox";
-//         const updatedValue = isChechbox ? target.checked : value
-//         setSecuritySettings(prev => ({
-//             ...prev,
-//             [name]: updatedValue
-//         }));
-//     };
-
-//     const handleSubmit = async () => {
-//         // Simulate sending settings to backend
-//         console.log("Updated security settings:", securitySettings);
-//         alert("Security settings updated successfully.");
-//     };
-
-//     return (
-//         <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-//             <h2 style={{ color: "#071D6A", fontWeight: "900" }}>Account Security</h2>
-//             <p style={{ fontSize: "14px", color: "#555" }}>
-//                 Improve your account's security using the settings below.
-//             </p>
-
-//             <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginTop: "20px" }}>
-//                 {/* Two-Factor Authentication */}
-//                 <label style={{ display: "flex", justifyContent: "flex-start", gap: 10, alignItems: "center" }}>
-//                     <input
-//                         type="checkbox"
-//                         name="twoFactorEnabled"
-//                         checked={securitySettings.twoFactorEnabled}
-//                         onChange={handleChange}
-//                     />
-//                     <p style={{ color: "#000000" }}>Enable Two-Factor Authentication (2FA)</p>
-//                 </label>
-//                 <small style={{ color: "#666", alignSelf: "flex-start" }}>
-//                     Enchance your D'roid One Account with better security.
-//                 </small>
-
-//                 {/* Login Alerts */}
-
-//                 <label style={{ display: "flex", justifyContent: "flex-start", gap: 10, alignItems: "center" }}>
-
-//                     <input
-//                         type="checkbox"
-//                         name="loginAlerts"
-//                         checked={securitySettings.loginAlerts}
-//                         onChange={handleChange}
-//                     />
-//                     <p style={{ color: "#000000" }}>Enable Login Alerts</p>
-//                 </label>
-//                 <small style={{ color: "#666", alignSelf: "flex-start" }}>
-//                     Receive email notifications when your account is accessed from a new device.
-//                 </small>
-
-//                 <button
-//                     onClick={handleSubmit}
-//                     style={{
-//                         marginTop: "20px",
-//                         padding: "12px",
-//                         backgroundColor: "#071D6A",
-//                         color: "white",
-//                         border: "none",
-//                         borderRadius: "8px",
-//                         fontWeight: "bold",
-//                         cursor: "pointer"
-//                     }}
-//                 >
-//                     Save Security Settings
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default SecuritySettingsUI;
