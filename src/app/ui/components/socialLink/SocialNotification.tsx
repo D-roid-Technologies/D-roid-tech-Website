@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import styles from "./SocialNotification.module.css";
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp,FaTwitter } from "react-icons/fa";
 
 interface SocialItem {
-  id: "facebook" | "instagram" | "linkedin" | "whatsapp"| "twitter";
+  id: "facebook" | "instagram" | "linkedin" | "whatsapp" | "twitter";
   name: string;
   icon: JSX.Element;
   description: string;
@@ -14,42 +14,41 @@ const socials: SocialItem[] = [
   {
     id: "facebook",
     name: "Facebook",
-    icon: <FaFacebook color="#1877F2" size={28} />, 
+    icon: <FaFacebook color="#1877F2" size={20} />,
     description: "The Official Facebook page for D'roid Technologies.",
     link: "https://www.facebook.com/share/1Gf2K2A5RS",
   },
   {
     id: "instagram",
     name: "Instagram",
-    icon: <FaInstagram color="#E4405F" size={28} />, 
-    description:
-      "Follow our official Instagram handle for updates and behind-the-scenes.",
+    icon: <FaInstagram color="#E4405F" size={20} />,
+    description: "Follow our official Instagram handle for updates.",
     link: "https://www.instagram.com/droid_techng?igsh=b3QxdTF4ZDYyb2x3",
   },
   {
     id: "linkedin",
     name: "LinkedIn",
-    icon: <FaLinkedin color="#0A66C2" size={28} />, 
+    icon: <FaLinkedin color="#0A66C2" size={20} />,
     description: "Connect with D'roid Technologies on LinkedIn.",
     link: "https://www.linkedin.com/company/d-roid-technologies-international/",
   },
   {
     id: "twitter",
-    name: "x",
-    icon: <FaTwitter color="#0A66C2" size={28} />, 
-    description: "Connect with D'roid Technologies on x.",
+    name: "X (Twitter)",
+    icon: <FaTwitter color="#000000" size={20} />,
+    description: "Connect with D'roid Technologies on X.",
     link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
   },
   {
     id: "whatsapp",
     name: "WhatsApp",
-    icon: <FaWhatsapp color="#25D366" size={28} />, 
+    icon: <FaWhatsapp color="#25D366" size={20} />,
     description: "Chat with our support team directly on WhatsApp.",
-    link: "https://wa.me/23400000000",
+    link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
   },
 ];
 
-const SocialNotification: React.FC = () => {
+const SocialNotificationPreview: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<SocialItem | null>(null);
 
@@ -64,28 +63,32 @@ const SocialNotification: React.FC = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.headerRow}>
-        <p className={styles.headerText}>Droid Social Media Links</p>
-      </div>
+    <div className={styles.wrapperRoot}>
+      <div className={styles.wrapper}>
+        <div className={styles.headerRow}>
+          <p className={styles.headerText}>Droid Social Media Links</p>
+        </div>
 
-      <div className={styles.grid}>
-        {socials.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => handleOpen(item)}
-            className={styles.socialBtn}
-          >
-            <div className={styles.icon}>{item.icon}</div>
-            <span className={styles.socialName}>{item.name}</span>
-          </button>
-        ))}
+        <div className={styles.grid}>
+          {socials.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => handleOpen(item)}
+              className={styles.socialBtn}
+            >
+              <div className={styles.icon}>{item.icon}</div>
+              <span className={styles.socialName}>{item.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {open && selected && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalBox}>
+            <button className={styles.closeIcon} onClick={handleClose}>X</button>
+
             <h2 className={styles.modalTitle}>
               {selected.icon} <span>{selected.name}</span>
             </h2>
@@ -100,10 +103,6 @@ const SocialNotification: React.FC = () => {
             >
               Visit {selected.name}
             </a>
-
-            <button onClick={handleClose} className={styles.closeBtn}>
-              Close
-            </button>
           </div>
         </div>
       )}
@@ -111,4 +110,6 @@ const SocialNotification: React.FC = () => {
   );
 };
 
-export default SocialNotification;
+export default SocialNotificationPreview;
+
+
