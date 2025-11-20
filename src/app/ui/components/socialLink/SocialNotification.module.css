@@ -1,0 +1,137 @@
+
+.wrapperRoot {
+  all: revert-layer; /* prevents external CSS override */
+}
+
+.wrapper {
+  padding: 10px;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.headerText {
+  color: #444;
+  font-size: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  max-width: 240px;
+}
+
+@media (min-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.socialBtn {
+  background: #fff !important; /* prevent external button color */
+  border: 1px solid #eee !important;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.socialBtn:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  margin-bottom: 2px;
+}
+
+.socialName {
+  font-size: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modalBox {
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  width: 85%;
+  max-width: 320px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.25s ease;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #222;
+  line-height: 1;
+}
+
+.closeIcon:hover {
+color: #ff3b30 !important; 
+background: rgba(255, 59, 48, 0.12) !important; 
+}
+
+.modalTitle {
+  font-size: 16px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.modalDescription {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.linkBtn {
+  background: #0a66c2 !important;
+  color: white !important;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none !important;
+  display: inline-block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

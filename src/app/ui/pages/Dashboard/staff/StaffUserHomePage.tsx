@@ -41,6 +41,7 @@ import {
 import EventPosts from "../../../components/blogPosts/Events";
 import { eventsPosts } from "../../../../utils/blogpost";
 import { formatStartDate } from "../../../../utils/isAboveSixMonths";
+import SocialNotification from "../../../components/socialLink/SocialNotification";
 
 type QuickActionCardProps = {
   title: string;
@@ -585,6 +586,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
                 )}
               </div> */}
             </div>
+            <SocialNotification/>
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
