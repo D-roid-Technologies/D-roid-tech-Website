@@ -166,7 +166,7 @@ export const businessPosts: BlogPost[] = [
 
 // Events category posts
 export const eventsPosts: BlogPost[] = [
-   {
+  {
     id: 12,
     title: "Clash of Kings - Chess Tournament[2025/2026]",
     excerpt:
@@ -239,7 +239,7 @@ export const eventsPosts: BlogPost[] = [
     title: "Tech Conference Calabar",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
-    date: "Saturday, 29th November 2025",
+    date: "Friday, 5th December 2025",
     author: "Calabar Tech Community",
     authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
     category: "Events",
@@ -253,7 +253,7 @@ export const eventsPosts: BlogPost[] = [
       "Hosted in the vibrant city of Calabar, the conference also provides rich networking opportunities, cultural experiences, and inspiration for both beginners and seasoned professionals.",
     ],
   },
- 
+
   {
     id: 13,
     title: "Clash of Kings - Chess Tournament[2022/2023]",
@@ -331,24 +331,24 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-  id: 17,
-  title: "Outreach at State Primary School Rukpokwu, Rivers State",
-  excerpt:
-    "Photos of the outreach held on 07/10/25 at State Primary School Rukpokwu, Rivers State — supported by D'ROID Technologies. It was all shades of amazing!",
-  date: "October 7, 2025",
-  author: "Community Team",
-  authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
-  category: "Outreach",
-  readTime: "3 min read",
-  image: Assets.images.PrimarySchoolRukpokwu,
-  readMoreLink: generateBlogLink("events", "Outreach at State Primary School Rukpokwu Rivers State"),
-  content: [
-    "Our team, supported by D'ROID Technologies, held an inspiring outreach program at State Primary School, Rukpokwu, Rivers State, on October 7, 2025.",
-    "The event was filled with excitement, learning, and community spirit as pupils engaged in tech awareness activities and motivational sessions.",
-    "It was a day to remember — filled with smiles, shared knowledge, and positive energy.",
-    "A huge thank you to everyone who made this outreach possible. It was truly all shades of amazing!"
-  ],
-},
+    id: 17,
+    title: "Outreach at State Primary School Rukpokwu, Rivers State",
+    excerpt:
+      "Photos of the outreach held on 07/10/25 at State Primary School Rukpokwu, Rivers State — supported by D'ROID Technologies. It was all shades of amazing!",
+    date: "October 7, 2025",
+    author: "Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Outreach",
+    readTime: "3 min read",
+    image: Assets.images.PrimarySchoolRukpokwu,
+    readMoreLink: generateBlogLink("events", "Outreach at State Primary School Rukpokwu Rivers State"),
+    content: [
+      "Our team, supported by D'ROID Technologies, held an inspiring outreach program at State Primary School, Rukpokwu, Rivers State, on October 7, 2025.",
+      "The event was filled with excitement, learning, and community spirit as pupils engaged in tech awareness activities and motivational sessions.",
+      "It was a day to remember — filled with smiles, shared knowledge, and positive energy.",
+      "A huge thank you to everyone who made this outreach possible. It was truly all shades of amazing!"
+    ],
+  },
 
 ];
 

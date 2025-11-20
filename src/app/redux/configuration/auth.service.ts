@@ -116,15 +116,9 @@ type DroidAccount = {
       };
       nerves: {
         user: boolean;
-        // connections?: any[];
-        // posts?: any[];
-        // preferences?: any;
       };
       muzik: {
         user: boolean;
-        // playlists?: any[];
-        // favorites?: any[];
-        // preferences?: any;
       };
     };
   };
@@ -444,6 +438,25 @@ function getCurrentUser(): Promise<User> {
   });
 }
 
+// Notification interface for type safety
+export interface Notification {
+  id: number;
+  title: string;
+  message: string;
+  date: string;
+  time: string;
+  type: string;
+  isRead: boolean;
+}
+
+// security interface for type safety
+interface SecuritySettings {
+  twoFactorEnabled: boolean;
+  loginAlerts: boolean;
+  lastUpdated?: string;
+}
+
+
 export class AuthService {
   async handleUserRegistration(
     userData: UserType,
@@ -508,13 +521,13 @@ export class AuthService {
           security: {},
           affiliates: {
             knowledgeCity: {
-              user: false, // Changed from true to false
+              user: false,
             },
             nerves: {
-              user: false, // Default false
+              user: false,
             },
             muzik: {
-              user: false, // Default false
+              user: false,
             },
           },
           onboard: {
@@ -637,7 +650,6 @@ export class AuthService {
         const updatedStaffDocuments = updatedData?.user?.staff?.staffDoc || {};
         const updatedStaffLeave = updatedData?.user?.staff?.staffLeave || [];
         const updatedKnowledgeCity = updatedData?.user?.knowledgeCity || {};
-        const updatedNotifications = updatedData?.user?.notifications || [];
         const updatedOnboarding = updatedData?.user?.onboard?.onboarding || [];
         const updatedMemberStatus =
           updatedData?.user?.onboard?.memberStatus || [];
@@ -651,7 +663,6 @@ export class AuthService {
         store.dispatch(setPayslipData(updatedPayslips));
         store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
         store.dispatch(setTrainings(updatedTrainings));
-        store.dispatch(setNotifications(updatedNotifications));
         store.dispatch(setAllMilestones(updatedProgressions));
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
@@ -669,6 +680,19 @@ export class AuthService {
         store.dispatch(
           setUser({ ...primaryInformation, role: primaryInformation.role })
         );
+
+        // Initialize notifications from Firestore
+        try {
+          const { notificationsService } = await import(
+            "../../ui/notificationService/notifications.service"
+          );
+          await notificationsService.initializeNotifications();
+        } catch (error) {
+          console.error("Failed to initialize notifications:", error);
+          // Fallback: Use existing data if available
+          const fallbackNotifications = updatedData?.user?.notifications || [];
+          store.dispatch(setNotifications(fallbackNotifications));
+        }
 
         toast.success(`We have successfully logged you into your account.`, {
           style: {
@@ -976,7 +1000,6 @@ export class AuthService {
       const currentData = userSnapshot.data();
       const currentAffiliates = currentData?.user?.affiliates || {};
 
-      // Deep merge to preserve existing data
       const updatedAffiliates = {
         knowledgeCity: {
           ...currentAffiliates.knowledgeCity,
@@ -994,7 +1017,6 @@ export class AuthService {
 
       console.log("✅ Updated affiliates data:", updatedAffiliates);
 
-      // Update Firestore
       await updateDoc(userDocRef, {
         "user.affiliates": updatedAffiliates,
       });
@@ -1017,9 +1039,10 @@ export class AuthService {
     return getCurrentUser();
   }
 
-  async updateSecuritySettings(partialSecurity: Partial<any>) {
+  // In AuthService class - update the existing method
+  async updateSecuritySettings(partialSecurity: Partial<SecuritySettings>) {
     try {
-      const currentUser = await getCurrentUser();
+      const currentUser = await this.getCurrentUser();
       const userId = currentUser.uid;
 
       const userDocRef = doc(db, "droidaccount", userId);
@@ -1033,26 +1056,92 @@ export class AuthService {
       }
 
       const currentData = userSnapshot.data();
+      const currentSecurity = currentData?.user?.security || {};
 
+      // Deep merge to preserve existing security data
       const updatedSecurity = {
-        ...currentData?.user?.security,
+        ...currentSecurity,
         ...partialSecurity,
+        lastUpdated: new Date().toISOString(),
       };
 
       console.log("✅ Updated security data:", updatedSecurity);
 
+      // Update Firestore
       await updateDoc(userDocRef, {
         "user.security": updatedSecurity,
       });
 
-      toast.success("Security settings updated successfully", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
+      // Send appropriate notifications based on changes
+      await this.sendSecurityNotifications(partialSecurity, currentSecurity);
+
+      // Don't show toast for real-time updates, only for final submission
+      if (Object.keys(partialSecurity).length > 1) {
+        toast.success("Security settings updated successfully", {
+          style: { background: "#4BB543", color: "#fff" },
+        });
+      }
+
+      return updatedSecurity;
     } catch (error: any) {
       console.error("🔥 Error updating security:", error?.message || error);
-      toast.error(error?.message || "Failed to update security settings", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+
+      // Only show error toast for significant failures
+      if (Object.keys(partialSecurity).length > 1) {
+        toast.error(error?.message || "Failed to update security settings", {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+      }
+
+      throw error;
+    }
+  }
+
+  // Helper method to send security notifications
+  private async sendSecurityNotifications(
+    newSettings: Partial<SecuritySettings>,
+    oldSettings: any
+  ) {
+    try {
+      const { enhancedNotifications } = await import(
+        "../../ui/notificationService/notifications.service"
+      );
+
+      // Notify for 2FA changes
+      if (
+        newSettings.twoFactorEnabled !== undefined &&
+        newSettings.twoFactorEnabled !== oldSettings.twoFactorEnabled
+      ) {
+        await enhancedNotifications.addSilent({
+          title: "2FA Settings Updated",
+          message: newSettings.twoFactorEnabled
+            ? "Two-factor authentication has been enabled"
+            : "Two-factor authentication has been disabled",
+          type: newSettings.twoFactorEnabled ? "success" : "warning",
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          isRead: false,
+        });
+      }
+
+      // Notify for login alerts changes
+      if (
+        newSettings.loginAlerts !== undefined &&
+        newSettings.loginAlerts !== oldSettings.loginAlerts
+      ) {
+        await enhancedNotifications.addSilent({
+          title: "Login Alerts Updated",
+          message: newSettings.loginAlerts
+            ? "Login alerts have been enabled"
+            : "Login alerts have been disabled",
+          type: newSettings.loginAlerts ? "success" : "info",
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          isRead: false,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to send security notifications:", error);
     }
   }
 
@@ -1182,6 +1271,81 @@ export class AuthService {
     } catch (error: any) {
       throw new Error(error.message || "Failed to update task");
     }
+  }
+
+  // ==================== NEW NOTIFICATION METHODS ====================
+
+  async syncNotificationsToBackend(notifications: Notification[]) {
+    try {
+      const currentUser = await this.getCurrentUser();
+      const userId = currentUser.uid;
+      const userDocRef = doc(db, "droidaccount", userId);
+
+      await updateDoc(userDocRef, {
+        "user.notifications": notifications,
+      });
+
+      console.log("✅ Notifications synced to Firestore");
+      return true;
+    } catch (error: any) {
+      console.error("🔥 Error syncing notifications to backend:", error);
+      throw error;
+    }
+  }
+
+  async getNotificationsFromBackend(): Promise<Notification[]> {
+    try {
+      const currentUser = await this.getCurrentUser();
+      const userId = currentUser.uid;
+      const userDocRef = doc(db, "droidaccount", userId);
+      const userSnapshot = await getDoc(userDocRef);
+
+      if (!userSnapshot.exists()) {
+        return [];
+      }
+
+      const data = userSnapshot.data();
+      const backendNotifications = data?.user?.notifications || [];
+
+      return this.migrateNotifications(backendNotifications);
+    } catch (error: any) {
+      console.error("🔥 Error fetching notifications from backend:", error);
+      return [];
+    }
+  }
+
+  private migrateNotifications(notifications: any[]): Notification[] {
+    if (!Array.isArray(notifications)) {
+      return [];
+    }
+
+    return notifications
+      .map((notification, index) => {
+        if (!notification || typeof notification !== "object") {
+          return null;
+        }
+
+        let validTime = notification.time;
+        if (!notification.time) {
+          validTime = new Date().toISOString();
+        } else {
+          const timeDate = new Date(notification.time);
+          if (isNaN(timeDate.getTime())) {
+            validTime = new Date().toISOString();
+          }
+        }
+
+        return {
+          id: notification.id || index + 1,
+          title: notification.title || "Untitled",
+          message: notification.message || "",
+          date: notification.date || new Date().toISOString().split("T")[0],
+          time: validTime,
+          type: notification.type || "info",
+          isRead: notification.isRead || false,
+        };
+      })
+      .filter((n) => n !== null) as Notification[];
   }
 }
 

@@ -5,7 +5,8 @@ import styles from "./styles";
 import { Modal } from "../Dashboard/micro-ui/modal";
 import "../schedule/DayPanel.css";
 import CalendarCreateTask from "./CalendarCreateTask";
-import { TaskMain } from "../../../redux/slices/scheduleTask";
+// import { TaskMain } from "../../../redux/slices/scheduleTask";
+import { TaskMain } from "../../../redux/slices/CalenderTaskSlice";
 
 type Props = {
   selectedDate: Dayjs | null;
@@ -226,7 +227,9 @@ const DayPanel: React.FC<Props> = ({
 
   return (
     <div style={styles.sidePanel} className="dayPanel-container">
-      <h4 style={{ color: "#000000" }} className="dayPanel-header">Tasks & Events for {dateKey}</h4>
+      <h4 style={{ color: "#000000" }} className="dayPanel-header">
+        Tasks & Events for {dateKey}
+      </h4>
 
       {!isLoggedIn ? (
         <div style={styles.eventBox} className="dayPanel-eventBox">
@@ -245,14 +248,24 @@ const DayPanel: React.FC<Props> = ({
       ) : (
         <>
           {tasks.length === 0 ? (
-            <p style={{ color: "#000000" }}>No tasks or events scheduled for this day.</p>
+            <p style={{ color: "#000000" }}>
+              No tasks or events scheduled for this day.
+            </p>
           ) : (
             <>
               <ul className="dayPanel-taskList">
                 {tasks.map((task) => (
-                  <li key={task.id} className="dayPanel-taskItem">
-                    <div style={{color: "#000000"}}>
-                      <div className="dayPanel-taskTitle">{task.title}</div>
+                  <li key={task.id}>
+                    <div
+                      style={{ color: "#000000" }}
+                      className="dayPanel-taskTitle"
+                    >
+                      {task.title}
+                    </div>
+                    <div
+                      style={{ color: "#000000" }}
+                      className="dayPanel-taskItem"
+                    >
                       <div className="dayPanel-taskMeta">
                         {task.type ?? "General"} • {task.startDate}{" "}
                         {task.endDate ? ` — ${task.endDate}` : ""}
@@ -264,34 +277,43 @@ const DayPanel: React.FC<Props> = ({
                         style={styles.navButton}
                         className="dayPanel-viewBtn"
                       >
-                        View
+                        View Task
                       </button>
                       <button
                         onClick={() => handleEditClick(task)}
                         style={styles.navButton}
-                        className="dayPanel-editBtn"
+                        className="dayPanel-editBtn daypanel-editBtn "
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDeleteClick(dateKey, task.id)}
                         style={styles.navButton}
-                        className="dayPanel-deleteBtn"
+                        className="dayPanel-deleteBtn dayPanel-deleteBtn"
                       >
                         Delete
+                      </button>
+                      <button
+                        onClick={() => onClearTasks(dateKey)}
+                        style={styles.navButton}
+                        className="dayPanel-clearAllBtn dayPanel-clearAllBtn"
+                      >
+                        Clear all
                       </button>
                     </div>
                   </li>
                 ))}
               </ul>
-              <div className="dayPanel-clearAllContainer">
-                <button
-                  onClick={() => onClearTasks(dateKey)}
-                  style={styles.navButton}
-                  className="dayPanel-clearAllBtn"
-                >
-                  Clear all
-                </button>
+              <div>
+                {/* <div className="dayPanel-clearAllContainer">
+                  <button
+                    onClick={() => onClearTasks(dateKey)}
+                    style={styles.navButton}
+                    className="dayPanel-clearAllBtn"
+                  >
+                    Clear all
+                  </button>
+                </div> */}
               </div>
             </>
           )}
@@ -389,12 +411,20 @@ const DayPanel: React.FC<Props> = ({
           {/* Viewing panel */}
           {viewingTask && (
             <div className="dayPanel-viewingPanel">
-              <h5 className="dayPanel-viewingTitle">{viewingTask.title}</h5>
+              <h5
+                className="dayPanel-viewingTitle"
+                style={{ color: "#000000" }}
+              >
+                {viewingTask.title}
+              </h5>
               <div className="dayPanel-viewingMeta">
                 {viewingTask.type ?? "General"} • Created{" "}
                 {dayjs(viewingTask.createdAt).format("YYYY-MM-DD")}
               </div>
-              <p className="dayPanel-viewingDescription">
+              <p
+                className="dayPanel-viewingDescription"
+                style={{ color: "#000000" }}
+              >
                 {viewingTask.description}
               </p>
               <div className="dayPanel-viewingDate">
