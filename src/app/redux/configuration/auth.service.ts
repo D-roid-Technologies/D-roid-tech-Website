@@ -456,7 +456,6 @@ interface SecuritySettings {
   lastUpdated?: string;
 }
 
-
 export class AuthService {
   async handleUserRegistration(
     userData: UserType,
@@ -600,6 +599,7 @@ export class AuthService {
     }
   }
 
+  // In AuthService class - complete handleUserLogin method
   async handleUserLogin(email: string, password: string, isStaff: boolean) {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -660,12 +660,20 @@ export class AuthService {
         const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
         const calculateData = updatedData?.calculate?.calculators || [];
 
+        //Get notifications from Firestore FIRST (Source of Truth)
+        const firestoreNotifications =
+          fetchedUserData.user?.notifications || [];
+
+        // Update all Redux states
         store.dispatch(setPayslipData(updatedPayslips));
         store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
         store.dispatch(setTrainings(updatedTrainings));
         store.dispatch(setAllMilestones(updatedProgressions));
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
+
+        //Set notifications from Firestore to Redux
+        store.dispatch(setNotifications(firestoreNotifications));
 
         try {
           const { setStaffInfo } = await import("../slices/onboarding");
@@ -681,7 +689,7 @@ export class AuthService {
           setUser({ ...primaryInformation, role: primaryInformation.role })
         );
 
-        // Initialize notifications from Firestore
+        // Initialize notification service AFTER setting Firestore data
         try {
           const { notificationsService } = await import(
             "../../ui/notificationService/notifications.service"
@@ -689,9 +697,7 @@ export class AuthService {
           await notificationsService.initializeNotifications();
         } catch (error) {
           console.error("Failed to initialize notifications:", error);
-          // Fallback: Use existing data if available
-          const fallbackNotifications = updatedData?.user?.notifications || [];
-          store.dispatch(setNotifications(fallbackNotifications));
+          // Already set Firestore data above, so this is just backup
         }
 
         toast.success(`We have successfully logged you into your account.`, {
