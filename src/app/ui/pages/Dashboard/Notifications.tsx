@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck } from 'lucide-react';
+import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck, ClipboardList } from 'lucide-react';
 import styles from './Notifications.module.css';
 import { useSelector, useDispatch } from "react-redux";
 import { removeNotification, markAsRead, type Notification } from "../../../redux/slices/notificationSlice";
@@ -121,7 +121,11 @@ const Notifications: React.FC = () => {
                   <span><TimeLabel date={notification.time} /></span>
                 </div>
                 <div className={styles.typeBadge}>
-                  <Tag className={styles.metaIcon} />
+                  {notification.type === 'task' ? (
+                    <ClipboardList className={styles.metaIcon} />
+                  ) : (
+                    <Tag className={styles.metaIcon} />
+                  )}
                   <span>{notification.type}</span>
                 </div>
               </div>

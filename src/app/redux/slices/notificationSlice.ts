@@ -4,6 +4,7 @@ import {
   loadFromLocalStorage,
   saveToLocalStorage,
 } from "../../utils/localStorage";
+import { addTask, updateTaskStatus, deleteTask, updateTask } from "./tasksSlice";
 
 const LOCAL_KEY = "notifications";
 
@@ -125,6 +126,61 @@ export const notificationsSlice = createSlice({
         saveToLocalStorage(LOCAL_KEY, state);
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(addTask, (state, action) => {
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: "New Task Created",
+          message: `A new task "${action.payload.title}" has been created.`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "task",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      })
+      .addCase(updateTaskStatus, (state, action) => {
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: "Task Status Updated",
+          message: `Task status has been updated to "${action.payload.status}".`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "task",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      })
+      .addCase(deleteTask, (state, action) => {
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: "Task Deleted",
+          message: `A task has been removed from the list.`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "task",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      })
+      .addCase(updateTask, (state, action) => {
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: "Task Updated",
+          message: `Task "${action.payload.title}" details have been updated.`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "task",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      });
   },
 });
 
