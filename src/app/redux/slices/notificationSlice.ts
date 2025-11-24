@@ -5,6 +5,9 @@ import {
   saveToLocalStorage,
 } from "../../utils/localStorage";
 import { addTask, updateTaskStatus, deleteTask, updateTask } from "./tasksSlice";
+import { setOnboardingComplete, markStepCompleted } from "./onboarding";
+import { markTrainingAsCompleted } from "./TrainingsSlice";
+import { addEntry } from "./SignInAndOutSlice";
 
 const LOCAL_KEY = "notifications";
 
@@ -176,6 +179,64 @@ export const notificationsSlice = createSlice({
           date: new Date().toISOString().split("T")[0],
           time: new Date().toISOString(),
           type: "task",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      })
+      .addCase(setOnboardingComplete, (state, action) => {
+        if (action.payload) {
+          const newNotification: Notification = {
+            id: Date.now(),
+            title: "Onboarding Completed",
+            message: "Congratulations! You have successfully completed the onboarding process.",
+            date: new Date().toISOString().split("T")[0],
+            time: new Date().toISOString(),
+            type: "info",
+            isRead: false,
+          };
+          state.unshift(newNotification);
+          saveToLocalStorage(LOCAL_KEY, state);
+        }
+      })
+      .addCase(markStepCompleted, (state, action) => {
+        const stepIndex = action.payload;
+        const stepNames = ["View Info", "Personal Info", "Documents", "Leave"]; // Mapping step index to names
+        const stepName = stepNames[stepIndex] || `Step ${stepIndex + 1}`;
+        
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: "Onboarding Step Completed",
+          message: `You have completed the "${stepName}" step of onboarding.`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "info",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      })
+      .addCase(markTrainingAsCompleted, (state, action) => {
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: "Training Completed",
+          message: `You have successfully completed the training: "${action.payload.title}".`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "info",
+          isRead: false,
+        };
+        state.unshift(newNotification);
+        saveToLocalStorage(LOCAL_KEY, state);
+      })
+      .addCase(addEntry, (state, action) => {
+        const newNotification: Notification = {
+          id: Date.now(),
+          title: action.payload.type === "Sign In" ? "Signed In" : "Signed Out",
+          message: `You have successfully ${action.payload.type.toLowerCase()} at ${action.payload.timestamp}.`,
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          type: "info",
           isRead: false,
         };
         state.unshift(newNotification);

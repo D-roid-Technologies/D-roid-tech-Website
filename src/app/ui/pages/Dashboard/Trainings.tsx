@@ -1,70 +1,21 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { PlayCircle, CheckCircle, X } from "lucide-react";
-
-// ✅ Type definition for a course
-interface Course {
-  id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  duration: string;
-  scheduled_date: string;
-  completed: boolean;
-  completed_date?: string;
-}
+import { RootState } from "../../../redux/Store";
+import { markTrainingAsCompleted, Training } from "../../../redux/slices/TrainingsSlice";
 
 const Trainings: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([
-    {
-      id: "1",
-      title: "Workplace Safety Fundamentals",
-      description:
-        "Learn the key safety rules and emergency protocols to stay safe and ensure workplace compliance.",
-      thumbnail:
-        "https://cdn.pixabay.com/photo/2021/07/01/16/15/safety-first-6379751_1280.jpg",
-      duration: "2h 15m",
-      scheduled_date: "2025-05-22",
-      completed: true,
-      completed_date: "2025-05-22",
-    },
-    {
-      id: "2",
-      title: "Time Management Mastery",
-      description:
-        "Discover proven productivity frameworks and tools to manage your time effectively.",
-      thumbnail:
-        "https://cdn.pixabay.com/photo/2024/10/02/18/24/ai-generated-9091889_1280.jpg",
-      duration: "1h 30m",
-      scheduled_date: "2025-06-01",
-      completed: false,
-    },
-    {
-      id: "3",
-      title: "Communication in the Workplace",
-      description:
-        "Improve your ability to communicate clearly and collaborate efficiently within any team.",
-      thumbnail:
-        "https://cdn.pixabay.com/photo/2024/08/21/15/33/ai-generated-8986487_1280.jpg",
-      duration: "2h 45m",
-      scheduled_date: "2025-06-10",
-      completed: false,
-    },
-  ]);
+  const dispatch = useDispatch();
+  const courses = useSelector((state: RootState) => state.trainings);
 
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<Training | null>(null);
 
-  const handleStartLearning = (course: Course) => {
+  const handleStartLearning = (course: Training) => {
     setSelectedCourse(course);
   };
 
-  const handleMarkAsCompleted = (id: string) => {
-    setCourses((prev) =>
-      prev.map((c) =>
-        c.id === id
-          ? { ...c, completed: true, completed_date: new Date().toISOString().split("T")[0] }
-          : c
-      )
-    );
+  const handleMarkAsCompleted = (course: Training) => {
+    dispatch(markTrainingAsCompleted(course));
   };
 
   return (
@@ -164,7 +115,7 @@ const Trainings: React.FC = () => {
                 Duration: <strong>{course.duration}</strong>
               </p>
               <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "14px" }}>
-                Scheduled: {course.scheduled_date}
+                Scheduled: {course.scheduledDate}
               </p>
 
               <button
@@ -299,7 +250,7 @@ const Trainings: React.FC = () => {
       {!selectedCourse.completed && (
         <button
           onClick={() => {
-            handleMarkAsCompleted(selectedCourse.id);
+            handleMarkAsCompleted(selectedCourse);
             setSelectedCourse(null);
           }}
           style={{
