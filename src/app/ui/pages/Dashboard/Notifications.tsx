@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck } from "lucide-react";
-import styles from "./Notifications.module.css";
+import React, { useState, useEffect } from 'react';
+import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck, ClipboardList } from 'lucide-react';
+import styles from './Notifications.module.css';
 import { useSelector, useDispatch } from "react-redux";
 import {
   setNotifications,
@@ -238,22 +238,24 @@ const Notifications: React.FC = () => {
                   {notification.message}
                 </p>
 
-                <div className={styles.notificationMeta}>
-                  <div className={styles.metaItem}>
-                    <Calendar className={styles.metaIcon} />
-                    <span>{notification.date}</span>
-                  </div>
-                  <div className={styles.metaItem}>
-                    <Clock className={styles.metaIcon} />
-                    <span>
-                      <TimeLabel date={notification.time} />
-                    </span>
-                  </div>
-                  <div className={styles.typeBadge}>
-                    <Tag className={styles.metaIcon} />
-                    <span>{notification.type}</span>
-                  </div>
+              <div className={styles.notificationMeta}>
+                <div className={styles.metaItem}>
+                  <Calendar className={styles.metaIcon} />
+                  <span>{notification.date}</span>
                 </div>
+                <div className={styles.metaItem}>
+                  <Clock className={styles.metaIcon} />
+                  <span><TimeLabel date={notification.time} /></span>
+                </div>
+                <div className={styles.typeBadge}>
+                  {notification.type === 'task' ? (
+                    <ClipboardList className={styles.metaIcon} />
+                  ) : (
+                    <Tag className={styles.metaIcon} />
+                  )}
+                  <span>{notification.type}</span>
+                </div>
+              </div>
 
                 <div className={styles.actions}>
                   {!notification.isRead && (
