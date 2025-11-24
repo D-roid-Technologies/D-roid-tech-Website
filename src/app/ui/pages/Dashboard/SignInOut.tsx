@@ -13,10 +13,12 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { Entry } from "../../../redux/slices/SignInAndOutSlice";
+import { Entry, addEntry } from "../../../redux/slices/SignInAndOutSlice";
+import { useDispatch } from "react-redux";
 import "./SignInOut.css";
 
 const SignInOut: React.FC = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [employeeId, setEmployeeId] = useState("");
   const [logs, setLogs] = useState<Entry[]>([]);
@@ -79,7 +81,8 @@ const SignInOut: React.FC = () => {
 
     try {
       await authService.logStaffSignInOut(entry);
-      setLogs((prev) => [...prev, entry]);
+      dispatch(addEntry(entry));
+      // setLogs((prev) => [...prev, entry]); // Removed as it's now handled by Redux selector
       toast.success(`${entry.type} recorded!`);
     } catch (error) {
       toast.error("Failed to record sign-in/out.");

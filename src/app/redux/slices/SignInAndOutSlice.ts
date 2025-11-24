@@ -92,6 +92,13 @@ export const signInAndOutSlice = createSlice({
         JSON.stringify(state.staffSignInAndOut)
       );
     },
+    addEntry(state, action: PayloadAction<Entry>) {
+      state.staffSignInAndOut.push(action.payload);
+      localStorage.setItem(
+        "staffSignInAndOut",
+        JSON.stringify(state.staffSignInAndOut)
+      );
+    },
     setStaffDetails(state, action: PayloadAction<Partial<StaffDetails>>) {
       state.staffDetails = { ...state.staffDetails, ...action.payload };
       // Save to localStorage
@@ -132,6 +139,7 @@ export const signInAndOutSlice = createSlice({
 
 export const {
   setSignInAndOutData,
+  addEntry,
   setStaffDetails,
   setStaffDocuments,
   setStaffLeave,
