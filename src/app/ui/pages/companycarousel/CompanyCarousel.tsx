@@ -9,12 +9,12 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-  // {
-  //   title: "Company Management Portal",
-  //   description:
-  //     "A centralized platform designed to streamline and manage all aspects of your organization's operations.",
-  //   bgImage: Assets.images.homeBannerSlideOne,
-  // },
+  {
+    title: "Company Management Portal",
+    description:
+      "A centralized platform designed to streamline and manage all aspects of your organization's operations.",
+    bgImage: Assets.images.homeBannerSlideOne,
+  },
   {
     title: "Innovative Tech Solutions",
     description:
