@@ -179,7 +179,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, logo = "default" }) => {
 
         <div className="desktop-cta">
           <a href={RoutePaths.StartProjectPage} className="navbar-cta">
-            Start a project
+            Start a Project
           </a>
           {/* <div
             style={{
