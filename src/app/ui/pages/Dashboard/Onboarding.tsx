@@ -1,9 +1,10 @@
 // src/components/Onboarding/Onboarding.tsx
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { authService } from "../../../redux/configuration/auth.service";
 import { StaffDetails } from "../../../redux/slices/SignInAndOutSlice";
 import { RootState } from "../../../redux/Store";
+import { setCurrentStep, markStepCompleted } from "../../../redux/slices/onboarding";
 import { UserType } from "../../../utils/Types";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
@@ -17,8 +18,9 @@ const Onboarding: React.FC = () => {
   const staffDetails = useSelector(
     (state: RootState) => state.SignInO.staffDetails
   );
+  const dispatch = useDispatch();
+  const { currentStep } = useSelector((state: RootState) => state.onboarding);
 
-  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<UserType | null>(null);
   const [formDataNew, setFormDataNew] = useState<Partial<StaffDetails>>({});
   const [isUpdating, setIsUpdating] = useState(false);
@@ -143,6 +145,9 @@ const Onboarding: React.FC = () => {
       });
 
       setHasUpdatedPersonalInfo(true);
+      
+      // Mark step as completed in Redux (triggers notification)
+      dispatch(markStepCompleted(1));
 
       // Reset form data to show updated values
       setFormDataNew({});
@@ -284,7 +289,7 @@ const Onboarding: React.FC = () => {
           {onboardingSteps.map((step, index) => (
             <button
               key={index}
-              onClick={() => setCurrentStep(index)}
+              onClick={() => dispatch(setCurrentStep(index))}
               className={`${styles.tab} ${
                 currentStep === index ? styles.tabActive : ""
               }`}

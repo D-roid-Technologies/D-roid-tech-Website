@@ -1,3 +1,4 @@
+// notifications.service.ts
 import {
   setNotifications,
   addNotification,
@@ -10,6 +11,7 @@ import {
 import toast from "react-hot-toast";
 import { authService } from "../../redux/configuration/auth.service";
 import { store } from "../../redux/Store";
+import { loadFromLocalStorage } from "../../utils/localStorage";
 
 // Define default notifications for fallback
 const defaultNotifications: Notification[] = [
@@ -34,59 +36,57 @@ const defaultNotifications: Notification[] = [
 ];
 
 export class NotificationsService {
-  private isInitialized = false;
+  private _isInitialized = false;
   private useFirestore = true; // Feature flag for gradual migration
 
-  // Initialize notifications on app start/login
+  // Initialize notifications on app start/login - Firestore First
   async initializeNotifications() {
-    if (this.isInitialized) return;
+    if (this._isInitialized) return;
 
     try {
-      if (this.useFirestore) {
-        // Get notifications from backend first
-        const backendNotifications =
-          await authService.getNotificationsFromBackend();
+      // ALWAYS check Firestore first (Source of Truth)
+      const backendNotifications =
+        await authService.getNotificationsFromBackend();
 
-        // If no notifications in Firestore, use defaults
-        const notificationsToSet =
-          backendNotifications.length > 0
-            ? backendNotifications
-            : defaultNotifications;
+      let notificationsToSet: Notification[];
 
-        // Update Redux store with backend data or defaults
-        store.dispatch(setNotifications(notificationsToSet));
-
-        // If using defaults, sync them to Firestore
-        if (
-          backendNotifications.length === 0 &&
-          defaultNotifications.length > 0
-        ) {
-          await authService.syncNotificationsToBackend(defaultNotifications);
-        }
+      if (backendNotifications.length > 0) {
+        // Use Firestore data
+        notificationsToSet = backendNotifications;
+        console.log("✅ Loaded notifications from Firestore");
       } else {
-        // Fallback to defaults if no Firestore
-        store.dispatch(setNotifications(defaultNotifications));
+        // No Firestore data, use defaults and sync back
+        notificationsToSet = defaultNotifications;
+        await authService.syncNotificationsToBackend(defaultNotifications);
+        console.log("✅ Using default notifications, synced to Firestore");
       }
 
-      this.isInitialized = true;
-      console.log("✅ Notifications initialized");
-    } catch (error) {
-      console.error("🔥 Error initializing notifications:", error);
-      // Fallback to defaults
-      store.dispatch(setNotifications(defaultNotifications));
-    }
-  }
+      // Update Redux store with Firestore data
+      store.dispatch(setNotifications(notificationsToSet));
 
-  // Intercept Redux dispatches and sync to Firestore
-  private async syncToFirestoreAfterDispatch() {
-    if (!this.useFirestore) return;
-
-    try {
-      const currentNotifications = store.getState().notifications || [];
-      await authService.syncNotificationsToBackend(currentNotifications);
+      this._isInitialized = true;
+      console.log("✅ Notifications initialized with Firestore-first approach");
     } catch (error) {
-      console.error("🔥 Background sync to Firestore failed:", error);
-      // Don't show toast for background sync failures
+      console.error(
+        "🔥 Error initializing notifications from Firestore:",
+        error
+      );
+
+      // Fallback: Check LocalStorage as cache
+      const localNotifications = loadFromLocalStorage<Notification[]>(
+        "notifications",
+        []
+      );
+      if (localNotifications.length > 0) {
+        store.dispatch(setNotifications(localNotifications));
+        console.log("🔄 Fell back to LocalStorage cache");
+      } else {
+        // Ultimate fallback to defaults
+        store.dispatch(setNotifications(defaultNotifications));
+        console.log("🔄 Fell back to default notifications");
+      }
+
+      this._isInitialized = true;
     }
   }
 
@@ -98,21 +98,16 @@ export class NotificationsService {
         id: Date.now(),
       };
 
-      if (this.useFirestore) {
-        // Firestore-first approach
-        const currentNotifications = store.getState().notifications || [];
-        const updatedNotifications = [...currentNotifications, newNotification];
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = [...currentNotifications, newNotification];
 
-        // Sync to backend first
-        await authService.syncNotificationsToBackend(updatedNotifications);
+      // 1. Sync to Firestore FIRST (Source of Truth)
+      await authService.syncNotificationsToBackend(updatedNotifications);
 
-        // Then update Redux
-        store.dispatch(addNotification(newNotification));
-      } else {
-        // Legacy approach (Redux-first)
-        store.dispatch(addNotification(newNotification));
-        await this.syncToFirestoreAfterDispatch();
-      }
+      // 2. Then update Redux
+      store.dispatch(addNotification(newNotification));
 
       console.log("🔔 Notification added silently:", newNotification.title);
       return newNotification;
@@ -125,23 +120,18 @@ export class NotificationsService {
   // Remove notification without toast
   async removeNotificationSilently(notificationId: number) {
     try {
-      if (this.useFirestore) {
-        // Firestore-first approach
-        const currentNotifications = store.getState().notifications || [];
-        const updatedNotifications = currentNotifications.filter(
-          (notification) => notification.id !== notificationId
-        );
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.filter(
+        (notification) => notification.id !== notificationId
+      );
 
-        // Sync to backend first
-        await authService.syncNotificationsToBackend(updatedNotifications);
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
 
-        // Then update Redux
-        store.dispatch(removeNotification(notificationId));
-      } else {
-        // Legacy approach
-        store.dispatch(removeNotification(notificationId));
-        await this.syncToFirestoreAfterDispatch();
-      }
+      // 2. Then update Redux
+      store.dispatch(removeNotification(notificationId));
 
       console.log("🔔 Notification removed silently:", notificationId);
       return notificationId;
@@ -154,7 +144,7 @@ export class NotificationsService {
     }
   }
 
-  // 🆕 USER METHOD: Add notification with toast (for user-initiated actions)
+  // Add notification with toast (for user-initiated actions)
   async addUserNotification(notification: Omit<Notification, "id">) {
     try {
       const result = await this.addNotificationSilently(notification);
@@ -172,7 +162,7 @@ export class NotificationsService {
     }
   }
 
-  // 🆕 USER METHOD: Remove notification with toast (for user-initiated actions)
+  // Remove notification with toast (for user-initiated actions)
   async removeUserNotification(notificationId: number) {
     try {
       const result = await this.removeNotificationSilently(notificationId);
@@ -190,23 +180,23 @@ export class NotificationsService {
     }
   }
 
-  //Mark as read (silent by default)
+  // Mark as read (silent by default)
   async markNotificationAsReadWithSync(notificationId: number) {
     try {
-      if (this.useFirestore) {
-        const currentNotifications = store.getState().notifications || [];
-        const updatedNotifications = currentNotifications.map((notification) =>
-          notification.id === notificationId
-            ? { ...notification, isRead: true }
-            : notification
-        );
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notification.id === notificationId
+          ? { ...notification, isRead: true }
+          : notification
+      );
 
-        await authService.syncNotificationsToBackend(updatedNotifications);
-        store.dispatch(markAsRead(notificationId));
-      } else {
-        store.dispatch(markAsRead(notificationId));
-        await this.syncToFirestoreAfterDispatch();
-      }
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux
+      store.dispatch(markAsRead(notificationId));
 
       return notificationId;
     } catch (error: any) {
@@ -218,13 +208,11 @@ export class NotificationsService {
   // Clear all with sync
   async clearAllNotificationsWithSync() {
     try {
-      if (this.useFirestore) {
-        await authService.syncNotificationsToBackend([]);
-        store.dispatch(clearNotifications());
-      } else {
-        store.dispatch(clearNotifications());
-        await this.syncToFirestoreAfterDispatch();
-      }
+      // 1. Clear Firestore FIRST
+      await authService.syncNotificationsToBackend([]);
+
+      // 2. Then update Redux
+      store.dispatch(clearNotifications());
 
       toast.success("All notifications cleared", {
         style: { background: "#4BB543", color: "#fff" },
@@ -237,15 +225,120 @@ export class NotificationsService {
     }
   }
 
-  // 🔄 COMPATIBILITY LAYER: Automatically sync after Redux dispatches
-  enableAutoSync() {
-    console.log("🔄 Auto-sync enabled for notifications");
+  // Mark multiple notifications as read
+  async markMultipleAsRead(notificationIds: number[]) {
+    try {
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notificationIds.includes(notification.id)
+          ? { ...notification, isRead: true }
+          : notification
+      );
+
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux for each notification
+      notificationIds.forEach((id) => {
+        store.dispatch(markAsRead(id));
+      });
+
+      console.log(`✅ ${notificationIds.length} notifications marked as read`);
+      return notificationIds;
+    } catch (error: any) {
+      console.error("Failed to mark multiple notifications as read:", error);
+      throw error;
+    }
   }
 
-  // Get current notifications
+  // Update notification
+  async updateNotificationWithSync(updatedNotification: Notification) {
+    try {
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notification.id === updatedNotification.id
+          ? updatedNotification
+          : notification
+      );
+
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux
+      store.dispatch(updateNotification(updatedNotification));
+
+      console.log("🔔 Notification updated:", updatedNotification.title);
+      return updatedNotification;
+    } catch (error: any) {
+      console.error("🔔 Failed to update notification:", error.message);
+      throw error;
+    }
+  }
+
+  // Get notifications by filter
+  getNotificationsByFilter(filter: "all" | "unread" | "read"): Notification[] {
+    const notifications = this.getCurrentNotifications();
+
+    switch (filter) {
+      case "unread":
+        return notifications.filter((n) => !n.isRead);
+      case "read":
+        return notifications.filter((n) => n.isRead);
+      default:
+        return notifications;
+    }
+  }
+
+  // Get unread notifications count
+  getUnreadCount(): number {
+    const notifications = this.getCurrentNotifications();
+    return notifications.filter((n) => !n.isRead).length;
+  }
+
+  // Check if notifications are initialized
+  isServiceInitialized(): boolean {
+    return this._isInitialized;
+  }
+
+  // Get current notifications from Redux
   getCurrentNotifications(): Notification[] {
     return store.getState().notifications || [];
   }
+
+  // Refresh notifications from Firestore (force sync)
+  async refreshFromFirestore() {
+    try {
+      console.log("🔄 Refreshing notifications from Firestore...");
+      const backendNotifications =
+        await authService.getNotificationsFromBackend();
+      store.dispatch(setNotifications(backendNotifications));
+      console.log("✅ Notifications refreshed from Firestore");
+      return backendNotifications;
+    } catch (error) {
+      console.error(
+        "🔥 Failed to refresh notifications from Firestore:",
+        error
+      );
+      throw error;
+    }
+  }
+
+//   // Legacy sync method (kept for compatibility, but uses Firestore-first now)
+//   private async syncToFirestoreAfterDispatch() {
+//     console.warn(
+//       "🔄 Legacy sync method called - using Firestore-first approach"
+//     );
+//     // This is now a no-op since we do Firestore-first in all methods
+//   }
+
+//   // Automatically sync after Redux dispatches (for legacy compatibility)
+//   enableAutoSync() {
+//     console.log("🔄 Auto-sync enabled for notifications (Firestore-first)");
+//   }
 
   // Migration helper for other developers
   getMigrationGuide() {
@@ -256,19 +349,20 @@ export class NotificationsService {
       newWayUser:
         "await notificationsService.addUserNotification(notification);",
       benefits: [
-        "Automatic Firestore persistence",
-        "Cross-device sync",
+        "Firestore as single source of truth",
+        "Automatic cross-device sync",
         "Backup and recovery",
-        "Works with existing code during migration",
+        "Offline cache support",
+        "Consistent data across all sessions",
         "Silent operations for system events",
         "User feedback for user actions",
       ],
+      flow: "Firestore → Notification Service → Redux → LocalStorage → Frontend",
     };
   }
 }
 
 export const notificationsService = new NotificationsService();
-
 
 export const enhancedNotifications = {
   // SILENT: For system/programmatic use (no toast)
@@ -289,7 +383,22 @@ export const enhancedNotifications = {
   markAsRead: (notificationId: number) =>
     notificationsService.markNotificationAsReadWithSync(notificationId),
 
+  markMultipleAsRead: (notificationIds: number[]) =>
+    notificationsService.markMultipleAsRead(notificationIds),
+
   clearAll: () => notificationsService.clearAllNotificationsWithSync(),
+
+  update: (notification: Notification) =>
+    notificationsService.updateNotificationWithSync(notification),
+
+  refresh: () => notificationsService.refreshFromFirestore(),
+
+  // Getters
+  getCurrentNotifications: () => notificationsService.getCurrentNotifications(),
+  getByFilter: (filter: "all" | "unread" | "read") =>
+    notificationsService.getNotificationsByFilter(filter),
+  getUnreadCount: () => notificationsService.getUnreadCount(),
+  isInitialized: () => notificationsService.isServiceInitialized(),
 
   // Helper to show migration guide
   showMigrationGuide: () => notificationsService.getMigrationGuide(),

@@ -276,7 +276,7 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
           </div>
         </div>
 
-        <div className="ssu-form-actions">
+        {/* <div className="ssu-form-actions">
           <button
             type="submit"
             disabled={isSubmitting}
@@ -288,7 +288,7 @@ const SecuritySettingsUI: React.FC<SecuritySettingsUIProps> = ({
           >
             {isSubmitting ? "Saving Settings..." : "Confirm Security Settings"}
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );
