@@ -150,12 +150,13 @@ const AffiliatedApps: React.FC = () => {
 
       await authService.updateAffiliatesData(updateData);
 
-      // toast.success(
-      //   `${app} ${newValue ? "connected" : "disconnected"} successfully`,
-      //   {
-      //     style: { background: "#4BB543", color: "#fff" },
-      //   }
-      // );
+      // Show toast for individual toggles
+      toast.success(
+        `${app} ${newValue ? "connected" : "disconnected"} successfully`,
+        {
+          style: { background: "#4BB543", color: "#fff" },
+        }
+      );
     } catch (error) {
       console.error("Failed to update app connection:", error);
       // Revert state if update fails
@@ -265,6 +266,10 @@ const AffiliatedApps: React.FC = () => {
     }
   };
 
+  // Check if all apps are connected
+  const allAppsConnected =
+    connectedApps.knowledgeCity && connectedApps.nerves && connectedApps.muzik;
+
   if (initialLoad) {
     return (
       <div className="afa-container">
@@ -283,6 +288,17 @@ const AffiliatedApps: React.FC = () => {
         <p className="afa-success-message">
           Your connected applications preferences have been saved.
         </p>
+
+        {allAppsConnected && (
+          <div className="afa-celebration-banner">
+            <div className="afa-celebration-icon">🎉</div>
+            <div className="afa-celebration-content">
+              <h3>All Apps Connected!</h3>
+              <p>You now have access to all affiliated applications</p>
+            </div>
+          </div>
+        )}
+
         <div className="afa-reference-box">
           <strong>Connected Apps Status:</strong>
           <div className="afa-apps-list">
@@ -338,6 +354,13 @@ const AffiliatedApps: React.FC = () => {
         <p className="afa-subtitle">
           Toggle access to applications connected to your account.
         </p>
+
+        {allAppsConnected && (
+          <div className="afa-all-connected-badge">
+            <Check className="afa-badge-icon" />
+            All Applications Connected
+          </div>
+        )}
       </div>
 
       <form onSubmit={handleSubmit} className="afa-form">
@@ -350,19 +373,22 @@ const AffiliatedApps: React.FC = () => {
                 name: "Knowledge City",
                 key: "knowledgeCity",
                 description: "Access to learning and educational resources",
+                icon: "📚",
               },
               {
                 name: "Nerves",
                 key: "nerves",
                 description:
                   "Professional networking and collaboration platform",
+                icon: "🌐",
               },
               {
                 name: "Muzik",
                 key: "muzik",
                 description: "Music streaming and entertainment services",
+                icon: "🎵",
               },
-            ].map(({ name, key, description }) => (
+            ].map(({ name, key, description, icon }) => (
               <div
                 key={key}
                 className={`afa-app-card ${
@@ -372,6 +398,7 @@ const AffiliatedApps: React.FC = () => {
                 }`}
               >
                 <div className="afa-app-header">
+                  <div className="afa-app-icon">{icon}</div>
                   <div className="afa-app-info">
                     <h4 className="afa-app-name">{name}</h4>
                     <p className="afa-app-description">{description}</p>
@@ -390,6 +417,7 @@ const AffiliatedApps: React.FC = () => {
                     </label>
                   </div>
                 </div>
+
                 <div className="afa-app-status-badge">
                   {connectedApps[key as keyof ConnectedAppsState] ? (
                     <span className="afa-badge-connected">
@@ -405,7 +433,7 @@ const AffiliatedApps: React.FC = () => {
           </div>
         </div>
 
-        <div className="afa-form-actions">
+        {/* <div className="afa-form-actions">
           <button
             type="submit"
             disabled={isSubmitting}
@@ -415,9 +443,9 @@ const AffiliatedApps: React.FC = () => {
               cursor: isSubmitting ? "not-allowed" : "pointer",
             }}
           >
-            {isSubmitting ? "Saving Changes..." : "Save Connected Apps"}
+            {isSubmitting ? "Saving Changes..." : "Save Settings"}
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );
