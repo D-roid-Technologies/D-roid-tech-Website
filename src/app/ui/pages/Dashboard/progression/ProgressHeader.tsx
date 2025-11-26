@@ -5,18 +5,18 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TrendingUp, Clock, Zap } from "lucide-react";
 import {
-  selectCurrentPosition,
   selectProgressPercentage,
   selectTotalHours,
   selectWeeklyProgressHours,
   startSession,
   endSession,
 } from "../../../../redux/slices/ProgressionSlice";
+import { selectMembershipTier } from "../../../../redux/slices/membershipTierSlice";
 import styles from "./progression-header.module.css";
 
 const ProgressionHeader: React.FC = () => {
   const dispatch = useDispatch();
-  const currentPosition = useSelector(selectCurrentPosition);
+  const { tier } = useSelector(selectMembershipTier);
   const progressPercentage = useSelector(selectProgressPercentage);
   const totalHours = useSelector(selectTotalHours);
   const weeklyHours = useSelector(selectWeeklyProgressHours);
@@ -61,7 +61,7 @@ const ProgressionHeader: React.FC = () => {
     },
   };
 
-  const config = tierConfig[currentPosition] || tierConfig.Free;
+  const config = tierConfig[tier] || tierConfig.Free;
 
   return (
     <div className={styles.container}>
@@ -76,7 +76,7 @@ const ProgressionHeader: React.FC = () => {
           <div className={styles.heroLeft}>
             <div className={styles.headerContainer}>
               <span className={styles.icon}>{config.icon}</span>
-              <h1 className={styles.title}>{currentPosition} Member</h1>
+              <h1 className={styles.title}>{tier} Member</h1>
             </div>
             <p className={styles.subtitle}>
               You're making great progress on your membership journey
@@ -148,7 +148,7 @@ const ProgressionHeader: React.FC = () => {
             <p className={styles.statLabel}>Current Status</p>
             <Zap className={styles.statIcon} size={20} />
           </div>
-          <p className={styles.statValue}>{currentPosition}</p>
+          <p className={styles.statValue}>{tier}</p>
           <p className={styles.statFooter}>Membership tier</p>
         </div>
       </div>
