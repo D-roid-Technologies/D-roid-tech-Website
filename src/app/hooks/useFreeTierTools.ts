@@ -5,6 +5,10 @@ import { RootState } from "../redux/Store"
 export const useFreeTierTools = () => {
   const dispatch = useDispatch()
   const freeTier = useSelector((state: RootState) => state.freeTier)
+  const membershipTier = useSelector(
+    (state: RootState) => state.membershipTier?.tier ?? "Silver",
+  )
+  const isEligibleTier = ["Gold", "Platinum"].includes(membershipTier)
 
   const checkToolAccess = (toolId: string, isPremium: boolean) => {
     if (!isPremium) {
@@ -13,6 +17,15 @@ export const useFreeTierTools = () => {
         remainingUses: null,
         isLocked: false,
         hasUsedBefore: false,   
+      }
+    }
+
+    if (!isEligibleTier) {
+      return {
+        canAccess: false,
+        remainingUses: 0,
+        isLocked: true,
+        hasUsedBefore: false,
       }
     }
 
@@ -34,6 +47,7 @@ export const useFreeTierTools = () => {
   }
 
   const recordToolUsage = (toolId: string) => {
+    if (!isEligibleTier) return
     dispatch(incrementToolUsage(toolId))
   }
 
