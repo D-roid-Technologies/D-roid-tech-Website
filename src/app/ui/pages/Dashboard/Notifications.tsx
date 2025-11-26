@@ -1,6 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Bell, Clock, Calendar, Tag, Trash2, CheckCheck, ClipboardList } from 'lucide-react';
-import styles from './Notifications.module.css';
+import React, { useState, useEffect } from "react";
+import {
+  Bell,
+  Clock,
+  Calendar,
+  Tag,
+  Trash2,
+  CheckCheck,
+  ClipboardList,
+} from "lucide-react";
+import styles from "./Notifications.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setNotifications,
@@ -22,6 +30,9 @@ const Notifications: React.FC = () => {
   const notifications = useSelector(
     (state: RootState) => state.notifications || []
   );
+  const staffDetails = useSelector(
+    (state: RootState) => state.SignInO.staffDetails
+  );
   const dispatch = useDispatch();
 
   // Debug: Log notifications when they change
@@ -30,17 +41,24 @@ const Notifications: React.FC = () => {
     console.log("🔔 Total notifications count:", notifications.length);
   }, [notifications]);
 
-  // Initialize notifications on component mount
+  // Initialize notifications AND onboarding notification on component mount
   useEffect(() => {
     const initialize = async () => {
       try {
         await notificationsService.initializeNotifications();
+
+        // ALWAYS check and initialize onboarding notification on every mount/refresh
+        if (staffDetails) {
+          await enhancedNotifications.initializeOnboardingNotification(
+            staffDetails
+          );
+        }
       } catch (error) {
         console.error("Failed to initialize notifications:", error);
       }
     };
     initialize();
-  }, []);
+  }, [staffDetails]); // Add staffDetails as dependency
 
   const handleMarkAsRead = async (id: number) => {
     try {
@@ -79,6 +97,16 @@ const Notifications: React.FC = () => {
       setIsLoading(true);
       await enhancedNotifications.clearAll();
       console.log("✅ All notifications cleared and synced to Firestore");
+
+      // RE-INITIALIZE onboarding notification immediately after clear
+      // This ensures it persists even after clear operations
+      if (staffDetails) {
+        setTimeout(async () => {
+          await enhancedNotifications.initializeOnboardingNotification(
+            staffDetails
+          );
+        }, 100);
+      }
     } catch (error) {
       console.error("❌ Failed to clear all notifications:", error);
       // Fallback: Use Redux directly if service fails
@@ -238,24 +266,26 @@ const Notifications: React.FC = () => {
                   {notification.message}
                 </p>
 
-              <div className={styles.notificationMeta}>
-                <div className={styles.metaItem}>
-                  <Calendar className={styles.metaIcon} />
-                  <span>{notification.date}</span>
+                <div className={styles.notificationMeta}>
+                  <div className={styles.metaItem}>
+                    <Calendar className={styles.metaIcon} />
+                    <span>{notification.date}</span>
+                  </div>
+                  <div className={styles.metaItem}>
+                    <Clock className={styles.metaIcon} />
+                    <span>
+                      <TimeLabel date={notification.time} />
+                    </span>
+                  </div>
+                  <div className={styles.typeBadge}>
+                    {notification.type === "task" ? (
+                      <ClipboardList className={styles.metaIcon} />
+                    ) : (
+                      <Tag className={styles.metaIcon} />
+                    )}
+                    <span>{notification.type}</span>
+                  </div>
                 </div>
-                <div className={styles.metaItem}>
-                  <Clock className={styles.metaIcon} />
-                  <span><TimeLabel date={notification.time} /></span>
-                </div>
-                <div className={styles.typeBadge}>
-                  {notification.type === 'task' ? (
-                    <ClipboardList className={styles.metaIcon} />
-                  ) : (
-                    <Tag className={styles.metaIcon} />
-                  )}
-                  <span>{notification.type}</span>
-                </div>
-              </div>
 
                 <div className={styles.actions}>
                   {!notification.isRead && (

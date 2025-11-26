@@ -4,12 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { authService } from "../../../redux/configuration/auth.service";
 import { StaffDetails } from "../../../redux/slices/SignInAndOutSlice";
 import { RootState } from "../../../redux/Store";
-import { setCurrentStep, markStepCompleted } from "../../../redux/slices/onboarding";
+import {
+  setCurrentStep,
+  markStepCompleted,
+} from "../../../redux/slices/onboarding";
 import { UserType } from "../../../utils/Types";
 import DocumentUploadUI from "./DocumentUploadUI";
 import Leave from "./Leave";
 import styles from "./Onboarding.module.css";
 import toast from "react-hot-toast";
+import { enhancedNotifications } from "../../../ui/notificationService/notifications.service";
 
 const onboardingSteps = ["View Info", "Personal Info", "Documents", "Leave"];
 
@@ -27,6 +31,34 @@ const Onboarding: React.FC = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [hasUpdatedPersonalInfo, setHasUpdatedPersonalInfo] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Check if onboarding is complete
+  const isOnboardingComplete = () => {
+    const requiredFields = [
+      "staffBank",
+      "staffAccountNmber",
+      "staffAccountName",
+      "staffGrossPay",
+      "staffTax",
+      "staffPosition",
+      "staffStartDate",
+    ];
+
+    return requiredFields.every(
+      (field) =>
+        staffDetails[field as keyof StaffDetails] &&
+        staffDetails[field as keyof StaffDetails] !== ""
+    );
+  };
+
+  // Remove onboarding notification when complete - USE THE SERVICE METHOD
+  const removeOnboardingNotification = async () => {
+    try {
+      await enhancedNotifications.removeOnboardingNotification();
+    } catch (error) {
+      console.error("Failed to remove onboarding notification:", error);
+    }
+  };
 
   useEffect(() => {
     setFormData({ ...userDetails });
@@ -48,6 +80,10 @@ const Onboarding: React.FC = () => {
       staffDetails.staffStartDate;
 
     setHasUpdatedPersonalInfo(!!hasData);
+
+    // DO NOT manually send onboarding notification here
+    // The notification service handles this automatically on login and refresh
+    // This prevents duplicate notifications
   }, [userDetails, staffDetails, isInitialLoad]);
 
   const handleStaffDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,14 +176,25 @@ const Onboarding: React.FC = () => {
 
       // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
-      toast.success("Personal information updated successfully!", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
-
+    
       setHasUpdatedPersonalInfo(true);
-      
+
       // Mark step as completed in Redux (triggers notification)
       dispatch(markStepCompleted(1));
+
+      // Remove onboarding notification since profile is now complete
+      await removeOnboardingNotification();
+
+      // Send completion notification
+      await enhancedNotifications.addSilent({
+        title: "Onboarding Complete! 🎉",
+        message:
+          "Your staff profile has been successfully completed.",
+        type: "success",
+        date: new Date().toISOString().split("T")[0],
+        time: new Date().toISOString(),
+        isRead: false,
+      });
 
       // Reset form data to show updated values
       setFormDataNew({});
@@ -157,9 +204,9 @@ const Onboarding: React.FC = () => {
 
       // Dismiss loading toast and show error
       toast.dismiss(loadingToast);
-      toast.error("Failed to update personal information. Please try again.", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+      // toast.error("Failed to update personal information. Please try again.", {
+      //   style: { background: "#ff4d4f", color: "#fff" },
+      // });
     } finally {
       setIsUpdating(false);
     }
@@ -186,6 +233,15 @@ const Onboarding: React.FC = () => {
         return (
           <>
             <h2 className={styles.heading}>View Personal Information</h2>
+            {!isOnboardingComplete() && (
+              <div className={styles.warningBanner}>
+                <div className={styles.warningIcon}>⚠️</div>
+                <div className={styles.warningText}>
+                  <strong>Action Required:</strong> Please complete your
+                  onboarding information to access all features.
+                </div>
+              </div>
+            )}
             <InfoField
               label="Your Position"
               value={staffDetails.staffPosition || "Not set"}
@@ -224,6 +280,15 @@ const Onboarding: React.FC = () => {
                 ? "Edit Personal Information"
                 : "Update Personal Information"}
             </h2>
+            {!isOnboardingComplete() && (
+              <div className={styles.infoBanner}>
+                <div className={styles.infoIcon}>ℹ️</div>
+                <div className={styles.infoText}>
+                  <strong>Complete Your Profile:</strong> Fill in all required
+                  fields to complete your onboarding process.
+                </div>
+              </div>
+            )}
             <form className={styles.form} onSubmit={handleSubmit}>
               {personalInfoFields.map(
                 ({ label, name, required, type = "text" }) => {
