@@ -517,7 +517,7 @@ const Calendar: React.FC = () => {
               navigateToLogin={() => navigate("/auth/join-our-community")}
             />
 
-            <UserSearch
+            {/* <UserSearch
               query={searchQuery}
               setQuery={setSearchQuery}
               results={searchResults}
@@ -525,7 +525,7 @@ const Calendar: React.FC = () => {
               error={searchError}
               onSearch={searchUsers}
               navigate={(p) => navigate(p)}
-            />
+            /> */}
           </div>
         </div>
       )}
