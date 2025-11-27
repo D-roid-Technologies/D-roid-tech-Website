@@ -1,53 +1,60 @@
-"use client"
-
-// src/components/contact/ContactForm.tsx
-import type React from "react"
-import { useState } from "react"
-import { toast } from "react-hot-toast"
-import emailjs from "emailjs-com"
-import { Listbox, Transition } from '@headlessui/react'
+import type React from "react";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import emailjs from "emailjs-com";
+import { Listbox, Transition } from "@headlessui/react";
 import { ChevronsUpDown, Check } from "lucide-react";
-
-import { Fragment } from 'react'
+import { Fragment } from "react";
+import { enhancedNotifications } from "../../notificationService/notifications.service";
 
 interface ContactFormProps {
-  serviceId: string
-  templateId: string
-  publicKey: string
+  serviceId: string;
+  templateId: string;
+  publicKey: string;
+  onSuccess?: () => void;
+  onError?: (error: any) => void;
 }
 
 interface ValidationErrors {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const subjectOptions = [
-  { id: 'general', name: 'General Inquiry' },
-  { id: 'drone', name: 'Drone Services' },
-  { id: 'software', name: 'Software Development' },
-  { id: 'training', name: 'Tech Training' },
-]
+  { id: "general", name: "General Inquiry" },
+  { id: "drone", name: "Drone Services" },
+  { id: "software", name: "Software Development" },
+  { id: "training", name: "Tech Training" },
+];
 
-const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, publicKey }) => {
+const ContactForm: React.FC<ContactFormProps> = ({
+  serviceId,
+  templateId,
+  publicKey,
+  onSuccess,
+  onError,
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     subject: "",
     message: "",
-  })
+  });
 
-  const [errors, setErrors] = useState<ValidationErrors>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
 
   const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const validateRequired = (value: string): boolean => {
-    return value.trim().length > 0
-  }
+    return value.trim().length > 0;
+  };
 
   const generateReferenceNumber = () => {
     const now = new Date();
@@ -65,67 +72,72 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
   const validateField = (name: string, value: string): string => {
     switch (name) {
       case "name":
-        if (!validateRequired(value)) return "Full name is required"
-        if (value.length < 2) return "Name must be at least 2 characters"
-        break
+        if (!validateRequired(value)) return "Full name is required";
+        if (value.length < 2) return "Name must be at least 2 characters";
+        break;
       case "email":
-        if (!validateRequired(value)) return "Email is required"
-        if (!validateEmail(value)) return "Please enter a valid email address"
-        break
+        if (!validateRequired(value)) return "Email is required";
+        if (!validateEmail(value)) return "Please enter a valid email address";
+        break;
       case "subject":
-        if (!validateRequired(value)) return "Subject is required"
-        break
+        if (!validateRequired(value)) return "Subject is required";
+        break;
       case "message":
-        if (!validateRequired(value)) return "Message is required"
-        if (value.length < 10) return "Message must be at least 10 characters"
-        break
+        if (!validateRequired(value)) return "Message is required";
+        if (value.length < 10) return "Message must be at least 10 characters";
+        break;
       default:
-        break
+        break;
     }
-    return ""
-  }
+    return "";
+  };
 
   const validateForm = (): boolean => {
-    const newErrors: ValidationErrors = {}
-    const fieldsToValidate = ["name", "email", "subject", "message"]
+    const newErrors: ValidationErrors = {};
+    const fieldsToValidate = ["name", "email", "subject", "message"];
 
     fieldsToValidate.forEach((field) => {
-      const error = validateField(field, formData[field as keyof typeof formData])
+      const error = validateField(
+        field,
+        formData[field as keyof typeof formData]
+      );
       if (error) {
-        newErrors[field] = error
+        newErrors[field] = error;
       }
-    })
+    });
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+  const handleContactChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }))
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
-    const error = validateField(name, value)
+    const error = validateField(name, value);
     if (error && value !== "") {
-      setErrors((prev) => ({ ...prev, [name]: error }))
+      setErrors((prev) => ({ ...prev, [name]: error }));
     }
-  }
+  };
 
   const handleSubjectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, subject: value }))
-    
+    setFormData((prev) => ({ ...prev, subject: value }));
+
     if (errors.subject) {
-      setErrors((prev) => ({ ...prev, subject: "" }))
+      setErrors((prev) => ({ ...prev, subject: "" }));
     }
 
-    const error = validateField("subject", value)
+    const error = validateField("subject", value);
     if (error && value !== "") {
-      setErrors((prev) => ({ ...prev, subject: error }))
+      setErrors((prev) => ({ ...prev, subject: error }));
     }
-  }
+  };
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     const referenceNumber = generateReferenceNumber();
@@ -146,13 +158,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
 
       See details below:
       Phone Number: ${formData.phone},
-      Refrence Number: ${referenceNumber}
+      Reference Number: ${referenceNumber}
       Message: ${formData.message}.
 
       Our team will review and get back to you in three working days`,
       email: formData.email,
     };
-    // console.log("Contact Form Data:", formData);
+    console.log("Contact Form Data:", formData);
     console.log("EmailJS Template Params:", templateParams);
 
     try {
@@ -160,6 +172,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
 
       toast.success("Message successfully sent!", {
         style: { background: "#4BB543", color: "#fff" },
+      });
+
+      // Send success notification
+      await enhancedNotifications.addSilent({
+        title: "Message Sent Successfully",
+        message: `Your message about "${formData.subject}" has been delivered. Reference: ${referenceNumber}`,
+        type: "success",
+        date: new Date().toISOString().split("T")[0],
+        time: new Date().toISOString(),
+        isRead: false,
       });
 
       setFormData({
@@ -171,14 +193,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
       });
       setSubmitStatus("success");
       setErrors({});
+
+      // Call success callback if provided
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error("Email send error:", error);
 
       toast.error("Error sending email 🚫", {
         style: { background: "#ff4d4f", color: "#fff" },
       });
+
+      // Send error notification
+      await enhancedNotifications.addSilent({
+        title: "Failed to Send Message",
+        message: `Failed to send your message about "${formData.subject}". Please try again.`,
+        type: "error",
+        date: new Date().toISOString().split("T")[0],
+        time: new Date().toISOString(),
+        isRead: false,
+      });
+
       setSubmitStatus("error");
       setErrors({ submit: "Failed to send message. Please try again." });
+
+      // Call error callback if provided
+      if (onError) {
+        onError(error);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -197,10 +240,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
         >
           {errors[fieldName]}
         </span>
-      )
+      );
     }
-    return null
-  }
+    return null;
+  };
 
   const getLabelStyle = () => ({
     display: "block",
@@ -208,7 +251,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     fontSize: "14px",
     fontWeight: "500",
     color: "#333",
-  })
+  });
 
   const getInputStyle = (fieldName: string) => ({
     width: "100%",
@@ -218,9 +261,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
     fontSize: "14px",
     backgroundColor: errors[fieldName] ? "#fff5f5" : "#fff",
     outline: errors[fieldName] ? "none" : "initial",
-  })
+  });
 
-  const selectedSubject = subjectOptions.find(option => option.name === formData.subject) || null
+  const selectedSubject =
+    subjectOptions.find((option) => option.name === formData.subject) || null;
 
   return (
     <div>
@@ -233,7 +277,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
           gap: "10px",
         }}
       >
-        <p style={{ fontSize: "16px", fontWeight: "500", color: "#000000" }}>Send us a Message</p>
+        <p style={{ fontSize: "16px", fontWeight: "500", color: "#000000" }}>
+          Send us a Message
+        </p>
       </div>
       <p style={{ fontSize: "14px", color: "#555" }}>
         Kindly fill the form below to send us your message.
@@ -323,7 +369,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
               >
                 <div>
                   <label style={getLabelStyle()}>Subject</label>
-                  <Listbox value={selectedSubject} onChange={(option) => handleSubjectChange(option?.name || '')}>
+                  <Listbox
+                    value={selectedSubject}
+                    onChange={(option) =>
+                      handleSubjectChange(option?.name || "")
+                    }
+                  >
                     <div style={{ position: "relative" }}>
                       <Listbox.Button
                         style={{
@@ -335,11 +386,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                           textAlign: "left",
                         }}
                       >
-                        <span style={{ color: selectedSubject ? "#333" : "#999" }}>
-                          {selectedSubject ? selectedSubject.name : "Select a subject"}
+                        <span
+                          style={{ color: selectedSubject ? "#333" : "#999" }}
+                        >
+                          {selectedSubject
+                            ? selectedSubject.name
+                            : "Select a subject"}
                         </span>
                         <ChevronsUpDown
-                          style={{ width: "20px", height: "20px", color: "#666" }}
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            color: "#666",
+                          }}
                           aria-hidden="true"
                         />
                       </Listbox.Button>
@@ -376,19 +435,29 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
                                 <div
                                   style={{
                                     padding: "12px",
-                                    backgroundColor: active ? "#f0f8ff" : "#fff",
+                                    backgroundColor: active
+                                      ? "#f0f8ff"
+                                      : "#fff",
                                     color: selected ? "#071D6A" : "#333",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "space-between",
                                   }}
                                 >
-                                  <span style={{ fontWeight: selected ? "600" : "400" }}>
+                                  <span
+                                    style={{
+                                      fontWeight: selected ? "600" : "400",
+                                    }}
+                                  >
                                     {option.name}
                                   </span>
                                   {selected && (
                                     <Check
-                                      style={{ width: "16px", height: "16px", color: "#071D6A" }}
+                                      style={{
+                                        width: "16px",
+                                        height: "16px",
+                                        color: "#071D6A",
+                                      }}
                                       aria-hidden="true"
                                     />
                                   )}
@@ -491,12 +560,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
               }}
               onMouseOver={(e) => {
                 if (!isSubmitting) {
-                  e.currentTarget.style.backgroundColor = "#05205C"
+                  e.currentTarget.style.backgroundColor = "#05205C";
                 }
               }}
               onMouseOut={(e) => {
                 if (!isSubmitting) {
-                  e.currentTarget.style.backgroundColor = "#071D6A"
+                  e.currentTarget.style.backgroundColor = "#071D6A";
                 }
               }}
             >
@@ -521,7 +590,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceId, templateId, public
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ContactForm from "../../components/contact/ContactForm";
+// import { enhancedNotifications } from "../../notificationService/notifications.service";
 
 const SERVICE_ID = "service_o1jbklr";
 const TEMPLATE_ID = "template_p8h58ur";
@@ -16,6 +17,7 @@ const SayIt: React.FC = () => {
       setMessage("");
     }
   };
+
 
   return (
     <div>
