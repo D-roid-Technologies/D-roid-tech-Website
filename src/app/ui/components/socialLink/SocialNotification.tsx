@@ -66,7 +66,7 @@ const SocialNotificationPreview: React.FC = () => {
     <div className={styles.wrapperRoot}>
       <div className={styles.wrapper}>
         <div className={styles.headerRow}>
-          <p className={styles.headerText}>Droid Social Media Links</p>
+          <p className={styles.headerText}>D'roid Social Media Links</p>
         </div>
 
         <div className={styles.grid}>
