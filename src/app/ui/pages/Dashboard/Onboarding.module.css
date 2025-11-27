@@ -384,3 +384,65 @@
     display: none;
   }
 }
+
+
+/* Add to Onboarding.module.css */
+
+.warningBanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  animation: pulseWarning 2s infinite;
+}
+
+.warningIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.warningText {
+  flex: 1;
+  color: #856404;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.infoBanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+  border: 1px solid #17a2b8;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.infoIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.infoText {
+  flex: 1;
+  color: #0c5460;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+@keyframes pulseWarning {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
