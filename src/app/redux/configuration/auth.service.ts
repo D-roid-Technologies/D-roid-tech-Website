@@ -660,7 +660,7 @@ export class AuthService {
         const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
         const calculateData = updatedData?.calculate?.calculators || [];
 
-        //Get notifications from Firestore FIRST (Source of Truth)
+        // Get notifications from Firestore FIRST (Source of Truth)
         const firestoreNotifications =
           fetchedUserData.user?.notifications || [];
 
@@ -672,7 +672,7 @@ export class AuthService {
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
 
-        //Set notifications from Firestore to Redux
+        // Set notifications from Firestore to Redux
         store.dispatch(setNotifications(firestoreNotifications));
 
         try {
@@ -695,6 +695,13 @@ export class AuthService {
             "../../ui/notificationService/notifications.service"
           );
           await notificationsService.initializeNotifications();
+
+          // Initialize onboarding notification for staff users
+          if (isUserActuallyStaff) {
+            await notificationsService.initializeOnboardingNotification(
+              updatedStaffDetails
+            );
+          }
         } catch (error) {
           console.error("Failed to initialize notifications:", error);
           // Already set Firestore data above, so this is just backup
@@ -721,7 +728,6 @@ export class AuthService {
       throw err;
     }
   }
-
   async handlePasswordReset(email: string): Promise<void> {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
