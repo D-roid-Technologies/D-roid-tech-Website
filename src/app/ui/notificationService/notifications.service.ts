@@ -1,92 +1,70 @@
+// notifications.service.ts
 import {
   setNotifications,
   addNotification,
   removeNotification,
   updateNotification,
   markAsRead,
-  Notification,
+  type Notification,
   clearNotifications,
 } from "../../redux/slices/notificationSlice";
 import toast from "react-hot-toast";
 import { authService } from "../../redux/configuration/auth.service";
 import { store } from "../../redux/Store";
-
-// Define default notifications for fallback
-const defaultNotifications: Notification[] = [
-  {
-    id: 1,
-    title: "System Maintenance",
-    message: "Scheduled maintenance this Friday at 10 PM.",
-    date: "2025-05-15",
-    time: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), // 1 day ago
-    type: "warning",
-    isRead: false,
-  },
-  {
-    id: 2,
-    title: "New Policy Update",
-    message: "Please review the updated attendance policy.",
-    date: "2025-05-12",
-    time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
-    type: "info",
-    isRead: false,
-  },
-];
+import { loadFromLocalStorage } from "../../utils/localStorage";
 
 export class NotificationsService {
-  private isInitialized = false;
-  private useFirestore = true; // Feature flag for gradual migration
+  private _isInitialized = false;
+  private useFirestore = true;
+  private onboardingNotificationId: number | null = null; // Track the specific onboarding notification ID
 
-  // Initialize notifications on app start/login
+  // Initialize notifications on app start/login - Firestore First
   async initializeNotifications() {
-    if (this.isInitialized) return;
+    if (this._isInitialized) return;
 
     try {
-      if (this.useFirestore) {
-        // Get notifications from backend first
-        const backendNotifications =
-          await authService.getNotificationsFromBackend();
+      // ALWAYS check Firestore first (Source of Truth)
+      const backendNotifications =
+        await authService.getNotificationsFromBackend();
 
-        // If no notifications in Firestore, use defaults
-        const notificationsToSet =
-          backendNotifications.length > 0
-            ? backendNotifications
-            : defaultNotifications;
+      let notificationsToSet: Notification[];
 
-        // Update Redux store with backend data or defaults
-        store.dispatch(setNotifications(notificationsToSet));
-
-        // If using defaults, sync them to Firestore
-        if (
-          backendNotifications.length === 0 &&
-          defaultNotifications.length > 0
-        ) {
-          await authService.syncNotificationsToBackend(defaultNotifications);
-        }
+      if (backendNotifications.length > 0) {
+        // Use Firestore data
+        notificationsToSet = backendNotifications;
+        console.log("✅ Loaded notifications from Firestore");
       } else {
-        // Fallback to defaults if no Firestore
-        store.dispatch(setNotifications(defaultNotifications));
+        // No Firestore data, use empty array
+        notificationsToSet = [];
+        console.log("✅ No notifications found in Firestore");
       }
 
-      this.isInitialized = true;
-      console.log("✅ Notifications initialized");
-    } catch (error) {
-      console.error("🔥 Error initializing notifications:", error);
-      // Fallback to defaults
-      store.dispatch(setNotifications(defaultNotifications));
-    }
-  }
+      // Update Redux store with Firestore data
+      store.dispatch(setNotifications(notificationsToSet));
 
-  // Intercept Redux dispatches and sync to Firestore
-  private async syncToFirestoreAfterDispatch() {
-    if (!this.useFirestore) return;
-
-    try {
-      const currentNotifications = store.getState().notifications || [];
-      await authService.syncNotificationsToBackend(currentNotifications);
+      this._isInitialized = true;
+      console.log("✅ Notifications initialized with Firestore-first approach");
     } catch (error) {
-      console.error("🔥 Background sync to Firestore failed:", error);
-      // Don't show toast for background sync failures
+      console.error(
+        "🔥 Error initializing notifications from Firestore:",
+        error
+      );
+
+      // Fallback: Check LocalStorage as cache
+      const localNotifications = loadFromLocalStorage<Notification[]>(
+        "notifications",
+        []
+      );
+      if (localNotifications.length > 0) {
+        store.dispatch(setNotifications(localNotifications));
+        console.log("🔄 Fell back to LocalStorage cache");
+      } else {
+        // Ultimate fallback to empty array
+        store.dispatch(setNotifications([]));
+        console.log("🔄 No notifications available");
+      }
+
+      this._isInitialized = true;
     }
   }
 
@@ -98,21 +76,16 @@ export class NotificationsService {
         id: Date.now(),
       };
 
-      if (this.useFirestore) {
-        // Firestore-first approach
-        const currentNotifications = store.getState().notifications || [];
-        const updatedNotifications = [...currentNotifications, newNotification];
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = [...currentNotifications, newNotification];
 
-        // Sync to backend first
-        await authService.syncNotificationsToBackend(updatedNotifications);
+      // 1. Sync to Firestore FIRST (Source of Truth)
+      await authService.syncNotificationsToBackend(updatedNotifications);
 
-        // Then update Redux
-        store.dispatch(addNotification(newNotification));
-      } else {
-        // Legacy approach (Redux-first)
-        store.dispatch(addNotification(newNotification));
-        await this.syncToFirestoreAfterDispatch();
-      }
+      // 2. Then update Redux
+      store.dispatch(addNotification(newNotification));
 
       console.log("🔔 Notification added silently:", newNotification.title);
       return newNotification;
@@ -125,23 +98,24 @@ export class NotificationsService {
   // Remove notification without toast
   async removeNotificationSilently(notificationId: number) {
     try {
-      if (this.useFirestore) {
-        // Firestore-first approach
-        const currentNotifications = store.getState().notifications || [];
-        const updatedNotifications = currentNotifications.filter(
-          (notification) => notification.id !== notificationId
-        );
-
-        // Sync to backend first
-        await authService.syncNotificationsToBackend(updatedNotifications);
-
-        // Then update Redux
-        store.dispatch(removeNotification(notificationId));
-      } else {
-        // Legacy approach
-        store.dispatch(removeNotification(notificationId));
-        await this.syncToFirestoreAfterDispatch();
+      // Prevent removal of onboarding notification if onboarding is incomplete
+      if (notificationId === this.onboardingNotificationId) {
+        console.log("🛡️ Onboarding notification protected from removal");
+        return notificationId;
       }
+
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.filter(
+        (notification) => notification.id !== notificationId
+      );
+
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux
+      store.dispatch(removeNotification(notificationId));
 
       console.log("🔔 Notification removed silently:", notificationId);
       return notificationId;
@@ -154,7 +128,7 @@ export class NotificationsService {
     }
   }
 
-  // 🆕 USER METHOD: Add notification with toast (for user-initiated actions)
+  // Add notification with toast (for user-initiated actions)
   async addUserNotification(notification: Omit<Notification, "id">) {
     try {
       const result = await this.addNotificationSilently(notification);
@@ -172,9 +146,20 @@ export class NotificationsService {
     }
   }
 
-  // 🆕 USER METHOD: Remove notification with toast (for user-initiated actions)
+  // Remove notification with toast (for user-initiated actions)
   async removeUserNotification(notificationId: number) {
     try {
+      // Prevent removal of onboarding notification if onboarding is incomplete
+      if (notificationId === this.onboardingNotificationId) {
+        toast.error(
+          "Cannot remove onboarding notification until profile is complete",
+          {
+            style: { background: "#ff4d4f", color: "#fff" },
+          }
+        );
+        return notificationId;
+      }
+
       const result = await this.removeNotificationSilently(notificationId);
 
       toast.success("Notification removed successfully", {
@@ -190,23 +175,23 @@ export class NotificationsService {
     }
   }
 
-  //Mark as read (silent by default)
+  // Mark as read (silent by default)
   async markNotificationAsReadWithSync(notificationId: number) {
     try {
-      if (this.useFirestore) {
-        const currentNotifications = store.getState().notifications || [];
-        const updatedNotifications = currentNotifications.map((notification) =>
-          notification.id === notificationId
-            ? { ...notification, isRead: true }
-            : notification
-        );
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notification.id === notificationId
+          ? { ...notification, isRead: true }
+          : notification
+      );
 
-        await authService.syncNotificationsToBackend(updatedNotifications);
-        store.dispatch(markAsRead(notificationId));
-      } else {
-        store.dispatch(markAsRead(notificationId));
-        await this.syncToFirestoreAfterDispatch();
-      }
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux
+      store.dispatch(markAsRead(notificationId));
 
       return notificationId;
     } catch (error: any) {
@@ -215,20 +200,47 @@ export class NotificationsService {
     }
   }
 
-  // Clear all with sync
+  // Clear all with sync - PROTECT onboarding notification
   async clearAllNotificationsWithSync() {
     try {
-      if (this.useFirestore) {
-        await authService.syncNotificationsToBackend([]);
-        store.dispatch(clearNotifications());
-      } else {
-        store.dispatch(clearNotifications());
-        await this.syncToFirestoreAfterDispatch();
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+
+      // Filter out all notifications EXCEPT the protected onboarding notification
+      const notificationsToKeep = currentNotifications.filter(
+        (notification) => notification.id === this.onboardingNotificationId
+      );
+
+      // 1. Sync to Firestore FIRST (only keep onboarding notification)
+      await authService.syncNotificationsToBackend(notificationsToKeep);
+
+      // 2. Then update Redux
+      store.dispatch(clearNotifications());
+
+      // ALWAYS re-add the onboarding notification to Redux if it should exist
+      if (notificationsToKeep.length > 0) {
+        store.dispatch(addNotification(notificationsToKeep[0]));
+      } else if (this.onboardingNotificationId) {
+        // If onboarding notification should exist but wasn't in Firestore, recreate it
+        console.log(
+          "🔄 Recreating missing onboarding notification after clear"
+        );
+        // This will be handled by the next initializeOnboardingNotification call
       }
 
-      toast.success("All notifications cleared", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
+      if (notificationsToKeep.length === 0) {
+        toast.success("All notifications cleared", {
+          style: { background: "#4BB543", color: "#fff" },
+        });
+      } else {
+        toast.success(
+          "Notifications cleared (onboarding notification protected)",
+          {
+            style: { background: "#4BB543", color: "#fff" },
+          }
+        );
+      }
     } catch (error: any) {
       toast.error(`Failed to clear notifications: ${error.message}`, {
         style: { background: "#ff4d4f", color: "#fff" },
@@ -237,14 +249,194 @@ export class NotificationsService {
     }
   }
 
-  // 🔄 COMPATIBILITY LAYER: Automatically sync after Redux dispatches
-  enableAutoSync() {
-    console.log("🔄 Auto-sync enabled for notifications");
+  // Mark multiple notifications as read
+  async markMultipleAsRead(notificationIds: number[]) {
+    try {
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notificationIds.includes(notification.id)
+          ? { ...notification, isRead: true }
+          : notification
+      );
+
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux for each notification
+      notificationIds.forEach((id) => {
+        store.dispatch(markAsRead(id));
+      });
+
+      console.log(`✅ ${notificationIds.length} notifications marked as read`);
+      return notificationIds;
+    } catch (error: any) {
+      console.error("Failed to mark multiple notifications as read:", error);
+      throw error;
+    }
   }
 
-  // Get current notifications
+  // Update notification
+  async updateNotificationWithSync(updatedNotification: Notification) {
+    try {
+      // ALWAYS Firestore-first approach
+      const currentNotifications =
+        await authService.getNotificationsFromBackend();
+      const updatedNotifications = currentNotifications.map((notification) =>
+        notification.id === updatedNotification.id
+          ? updatedNotification
+          : notification
+      );
+
+      // 1. Sync to Firestore FIRST
+      await authService.syncNotificationsToBackend(updatedNotifications);
+
+      // 2. Then update Redux
+      store.dispatch(updateNotification(updatedNotification));
+
+      console.log("🔔 Notification updated:", updatedNotification.title);
+      return updatedNotification;
+    } catch (error: any) {
+      console.error("🔔 Failed to update notification:", error.message);
+      throw error;
+    }
+  }
+
+  // Get notifications by filter
+  getNotificationsByFilter(filter: "all" | "unread" | "read"): Notification[] {
+    const notifications = this.getCurrentNotifications();
+
+    switch (filter) {
+      case "unread":
+        return notifications.filter((n) => !n.isRead);
+      case "read":
+        return notifications.filter((n) => n.isRead);
+      default:
+        return notifications;
+    }
+  }
+
+  // Get unread notifications count
+  getUnreadCount(): number {
+    const notifications = this.getCurrentNotifications();
+    return notifications.filter((n) => !n.isRead).length;
+  }
+
+  // Check if notifications are initialized
+  isServiceInitialized(): boolean {
+    return this._isInitialized;
+  }
+
+  // Get current notifications from Redux
   getCurrentNotifications(): Notification[] {
     return store.getState().notifications || [];
+  }
+
+  // Refresh notifications from Firestore (force sync)
+  async refreshFromFirestore() {
+    try {
+      console.log("🔄 Refreshing notifications from Firestore...");
+      const backendNotifications =
+        await authService.getNotificationsFromBackend();
+      store.dispatch(setNotifications(backendNotifications));
+      console.log("✅ Notifications refreshed from Firestore");
+      return backendNotifications;
+    } catch (error) {
+      console.error(
+        "🔥 Failed to refresh notifications from Firestore:",
+        error
+      );
+      throw error;
+    }
+  }
+
+  // Check if onboarding notification exists
+  hasOnboardingNotification(): boolean {
+    const notifications = this.getCurrentNotifications();
+    return notifications.some(
+      (n) => n.title === "Complete Your Onboarding" && n.type === "warning"
+    );
+  }
+
+  // Get onboarding notification if exists
+  getOnboardingNotification(): Notification | undefined {
+    const notifications = this.getCurrentNotifications();
+    return notifications.find(
+      (n) => n.title === "Complete Your Onboarding" && n.type === "warning"
+    );
+  }
+
+  // Initialize persistent onboarding notification - ALWAYS check and ensure it exists
+  async initializeOnboardingNotification(staffDetails: any) {
+    try {
+      // Check if onboarding is complete by verifying with Firestore data
+      const isComplete = this.isOnboardingComplete(staffDetails);
+
+      if (!isComplete) {
+        // ALWAYS ensure onboarding notification exists, regardless of current state
+        const existingNotification = this.getOnboardingNotification();
+
+        if (!existingNotification) {
+          // Create the onboarding notification if it doesn't exist
+          const onboardingNotification = await this.addNotificationSilently({
+            title: "Complete Your Onboarding",
+            message:
+              "Please fill in your Onboarding information to complete your staff profile and access all features.",
+            type: "warning",
+            date: new Date().toISOString().split("T")[0],
+            time: new Date().toISOString(),
+            isRead: false,
+          });
+
+          // Store the ID to protect this specific notification
+          this.onboardingNotificationId = onboardingNotification.id;
+          console.log("🔔 Onboarding notification created");
+        } else {
+          // Update the stored ID if notification already exists
+          this.onboardingNotificationId = existingNotification.id;
+          console.log("🔔 Onboarding notification already exists - ID tracked");
+        }
+      } else {
+        // Remove onboarding notification if complete
+        await this.removeOnboardingNotification();
+      }
+    } catch (error) {
+      console.error("Failed to initialize onboarding notification:", error);
+    }
+  }
+
+  // Remove onboarding notification (only when onboarding is complete)
+  async removeOnboardingNotification() {
+    try {
+      const onboardingNotification = this.getOnboardingNotification();
+      if (onboardingNotification) {
+        // Clear the protection first
+        this.onboardingNotificationId = null;
+        // Then remove the notification
+        await this.removeNotificationSilently(onboardingNotification.id);
+        console.log("🔔 Onboarding notification removed - profile complete");
+      }
+    } catch (error) {
+      console.error("Failed to remove onboarding notification:", error);
+    }
+  }
+
+  // Helper method to check if onboarding is complete
+  private isOnboardingComplete(staffDetails: any): boolean {
+    const requiredFields = [
+      "staffBank",
+      "staffAccountNmber",
+      "staffAccountName",
+      "staffGrossPay",
+      "staffTax",
+      "staffPosition",
+      "staffStartDate",
+    ];
+
+    return requiredFields.every(
+      (field) => staffDetails[field] && staffDetails[field] !== ""
+    );
   }
 
   // Migration helper for other developers
@@ -256,19 +448,20 @@ export class NotificationsService {
       newWayUser:
         "await notificationsService.addUserNotification(notification);",
       benefits: [
-        "Automatic Firestore persistence",
-        "Cross-device sync",
+        "Firestore as single source of truth",
+        "Automatic cross-device sync",
         "Backup and recovery",
-        "Works with existing code during migration",
+        "Offline cache support",
+        "Consistent data across all sessions",
         "Silent operations for system events",
         "User feedback for user actions",
       ],
+      flow: "Firestore → Notification Service → Redux → LocalStorage → Frontend",
     };
   }
 }
 
 export const notificationsService = new NotificationsService();
-
 
 export const enhancedNotifications = {
   // SILENT: For system/programmatic use (no toast)
@@ -289,8 +482,33 @@ export const enhancedNotifications = {
   markAsRead: (notificationId: number) =>
     notificationsService.markNotificationAsReadWithSync(notificationId),
 
+  markMultipleAsRead: (notificationIds: number[]) =>
+    notificationsService.markMultipleAsRead(notificationIds),
+
   clearAll: () => notificationsService.clearAllNotificationsWithSync(),
+
+  update: (notification: Notification) =>
+    notificationsService.updateNotificationWithSync(notification),
+
+  refresh: () => notificationsService.refreshFromFirestore(),
+
+  // Getters
+  getCurrentNotifications: () => notificationsService.getCurrentNotifications(),
+  getByFilter: (filter: "all" | "unread" | "read") =>
+    notificationsService.getNotificationsByFilter(filter),
+  getUnreadCount: () => notificationsService.getUnreadCount(),
+  isInitialized: () => notificationsService.isServiceInitialized(),
 
   // Helper to show migration guide
   showMigrationGuide: () => notificationsService.getMigrationGuide(),
+
+  // Onboarding notification methods
+  hasOnboardingNotification: () =>
+    notificationsService.hasOnboardingNotification(),
+  getOnboardingNotification: () =>
+    notificationsService.getOnboardingNotification(),
+  initializeOnboardingNotification: (staffDetails: any) =>
+    notificationsService.initializeOnboardingNotification(staffDetails),
+  removeOnboardingNotification: () =>
+    notificationsService.removeOnboardingNotification(),
 };

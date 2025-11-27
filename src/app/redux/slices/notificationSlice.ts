@@ -13,7 +13,7 @@ const LOCAL_KEY = "notifications";
 
 export interface Notification {
   id: number;
-  title: string;
+  title: string;  
   message: string;
   date: string;
   time: string;

@@ -456,7 +456,6 @@ interface SecuritySettings {
   lastUpdated?: string;
 }
 
-
 export class AuthService {
   async handleUserRegistration(
     userData: UserType,
@@ -600,6 +599,7 @@ export class AuthService {
     }
   }
 
+  // In AuthService class - complete handleUserLogin method
   async handleUserLogin(email: string, password: string, isStaff: boolean) {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -660,12 +660,20 @@ export class AuthService {
         const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
         const calculateData = updatedData?.calculate?.calculators || [];
 
+        // Get notifications from Firestore FIRST (Source of Truth)
+        const firestoreNotifications =
+          fetchedUserData.user?.notifications || [];
+
+        // Update all Redux states
         store.dispatch(setPayslipData(updatedPayslips));
         store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
         store.dispatch(setTrainings(updatedTrainings));
         store.dispatch(setAllMilestones(updatedProgressions));
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
+
+        // Set notifications from Firestore to Redux
+        store.dispatch(setNotifications(firestoreNotifications));
 
         try {
           const { setStaffInfo } = await import("../slices/onboarding");
@@ -681,17 +689,22 @@ export class AuthService {
           setUser({ ...primaryInformation, role: primaryInformation.role })
         );
 
-        // Initialize notifications from Firestore
+        // Initialize notification service AFTER setting Firestore data
         try {
           const { notificationsService } = await import(
             "../../ui/notificationService/notifications.service"
           );
           await notificationsService.initializeNotifications();
+
+          // Initialize onboarding notification for staff users
+          if (isUserActuallyStaff) {
+            await notificationsService.initializeOnboardingNotification(
+              updatedStaffDetails
+            );
+          }
         } catch (error) {
           console.error("Failed to initialize notifications:", error);
-          // Fallback: Use existing data if available
-          const fallbackNotifications = updatedData?.user?.notifications || [];
-          store.dispatch(setNotifications(fallbackNotifications));
+          // Already set Firestore data above, so this is just backup
         }
 
         toast.success(`We have successfully logged you into your account.`, {
@@ -715,7 +728,6 @@ export class AuthService {
       throw err;
     }
   }
-
   async handlePasswordReset(email: string): Promise<void> {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -981,7 +993,7 @@ export class AuthService {
       });
     }
   }
-
+  // In AuthService class - revert updateAffiliatesData method
   async updateAffiliatesData(partialAffiliates: any) {
     try {
       const currentUser = await getCurrentUser();
@@ -1017,13 +1029,21 @@ export class AuthService {
 
       console.log("✅ Updated affiliates data:", updatedAffiliates);
 
+      // Update Firestore
       await updateDoc(userDocRef, {
         "user.affiliates": updatedAffiliates,
       });
 
-      toast.success("Connected apps updated successfully", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
+      // Send appropriate notifications based on changes
+      await this.sendAffiliateNotifications(
+        partialAffiliates,
+        currentAffiliates
+      );
+
+      // Show toast for all updates
+      // toast.success("Connected apps updated successfully", {
+      //   style: { background: "#4BB543", color: "#fff" },
+      // });
 
       return updatedAffiliates;
     } catch (error: any) {
@@ -1035,11 +1055,98 @@ export class AuthService {
     }
   }
 
+  private async sendAffiliateNotifications(
+    newAffiliates: any,
+    oldAffiliates: any
+  ) {
+    try {
+      const { enhancedNotifications } = await import(
+        "../../ui/notificationService/notifications.service"
+      );
+
+      // Notify for Knowledge City changes
+      if (
+        newAffiliates.knowledgeCity?.user !== undefined &&
+        newAffiliates.knowledgeCity.user !== oldAffiliates.knowledgeCity?.user
+      ) {
+        await enhancedNotifications.addSilent({
+          title: "Knowledge City Connection Updated",
+          message: newAffiliates.knowledgeCity.user
+            ? "Knowledge City has been connected to your account"
+            : "Knowledge City has been disconnected from your account",
+          type: newAffiliates.knowledgeCity.user ? "success" : "info",
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          isRead: false,
+        });
+      }
+
+      // Notify for Nerves changes
+      if (
+        newAffiliates.nerves?.user !== undefined &&
+        newAffiliates.nerves.user !== oldAffiliates.nerves?.user
+      ) {
+        await enhancedNotifications.addSilent({
+          title: "Nerves Connection Updated",
+          message: newAffiliates.nerves.user
+            ? "Nerves has been connected to your account"
+            : "Nerves has been disconnected from your account",
+          type: newAffiliates.nerves.user ? "success" : "info",
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          isRead: false,
+        });
+      }
+
+      // Notify for Muzik changes
+      if (
+        newAffiliates.muzik?.user !== undefined &&
+        newAffiliates.muzik.user !== oldAffiliates.muzik?.user
+      ) {
+        await enhancedNotifications.addSilent({
+          title: "Muzik Connection Updated",
+          message: newAffiliates.muzik.user
+            ? "Muzik has been connected to your account"
+            : "Muzik has been disconnected from your account",
+          type: newAffiliates.muzik.user ? "success" : "info",
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          isRead: false,
+        });
+      }
+
+      // Special notification when all apps are connected
+      const allConnected =
+        (newAffiliates.knowledgeCity?.user ??
+          oldAffiliates.knowledgeCity?.user) &&
+        (newAffiliates.nerves?.user ?? oldAffiliates.nerves?.user) &&
+        (newAffiliates.muzik?.user ?? oldAffiliates.muzik?.user);
+
+      const wereAllConnected =
+        oldAffiliates.knowledgeCity?.user &&
+        oldAffiliates.nerves?.user &&
+        oldAffiliates.muzik?.user;
+
+      if (allConnected && !wereAllConnected) {
+        await enhancedNotifications.addSilent({
+          title: "All Apps Connected! 🎉",
+          message:
+            "All affiliated applications are now connected to your account",
+          type: "success",
+          date: new Date().toISOString().split("T")[0],
+          time: new Date().toISOString(),
+          isRead: false,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to send affiliate notifications:", error);
+    }
+  }
+
   async getCurrentUser(): Promise<User> {
     return getCurrentUser();
   }
 
-  // In AuthService class - update the existing method
   async updateSecuritySettings(partialSecurity: Partial<SecuritySettings>) {
     try {
       const currentUser = await this.getCurrentUser();
@@ -1058,7 +1165,6 @@ export class AuthService {
       const currentData = userSnapshot.data();
       const currentSecurity = currentData?.user?.security || {};
 
-      // Deep merge to preserve existing security data
       const updatedSecurity = {
         ...currentSecurity,
         ...partialSecurity,
@@ -1072,7 +1178,6 @@ export class AuthService {
         "user.security": updatedSecurity,
       });
 
-      // Send appropriate notifications based on changes
       await this.sendSecurityNotifications(partialSecurity, currentSecurity);
 
       // Don't show toast for real-time updates, only for final submission
