@@ -71,13 +71,22 @@
 
 .modalBox {
   background: #fff;
-  padding: 18px;
+  padding: 16px;
   border-radius: 14px;
-  width: 85%;
-  max-width: 320px;
+  width: 90%;
+  max-width: 380px;
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.25s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (min-width: 480px) {
+  .modalBox {
+    padding: 20px;
+    width: 85%;
+  }
 }
 
 .closeIcon {
@@ -123,6 +132,99 @@ background: rgba(255, 59, 48, 0.12) !important;
   font-weight: 500;
   text-decoration: none !important;
   display: inline-block;
+  margin-top: 12px;
+  width: 100%;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.linkBtn:hover {
+  background: #094a8f !important;
+}
+
+/* WhatsApp Channel Selection Styles */
+.channelsContainer {
+  margin-top: 8px;
+}
+
+.channelPrompt {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.channelOption {
+  width: 100%;
+  background: #f8f9fa !important;
+  border: 2px solid #e9ecef !important;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  display: block;
+}
+
+@media (min-width: 480px) {
+  .channelOption {
+    padding: 12px;
+  }
+}
+
+.channelOption:hover {
+  background: #e9ecef !important;
+  border-color: #25D366 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.15);
+}
+
+.channelOption:active {
+  transform: translateY(0);
+}
+
+.channelSelected {
+  background: #e8f5e9 !important;
+  border-color: #25D366 !important;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+}
+
+.channelHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  flex-wrap: nowrap;
+}
+
+.channelName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 480px) {
+  .channelName {
+    font-size: 13px;
+  }
+}
+
+.channelDescription {
+  font-size: 10px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 480px) {
+  .channelDescription {
+    font-size: 11px;
+  }
 }
 
 @keyframes fadeIn {

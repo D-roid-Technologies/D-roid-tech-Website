@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaTwitter } from "react-icons/fa";
 import styles from "./SocialNotification.module.css";
 
+interface WhatsAppChannel {
+  name: string;
+  description: string;
+  link: string;
+}
+
 interface SocialItem {
   id: "facebook" | "instagram" | "linkedin" | "whatsapp" | "twitter";
   name: string;
   icon: JSX.Element;
   description: string;
   link: string;
+  channels?: WhatsAppChannel[];
 }
 
 const socials: SocialItem[] = [
@@ -43,14 +50,28 @@ const socials: SocialItem[] = [
     id: "whatsapp",
     name: "WhatsApp",
     icon: <FaWhatsapp color="#25D366" size={20} />,
-    description: "Chat with our support team directly on WhatsApp.",
+    description: "Join our WhatsApp channels for updates and support.",
     link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+    channels: [
+      {
+        name: "Community Channel",
+        description: "Join our community for updates, news, and discussions.",
+        link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+      },
+      {
+        name: "Support Channel",
+        description: "Get direct support from our team for technical assistance.",
+        link: "https://chat.whatsapp.com/SUPPORT_CHANNEL_LINK",
+      },
+    ],
   },
 ];
+
 
 const SocialNotificationPreview: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<SocialItem | null>(null);
+  const [selectedChannel, setSelectedChannel] = useState<WhatsAppChannel | null>(null);
 
   const handleOpen = (item: SocialItem) => {
     setSelected(item);
@@ -60,6 +81,11 @@ const SocialNotificationPreview: React.FC = () => {
   const handleClose = () => {
     setOpen(false);
     setSelected(null);
+    setSelectedChannel(null);
+  };
+
+  const handleChannelSelect = (channel: WhatsAppChannel) => {
+    setSelectedChannel(channel);
   };
 
   return (
@@ -95,14 +121,48 @@ const SocialNotificationPreview: React.FC = () => {
 
             <p className={styles.modalDescription}>{selected.description}</p>
 
-            <a
-              href={selected.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.linkBtn}
-            >
-              Visit {selected.name}
-            </a>
+            {/* WhatsApp Channel Selection */}
+            {selected.id === "whatsapp" && selected.channels ? (
+              <div className={styles.channelsContainer}>
+                <p className={styles.channelPrompt}>Choose a channel:</p>
+                {selected.channels.map((channel, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => handleChannelSelect(channel)}
+                    className={`${styles.channelOption} ${
+                      selectedChannel?.name === channel.name ? styles.channelSelected : ""
+                    }`}
+                  >
+                    <div className={styles.channelHeader}>
+                      <FaWhatsapp color="#25D366" size={18} />
+                      <span className={styles.channelName}>{channel.name}</span>
+                    </div>
+                    <p className={styles.channelDescription}>{channel.description}</p>
+                  </button>
+                ))}
+
+                {selectedChannel && (
+                  <a
+                    href={selectedChannel.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.linkBtn}
+                  >
+                    Join {selectedChannel.name}
+                  </a>
+                )}
+              </div>
+            ) : (
+              <a
+                href={selected.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkBtn}
+              >
+                Visit {selected.name}
+              </a>
+            )}
           </div>
         </div>
       )}
