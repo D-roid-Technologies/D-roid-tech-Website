@@ -60,7 +60,7 @@ const socials: SocialItem[] = [
       },
       {
         name: "Society Impact & Help Channel",
-        description: "A channel dedicated to social good, community support, and humanitarian action.",
+        description: "A channel dedicated to social good, community support, and humanitarian action",
         link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
       },
     ],
