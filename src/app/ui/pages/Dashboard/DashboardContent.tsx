@@ -96,7 +96,7 @@ import { isAboveSixMonths } from "../../../utils/isAboveSixMonths";
 import NotEligibleForTraining from "../../../utils/statusMessages";
 import { getToolAccessMessage } from "../../../redux/utils/toolAccessManager";
 import { useFreeTierTools } from "../../../hooks/useFreeTierTools";
-import { TestNotifications } from "./TestNotifications";
+// import { TestNotifications } from "./TestNotifications";
 
 const calculators = [
   {
