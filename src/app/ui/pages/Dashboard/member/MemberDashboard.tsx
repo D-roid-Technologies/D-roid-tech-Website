@@ -27,6 +27,7 @@ import EventPosts from "../../../components/blogPosts/Events";
 import { setNotifications } from "../../../../redux/slices/notificationSlice";
 import { getRelativeTime } from "../../../../utils/timeUtils";
 import SocialNotification from "../../../components/socialLink/SocialNotification";
+import Spinner from "../../../components/spinner/spinner";
 
 type QuickActionCardProps = {
   title: string;
@@ -301,9 +302,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 
 
 
-  
 
-  
+
+
   useEffect(() => {
     // Membership Status
     const membershipStatus = user?.isLoggedIn ? "Active" : "Inactive";
@@ -399,7 +400,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         };
       case "Member Level":
         return {
-       
+
           button: true,
           nextTier: membershipTier?.nextTier || "Platinum",
         };
@@ -472,8 +473,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
                   </div>
                 </Modal>
               </div> */}
-              
-              <SocialNotification/>
+
+              <SocialNotification />
             </div>
           </div>
           <div className="shp-time-info">
@@ -505,7 +506,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
             ))}
         </div>
       </div>
-      
+
 
       {/* Member Quick Actions */}
       <div className="shp-section">
@@ -530,6 +531,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         <div className="shp-two-column">
           <EventPosts posts={eventsPosts} />
         </div>
+      </div>
+      <div>
+        <Spinner />
       </div>
     </div>
   );
