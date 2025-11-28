@@ -51,22 +51,21 @@ const socials: SocialItem[] = [
     name: "WhatsApp",
     icon: <FaWhatsapp color="#25D366" size={20} />,
     description: "Join our WhatsApp channels for updates and support.",
-    link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+    link: "#",
     channels: [
       {
-        name: "Community Channel",
-        description: "Join our community for updates, news, and discussions.",
-        link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+        name: "D'roid Community Updates",
+        description: "Get official announcements, updates, and tech news.",
+        link: "https://chat.whatsapp.com/HrX1r5J3a1B2mIIau47Ga7",
       },
       {
-        name: "Support Channel",
-        description: "Get direct support from our team for technical assistance.",
-        link: "https://chat.whatsapp.com/SUPPORT_CHANNEL_LINK",
+        name: "Society Impact & Help Channel",
+        description: "A channel dedicated to social good, community support, and humanitarian action.",
+        link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
       },
     ],
   },
 ];
-
 
 const SocialNotificationPreview: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -121,10 +120,10 @@ const SocialNotificationPreview: React.FC = () => {
 
             <p className={styles.modalDescription}>{selected.description}</p>
 
-            {/* WhatsApp Channel Selection */}
             {selected.id === "whatsapp" && selected.channels ? (
               <div className={styles.channelsContainer}>
                 <p className={styles.channelPrompt}>Choose a channel:</p>
+
                 {selected.channels.map((channel, index) => (
                   <button
                     key={index}
@@ -171,5 +170,3 @@ const SocialNotificationPreview: React.FC = () => {
 };
 
 export default SocialNotificationPreview;
-
-

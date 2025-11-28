@@ -1,29 +1,35 @@
+/* CLEAN, FIXED, NON-DUPLICATE, RESPONSIVE CSS */
 
 .wrapperRoot {
-  all: revert-layer; /* prevents external CSS override */
+  all: revert-layer;
 }
 
 .wrapper {
   padding: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .headerRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .headerText {
   color: #444;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
+/* GRID RESPONSIVENESS */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  max-width: 240px;
+  width: 100%;
 }
 
 @media (min-width: 480px) {
@@ -33,32 +39,34 @@
 }
 
 .socialBtn {
-  background: #fff !important; /* prevent external button color */
-  border: 1px solid #eee !important;
-  border-radius: 10px;
-  padding: 8px;
+  background: #fff !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 12px;
+  padding: 10px 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.15s ease;
+  width: 100%;
 }
 
 .socialBtn:active {
-  transform: scale(0.95);
+  transform: scale(0.93);
 }
 
 .icon {
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .socialName {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   color: #333;
 }
 
+/* MODAL */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -66,27 +74,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   z-index: 999;
 }
 
 .modalBox {
   background: #fff;
   padding: 16px;
-  border-radius: 14px;
-  width: 90%;
-  max-width: 380px;
+  border-radius: 16px;
+  width: 95%;
+  max-width: 420px;
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.25s ease;
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-y: auto;
-}
-
-@media (min-width: 480px) {
-  .modalBox {
-    padding: 20px;
-    width: 85%;
-  }
+  overflow-x: hidden;
 }
 
 .closeIcon {
@@ -97,42 +100,58 @@
   border: none;
   font-size: 20px;
   cursor: pointer;
-  font-weight: 700;
-  color: #222;
-  line-height: 1;
+  font-weight: bold;
+  color: #111;
 }
 
 .closeIcon:hover {
-color: #ff3b30 !important; 
-background: rgba(255, 59, 48, 0.12) !important; 
+  color: #ff3b30 !important;
+  background: rgba(255, 59, 48, 0.12) !important;
 }
 
+/* RESPONSIVE MODAL TITLE */
 .modalTitle {
-  font-size: 16px;
-  margin-top: 20px;
+  font-size: 4.2vw;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  white-space: nowrap;
 }
 
+@media (min-width: 480px) {
+  .modalTitle {
+    font-size: 18px;
+  }
+}
+
+/* RESPONSIVE MODAL DESCRIPTION */
 .modalDescription {
-  font-size: 12px;
+  font-size: 3.4vw;
   color: #555;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  line-height: 1.45;
+  overflow-wrap: break-word;
 }
 
+@media (min-width: 480px) {
+  .modalDescription {
+    font-size: 14px;
+  }
+}
+
+/* JOIN BUTTON */
 .linkBtn {
   background: #0a66c2 !important;
-  color: white !important;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
+  color: #fff !important;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none !important;
-  display: inline-block;
-  margin-top: 12px;
+  display: block;
+  margin-top: 14px;
   width: 100%;
   text-align: center;
   transition: background 0.2s ease;
@@ -142,83 +161,84 @@ background: rgba(255, 59, 48, 0.12) !important;
   background: #094a8f !important;
 }
 
-/* WhatsApp Channel Selection Styles */
+/* WHATSAPP CHANNEL SECTION */
 .channelsContainer {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .channelPrompt {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .channelOption {
   width: 100%;
   background: #f8f9fa !important;
   border: 2px solid #e9ecef !important;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
-  display: block;
-}
-
-@media (min-width: 480px) {
-  .channelOption {
-    padding: 12px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden; /* prevents overflow */
 }
 
 .channelOption:hover {
-  background: #e9ecef !important;
-  border-color: #25D366 !important;
+  background: #eef5ef !important;
+  border-color: #25d366 !important;
   transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.15);
-}
-
-.channelOption:active {
-  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.18);
 }
 
 .channelSelected {
-  background: #e8f5e9 !important;
-  border-color: #25D366 !important;
-  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+  background: #ddf6e4 !important;
+  border-color: #25d366 !important;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
 }
 
 .channelHeader {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .channelName {
-  font-size: 12px;
-  font-weight: 600;
-  color: #222;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  font-size: 3.4vw;
+  font-weight: 700;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 @media (min-width: 480px) {
   .channelName {
-    font-size: 13px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 480px) {
+  .channelName {
+    font-size: 14px;
   }
 }
 
 .channelDescription {
-  font-size: 10px;
+  font-size: 3vw;
   color: #666;
-  margin: 0;
-  line-height: 1.4;
-  word-wrap: break-word;
+  line-height: 1.35;
   overflow-wrap: break-word;
+  white-space: normal;
 }
 
 @media (min-width: 480px) {
@@ -227,6 +247,7 @@ background: rgba(255, 59, 48, 0.12) !important;
   }
 }
 
+/* ANIMATION */
 @keyframes fadeIn {
   from {
     opacity: 0;
