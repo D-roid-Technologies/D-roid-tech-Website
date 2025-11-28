@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TrendingUp, Clock, Zap } from "lucide-react";
 import {
-  selectProgressPercentage,
   selectTotalHours,
   selectWeeklyProgressHours,
   startSession,
@@ -17,9 +16,18 @@ import styles from "./progression-header.module.css";
 const ProgressionHeader: React.FC = () => {
   const dispatch = useDispatch();
   const { tier } = useSelector(selectMembershipTier);
-  const progressPercentage = useSelector(selectProgressPercentage);
   const totalHours = useSelector(selectTotalHours);
   const weeklyHours = useSelector(selectWeeklyProgressHours);
+
+  // Map tier to progress percentage
+  const tierProgressMap: Record<string, number> = {
+    Free: 0,
+    Silver: 33,
+    Gold: 66,
+    Platinum: 100,
+  };
+
+  const progressPercentage = tierProgressMap[tier] || 0;
 
   useEffect(() => {
     dispatch(startSession());
