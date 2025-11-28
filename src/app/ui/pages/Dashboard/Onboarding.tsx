@@ -1,4 +1,3 @@
-// src/components/Onboarding/Onboarding.tsx
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authService } from "../../../redux/configuration/auth.service";
@@ -31,9 +30,13 @@ const Onboarding: React.FC = () => {
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [hasUpdatedPersonalInfo, setHasUpdatedPersonalInfo] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [notificationCheckComplete, setNotificationCheckComplete] =
+    useState(false);
 
-  // Check if onboarding is complete
+  // FIXED: Check if onboarding is complete by verifying Firestore data
   const isOnboardingComplete = () => {
+    if (!isStaffAccount()) return true;
+
     const requiredFields = [
       "staffBank",
       "staffAccountNmber",
@@ -47,16 +50,91 @@ const Onboarding: React.FC = () => {
     return requiredFields.every(
       (field) =>
         staffDetails[field as keyof StaffDetails] &&
-        staffDetails[field as keyof StaffDetails] !== ""
+        staffDetails[field as keyof StaffDetails] !== "" &&
+        staffDetails[field as keyof StaffDetails] !== "Not set"
     );
   };
 
-  // Remove onboarding notification when complete - USE THE SERVICE METHOD
+  // FIXED: Check if user is staff (not member) - case insensitive
+  const isStaffAccount = () => {
+    const userType = userDetails.userType?.toLowerCase();
+    return userType === "staff" || userType === "admin";
+  };
+
+  // Create onboarding notification for staff accounts only
+  const createOnboardingNotification = async () => {
+    if (!isStaffAccount()) return;
+
+    try {
+      await enhancedNotifications.addSilent({
+        title: "Complete Your Onboarding",
+        message:
+          "Please complete your staff onboarding information to access all features.",
+        type: "warning",
+        date: new Date().toISOString().split("T")[0],
+        time: new Date().toISOString(),
+        isRead: false,
+      });
+      console.log("🔔 Onboarding notification created successfully");
+    } catch (error) {
+      console.error("Failed to create onboarding notification:", error);
+    }
+  };
+
+  // Remove onboarding notification when complete
   const removeOnboardingNotification = async () => {
+    if (!isStaffAccount()) return;
+
     try {
       await enhancedNotifications.removeOnboardingNotification();
     } catch (error) {
       console.error("Failed to remove onboarding notification:", error);
+    }
+  };
+
+  // IMPROVED: Check and manage onboarding notification
+  const checkAndManageOnboardingNotification = async () => {
+    if (!isStaffAccount()) {
+      console.log("👤 Member account - skipping onboarding notifications");
+      setNotificationCheckComplete(true);
+      return;
+    }
+
+    try {
+      // Wait for notifications to be properly loaded
+      if (!enhancedNotifications.isInitialized()) {
+        console.log("⏳ Notifications not initialized yet, waiting...");
+        setTimeout(() => checkAndManageOnboardingNotification(), 1000);
+        return;
+      }
+
+      const complete = isOnboardingComplete();
+      const hasOnboardingNotif =
+        await enhancedNotifications.hasOnboardingNotification();
+
+      console.log(
+        `🔄 Staff Onboarding Status: Complete=${complete}, HasNotification=${hasOnboardingNotif}`
+      );
+
+      if (!complete) {
+        // Onboarding NOT complete - ensure notification exists
+        if (!hasOnboardingNotif) {
+          console.log("📝 Onboarding incomplete - creating notification");
+          await createOnboardingNotification();
+        } else {
+          console.log("📝 Onboarding incomplete - notification already exists");
+        }
+      } else {
+        // Onboarding IS complete - remove notification
+        if (hasOnboardingNotif) {
+          console.log("✅ Onboarding complete - removing notification");
+          await removeOnboardingNotification();
+        }
+      }
+    } catch (error) {
+      console.error("Error managing onboarding notification:", error);
+    } finally {
+      setNotificationCheckComplete(true);
     }
   };
 
@@ -81,10 +159,20 @@ const Onboarding: React.FC = () => {
 
     setHasUpdatedPersonalInfo(!!hasData);
 
-    // DO NOT manually send onboarding notification here
-    // The notification service handles this automatically on login and refresh
-    // This prevents duplicate notifications
+    // Check onboarding status and manage notification
+    checkAndManageOnboardingNotification();
   }, [userDetails, staffDetails, isInitialLoad]);
+
+  // Check when onboarding is completed
+  useEffect(() => {
+    if (
+      isStaffAccount() &&
+      isOnboardingComplete() &&
+      notificationCheckComplete
+    ) {
+      removeOnboardingNotification();
+    }
+  }, [staffDetails, notificationCheckComplete]);
 
   const handleStaffDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -176,10 +264,10 @@ const Onboarding: React.FC = () => {
 
       // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
-    
+
       setHasUpdatedPersonalInfo(true);
 
-      // Mark step as completed in Redux (triggers notification)
+      // Mark step as completed in Redux
       dispatch(markStepCompleted(1));
 
       // Remove onboarding notification since profile is now complete
@@ -188,8 +276,7 @@ const Onboarding: React.FC = () => {
       // Send completion notification
       await enhancedNotifications.addSilent({
         title: "Onboarding Complete! 🎉",
-        message:
-          "Your staff profile has been successfully completed.",
+        message: "Your staff profile has been successfully completed.",
         type: "success",
         date: new Date().toISOString().split("T")[0],
         time: new Date().toISOString(),
@@ -199,14 +286,18 @@ const Onboarding: React.FC = () => {
       // Reset form data to show updated values
       setFormDataNew({});
       setIsInitialLoad(true);
+
+      toast.success("Onboarding completed successfully!", {
+        style: { background: "#4BB543", color: "#fff" },
+      });
     } catch (error) {
       console.error("Failed to update personal info:", error);
 
       // Dismiss loading toast and show error
       toast.dismiss(loadingToast);
-      // toast.error("Failed to update personal information. Please try again.", {
-      //   style: { background: "#ff4d4f", color: "#fff" },
-      // });
+      toast.error("Failed to update onboarding information", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
     } finally {
       setIsUpdating(false);
     }
@@ -233,7 +324,7 @@ const Onboarding: React.FC = () => {
         return (
           <>
             <h2 className={styles.heading}>View Personal Information</h2>
-            {!isOnboardingComplete() && (
+            {!isOnboardingComplete() && isStaffAccount() && (
               <div className={styles.warningBanner}>
                 <div className={styles.warningIcon}>⚠️</div>
                 <div className={styles.warningText}>
@@ -280,7 +371,7 @@ const Onboarding: React.FC = () => {
                 ? "Edit Personal Information"
                 : "Update Personal Information"}
             </h2>
-            {!isOnboardingComplete() && (
+            {!isOnboardingComplete() && isStaffAccount() && (
               <div className={styles.infoBanner}>
                 <div className={styles.infoIcon}>ℹ️</div>
                 <div className={styles.infoText}>
@@ -347,6 +438,15 @@ const Onboarding: React.FC = () => {
         <span className={styles.stepIndicator}>
           Step {currentStep + 1} of {onboardingSteps.length}
         </span>
+        {/* Debug info - remove in production */}
+        {/* {isStaffAccount() && (
+          <div style={{ fontSize: "12px", color: "#666", marginTop: "5px" }}>
+            Staff: Yes | Onboarding:{" "}
+            {isOnboardingComplete() ? "Complete ✅" : "Incomplete ❌"} |
+            Notification Check:{" "}
+            {notificationCheckComplete ? "Done ✅" : "Pending ⏳"}
+          </div>
+        )} */}
       </div>
 
       <div className={styles.tabsContainer}>

@@ -1,3 +1,4 @@
+// auth.service.ts - COMPLETE FIXED VERSION
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -476,6 +477,11 @@ export class AuthService {
 
       const userDocRef = doc(collection(db, "droidaccount"), user.uid);
 
+      // Check if this is a staff account to create onboarding notification
+      const isStaff =
+        userData.userType?.toLowerCase() === "staff" ||
+        userData.userType?.toLowerCase() === "admin";
+
       const droidAccount = {
         user: {
           primaryInformation: {
@@ -535,7 +541,7 @@ export class AuthService {
             trainings: [],
             progressions: [],
             userForms: [],
-            notifications: [],
+            notifications: isStaff ? [this.createOnboardingNotification()] : [], // AUTO-CREATE FOR STAFF
           },
           staff: {
             paySlip: [],
@@ -590,6 +596,20 @@ export class AuthService {
     }
   }
 
+  // Create onboarding notification template
+  private createOnboardingNotification() {
+    return {
+      id: Date.now(),
+      title: "Complete Your Onboarding",
+      message:
+        "Please complete your staff onboarding information to access all features.",
+      type: "warning",
+      date: new Date().toISOString().split("T")[0],
+      time: new Date().toISOString(),
+      isRead: false,
+    };
+  }
+
   async getAllUsersFromFirestore() {
     try {
       const user = auth.currentUser;
@@ -599,7 +619,6 @@ export class AuthService {
     }
   }
 
-  // In AuthService class - complete handleUserLogin method
   async handleUserLogin(email: string, password: string, isStaff: boolean) {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -620,7 +639,10 @@ export class AuthService {
         const userForm = fetchedUserData.user?.userForms;
         const userType = primaryInformation?.userType;
 
-        const isUserActuallyStaff = userType === "Staff";
+        // FIXED: Case-insensitive staff detection
+        const isUserActuallyStaff =
+          userType?.toLowerCase() === "staff" ||
+          userType?.toLowerCase() === "admin";
 
         if (isUserActuallyStaff !== isStaff) {
           await auth.signOut();
@@ -660,9 +682,9 @@ export class AuthService {
         const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
         const calculateData = updatedData?.calculate?.calculators || [];
 
-        // Get notifications from Firestore FIRST (Source of Truth)
+        // FIXED: Get notifications from correct path
         const firestoreNotifications =
-          fetchedUserData.user?.notifications || [];
+          fetchedUserData.user?.onboard?.notifications || [];
 
         // Update all Redux states
         store.dispatch(setPayslipData(updatedPayslips));
@@ -695,16 +717,8 @@ export class AuthService {
             "../../ui/notificationService/notifications.service"
           );
           await notificationsService.initializeNotifications();
-
-          // Initialize onboarding notification for staff users
-          if (isUserActuallyStaff) {
-            await notificationsService.initializeOnboardingNotification(
-              updatedStaffDetails
-            );
-          }
         } catch (error) {
           console.error("Failed to initialize notifications:", error);
-          // Already set Firestore data above, so this is just backup
         }
 
         toast.success(`We have successfully logged you into your account.`, {
@@ -728,6 +742,7 @@ export class AuthService {
       throw err;
     }
   }
+
   async handlePasswordReset(email: string): Promise<void> {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -993,7 +1008,7 @@ export class AuthService {
       });
     }
   }
-  // In AuthService class - revert updateAffiliatesData method
+
   async updateAffiliatesData(partialAffiliates: any) {
     try {
       const currentUser = await getCurrentUser();
@@ -1039,11 +1054,6 @@ export class AuthService {
         partialAffiliates,
         currentAffiliates
       );
-
-      // Show toast for all updates
-      // toast.success("Connected apps updated successfully", {
-      //   style: { background: "#4BB543", color: "#fff" },
-      // });
 
       return updatedAffiliates;
     } catch (error: any) {
@@ -1378,7 +1388,7 @@ export class AuthService {
     }
   }
 
-  // ==================== NEW NOTIFICATION METHODS ====================
+  // ==================== UPDATED NOTIFICATION METHODS ====================
 
   async syncNotificationsToBackend(notifications: Notification[]) {
     try {
@@ -1386,8 +1396,9 @@ export class AuthService {
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
 
+      // FIXED: Use correct Firestore path
       await updateDoc(userDocRef, {
-        "user.notifications": notifications,
+        "user.onboard.notifications": notifications,
       });
 
       console.log("✅ Notifications synced to Firestore");
@@ -1410,7 +1421,8 @@ export class AuthService {
       }
 
       const data = userSnapshot.data();
-      const backendNotifications = data?.user?.notifications || [];
+      // FIXED: Get from correct path
+      const backendNotifications = data?.user?.onboard?.notifications || [];
 
       return this.migrateNotifications(backendNotifications);
     } catch (error: any) {

@@ -41,24 +41,17 @@ const Notifications: React.FC = () => {
     console.log("🔔 Total notifications count:", notifications.length);
   }, [notifications]);
 
-  // Initialize notifications AND onboarding notification on component mount
+  // Initialize notifications on component mount
   useEffect(() => {
     const initialize = async () => {
       try {
         await notificationsService.initializeNotifications();
-
-        // ALWAYS check and initialize onboarding notification on every mount/refresh
-        if (staffDetails) {
-          await enhancedNotifications.initializeOnboardingNotification(
-            staffDetails
-          );
-        }
       } catch (error) {
         console.error("Failed to initialize notifications:", error);
       }
     };
     initialize();
-  }, [staffDetails]); // Add staffDetails as dependency
+  }, []);
 
   const handleMarkAsRead = async (id: number) => {
     try {
@@ -97,16 +90,6 @@ const Notifications: React.FC = () => {
       setIsLoading(true);
       await enhancedNotifications.clearAll();
       console.log("✅ All notifications cleared and synced to Firestore");
-
-      // RE-INITIALIZE onboarding notification immediately after clear
-      // This ensures it persists even after clear operations
-      if (staffDetails) {
-        setTimeout(async () => {
-          await enhancedNotifications.initializeOnboardingNotification(
-            staffDetails
-          );
-        }, 100);
-      }
     } catch (error) {
       console.error("❌ Failed to clear all notifications:", error);
       // Fallback: Use Redux directly if service fails
