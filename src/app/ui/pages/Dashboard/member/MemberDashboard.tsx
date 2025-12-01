@@ -413,7 +413,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     <div className="shp-homepage-container">
       {/* Welcome Header */}
       <div className="shp-welcome-header">
-        <div className="shp-welcome-content">
+          <div className="shp-welcome-content">
+          <div className="shp-greeting-wrapper">
+            <div className="shp-greeting">
+              </div> <div className="shp-welcome-content">
           <div className="shp-greeting">
             <h1 className="shp-welcome-title">Member Portal</h1>
             <div className="shp-head-icons-container">
@@ -477,6 +480,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               <SocialNotification />
             </div>
           </div>
+            </div>
+          </div>
+          <div className="shp-time-info-wrapper"></div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
             <div className="shp-current-date">{formatDate(currentTime)}</div>
