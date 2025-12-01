@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+  FaTwitter,
+} from "react-icons/fa";
 import styles from "./SocialNotification.module.css";
 
 interface WhatsAppChannel {
@@ -60,8 +66,21 @@ const socials: SocialItem[] = [
       },
       {
         name: "Society Impact & Help Channel",
-        description: "A channel dedicated to social good, community support, and humanitarian action",
+        description:
+          "A channel dedicated to social good, community support, and humanitarian action",
         link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+      },
+      {
+        name: "Lift off Conference",
+        description:
+          "A channel dedicated to D'roid upcoming events, conferences, and meetups.",
+        link: "https://chat.whatsapp.com/KvtaJzV4756ICtksODITML",
+      },
+      {
+        name: "D'roid tech groups",
+        description:
+          "A channel dedicated to D'roid tech groups and discussions.",
+        link: "",
       },
     ],
   },
@@ -70,7 +89,8 @@ const socials: SocialItem[] = [
 const SocialNotificationPreview: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<SocialItem | null>(null);
-  const [selectedChannel, setSelectedChannel] = useState<WhatsAppChannel | null>(null);
+  const [selectedChannel, setSelectedChannel] =
+    useState<WhatsAppChannel | null>(null);
 
   const handleOpen = (item: SocialItem) => {
     setSelected(item);
@@ -112,7 +132,9 @@ const SocialNotificationPreview: React.FC = () => {
       {open && selected && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalBox}>
-            <button className={styles.closeIcon} onClick={handleClose}>X</button>
+            <button className={styles.closeIcon} onClick={handleClose}>
+              X
+            </button>
 
             <h2 className={styles.modalTitle}>
               {selected.icon} <span>{selected.name}</span>
@@ -130,14 +152,18 @@ const SocialNotificationPreview: React.FC = () => {
                     type="button"
                     onClick={() => handleChannelSelect(channel)}
                     className={`${styles.channelOption} ${
-                      selectedChannel?.name === channel.name ? styles.channelSelected : ""
+                      selectedChannel?.name === channel.name
+                        ? styles.channelSelected
+                        : ""
                     }`}
                   >
                     <div className={styles.channelHeader}>
                       <FaWhatsapp color="#25D366" size={18} />
                       <span className={styles.channelName}>{channel.name}</span>
                     </div>
-                    <p className={styles.channelDescription}>{channel.description}</p>
+                    <p className={styles.channelDescription}>
+                      {channel.description}
+                    </p>
                   </button>
                 ))}
 
