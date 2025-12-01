@@ -97,11 +97,11 @@ const EventPosts: React.FC<eventCardProps> = ({ posts, onEventSelect }) => {
                 </div>
               )}
 
-            {activePost.title?.includes("Chess Tournament") && (
-  <div className="chess-registration-section">
-    <ChessRegistration />
-  </div>
-)}
+              {activePost.title?.includes("Chess Tournament") && (
+                <div className="chess-registration-section">
+                  <ChessRegistration />
+                </div>
+              )}
             </div>
           </div>
         </div>
