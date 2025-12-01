@@ -3,6 +3,17 @@ import React, { useState } from "react";
 import { CheckoutPage } from "../../../components/payment/CheckoutPage";
 import { X } from "lucide-react";
 
+interface UpgradePlan {
+  id?: string;
+  name: string;
+  price: number;
+  interval: string;
+  features: string[];
+  icon?: string;
+  color?: string;
+  metadata?: Record<string, any>;
+}
+
 interface UpgradeOpportunitiesProps {
   currentTier: string;
 }
@@ -10,8 +21,8 @@ interface UpgradeOpportunitiesProps {
 export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
   currentTier,
 }) => {
-  const [selectedTier, setSelectedTier] = useState<string | null>(null);
-  const [showCheckout, setShowCheckout] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<UpgradePlan | null>(null);
 
   const tiers = [
     {
@@ -19,6 +30,7 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
       icon: "🥇",
       color: "#EAB308",
       bg: "#FEFCE8",
+      borderColor: "#F59E0B",
       price: 5000,
       interval: "one-time",
       benefits: [
@@ -34,6 +46,7 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
       icon: "💎",
       color: "#60A5FA",
       bg: "#EFF6FF",
+      borderColor: "#3B82F6",
       price: 15000,
       interval: "one-time",
       benefits: [
@@ -53,27 +66,40 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
       (currentTier === "Silver" || tier.name === "Platinum")
   );
 
-  const handleUpgradeClick = (tier: string) => {
-    setSelectedTier(tier);
-    setShowCheckout(true); // ✅ open modal instead of navigate
+  const handleUpgradeClick = (tier: typeof tiers[0]) => {
+    const planData: UpgradePlan = {
+      name: tier.name,
+      price: tier.price,
+      interval: tier.interval,
+      features: tier.benefits,
+      icon: tier.icon,
+      color: tier.color,
+      metadata: {
+        currentTier,
+        upgradeFrom: currentTier,
+        upgradeTo: tier.name,
+      },
+    };
+
+    setSelectedPlan(planData);
+    setIsCheckoutOpen(true);
   };
 
   const handleCloseCheckout = () => {
-    setShowCheckout(false);
-    setSelectedTier(null);
+    setIsCheckoutOpen(false);
+    setSelectedPlan(null);
   };
 
-  const selectedPlan = tiers.find((t) => t.name === selectedTier);
-
   return (
-    <div >
+    <div style={{ padding: "0" }}>
       <h2
         style={{
-          fontSize: "20px",
+          fontSize: "24px",
           fontWeight: "700",
-          marginBottom: "16px",
+          marginBottom: "12px",
           textAlign: "center",
-          color: "#374151",
+          color: "#1F2937",
+          letterSpacing: "-0.02em",
         }}
       >
         Upgrade Your Membership
@@ -82,8 +108,9 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
         style={{
           textAlign: "center",
           color: "#6B7280",
-          marginBottom: "24px",
-          fontSize: "14px",
+          marginBottom: "32px",
+          fontSize: "15px",
+          lineHeight: "1.6",
         }}
       >
         Unlock exclusive benefits and rewards as you move up to Gold or Platinum tiers.
@@ -92,8 +119,8 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
       <div
         style={{
           display: "grid",
-          gap: "20px",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "24px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
         }}
       >
         {upgradeTiers.map((tier) => (
@@ -101,90 +128,164 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
             key={tier.name}
             style={{
               backgroundColor: tier.bg,
-              border: `1px solid ${tier.color}`,
-              borderRadius: "12px",
-              padding: "20px",
-              boxShadow: `0 4px 10px rgba(0,0,0,0.05)`,
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              border: `2px solid ${tier.borderColor}`,
+              borderRadius: "16px",
+              padding: "28px",
+              boxShadow: `0 4px 12px rgba(0,0,0,0.08)`,
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              cursor: "pointer",
+              position: "relative",
+              overflow: "hidden",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-4px)";
+              e.currentTarget.style.boxShadow = `0 12px 24px rgba(0,0,0,0.12)`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = `0 4px 12px rgba(0,0,0,0.08)`;
             }}
           >
-            <h3
+            {/* Decorative gradient overlay */}
+            <div
               style={{
-                fontSize: "18px",
-                fontWeight: "700",
-                color: tier.color,
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                marginBottom: "10px",
+                position: "absolute",
+                top: 0,
+                right: 0,
+                width: "120px",
+                height: "120px",
+                background: `radial-gradient(circle at top right, ${tier.color}20, transparent)`,
+                pointerEvents: "none",
               }}
-            >
-              {tier.icon} {tier.name} Tier
-            </h3>
+            />
 
-            <ul style={{ paddingLeft: "18px", marginBottom: "16px", color: "#374151" }}>
-              {tier.benefits.map((b, i) => (
-                <li key={i} style={{ fontSize: "13px", marginBottom: "4px" }}>
-                  ✅ {b}
-                </li>
-              ))}
-            </ul>
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <h3
+                style={{
+                  fontSize: "22px",
+                  fontWeight: "700",
+                  color: tier.color,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  marginBottom: "16px",
+                }}
+              >
+                <span style={{ fontSize: "28px" }}>{tier.icon}</span>
+                {tier.name} Tier
+              </h3>
 
-            <button
-              style={{
-                backgroundColor: tier.color,
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                padding: "10px 16px",
-                width: "100%",
-                fontWeight: "600",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-              }}
-              onClick={() => handleUpgradeClick(tier.name)}
-            >
-              {tier.buttonText} – ₦{tier.price.toLocaleString()}
-            </button>
+              <ul
+                style={{
+                  paddingLeft: "0",
+                  marginBottom: "24px",
+                  color: "#374151",
+                  listStyle: "none",
+                }}
+              >
+                {tier.benefits.map((b, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      fontSize: "14px",
+                      marginBottom: "10px",
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "8px",
+                      lineHeight: "1.5",
+                    }}
+                  >
+                    <span style={{ fontSize: "16px", flexShrink: 0 }}>✅</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                style={{
+                  backgroundColor: tier.color,
+                  color: "white",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "14px 20px",
+                  width: "100%",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  boxShadow: `0 4px 12px ${tier.color}40`,
+                }}
+                onClick={() => handleUpgradeClick(tier)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.02)";
+                  e.currentTarget.style.boxShadow = `0 6px 16px ${tier.color}60`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = `0 4px 12px ${tier.color}40`;
+                }}
+              >
+                {tier.buttonText} – ₦{tier.price.toLocaleString()}
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
       {/* ✅ Modal Checkout */}
-      {showCheckout && selectedPlan && (
+      {isCheckoutOpen && selectedPlan && (
         <div
           style={{
             position: "fixed",
             inset: 0,
-            backgroundColor: "rgba(0,0,0,0.6)",
+            backgroundColor: "rgba(0,0,0,0.65)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             zIndex: 2000,
             padding: "20px",
+            backdropFilter: "blur(4px)",
+            animation: "fadeIn 0.2s ease-out",
           }}
+          onClick={handleCloseCheckout}
         >
           <div
             style={{
               backgroundColor: "white",
-              borderRadius: "12px",
+              borderRadius: "16px",
               maxWidth: "720px",
               width: "100%",
               maxHeight: "90vh",
               overflowY: "auto",
               position: "relative",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+              animation: "slideUp 0.3s ease-out",
             }}
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={handleCloseCheckout}
               style={{
                 position: "absolute",
-                top: "10px",
-                right: "10px",
-                background: "transparent",
+                top: "16px",
+                right: "16px",
+                background: "#F3F4F6",
                 border: "none",
                 cursor: "pointer",
+                borderRadius: "50%",
+                width: "36px",
+                height: "36px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.2s ease",
+                zIndex: 10,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#E5E7EB";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#F3F4F6";
               }}
             >
               <X size={20} color="#6B7280" />
@@ -192,11 +293,11 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
 
             <CheckoutPage
               selectedPlan={{
-                id:"",
+                id: "",
                 name: selectedPlan.name,
                 price: selectedPlan.price,
                 interval: selectedPlan.interval,
-                features: selectedPlan.benefits,
+                features: selectedPlan.features,
               }}
               onBack={handleCloseCheckout}
               onPaymentSuccess={() => {
@@ -208,6 +309,28 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
           </div>
         </div>
       )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

@@ -2,10 +2,17 @@
 
 import type React from "react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { Crown, Star, Zap, Shield } from "lucide-react"
 import styles from "./UpgradeToAccessTools.module.css"
 import { CheckoutPage } from "./payment/CheckoutPage"
+
+interface UpgradePlan {
+  id?: string
+  name: string
+  price: number
+  interval: string
+  features: string[]
+}
 
 interface UpgradeToAccessToolsProps {
   toolName?: string | null
@@ -21,14 +28,15 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({
   onPaymentSuccess,
   onPaymentInitiated,
 }) => {
-  const navigate = useNavigate()
   const [showCheckout, setShowCheckout] = useState(false)
+  const [selectedTier, setSelectedTier] = useState<"Gold" | "Platinum">("Gold")
 
-  const selectedPlan = {
-    id:"1",
-    name: "Premium Tools Access",
-    price: 2999, // Price in kobo (₦29.99)
-    interval: "month",
+  // Plan based on selected tier
+  const selectedPlan: UpgradePlan = {
+    id: selectedTier === "Gold" ? "gold-tier" : "platinum-tier",
+    name: `${selectedTier} Tier Access`,
+    price: selectedTier === "Gold" ? 5000 : 15000,
+    interval: "one-time",
     features: [
       "Access to all premium tools",
       "AI Background Remover",
@@ -69,7 +77,10 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({
           ← Back to Upgrade
         </button>
         <CheckoutPage
-          selectedPlan={selectedPlan}
+          selectedPlan={{
+            ...selectedPlan,
+            id: selectedPlan.id || "",
+          }}
           onBack={handleBackFromCheckout}
           onPaymentSuccess={handleCheckoutSuccess}
           onPaymentInitiated={handleCheckoutInitiated}
@@ -117,12 +128,62 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({
       </div>
 
       <div className={styles.pricingSection}>
+        {/* Tier Selector */}
+        <div style={{ marginBottom: "24px" }}>
+        {(
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: "24px", gap: "12px" }}>
+            <button
+              onClick={() => setSelectedTier("Gold")}
+              style={{
+                padding: "10px 20px",
+                borderRadius: "12px",
+                border: selectedTier === "Gold" ? "2px solid #EAB308" : "1px solid #e5e7eb",
+                backgroundColor: selectedTier === "Gold" ? "#FEFCE8" : "white",
+                color: selectedTier === "Gold" ? "#854D0E" : "#374151",
+                fontWeight: selectedTier === "Gold" ? "700" : "500",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <span>🥇</span> Gold
+            </button>
+            <button
+              onClick={() => setSelectedTier("Platinum")}
+              style={{
+                padding: "10px 20px",
+                borderRadius: "12px",
+                border: selectedTier === "Platinum" ? "2px solid #60A5FA" : "1px solid #e5e7eb",
+                backgroundColor: selectedTier === "Platinum" ? "#EFF6FF" : "white",
+                color: selectedTier === "Platinum" ? "#1E40AF" : "#374151",
+                fontWeight: selectedTier === "Platinum" ? "700" : "500",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <span>💎</span> Platinum
+            </button>
+          </div>
+        )}
+        </div>
+
         <div className={styles.priceTag}>
           <span className={styles.currency}>₦</span>
-          <span className={styles.price}>2999.99</span>
-          <span className={styles.period}>/month</span>
+          <span className={styles.price}>{selectedPlan.price.toLocaleString()}</span>
+          <span className={styles.period} style={{ fontSize: "14px", color: "#6B7280" }}>
+            {selectedPlan.interval === "one-time" ? "/one-time" : `/${selectedPlan.interval}`}
+          </span>
         </div>
-        <p className={styles.pricingNote}>Cancel anytime • 30-day money-back guarantee</p>
+        <p className={styles.pricingNote} style={{ marginTop: "8px" }}>
+          {selectedTier === "Gold" 
+            ? "Includes priority access & rewards" 
+            : "Includes all features & lifetime access"}
+        </p>
       </div>
 
       <div className={styles.actions}>
