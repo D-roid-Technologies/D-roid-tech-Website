@@ -708,7 +708,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                       >
                         {({ selected }) => (
                           <div className="flex items-center justify-between">
-                            <span>{option.label}</span>
+                            <span style={{ whiteSpace: "normal", wordWrap: "break-word" }}>
+{option.label}</span>
                             {selected && (
                               <Check className="h-5 w-5" aria-hidden="true" />
                             )}
@@ -1742,20 +1743,23 @@ const PersonalDetails: React.FunctionComponent = () => {
                         }`}
                       >
                         <span
-                          className={
-                            (formData as any)?.securityQuestion
-                              ? ""
-                              : "text-gray-400"
-                          }
-                        >
-                          {(formData as any)?.securityQuestion
-                            ? securityQuestionOptions.find(
-                                (option) =>
-                                  option.value ===
-                                  (formData as any)?.securityQuestion
-                              )?.label
-                            : "Select Security Question"}
-                        </span>
+  style={{ whiteSpace: "normal", wordWrap: "break-word" }}
+  className={
+    (formData as any)?.securityQuestion
+      ? ""
+      : "text-gray-400"
+  }
+>
+  {(formData as any)?.securityQuestion
+    ? securityQuestionOptions.find(
+        (option) =>
+          option.value ===
+          (formData as any)?.securityQuestion
+      )?.label
+    : "Select Security Question"}
+</span>
+
+
                         <ChevronsUpDown
                           className="h-5 w-5 text-gray-400"
                           aria-hidden="true"
