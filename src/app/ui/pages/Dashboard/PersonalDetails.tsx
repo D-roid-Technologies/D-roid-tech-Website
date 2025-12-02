@@ -36,6 +36,7 @@ const genderOptions = [
   { value: "Other", label: "Other" },
   { value: "Prefer not to say", label: "Prefer not to say" },
 ];
+
 const PersonalDetails: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const userDetails: UserType = useSelector((state: RootState) => state.user);
@@ -52,6 +53,7 @@ const PersonalDetails: React.FunctionComponent = () => {
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
+  const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setFormData({
@@ -72,17 +74,20 @@ const PersonalDetails: React.FunctionComponent = () => {
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
-    return phoneRegex.test(phone.replace(/[\s\-$$$$]/g, ""));
+    // More lenient phone validation
+    const phoneRegex = /^\+?[\d\s\-()]{10,}$/;
+    return phoneRegex.test(phone);
   };
 
   const validateDate = (dateString: string): boolean => {
+    if (!dateString) return false;
     const date = new Date(dateString);
     const now = new Date();
     return date instanceof Date && !isNaN(date.getTime()) && date <= now;
   };
 
   const validateAge = (dateOfBirth: string): boolean => {
+    if (!dateOfBirth) return false;
     const birthDate = new Date(dateOfBirth);
     const today = new Date();
     const age = today.getFullYear() - birthDate.getFullYear();
@@ -92,7 +97,7 @@ const PersonalDetails: React.FunctionComponent = () => {
       monthDiff < 0 ||
       (monthDiff === 0 && today.getDate() < birthDate.getDate())
     ) {
-      return age - 1 >= 13; // Must be at least 13 years old
+      return age - 1 >= 13;
     }
     return age >= 13;
   };
@@ -113,6 +118,11 @@ const PersonalDetails: React.FunctionComponent = () => {
   };
 
   const validateField = (name: string, value: any): string => {
+    // Don't show error if field hasn't been touched yet
+    if (!touchedFields.has(name) && !validateRequired(value)) {
+      return "";
+    }
+
     switch (name) {
       case "firstName":
       case "lastName":
@@ -142,7 +152,7 @@ const PersonalDetails: React.FunctionComponent = () => {
       case "phone":
         if (!validateRequired(value)) return "Phone number is required";
         if (!validatePhone(value))
-          return "Please enter a valid phone number with country code e.g +234";
+          return "Please enter a valid phone number (e.g., +234 800 123 4567)";
         break;
 
       case "email":
@@ -241,20 +251,11 @@ const PersonalDetails: React.FunctionComponent = () => {
       case "organisationalType":
         if (userType === "Organisation" && !validateRequired(value))
           return "Organisational type is required";
-        if (
-          userType === "Organisation" &&
-          !["school", "business", "ngo"].includes(value)
-        ) {
-          return "Organisational type must be school, business, or ngo";
-        }
         break;
 
       case "isCompanyRegistered":
         if (userType === "Organisation" && !validateRequired(value))
           return "Company registration status is required";
-        if (userType === "Organisation" && !["Yes", "No"].includes(value)) {
-          return "Company registration must be Yes or No";
-        }
         break;
 
       case "dateOfRegistration":
@@ -289,6 +290,7 @@ const PersonalDetails: React.FunctionComponent = () => {
     if (!formData) return false;
 
     const newErrors: ValidationErrors = {};
+    let hasErrors = false;
 
     // Get all form fields based on user type
     const fieldsToValidate = [
@@ -333,6 +335,7 @@ const PersonalDetails: React.FunctionComponent = () => {
       const error = validateField(field, (formData as any)[field]);
       if (error) {
         newErrors[field] = error;
+        hasErrors = true;
       }
     });
 
@@ -349,13 +352,41 @@ const PersonalDetails: React.FunctionComponent = () => {
           const error = validateField(field, value);
           if (error) {
             newErrors[field] = error;
+            hasErrors = true;
           }
         }
       });
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+
+    // Scroll to first error field
+    if (hasErrors) {
+      const firstErrorField = Object.keys(newErrors)[0];
+      setTimeout(() => {
+        const errorElement = document.querySelector(
+          `[name="${firstErrorField}"]`
+        );
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: "smooth", block: "center" });
+          (errorElement as HTMLElement).focus();
+        }
+      }, 100);
+    }
+
+    return !hasErrors;
+  };
+
+  const handleFieldBlur = (fieldName: string) => {
+    setTouchedFields((prev) => new Set(prev).add(fieldName));
+
+    if (formData) {
+      const error = validateField(fieldName, (formData as any)[fieldName]);
+      setErrors((prev) => ({
+        ...prev,
+        [fieldName]: error,
+      }));
+    }
   };
 
   const handleInputChange = (
@@ -375,14 +406,9 @@ const PersonalDetails: React.FunctionComponent = () => {
 
     setFormData({ ...formData, [name]: processedValue });
 
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-
-    // Real-time validation for immediate feedback
-    const error = validateField(name, processedValue);
-    if (error && processedValue !== "") {
+    // Real-time validation after field is touched
+    if (touchedFields.has(name)) {
+      const error = validateField(name, processedValue);
       setErrors((prev) => ({ ...prev, [name]: error }));
     }
   };
@@ -444,6 +470,11 @@ const PersonalDetails: React.FunctionComponent = () => {
     e.preventDefault();
     if (!formData) return;
 
+    // Mark all fields as touched for validation
+    const allFields = new Set<string>();
+    Object.keys(formData).forEach((key) => allFields.add(key));
+    setTouchedFields(allFields);
+
     // Clear previous submit status
     setSubmitStatus(null);
 
@@ -470,13 +501,9 @@ const PersonalDetails: React.FunctionComponent = () => {
           isRead: false,
         };
         dispatch(addNotification(notification));
-
         setErrors({});
+        setTouchedFields(new Set());
       });
-
-      // console.log("profileUpdated>>>>>>>>>>>>");
-
-      // Create notification for profile update
     } catch (error) {
       setSubmitStatus("error");
       setErrors({ submit: "Failed to update information. Please try again." });
@@ -504,16 +531,19 @@ const PersonalDetails: React.FunctionComponent = () => {
   const renderErrorMessage = (fieldName: string) => {
     if (errors[fieldName]) {
       return (
-        <span
+        <div
           style={{
             color: "#dc3545",
             fontSize: "12px",
             marginTop: "4px",
-            display: "block",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
           }}
         >
+          <span style={{ color: "#dc3545" }}>⚠</span>
           {errors[fieldName]}
-        </span>
+        </div>
       );
     }
     return null;
@@ -534,7 +564,19 @@ const PersonalDetails: React.FunctionComponent = () => {
     border: `1px solid ${errors[fieldName] ? "#dc3545" : "#ccc"}`,
     fontSize: "14px",
     backgroundColor: errors[fieldName] ? "#fff5f5" : "#fff",
-    outline: errors[fieldName] ? "none" : "initial",
+    outline: "none",
+    transition: "border-color 0.3s ease",
+  });
+
+  const getSelectStyle = (fieldName: string) => ({
+    width: "100%",
+    padding: "12px",
+    borderRadius: "8px",
+    border: `1px solid ${errors[fieldName] ? "#dc3545" : "#ccc"}`,
+    fontSize: "14px",
+    backgroundColor: errors[fieldName] ? "#fff5f5" : "#fff",
+    outline: "none",
+    cursor: "pointer",
   });
 
   const employmentStatusOptions = [
@@ -572,6 +614,12 @@ const PersonalDetails: React.FunctionComponent = () => {
         ...formData,
         [field]: value,
       });
+
+      // Validate after change if field has been touched
+      if (touchedFields.has(field)) {
+        const error = validateField(field, value);
+        setErrors((prev) => ({ ...prev, [field]: error }));
+      }
     }
   };
 
@@ -618,6 +666,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 placeholder="Enter position or job title"
                 value={(formData as any)?.position || ""}
                 onChange={handleInputChange}
+                onBlur={() => handleFieldBlur("position")}
                 style={getInputStyle("position")}
               />
               {renderErrorMessage("position")}
@@ -631,6 +680,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 placeholder="Enter department"
                 value={(formData as any)?.department || ""}
                 onChange={handleInputChange}
+                onBlur={() => handleFieldBlur("department")}
                 style={getInputStyle("department")}
               />
               {renderErrorMessage("department")}
@@ -644,6 +694,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 placeholder="Enter employee ID"
                 value={(formData as any)?.employeeId || ""}
                 onChange={handleInputChange}
+                onBlur={() => handleFieldBlur("employeeId")}
                 style={getInputStyle("employeeId")}
               />
               {renderErrorMessage("employeeId")}
@@ -656,6 +707,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                 type="date"
                 value={(formData as any)?.joinDate || ""}
                 onChange={handleInputChange}
+                onBlur={() => handleFieldBlur("joinDate")}
                 style={getInputStyle("joinDate")}
               />
               {renderErrorMessage("joinDate")}
@@ -674,6 +726,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                     className={`lf-dropdown-btn ${
                       errors.employmentStatus ? "lf-error" : ""
                     }`}
+                    style={getSelectStyle("employmentStatus")}
+                    onBlur={() => handleFieldBlur("employmentStatus")}
                   >
                     <span
                       className={
@@ -733,6 +787,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                     className={`lf-dropdown-btn ${
                       errors.workLocation ? "lf-error" : ""
                     }`}
+                    style={getSelectStyle("workLocation")}
+                    onBlur={() => handleFieldBlur("workLocation")}
                   >
                     <span
                       className={
@@ -779,296 +835,6 @@ const PersonalDetails: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
-
-        {/* Performance Metrics Section */}
-        {/* <div
-          style={{
-            marginTop: "20px",
-            padding: "15px",
-            backgroundColor: "#fff3cd",
-            borderRadius: "8px",
-            border: "1px solid #ffeaa7",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "16px",
-              fontWeight: "600",
-              color: "#856404",
-              marginBottom: "15px",
-              borderBottom: "2px solid #856404",
-              paddingBottom: "5px",
-            }}
-          >
-            Performance Metrics
-          </h3>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "15px",
-            }}
-          >
-            <div>
-              <label style={getLabelStyle()}>Performance Score (0-100)</label>
-              <input
-                name="performanceScore"
-                type="number"
-                min="0"
-                max="100"
-                placeholder="Enter performance score"
-                value={(formData as any)?.performanceScore || ""}
-                onChange={handleInputChange}
-                style={getInputStyle("performanceScore")}
-              />
-              {renderErrorMessage("performanceScore")}
-            </div>
-
-            <div>
-              <label style={getLabelStyle()}>Attendance Rate (0-100%)</label>
-              <input
-                name="attendanceRate"
-                type="number"
-                min="0"
-                max="100"
-                placeholder="Enter attendance rate"
-                value={(formData as any)?.attendanceRate || ""}
-                onChange={handleInputChange}
-                style={getInputStyle("attendanceRate")}
-              />
-              {renderErrorMessage("attendanceRate")}
-            </div>
-
-            <div>
-              <label style={getLabelStyle()}>Training Progress (0-100%)</label>
-              <input
-                name="trainingProgress"
-                type="number"
-                min="0"
-                max="100"
-                placeholder="Enter training progress"
-                value={(formData as any)?.trainingProgress || ""}
-                onChange={handleInputChange}
-                style={getInputStyle("trainingProgress")}
-              />
-              {renderErrorMessage("trainingProgress")}
-            </div>
-
-            <div>
-              <label style={getLabelStyle()}>Active Tasks Count</label>
-              <input
-                name="activeTasks"
-                type="number"
-                min="0"
-                placeholder="Enter number of active tasks"
-                value={(formData as any)?.activeTasks || ""}
-                onChange={handleInputChange}
-                style={getInputStyle("activeTasks")}
-              />
-              {renderErrorMessage("activeTasks")}
-            </div>
-          </div>
-        </div> */}
-
-        {/* Skills and Certifications Section */}
-        {/* <div
-          style={{
-            marginTop: "20px",
-            padding: "15px",
-            backgroundColor: "#d1ecf1",
-            borderRadius: "8px",
-            border: "1px solid #bee5eb",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "16px",
-              fontWeight: "600",
-              color: "#0c5460",
-              marginBottom: "15px",
-              borderBottom: "2px solid #0c5460",
-              paddingBottom: "5px",
-            }}
-          >
-            Skills & Professional Development
-          </h3>
-
-          <div style={{ marginBottom: "15px" }}>
-            <label style={getLabelStyle()}>Skills (comma-separated)</label>
-            <input
-              name="skills"
-              type="text"
-              placeholder="e.g., JavaScript, Project Management, Communication"
-              value={
-                Array.isArray((formData as any)?.skills)
-                  ? (formData as any).skills.join(", ")
-                  : ""
-              }
-              onChange={(e) => {
-                if (!formData) return;
-                const skillsArray = e.target.value
-                  .split(",")
-                  .map((skill) => skill.trim())
-                  .filter((skill) => skill);
-                setFormData({ ...formData, skills: skillsArray });
-              }}
-              style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "8px",
-                border: "1px solid #ccc",
-                fontSize: "14px",
-              }}
-            />
-          </div>
-
-          <div>
-            <label style={getLabelStyle()}>
-              Certifications (comma-separated)
-            </label>
-            <input
-              name="certifications"
-              type="text"
-              placeholder="e.g., PMP, AWS Certified, Scrum Master"
-              value={
-                Array.isArray((formData as any)?.certifications)
-                  ? (formData as any).certifications.join(", ")
-                  : ""
-              }
-              onChange={(e) => {
-                if (!formData) return;
-                const certArray = e.target.value
-                  .split(",")
-                  .map((cert) => cert.trim())
-                  .filter((cert) => cert);
-                setFormData({ ...formData, certifications: certArray });
-              }}
-              style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "8px",
-                border: "1px solid #ccc",
-                fontSize: "14px",
-              }}
-            />
-          </div>
-        </div> */}
-
-        {/* Access Level Section */}
-        {/* <div
-          style={{
-            marginTop: "20px",
-            padding: "15px",
-            backgroundColor: "#f8d7da",
-            borderRadius: "8px",
-            border: "1px solid #f5c6cb",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "16px",
-              fontWeight: "600",
-              color: "#721c24",
-              marginBottom: "15px",
-              borderBottom: "2px solid #721c24",
-              paddingBottom: "5px",
-            }}
-          >
-            Access & Permissions
-          </h3>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "15px",
-            }}
-          >
-            <div>
-              <label style={getLabelStyle()}>Access Level *</label>
-              <Listbox
-                value={(formData as any)?.accessLevel || ""}
-                onChange={(value) => handleListboxChange("accessLevel", value)}
-              >
-                <div className="lf-dropdown">
-                  <Listbox.Button
-                    className={`lf-dropdown-btn ${
-                      errors.accessLevel ? "lf-error" : ""
-                    }`}
-                  >
-                    <span
-                      className={
-                        (formData as any)?.accessLevel ? "" : "text-gray-400"
-                      }
-                    >
-                      {(formData as any)?.accessLevel || "Select Access Level"}
-                    </span>
-                    <ChevronsUpDown
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  </Listbox.Button>
-                  <Listbox.Options className="lf-dropdown-options">
-                    {[
-                      "Basic",
-                      "Intermediate",
-                      "Advanced",
-                      "Admin",
-                      "Manager",
-                    ].map((option) => (
-                      <Listbox.Option
-                        key={option}
-                        value={option}
-                        className={({ active, selected }) =>
-                          `lf-dropdown-item ${active ? "lf-active" : ""} ${
-                            selected ? "lf-selected" : ""
-                          }`
-                        }
-                      >
-                        {({ selected }) => (
-                          <div className="flex items-center justify-between">
-                            <span>{option}</span>
-                            {selected && (
-                              <Check className="h-5 w-5" aria-hidden="true" />
-                            )}
-                          </div>
-                        )}
-                      </Listbox.Option>
-                    ))}
-                  </Listbox.Options>
-                </div>
-              </Listbox>
-              {renderErrorMessage("accessLevel")}
-            </div>
-
-            <div>
-              <label style={getLabelStyle()}>
-                Permissions (comma-separated)
-              </label>
-              <input
-                name="permissions"
-                type="text"
-                placeholder="Enter permissions"
-                value={
-                  Array.isArray((formData as any)?.permissions)
-                    ? (formData as any).permissions.join(", ")
-                    : ""
-                }
-                onChange={(e) => {
-                  if (!formData) return;
-                  const permArray = e.target.value
-                    .split(",")
-                    .map((perm) => perm.trim())
-                    .filter((perm) => perm);
-                  setFormData({ ...formData, permissions: permArray });
-                }}
-                style={getInputStyle("permissions")}
-              />
-              {renderErrorMessage("permissions")}
-            </div>
-          </div>
-        </div> */}
       </>
     );
   };
@@ -1186,9 +952,13 @@ const PersonalDetails: React.FunctionComponent = () => {
             borderRadius: "8px",
             color: "#155724",
             marginTop: "10px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          ✓ Information updated successfully!
+          <span style={{ fontSize: "18px" }}>✓</span>
+          Information updated successfully!
         </div>
       )}
 
@@ -1201,9 +971,13 @@ const PersonalDetails: React.FunctionComponent = () => {
             borderRadius: "8px",
             color: "#721c24",
             marginTop: "10px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          ⚠ Please fix the errors below before submitting.
+          <span style={{ fontSize: "18px" }}>⚠</span>
+          Please fix the errors below before submitting.
         </div>
       )}
 
@@ -1302,6 +1076,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter first name"
                       value={(formData as any).firstName || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("firstName")}
                       style={getInputStyle("firstName")}
                     />
                     {renderErrorMessage("firstName")}
@@ -1316,6 +1091,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter last name"
                       value={(formData as any).lastName || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("lastName")}
                       style={getInputStyle("lastName")}
                     />
                     {renderErrorMessage("lastName")}
@@ -1331,6 +1107,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                         placeholder="Enter middle name"
                         value={(formData as any).middleName || ""}
                         onChange={handleInputChange}
+                        onBlur={() => handleFieldBlur("middleName")}
                         style={getInputStyle("middleName")}
                       />
                       {renderErrorMessage("middleName")}
@@ -1344,10 +1121,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       <Listbox
                         value={(formData as any).gender || ""}
                         onChange={(value) =>
-                          setFormData((prev: any) => ({
-                            ...prev,
-                            gender: value,
-                          }))
+                          handleListboxChange("gender", value)
                         }
                       >
                         <div className="lf-dropdown">
@@ -1356,6 +1130,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                             className={`lf-dropdown-btn ${
                               errors.gender ? "lf-error" : ""
                             }`}
+                            style={getSelectStyle("gender")}
+                            onBlur={() => handleFieldBlur("gender")}
                           >
                             <span
                               className={
@@ -1411,6 +1187,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                         type="date"
                         value={(formData as any).dateOfBirth || ""}
                         onChange={handleInputChange}
+                        onBlur={() => handleFieldBlur("dateOfBirth")}
                         style={getInputStyle("dateOfBirth")}
                       />
                       {renderErrorMessage("dateOfBirth")}
@@ -1423,9 +1200,10 @@ const PersonalDetails: React.FunctionComponent = () => {
                     <input
                       name="phone"
                       type="text"
-                      placeholder="Enter phone number with country code"
+                      placeholder="e.g., +234 800 123 4567"
                       value={(formData as any).phone || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("phone")}
                       style={getInputStyle("phone")}
                     />
                     {renderErrorMessage("phone")}
@@ -1440,6 +1218,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter street number"
                       value={(formData as any).streetNumber || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("streetNumber")}
                       style={getInputStyle("streetNumber")}
                     />
                     {renderErrorMessage("streetNumber")}
@@ -1454,6 +1233,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter street name"
                       value={(formData as any).streetName || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("streetName")}
                       style={getInputStyle("streetName")}
                     />
                     {renderErrorMessage("streetName")}
@@ -1468,6 +1248,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter city"
                       value={(formData as any).city || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("city")}
                       style={getInputStyle("city")}
                     />
                     {renderErrorMessage("city")}
@@ -1482,6 +1263,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter state"
                       value={(formData as any).state || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("state")}
                       style={getInputStyle("state")}
                     />
                     {renderErrorMessage("state")}
@@ -1496,6 +1278,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                       placeholder="Enter country"
                       value={(formData as any).country || ""}
                       onChange={handleInputChange}
+                      onBlur={() => handleFieldBlur("country")}
                       style={getInputStyle("country")}
                     />
                     {renderErrorMessage("country")}
@@ -1512,7 +1295,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                           name="organisationalType"
                           value={(formData as any).organisationalType || ""}
                           onChange={handleInputChange}
-                          style={getInputStyle("organisationalType")}
+                          onBlur={() => handleFieldBlur("organisationalType")}
+                          style={getSelectStyle("organisationalType")}
                         >
                           <option value="">Select Organisational Type</option>
                           <option value="school">School</option>
@@ -1530,7 +1314,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                           name="isCompanyRegistered"
                           value={(formData as any).isCompanyRegistered || ""}
                           onChange={handleInputChange}
-                          style={getInputStyle("isCompanyRegistered")}
+                          onBlur={() => handleFieldBlur("isCompanyRegistered")}
+                          style={getSelectStyle("isCompanyRegistered")}
                         >
                           <option value="">Select Registration Status</option>
                           <option value="Yes">Yes</option>
@@ -1549,6 +1334,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                             type="date"
                             value={(formData as any).dateOfRegistration || ""}
                             onChange={handleInputChange}
+                            onBlur={() => handleFieldBlur("dateOfRegistration")}
                             style={getInputStyle("dateOfRegistration")}
                           />
                           {renderErrorMessage("dateOfRegistration")}
@@ -1582,6 +1368,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                           className={`lf-dropdown-btn ${
                             errors.disabilityType ? "lf-error" : ""
                           }`}
+                          style={getSelectStyle("disabilityType")}
+                          onBlur={() => handleFieldBlur("disabilityType")}
                         >
                           <span
                             className={
@@ -1646,6 +1434,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                           className={`lf-dropdown-btn ${
                             errors.educationalLevel ? "lf-error" : ""
                           }`}
+                          style={getSelectStyle("educationalLevel")}
+                          onBlur={() => handleFieldBlur("educationalLevel")}
                         >
                           <span
                             className={
@@ -1740,6 +1530,8 @@ const PersonalDetails: React.FunctionComponent = () => {
                         className={`lf-dropdown-btn ${
                           errors.securityQuestion ? "lf-error" : ""
                         }`}
+                        style={getSelectStyle("securityQuestion")}
+                        onBlur={() => handleFieldBlur("securityQuestion")}
                       >
                         <span
                           className={
@@ -1802,6 +1594,7 @@ const PersonalDetails: React.FunctionComponent = () => {
                     placeholder="Enter your security answer"
                     value={(formData as any).securityAnswer || ""}
                     onChange={handleInputChange}
+                    onBlur={() => handleFieldBlur("securityAnswer")}
                     style={getInputStyle("securityAnswer")}
                   />
                   {renderErrorMessage("securityAnswer")}
@@ -1986,8 +1779,12 @@ const PersonalDetails: React.FunctionComponent = () => {
                     borderRadius: "8px",
                     color: "#721c24",
                     marginTop: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
                   }}
                 >
+                  <span style={{ fontSize: "18px" }}>⚠</span>
                   {errors.submit}
                 </div>
               )}
