@@ -42,6 +42,7 @@ import EventPosts from "../../../components/blogPosts/Events";
 import { eventsPosts } from "../../../../utils/blogpost";
 import { formatStartDate } from "../../../../utils/isAboveSixMonths";
 import SocialNotification from "../../../components/socialLink/SocialNotification";
+import WhatsAppButton from "../../../components/WhatsAppButton";
 
 type QuickActionCardProps = {
   title: string;
@@ -193,7 +194,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     date: string;
   };
 
-
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const user = useSelector((state: RootState) => state.user);
   const trainings = useSelector((state: RootState) => state.trainings as any[]);
@@ -266,7 +266,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
   // Get staff metrics from Redux state
   const { activeTasks, completedTasks, performanceScore, attendanceRate } =
     useSelector((state: RootState) => state.staff);
-  
 
   // Staff-specific stats for overview section
   const startSince = formatStartDate(staffInfo?.staffStartDate);
@@ -274,9 +273,9 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     {
       title: "Employment Status",
       value: "Active",
-      change: `${
-        staffInfo?.staffPosition || userDetails.position || "Staff"
-      }${startSince ? ` since ${startSince}` : ""}`,
+      change: `${staffInfo?.staffPosition || userDetails.position || "Staff"}${
+        startSince ? ` since ${startSince}` : ""
+      }`,
       icon: FaIdCard,
       color: "green",
     },
@@ -319,7 +318,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
     (task) => task.status === "not_started"
   ).length;
   const totalTasks = tasks.length;
-
 
   const handleStatClick = (stat: any) => {
     setSelectedStat(stat);
@@ -552,7 +550,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
             {/* Notification and Activity Icons */}
             <div className="shp-head-icons-container">
               {/* Notifications */}
-            
 
               {/* Activities */}
               {/* <div
@@ -586,7 +583,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
                 )}
               </div> */}
             </div>
-            <SocialNotification/>
+            <SocialNotification />
           </div>
           <div className="shp-time-info">
             <div className="shp-current-time">{formatTime(currentTime)}</div>
@@ -602,8 +599,6 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
         title=""
         description=""
       >
-   
-       
         <button
           className="shp-view-all-notifications"
           onClick={() => handleViewAllNotification()}
@@ -839,6 +834,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
           <EventPosts posts={eventsPosts} />
         </div>
       </div>
+      <WhatsAppButton />
     </div>
   );
 };

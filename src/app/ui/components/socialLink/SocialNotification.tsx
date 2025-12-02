@@ -15,7 +15,7 @@ interface WhatsAppChannel {
 }
 
 interface SocialItem {
-  id: "facebook" | "instagram" | "linkedin" | "whatsapp" | "twitter";
+  id: "facebook" | "instagram" | "linkedin" | "whatsapp" | "twitter" | "TikTok";
   name: string;
   icon: JSX.Element;
   description: string;
@@ -53,6 +53,13 @@ const socials: SocialItem[] = [
     link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
   },
   {
+    id: "TikTok",
+    name: "Tiktok",
+    icon: <FaTwitter color="#000000" size={20} />,
+    description: "Connect with D'roid Technologies on X.",
+    link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
+  },
+  {
     id: "whatsapp",
     name: "WhatsApp",
     icon: <FaWhatsapp color="#25D366" size={20} />,
@@ -60,24 +67,24 @@ const socials: SocialItem[] = [
     link: "#",
     channels: [
       {
-        name: "D'roid Community Updates",
+        name: "Knowledge City HQ",
         description: "Get official announcements, updates, and tech news.",
         link: "https://chat.whatsapp.com/HrX1r5J3a1B2mIIau47Ga7",
       },
       {
-        name: "Society Impact & Help Channel",
+        name: "Clash of Kings - Chess community",
         description:
           "A channel dedicated to social good, community support, and humanitarian action",
         link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
       },
       {
-        name: "Lift off Conference",
+        name: "Lift off Community",
         description:
           "A channel dedicated to D'roid upcoming events, conferences, and meetups.",
         link: "https://chat.whatsapp.com/KvtaJzV4756ICtksODITML",
       },
       {
-        name: "D'roid tech groups",
+        name: "D'roid Tech community",
         description:
           "A channel dedicated to D'roid tech groups and discussions.",
         link: "",
