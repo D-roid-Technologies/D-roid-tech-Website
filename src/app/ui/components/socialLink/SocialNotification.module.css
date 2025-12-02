@@ -9,6 +9,8 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  
+
 }
 
 .headerRow {
@@ -246,6 +248,13 @@
     font-size: 11px;
   }
 }
+
+@media (min-width: 1024px) {
+  .wrapper {
+    margin-left: -20px;
+  }
+} 
+
 
 /* ANIMATION */
 @keyframes fadeIn {

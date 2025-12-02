@@ -539,20 +539,21 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
       {/* Welcome Header */}
       <div className="shp-welcome-header">
         <div className="shp-welcome-content">
-          <div className="shp-greeting">
-            <h1 className="shp-welcome-title">
-              Welcome, {userDetails.firstName}!
-            </h1>
-            <p className="shp-welcome-subtitle">
-              {userDetails.position} {userDetails.department}
-            </p>
+          <div className="shp-greeting-wrapper">
+            <div className="shp-greeting">
+              <h1 className="shp-welcome-title">
+                Welcome, {userDetails.firstName}!
+              </h1>
+              <p className="shp-welcome-subtitle">
+                {userDetails.position} {userDetails.department}
+              </p>
 
-            {/* Notification and Activity Icons */}
-            <div className="shp-head-icons-container">
-              {/* Notifications */}
+              {/* Notification and Activity Icons */}
+              <div className="shp-head-icons-container">
+                {/* Notifications */}
 
-              {/* Activities */}
-              {/* <div
+                {/* Activities */}
+                {/* <div
                 className="shp-head-icons"
                 onClick={() => setNotesModalOpen(true)}
                 style={{ position: "relative", cursor: "pointer" }}
@@ -582,12 +583,16 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
                   </span>
                 )}
               </div> */}
+              </div>
+              <SocialNotification />
             </div>
             <SocialNotification />
           </div>
-          <div className="shp-time-info">
-            <div className="shp-current-time">{formatTime(currentTime)}</div>
-            <div className="shp-current-date">{formatDate(currentTime)}</div>
+          <div className="shp-time-info-wrapper">
+            <div className="shp-time-info">
+              <div className="shp-current-time">{formatTime(currentTime)}</div>
+              <div className="shp-current-date">{formatDate(currentTime)}</div>
+            </div>
           </div>
         </div>
       </div>
