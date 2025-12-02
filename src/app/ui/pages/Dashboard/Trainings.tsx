@@ -43,101 +43,137 @@ const Trainings: React.FC = () => {
       </p>
 
       {/* Grid of courses */}
+     {/* Grid of courses OR Empty State */}
+{courses.length === 0 ? (
+  <div
+    style={{
+      textAlign: "center",
+      padding: "60px 20px",
+      background: "white",
+      borderRadius: "12px",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+    }}
+  >
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
+      alt="No Courses"
+      style={{ width: "120px", marginBottom: "20px", opacity: 0.8 }}
+    />
+
+    <h2
+      style={{
+        fontSize: "20px",
+        fontWeight: 600,
+        marginBottom: "6px",
+        color: "#1E3A8A",
+      }}
+    >
+      No Trainings Assigned
+    </h2>
+
+    <p style={{ fontSize: "14px", color: "#6B7280" }}>
+      You currently have no assigned trainings.  
+      Please check back later.
+    </p>
+  </div>
+) : (
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+      gap: "24px",
+    }}
+  >
+    {courses.map((course) => (
       <div
+        key={course.id}
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "24px",
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+          background: "white",
+          transition: "transform 0.3s ease",
         }}
       >
-        {courses.map((course) => (
-          <div
-            key={course.id}
+        {/* Thumbnail */}
+        <div style={{ position: "relative" }}>
+          <img
+            src={course.thumbnail}
+            alt={course.title}
             style={{
-              borderRadius: "12px",
-              overflow: "hidden",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
-              background: "white",
-              transition: "transform 0.3s ease",
+              width: "100%",
+              height: "160px",
+              objectFit: "cover",
+            }}
+          />
+          {course.completed && (
+            <div
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "4px",
+              }}
+            >
+              <CheckCircle color="#10B981" size={20} />
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div style={{ padding: "16px" }}>
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#111827",
+              marginBottom: "6px",
             }}
           >
-            {/* Thumbnail */}
-            <div style={{ position: "relative" }}>
-              <img
-                src={course.thumbnail}
-                alt={course.title}
-                style={{
-                  width: "100%",
-                  height: "160px",
-                  objectFit: "cover",
-                }}
-              />
-              {course.completed && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    right: "10px",
-                    backgroundColor: "white",
-                    borderRadius: "50%",
-                    padding: "4px",
-                  }}
-                >
-                  <CheckCircle color="#10B981" size={20} />
-                </div>
-              )}
-            </div>
+            {course.title}
+          </h3>
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#4B5563",
+              marginBottom: "10px",
+              lineHeight: 1.5,
+            }}
+          >
+            {course.description}
+          </p>
 
-            {/* Content */}
-            <div style={{ padding: "16px" }}>
-              <h3
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  color: "#111827",
-                  marginBottom: "6px",
-                }}
-              >
-                {course.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "#4B5563",
-                  marginBottom: "10px",
-                  lineHeight: 1.5,
-                }}
-              >
-                {course.description}
-              </p>
+          <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "8px" }}>
+            Duration: <strong>{course.duration}</strong>
+          </p>
+          <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "14px" }}>
+            Scheduled: {course.scheduledDate}
+          </p>
 
-              <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "8px" }}>
-                Duration: <strong>{course.duration}</strong>
-              </p>
-              <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: "14px" }}>
-                Scheduled: {course.scheduledDate}
-              </p>
-
-              <button
-                onClick={() => handleStartLearning(course)}
-                style={{
-                  width: "100%",
-                  backgroundColor: course.completed ? "#9CA3AF" : "#2563EB",
-                  color: "white",
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "8px",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  transition: "background 0.3s ease",
-                }}
-              >
-                {course.completed ? "Completed" : "Start Learning"}
-              </button>
-            </div>
-          </div>
-        ))}
+          <button
+            onClick={() => handleStartLearning(course)}
+            style={{
+              width: "100%",
+              backgroundColor: course.completed ? "#9CA3AF" : "#2563EB",
+              color: "white",
+              padding: "10px",
+              border: "none",
+              borderRadius: "8px",
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "background 0.3s ease",
+            }}
+          >
+            {course.completed ? "Completed" : "Start Learning"}
+          </button>
+        </div>
       </div>
+    ))}
+  </div>
+)}
+
 
       {/* Course modal / player */}
     {selectedCourse && (
@@ -150,7 +186,7 @@ const Trainings: React.FC = () => {
       alignItems: "center",
       justifyContent: "center",
       zIndex: 50,
-      padding: "20px", // prevent edges cutoff on small screens
+      padding: "20px", 
     }}
   >
     <div
@@ -159,9 +195,9 @@ const Trainings: React.FC = () => {
         borderRadius: "12px",
         padding: "20px",
         width: "100%",
-        maxWidth: "600px", // smaller width for better focus
-        maxHeight: "90vh", // limit height
-        overflowY: "auto", // scroll if too tall
+        maxWidth: "600px", 
+        maxHeight: "90vh", 
+        overflowY: "auto", 
         boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
         position: "relative",
         animation: "fadeIn 0.3s ease",

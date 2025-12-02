@@ -361,6 +361,18 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    display: flex; /* Ensure flexbox is active */
+  }
+
+  /* Mobile reordering: time/date at top, SocialNotification at bottom */
+  .shp-time-info-wrapper {
+    order: 1;
+    width: 100%;
+  }
+
+  .shp-greeting-wrapper {
+    order: 2;
+    width: 100%;
   }
 
   .shp-welcome-title {
