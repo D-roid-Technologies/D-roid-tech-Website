@@ -186,7 +186,7 @@ const Trainings: React.FC = () => {
       alignItems: "center",
       justifyContent: "center",
       zIndex: 50,
-      padding: "20px", // prevent edges cutoff on small screens
+      padding: "20px", 
     }}
   >
     <div
@@ -195,9 +195,9 @@ const Trainings: React.FC = () => {
         borderRadius: "12px",
         padding: "20px",
         width: "100%",
-        maxWidth: "600px", // smaller width for better focus
-        maxHeight: "90vh", // limit height
-        overflowY: "auto", // scroll if too tall
+        maxWidth: "600px", 
+        maxHeight: "90vh", 
+        overflowY: "auto", 
         boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
         position: "relative",
         animation: "fadeIn 0.3s ease",

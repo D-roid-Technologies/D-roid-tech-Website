@@ -36,7 +36,7 @@ export const UpgradeToAccessTools: React.FC<UpgradeToAccessToolsProps> = ({
     id: selectedTier === "Gold" ? "gold-tier" : "platinum-tier",
     name: `${selectedTier} Tier Access`,
     price: selectedTier === "Gold" ? 5000 : 15000,
-    interval: "one-time",
+    interval: "monthly",
     features: [
       "Access to all premium tools",
       "AI Background Remover",
