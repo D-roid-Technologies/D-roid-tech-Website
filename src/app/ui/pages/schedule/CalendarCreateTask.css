@@ -223,6 +223,9 @@
 }
 
 /* Date Input Styles */
+.ct-start-time {
+  margin-top: 20px;
+}
 .ct-date-input-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -168,6 +168,31 @@ export const businessPosts: BlogPost[] = [
 export const eventsPosts: BlogPost[] = [
   {
     id: 12,
+    title: "Calabar Tech Mixer (MUST Company) 2025",
+    excerpt:
+      "The Calabar Tech Mixer 2025 was a technology-focused gathering hosted by Must Company, aimed at fostering collaboration, learning, and partnership among developers.",
+    date: "Wednesday, 12th November 2025",
+    author: "D'roid Technologies",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    category: "Events",
+    readTime: "5 min read",
+    image: Assets.images.mustTechEvent,
+    readMoreLink: generateBlogLink(
+      "events",
+      "Calabar Tech Mixer (MUST Company) 2025"
+    ),
+    content: [
+      "The Calabar Tech Mixer 2025 was a technology-focused gathering hosted by Must Company, aimed at fostering collaboration, learning, and partnership among developers.",
+
+      "Tech companies, startup founders, and community members within the Calabar ecosystem.",
+
+      "I attended the event as a representative of Droid Technologies, with the goal of understanding ecosystem trends, identifying partnership opportunities, and strengthening our company’s visibility in South-South Nigeria’s tech landscape.",
+
+      "The event featured keynote speeches from industry leaders, panel discussions on emerging technologies, and networking sessions designed to connect attendees with potential collaborators and mentors.",
+    ],
+  },
+  {
+    id: 13,
     title: "Clash of Kings - Chess Tournament[2025/2026]",
     excerpt:
       "An exciting chess tournament featuring some of the region's top players.",
@@ -177,7 +202,10 @@ export const eventsPosts: BlogPost[] = [
     category: "Events",
     readTime: "5 min read",
     image: Assets.images.chessOne,
-    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2025/2026]"),
+    readMoreLink: generateBlogLink(
+      "events",
+      "Clash of Kings - Chess Tournament[2025/2026]"
+    ),
     content: [
       "Clash of Kings, organized by D'roid Technologies, is a premier annual chess competition dedicated to empowering minds through strategy, focus, and creativity. The event brings together chess enthusiasts, learners, and masters from across communities, creating an atmosphere of inspiration, competition, and excellence.",
 
@@ -187,9 +215,8 @@ export const eventsPosts: BlogPost[] = [
 
       "Winners receive exciting rewards: 1st Place — ₦15,000 + crowned the Chess King 2025 + named Ambassador of D'roid Technologies; 2nd Place — ₦10,000; 3rd Place — ₦5,000. Other prizes include books, pens, and chess boards.",
 
-      "Registration is open to all with a participation fee of ₦1000. Hurry, registration closes on November 30, 2025. Secure your spot, make your moves, and claim your crown in the ultimate Clash of Kings!"
-    ]
-
+      "Registration is open to all with a participation fee of ₦1000. Hurry, registration closes on November 30, 2025. Secure your spot, make your moves, and claim your crown in the ultimate Clash of Kings!",
+    ],
   },
   {
     id: 9,
@@ -265,7 +292,10 @@ export const eventsPosts: BlogPost[] = [
     category: "Events",
     readTime: "5 min read",
     image: Assets.images.chessOne,
-    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2022/2023]"),
+    readMoreLink: generateBlogLink(
+      "events",
+      "Clash of Kings - Chess Tournament[2022/2023]"
+    ),
     content: [
       "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
       "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
@@ -284,7 +314,10 @@ export const eventsPosts: BlogPost[] = [
     category: "Events",
     readTime: "5 min read",
     image: Assets.images.chessOne,
-    readMoreLink: generateBlogLink("events", "Clash of Kings - Chess Tournament[2021/2022]"),
+    readMoreLink: generateBlogLink(
+      "events",
+      "Clash of Kings - Chess Tournament[2021/2022]"
+    ),
     content: [
       "The Rapid Training Conference is designed for tech enthusiasts who want to level up their skills quickly.",
       "The program includes lightning talks, live coding sessions, and interactive problem-solving challenges.",
@@ -341,15 +374,17 @@ export const eventsPosts: BlogPost[] = [
     category: "Outreach",
     readTime: "3 min read",
     image: Assets.images.PrimarySchoolRukpokwu,
-    readMoreLink: generateBlogLink("events", "Outreach at State Primary School Rukpokwu Rivers State"),
+    readMoreLink: generateBlogLink(
+      "events",
+      "Outreach at State Primary School Rukpokwu Rivers State"
+    ),
     content: [
       "Our team, supported by D'ROID Technologies, held an inspiring outreach program at State Primary School, Rukpokwu, Rivers State, on October 7, 2025.",
       "The event was filled with excitement, learning, and community spirit as pupils engaged in tech awareness activities and motivational sessions.",
       "It was a day to remember — filled with smiles, shared knowledge, and positive energy.",
-      "A huge thank you to everyone who made this outreach possible. It was truly all shades of amazing!"
+      "A huge thank you to everyone who made this outreach possible. It was truly all shades of amazing!",
     ],
   },
-
 ];
 
 // All posts combined
