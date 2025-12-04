@@ -81,6 +81,8 @@ const Calendar: React.FC = () => {
     dayjs().format("YYYY-MM-DD")
   );
   const [formEndDate, setFormEndDate] = useState<string | "">("");
+  const [formStartTime, setFormStartTime] = useState<string | "">("");
+  const [formEndTime, setFormEndTime] = useState<string | "">("");
 
   // viewing/editing state
   const [viewingTask, setViewingTask] = useState<Task | null>(null);
@@ -102,6 +104,8 @@ const Calendar: React.FC = () => {
     setFormType("");
     setFormStartDate(base.format("YYYY-MM-DD"));
     setFormEndDate("");
+    setFormStartTime("");
+    setFormEndTime("");
     setViewingTask(null);
     setEditingTask(null);
   };
@@ -497,6 +501,8 @@ const Calendar: React.FC = () => {
                 formType,
                 formStartDate,
                 formEndDate,
+                formStartTime,
+                formEndTime,
               }}
               formSetters={{
                 setFormTitle,
@@ -504,6 +510,8 @@ const Calendar: React.FC = () => {
                 setFormType,
                 setFormStartDate,
                 setFormEndDate,
+                setFormStartTime,
+                setFormEndTime,
                 resetFormDefaults,
               }}
               onCreateTask={handleCreateTask}
@@ -647,6 +655,8 @@ const Calendar: React.FC = () => {
                     formType,
                     formStartDate,
                     formEndDate,
+                    formStartTime,
+                    formEndTime,
                   }}
                   formSetters={{
                     setFormTitle,
@@ -654,6 +664,8 @@ const Calendar: React.FC = () => {
                     setFormType,
                     setFormStartDate,
                     setFormEndDate,
+                    setFormStartTime,
+                    setFormEndTime,
                     resetFormDefaults,
                   }}
                   onCreateTask={(...args) => {

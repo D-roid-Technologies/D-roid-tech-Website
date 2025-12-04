@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+  FaTwitter,
+  FaTiktok,
+} from "react-icons/fa";
 import styles from "./SocialNotification.module.css";
 
 interface WhatsAppChannel {
@@ -9,7 +16,7 @@ interface WhatsAppChannel {
 }
 
 interface SocialItem {
-  id: "facebook" | "instagram" | "linkedin" | "whatsapp" | "twitter";
+  id: "facebook" | "instagram" | "linkedin" | "whatsapp" | "twitter" | "TikTok";
   name: string;
   icon: JSX.Element;
   description: string;
@@ -47,6 +54,13 @@ const socials: SocialItem[] = [
     link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
   },
   {
+    id: "TikTok",
+    name: "Tiktok",
+    icon: <FaTiktok color="#000000" size={20} />,
+    description: "Connect with D'roid Technologies on X.",
+    link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
+  },
+  {
     id: "whatsapp",
     name: "WhatsApp",
     icon: <FaWhatsapp color="#25D366" size={20} />,
@@ -54,14 +68,27 @@ const socials: SocialItem[] = [
     link: "#",
     channels: [
       {
-        name: "D'roid Community Updates",
+        name: "Knowledge City HQ",
         description: "Get official announcements, updates, and tech news.",
-        link: "https://chat.whatsapp.com/HrX1r5J3a1B2mIIau47Ga7",
+        link: "https://chat.whatsapp.com/GNUJh6x3a49DB9EqD2VkS8",
       },
       {
-        name: "Society Impact & Help Channel",
-        description: "A channel dedicated to social good, community support, and humanitarian action",
+        name: "Clash of Kings - Chess community",
+        description:
+          "A channel dedicated to social good, community support, and humanitarian action",
+        link: "https://chat.whatsapp.com/ElBcCtNXHOP0rK8ThYxTSc",
+      },
+      {
+        name: "Lift off Community",
+        description:
+          "A channel dedicated to D'roid upcoming events, conferences, and meetups.",
         link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+      },
+      {
+        name: "D'roid Tech community",
+        description:
+          "A channel dedicated to D'roid tech groups and discussions.",
+        link: "https://chat.whatsapp.com/KvtaJzV4756ICtksODITML",
       },
     ],
   },
@@ -70,7 +97,8 @@ const socials: SocialItem[] = [
 const SocialNotificationPreview: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<SocialItem | null>(null);
-  const [selectedChannel, setSelectedChannel] = useState<WhatsAppChannel | null>(null);
+  const [selectedChannel, setSelectedChannel] =
+    useState<WhatsAppChannel | null>(null);
 
   const handleOpen = (item: SocialItem) => {
     setSelected(item);
@@ -112,7 +140,9 @@ const SocialNotificationPreview: React.FC = () => {
       {open && selected && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalBox}>
-            <button className={styles.closeIcon} onClick={handleClose}>X</button>
+            <button className={styles.closeIcon} onClick={handleClose}>
+              X
+            </button>
 
             <h2 className={styles.modalTitle}>
               {selected.icon} <span>{selected.name}</span>
@@ -130,14 +160,18 @@ const SocialNotificationPreview: React.FC = () => {
                     type="button"
                     onClick={() => handleChannelSelect(channel)}
                     className={`${styles.channelOption} ${
-                      selectedChannel?.name === channel.name ? styles.channelSelected : ""
+                      selectedChannel?.name === channel.name
+                        ? styles.channelSelected
+                        : ""
                     }`}
                   >
                     <div className={styles.channelHeader}>
                       <FaWhatsapp color="#25D366" size={18} />
                       <span className={styles.channelName}>{channel.name}</span>
                     </div>
-                    <p className={styles.channelDescription}>{channel.description}</p>
+                    <p className={styles.channelDescription}>
+                      {channel.description}
+                    </p>
                   </button>
                 ))}
 
