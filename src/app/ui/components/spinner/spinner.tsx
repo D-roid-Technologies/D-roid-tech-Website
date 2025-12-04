@@ -49,11 +49,10 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
 
     // Show result after animation completes
     setTimeout(() => {
-      const spin = useSelector((state: RootState) => selectUserSpin(state, userId));
-      if (spin) {
-        setFinalOutcome(spin.outcome);
+      if (userSpin) {
+        setFinalOutcome(userSpin.outcome);
         setShowResult(true);
-        onSpinComplete?.(spin.outcome, spin.giftAwarded);
+        onSpinComplete?.(userSpin.outcome, userSpin.giftAwarded);
       }
     }, 3000);
   };
