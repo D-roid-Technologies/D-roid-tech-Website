@@ -311,9 +311,9 @@ const ChessRegistration: React.FC = () => {
 
           <p className={styles.fee}>Registration Fee: ₦1000</p>
 
-          <button type="submit" className={styles.submitBtn}>
+          {/* <button type="submit" className={styles.submitBtn}>
             Submit & Pay
-          </button>
+          </button> */}
         </div>) : (<div>
           <div className={styles.field}>
             <label>Check Registered Email</label>
