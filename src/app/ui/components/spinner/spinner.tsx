@@ -76,26 +76,28 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
 
   const isDisabled = !canSpin || remainingGifts === 0 || isSpinning;
 
-  return (
-    <div className={styles.spinnerContainer}>
-      {/* Header */}
-      <div className={styles.header}>
-        <h2 className={styles.title}>🎁 Spin to Win!</h2>
-        <p className={styles.subtitle}>Try your luck for a chance to win amazing prizes</p>
-      </div>
+ return (
+  <div className={styles.spinnerContainer}>
+    
+    {/* Header */}
+    <div className={styles.header}>
+      <h2 className={styles.title}>🎁 Spin to Win!</h2>
+      <p className={styles.subtitle}>Try your luck for a chance to win amazing prizes</p>
+    </div>
 
-      {/* Status Badge */}
-      <div className={styles.statusBadge}>
-        <span className={styles.statusIcon}>🎯</span>
-        <span className={styles.statusText}>{getStatusMessage()}</span>
-      </div>
+    {/* Status Badge */}
+    <div className={styles.statusBadge}>
+      <span className={styles.statusIcon}>🎯</span>
+      <span className={styles.statusText}>{getStatusMessage()}</span>
+    </div>
 
-      {/* Spinner Wheel */}
+    {/* CENTER THE WHEEL */}
+    <div className={styles.centerWrapper}>
       <div className={styles.wheelContainer}>
-        {/* Pointer/Indicator */}
+        {/* Pointer */}
         <div className={styles.pointer}>▼</div>
 
-        {/* Number labels around the wheel */}
+        {/* Numbers */}
         <div className={styles.numbersRing}>
           {numbers.map((num, index) => {
             const angle = (index / numbers.length) * 2 * Math.PI - Math.PI / 2;
@@ -108,9 +110,10 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
                 key={num}
                 className={styles.numberLabel}
                 style={{
-                  left: `calc(50% + ${x}px)`,
-                  top: `calc(50% + ${y}px)`,
-                  transform: "translate(-50%, -50%)",
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                 }}
               >
                 {num}
@@ -119,7 +122,7 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
           })}
         </div>
 
-        {/* Spinning wheel */}
+        {/* Wheel + Button */}
         <motion.div
           className={styles.wheel}
           animate={{ rotate: rotation }}
@@ -141,30 +144,32 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
               />
             );
           })}
-
-          {/* Center button */}
-          <button
-            className={`${styles.spinButton} ${isDisabled ? styles.disabled : ""}`}
-            onClick={handleSpin}
-            disabled={isDisabled}
-          >
-            {isSpinning ? (
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              >
-                ⚡
-              </motion.div>
-            ) : userSpin ? (
-              "✓"
-            ) : (
-              "SPIN"
-            )}
-          </button>
         </motion.div>
-      </div>
 
-      {/* Result Display */}
+        {/* Spin Button - moved outside wheel so it doesn't rotate */}
+        <button
+          className={`${styles.spinButton} ${isDisabled ? styles.disabled : ""}`}
+          onClick={handleSpin}
+          disabled={isDisabled}
+        >
+          {isSpinning ? (
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            >
+              ⚡
+            </motion.div>
+          ) : userSpin ? (
+            "✓"
+          ) : (
+            "SPIN"
+          )}
+        </button>
+      </div>
+    </div>
+
+    {/* RESULT BELOW SPINNER */}
+    <div className={styles.resultSection}>
       <AnimatePresence>
         {showResult && finalOutcome !== null && (
           <motion.div
@@ -174,49 +179,41 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
             exit={{ opacity: 0, y: -20 }}
           >
             <div className={styles.resultContent}>
-              {finalOutcome === 0 ? (
-                <>
-                  <div className={styles.resultIcon}>😔</div>
-                  <h3 className={styles.resultTitle}>Better Luck Next Time!</h3>
-                  <p className={styles.resultMessage}>
-                    You landed on 0. No reward this time.
-                  </p>
-                </>
-              ) : userSpin?.giftAwarded ? (
-                <>
-                  <div className={styles.resultIcon}>🎉</div>
-                  <h3 className={styles.resultTitle}>Congratulations!</h3>
-                  <p className={styles.resultMessage}>
-                    You won! You landed on <strong>{finalOutcome}</strong>
-                  </p>
-                  <div className={styles.prize}>
-                    <span className={styles.prizeIcon}>👕</span>
-                    <span className={styles.prizeName}>D'roid T-Shirt</span>
-                  </div>
-                  <p className={styles.prizeNote}>
-                    We'll contact you soon to arrange delivery!
-                  </p>
-                </>
-              ) : (
-                <>
-                  <div className={styles.resultIcon}>😢</div>
-                  <h3 className={styles.resultTitle}>So Close!</h3>
-                  <p className={styles.resultMessage}>
-                    You landed on <strong>{finalOutcome}</strong>, but all gifts have been claimed.
-                  </p>
-                </>
+              <div className={styles.resultIcon}>
+                {userSpin?.giftAwarded ? "🎉" : "😊"}
+              </div>
+              <h3 className={styles.resultTitle}>
+                You landed on {finalOutcome}!
+              </h3>
+              <p className={styles.resultMessage}>
+                {userSpin?.giftAwarded
+                  ? "Congratulations! You won a gift!"
+                  : "Thanks for playing!"}
+              </p>
+              {userSpin?.giftAwarded && (
+                <div className={styles.prize}>
+                  <span className={styles.prizeIcon}>🎁</span>
+                  <span className={styles.prizeName}>Mystery Gift</span>
+                </div>
               )}
+              <p className={styles.prizeNote}>
+                {userSpin?.giftAwarded
+                  ? "Check your email for prize details"
+                  : "Better luck next time!"}
+              </p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Info Footer */}
-      <div className={styles.infoFooter}>
-        <p className={styles.infoText}>
-          Each registered user gets <strong>one spin</strong>. Good luck! 🍀
-        </p>
-      </div>
     </div>
-  );
+
+    {/* Footer */}
+    <div className={styles.infoFooter}>
+      <p className={styles.infoText}>
+        Each registered user gets <strong>one spin</strong>. Good luck! 🍀
+      </p>
+    </div>
+  </div>
+);
+
 }
