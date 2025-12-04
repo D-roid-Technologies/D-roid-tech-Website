@@ -132,6 +132,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
   } | null>(null);
 
   const memberStats = useSelector((state: RootState) => state.memberStatus);
+  const user = useSelector((state: RootState) => state.user);
+  const userId = user?.id;
 
   type Notification = {
     title: string;
@@ -143,7 +145,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     date: string;
   };
 
-  const user = useSelector((state: RootState) => state.user);
   const trainings = useSelector((state: RootState) => state.trainings as any[]);
   const progression = useSelector(
     (state: RootState) =>
@@ -299,11 +300,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       month: "long",
       day: "numeric",
     });
-
-
-
-
-
 
   useEffect(() => {
     // Membership Status
@@ -539,7 +535,8 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         </div>
       </div>
       <div>
-        <Spinner />
+      <Spinner userId={userId ?? ""} />
+
       </div>
     </div>
   );

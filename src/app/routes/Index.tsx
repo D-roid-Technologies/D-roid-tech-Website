@@ -86,6 +86,7 @@ import Announcements from "../ui/pages/Dashboard/Notifications";
 import LeadForm from "../ui/pages/softwareDevelopment/SoftwarePages/LeadForm";
 import QuizePage from "../ui/pages/Quize/Quiz";
 import TestDetailPage from "../ui/pages/Dashboard/takeTest/TestDetailPage";
+import SpinnerPage from "../ui/pages/Dashboard/SpinnerPage";
 
 // Define an enum for all route paths
 
@@ -176,6 +177,7 @@ export enum RoutePaths {
   MemberLogin = "/auth/member-login",
   MobilePhone = "/mobile",
   DashBoard = "/auth/dashboard",
+  Spinner = "/auth/dashboard/spinner",
 
   // Animation Routes
   KnowledgeCityDetails = "/knowledgecitydetails",
@@ -435,6 +437,14 @@ const Index: React.FunctionComponent = () => {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={RoutePaths.Spinner}
+        element={
+          <ProtectedRoute>
+            <SpinnerPage />
           </ProtectedRoute>
         }
       />

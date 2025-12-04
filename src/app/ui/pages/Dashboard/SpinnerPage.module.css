@@ -1,0 +1,168 @@
+.pageContainer {
+  min-height: 100vh;
+  position: relative;
+}
+
+.backButton {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background: white;
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
+
+.infoSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.infoCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.infoTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.infoTitle::before {
+  content: "✨";
+  font-size: 1.5rem;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.infoList li:last-child {
+  border-bottom: none;
+}
+
+.infoList li::before {
+  content: "→";
+  color: #667eea;
+  font-weight: bold;
+  margin-right: 0.75rem;
+}
+
+.prizeInfo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.prizeEmoji {
+  font-size: 4rem;
+  flex-shrink: 0;
+}
+
+.prizeName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 0.5rem;
+}
+
+.prizeDescription {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .backButton {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .infoSection {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .infoCard {
+    padding: 1.5rem;
+  }
+
+  .infoTitle {
+    font-size: 1.3rem;
+  }
+
+  .infoList li {
+    font-size: 0.95rem;
+  }
+
+  .prizeInfo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .prizeEmoji {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .backButton {
+    position: static;
+    margin: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .infoCard {
+    padding: 1rem;
+  }
+
+  .infoTitle {
+    font-size: 1.2rem;
+  }
+}

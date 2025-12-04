@@ -27,11 +27,12 @@ import { membershipTierSlice } from "./slices/membershipTierSlice";
 import staffReducer from "./slices/staffSlice";
 import freeTierReducer from "./slices/freeTierSlice";
 import CalenderTaskSlice from "./slices/CalenderTaskSlice";
+import spinnerReducer from "./slices/spinnerSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "notifications", "onboarding", "freeTier"], // adding freeTier to persist
+  whitelist: ["user", "notifications", "onboarding", "freeTier", "spinner"], // persist spinner state
 };
 
 const rootReducer = combineReducers({
@@ -62,6 +63,7 @@ const rootReducer = combineReducers({
   membershipTier: membershipTierSlice.reducer,
   staff: staffReducer,
   freeTier: freeTierReducer, // registering freeTier slice
+  spinner: spinnerReducer, // registering spinner slice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
