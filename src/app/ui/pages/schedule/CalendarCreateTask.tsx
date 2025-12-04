@@ -71,6 +71,8 @@ const CalendarCreateTask: React.FC<CreateTaskFormProps> = ({
     actualHours: 0,
     startDate: "",
     dueDate: "",
+    startTime: "",
+    endTime: "",
     completedAt: "",
     reminderAt: "",
     recurring: false,

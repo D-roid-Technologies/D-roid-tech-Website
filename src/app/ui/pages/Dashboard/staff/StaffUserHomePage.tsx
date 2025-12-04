@@ -586,7 +586,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
               </div>
               <SocialNotification />
             </div>
-            <SocialNotification />
+            {/* <SocialNotification /> */}
           </div>
           <div className="shp-time-info-wrapper">
             <div className="shp-time-info">

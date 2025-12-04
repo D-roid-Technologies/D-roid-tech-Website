@@ -19,6 +19,9 @@ type Props = {
     formType: string;
     formStartDate: string;
     formEndDate: string | "";
+    formStartTime: string;
+    formEndTime: string;
+    // resetFormDefaults: (d?: Dayjs) => void;
   };
   formSetters: {
     setFormTitle: (v: string) => void;
@@ -26,6 +29,8 @@ type Props = {
     setFormType: (v: string) => void;
     setFormStartDate: (v: string) => void;
     setFormEndDate: (v: string) => void;
+    setFormStartTime: (v: string) => void;
+    setFormEndTime: (v: string) => void;
     resetFormDefaults: (d?: Dayjs) => void;
   };
   onCreateTask: () => void;
@@ -108,6 +113,8 @@ const DayPanel: React.FC<Props> = ({
       actualHours: 0,
       startDate: task.startDate,
       dueDate: task.endDate || "",
+      startTime: task.startTime || "",
+      endTime: task.endTime || "",
       completedAt: "",
       reminderAt: "",
       recurring: false,
@@ -148,6 +155,8 @@ const DayPanel: React.FC<Props> = ({
       type: newTask.category || "General",
       startDate: dateKey,
       endDate: newTask.dueDate || undefined,
+      startTime: newTask.startTime || undefined,
+      endTime: newTask.endTime || undefined,
       createdAt: newTask.dateCreated,
     };
 
@@ -179,6 +188,8 @@ const DayPanel: React.FC<Props> = ({
       type: updatedTask.category || "General",
       startDate: dateKey,
       endDate: updatedTask.dueDate || undefined,
+      startTime: updatedTask.startTime || undefined,
+      endTime: updatedTask.endTime || undefined,
       createdAt: updatedTask.dateCreated,
     };
 
@@ -393,6 +404,7 @@ const DayPanel: React.FC<Props> = ({
                 gap: "12px",
                 justifyContent: "flex-end",
                 marginTop: "20px",
+                color: "#000000",
               }}
             >
               <button
@@ -434,7 +446,7 @@ const DayPanel: React.FC<Props> = ({
                   className="dayPanel-viewingTitle"
                   style={{ color: "#000000" }}
                 >
-                  {viewingTask.title}
+                  Title: {viewingTask.title}
                 </h5>
                 <div className="dayPanel-viewingMeta">
                   {viewingTask.type ?? "General"} • Created{" "}
@@ -444,20 +456,26 @@ const DayPanel: React.FC<Props> = ({
                   className="dayPanel-viewingDescription"
                   style={{ color: "#000000" }}
                 >
-                  {viewingTask.description}
+                  Description: {viewingTask.description}
                 </p>
                 <div className="dayPanel-viewingDate">
-                  {viewingTask.startDate}
+                  Start date: {viewingTask.startDate}
                   {viewingTask.endDate ? ` — ${viewingTask.endDate}` : ""}
                 </div>
-                <div className="dayPanel-viewingActions">
+                <div className="dayPanel-viewingDate">
+                  Start time: {viewingTask.startTime || "Not set"}
+                  {viewingTask.endTime
+                    ? ` — End time: ${viewingTask.endTime}`
+                    : ""}
+                </div>
+                {/* <div className="dayPanel-viewingActions">
                   <button
                     onClick={handleCloseViewModal}
                     style={styles.navButton}
                   >
                     Close
                   </button>
-                </div>
+                </div> */}
               </div>
             </Modal>
           )}

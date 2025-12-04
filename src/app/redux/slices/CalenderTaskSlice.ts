@@ -75,6 +75,8 @@ export interface TaskMain {
   actualHours?: number;
   startDate?: string;
   dueDate?: string;
+  startTime?: string;
+  endTime?: string;
   completedAt?: string;
   reminderAt?: string;
   recurring?: boolean;

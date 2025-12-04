@@ -167,13 +167,13 @@ export const businessPosts: BlogPost[] = [
 // Events category posts
 export const eventsPosts: BlogPost[] = [
   {
-    id: 12,
+    id: 9,
     title: "Calabar Tech Mixer (MUST Company) 2025",
     excerpt:
       "The Calabar Tech Mixer 2025 was a technology-focused gathering hosted by Must Company, aimed at fostering collaboration, learning, and partnership among developers.",
     date: "Wednesday, 12th November 2025",
     author: "D'roid Technologies",
-    authorAvatar: "https://randomuser.me/api/portraits/lego/2.jpg",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/5.jpg",
     category: "Events",
     readTime: "5 min read",
     image: Assets.images.mustTechEvent,
@@ -192,7 +192,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 13,
+    id: 10,
     title: "Clash of Kings - Chess Tournament[2025/2026]",
     excerpt:
       "An exciting chess tournament featuring some of the region's top players.",
@@ -219,7 +219,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 9,
+    id: 11,
     title: "CUMSA Financial Summit 2025 – Money Meets Medicine",
     excerpt: "Think Health, Think Wealth, Think Global.",
     date: "Wednesday, 17th September 2025",
@@ -238,7 +238,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 10,
+    id: 12,
     title: "Lift Off - Tech Conference",
     excerpt:
       "Highlights and key takeaways from this year's premier developer event.",
@@ -262,7 +262,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 11,
+    id: 13,
     title: "Tech Conference Calabar",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -282,7 +282,7 @@ export const eventsPosts: BlogPost[] = [
   },
 
   {
-    id: 13,
+    id: 14,
     title: "Clash of Kings - Chess Tournament[2022/2023]",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -304,7 +304,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 14,
+    id: 15,
     title: "Clash of Kings - Chess Tournament[2021/2022]",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -326,7 +326,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 15,
+    id: 16,
     title: "National ICT Competition 2020",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -345,7 +345,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 16,
+    id: 17,
     title: "National ICT Competition 2022",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -364,7 +364,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 17,
+    id: 18,
     title: "Outreach at State Primary School Rukpokwu, Rivers State",
     excerpt:
       "Photos of the outreach held on 07/10/25 at State Primary School Rukpokwu, Rivers State — supported by D'ROID Technologies. It was all shades of amazing!",

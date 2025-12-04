@@ -5,6 +5,7 @@ import {
   FaLinkedin,
   FaWhatsapp,
   FaTwitter,
+  FaTiktok,
 } from "react-icons/fa";
 import styles from "./SocialNotification.module.css";
 
@@ -55,7 +56,7 @@ const socials: SocialItem[] = [
   {
     id: "TikTok",
     name: "Tiktok",
-    icon: <FaTwitter color="#000000" size={20} />,
+    icon: <FaTiktok color="#000000" size={20} />,
     description: "Connect with D'roid Technologies on X.",
     link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
   },
@@ -69,25 +70,25 @@ const socials: SocialItem[] = [
       {
         name: "Knowledge City HQ",
         description: "Get official announcements, updates, and tech news.",
-        link: "https://chat.whatsapp.com/HrX1r5J3a1B2mIIau47Ga7",
+        link: "https://chat.whatsapp.com/GNUJh6x3a49DB9EqD2VkS8",
       },
       {
         name: "Clash of Kings - Chess community",
         description:
           "A channel dedicated to social good, community support, and humanitarian action",
-        link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
+        link: "https://chat.whatsapp.com/ElBcCtNXHOP0rK8ThYxTSc",
       },
       {
         name: "Lift off Community",
         description:
           "A channel dedicated to D'roid upcoming events, conferences, and meetups.",
-        link: "https://chat.whatsapp.com/KvtaJzV4756ICtksODITML",
+        link: "https://chat.whatsapp.com/GQPtejfdTPL5E5ChIPCVfa",
       },
       {
         name: "D'roid Tech community",
         description:
           "A channel dedicated to D'roid tech groups and discussions.",
-        link: "",
+        link: "https://chat.whatsapp.com/KvtaJzV4756ICtksODITML",
       },
     ],
   },
