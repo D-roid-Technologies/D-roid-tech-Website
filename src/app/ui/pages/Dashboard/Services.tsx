@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaHandsHelping, FaCode } from "react-icons/fa";
-import { GiTeacher,GiFilmProjector } from "react-icons/gi";
+import { GiTeacher, GiFilmProjector } from "react-icons/gi";
 
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import styles from "./DashboardContent.module.css";
@@ -17,6 +17,7 @@ import { techStacks } from "./data/techStacks";
 import { trainingPrograms } from "./data/trainingPrograms";
 import { consultingItems } from "./data/consultingItems";
 import { animationItems } from "./data/animationItems";
+import WhatsAppButton from "../../components/WhatsAppButton";
 
 interface ServicesItemsProps {
   onOpenSayIt?: () => void;
@@ -93,7 +94,6 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
       <section className="welcome-section">
         {/* <h2 className="welcome-section-heading">What We Do</h2> */}
         <div className="cards-grid cards-grid-3">
-          
           {showContentMain && (
             <>
               {whatWeDoItems.map((item, index) => (
@@ -130,7 +130,6 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
                   }}
                 >
                   <DashboardCard
-                 
                     icon={item.icon}
                     title={item.title}
                     description={item.description}
@@ -149,7 +148,6 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
                 setShowContentMain(true);
               }}
             >
-              
               Back
             </button>
             <div>
@@ -180,15 +178,12 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
                         setShowContent(false);
                         setShowTechCards(true);
                       } else {
-                        
-
                         setShowTitle(title);
                         setShowDesc(item.description);
                       }
                     }}
                   >
                     <DashboardCard
-                    
                       icon={item.icon}
                       title={item.title}
                       description={item.description}
@@ -242,7 +237,7 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
               className={styles.backButton}
               onClick={() => setActiveTechDetail(null)} // back to all tech cards
             >
-              Back 
+              Back
             </button>
 
             <TechDetailPage
@@ -276,11 +271,17 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
 
                     if (item.title === "Frontend Developer Training") {
                       setActiveTrainingComponent(
-                        <TrainingDescriptionData program="frontend" onContactClick={onOpenSayIt} />
+                        <TrainingDescriptionData
+                          program="frontend"
+                          onContactClick={onOpenSayIt}
+                        />
                       );
                     } else if (item.title === "Skill Acquisition Training") {
                       setActiveTrainingComponent(
-                        <TrainingDescriptionData program="skill" onContactClick={onOpenSayIt} />
+                        <TrainingDescriptionData
+                          program="skill"
+                          onContactClick={onOpenSayIt}
+                        />
                       );
                     }
                   }}
@@ -452,6 +453,7 @@ const ServicesItems: React.FC<ServicesItemsProps> = ({ onOpenSayIt }) => {
             />
           </>
         )}
+        <WhatsAppButton />
       </section>
     </div>
   );

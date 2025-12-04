@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useMemo } from "react"
-import SearchBar from "../../components/search/SearchBar"
-import SearchFilters from "../../components/search/SearchFilters"
-import { useNavigate } from "react-router-dom"
-import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools"
+import type React from "react";
+import { useState, useMemo } from "react";
+import SearchBar from "../../components/search/SearchBar";
+import SearchFilters from "../../components/search/SearchFilters";
+import { useNavigate } from "react-router-dom";
+import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
 import {
   FaCompressArrowsAlt,
   FaPalette,
@@ -15,17 +15,19 @@ import {
   FaStamp,
   FaMagic,
   FaFilePdf,
-} from "react-icons/fa"
-import { BiSolidCrop } from "react-icons/bi"
-import { CgColorPicker } from "react-icons/cg"
-import { FaFileWord } from "react-icons/fa6"
-import { BsCurrencyExchange } from "react-icons/bs"
-import { LuFileJson } from "react-icons/lu"
-import { GiPowerGenerator } from "react-icons/gi"
-import { SiLetsencrypt } from "react-icons/si"
-import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard"
-import { ConfirmationPage } from "../../components/payment/ConfirmationPage"
-import { PendingConfirmation } from "../../components/payment/PendingConfirmation"
+  FaQrcode,
+  FaRobot,
+} from "react-icons/fa";
+import { BiSolidCrop } from "react-icons/bi";
+import { CgColorPicker } from "react-icons/cg";
+import { FaFileWord } from "react-icons/fa6";
+import { BsCurrencyExchange } from "react-icons/bs";
+import { LuFileJson } from "react-icons/lu";
+import { GiPowerGenerator } from "react-icons/gi";
+import { SiLetsencrypt } from "react-icons/si";
+import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
+import { ConfirmationPage } from "../../components/payment/ConfirmationPage";
+import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
 
 export const Alltools = [
   {
@@ -48,7 +50,8 @@ export const Alltools = [
   // },
   {
     title: "Color Converter",
-    description: "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration.",
+    description:
+      "Transform images between color spaces (RGB, CMYK, HSL) with precise calibration.",
     icon: FaPalette({ size: 24 }),
     component: "ColorConverter",
     category: "Color Tools",
@@ -56,7 +59,8 @@ export const Alltools = [
   },
   {
     title: "Image Compressor",
-    description: "Smart compression reduces file sizes up to 90% without quality loss.",
+    description:
+      "Smart compression reduces file sizes up to 90% without quality loss.",
     icon: FaImages({ size: 24 }),
     component: "ImageCompressor",
     category: "Image Tools",
@@ -64,7 +68,8 @@ export const Alltools = [
   },
   {
     title: "Crop Tool",
-    description: "Trim or cut images to focus on specific parts with precision.",
+    description:
+      "Trim or cut images to focus on specific parts with precision.",
     icon: BiSolidCrop({ size: 24 }),
     component: "CropTool",
     category: "Image Tools",
@@ -172,7 +177,7 @@ export const Alltools = [
     link: "/toolbox/code-complexity",
     isPremium: true,
   },
-]
+];
 
 export const tools = [
   {
@@ -202,6 +207,25 @@ export const tools = [
     category: "Text Tools",
     component: "WordCounter",
     link: "/toolbox/wordconter",
+  },
+  {
+    title: "AI Builder",
+    description:
+      "Generate fully responsive, SEO-optimized websites instantly using AI. Simply describe your idea and get a complete website layout, structure, and content in seconds.",
+    icon: FaRobot({ size: 24 }),
+    category: "AI Tools",
+    component: "AiWebsiteBuilder",
+    link: "/toolbox/ai-website-builder",
+  },
+
+  {
+    title: "QR Code Scanner",
+    description:
+      "Scan and decode QR codes directly from your browser using your device camera or uploaded images. Fast, secure, and easy to use.",
+    icon: FaQrcode({ size: 24 }),
+    category: "Utility Tools",
+    component: "QrScanner",
+    link: "/toolbox/qr-scanner",
   },
   {
     title: "Advanced PDF Editor",
@@ -324,104 +348,103 @@ export const tools = [
   //   link: "/toolbox/advanced-pdf-editor",
   //   isPremium: true,
   // },
-]
-  type FlowState = null | "upgrade" | "payment" | "success" | "pending"
+];
+type FlowState = null | "upgrade" | "payment" | "success" | "pending";
 
 const ToolBoxItems: React.FunctionComponent = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [showPremiumOnly, setShowPremiumOnly] = useState(false)
-    const [flow, setFlow] = useState<FlowState>(null)
-    const [selectedTool, setSelectedTool] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showPremiumOnly, setShowPremiumOnly] = useState(false);
+  const [flow, setFlow] = useState<FlowState>(null);
+  const [selectedTool, setSelectedTool] = useState<string | null>(null);
 
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(
+    null
+  );
 
-  const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(null)
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const categories = useMemo(() => {
-    const categoryArr = tools.map((tool) => tool.category)
-    return categoryArr.filter((cat, i) => categoryArr.indexOf(cat) === i).sort()
-  }, [])
+    const categoryArr = tools.map((tool) => tool.category);
+    return categoryArr
+      .filter((cat, i) => categoryArr.indexOf(cat) === i)
+      .sort();
+  }, []);
 
   const filteredTools = useMemo(() => {
     return tools.filter((tool) => {
-      const matchesSearch = tool.title.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesSearch = tool.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
-      const matchesCategory = selectedCategory === "All" || tool.category === selectedCategory
+      const matchesCategory =
+        selectedCategory === "All" || tool.category === selectedCategory;
 
-      const matchesPremium = !showPremiumOnly || tool.isPremium
+      const matchesPremium = !showPremiumOnly || tool.isPremium;
 
-      return matchesSearch && matchesCategory && matchesPremium
-    })
-  }, [searchQuery, selectedCategory, showPremiumOnly])
+      return matchesSearch && matchesCategory && matchesPremium;
+    });
+  }, [searchQuery, selectedCategory, showPremiumOnly]);
 
- const handleToolClick = (tool: any) => {
-  if (tool.isPremium) {
-    if (flow === "success") {
-      setFlow("pending") // after payment, show pending confirmation
+  const handleToolClick = (tool: any) => {
+    if (tool.isPremium) {
+      if (flow === "success") {
+        setFlow("pending"); // after payment, show pending confirmation
+      } else {
+        setFlow("upgrade");
+      }
+      setSelectedTool(tool.title);
     } else {
-      setFlow("upgrade")
+      if (tool.link) {
+        navigate(tool.link);
+      }
     }
-    setSelectedTool(tool.title)
-  } else {
-    if (tool.link) {
-      navigate(tool.link)
-    }
-  }
-}
-
+  };
 
   const handleCloseUpgrade = () => {
-    setShowUpgradePrompt(null)
-  }
+    setShowUpgradePrompt(null);
+  };
 
   return (
     <div>
-     {flow && (
-  <div
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      zIndex: 1000,
-    }}
-  >
-    {flow === "upgrade" && (
-      <UpgradeToAccessTools
-        toolName={selectedTool}
-        onUpgrade={() => setFlow("payment")}
-        onClose={() => setFlow(null)}
-      />
-    )}
+      {flow && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1000,
+          }}
+        >
+          {flow === "upgrade" && (
+            <UpgradeToAccessTools
+              toolName={selectedTool}
+              onUpgrade={() => setFlow("payment")}
+              onClose={() => setFlow(null)}
+            />
+          )}
 
-    {flow === "payment" && (
-      <div>payment</div>
-    )}
+          {flow === "payment" && <div>payment</div>}
 
-    {flow === "success" && (
-      <div>success</div>
-    )}
+          {flow === "success" && <div>success</div>}
 
-    {flow === "pending" && (
-          <div>pending</div>
-    )}
-  </div>
-)}
-
+          {flow === "pending" && <div>pending</div>}
+        </div>
+      )}
 
       <div className="software-main">
         <div className="software-main-content">
           <h1 className="software-header">D'roid ToolBox</h1>
           <p>
-            Toolbox is your ultimate Android companion, a powerful all-in-one utility app designed to help you manage,
-            optimize, and customize your tasks with ease.
+            Toolbox is your ultimate Android companion, a powerful all-in-one
+            utility app designed to help you manage, optimize, and customize
+            your tasks with ease.
           </p>
         </div>
       </div>
@@ -431,10 +454,16 @@ const ToolBoxItems: React.FunctionComponent = () => {
       {/* Tools Grid */}
       <div style={{ marginBottom: "3rem" }}>
         <div className="wrapper soft-wrapper">
-          <span className="soft-dev-header title_span" style={{ background: "#e2e8f0" }}>
+          <span
+            className="soft-dev-header title_span"
+            style={{ background: "#e2e8f0" }}
+          >
             Tool collection
           </span>
-          <div className="" style={{ paddingTop: "2rem", paddingBottom: "1rem" }}>
+          <div
+            className=""
+            style={{ paddingTop: "2rem", paddingBottom: "1rem" }}
+          >
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
@@ -478,12 +507,14 @@ const ToolBoxItems: React.FunctionComponent = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p style={{ color: "#071d6a", padding: "1rem" }}>No tools found matching your criteria</p>
+              <p style={{ color: "#071d6a", padding: "1rem" }}>
+                No tools found matching your criteria
+              </p>
               <button
                 onClick={() => {
-                  setSearchQuery("")
-                  setSelectedCategory("All")
-                  setShowPremiumOnly(false)
+                  setSearchQuery("");
+                  setSelectedCategory("All");
+                  setShowPremiumOnly(false);
                 }}
                 style={{
                   padding: "0.5rem 1.5rem",
@@ -500,7 +531,7 @@ const ToolBoxItems: React.FunctionComponent = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ToolBoxItems
+export default ToolBoxItems;

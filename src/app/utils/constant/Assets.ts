@@ -214,6 +214,7 @@ export const Assets = {
     business: require("../../images/png/business.png"),
     events: require("../../images/png/events.png"),
     cumsaEvent: require("../../images/png/cumsaEvent.jpg"),
+    mustTechEvent: require("../../images/png/tech-mixer.png"),
     chessOne: require("../../images/png/chess-one.png"),
     chessTwo: require("../../images/png/chess-two.png"),
     nationalICT: require("../../images/png/ICT-ONE.png"),
