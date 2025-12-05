@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -27,7 +25,7 @@ import EventPosts from "../../../components/blogPosts/Events";
 import { setNotifications } from "../../../../redux/slices/notificationSlice";
 import { getRelativeTime } from "../../../../utils/timeUtils";
 import SocialNotification from "../../../components/socialLink/SocialNotification";
-import Spinner from "../../../components/spinner/spinner";
+import SpinnerModal from "../../../components/spinner/SpinnerModale";
 
 type QuickActionCardProps = {
   title: string;
@@ -120,9 +118,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 }) => {
   const [currentTime] = useState(new Date());
   const [notesModalOpen, setNotesModalOpen] = useState(false);
-
   const [notificationModalOpen, setNotificationModalOpen] = useState(false);
-
   const [statModalOpen, setStatModalOpen] = useState(false);
   const [selectedStat, setSelectedStat] = useState<{
     title: string;
@@ -130,10 +126,16 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     change: string;
     icon: React.ComponentType;
   } | null>(null);
+  const [showSpinnerModal, setShowSpinnerModal] = useState(false);
 
   const memberStats = useSelector((state: RootState) => state.memberStatus);
   const user = useSelector((state: RootState) => state.user);
-  const userId = user?.id;
+  const userId = user?.uniqueId || user?.email || "guest";
+  
+  // Check if user has already spun
+  const userSpin = useSelector((state: RootState) => 
+    state.spinner?.userSpins?.[userId] ?? null
+  );
 
   type Notification = {
     title: string;
@@ -280,7 +282,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     setNotificationModalOpen(false);
   };
 
-  // 🔥 NEW: Handle stat card click
+  // Handle stat card click
   const handleStatClick = (stat: (typeof memberStats)[0]) => {
     setSelectedStat(stat);
     setStatModalOpen(true);
@@ -301,6 +303,24 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       day: "numeric",
     });
 
+  // Show spinner modal after 2 seconds if user hasn't spun yet
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Only show modal if user hasn't spun yet
+      if (!userSpin) {
+        setShowSpinnerModal(true);
+      }
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [userSpin]);
+
+  const handleSpinComplete = (outcome: number, giftAwarded: boolean) => {
+    console.log(`Spin completed! Outcome: ${outcome}, Gift awarded: ${giftAwarded}`);
+    // The Redux state is already updated by the spinnerSlice
+  };
+
+  // Update member stats
   useEffect(() => {
     // Membership Status
     const membershipStatus = user?.isLoggedIn ? "Active" : "Inactive";
@@ -361,13 +381,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     setStatModalOpen(false);
   };
 
-  // Update the getStatDetails function - find the "Member Level" case and add the button property:
   const getStatDetails = (title: string) => {
     switch (title) {
       case "Membership Status":
         return {
-          description:
-            "",
+          description: "",
         };
       case "Points Balance":
         return {
@@ -396,7 +414,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         };
       case "Member Level":
         return {
-
           button: true,
           nextTier: membershipTier?.nextTier || "Platinum",
         };
@@ -409,73 +426,18 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     <div className="shp-homepage-container">
       {/* Welcome Header */}
       <div className="shp-welcome-header">
-          <div className="shp-welcome-content">
+        <div className="shp-welcome-content">
           <div className="shp-greeting-wrapper">
             <div className="shp-greeting">
-              </div> <div className="shp-welcome-content">
-          <div className="shp-greeting">
-            <h1 className="shp-welcome-title">Member Portal</h1>
-            <div className="shp-head-icons-container">
-              {/* Notifications */}
-              <div
-                className="shp-head-icons"
-                onClick={() => setNotificationModalOpen(true)}
-                style={{ position: "relative" }}
-              >
+              <div className="shp-welcome-content">
+                <div className="shp-greeting">
+                  <h1 className="shp-welcome-title">Member Portal</h1>
+                  <div className="shp-head-icons-container">
+                    {/* Social Notification */}
+                    <SocialNotification />
+                  </div>
+                </div>
               </div>
-              {/* <div className="shp-head-icons" onClick={() => setNotesModalOpen(true)} style={{ position: "relative" }}>
-                <p>Activities</p>
-                <FiActivity style={{ color: "green", fontWeight: "bold" }} />
-                {recentActivitiesCount > 0 && (
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      backgroundColor: "#ff4444",
-                      color: "white",
-                      borderRadius: "50%",
-                      fontSize: "10px",
-                      fontWeight: "bold",
-                      minWidth: "18px",
-                      height: "18px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "2px solid white",
-                    }}
-                  >
-                    {recentActivitiesCount}
-                  </span>
-                )}
-                <Modal
-                  isOpen={notesModalOpen}
-                  onClose={() => setNotesModalOpen(false)}
-                  title="Activities"
-                  description=""
-                >
-                  <div className="shp-card-header">
-                    <h3 className="shp-card-title">Recent Member Activity</h3>
-                    <button className="shp-view-all-btn">View All</button>
-                  </div>
-                  <div className="shp-activity-list">
-                    {memberActivities.map((activity, index) => (
-                      <div key={index} onClick={() => handleActivityClick(activity.action)} style={{ cursor: "pointer" }}>
-                        <RecentActivityItem
-                          action={activity.action}
-                          details={activity.details}
-                          time={activity.time}
-                          icon={activity.icon}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </Modal>
-              </div> */}
-
-              <SocialNotification />
-            </div>
-          </div>
             </div>
           </div>
           <div className="shp-time-info-wrapper"></div>
@@ -485,6 +447,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
           </div>
         </div>
       </div>
+      
       {/* Member Stats */}
       <div className="shp-section">
         <h2 className="shp-section-title">Membership Overview</h2>
@@ -508,7 +471,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
             ))}
         </div>
       </div>
-
 
       {/* Member Quick Actions */}
       <div className="shp-section">
@@ -534,10 +496,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
           <EventPosts posts={eventsPosts} />
         </div>
       </div>
-      <div>
-      <Spinner userId={userId ?? ""} />
 
-      </div>
+      {/* Spinner Modal */}
+      <SpinnerModal
+        userId={userId}
+        isOpen={showSpinnerModal}
+        onClose={() => setShowSpinnerModal(false)}
+        onSpinComplete={handleSpinComplete}
+      />
     </div>
   );
 };

@@ -1,157 +1,114 @@
+ 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+ 
 // Spinner outcome type
 export interface SpinResult {
-  outcome: number; // 0-6, where 0 = no reward
+  outcome: number; // The ID of the segment
   timestamp: number;
   giftAwarded: boolean;
+  prizeType?: string;
 }
-
+ 
 // State interface
 export interface SpinnerState {
-  totalGifts: number; // Total gifts available (5)
-  remainingGifts: number; // Gifts still available
-  userSpins: Record<string, SpinResult>; // userId -> spin result
-  isSpinning: boolean; // Animation state
+  totalGifts: number;
+  remainingGifts: number;
+  userSpins: Record<string, SpinResult>;
+  isSpinning: boolean;
 }
-
-// Initial state
+ 
 const initialState: SpinnerState = {
   totalGifts: 5,
   remainingGifts: 5,
   userSpins: {},
   isSpinning: false,
 };
-
-/**
- * Generate weighted random outcome
- * 75-80% chance of outcome 0 (no reward)
- * 20-25% chance of outcomes 1-6 (potential reward)
- */
-const generateWeightedOutcome = (): number => {
-  const random = Math.random();
-  
-  // 77.5% chance (middle of 75-80% range) for outcome 0
-  if (random < 0.775) {
-    return 0;
-  }
-  
-  // Remaining 22.5% distributed among outcomes 1-6
-  return Math.floor(Math.random() * 6) + 1;
-};
-
+ 
 export const spinnerSlice = createSlice({
   name: "spinner",
   initialState,
   reducers: {
-    // Start spinning animation
     startSpinning: (state) => {
       state.isSpinning = true;
     },
-
-    // Perform the spin for a user
+ 
     performSpin: (state, action: PayloadAction<string>) => {
       const userId = action.payload;
-
-      // Check if user already spun
+ 
       if (state.userSpins[userId]) {
-        state.isSpinning = false;
-        return;
+        return; // Already spun
       }
-
-      // Generate outcome
-      const outcome = generateWeightedOutcome();
+ 
+      // Probability Logic
+      const randomPercent = Math.random() * 100;
+      let outcome = 0;
+      let giftAwarded = false;
+      let prizeType = "No prize";
+ 
+      // 0-65% -> Try Again (Outcome 0)
+      // 65-80% -> Sweets (Outcome 3) [15% chance]
+      // 80-100% -> Biscuits (Outcome 5 or 6) [20% chance]
       
-      // Determine if gift is awarded
-      // Gift awarded only if: outcome is not 0 AND gifts are still available
-      const giftAwarded = outcome !== 0 && state.remainingGifts > 0;
-
+      if (randomPercent < 65) {
+        outcome = 0; // Try Again
+        giftAwarded = false;
+        prizeType = "No prize";
+      } else if (randomPercent < 80) {
+        outcome = 3; // Sweets
+        giftAwarded = true;
+        prizeType = "Sweets";
+      } else {
+        // Biscuits (Split evenly between the two biscuit slots 5 & 6)
+        outcome = Math.random() < 0.5 ? 5 : 6;
+        giftAwarded = true;
+        prizeType = "Biscuits";
+      }
+ 
+      // Check gift availability
+      const canGiveGift = giftAwarded && state.remainingGifts > 0;
+ 
+      // Final fallback: If gift won but none left, force "Try Again"
+      if (giftAwarded && !canGiveGift) {
+        outcome = 0;
+        giftAwarded = false;
+        prizeType = "No prize";
+      }
+ 
       // Record the spin
       state.userSpins[userId] = {
-        outcome,
+        outcome: outcome,
         timestamp: Date.now(),
-        giftAwarded,
+        giftAwarded: canGiveGift,
+        prizeType: canGiveGift ? prizeType : "No prize",
       };
-
-      // Decrement remaining gifts if awarded
-      if (giftAwarded) {
+ 
+      if (canGiveGift) {
         state.remainingGifts = Math.max(0, state.remainingGifts - 1);
       }
-
-      state.isSpinning = false;
+      
+      // IMPORTANT: We do NOT set isSpinning = false here.
+      // We let the Component do that after the animation finishes.
     },
-
-    // Stop spinning animation
+ 
     stopSpinning: (state) => {
       state.isSpinning = false;
     },
-
-    // Reset spinner state (admin/testing purposes)
+ 
     resetSpinner: (state) => {
       state.remainingGifts = state.totalGifts;
       state.userSpins = {};
       state.isSpinning = false;
     },
-
-    // Reset specific user's spin (admin/testing purposes)
-    resetUserSpin: (state, action: PayloadAction<string>) => {
-      const userId = action.payload;
-      const userSpin = state.userSpins[userId];
-      
-      if (userSpin && userSpin.giftAwarded) {
-        // Restore the gift if it was awarded
-        state.remainingGifts = Math.min(
-          state.totalGifts,
-          state.remainingGifts + 1
-        );
-      }
-      
-      delete state.userSpins[userId];
-    },
-
-    // Set remaining gifts (admin purposes)
-    setRemainingGifts: (state, action: PayloadAction<number>) => {
-      state.remainingGifts = Math.max(
-        0,
-        Math.min(state.totalGifts, action.payload)
-      );
-    },
   },
 });
-
-// Export actions
-export const {
-  startSpinning,
-  performSpin,
-  stopSpinning,
-  resetSpinner,
-  resetUserSpin,
-  setRemainingGifts,
-} = spinnerSlice.actions;
-
+ 
+export const { startSpinning, performSpin, stopSpinning, resetSpinner } = spinnerSlice.actions;
+ 
 // Selectors
-export const selectSpinnerState = (state: any): SpinnerState =>
-  state.spinner as SpinnerState;
-
-export const selectRemainingGifts = (state: any): number =>
-  state.spinner?.remainingGifts ?? 0;
-
-export const selectIsSpinning = (state: any): boolean =>
-  state.spinner?.isSpinning ?? false;
-
-export const selectUserSpin = (state: any, userId: string): SpinResult | null =>
-  state.spinner?.userSpins?.[userId] ?? null;
-
-export const selectHasUserSpun = (state: any, userId: string): boolean =>
-  !!state.spinner?.userSpins?.[userId];
-
-export const selectCanUserSpin = (state: any, userId: string): boolean => {
-  const hasSpun = selectHasUserSpun(state, userId);
-  return !hasSpun;
-};
-
-export const selectAllSpins = (state: any): Record<string, SpinResult> =>
-  state.spinner?.userSpins ?? {};
-
-// Export reducer
+export const selectRemainingGifts = (state: any) => state.spinner.remainingGifts;
+export const selectIsSpinning = (state: any) => state.spinner.isSpinning;
+export const selectUserSpin = (state: any, userId: string) => state.spinner.userSpins[userId];
+export const selectCanUserSpin = (state: any, userId: string) =>
+  !state.spinner.userSpins[userId] && state.spinner.remainingGifts > 0;
+ 
 export default spinnerSlice.reducer;
