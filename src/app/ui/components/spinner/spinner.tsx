@@ -84,7 +84,7 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
 
   const getSpinButtonText = () => {
     if (isSpinning) return "Spinning...";
-    return "Click to Spin!";
+    return "Spin!";
   };
 
   const isDisabled = !canSpin || remainingGifts === 0 || isSpinning;
