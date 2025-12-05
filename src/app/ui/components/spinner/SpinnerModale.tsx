@@ -94,7 +94,7 @@ export default function SpinnerModal({
 
   // Handle clicking anywhere on the wheel
   const handleWheelClick = () => {
-    if (!isSpinning) {
+    if (!isDisabled && !isSpinning) {
       handleSpin();
     }
   };
@@ -142,8 +142,12 @@ export default function SpinnerModal({
 
   const getSpinButtonText = () => {
     if (isSpinning) return "Spinning...";
+    if (spinCount > 0) return "Already Spun";
     return "Click to Spin!";
   };
+
+  // Disable if already spun once, no gifts left, or currently spinning
+  const isDisabled = spinCount > 0 || remainingGifts === 0 || isSpinning;
 
   const getPrizeLabel = (outcome: number | null) => {
     const segment = segments.find((s) => s.value === outcome);
@@ -193,10 +197,14 @@ export default function SpinnerModal({
             <div className={styles.pointer}>▼</div>
 
             <motion.div
-              className={`${styles.wheel} ${!isSpinning ? styles.clickable : ''}`}
+              className={`${styles.wheel} ${!isDisabled && !isSpinning ? styles.clickable : ''}`}
               animate={{ rotate: rotation }}
               transition={{ duration: 3, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{ background: generateConicGradient() }}
+              style={{
+                background: generateConicGradient(),
+                cursor: isDisabled ? 'not-allowed' : 'pointer',
+                opacity: isDisabled ? 0.7 : 1
+              }}
               onClick={handleWheelClick}
               whileHover={!isSpinning ? { scale: 1.02 } : {}}
               whileTap={!isSpinning ? { scale: 0.98 } : {}}
@@ -219,11 +227,9 @@ export default function SpinnerModal({
             </motion.div>
 
             <button
-              className={`${styles.spinButton} ${
-                !canSpin || isSpinning ? styles.disabled : ""
-              }`}
+              className={`${styles.spinButton} ${isDisabled ? styles.disabled : ''}`}
               onClick={handleSpin}
-              disabled={!canSpin || isSpinning}
+              disabled={isDisabled}
             >
               {getSpinButtonText()}
             </button>

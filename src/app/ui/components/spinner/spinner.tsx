@@ -84,10 +84,12 @@ export default function Spinner({ userId, onSpinComplete }: SpinnerProps) {
 
   const getSpinButtonText = () => {
     if (isSpinning) return "Spinning...";
+    if (spinCount > 0) return "Already Spun";
     return "Spin!";
   };
 
-  const isDisabled = !canSpin || remainingGifts === 0 || isSpinning;
+  // Disable if already spun once, no gifts left, or currently spinning
+  const isDisabled = spinCount > 0 || remainingGifts === 0 || isSpinning;
 
   return (
     <div className={styles.spinnerContainer}>
