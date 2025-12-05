@@ -50,6 +50,7 @@ export type DimensionType = {
 //   };
 // };
 export type UserType = {
+  id?:string;
   firstName: string;
   lastName: string;
   middleName: string;

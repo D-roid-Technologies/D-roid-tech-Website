@@ -801,7 +801,6 @@
   }
 }
 
-/* User Detail Styles for Modal Content */
 .shp-user-detail {
   display: flex;
   flex-direction: column;
@@ -820,7 +819,6 @@
   font-weight: 600;
   color: #333;
   margin: 0 0 16px 0;
-  /* border-bottom: 2px solid #4a90e2; */
   padding-bottom: 8px;
 }
 
@@ -847,7 +845,6 @@
   font-size: 14px;
 }
 
-/* Status Badges */
 .shp-status-badge {
   display: inline-block;
   padding: 4px 8px;
