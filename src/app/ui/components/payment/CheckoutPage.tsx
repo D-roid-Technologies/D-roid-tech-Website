@@ -4,6 +4,8 @@ import { ArrowLeft, User, Shield } from "lucide-react";
 import type { Plan } from "./types";
 import { formatCurrency } from "./utils/paystack";
 import styles from "./CheckoutPage.module.css";
+import toast from "react-hot-toast";
+
 
 interface CheckoutPageProps {
   selectedPlan?: Plan;
@@ -162,7 +164,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
         },
         onCancel: () => {
           console.log("Payment cancelled");
-          alert("❌ Payment was cancelled.");
+          toast.error("❌ Payment was cancelled.");
           setIsProcessing(false);
         },
         onError: (error: any) => {
