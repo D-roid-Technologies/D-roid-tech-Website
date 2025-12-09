@@ -53,13 +53,13 @@ const socials: SocialItem[] = [
     description: "Connect with D'roid Technologies on X.",
     link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
   },
-  {
-    id: "TikTok",
-    name: "Tiktok",
-    icon: <FaTiktok color="#000000" size={20} />,
-    description: "Connect with D'roid Technologies on X.",
-    link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
-  },
+  // {
+  //   id: "TikTok",
+  //   name: "Tiktok",
+  //   icon: <FaTiktok color="#000000" size={20} />,
+  //   description: "Connect with D'roid Technologies on X.",
+  //   link: "https://x.com/technologi73683?t=T_yXcz_voVtLAPpfwkk7vA&s=09",
+  // },
   {
     id: "whatsapp",
     name: "WhatsApp",
