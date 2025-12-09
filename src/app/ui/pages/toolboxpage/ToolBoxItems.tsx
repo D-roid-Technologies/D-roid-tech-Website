@@ -215,7 +215,7 @@ export const tools = [
     icon: FaRobot({ size: 24 }),
     category: "AI Tools",
     component: "AiWebsiteBuilder",
-    link: "/toolbox/ai-website-builder",
+    link: "/toolbox/ai-builder-page",
   },
 
   {
@@ -225,7 +225,7 @@ export const tools = [
     icon: FaQrcode({ size: 24 }),
     category: "Utility Tools",
     component: "QrScanner",
-    link: "/toolbox/qr-scanner",
+    link: "/toolbox/qr-scanner-page",
   },
   {
     title: "Advanced PDF Editor",
