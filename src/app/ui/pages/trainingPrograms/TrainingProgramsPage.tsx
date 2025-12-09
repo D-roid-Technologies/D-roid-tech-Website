@@ -10,6 +10,86 @@ import { Questions } from "../../../utils/questions";
 
 const programs = [
   {
+    title: "Internship Route (6-Month Program)",
+    subTitle: "Gain real-world industry experience through hands-on projects",
+    summary:
+      "A structured 6-month unpaid internship designed to give learners practical exposure through live projects, team collaboration, and professional development.",
+    duration: "6 months (Unpaid)",
+    description: [
+      "The internship route is an optional advanced pathway available to trainees who complete their program and meet the eligibility requirements.",
+      "Interns work on real-world projects and contribute to active development cycles.",
+      "Interns receive mentorship, code reviews, and exposure to real industry workflows used by modern tech teams.",
+      "High-performing interns may be integrated into Droid Technologies based on available openings and performance evaluations.",
+      "Terms and conditions apply to acceptance, continuation, and completion of the internship program.",
+    ],
+    level: "For graduates of any DroidTech training program",
+
+    tools: [
+      "Git & GitHub",
+      "VS Code",
+      "Project management tools (Jira, Trello)",
+      "Slack/Discord",
+      "Tech stack varies depending on assigned project",
+    ],
+
+    mode: [
+      "Remote or hybrid depending on team structure",
+      "Weekly check-ins and deliverables",
+      "100% practical project-based internship",
+    ],
+
+    // ⭐ NEW: WHAT THEY WILL LEARN
+    learn: [
+      "Collaborating in a real development team",
+      "Writing production-level code",
+      "Using Git, version control, and branching strategies",
+      "Working with Agile/Scrum methodologies",
+      "Understanding real software development lifecycle (SDLC)",
+      "Participating in code reviews and technical discussions",
+      "Building portfolio-worthy real-world projects",
+      "Improving debugging, documentation, and problem-solving skills",
+      "Deploying applications and working with CI/CD pipelines",
+    ],
+
+    // ⭐ PRICE SECTION
+    price: [
+      "Price: FREE (Unpaid Internship)",
+      "No hidden charges — only performance and commitment required.",
+    ],
+
+    // ⭐ BENEFITS
+    benefits: [
+      "Work on real-life production projects",
+      "Gain in-demand practical experience",
+      "Mentorship from industry professionals",
+      "Certificate upon completion",
+      "Boosted confidence, skill, and employability",
+      "Priority consideration for roles at Droid Technologies",
+      "Stronger portfolio for external job opportunities",
+    ],
+
+    // ⭐ CONDITIONS
+    conditions: [
+      "Must complete a DroidTech training program",
+      "Must meet eligibility and performance requirements",
+      "Internship is unpaid",
+      "Integration into the company is NOT automatic",
+      "Adherence to project timelines and deliverables is required",
+      "Terms and conditions apply",
+    ],
+
+    // ⭐ NEW: MENTOR SECTION
+    trainer: [
+      "Ekendilichukwu Okoli",
+      {
+        label: "Visit Ekene's Website",
+        href: "https://www.ekenedilichukwu.com",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
+    ],
+  },
+  {
     title: "The Frontend Developer Training",
     subTitle:
       "Master the art of building stunning, responsive web interfaces from scratch",
@@ -17,7 +97,7 @@ const programs = [
       "A practical, project-based training program designed to equip you with the core skills and tools needed for modern frontend development using HTML, CSS, JavaScript, and popular frameworks like React.",
     duration: "24 weeks",
     description:
-      "The Frontend Development Training program is a comprehensive course designed for aspiring developers, career switchers, or anyone looking to strengthen their web development skills. \nYou’ll learn how to build interactive, accessible, and mobile-friendly websites using industry-standard technologies and tools. Through hands-on projects, real-world examples, and personalized mentorship, you’ll gain the confidence and experience to take on frontend roles in professional environments. This training covers everything from basic web structure to advanced concepts like component-based development, API integration, responsive design, state management, and performance optimization. Whether you’re aiming to work freelance, join a tech team, or build your own product, this course gives you the practical knowledge and portfolio to succeed.",
+      "The Frontend Development Training program is a comprehensive course designed for aspiring developers, career switchers, or anyone looking to strengthen their web development skills.\nYou’ll learn how to build interactive, accessible, and mobile-friendly websites using industry-standard technologies and tools. Through hands-on projects, real-world examples, and personalized mentorship, you’ll gain the confidence and experience to take on frontend roles in professional environments.",
     level:
       "Beginner to Intermediate (No prior coding experience required, but basic computer skills are assumed)",
     tools: [
@@ -40,27 +120,26 @@ const programs = [
     url: "",
     howToApply: [
       "Visit our application page at www.droidtechhq.com/training",
-      "Select the Frontend Developer",
+      "Select the Frontend Developer Training",
       "Read through the entire page",
       {
         label: "Register to Begin your Training",
         href: "/auth/join-our-community",
       },
-      "On your Dashboard, go to carrers",
+      "On your Dashboard, go to careers",
       "Select 'The Frontend Developer Training'",
-      "Fill out the registration form with your details",
-      "Choose your learning track (self-paced or live)",
-      "Make Payment",
-      "Receive your onboarding email and start building!",
+      "Fill out the registration form",
+      "Choose your learning track",
+      "Make payment",
+      "Receive your onboarding email and begin!",
     ],
     benefits: [
-      "Learn in-demand frontend skills from industry professionals",
-      "Build a job-ready portfolio with real projects",
-      "Flexible learning: study at your own pace",
-      "Access to community support and mentorship",
-      "Certificate of completion to showcase your skills",
-      "Lifetime access to Udemy/Pluralsight",
-      "CV and Cover Letter Optimiation",
+      "Learn in-demand frontend skills",
+      "Build real projects",
+      "Flexible learning pace",
+      "Community & mentorship",
+      "Certificate upon completion",
+      "CV & Cover Letter Optimization",
       "Job Assistance",
     ],
     gallery: [
@@ -74,15 +153,15 @@ const programs = [
       "Scholarships and group discounts may be available.",
     ],
     learn: [
-      "Structure and style web pages using HTML & CSS",
-      "Write interactive web logic with modern JavaScript",
-      "Build single-page applications with React",
-      "Create responsive layouts for desktop and mobile",
-      "Use APIs to fetch and display dynamic data",
-      "Follow best practices in code organization and accessibility",
-      "Version control with Git and deploy your work online",
-      "Debug and optimize performance in the browser",
-      "Collaborate using design tools and developer handoff methods",
+      "HTML & CSS structure",
+      "Modern JavaScript",
+      "React fundamentals",
+      "Responsive design",
+      "API consumption",
+      "Accessibility & best practices",
+      "Version control (Git)",
+      "Performance optimization",
+      "Working with UI design tools",
     ],
     trainer: [
       "Ekendilichukwu Okoli",
@@ -90,58 +169,58 @@ const programs = [
         label: "Visit Ekene's Website",
         href: "https://www.ekenedilichukwu.com",
         target: "_blank",
-        rel: "noopener noreferrer",
       },
     ],
   },
+
   {
     title: "Skill Acquisition Training",
     subTitle:
-      "Empowering Individuals with Practical, Job-Ready Skills for a Competitive World",
+      "Empowering individuals with practical, job-ready skills for today’s competitive world",
     summary:
-      "A hands-on training program designed to equip learners with in-demand practical skills across various industries, helping them become self-reliant, employable, and future-ready.",
+      "A hands-on training program designed to equip learners with in-demand practical skills across various industries.",
     duration: "4 weeks",
     description: [
-      "Skill Acquisition Training is a comprehensive, instructor-led program tailored to individuals looking to build practical expertise in technical and non-technical fields. Whether you're a student, a job seeker, or an entrepreneur, this program offers real-world skills that can lead directly to employment or self-employment.",
-      "The course covers a range of disciplines including digital literacy, coding, graphic design, tailoring, electrical work, plumbing, baking, and more—depending on the participant’s interest and local industry needs. Our expert instructors provide step-by-step guidance through theory, demonstration, and hands-on practice.",
-      "The program emphasizes self-sufficiency, critical thinking, and problem-solving. By the end of the training, participants will not only acquire core skills but also understand how to apply them in real-world scenarios, including how to market themselves or start a small business.",
+      "Skill Acquisition Training is a comprehensive, instructor-led program tailored to individuals looking to build practical expertise in technical and non-technical fields.",
+      "The course covers digital skills, tailoring, electrical work, plumbing, baking, and more.",
+      "Participants gain self-sufficiency, confidence, and real-world application skills.",
     ],
-    level: "Beginner to Intermediate (No prior experience required)",
+    level: "Beginner to Intermediate",
     tools: [
-      "Computers and internet (for digital skills)",
-      "SSewing machines (for tailoring)",
-      "Basic electrical tools (for electrical training)",
-      "Software tools like Adobe Photoshop, VS Code, Microsoft Office",
-      "Raw materials and toolkits for practical hands-on sessions",
+      "Computers & internet",
+      "Sewing machines",
+      "Basic electrical tools",
+      "Adobe Photoshop, VS Code, Microsoft Office",
+      "Practical hand tools & materials",
     ],
     mode: [
-      "Hybrid: In-person practicals with optional online theory sessions",
-      "Flexible schedule: Weekday/weekend options available",
-      "Group or individual formats available",
+      "Hybrid: In-person practicals + online theory",
+      "Flexible schedules",
+      "Group or individual formats",
     ],
     url: "",
     howToApply: [
-      "Visit our application page at www.droidtechhq.com/training",
-      "Select the Skill Acquisition Training",
-      "Read through the entire page",
+      "Visit www.droidtechhq.com/training",
+      "Select 'Skill Acquisition Training'",
+      "Review the course details",
       {
         label: "Register to Begin your Training",
         href: "/auth/join-our-community",
       },
-      "On your Dashboard, go to carrers",
+      "On your Dashboard, go to careers",
       "Select 'Skill Acquisition Training'",
-      "Fill out the registration form with your details",
-      "Choose your learning track (self-paced or live)",
-      "Make Payment",
-      "Receive your onboarding email and start building!",
+      "Fill the form",
+      "Choose your learning track",
+      "Make payment",
+      "Receive onboarding email",
     ],
     benefits: [
-      "Learn job-ready and income-generating skills",
+      "Job-ready practical skills",
       "Certification upon completion",
-      "Access to mentorship and career support",
-      "Tools and starter kits may be provided for some tracks",
-      "Opportunity to join a growing alumni network and referral programs",
-      "Boost confidence and self-sufficiency",
+      "Mentorship & career support",
+      "Starter kits for some tracks",
+      "Alumni network access",
+      "Boosted confidence & independence",
     ],
     gallery: [
       "/images/frontend/1.jpg",
@@ -149,15 +228,17 @@ const programs = [
       "/images/frontend/3.jpg",
     ],
     price: [
-      "Starting from ₦210,835.07 – ₦1,054,175.34 (depending on skill track and materials required)",
-      "Scholarships and group discounts may be available.",
+      "₦210,835.07 – ₦1,054,175.34 depending on track and materials",
+      "Scholarships & group discounts available.",
     ],
     learn: [
-      "Digital Skills: Basic computing, Microsoft Office, web design, social media marketing",
-      "Creative Skills: Graphic design, photography, video editing",
-      "Technical Skills: Electrical repairs, plumbing, auto mechanics",
-      "Artisan Skills: Tailoring, baking, soap making, beadwork",
-      "Entrepreneurship: Branding, pricing, marketing, business setup basics",
+      "Digital literacy",
+      "Graphic design",
+      "Video editing",
+      "Electrical & plumbing basics",
+      "Tailoring",
+      "Baking",
+      "Entrepreneurship & business startup basics",
     ],
     trainer: [
       "Ekendilichukwu Okoli",
@@ -165,7 +246,6 @@ const programs = [
         label: "Visit Ekene's Website",
         href: "https://www.ekenedilichukwu.com",
         target: "_blank",
-        rel: "noopener noreferrer",
       },
     ],
   },
@@ -198,7 +278,7 @@ const TrainingProgramsPage: React.FC = () => {
           Explore Our Programs
         </span>
         <div className="soft-dev-content">
-          {programs.map((prog, index) => (
+          {programs?.map((prog, index) => (
             <div
               key={index}
               onClick={() => navigate("/training/description", { state: prog })}
@@ -272,8 +352,6 @@ const TrainingProgramsPage: React.FC = () => {
               </div>
             ))}
         </div>
-
-
       </div>
       <TrainingPrincingCard />
       <LeadForm />

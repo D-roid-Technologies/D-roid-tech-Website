@@ -11,6 +11,8 @@ import CalendarHeader from "./CalendarHeader";
 import MonthGrid from "./MonthGrid";
 import DayPanel from "./DayPanel";
 import UserSearch from "./UserSearch";
+import toast from "react-hot-toast";
+
 
 const views = ["Day", "Week", "Month", "Year"];
 
@@ -191,7 +193,7 @@ const Calendar: React.FC = () => {
     }
     const title = formTitle.trim();
     if (!title) {
-      alert("Please enter a title");
+       toast.error("Please enter a title");
       return;
     }
     const start = formStartDate;

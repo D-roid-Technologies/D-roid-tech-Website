@@ -6,6 +6,8 @@ import styles from "./DashboardContent.module.css";
 import NoReadMoreCard from "../../components/CoreValueCard/NoReadMore";
 import AddStaff from "./AddStaff";
 import StaffDetails from "./StaffDetails";
+import toast from "react-hot-toast";
+
 
 interface StaffMember {
   title: string;
@@ -220,7 +222,7 @@ const Staffs: React.FC = () => {
     setStaffMembers((prev) => [...prev, newStaffMember]);
 
     // Show success message
-    alert(
+    toast.success(
       `Staff member ${staffData.firstName} ${staffData.lastName} has been added successfully!`
     );
 

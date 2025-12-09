@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { CheckoutPage } from "../../../components/payment/CheckoutPage";
 import { X } from "lucide-react";
+import toast from "react-hot-toast";
+
 
 interface UpgradePlan {
   id?: string;
@@ -301,7 +303,7 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
               }}
               onBack={handleCloseCheckout}
               onPaymentSuccess={() => {
-                alert(`✅ Successfully upgraded to ${selectedPlan.name} tier!`);
+                toast.success(`✅ Successfully upgraded to ${selectedPlan.name} tier!`);
                 handleCloseCheckout();
               }}
               onPaymentInitiated={() => console.log("Payment started")}

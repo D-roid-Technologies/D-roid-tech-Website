@@ -12,6 +12,8 @@ import {
 } from "react-icons/fa";
 import { PDFDocument, StandardFonts } from "pdf-lib";
 import type { PDFFile } from "./pdf-editor";
+import toast from "react-hot-toast";
+
 
 interface PDFPasswordProtectorProps {
   selectedFile: PDFFile | null;
@@ -114,14 +116,14 @@ const PDFPasswordProtector: React.FC<PDFPasswordProtectorProps> = ({
       URL.revokeObjectURL(url);
 
       // In a real implementation, you would show the passwords to the user
-      alert(
+      toast.success(
         `PDF protected successfully!\n\nNote: This is a demo. In a real implementation, the PDF would be encrypted with:\nUser Password: ${
           userPassword || "Not set"
         }\nOwner Password: ${ownerPassword || "Not set"}`
       );
     } catch (error) {
       console.error("Error protecting PDF:", error);
-      alert("Error protecting PDF. Please try again.");
+       toast.error("Error protecting PDF. Please try again.");
     } finally {
       setIsProcessing(false);
     }

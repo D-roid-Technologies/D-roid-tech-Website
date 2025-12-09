@@ -77,8 +77,8 @@ const TrainingDescriptionPage: React.FC = () => {
         <h3 className="section-subheading">How to Apply</h3>
         <ul className="program-list">
           {(
-            program.howToApply as (string | { label: string; href: string })[]
-          ).map((step, index) =>
+            program?.howToApply as (string | { label: string; href: string })[]
+          )?.map((step, index) =>
             typeof step === "string" ? (
               <li key={index}>{step}</li>
             ) : (
@@ -94,8 +94,8 @@ const TrainingDescriptionPage: React.FC = () => {
         <h3 className="section-subheading">Benefits</h3>
         <ul className="program-list">
           {(
-            program.benefits as (string | { label: string; href: string })[]
-          ).map((step, index) =>
+            program?.benefits as (string | { label: string; href: string })[]
+          )?.map((step, index) =>
             typeof step === "string" ? (
               <li key={index}>{step}</li>
             ) : (
@@ -110,7 +110,7 @@ const TrainingDescriptionPage: React.FC = () => {
 
         <h3 className="section-subheading">What you would learn</h3>
         <ul className="program-list">
-          {(program.learn as (string | { label: string; href: string })[]).map(
+          {(program.learn as (string | { label: string; href: string })[])?.map(
             (step, index) =>
               typeof step === "string" ? (
                 <li key={index}>{step}</li>
@@ -126,7 +126,7 @@ const TrainingDescriptionPage: React.FC = () => {
 
         <h3 className="section-subheading">Price</h3>
         <ul className="program-list">
-          {(program.price as (string | { label: string; href: string })[]).map(
+          {(program.price as (string | { label: string; href: string })[])?.map(
             (step, index) =>
               typeof step === "string" ? (
                 <li key={index}>{step}</li>
@@ -144,7 +144,7 @@ const TrainingDescriptionPage: React.FC = () => {
         <ul className="program-list">
           {(
             program.trainer as (string | { label: string; href: string })[]
-          ).map((step, index) =>
+          )?.map((step, index) =>
             typeof step === "string" ? (
               <li key={index}>{step}</li>
             ) : (
