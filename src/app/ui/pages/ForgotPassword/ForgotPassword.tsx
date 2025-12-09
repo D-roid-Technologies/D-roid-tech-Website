@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { authService } from "../../../redux/configuration/auth.service";
 import { RoutePaths } from "../../../routes/Index";
 import styles from "./ForgotPassword.module.css";
+import toast from "react-hot-toast";
+
 
 const ForgotPassword: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +27,7 @@ const ForgotPassword: React.FunctionComponent = () => {
           navigate(RoutePaths.JoinOurCommunity);
         })
         .catch(() => {
-          alert(`There was an error resetting your password using ${email}`);
+          toast.error(`There was an error resetting your password using ${email}`);
         });
     }
   };

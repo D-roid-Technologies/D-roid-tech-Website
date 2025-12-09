@@ -10,6 +10,8 @@ import { RootState } from "../../../redux/Store";
 import emailjs from "emailjs-com";
 import { Entry } from "../../../redux/slices/SignInAndOutSlice";
 import html2pdf from "html2pdf.js";
+import toast from "react-hot-toast";
+
 
 interface PaySlipProps {
   employeeName: string;

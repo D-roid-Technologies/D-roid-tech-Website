@@ -15,6 +15,8 @@ import {
 } from "react-icons/fa";
 import "./AllUsers.css";
 import { StatCard } from "../micro-ui/stat-card";
+import toast from "react-hot-toast";
+
 
 interface UserStats {
   total: number;
@@ -72,7 +74,7 @@ const AllUsers: React.FC = () => {
       dispatch(setAllUsers(usersList));
     } catch (error: any) {
       console.error("Error fetching users:", error.message);
-      alert(`${error.message}`);
+      toast.error(`${error.message}`);
     }
   };
 

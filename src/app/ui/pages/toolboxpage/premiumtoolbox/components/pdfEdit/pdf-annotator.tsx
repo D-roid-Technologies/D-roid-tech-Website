@@ -19,6 +19,8 @@ import {
 import { PDFDocument, rgb } from "pdf-lib"
 import PDFViewer from "./pdf-viewer"
 import type { PDFFile } from "./pdf-editor"
+import toast from "react-hot-toast";
+
 
 interface PDFAnnotatorProps {
   selectedFile: PDFFile | null
@@ -358,7 +360,7 @@ const PDFAnnotator: React.FC<PDFAnnotatorProps> = ({ selectedFile }) => {
       URL.revokeObjectURL(url)
     } catch (error) {
       console.error("Error exporting annotated PDF:", error)
-      alert("Error exporting PDF. Some annotations may not be supported.")
+       toast.error("Error exporting PDF. Some annotations may not be supported.")
     }
   }
 

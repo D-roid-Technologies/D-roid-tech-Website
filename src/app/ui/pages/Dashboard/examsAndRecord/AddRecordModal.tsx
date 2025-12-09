@@ -5,6 +5,8 @@ import { useState } from "react"
 import { X, Plus } from "lucide-react"
 import { classLevels } from "./examData"
 import "./AddRecordModal.css"
+import toast from "react-hot-toast";
+
 
 interface AddRecordModalProps {
   onClose: () => void
@@ -90,7 +92,7 @@ const AddRecordModal: React.FC<AddRecordModalProps> = ({ onClose, onSubmit }) =>
     e.preventDefault()
 
     if (!formData.firstName || !formData.lastName || !formData.classLevel || !formData.age) {
-      alert("Please fill in all required fields")
+      toast.error("Please fill in all required fields")
       return
     }
 

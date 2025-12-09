@@ -4,6 +4,7 @@ import { PricingCard } from './PricingCard';
 import { plans } from './data/plans';
 import { Plan } from './types';
 import { CreditCard, Shield, Zap } from 'lucide-react';
+import toast from "react-hot-toast";
 
 export const PricingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export const PricingPage: React.FC = () => {
   const handleSelectPlan = (plan: Plan) => {
     if (plan.customPricing) {
       // For enterprise, you might want to show a contact form
-      alert('Please contact our sales team for enterprise pricing.');
+      toast('Please contact our sales team for enterprise pricing.');
       return;
     }
     

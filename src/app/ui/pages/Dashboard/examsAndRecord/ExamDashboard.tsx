@@ -11,6 +11,8 @@ import Pagination from "../../../components/Pagination/Pagination"
 import "./ExamDashboard.css"
 import AddRecordModal from "./AddRecordModal"
 import { exportToExcel } from "./exportUtils"
+import toast from "react-hot-toast";
+
 
 const ExamDashboard: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<string>("")
@@ -148,7 +150,7 @@ const ExamDashboard: React.FC = () => {
     const selectedStudents = sortedStudents.filter((student) => selectedStudentIds.has(student.id))
 
     if (selectedStudents.length === 0) {
-      alert("Please select at least one student to export.")
+      toast.error("Please select at least one student to export.")
       return
     }
 

@@ -74,7 +74,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
     e.preventDefault();
 
     if (!customerInfo.email) {
-      alert("Please enter a valid email!");
+      toast("Please enter a valid email!");
       return;
     }
 
@@ -144,7 +144,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
           try {
             await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-            alert(`✅ Payment successful! Welcome ${customerInfo.name}. Check your email for confirmation.`);
+            toast(`✅ Payment successful! Welcome ${customerInfo.name}. Check your email for confirmation.`);
 
             if (onPaymentSuccess) {
               onPaymentSuccess();
@@ -157,7 +157,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             });
           } catch (error) {
             console.error("Error sending email:", error);
-            alert("Payment successful, but we couldn't send the confirmation email. Please contact support.");
+            toast("Payment successful, but we couldn't send the confirmation email. Please contact support.");
           }
 
           setIsProcessing(false);
@@ -169,13 +169,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
         },
         onError: (error: any) => {
           console.error("Payment error:", error);
-          alert(`⚠️ Payment error: ${error.message || "Something went wrong"}`);
+          toast(`⚠️ Payment error: ${error.message || "Something went wrong"}`);
           setIsProcessing(false);
         },
       });
     } catch (error) {
       console.error("Error initializing payment:", error);
-      alert("Failed to initialize payment. Please try again.");
+      toast("Failed to initialize payment. Please try again.");
       setIsProcessing(false);
     }
   };

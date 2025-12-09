@@ -5,6 +5,8 @@ import { useState, useCallback } from "react";
 import { FaCut, FaDownload } from "react-icons/fa";
 import { PDFDocument } from "pdf-lib";
 import type { PDFFile } from "./pdf-editor";
+import toast from "react-hot-toast";
+
 
 interface PDFSplitterProps {
   selectedFile: PDFFile | null;
@@ -53,7 +55,7 @@ const PDFSplitter: React.FC<PDFSplitterProps> = ({ selectedFile }) => {
       }
     } catch (error) {
       console.error("Error splitting PDF:", error);
-      alert("Error splitting PDF. Please try again.");
+       toast.error("Error splitting PDF. Please try again.");
     } finally {
       setIsProcessing(false);
     }
