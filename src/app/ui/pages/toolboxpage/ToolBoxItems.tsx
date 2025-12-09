@@ -216,6 +216,7 @@ export const tools = [
     category: "AI Tools",
     component: "AiWebsiteBuilder",
     link: "/toolbox/ai-builder-page",
+    isPremium: true,
   },
 
   {
@@ -226,6 +227,7 @@ export const tools = [
     category: "Utility Tools",
     component: "QrScanner",
     link: "/toolbox/qr-scanner-page",
+    isPremium: true,
   },
   {
     title: "Advanced PDF Editor",

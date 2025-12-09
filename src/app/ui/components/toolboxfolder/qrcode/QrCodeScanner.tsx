@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import QrCodeScannerDescription from "./QrCodeScannerDescription";
 
 const QrCodeScanner = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const QrCodeScanner = () => {
           </div>
         </div>
       </div>
+      <QrCodeScannerDescription />
     </div>
   );
 };
