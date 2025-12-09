@@ -1,0 +1,228 @@
+.aibuilder-desc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.aibuilder-desc-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.aibuilder-desc-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #1a1a1a;
+}
+
+.aibuilder-desc-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+.aibuilder-desc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.aibuilder-desc-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.aibuilder-desc-section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 32px 0;
+  color: #1a1a1a;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 12px;
+}
+
+/* Features Grid */
+.aibuilder-desc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.aibuilder-desc-feature-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e9ecef;
+}
+
+.aibuilder-desc-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+.aibuilder-desc-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.aibuilder-desc-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #1a1a1a;
+}
+
+.aibuilder-desc-feature-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Audience List */
+.aibuilder-desc-audience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aibuilder-desc-audience-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  transition: background-color 0.2s;
+}
+
+.aibuilder-desc-audience-item:hover {
+  background: #e7f3ff;
+}
+
+.aibuilder-desc-audience-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.aibuilder-desc-audience-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Steps */
+.aibuilder-desc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.aibuilder-desc-step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.aibuilder-desc-step-number {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.aibuilder-desc-step-content {
+  flex: 1;
+}
+
+.aibuilder-desc-step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1a1a1a;
+}
+
+.aibuilder-desc-step-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aibuilder-desc-container {
+    padding: 24px 16px;
+  }
+
+  .aibuilder-desc-title {
+    font-size: 2rem;
+  }
+
+  .aibuilder-desc-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .aibuilder-desc-section {
+    padding: 24px;
+  }
+
+  .aibuilder-desc-section-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .aibuilder-desc-features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .aibuilder-desc-step {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .aibuilder-desc-step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aibuilder-desc-title {
+    font-size: 1.75rem;
+  }
+
+  .aibuilder-desc-subtitle {
+    font-size: 1rem;
+  }
+
+  .aibuilder-desc-feature-icon {
+    font-size: 2rem;
+  }
+
+  .aibuilder-desc-feature-title {
+    font-size: 1.1rem;
+  }
+}

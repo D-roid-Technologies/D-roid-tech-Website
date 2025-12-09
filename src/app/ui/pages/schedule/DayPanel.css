@@ -1,5 +1,9 @@
 /* DayPanel.css */
 
+.panel-con {
+  background-color: #fee2e1;
+}
+
 .dayPanel-container {
   /* inherits from styles.sidePanel */
 }

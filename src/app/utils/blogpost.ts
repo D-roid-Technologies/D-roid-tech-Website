@@ -186,7 +186,7 @@ export const eventsPosts: BlogPost[] = [
 
       "Tech companies, startup founders, and community members within the Calabar ecosystem.",
 
-      "I attended the event as a representative of Droid Technologies, with the goal of understanding ecosystem trends, identifying partnership opportunities, and strengthening our company’s visibility in South-South Nigeria’s tech landscape.",
+      "Droid Technologies attended with the goal of understanding ecosystem trends, identifying partnership opportunities, and strengthening our company’s visibility in South-South Nigeria’s tech landscape.",
 
       "The event featured keynote speeches from industry leaders, panel discussions on emerging technologies, and networking sessions designed to connect attendees with potential collaborators and mentors.",
     ],
