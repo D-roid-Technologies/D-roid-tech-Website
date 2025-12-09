@@ -86,6 +86,8 @@ import Announcements from "../ui/pages/Dashboard/Notifications";
 import LeadForm from "../ui/pages/softwareDevelopment/SoftwarePages/LeadForm";
 import QuizePage from "../ui/pages/Quize/Quiz";
 import TestDetailPage from "../ui/pages/Dashboard/takeTest/TestDetailPage";
+import AiBuilder from "../ui/components/toolboxfolder/aibuilder/AiBuilder";
+import QrCodeScanner from "../ui/components/toolboxfolder/qrcode/QrCodeScanner";
 import SpinnerPage from "../ui/pages/Dashboard/SpinnerPage";
 
 // Define an enum for all route paths
@@ -131,6 +133,8 @@ export enum RoutePaths {
   BulkImage = "/toolbox/bulk-image",
   CurrencyConvert = "/toolbox/currency-converter",
   Base64Tool = "/toolbox/base64-tool",
+  AiBuilderPage = "/toolbox/ai-builder-page",
+  QrCodeScannerPage = "/toolbox/qr-scanner-page",
 
   // calculator routes
   ScientificCalculate = "/calculators/sciencecalculate",
@@ -312,6 +316,8 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.AdvancedPdfEditor} element={<PdfEditor />} />
       <Route path={RoutePaths.CodeComplexity} element={<CodeComplexity />} />
       <Route path={RoutePaths.BulkImage} element={<BulkImage />} />
+      <Route path={RoutePaths.AiBuilderPage} element={<AiBuilder />} />
+      <Route path={RoutePaths.QrCodeScannerPage} element={<QrCodeScanner />} />
 
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />

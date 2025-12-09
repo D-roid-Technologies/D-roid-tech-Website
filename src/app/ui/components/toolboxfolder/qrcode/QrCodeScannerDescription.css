@@ -1,0 +1,376 @@
+/* QR Code Scanner Description Component Styles */
+
+.qrscanner-desc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.qrscanner-desc-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.qrscanner-desc-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #1a1a1a;
+  background: linear-gradient(135deg, #071d69 0%, #0a2d9e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.qrscanner-desc-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+.qrscanner-desc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.qrscanner-desc-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.qrscanner-desc-section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 32px 0;
+  color: #1a1a1a;
+  border-bottom: 3px solid #071d69;
+  padding-bottom: 12px;
+}
+
+/* Features Grid */
+.qrscanner-desc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.qrscanner-desc-feature-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #dce4f0 100%);
+  border-radius: 12px;
+  padding: 28px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #e0e6ed;
+}
+
+.qrscanner-desc-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(7, 29, 105, 0.25);
+}
+
+.qrscanner-desc-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.qrscanner-desc-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #1a1a1a;
+}
+
+.qrscanner-desc-feature-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Use Cases */
+.qrscanner-desc-use-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.qrscanner-desc-use-case {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #071d69;
+  transition: all 0.3s;
+}
+
+.qrscanner-desc-use-case:hover {
+  background: #e8f0ff;
+  transform: translateX(8px);
+}
+
+.qrscanner-desc-use-case-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.qrscanner-desc-use-case-content {
+  flex: 1;
+}
+
+.qrscanner-desc-use-case-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #071d69;
+}
+
+.qrscanner-desc-use-case-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Audience Grid */
+.qrscanner-desc-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.qrscanner-desc-audience-card {
+  background: linear-gradient(135deg, #071d69 0%, #0a2d9e 100%);
+  color: white;
+  padding: 28px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.qrscanner-desc-audience-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(7, 29, 105, 0.4);
+}
+
+.qrscanner-desc-audience-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.qrscanner-desc-audience-text {
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* Steps */
+.qrscanner-desc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.qrscanner-desc-step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.qrscanner-desc-step-number {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #071d69 0%, #0a2d9e 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(7, 29, 105, 0.4);
+}
+
+.qrscanner-desc-step-content {
+  flex: 1;
+}
+
+.qrscanner-desc-step-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  color: #1a1a1a;
+}
+
+.qrscanner-desc-step-text {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Benefits Section */
+.qrscanner-desc-benefits {
+  background: linear-gradient(135deg, #071d6915 0%, #0a2d9e15 100%);
+}
+
+.qrscanner-desc-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qrscanner-desc-benefit-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.qrscanner-desc-benefit-item:hover {
+  transform: translateX(8px);
+}
+
+.qrscanner-desc-benefit-check {
+  font-size: 1.5rem;
+  color: #071d69;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.qrscanner-desc-benefit-content {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.qrscanner-desc-benefit-content strong {
+  color: #071d69;
+  font-weight: 600;
+}
+
+/* Tips Section */
+.qrscanner-desc-tips {
+  background: #fffbea;
+  border: 2px solid #ffd93d;
+}
+
+.qrscanner-desc-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.qrscanner-desc-tip {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ffd93d;
+}
+
+.qrscanner-desc-tip-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.qrscanner-desc-tip-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.qrscanner-desc-tip-text strong {
+  color: #c9930d;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .qrscanner-desc-container {
+    padding: 24px 16px;
+  }
+
+  .qrscanner-desc-title {
+    font-size: 2rem;
+  }
+
+  .qrscanner-desc-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .qrscanner-desc-section {
+    padding: 24px;
+  }
+
+  .qrscanner-desc-section-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .qrscanner-desc-features-grid,
+  .qrscanner-desc-use-cases,
+  .qrscanner-desc-audience-grid,
+  .qrscanner-desc-tips-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .qrscanner-desc-step {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .qrscanner-desc-step-number {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+
+  .qrscanner-desc-use-case:hover {
+    transform: translateX(4px);
+  }
+
+  .qrscanner-desc-benefit-item:hover {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 480px) {
+  .qrscanner-desc-title {
+    font-size: 1.75rem;
+  }
+
+  .qrscanner-desc-subtitle {
+    font-size: 1rem;
+  }
+
+  .qrscanner-desc-feature-icon,
+  .qrscanner-desc-use-case-icon {
+    font-size: 1.75rem;
+  }
+
+  .qrscanner-desc-feature-title {
+    font-size: 1.1rem;
+  }
+
+  .qrscanner-desc-step-title {
+    font-size: 1.15rem;
+  }
+}
