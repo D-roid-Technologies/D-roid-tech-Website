@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import { CheckoutPage } from "../../../components/payment/CheckoutPage";
 import { X } from "lucide-react";
-import toast from "react-hot-toast";
-
+import { enhancedNotifications } from "../../../notificationService/notifications.service";
 
 interface UpgradePlan {
   id?: string;
@@ -68,7 +67,45 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
       (currentTier === "Silver" || tier.name === "Platinum")
   );
 
-  const handleUpgradeClick = (tier: typeof tiers[0]) => {
+  // Function to send upgrade notification
+  const sendUpgradeNotification = async (
+    fromTier: string,
+    toTier: string,
+    price: number
+  ) => {
+    try {
+      const now = new Date(); 
+      const notification = {
+        title: `🎉 Tier Upgrade: ${fromTier} → ${toTier}`,
+        message: `Congratulations! You've successfully upgraded from ${fromTier} to ${toTier} tier. Enjoy exclusive benefits and features!`,
+        timestamp: Date.now(),
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString(),
+        isRead: false,
+        type: "success" as const,
+        category: "membership" as const,
+        priority: "high" as const,
+        icon: "⭐",
+        action: {
+          type: "view_membership",
+          data: {
+            fromTier,
+            toTier,
+            price,
+            upgradeDate: new Date().toISOString(),
+          },
+        },
+      };
+
+      // Use enhancedNotifications service to add notification
+      await enhancedNotifications.addSilent(notification);
+
+    } catch (error: any) {
+      // Continue even if notification fails
+    }
+  };
+
+  const handleUpgradeClick = (tier: (typeof tiers)[0]) => {
     const planData: UpgradePlan = {
       name: tier.name,
       price: tier.price,
@@ -90,6 +127,20 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
   const handleCloseCheckout = () => {
     setIsCheckoutOpen(false);
     setSelectedPlan(null);
+  };
+
+  const handlePaymentSuccess = async () => {
+    if (selectedPlan) {
+      // Send upgrade notification
+      await sendUpgradeNotification(
+        currentTier,
+        selectedPlan.name,
+        selectedPlan.price
+      );
+
+      alert(`✅ Successfully upgraded to ${selectedPlan.name} tier!`);
+      handleCloseCheckout();
+    }
   };
 
   return (
@@ -115,7 +166,8 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
           lineHeight: "1.6",
         }}
       >
-        Unlock exclusive benefits and rewards as you move up to Gold or Platinum tiers.
+        Unlock exclusive benefits and rewards as you move up to Gold or Platinum
+        tiers.
       </p>
 
       <div
@@ -302,10 +354,7 @@ export const UpgradeOpportunities: React.FC<UpgradeOpportunitiesProps> = ({
                 features: selectedPlan.features,
               }}
               onBack={handleCloseCheckout}
-              onPaymentSuccess={() => {
-                toast.success(`✅ Successfully upgraded to ${selectedPlan.name} tier!`);
-                handleCloseCheckout();
-              }}
+              onPaymentSuccess={handlePaymentSuccess}
               onPaymentInitiated={() => console.log("Payment started")}
             />
           </div>

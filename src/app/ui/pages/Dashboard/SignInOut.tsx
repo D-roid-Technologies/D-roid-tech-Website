@@ -16,6 +16,7 @@ import {
 import { Entry, addEntry } from "../../../redux/slices/SignInAndOutSlice";
 import { useDispatch } from "react-redux";
 import "./SignInOut.css";
+import { enhancedNotifications } from "../../notificationService/notifications.service";
 
 const SignInOut: React.FC = () => {
   const dispatch = useDispatch();
@@ -82,7 +83,34 @@ const SignInOut: React.FC = () => {
     try {
       await authService.logStaffSignInOut(entry);
       dispatch(addEntry(entry));
-      // setLogs((prev) => [...prev, entry]); // Removed as it's now handled by Redux selector
+
+      // Create notification data
+      const userName = user.firstName
+        ? `${user.firstName} ${user.lastName}`
+        : user.email;
+      const notificationTitle = isSigningIn ? "👤 Signed In" : "🚪 Signed Out";
+      const notificationMessage = `${userName} ${
+        isSigningIn ? "signed in" : "signed out"
+      } at ${new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })}`;
+
+      // Send notification using enhancedNotifications
+      const now = new Date();
+      await enhancedNotifications.addSilent({
+        title: notificationTitle,
+        message: notificationMessage,
+        isRead: false,
+        type: "info" as const,
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString(),
+        // category: "attendance" as const,
+        // priority: "medium" as const,
+        // icon: isSigningIn ? "👤" : "🚪",
+      });
+
       toast.success(`${entry.type} recorded!`);
     } catch (error) {
       toast.error("Failed to record sign-in/out.");
@@ -279,302 +307,3 @@ const SignInOut: React.FC = () => {
 };
 
 export default SignInOut;
-
-// import React, { useState, useEffect } from "react";
-// import toast from "react-hot-toast";
-// import emailjs from "emailjs-com";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../../redux/Store";
-// import {
-//   authService,
-//   getUserDocByUniqueId,
-// } from "../../../redux/configuration/auth.service";
-// import { format, parseISO, parse } from "date-fns";
-// import {
-//   BarChart,
-//   Bar,
-//   XAxis,
-//   YAxis,
-//   Tooltip,
-//   ResponsiveContainer,
-// } from "recharts";
-// import { Entry } from "../../../redux/slices/SignInAndOutSlice";
-
-// const SignInOut: React.FC = () => {
-//   const [email, setEmail] = useState("");
-//   const [employeeId, setEmployeeId] = useState("");
-//   const [logs, setLogs] = useState<Entry[]>([]);
-//   const [isSigningIn, setIsSigningIn] = useState(true);
-
-//   const user = useSelector((state: RootState) => state.user);
-//   const userLogs = useSelector(
-//     (state: RootState) => state.SignInO.staffSignInAndOut as Entry[]
-//   );
-//   // console.log(userLogs)
-
-//   useEffect(() => {
-//     setEmail(user.email);
-//     setEmployeeId(user.uniqueId);
-//     setIsSigningIn(!getLastStatus());
-//     setLogs(userLogs);
-//   }, [user.email, user.uniqueId, userLogs]);
-
-//   // ✅ Automatically sign out if offline
-//   useEffect(() => {
-//     if (!navigator.onLine) {
-//       toast.error("You're offline. Automatically signing out.");
-//       setIsSigningIn(false); // switch to Sign Out
-//     }
-//   }, []);
-
-//   const getLastStatus = () => {
-//     if (logs.length === 0) return false;
-//     const lastEntry = logs[logs.length - 1];
-//     return lastEntry.type === "Sign In";
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-
-//     if (!navigator.onLine) {
-//       toast.error("You must be online to sign in or out.");
-//       return;
-//     }
-
-//     if (email !== user?.email || employeeId !== user?.uniqueId) {
-//       toast.error("Email or ID does not match your account.");
-//       return;
-//     }
-
-//     // ✅ Prevent duplicate sign in without sign out
-//     if (isSigningIn && getLastStatus()) {
-//       toast.error("You're already signed in. Please sign out first.");
-//       return;
-//     }
-
-//     // ✅ Prevent duplicate sign out without sign in
-//     if (!isSigningIn && !getLastStatus()) {
-//       toast.error("You're already signed out. Please sign in first.");
-//       return;
-//     }
-
-//     const entry: Entry = {
-//       email,
-//       employeeId,
-//       timestamp: new Date().toLocaleString(),
-//       type: isSigningIn ? "Sign In" : "Sign Out",
-//     };
-
-//     try {
-//       await authService.logStaffSignInOut(entry);
-//       setLogs((prev) => [...prev, entry]);
-
-//       // const templateParams = {
-//       //   name: `${user.firstName} ${user.lastName}`,
-//       //   title: `You have ${entry.type} on your D'roid One Account on ${entry.timestamp}`,
-//       //   email: user.email,
-//       // };
-
-//       // emailjs.send(
-//       //   "service_o1jbklr",
-//       //   "template_p8h58ur",
-//       //   templateParams,
-//       //   "hcj3DsJ8MfNfUrE8J"
-//       // );
-//       toast.success(`${entry.type} recorded!`);
-//     } catch (error) {
-//       toast.error("Failed to record sign-in/out.");
-//     }
-//   };
-
-//   const getWorkedHoursData = () => {
-//     const dailyData: { [key: string]: number } = {};
-//     const formatString = "dd/MM/yyyy, HH:mm:ss";
-
-//     for (let i = 0; i < logs.length - 1; i += 2) {
-//       const inTimestamp = logs[i].timestamp;
-//       const outTimestamp = logs[i + 1]?.timestamp;
-
-//       const inTime = inTimestamp.includes("T")
-//         ? parseISO(inTimestamp)
-//         : parse(inTimestamp, formatString, new Date());
-
-//       const outTime = outTimestamp.includes("T")
-//         ? parseISO(outTimestamp)
-//         : parse(outTimestamp, formatString, new Date());
-
-//       if (isNaN(inTime.getTime()) || isNaN(outTime.getTime())) {
-//         continue;
-//       }
-
-//       const hours = (outTime.getTime() - inTime.getTime()) / (1000 * 60 * 60);
-//       const date = format(inTime, "yyyy-MM-dd");
-//       dailyData[date] = (dailyData[date] || 0) + hours;
-//     }
-
-//     return Object.entries(dailyData).map(([date, hours]) => ({ date, hours }));
-//   };
-
-//   return (
-//     <div style={styles.container}>
-//       <h2 style={styles.header}>
-//         {getLastStatus() ? "🟢 Signed In" : "🔴 Signed Out"}
-//       </h2>
-
-//       <div style={styles.flexContainer}>
-//         <form onSubmit={handleSubmit} style={styles.form}>
-//           <input
-//             style={styles.input}
-//             placeholder="Email"
-//             required
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//           />
-//           <input
-//             style={styles.input}
-//             placeholder="Employee ID"
-//             value={employeeId}
-//             onChange={(e) => setEmployeeId(e.target.value)}
-//           />
-
-//           <div style={styles.toggle}>
-//             <label style={{ color: "#000000" }}>
-//               <input
-//                 type="radio"
-//                 checked={isSigningIn}
-//                 onChange={() => setIsSigningIn(true)}
-//               />{" "}
-//               Sign In
-//             </label>
-//             <label style={{ color: "#000000" }}>
-//               <input
-//                 type="radio"
-//                 checked={!isSigningIn}
-//                 onChange={() => setIsSigningIn(false)}
-//               />{" "}
-//               Sign Out
-//             </label>
-//           </div>
-
-//           <button type="submit" style={styles.button}>
-//             Submit
-//           </button>
-//         </form>
-
-//         <div style={styles.chartContainer}>
-//           <h3 style={{ color: "#000000" }}>Hours Worked</h3>
-//           <ResponsiveContainer width="100%" height={300}>
-//             <BarChart data={getWorkedHoursData()}>
-//               <XAxis dataKey="date" />
-//               <YAxis />
-//               <Tooltip />
-//               <Bar dataKey="hours" fill="#8884d8" />
-//             </BarChart>
-//           </ResponsiveContainer>
-//         </div>
-//       </div>
-
-//       <div style={styles.logTableContainer}>
-//         <h3 style={{ color: "#000000" }}>Sign In/Out Logs</h3>
-//         <div style={styles.tableWrapper}>
-//           <table style={styles.table}>
-//             <thead>
-//               <tr>
-//                 <th>Email</th>
-//                 <th>Employee ID</th>
-//                 <th>Type</th>
-//                 <th>Timestamp</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {userLogs.map((log, index) => (
-//                 <tr key={index}>
-//                   <td>{log.email}</td>
-//                   <td>{log.employeeId}</td>
-//                   <td>{log.type}</td>
-//                   <td>{log.timestamp}</td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const styles: { [key: string]: React.CSSProperties } = {
-//   container: {
-//     maxWidth: "1000px",
-//     margin: "2rem auto",
-//     padding: "1.2rem",
-//     background: "#fff",
-//     borderRadius: "12px",
-//     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-//   },
-//   header: {
-//     textAlign: "center",
-//     color: "#000",
-//     marginBottom: "1rem",
-//   },
-//   flexContainer: {
-//     display: "flex",
-//     gap: "2rem",
-//     flexWrap: "wrap",
-//   },
-//   form: {
-//     flex: 1,
-//     display: "flex",
-//     flexDirection: "column",
-//     gap: "1rem",
-//   },
-//   input: {
-//     padding: "12px",
-//     borderRadius: "8px",
-//     border: "1px solid #ccc",
-//     fontSize: "14px",
-//   },
-//   toggle: {
-//     display: "flex",
-//     justifyContent: "space-around",
-//     marginTop: "1rem",
-//   },
-//   button: {
-//     padding: "12px",
-//     backgroundColor: "#111827",
-//     color: "#fff",
-//     fontWeight: "bold",
-//     border: "none",
-//     borderRadius: "8px",
-//     cursor: "pointer",
-//   },
-//   chartContainer: {
-//     flex: 1,
-//     minWidth: "300px",
-//   },
-//   logTableContainer: {
-//     marginTop: "2rem",
-//   },
-//   tableWrapper: {
-//     maxHeight: "300px",
-//     overflow: "scroll",
-//     border: "1px solid #ccc",
-//     borderRadius: "8px",
-//     color: "#000000",
-//     paddingLeft: "25px",
-//     paddingTop: "25px",
-//   },
-//   table: {
-//     width: "max-content",
-//     borderCollapse: "separate",
-//     borderSpacing: "10px",
-//   },
-//   "table th, table td": {
-//     border: "1px solid #ccc",
-//     padding: "8px",
-//     textAlign: "left",
-//     marginBottom: "10px",
-//   },
-// };
-
-// export default SignInOut;

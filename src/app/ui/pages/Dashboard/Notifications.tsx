@@ -158,14 +158,14 @@ const Notifications: React.FC = () => {
                 Mark All as Read
               </button>
             )}
-            <button
+            {/* <button
               onClick={handleClearAll}
               disabled={isLoading}
               className={`${styles.bulkButton} ${styles.clearAllButton}`}
             >
               <Trash2 size={16} />
               Clear All
-            </button>
+            </button> */}
           </div>
         )}
       </div>
@@ -281,14 +281,14 @@ const Notifications: React.FC = () => {
                       Mark as Read
                     </button>
                   )}
-                  <button
+                  {/* <button
                     onClick={() => handleRemoveNotification(notification.id)}
                     disabled={isLoading}
                     className={`${styles.actionButton} ${styles.deleteButton}`}
                   >
                     <Trash2 size={16} />
                     Delete
-                  </button>
+                  </button> */}
                 </div>
               </div>
             ))}
