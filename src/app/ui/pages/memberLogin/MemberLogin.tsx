@@ -13,7 +13,6 @@ const MemberLogin = () => {
     password?: string;
   }>({});
   const [text, setText] = useState<string>("Login");
-  const isStaff = false;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,7 +24,7 @@ const MemberLogin = () => {
     let isValid = true;
 
     if (!formData.email.trim()) {
-      errors.email = "Member ID is required.";
+      errors.email = "Email is required.";
       isValid = false;
     }
 
@@ -44,15 +43,17 @@ const MemberLogin = () => {
     setText("Verifying your credentials...");
 
     try {
+      // Updated: Passing "Member" string for role validation
       await authService.handleUserLogin(
         formData.email,
         formData.password,
-        isStaff
+        "Member"
       );
       setText("Fetching your information...");
       navigate(RoutePaths.DashBoard, { replace: true });
     } catch {
       setText("Login");
+      // Toast errors are handled in authService
     }
   };
 
@@ -105,41 +106,6 @@ const MemberLogin = () => {
           <button type="submit" className={styles.button}>
             {text}
           </button>
-          {/* <button
-            type="button"
-            onClick={() => alert("Google Sign-in coming soon 🚀")}
-            style={{
-              backgroundColor: "#FFFFFF",
-              color: "#444",
-              padding: "12px 20px",
-              border: "1px solid #CCCCCC",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontSize: "16px",
-              width: "100%",
-              marginTop: "15px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "10px",
-              transition: "all 0.3s ease",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = "#f9fafc";
-              e.currentTarget.style.borderColor = "#999";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = "#FFFFFF";
-              e.currentTarget.style.borderColor = "#CCCCCC";
-            }}
-          >
-            <img
-              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-              alt="Google"
-              style={{ width: "20px", height: "20px" }}
-            />
-            Login with Google
-          </button> */}
         </form>
 
         <div className={styles.forgotPasswordLink}>

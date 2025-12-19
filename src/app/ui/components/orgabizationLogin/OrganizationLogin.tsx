@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { FaArrowLeft, FaUsers } from "react-icons/fa";
+import { FaArrowLeft, FaBuilding } from "react-icons/fa"; 
 import { useNavigate } from "react-router-dom";
 import { authService } from "../../../redux/configuration/auth.service";
 import { RoutePaths } from "../../../routes/Index";
-import styles from "./StaffLogin.module.css";
+import styles from "./OrganizationLogin.module.css";
 
-const StaffLogin: React.FC<any> = () => {
+const OrganizationLogin: React.FC<any> = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -28,7 +28,7 @@ const StaffLogin: React.FC<any> = () => {
     let isValid = true;
 
     if (!formData.email.trim()) {
-      errors.email = "Email is required.";
+      errors.email = "Organization Email is required.";
       isValid = false;
     }
 
@@ -41,24 +41,26 @@ const StaffLogin: React.FC<any> = () => {
     return isValid;
   };
 
-  const handleSubmitStaff = async (e: React.FormEvent) => {
+  const handleSubmitOrg = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validate()) return;
-    setText("Verifying your credentials...");
+    setText("Verifying Organization...");
 
     try {
-      // Updated to pass "Staff" string instead of boolean
+      // Passing "Organisation" as the expected role
       await authService.handleUserLogin(
         formData.email,
         formData.password,
-        "Staff"
+        "Organisation" 
       );
-      setText("Fetching your information...");
+      setText("Loading Dashboard...");
+      
+      // Redirects to normal dashboard for now
       navigate(RoutePaths.DashBoard, { replace: true });
     } catch (err) {
       setText("Login");
-      // Toast error handling is done in authService
+      // Toast errors are handled in authService
     }
   };
 
@@ -69,22 +71,22 @@ const StaffLogin: React.FC<any> = () => {
         <a href={RoutePaths.JoinOurCommunity} className={styles.backLink}>
           <FaArrowLeft className={styles.icon} /> Back to Sign Up
         </a>
-        <FaUsers className={styles.usersIcon} />
+        <FaBuilding className={styles.usersIcon} />
       </div>
 
       {/* Right Side */}
       <div className={styles.rightPane}>
-        <h2 className={styles.title}>Staff Login</h2>
+        <h2 className={styles.title}>Organization Login</h2>
         <p className={styles.subtitle}>
-          Welcome back! Please login to your Staff account.
+          Welcome! Please login to your Organization workspace.
         </p>
 
-        <form onSubmit={handleSubmitStaff}>
+        <form onSubmit={handleSubmitOrg}>
           <div className={styles.inputGroup}>
             <input
               type="text"
               name="email"
-              placeholder="Email"
+              placeholder="Organization Email"
               value={formData.email}
               onChange={handleChange}
               className={styles.inputField}
@@ -130,4 +132,4 @@ const StaffLogin: React.FC<any> = () => {
   );
 };
 
-export default StaffLogin;
+export default OrganizationLogin;

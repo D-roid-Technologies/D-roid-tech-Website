@@ -1,4 +1,4 @@
-// auth.service.ts - COMPLETE FIXED VERSION
+// auth.service.ts
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -471,24 +471,33 @@ export class AuthService {
       const user = res.user;
       const currentDateTime = getCurrentDateTime();
 
+      // Determine Display Name
+      // If Organisation, use firstName (mapped to Org Name). If individual, use Full Name.
+      const displayName =
+        userData.userType === "Organisation"
+          ? userData.firstName
+          : `${userData.firstName} ${userData.lastName}`;
+
       await updateProfile(user, {
-        displayName: `${userData.firstName} ${userData.lastName}`,
+        displayName: displayName,
       });
 
       const userDocRef = doc(collection(db, "droidaccount"), user.uid);
 
-      // Check if this is a staff account to create onboarding notification
       const isStaff =
         userData.userType?.toLowerCase() === "staff" ||
         userData.userType?.toLowerCase() === "admin";
+      
+      const isOrganisation = userData.userType === "Organisation";
 
       const droidAccount = {
         user: {
           primaryInformation: {
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            initials:
-              `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
+            firstName: userData.firstName, // Contains Org Name if isOrganisation
+            lastName: isOrganisation ? "Organisation" : userData.lastName, // Fallback for Org
+            initials: isOrganisation 
+              ? userData.firstName.substring(0, 2).toUpperCase()
+              : `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
             userType: userData.userType,
             staffId: userData.uniqueId,
             uniqueId: user.uid,
@@ -512,7 +521,7 @@ export class AuthService {
             verifyPhoneNumber: false,
             twoFactorSettings: false,
             password: "",
-            role: "",
+            role: userData.role || "", // Ensure role is captured
             streetNumber: "",
             streetName: "",
             city: "",
@@ -541,7 +550,8 @@ export class AuthService {
             trainings: [],
             progressions: [],
             userForms: [],
-            notifications: isStaff ? [this.createOnboardingNotification()] : [], // AUTO-CREATE FOR STAFF
+            // Only add Onboarding notification for Staff
+            notifications: isStaff ? [this.createOnboardingNotification()] : [], 
           },
           staff: {
             paySlip: [],
@@ -552,6 +562,11 @@ export class AuthService {
             tasks: [],
             tests: [],
           },
+          // Placeholder for potential future Organisation specific data fields
+          organisation: isOrganisation ? {
+             employees: [],
+             departments: []
+          } : {}
         },
         toolBox: {
           toolBoxInfo: [],
@@ -619,7 +634,8 @@ export class AuthService {
     }
   }
 
-  async handleUserLogin(email: string, password: string, isStaff: boolean) {
+  // UPDATED: Now accepts expectedRole instead of isStaff boolean
+  async handleUserLogin(email: string, password: string, expectedRole: "Staff" | "Organisation" | "Member") {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -639,19 +655,21 @@ export class AuthService {
         const userForm = fetchedUserData.user?.userForms;
         const userType = primaryInformation?.userType;
 
-        // FIXED: Case-insensitive staff detection
-        const isUserActuallyStaff =
-          userType?.toLowerCase() === "staff" ||
-          userType?.toLowerCase() === "admin";
-
-        if (isUserActuallyStaff !== isStaff) {
-          await auth.signOut();
-          throw new Error(
-            isStaff
-              ? "This account is not a staff account. Please use the member login."
-              : "Staff accounts must log in through the Staff Login portal."
-          );
+        // --- Role Validation Logic ---
+        if (expectedRole === "Staff") {
+          const isStaffAccount = userType?.toLowerCase() === "staff" || userType?.toLowerCase() === "admin";
+          if (!isStaffAccount) {
+             await auth.signOut();
+             throw new Error("This is a Staff Portal. Please use the Member or Organization login.");
+          }
+        } else if (expectedRole === "Organisation") {
+          const isOrgAccount = userType === "Organisation";
+          if (!isOrgAccount) {
+             await auth.signOut();
+             throw new Error("This is an Organization Portal. Please use the Staff or Member login.");
+          }
         }
+        // If expectedRole is "Member", we generally allow everyone, or you can restrict Staff/Org if desired.
 
         const updatedEntries =
           updatedData?.user?.staff?.staffSignInAndOut || [];
