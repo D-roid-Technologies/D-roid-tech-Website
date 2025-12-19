@@ -89,6 +89,7 @@ import TestDetailPage from "../ui/pages/Dashboard/takeTest/TestDetailPage";
 import AiBuilder from "../ui/components/toolboxfolder/aibuilder/AiBuilder";
 import QrCodeScanner from "../ui/components/toolboxfolder/qrcode/QrCodeScanner";
 import SpinnerPage from "../ui/pages/Dashboard/SpinnerPage";
+import OrganizationLogin from "../ui/components/orgabizationLogin/OrganizationLogin";
 
 // Define an enum for all route paths
 
@@ -178,6 +179,7 @@ export enum RoutePaths {
   AI = "/ai",
   ForgotPassword = "/auth/forgot-password",
   StaffLogin = "/auth/staff-login",
+  OrganizationLogin = "/auth/organization-login",
   MemberLogin = "/auth/member-login",
   MobilePhone = "/mobile",
   DashBoard = "/auth/dashboard",
@@ -393,6 +395,16 @@ const Index: React.FunctionComponent = () => {
             <Navigate to={RoutePaths.DashBoard} replace />
           ) : (
             <MemberLogin />
+          )
+        }
+      />
+      <Route
+        path={RoutePaths.OrganizationLogin}
+        element={
+          userId !== "" ? (
+            <Navigate to={RoutePaths.DashBoard} replace />
+          ) : (
+            <OrganizationLogin />
           )
         }
       />
