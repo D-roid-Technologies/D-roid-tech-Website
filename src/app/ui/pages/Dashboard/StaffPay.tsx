@@ -28,7 +28,7 @@ const StaffPay: React.FunctionComponent = () => {
                 todayMonth={todayMonth}
                 sNumber={user?.streetNumber}
                 sName={user?.streetName}
-                city={user?.city}
+                city={user?.city} 
                 state={user?.state}
                 country={user?.country}
             />

@@ -10,8 +10,7 @@ import { RootState } from "../../../redux/Store";
 import emailjs from "emailjs-com";
 import { Entry } from "../../../redux/slices/SignInAndOutSlice";
 import html2pdf from "html2pdf.js";
-import toast from "react-hot-toast";
-
+import { enhancedNotifications } from "../../notificationService/notifications.service";
 
 interface PaySlipProps {
   employeeName: string;
@@ -70,7 +69,7 @@ const validatePayslipData = (
 ): ValidationResult => {
   const missingFields: string[] = [];
 
-  // Check employee details
+  // Check employee details 
   if (!employeeName || employeeName.trim() === "") {
     missingFields.push("Employee Name");
   }
@@ -169,9 +168,6 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
         )}`
       );
       setShowPayslip(false);
-
-      // // Show alert to user
-      // alert(`Payslip cannot be displayed. Missing required information:\n\n• ${validation.missingFields.join('\n• ')}\n\nPlease complete your profile information to view the payslip.`);
     } else {
       setValidationError(null);
       setShowPayslip(true);
@@ -191,9 +187,7 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
 
   useEffect(() => {
     const today = new Date();
-    // if (today.getDate() === 8) {
     setShowGenerateButton(true);
-    // }
   }, []);
 
   const payslip: PaySlip = {
@@ -239,6 +233,44 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
     },
   };
 
+  // Function to send payslip notification
+  const sendPayslipNotification = async (payslipData: PaySlip) => {
+    try {
+      const now = new Date();
+      const notification = {
+        title: "💰 Payslip Generated",
+        message: `Your payslip for ${
+          payslipData.payPeriod.monthPaid
+        } has been generated. Net pay: ₦${payslipData.netPay.toFixed(2)}`,
+        timestamp: Date.now(),
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString(),
+        isRead: false,
+        type: "info" as const,
+        category: "payslip" as const,
+        priority: "high" as const,
+        icon: "💰",
+        action: {
+          type: "view_payslip",
+          data: {
+            month: payslipData.payPeriod.monthPaid,
+            netPay: payslipData.netPay,
+            grossPay: payslipData.grossPay,
+            employeeName: payslipData.employeeDetails.employeeName,
+          },
+        },
+      };
+
+      // Use enhancedNotifications service to add notification
+      await enhancedNotifications.addSilent(notification);
+
+      // console.log(`✅ Payslip notification sent for: ${employeeName}`);
+    } catch (error: any) {
+      // console.error(`🔔 Failed to send payslip notification:`, error.message);
+      // Continue even if notification fails
+    }
+  };
+
   const handleGenerateClick = async () => {
     // Re-validate before generating
     const validation = validatePayslipData(
@@ -267,26 +299,13 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
     setMessage("");
 
     try {
+      // Generate payslip in backend
       await authService.updateStaffPayslip(payslip);
-      setMessage("Payslip generated and updated successfully.");
-      // const templateParams = {
-      //   name: `${user.firstName} ${user.lastName}`,
-      //   title: `You will be paid ${
-      //     payslip.netPay
-      //   } for the month of ${formatMonth(
-      //     payPeriodStart
-      //   )} ${currentMonthDate.getFullYear()} on the 9th of ${formatMonth(
-      //     payPeriodEnd
-      //   )} ${currentMonthDate.getFullYear()}`,
-      //   email: user.email,
-      // };
 
-      // emailjs.send(
-      //   "service_o1jbklr",
-      //   "template_p8h58ur",
-      //   templateParams,
-      //   "hcj3DsJ8MfNfUrE8J"
-      // );
+      // Send notification
+      await sendPayslipNotification(payslip);
+
+      setMessage("Payslip generated and updated successfully.");
     } catch (error) {
       console.error(error);
       setMessage("Error generating payslip. Please try again.");
@@ -321,9 +340,9 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
     const ref = payslipRefs.current[index];
     if (!ref) return;
 
-    setLoading(true); // ✅ Start loading
+    setLoading(true);
     try {
-      // ✅ Find button inside the card and hide it
+      // Find button inside the card and hide it
       const button = ref.querySelector("button");
       if (button) button.style.display = "none";
 
@@ -344,11 +363,11 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
 
       await html2pdf().set(opt).from(ref).save();
     } finally {
-      // ✅ Show button back after download
+      // Show button back after download
       const button = ref.querySelector("button");
       if (button) button.style.display = "inline-block";
 
-      setLoading(false); // ✅ Stop loading
+      setLoading(false);
     }
   };
 
@@ -363,7 +382,16 @@ export const StaffPaySlip: React.FC<PaySlipProps> = ({
             is missing from your profile.
           </p>
           <div style={styles.errorDetails}>
-            <h4 style={{color:"#e01947ff",fontWeight:"bold",fontSize:"1rem",textAlign:"center"}}>Missing Information:</h4>
+            <h4
+              style={{
+                color: "#e01947ff",
+                fontWeight: "bold",
+                fontSize: "1rem",
+                textAlign: "center",
+              }}
+            >
+              Missing Information:
+            </h4>
             <pre style={styles.errorList}>{validationError}</pre>
           </div>
           <p style={styles.errorInstruction}>

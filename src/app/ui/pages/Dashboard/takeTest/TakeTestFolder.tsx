@@ -6,6 +6,7 @@ import "./TakeTestFolder.css";
 import { useNavigate } from "react-router-dom";
 import QuizComponents from "./QuizComponents";
 import { NewwebsiteCard } from "../../../components/CoreValueCard/NewwebsiteCard";
+import { enhancedNotifications } from "../../../notificationService/notifications.service";
 
 interface QuizResults {
   score: number;
@@ -67,6 +68,76 @@ const TakeTestFolder = () => {
     });
   }, [searchQuery, selectedLevel, selectedDuration]);
 
+  // Function to add test completion notification
+  const addTestCompletionNotification = async (
+    results: QuizResults,
+    testTitle: string
+  ) => {
+    try {
+      const scoreColor =
+        results.percentage >= 70
+          ? "#4CAF50"
+          : results.percentage >= 50
+          ? "#FF9800"
+          : "#F44336";
+
+      const emoji =
+        results.percentage >= 70
+          ? "🎉"
+          : results.percentage >= 50
+          ? "📊"
+          : "💪";
+
+      const now = new Date();
+      const notification = {
+        title: `${emoji} Test Completed: ${testTitle}`,
+        message: `You scored ${results.score}/${results.totalQuestions} (${
+          results.percentage
+        }%). ${
+          results.percentage >= 70
+            ? "Excellent work! You've mastered this topic."
+            : results.percentage >= 50
+            ? "Good effort! Review the explanations to improve."
+            : "Keep practicing! Review the material and try again."
+        }`,
+        timestamp: Date.now(),
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString(),
+        isRead: false,
+        type: "info" as const,
+        category: "test_results" as const,
+        priority: "medium" as const,
+        icon: "📝",
+        action: {
+          type: "view_results",
+          data: {
+            testTitle,
+            score: results.score,
+            totalQuestions: results.totalQuestions,
+            percentage: results.percentage,
+            timeSpent: results.timeSpent,
+          },
+        },
+      };
+
+      // Use enhancedNotifications service to add notification silently
+      await enhancedNotifications.addSilent(notification);
+
+      console.log("✅ Test completion notification added:", {
+        testTitle,
+        score: results.score,
+        total: results.totalQuestions,
+        percentage: results.percentage,
+      });
+    } catch (error: any) {
+      console.error(
+        "🔔 Failed to add test completion notification:",
+        error.message
+      );
+      // Continue even if notification fails - don't break the user experience
+    }
+  };
+
   const handleTestClick = (testData: any) => {
     console.log("Test clicked:", testData);
     setSelectedTest(testData);
@@ -81,7 +152,6 @@ const TakeTestFolder = () => {
   };
 
   const handleStartTest = (testData: any) => {
-    // console.log("Starting test:", testData);
     if (!testData.quiz || testData.quiz.length === 0) {
       console.error("Test data missing quiz questions:", testData);
       alert("This test doesn't have quiz questions configured yet.");
@@ -92,10 +162,15 @@ const TakeTestFolder = () => {
     setShowQuiz(true);
   };
 
-  const handleQuizComplete = (results: QuizResults) => {
+  const handleQuizComplete = async (results: QuizResults) => {
     console.log("Quiz completed:", results);
     setQuizResults(results);
     setShowQuiz(false);
+
+    // Add notification when quiz is completed
+    if (selectedTest) {
+      await addTestCompletionNotification(results, selectedTest.title);
+    }
   };
 
   const handleBackFromQuiz = () => {
@@ -119,16 +194,167 @@ const TakeTestFolder = () => {
     setSelectedDuration("all");
   };
 
+  // Render quiz results with notification info
+  const renderQuizResults = () => {
+    if (!quizResults || !selectedTest) return null;
+
+    const percentage = quizResults.percentage;
+    let resultColor = "#F44336";
+    let resultMessage = "Needs Improvement";
+    let resultEmoji = "💪";
+
+    if (percentage >= 70) {
+      resultColor = "#4CAF50";
+      resultMessage = "Excellent";
+      resultEmoji = "🎉";
+    } else if (percentage >= 50) {
+      resultColor = "#FF9800";
+      resultMessage = "Good";
+      resultEmoji = "📊";
+    }
+
+    return (
+      <div className="ttf-quiz-results-view">
+        <div className="ttf-results-header">
+          <button
+            onClick={() => setQuizResults(null)}
+            className="ttf-back-button"
+          >
+            ← Back to Test Details
+          </button>
+          <h2 className="ttf-results-title">
+            {resultEmoji} {selectedTest.title} Results
+          </h2>
+          <div className="ttf-results-notification-info">
+            <span className="ttf-notification-icon">🔔</span>
+            <span className="ttf-notification-text">
+              Results saved to notifications
+            </span>
+          </div>
+        </div>
+
+        <div
+          className="ttf-results-card"
+          style={{ borderTop: `4px solid ${resultColor}` }}
+        >
+          <div className="ttf-results-summary">
+            <div
+              className="ttf-results-score-circle"
+              style={{ borderColor: resultColor }}
+            >
+              <span
+                className="ttf-results-percentage"
+                style={{ color: resultColor }}
+              >
+                {percentage}%
+              </span>
+              <span className="ttf-results-label">Score</span>
+            </div>
+
+            <div className="ttf-results-details">
+              <h3 className="ttf-results-status" style={{ color: resultColor }}>
+                {resultMessage}
+              </h3>
+              <p className="ttf-results-message">
+                You scored {quizResults.score} out of{" "}
+                {quizResults.totalQuestions} questions correctly.
+              </p>
+
+              <div className="ttf-results-stats">
+                <div className="ttf-stat-item">
+                  <span className="ttf-stat-label">Correct Answers:</span>
+                  <span className="ttf-stat-value">{quizResults.score}</span>
+                </div>
+                <div className="ttf-stat-item">
+                  <span className="ttf-stat-label">Total Questions:</span>
+                  <span className="ttf-stat-value">
+                    {quizResults.totalQuestions}
+                  </span>
+                </div>
+                <div className="ttf-stat-item">
+                  <span className="ttf-stat-label">Time Spent:</span>
+                  <span className="ttf-stat-value">
+                    {Math.floor(quizResults.timeSpent / 60)}m{" "}
+                    {quizResults.timeSpent % 60}s
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {quizResults.answers && quizResults.answers.length > 0 && (
+            <div className="ttf-answers-review">
+              <h4 className="ttf-review-title">Review Your Answers:</h4>
+              <div className="ttf-answers-list">
+                {quizResults.answers.map((answer, index) => (
+                  <div key={index} className="ttf-answer-item">
+                    <div className="ttf-answer-header">
+                      <span className="ttf-question-number">Q{index + 1}</span>
+                      <span
+                        className={`ttf-answer-status ${
+                          answer.isCorrect ? "correct" : "incorrect"
+                        }`}
+                      >
+                        {answer.isCorrect ? "✓ Correct" : "✗ Incorrect"}
+                      </span>
+                    </div>
+                    {answer.explanation && (
+                      <p className="ttf-explanation">{answer.explanation}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="ttf-results-actions">
+            <button onClick={handleRetakeTest} className="ttf-retake-button">
+              ↻ Retake Test
+            </button>
+            <button
+              onClick={() => navigate("/notifications")}
+              className="ttf-view-notifications-button"
+            >
+              🔔 View All Notifications
+            </button>
+          </div>
+
+          <div className="ttf-notification-preview">
+            <div className="ttf-notification-card-preview">
+              <div className="ttf-notification-preview-header">
+                <span className="ttf-notification-preview-icon">📝</span>
+                <span className="ttf-notification-preview-title">
+                  Test Completed: {selectedTest.title}
+                </span>
+              </div>
+              <div className="ttf-notification-preview-body">
+                <p>
+                  Score: {quizResults.score}/{quizResults.totalQuestions} (
+                  {percentage}%)
+                </p>
+                <p className="ttf-notification-preview-message">
+                  {percentage >= 70
+                    ? "Excellent work! You've mastered this topic."
+                    : percentage >= 50
+                    ? "Good effort! Review the explanations to improve."
+                    : "Keep practicing! Review the material and try again."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    // <div className="ttf-wrapper ">
     <div className="ttf-wrapper soft-dev-wrapper">
       <span className="ttf-header soft-dev-header title_span">
         Test Your Knowledge
       </span>
 
       <div className="ttf-content soft-dev-content">
-        {/* <div className="ttf-content "> */}
-        {/* FIXED: Show Quiz Component when showQuiz is true */}
+        {/* Show Quiz Component */}
         {showQuiz && selectedTest && !quizResults ? (
           <QuizComponents
             key={`quiz-${selectedTest.title}-${Date.now()}`}
@@ -136,6 +362,9 @@ const TakeTestFolder = () => {
             onQuizComplete={handleQuizComplete}
             onBack={handleBackFromQuiz}
           />
+        ) : quizResults && selectedTest ? (
+          // Show quiz results
+          renderQuizResults()
         ) : !selectedTest ? (
           // Show test list with filters
           <div className="ttf-test-list-container">
@@ -210,17 +439,8 @@ const TakeTestFolder = () => {
                     onClick={() => handleTestClick(prog)}
                     className="ttf-test-item"
                   >
-                    {/* <TestCardTwo
-                      title={`Take ${prog.title} Test`}
-                      description={prog.summary}
-                      url={prog.url}
-                      className="process-card"
-                    /> */}
-
                     <NewwebsiteCard
-                      // key={index}
                       title={`Take ${prog.title} Test`}
-                      // title={prog.title}
                       description={prog.description}
                       icon={prog.icon}
                       className="process-card"
