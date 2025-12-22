@@ -732,7 +732,7 @@ export class AuthService {
         try {
           const { setStaffInfo } = await import("../slices/onboarding");
           store.dispatch(setStaffInfo(updatedStaffDetails));
-        } catch (_) {}
+        } catch (_) { }
 
         store.dispatch(setStaffDocuments(updatedStaffDocuments));
         store.dispatch(setToolBox(toolBoxData));
