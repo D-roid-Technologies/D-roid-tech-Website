@@ -84,6 +84,7 @@ type DroidAccount = {
       twoFactorSettings: boolean;
       password: string;
       role: string;
+      organisationalType: string; // Added Type
     };
     location: {
       locationFromDevice: any;
@@ -487,7 +488,7 @@ export class AuthService {
       const isStaff =
         userData.userType?.toLowerCase() === "staff" ||
         userData.userType?.toLowerCase() === "admin";
-      
+
       const isOrganisation = userData.userType === "Organisation";
 
       const droidAccount = {
@@ -495,10 +496,11 @@ export class AuthService {
           primaryInformation: {
             firstName: userData.firstName, // Contains Org Name if isOrganisation
             lastName: isOrganisation ? "Organisation" : userData.lastName, // Fallback for Org
-            initials: isOrganisation 
+            initials: isOrganisation
               ? userData.firstName.substring(0, 2).toUpperCase()
               : `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
             userType: userData.userType,
+            organisationalType: userData.organisationalType || "", // ✅ Added Organisation Type
             staffId: userData.uniqueId,
             uniqueId: user.uid,
             email: userData.email,
@@ -551,7 +553,7 @@ export class AuthService {
             progressions: [],
             userForms: [],
             // Only add Onboarding notification for Staff
-            notifications: isStaff ? [this.createOnboardingNotification()] : [], 
+            notifications: isStaff ? [this.createOnboardingNotification()] : [],
           },
           staff: {
             paySlip: [],
@@ -563,10 +565,12 @@ export class AuthService {
             tests: [],
           },
           // Placeholder for potential future Organisation specific data fields
-          organisation: isOrganisation ? {
-             employees: [],
-             departments: []
-          } : {}
+          organisation: isOrganisation
+            ? {
+                employees: [],
+                departments: [],
+              }
+            : {},
         },
         toolBox: {
           toolBoxInfo: [],
@@ -635,7 +639,11 @@ export class AuthService {
   }
 
   // UPDATED: Now accepts expectedRole instead of isStaff boolean
-  async handleUserLogin(email: string, password: string, expectedRole: "Staff" | "Organisation" | "Member") {
+  async handleUserLogin(
+    email: string,
+    password: string,
+    expectedRole: "Staff" | "Organisation" | "Member"
+  ) {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -657,16 +665,22 @@ export class AuthService {
 
         // --- Role Validation Logic ---
         if (expectedRole === "Staff") {
-          const isStaffAccount = userType?.toLowerCase() === "staff" || userType?.toLowerCase() === "admin";
+          const isStaffAccount =
+            userType?.toLowerCase() === "staff" ||
+            userType?.toLowerCase() === "admin";
           if (!isStaffAccount) {
-             await auth.signOut();
-             throw new Error("This is a Staff Portal. Please use the Member or Organization login.");
+            await auth.signOut();
+            throw new Error(
+              "This is a Staff Portal. Please use the Member or Organization login."
+            );
           }
         } else if (expectedRole === "Organisation") {
           const isOrgAccount = userType === "Organisation";
           if (!isOrgAccount) {
-             await auth.signOut();
-             throw new Error("This is an Organization Portal. Please use the Staff or Member login.");
+            await auth.signOut();
+            throw new Error(
+              "This is an Organization Portal. Please use the Staff or Member login."
+            );
           }
         }
         // If expectedRole is "Member", we generally allow everyone, or you can restrict Staff/Org if desired.
@@ -1483,5 +1497,5 @@ export class AuthService {
       .filter((n) => n !== null) as Notification[];
   }
 }
-
+ 
 export const authService = new AuthService();

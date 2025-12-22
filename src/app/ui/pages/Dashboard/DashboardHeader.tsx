@@ -72,7 +72,9 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     (state: RootState) => state.notifications as Notification[]
   );
 
-  const unreadNotificationsCount = notifications.filter((n) => !n.isRead).length;
+  const unreadNotificationsCount = notifications.filter(
+    (n) => !n.isRead
+  ).length;
   const [notificationModalOpen, setNotificationModalOpen] = useState(false);
 
   // --- Notification Handlers ---
@@ -181,7 +183,8 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               <div className="shp-card-header">
                 <h3 className="shp-card-title">
                   <FaBell size={18} />
-                  Member Notifications
+                  {/* Dynamic Title based on User Type */}
+                  {userDetails.userType} Notifications
                 </h3>
                 <span className="shp-notification-count">
                   {notifications.filter((n) => !n.isRead).length}
@@ -208,7 +211,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                       notificationTime = notification.time;
                     }
                   }
-                  
+
                   return (
                     <NotificationItem
                       key={index}
