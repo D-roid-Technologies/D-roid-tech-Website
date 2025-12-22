@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaUsers, FaArrowLeft } from "react-icons/fa";
+import { FaUsers, FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { RoutePaths } from "../../../routes/Index";
 import { useNavigate } from "react-router-dom";
 import { RootState, store } from "../../../redux/Store";
@@ -7,16 +7,15 @@ import { addLocation } from "../../../redux/slices/Location";
 import { useSelector } from "react-redux";
 import { LocationState, UserType } from "../../../utils/Types";
 import { authService } from "../../../redux/configuration/auth.service";
-// import emailjs from "emailjs-com"; // Commented out as per original code
 import toast from "react-hot-toast";
 import "../../components/liteGrid@v1.0/lite-grid.css";
 import styles from "./Signup.module.css";
 
-// Interface definitions remain the same...
 interface FormErrors {
   userType?: string;
+  organisationalType?: string; // Added validation for Org Type
   staffId?: string;
-  firstName?: string; // Used for Org Name as well
+  firstName?: string;
   lastName?: string;
   email?: string;
   password?: string;
@@ -29,6 +28,10 @@ const SignUp: React.FunctionComponent = () => {
   const userLocation: LocationState = useSelector(
     (state: RootState) => state.location
   );
+
+  // State for password visibility toggles
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState<
     UserType & { confirmPassword: string }
@@ -71,7 +74,7 @@ const SignUp: React.FunctionComponent = () => {
     accessLevel: "",
     permissions: [],
     notificationPreferences: { email: true },
-    organisationalType: "",
+    organisationalType: "", // State for Org Type
     isCompanyRegistered: "",
     dateOfRegistration: "",
   });
@@ -79,7 +82,6 @@ const SignUp: React.FunctionComponent = () => {
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const navigate = useNavigate();
 
-  // --- Geolocation Logic (Unchanged) ---
   useEffect(() => {
     let attempts = 0;
     const maxAttempts = 5;
@@ -108,9 +110,10 @@ const SignUp: React.FunctionComponent = () => {
   }, []);
 
   const regex = {
-    name: /^[A-Za-z\s]+$/, // Strict for persons
-    orgName: /^[A-Za-z0-9\s&.\-]+$/, // Looser for companies
+    name: /^[A-Za-z\s]+$/,
+    orgName: /^[A-Za-z0-9\s&.\-]+$/,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    // Strict password regex
     password:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{6,}$/,
   };
@@ -128,7 +131,6 @@ const SignUp: React.FunctionComponent = () => {
     });
   };
 
-  // --- Updated Validation Logic ---
   const validate = () => {
     let errors: FormErrors = {};
     let isValid = true;
@@ -138,22 +140,22 @@ const SignUp: React.FunctionComponent = () => {
       isValid = false;
     }
 
-    // Staff Specific Validation
     if (formData.userType === "Staff" && !formData.uniqueId.trim()) {
       errors.staffId = "Staff ID is required for staff users.";
       isValid = false;
     }
 
-    // Organisation Specific Validation
     if (formData.userType === "Organisation") {
-      // Reusing firstName field for Organization Name
       if (!formData.firstName) {
         errors.firstName = "Organization name is required.";
         isValid = false;
       }
-      // Note: We skip lastName check for Organisations
+      // Validate Organisation Type
+      if (!formData.organisationalType) {
+        errors.organisationalType = "Please select an organization type.";
+        isValid = false;
+      }
     } else {
-      // Logic for Staff and Members (Individuals)
       if (!formData.firstName || !regex.name.test(formData.firstName)) {
         errors.firstName = "First name should only contain letters.";
         isValid = false;
@@ -164,15 +166,15 @@ const SignUp: React.FunctionComponent = () => {
       }
     }
 
-    // Common Validation
     if (!formData.email || !regex.email.test(formData.email)) {
       errors.email = "Please enter a valid email.";
       isValid = false;
     }
 
+    // Improved Password Error Message
     if (!formData.password || !regex.password.test(formData.password)) {
       errors.password =
-        "Password must be at least 6 characters long and include a number.";
+        "Password must contain at least 6 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.";
       isValid = false;
     }
 
@@ -230,19 +232,17 @@ const SignUp: React.FunctionComponent = () => {
       }
     }
 
-    // Note: If Organization, we leave lastName empty or set a default if backend requires it
     const updatedFormData = {
       ...formData,
       uniqueId: generatedId,
       lastName:
         formData.userType === "Organisation"
           ? "Organisation"
-          : formData.lastName, // Fallback for backend safety
+          : formData.lastName,
     };
 
     setText("Creating your D'roid Account...");
 
-    // Countdown logic (Unchanged)
     const startCountdown = (
       seconds: number,
       onTick: (value: number) => void
@@ -267,7 +267,6 @@ const SignUp: React.FunctionComponent = () => {
           setText(`User Created. Redirecting in ${value}s...`);
         }).then(() => {
           navigate(RoutePaths.DashBoard);
-          // Email sending logic (Unchanged/Commented in original)
         });
       })
       .catch(() => {
@@ -286,7 +285,6 @@ const SignUp: React.FunctionComponent = () => {
         backgroundColor: "#F9F9F9",
       }}
     >
-      {/* Left Side (Unchanged) */}
       <div className={`block ${styles.leftBlock}`}>
         <a href="/" className={styles.backLink}>
           {/* @ts-ignore */}
@@ -296,9 +294,7 @@ const SignUp: React.FunctionComponent = () => {
         <FaUsers className={styles.heroIcon} />
       </div>
 
-      {/* Right Side */}
       <div className={`block ${styles.rightBlock}`}>
-        {/* Top Links (Unchanged) */}
         <div className={styles.topLeftLinks}>
           <a href={RoutePaths.StaffLogin} className={styles.loginLink}>
             Staff Login
@@ -326,7 +322,7 @@ const SignUp: React.FunctionComponent = () => {
         </p>
 
         <form onSubmit={handleSubmit}>
-          {/* User Type Dropdown */}
+          {/* User Type */}
           <div style={{ marginBottom: "15px" }}>
             <select
               name="userType"
@@ -353,7 +349,7 @@ const SignUp: React.FunctionComponent = () => {
             )}
           </div>
 
-          {/* --- STAFF FIELDS --- */}
+          {/* STAFF: Unique ID */}
           {formData.userType === "Staff" && (
             <div style={{ marginBottom: "15px" }}>
               <input
@@ -378,32 +374,59 @@ const SignUp: React.FunctionComponent = () => {
             </div>
           )}
 
-          {/* --- ORGANISATION FIELDS --- */}
+          {/* ORGANISATION: Name & Type */}
           {formData.userType === "Organisation" ? (
-            // If Organisation: Show Org Name (mapped to firstName)
-            <div style={{ marginBottom: "15px" }}>
-              <input
-                type="text"
-                name="firstName" // Mapping to firstName for backend consistency
-                placeholder="Organization Name"
-                value={formData.firstName}
-                onChange={handleChange}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  borderRadius: "5px",
-                  border: "1px solid #CCCCCC",
-                  backgroundColor: "#F9F9F9",
-                }}
-              />
-              {formErrors.firstName && (
-                <div style={{ color: "#FF6F61", fontSize: "12px" }}>
-                  {formErrors.firstName}
-                </div>
-              )}
-            </div>
+            <>
+              <div style={{ marginBottom: "15px" }}>
+                <input
+                  type="text"
+                  name="firstName" // Mapped to Org Name
+                  placeholder="Organization Name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                    padding: "12px",
+                    borderRadius: "5px",
+                    border: "1px solid #CCCCCC",
+                    backgroundColor: "#F9F9F9",
+                  }}
+                />
+                {formErrors.firstName && (
+                  <div style={{ color: "#FF6F61", fontSize: "12px" }}>
+                    {formErrors.firstName}
+                  </div>
+                )}
+              </div>
+
+              <div style={{ marginBottom: "15px" }}>
+                <select
+                  name="organisationalType"
+                  value={formData.organisationalType}
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                    padding: "12px",
+                    borderRadius: "5px",
+                    border: "1px solid #CCCCCC",
+                    backgroundColor: "#F9F9F9",
+                    color: formData.organisationalType ? "#000" : "#BAB8B8",
+                  }}
+                >
+                  <option value="">Select Organization Type</option>
+                  <option value="School">School</option>
+                  <option value="Business">Business</option>
+                  <option value="NGO">N.G.O</option>
+                </select>
+                {formErrors.organisationalType && (
+                  <div style={{ color: "#FF6F61", fontSize: "12px" }}>
+                    {formErrors.organisationalType}
+                  </div>
+                )}
+              </div>
+            </>
           ) : (
-            // If NOT Organisation (Staff or Member): Show First & Last Name
+            // INDIVIDUAL (Member/Staff): First & Last Name
             <>
               <div style={{ marginBottom: "15px" }}>
                 <input
@@ -451,7 +474,7 @@ const SignUp: React.FunctionComponent = () => {
             </>
           )}
 
-          {/* --- COMMON FIELDS (Email, Passwords) --- */}
+          {/* Email */}
           <div style={{ marginBottom: "15px" }}>
             <input
               type="email"
@@ -478,9 +501,10 @@ const SignUp: React.FunctionComponent = () => {
             )}
           </div>
 
-          <div style={{ marginBottom: "15px" }}>
+          {/* Password */}
+          <div style={{ marginBottom: "15px", position: "relative" }}>
             <input
-              type="password" // Changed from text to password for security
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={formData.password}
@@ -488,11 +512,24 @@ const SignUp: React.FunctionComponent = () => {
               style={{
                 width: "100%",
                 padding: "12px",
+                paddingRight: "40px", // space for icon
                 borderRadius: "5px",
                 border: "1px solid #CCCCCC",
                 backgroundColor: "#F9F9F9",
               }}
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "14px",
+                cursor: "pointer",
+                color: "#BAB8B8",
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
             {formErrors.password && (
               <div style={{ color: "#FF6F61", fontSize: "12px" }}>
                 {formErrors.password}
@@ -500,9 +537,10 @@ const SignUp: React.FunctionComponent = () => {
             )}
           </div>
 
-          <div style={{ marginBottom: "15px" }}>
+          {/* Confirm Password */}
+          <div style={{ marginBottom: "15px", position: "relative" }}>
             <input
-              type="password" // Changed from text to password for security
+              type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               placeholder="Confirm Password"
               value={formData.confirmPassword}
@@ -510,11 +548,24 @@ const SignUp: React.FunctionComponent = () => {
               style={{
                 width: "100%",
                 padding: "12px",
+                paddingRight: "40px", // space for icon
                 borderRadius: "5px",
                 border: "1px solid #CCCCCC",
                 backgroundColor: "#F9F9F9",
               }}
             />
+            <span
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "14px",
+                cursor: "pointer",
+                color: "#BAB8B8",
+              }}
+            >
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
             {formErrors.confirmPassword && (
               <div style={{ color: "#FF6F61", fontSize: "12px" }}>
                 {formErrors.confirmPassword}
@@ -522,7 +573,6 @@ const SignUp: React.FunctionComponent = () => {
             )}
           </div>
 
-          {/* Privacy Checkbox (Unchanged) */}
           <div
             className={`${styles.policyRow}`}
             style={{
@@ -603,7 +653,6 @@ const SignUp: React.FunctionComponent = () => {
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             style={{

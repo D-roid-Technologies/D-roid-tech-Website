@@ -285,6 +285,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
         Kindly fill the form below to send us your message.
       </p>
 
+      
+{/* 
       {submitStatus === "success" && (
         <div
           style={{
@@ -298,9 +300,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
         >
           ✓ Message sent successfully!
         </div>
-      )}
+      )} */}
 
-      {submitStatus === "error" && Object.keys(errors).length > 0 && (
+      {/* {submitStatus === "error" && Object.keys(errors).length > 0 && (
         <div
           style={{
             padding: "12px",
@@ -313,7 +315,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         >
           ⚠ Please fix the errors below before submitting.
         </div>
-      )}
+      )} */}
 
       <div
         style={{

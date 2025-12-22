@@ -96,6 +96,7 @@ import { isAboveSixMonths } from "../../../utils/isAboveSixMonths";
 import NotEligibleForTraining from "../../../utils/statusMessages";
 import { getToolAccessMessage } from "../../../redux/utils/toolAccessManager";
 import { useFreeTierTools } from "../../../hooks/useFreeTierTools";
+import OrganizationDashboard from "./OrganizationDashboard/OrganizationDashboard";
 // import { TestNotifications } from "./TestNotifications";
 
 const calculators = [
@@ -473,53 +474,65 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
               </Section>
             </>
           );
+        // case "Organisation":
+        //   switch (orgType) {
+        //     case "school":
+        //       return (
+        //         <>
+        //           <Section
+        //             title="School Dashboard"
+        //             onHomeClick={() => setSelectedMenu(null)}
+        //           >
+        //             <SchoolDashboard />
+        //           </Section>
+        //         </>
+        //       );
+        //     case "business":
+        //       return (
+        //         <>
+        //           <Section
+        //             title="Business Dashboard"
+        //             onHomeClick={() => setSelectedMenu(null)}
+        //           >
+        //             <BusinessDashboard />
+        //           </Section>
+        //         </>
+        //       );
+        //     case "ngo":
+        //       return (
+        //         <>
+        //           <Section
+        //             title="NGO Dashboard"
+        //             onHomeClick={() => setSelectedMenu(null)}
+        //           >
+        //             <NGODashboard />
+        //           </Section>
+        //         </>
+        //       );
+        //     default:
+        //       return (
+        //         <>
+        //           <Section
+        //             title="Organization Dashboard"
+        //             onHomeClick={() => setSelectedMenu(null)}
+        //           >
+        //             <p>Please configure your organization type in settings.</p>
+        //           </Section>
+        //         </>
+        //       );
+        //   }
         case "Organisation":
-          switch (orgType) {
-            case "school":
-              return (
-                <>
-                  <Section
-                    title="School Dashboard"
-                    onHomeClick={() => setSelectedMenu(null)}
-                  >
-                    <SchoolDashboard />
-                  </Section>
-                </>
-              );
-            case "business":
-              return (
-                <>
-                  <Section
-                    title="Business Dashboard"
-                    onHomeClick={() => setSelectedMenu(null)}
-                  >
-                    <BusinessDashboard />
-                  </Section>
-                </>
-              );
-            case "ngo":
-              return (
-                <>
-                  <Section
-                    title="NGO Dashboard"
-                    onHomeClick={() => setSelectedMenu(null)}
-                  >
-                    <NGODashboard />
-                  </Section>
-                </>
-              );
-            default:
-              return (
-                <>
-                  <Section
-                    title="Organization Dashboard"
-                    onHomeClick={() => setSelectedMenu(null)}
-                  >
-                    <p>Please configure your organization type in settings.</p>
-                  </Section>
-                </>
-              );
-          }
+          // Replace the switch statement with just this return logic
+          return (
+             <>
+               <Section
+                 title="Organization Dashboard"
+                 onHomeClick={() => setSelectedMenu(null)}
+               >
+                 <OrganizationDashboard />
+               </Section>
+             </>
+          );
         case "Member":
           return (
             <>
