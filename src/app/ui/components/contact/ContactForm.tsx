@@ -6,6 +6,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { ChevronsUpDown, Check } from "lucide-react";
 import { Fragment } from "react";
 import { enhancedNotifications } from "../../notificationService/notifications.service";
+import SocialNotification from "../socialLink/SocialNotification";
 
 interface ContactFormProps {
   serviceId: string;
@@ -284,9 +285,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <p style={{ fontSize: "14px", color: "#555" }}>
         Kindly fill the form below to send us your message.
       </p>
+      <div style={{ marginLeft: "10px" }}>
+        <SocialNotification />
+      </div>
 
-      
-{/* 
+      {/* 
       {submitStatus === "success" && (
         <div
           style={{
