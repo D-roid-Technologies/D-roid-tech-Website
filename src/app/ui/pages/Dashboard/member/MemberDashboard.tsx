@@ -131,10 +131,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
   const memberStats = useSelector((state: RootState) => state.memberStatus);
   const user = useSelector((state: RootState) => state.user);
   const userId = user?.uniqueId || user?.email || "guest";
-  
+
   // Check if user has already spun
-  const userSpin = useSelector((state: RootState) => 
-    state.spinner?.userSpins?.[userId] ?? null
+  const userSpin = useSelector(
+    (state: RootState) => state.spinner?.userSpins?.[userId] ?? null
   );
 
   type Notification = {
@@ -316,7 +316,9 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
   }, [userSpin]);
 
   const handleSpinComplete = (outcome: number, giftAwarded: boolean) => {
-    console.log(`Spin completed! Outcome: ${outcome}, Gift awarded: ${giftAwarded}`);
+    console.log(
+      `Spin completed! Outcome: ${outcome}, Gift awarded: ${giftAwarded}`
+    );
     // The Redux state is already updated by the spinnerSlice
   };
 
@@ -432,10 +434,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               <div className="shp-welcome-content">
                 <div className="shp-greeting">
                   <h1 className="shp-welcome-title">Member Portal</h1>
-                  <div className="shp-head-icons-container">
-                    {/* Social Notification */}
+                  {/* <div className="shp-head-icons-container">
+                    {/* Social Notification 
                     <SocialNotification />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -447,7 +449,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
           </div>
         </div>
       </div>
-      
+
       {/* Member Stats */}
       <div className="shp-section">
         <h2 className="shp-section-title">Membership Overview</h2>

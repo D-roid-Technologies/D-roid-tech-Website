@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaArrowLeft, FaBuilding } from "react-icons/fa"; 
+import { FaArrowLeft, FaBuilding, FaEye, FaEyeSlash } from "react-icons/fa"; // Added icons
 import { useNavigate } from "react-router-dom";
 import { authService } from "../../../redux/configuration/auth.service";
 import { RoutePaths } from "../../../routes/Index";
@@ -17,6 +17,9 @@ const OrganizationLogin: React.FC<any> = () => {
     password?: string;
   }>({});
   const [text, setText] = useState<string>("Login");
+
+  // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -52,10 +55,10 @@ const OrganizationLogin: React.FC<any> = () => {
       await authService.handleUserLogin(
         formData.email,
         formData.password,
-        "Organisation" 
+        "Organisation"
       );
       setText("Loading Dashboard...");
-      
+
       // Redirects to normal dashboard for now
       navigate(RoutePaths.DashBoard, { replace: true });
     } catch (err) {
@@ -96,15 +99,29 @@ const OrganizationLogin: React.FC<any> = () => {
             )}
           </div>
 
-          <div className={styles.inputGroup}>
+          {/* Password Field with Eye Icon */}
+          <div className={styles.inputGroup} style={{ position: "relative" }}>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               className={styles.inputField}
+              style={{ paddingRight: "40px" }} // Make room for the icon
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "14px",
+                cursor: "pointer",
+                color: "#BAB8B8",
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
             {formErrors.password && (
               <div className={styles.errorText}>{formErrors.password}</div>
             )}

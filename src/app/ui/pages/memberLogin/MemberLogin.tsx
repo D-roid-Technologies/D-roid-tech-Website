@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUser, FaArrowLeft } from "react-icons/fa";
+import { FaUser, FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { authService } from "../../../redux/configuration/auth.service";
 import { RoutePaths } from "../../../routes/Index";
@@ -13,6 +13,9 @@ const MemberLogin = () => {
     password?: string;
   }>({});
   const [text, setText] = useState<string>("Login");
+
+  // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -89,15 +92,29 @@ const MemberLogin = () => {
             )}
           </div>
 
-          <div className={styles.inputGroup}>
+          {/* Password Field with Eye Icon */}
+          <div className={styles.inputGroup} style={{ position: "relative" }}>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               className={styles.input}
+              style={{ paddingRight: "40px" }} // Added padding for icon space
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "14px",
+                cursor: "pointer",
+                color: "#BAB8B8",
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
             {formErrors.password && (
               <div className={styles.error}>{formErrors.password}</div>
             )}

@@ -584,7 +584,7 @@ const StaffUserHomePage: React.FC<StaffUserHomePageProps> = ({
                 )}
               </div> */}
               </div>
-              <SocialNotification />
+              {/* <SocialNotification /> */}
             </div>
             {/* <SocialNotification /> */}
           </div>
