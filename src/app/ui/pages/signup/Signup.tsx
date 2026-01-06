@@ -266,7 +266,12 @@ const SignUp: React.FunctionComponent = () => {
         await startCountdown(5, (value) => {
           setText(`User Created. Redirecting in ${value}s...`);
         }).then(() => {
-          navigate(RoutePaths.DashBoard);
+          // Logic for redirecting based on userType
+          if (formData.userType === "Organisation") {
+            navigate(RoutePaths.OrganizationDashboard);
+          } else {
+            navigate(RoutePaths.DashBoard);
+          }
         });
       })
       .catch(() => {

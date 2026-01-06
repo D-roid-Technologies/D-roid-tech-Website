@@ -59,8 +59,8 @@ const OrganizationLogin: React.FC<any> = () => {
       );
       setText("Loading Dashboard...");
 
-      // Redirects to normal dashboard for now
-      navigate(RoutePaths.DashBoard, { replace: true });
+      // Redirects to the specific Organization dashboard
+      navigate(RoutePaths.OrganizationDashboard, { replace: true });
     } catch (err) {
       setText("Login");
       // Toast errors are handled in authService
