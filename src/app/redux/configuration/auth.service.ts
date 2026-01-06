@@ -1,4 +1,3 @@
-// auth.service.ts
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -732,7 +731,7 @@ export class AuthService {
         try {
           const { setStaffInfo } = await import("../slices/onboarding");
           store.dispatch(setStaffInfo(updatedStaffDetails));
-        } catch (_) { }
+        } catch (_) {}
 
         store.dispatch(setStaffDocuments(updatedStaffDocuments));
         store.dispatch(setToolBox(toolBoxData));
@@ -772,6 +771,143 @@ export class AuthService {
         },
       });
       throw err;
+    }
+  }
+
+  // --- UPDATED: Search for a Member by their Unique ID (DT-XXXX-M) ---
+  // Queries the 'staffId' field which holds the "DT-..." ID
+  async searchMemberByUniqueId(uniqueId: string) {
+    try {
+      // We query 'user.primaryInformation.staffId' because that is where
+      // the readable ID (e.g., "DT-NEE9L-M") is stored during registration.
+      const q = query(
+        collection(db, "droidaccount"),
+        where("user.primaryInformation.staffId", "==", uniqueId)
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        toast.error("No member found with this ID", {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+        return null;
+      }
+
+      const docSnap = querySnapshot.docs[0];
+      const userData = docSnap.data();
+      const info = userData.user.primaryInformation;
+
+      // Ensure we only add Members, preventing Org-to-Org adding
+      if (info.userType !== "Member") {
+        toast.error(
+          "This ID belongs to an Organization or Staff, not a Member.",
+          {
+            style: { background: "#faad14", color: "#fff" },
+          }
+        );
+        return null;
+      }
+
+      // Return the clean data needed for the preview card
+      return {
+        uid: docSnap.id,
+        firstName: info.firstName,
+        lastName: info.lastName,
+        email: info.email,
+        staffId: info.staffId, // The "DT-..." ID
+        photoUrl: info.photoUrl || "",
+        initials: info.initials || "MB",
+      };
+    } catch (error: any) {
+      console.error("Error searching member:", error);
+      toast.error(`Search failed: ${error.message}`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+      return null;
+    }
+  }
+
+  // --- UPDATED: Add the Member to the Organization ---
+  async addStaffToOrganization(
+    memberUid: string,
+    staffDetails: {
+      department: string;
+      jobTitle: string;
+      role: string;
+      startDate: string;
+    }
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser)
+        throw new Error("You must be logged in as an Organization.");
+
+      // 1. Get Organization Data (Current User)
+      const orgRef = doc(db, "droidaccount", currentUser.uid);
+
+      // 2. Get Member Data (Read-Only)
+      const memberRef = doc(db, "droidaccount", memberUid);
+      const memberSnap = await getDoc(memberRef);
+      if (!memberSnap.exists()) throw new Error("Member profile not found.");
+
+      const memberInfo = memberSnap.data().user.primaryInformation;
+
+      // 3. Create the Employee Object for the Organization's List
+      const newEmployeeEntry = {
+        uid: memberUid,
+        staffId: memberInfo.staffId, // Store the DT ID
+        firstName: memberInfo.firstName,
+        lastName: memberInfo.lastName,
+        email: memberInfo.email,
+        photoUrl: memberInfo.photoUrl || "",
+        department: staffDetails.department,
+        jobTitle: staffDetails.jobTitle,
+        accessRole: staffDetails.role,
+        startDate: staffDetails.startDate,
+        dateAdded: new Date().toISOString(),
+        status: "Active",
+      };
+
+      // 4. Update Organization Doc: Add to 'organisation.employees' array
+      await updateDoc(orgRef, {
+        "user.organisation.employees": arrayUnion(newEmployeeEntry),
+      });
+
+      toast.success(
+        `${memberInfo.firstName} successfully added to your staff list!`,
+        {
+          style: { background: "#4BB543", color: "#fff" },
+        }
+      );
+
+      return newEmployeeEntry;
+    } catch (error: any) {
+      console.error("Error adding staff:", error);
+      toast.error(`Failed to add staff: ${error.message}`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+      throw error;
+    }
+  }
+
+  // --- UPDATED: Fetch Organization's Staff List ---
+  async getOrganizationEmployees() {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) return [];
+
+      const orgRef = doc(db, "droidaccount", currentUser.uid);
+      const orgSnap = await getDoc(orgRef);
+
+      if (orgSnap.exists()) {
+        const data = orgSnap.data();
+        return data.user?.organisation?.employees || [];
+      }
+      return [];
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+      return [];
     }
   }
 
@@ -1497,5 +1633,5 @@ export class AuthService {
       .filter((n) => n !== null) as Notification[];
   }
 }
- 
+
 export const authService = new AuthService();

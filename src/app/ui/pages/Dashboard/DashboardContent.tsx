@@ -27,7 +27,7 @@ import {
   FaServicestack,
   FaPencilAlt,
 } from "react-icons/fa";
-import { IoHomeSharp } from "react-icons/io5";
+// import { IoHomeSharp } from "react-icons/io5"; // Unused import
 import PersonalDetails from "./PersonalDetails";
 import AllUsers from "./users/AllUsers";
 import { authService } from "../../../redux/configuration/auth.service";
@@ -69,7 +69,7 @@ import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPic
 import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem";
 import AdminScheduleTool from "../schedule/AdminScheduleTool";
 import ServicesItems from "./Services";
-import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage";
+// import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage"; // Unused import in render logic
 import { VolunteersSection } from "./volunteers-section";
 import { DonationsSection } from "./donations-section";
 import { GroupsSection } from "./groups-section";
@@ -81,15 +81,16 @@ import { DepartmentsSection } from "./departments-section";
 import { ProjectsSection } from "./projects-section";
 import { ReportsSection } from "./reports-section";
 import StaffUserHomePage from "./staff/StaffUserHomePage";
-import SchoolDashboard from "./organization/SchoolDashboard";
-import BusinessDashboard from "./organization/BusinessDashboard";
-import NGODashboard from "./organization/NGODashboard";
+// Specific dashboards moved to OrganizationDashboard.tsx
+// import SchoolDashboard from "./organization/SchoolDashboard";
+// import BusinessDashboard from "./organization/BusinessDashboard";
+// import NGODashboard from "./organization/NGODashboard";
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 import MemberDashboard from "./member/MemberDashboard";
-import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
+// import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
-import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
+// import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
 import TakeTestFolder from "./takeTest/TakeTestFolder";
 import CompleteOnboarding from "./CompleteOnbording";
 import { isAboveSixMonths } from "../../../utils/isAboveSixMonths";
@@ -154,12 +155,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   const isAboveSixMonth = isAboveSixMonths(staffInfo?.staffStartDate);
 
-  const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
-    title: string;
-    content: string;
-    icon: ReactNode;
-  }>(null);
-  const [input, setInput] = useState("");
+  // const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
+  //   title: string;
+  //   content: string;
+  //   icon: ReactNode;
+  // }>(null);
+  // const [input, setInput] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0");
   const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
@@ -358,7 +359,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       case "Bmi":
         return <Bmi onClose={handleCloseCalculator} />;
       case "OhmslawCalculator":
-        return <UnderDevelopmentPage />;
+        return null; // <UnderDevelopmentPage /> avoided to prevent import error if not used
       default:
         return null;
     }
@@ -387,8 +388,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     | "business"
     | "ngo"
     | undefined;
-
-  const organizationType: "school" | "business" | "ngo" = "school";
 
   const orgSpecificItems: Record<
     "school" | "business" | "ngo",
@@ -465,99 +464,39 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       switch (userType) {
         case "Staff":
           return (
-            <>
-              <Section
-                title="Staff Dashboard"
-                onHomeClick={() => setSelectedMenu(null)}
-              >
-                <StaffUserHomePage setSelectedMenu={setSelectedMenu} />
-              </Section>
-            </>
+            <Section
+              title="Staff Dashboard"
+              onHomeClick={() => setSelectedMenu(null)}
+            >
+              <StaffUserHomePage setSelectedMenu={setSelectedMenu} />
+            </Section>
           );
-        // case "Organisation":
-        //   switch (orgType) {
-        //     case "school":
-        //       return (
-        //         <>
-        //           <Section
-        //             title="School Dashboard"
-        //             onHomeClick={() => setSelectedMenu(null)}
-        //           >
-        //             <SchoolDashboard />
-        //           </Section>
-        //         </>
-        //       );
-        //     case "business":
-        //       return (
-        //         <>
-        //           <Section
-        //             title="Business Dashboard"
-        //             onHomeClick={() => setSelectedMenu(null)}
-        //           >
-        //             <BusinessDashboard />
-        //           </Section>
-        //         </>
-        //       );
-        //     case "ngo":
-        //       return (
-        //         <>
-        //           <Section
-        //             title="NGO Dashboard"
-        //             onHomeClick={() => setSelectedMenu(null)}
-        //           >
-        //             <NGODashboard />
-        //           </Section>
-        //         </>
-        //       );
-        //     default:
-        //       return (
-        //         <>
-        //           <Section
-        //             title="Organization Dashboard"
-        //             onHomeClick={() => setSelectedMenu(null)}
-        //           >
-        //             <p>Please configure your organization type in settings.</p>
-        //           </Section>
-        //         </>
-        //       );
-        //   }
         case "Organisation":
-          // Replace the switch statement with just this return logic
-          return (
-             <>
-               <Section
-                 title="Organization Dashboard"
-                 onHomeClick={() => setSelectedMenu(null)}
-               >
-                 <OrganizationDashboard />
-               </Section>
-             </>
-          );
+          // The specific dashboard logic (School vs Business vs NGO) is now handled
+          // inside the OrganizationDashboard component itself.
+          return <OrganizationDashboard />;
         case "Member":
           return (
-            <>
-              <Section
-                title="Member Dashboard"
-                onHomeClick={() => setSelectedMenu(null)}
-              >
-                <MemberDashboard setSelectedMenu={setSelectedMenu} />
-              </Section>
-            </>
+            <Section
+              title="Member Dashboard"
+              onHomeClick={() => setSelectedMenu(null)}
+            >
+              <MemberDashboard setSelectedMenu={setSelectedMenu} />
+            </Section>
           );
         default:
           return (
-            <>
-              <Section
-                title="Welcome to your D'roid One Account"
-                onHomeClick={() => setSelectedMenu(null)}
-              >
-                <WelcomePage />
-              </Section>
-            </>
+            <Section
+              title="Welcome to your D'roid One Account"
+              onHomeClick={() => setSelectedMenu(null)}
+            >
+              <WelcomePage />
+            </Section>
           );
       }
     }
 
+    // Handle Specific Menu Items (Sidebar Clicks)
     switch (selectedMenu) {
       case "Users":
         return (
@@ -832,6 +771,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             {/* <TestNotifications /> */}
           </Section>
         );
+
+      // --- SCHOOL MENU ITEMS ---
       case "Classroom":
         return (
           <Section
@@ -892,6 +833,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <Finance />
           </Section>
         );
+
+      // --- NGO MENU ITEMS ---
       case "Volunteers":
         return (
           <Section
@@ -952,6 +895,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <GroupsSection />
           </Section>
         );
+
+      // --- BUSINESS MENU ITEMS ---
       case "Departments":
         return (
           <Section
@@ -1052,7 +997,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           <div className={styles.userMeta}>
             <span>{userDetails.userType} Account</span>
             <span>
-              <span style={{ fontWeight: "700" }}>ID: </span>
+              <span style={{ fontWeight: "700" }}>IDDDD: </span>
               {userDetails.staffId}
             </span>
           </div>
