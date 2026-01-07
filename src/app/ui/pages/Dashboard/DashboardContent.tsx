@@ -997,7 +997,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           <div className={styles.userMeta}>
             <span>{userDetails.userType} Account</span>
             <span>
-              <span style={{ fontWeight: "700" }}>IDDDD: </span>
+              <span style={{ fontWeight: "700" }}>ID: </span>
               {userDetails.staffId}
             </span>
           </div>

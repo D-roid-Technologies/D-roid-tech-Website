@@ -775,14 +775,33 @@ export class AuthService {
   }
 
   // --- UPDATED: Search for a Member by their Unique ID (DT-XXXX-M) ---
-  // Queries the 'staffId' field which holds the "DT-..." ID
   async searchMemberByUniqueId(uniqueId: string) {
     try {
-      // We query 'user.primaryInformation.staffId' because that is where
-      // the readable ID (e.g., "DT-NEE9L-M") is stored during registration.
+      // FIX: Use await this.getCurrentUser() instead of auth.currentUser
+      // This forces the code to WAIT until Firebase restores the session.
+      let currentUser;
+      try {
+        currentUser = await this.getCurrentUser();
+      } catch (e) {
+        // If this fails, the user is truly logged out
+        console.warn("⚠️ User session not found. Attempting generic check...");
+        currentUser = auth.currentUser;
+      }
+
+      console.log("🔍 Search Debug - Searching for ID:", uniqueId);
+      console.log("👤 Search Debug - Resolved Auth User:", currentUser?.uid);
+
+      if (!currentUser) {
+        toast.error("Session expired. Please refresh or sign in again.", {
+          style: { background: "#faad14", color: "#fff" },
+        });
+        return null;
+      }
+
+      // Query 'user.primaryInformation.staffId' because that holds the "DT-..." ID
       const q = query(
         collection(db, "droidaccount"),
-        where("user.primaryInformation.staffId", "==", uniqueId)
+        where("user.primaryInformation.staffId", "==", uniqueId.trim())
       );
 
       const querySnapshot = await getDocs(q);
@@ -798,7 +817,7 @@ export class AuthService {
       const userData = docSnap.data();
       const info = userData.user.primaryInformation;
 
-      // Ensure we only add Members, preventing Org-to-Org adding
+      // Ensure we only add Members
       if (info.userType !== "Member") {
         toast.error(
           "This ID belongs to an Organization or Staff, not a Member.",
@@ -809,25 +828,27 @@ export class AuthService {
         return null;
       }
 
-      // Return the clean data needed for the preview card
+      // Return the data for the UI
       return {
         uid: docSnap.id,
         firstName: info.firstName,
         lastName: info.lastName,
         email: info.email,
-        staffId: info.staffId, // The "DT-..." ID
+        staffId: info.staffId,
         photoUrl: info.photoUrl || "",
         initials: info.initials || "MB",
       };
     } catch (error: any) {
       console.error("Error searching member:", error);
-      toast.error(`Search failed: ${error.message}`, {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+      // Don't show generic errors if it's just "User not authenticated" from the helper
+      if (error.message !== "User not authenticated") {
+        toast.error(`Search failed: ${error.message}`, {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+      }
       return null;
     }
   }
-
   // --- UPDATED: Add the Member to the Organization ---
   async addStaffToOrganization(
     memberUid: string,

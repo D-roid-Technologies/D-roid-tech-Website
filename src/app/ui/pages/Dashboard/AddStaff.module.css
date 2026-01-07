@@ -1,6 +1,6 @@
 .container {
   padding: 20px;
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
   font-family: "Inter", sans-serif;
   animation: fadeIn 0.4s ease;
@@ -31,14 +31,15 @@
 }
 .backBtn:hover {
   color: #071d6a;
+  background: none;
 }
 
 .wizardCard {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); */
   overflow: hidden;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   min-height: 400px;
   display: flex;
   flex-direction: column;
@@ -75,7 +76,7 @@
 }
 
 .searchForm {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -89,7 +90,7 @@
   width: 100%;
   padding: 16px 20px;
   border: 2px solid #e0e0e0;
-  border-radius: 50px;
+  border-radius: 10px;
   font-size: 1rem;
   outline: none;
   transition: all 0.3s;
@@ -105,12 +106,13 @@
   position: absolute;
   right: 6px;
   top: 6px;
-  width: 44px;
+  font-size: 15px;
+  width: 74px;
   height: 44px;
-  border-radius: 50%;
+  border-radius: none;
   border: none;
-  background: #071d6a;
-  color: white;
+  background: none !important;
+  color: #071d6a;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -122,15 +124,19 @@
   background: #05154f;
 }
 .searchBtn:disabled {
-  background: #ccc;
+  background: #01071a;
   cursor: not-allowed;
 }
 
 .spin {
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
-  100% {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
     transform: rotate(360deg);
   }
 }
