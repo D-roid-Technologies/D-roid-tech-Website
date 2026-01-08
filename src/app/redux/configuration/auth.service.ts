@@ -490,6 +490,17 @@ export class AuthService {
 
       const isOrganisation = userData.userType === "Organisation";
 
+      // Initialize Notifications list with appropriate Onboarding prompts
+      let initialNotifications: any[] = [];
+
+      if (isStaff) {
+        initialNotifications.push(this.createOnboardingNotification());
+      }
+
+      if (isOrganisation) {
+        initialNotifications.push(this.createOrgOnboardingNotification());
+      }
+
       const droidAccount = {
         user: {
           primaryInformation: {
@@ -551,8 +562,7 @@ export class AuthService {
             trainings: [],
             progressions: [],
             userForms: [],
-            // Only add Onboarding notification for Staff
-            notifications: isStaff ? [this.createOnboardingNotification()] : [],
+            notifications: initialNotifications,
           },
           staff: {
             paySlip: [],
@@ -568,6 +578,7 @@ export class AuthService {
             ? {
                 employees: [],
                 departments: [],
+                classrooms: [], // NEW: Initialize Classrooms Array
               }
             : {},
         },
@@ -614,7 +625,7 @@ export class AuthService {
     }
   }
 
-  // Create onboarding notification template
+  // Create onboarding notification template for Staff
   private createOnboardingNotification() {
     return {
       id: Date.now(),
@@ -622,6 +633,20 @@ export class AuthService {
       message:
         "Please complete your staff onboarding information to access all features.",
       type: "warning",
+      date: new Date().toISOString().split("T")[0],
+      time: new Date().toISOString(),
+      isRead: false,
+    };
+  }
+
+  // Create onboarding notification template for Organizations
+  private createOrgOnboardingNotification() {
+    return {
+      id: Date.now() + 1, // Ensure distinct ID
+      title: "Complete Organization Profile",
+      message:
+        "Your organization profile is incomplete. Please add your address and contact details in Organization Details to enable full features.",
+      type: "info",
       date: new Date().toISOString().split("T")[0],
       time: new Date().toISOString(),
       isRead: false,
@@ -659,7 +684,6 @@ export class AuthService {
       if (userDocSnap.exists()) {
         const fetchedUserData = userDocSnap.data();
         const primaryInformation = fetchedUserData.user?.primaryInformation;
-        const userForm = fetchedUserData.user?.userForms;
         const userType = primaryInformation?.userType;
 
         // --- Role Validation Logic ---
@@ -682,7 +706,37 @@ export class AuthService {
             );
           }
         }
-        // If expectedRole is "Member", we generally allow everyone, or you can restrict Staff/Org if desired.
+
+        // --- Check for Missing Organization Details on Login ---
+        if (userType === "Organisation") {
+          const { phone, streetName, city, country } = primaryInformation;
+          const isProfileComplete = phone && streetName && city && country;
+
+          let currentNotifications =
+            fetchedUserData.user?.onboard?.notifications || [];
+
+          if (!isProfileComplete) {
+            // Check if notification already exists to avoid duplicates
+            const hasNotification = currentNotifications.some(
+              (n: any) => n.title === "Complete Organization Profile"
+            );
+
+            if (!hasNotification) {
+              const orgNotif = this.createOrgOnboardingNotification();
+              currentNotifications = [orgNotif, ...currentNotifications];
+
+              // Persist the new notification
+              await updateDoc(userDocRef, {
+                "user.onboard.notifications": currentNotifications,
+              });
+
+              // Update local object so it syncs to Redux below
+              if (updatedData?.user?.onboard) {
+                updatedData.user.onboard.notifications = currentNotifications;
+              }
+            }
+          }
+        }
 
         const updatedEntries =
           updatedData?.user?.staff?.staffSignInAndOut || [];
@@ -715,7 +769,7 @@ export class AuthService {
 
         // FIXED: Get notifications from correct path
         const firestoreNotifications =
-          fetchedUserData.user?.onboard?.notifications || [];
+          updatedData?.user?.onboard?.notifications || [];
 
         // Update all Redux states
         store.dispatch(setPayslipData(updatedPayslips));
@@ -774,34 +828,14 @@ export class AuthService {
     }
   }
 
-  // --- UPDATED: Search for a Member by their Unique ID (DT-XXXX-M) ---
+  // --- NEW: Search for a Member by their Unique ID (DT-XXXX-M) ---
+
   async searchMemberByUniqueId(uniqueId: string) {
     try {
-      // FIX: Use await this.getCurrentUser() instead of auth.currentUser
-      // This forces the code to WAIT until Firebase restores the session.
-      let currentUser;
-      try {
-        currentUser = await this.getCurrentUser();
-      } catch (e) {
-        // If this fails, the user is truly logged out
-        console.warn("⚠️ User session not found. Attempting generic check...");
-        currentUser = auth.currentUser;
-      }
-
-      console.log("🔍 Search Debug - Searching for ID:", uniqueId);
-      console.log("👤 Search Debug - Resolved Auth User:", currentUser?.uid);
-
-      if (!currentUser) {
-        toast.error("Session expired. Please refresh or sign in again.", {
-          style: { background: "#faad14", color: "#fff" },
-        });
-        return null;
-      }
-
-      // Query 'user.primaryInformation.staffId' because that holds the "DT-..." ID
+      // FIX: Query 'staffId' (where DT- IDs are stored), NOT 'uniqueId' (Auth UID)
       const q = query(
         collection(db, "droidaccount"),
-        where("user.primaryInformation.staffId", "==", uniqueId.trim())
+        where("user.primaryInformation.staffId", "==", uniqueId)
       );
 
       const querySnapshot = await getDocs(q);
@@ -813,12 +847,12 @@ export class AuthService {
         return null;
       }
 
+      // Return the first match
       const docSnap = querySnapshot.docs[0];
       const userData = docSnap.data();
-      const info = userData.user.primaryInformation;
 
-      // Ensure we only add Members
-      if (info.userType !== "Member") {
+      // Basic validation to ensure they are a Member
+      if (userData.user.primaryInformation.userType !== "Member") {
         toast.error(
           "This ID belongs to an Organization or Staff, not a Member.",
           {
@@ -828,34 +862,29 @@ export class AuthService {
         return null;
       }
 
-      // Return the data for the UI
       return {
         uid: docSnap.id,
-        firstName: info.firstName,
-        lastName: info.lastName,
-        email: info.email,
-        staffId: info.staffId,
-        photoUrl: info.photoUrl || "",
-        initials: info.initials || "MB",
+        ...userData.user.primaryInformation,
+        photoUrl: userData.user.primaryInformation.photoUrl || "",
       };
     } catch (error: any) {
       console.error("Error searching member:", error);
-      // Don't show generic errors if it's just "User not authenticated" from the helper
-      if (error.message !== "User not authenticated") {
-        toast.error(`Search failed: ${error.message}`, {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-      }
+      // Detailed error for debugging
+      toast.error(`Search failed: ${error.message}`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
       return null;
     }
   }
-  // --- UPDATED: Add the Member to the Organization ---
+
+  // --- NEW: Add the Member to the Organization ---
+
   async addStaffToOrganization(
     memberUid: string,
     staffDetails: {
       department: string;
-      jobTitle: string;
       role: string;
+      jobTitle: string;
       startDate: string;
     }
   ) {
@@ -866,34 +895,38 @@ export class AuthService {
 
       // 1. Get Organization Data (Current User)
       const orgRef = doc(db, "droidaccount", currentUser.uid);
+      const orgSnap = await getDoc(orgRef);
+      if (!orgSnap.exists()) throw new Error("Organization profile not found.");
 
       // 2. Get Member Data (Read-Only)
       const memberRef = doc(db, "droidaccount", memberUid);
       const memberSnap = await getDoc(memberRef);
       if (!memberSnap.exists()) throw new Error("Member profile not found.");
 
-      const memberInfo = memberSnap.data().user.primaryInformation;
+      const memberData = memberSnap.data();
+      const memberInfo = memberData.user.primaryInformation;
 
       // 3. Create the Employee Object for the Organization's List
       const newEmployeeEntry = {
         uid: memberUid,
-        staffId: memberInfo.staffId, // Store the DT ID
+        uniqueId: memberInfo.uniqueId,
         firstName: memberInfo.firstName,
         lastName: memberInfo.lastName,
         email: memberInfo.email,
-        photoUrl: memberInfo.photoUrl || "",
-        department: staffDetails.department,
-        jobTitle: staffDetails.jobTitle,
-        accessRole: staffDetails.role,
-        startDate: staffDetails.startDate,
+        photoUrl: memberInfo.photoUrl,
+        ...staffDetails,
         dateAdded: new Date().toISOString(),
         status: "Active",
       };
 
       // 4. Update Organization Doc: Add to 'organisation.employees' array
+      // We ONLY update the Organization's own document now.
       await updateDoc(orgRef, {
         "user.organisation.employees": arrayUnion(newEmployeeEntry),
       });
+
+      // REMOVED: Step 5 (Updating the Member's document) is deleted.
+      // The member's profile remains untouched.
 
       toast.success(
         `${memberInfo.firstName} successfully added to your staff list!`,
@@ -911,8 +944,7 @@ export class AuthService {
       throw error;
     }
   }
-
-  // --- UPDATED: Fetch Organization's Staff List ---
+  // --- NEW: Fetch Organization's Staff List ---
   async getOrganizationEmployees() {
     try {
       const currentUser = auth.currentUser;
@@ -922,13 +954,348 @@ export class AuthService {
       const orgSnap = await getDoc(orgRef);
 
       if (orgSnap.exists()) {
-        const data = orgSnap.data();
-        return data.user?.organisation?.employees || [];
+        return orgSnap.data().user?.organisation?.employees || [];
       }
       return [];
     } catch (error) {
       console.error("Error fetching employees:", error);
       return [];
+    }
+  }
+
+  // ==================================================================
+  //  NEW: CLASSROOM & SCHOOL MANAGEMENT HIERARCHY (EDIT/DELETE ADDED)
+  // ==================================================================
+
+  // 1. Get All Classrooms
+  async getOrganizationClassrooms() {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) return [];
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      const docSnap = await getDoc(userDocRef);
+      if (docSnap.exists()) {
+        return docSnap.data().user?.organisation?.classrooms || [];
+      }
+      return [];
+    } catch (error) {
+      console.error("Error fetching classrooms:", error);
+      return [];
+    }
+  }
+
+  // 2. Add a new Classroom
+  async addClassroom(classroomName: string, description: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const newClassroom = {
+        id: crypto.randomUUID(),
+        name: classroomName,
+        description: description,
+        classes: [],
+        dateCreated: new Date().toISOString(),
+      };
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": arrayUnion(newClassroom),
+      });
+      return newClassroom;
+    } catch (error: any) {
+      console.error("Error adding classroom:", error);
+      throw error;
+    }
+  }
+
+  // 3. Edit Classroom Name
+  async updateClassroom(classroomId: string, newName: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("User data not found");
+      const data = docSnap.data();
+      const classrooms = data.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) =>
+        cr.id === classroomId ? { ...cr, name: newName } : cr
+      );
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // 4. Delete Classroom (And all nested data)
+  async deleteClassroom(classroomId: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("User data not found");
+      const data = docSnap.data();
+      const classrooms = data.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.filter(
+        (cr: any) => cr.id !== classroomId
+      );
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // 5. Add a Class to a Classroom
+  async addClassToClassroom(classroomId: string, className: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("User data not found");
+      const data = docSnap.data();
+      const classrooms = data.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const newClass = {
+            id: crypto.randomUUID(),
+            name: className,
+            students: [],
+            dateCreated: new Date().toISOString(),
+          };
+          return { ...cr, classes: [...(cr.classes || []), newClass] };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      console.error("Error adding class:", error);
+      throw error;
+    }
+  }
+
+  // 6. Edit Class Name
+  async updateClass(classroomId: string, classId: string, newName: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+      const classrooms = data?.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) =>
+            cl.id === classId ? { ...cl, name: newName } : cl
+          );
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // 7. Delete Class
+  async deleteClass(classroomId: string, classId: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+      const classrooms = data?.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).filter(
+            (cl: any) => cl.id !== classId
+          );
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // 8. Add a Student to a Class
+  async addStudentToClass(
+    classroomId: string,
+    classId: string,
+    studentData: any
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("User data not found");
+      const data = docSnap.data();
+      const classrooms = data.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              const newStudent = {
+                id: crypto.randomUUID(),
+                ...studentData,
+                dateAdded: new Date().toISOString(),
+              };
+              return { ...cl, students: [...(cl.students || []), newStudent] };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      console.error("Error adding student:", error);
+      throw error;
+    }
+  }
+
+  // 9. Edit Student
+  async updateStudent(
+    classroomId: string,
+    classId: string,
+    studentId: string,
+    newData: any
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+      const classrooms = data?.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              const updatedStudents = (cl.students || []).map((s: any) =>
+                s.id === studentId ? { ...s, ...newData } : s
+              );
+              return { ...cl, students: updatedStudents };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // 10. Delete Student
+  async deleteStudent(classroomId: string, classId: string, studentId: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+      const classrooms = data?.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              const updatedStudents = (cl.students || []).filter(
+                (s: any) => s.id !== studentId
+              );
+              return { ...cl, students: updatedStudents };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // 11. Get Aggregate Stats for Dashboard
+  async getSchoolStats() {
+    try {
+      const classrooms = await this.getOrganizationClassrooms();
+      let totalStudents = 0;
+      let activeClasses = 0;
+
+      classrooms.forEach((cr: any) => {
+        if (cr.classes) {
+          activeClasses += cr.classes.length;
+          cr.classes.forEach((cl: any) => {
+            if (cl.students) {
+              totalStudents += cl.students.length;
+            }
+          });
+        }
+      });
+
+      return { totalStudents, activeClasses };
+    } catch (error) {
+      return { totalStudents: 0, activeClasses: 0 };
     }
   }
 

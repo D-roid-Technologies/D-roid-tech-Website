@@ -12,7 +12,6 @@ const OrganizationDashboard: React.FC = () => {
   // 1. Get the organization type from Redux
   const userDetails = useSelector((state: RootState) => state.user);
 
-  // Normalize the type string (handle mixed case: "School", "school", etc.)
   const orgType = userDetails.organisationalType?.toLowerCase();
 
   // 2. Render based on Type

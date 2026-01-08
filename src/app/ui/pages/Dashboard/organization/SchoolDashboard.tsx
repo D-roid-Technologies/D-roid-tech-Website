@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaChalkboard,
   FaUsers,
@@ -12,31 +12,42 @@ import {
   FaClipboardList,
 } from "react-icons/fa";
 import styles from "./SchoolDashboard.module.css";
+import { authService } from "../../../../redux/configuration/auth.service";
 
 const SchoolDashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
+  const [stats, setStats] = useState({ totalStudents: 0, activeClasses: 0 });
+
+  useEffect(() => {
+    // Fetch real stats on mount
+    const fetchStats = async () => {
+      const data = await authService.getSchoolStats();
+      setStats(data);
+    };
+    fetchStats();
+  }, []);
 
   // --- Data Objects ---
   const statsData = [
     {
       label: "Total Students",
-      value: "1,245",
-      change: "+45 this month",
+      value: stats.totalStudents.toLocaleString(), // Real Data
+      change: "+0 this month", 
       icon: FaUserGraduate,
       bgClass: styles.bgBlue,
       trend: "positive",
     },
     {
       label: "Teaching Staff",
-      value: "78",
-      change: "+2 new hires",
+      value: "0", // Could fetch employee count if needed
+      change: "0 new hires",
       icon: FaUsers,
       bgClass: styles.bgGreen,
       trend: "positive",
     },
     {
       label: "Active Classes",
-      value: "32",
+      value: stats.activeClasses.toString(), // Real Data
       change: "100% Operational",
       icon: FaChalkboard,
       bgClass: styles.bgPurple,
@@ -44,8 +55,8 @@ const SchoolDashboard: React.FC = () => {
     },
     {
       label: "Library Assets",
-      value: "8,450",
-      change: "+120 new books",
+      value: "0",
+      change: "+0 new books",
       icon: FaBookOpen,
       bgClass: styles.bgOrange,
       trend: "positive",
@@ -61,48 +72,24 @@ const SchoolDashboard: React.FC = () => {
   ];
 
   const activities = [
+    // Placeholder activities
     {
-      title: "Mathematics Exam",
-      desc: "Scheduled for Grade 12 - Hall A",
-      time: "2 hours ago",
-      icon: FaCalendarAlt,
-    },
-    {
-      title: "New Staff Onboarding",
-      desc: "Ms. Sarah Wilson (English Dept)",
-      time: "5 hours ago",
-      icon: FaUsers,
-    },
-    {
-      title: "Maintenance Alert",
-      desc: "Server maintenance completed",
-      time: "Yesterday",
+      title: "System Ready",
+      desc: "Dashboard initialized successfully.",
+      time: "Just now",
       icon: FaBolt,
     },
   ];
 
   const notifications = [
     {
-      title: "Fee Collection",
-      desc: "95% of Grade 10 fees collected.",
-      time: "10 min ago",
-      type: styles.notifSuccess,
-    },
-    {
-      title: "Parent Meeting",
-      desc: "Reminder: PTA meeting at 4 PM.",
-      time: "1 hour ago",
+      title: "Welcome",
+      desc: "Welcome to your new School Dashboard.",
+      time: "Now",
       type: styles.notifInfo,
-    },
-    {
-      title: "Library Overdue",
-      desc: "15 Books pending return.",
-      time: "3 hours ago",
-      type: styles.notifWarning,
     },
   ];
 
-  // --- Formatting Helpers ---
   const formattedDate = currentTime.toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -112,7 +99,6 @@ const SchoolDashboard: React.FC = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      {/* 1. Header Section */}
       <div className={styles.headerSection}>
         <div>
           <h1 className={styles.welcomeTitle}>School Overview</h1>
@@ -123,7 +109,6 @@ const SchoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Key Statistics Grid */}
       <div className={styles.statsGrid}>
         {statsData.map((stat, idx) => (
           <div key={idx} className={styles.statCard}>
@@ -141,7 +126,6 @@ const SchoolDashboard: React.FC = () => {
         ))}
       </div>
 
-      {/* 3. Quick Actions Grid */}
       <h3 className={styles.sectionTitle}>
         <FaBolt color="#f59e0b" /> Quick Actions
       </h3>
@@ -159,9 +143,7 @@ const SchoolDashboard: React.FC = () => {
         ))}
       </div>
 
-      {/* 4. Split Content: Activity Feed & Notifications */}
       <div className={styles.contentSplit}>
-        {/* Left: Recent Activity */}
         <div className={styles.cardPanel}>
           <div className={styles.cardHeader}>
             <h3>
@@ -185,7 +167,6 @@ const SchoolDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Notifications */}
         <div className={styles.cardPanel}>
           <div className={styles.cardHeader}>
             <h3>

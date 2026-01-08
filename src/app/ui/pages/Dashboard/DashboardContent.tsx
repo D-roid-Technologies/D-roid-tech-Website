@@ -26,9 +26,10 @@ import {
   FaDonate,
   FaServicestack,
   FaPencilAlt,
+  FaBuilding, // Added icon for Organization Details
 } from "react-icons/fa";
-// import { IoHomeSharp } from "react-icons/io5"; // Unused import
 import PersonalDetails from "./PersonalDetails";
+import OrganizationDetails from "./OrganizationDetails";
 import AllUsers from "./users/AllUsers";
 import { authService } from "../../../redux/configuration/auth.service";
 import SignInOut from "./SignInOut";
@@ -69,7 +70,6 @@ import ColorPickerItem from "../../components/toolboxfolder/colorPicker/colorPic
 import BackgroundRemoverItem from "../toolboxpage/premiumtoolbox/BackgroundRemoverItem";
 import AdminScheduleTool from "../schedule/AdminScheduleTool";
 import ServicesItems from "./Services";
-// import UnderDevelopmentPage from "../underDevelopment/UnderDevelopmentPage"; // Unused import in render logic
 import { VolunteersSection } from "./volunteers-section";
 import { DonationsSection } from "./donations-section";
 import { GroupsSection } from "./groups-section";
@@ -81,16 +81,10 @@ import { DepartmentsSection } from "./departments-section";
 import { ProjectsSection } from "./projects-section";
 import { ReportsSection } from "./reports-section";
 import StaffUserHomePage from "./staff/StaffUserHomePage";
-// Specific dashboards moved to OrganizationDashboard.tsx
-// import SchoolDashboard from "./organization/SchoolDashboard";
-// import BusinessDashboard from "./organization/BusinessDashboard";
-// import NGODashboard from "./organization/NGODashboard";
 import { AllToolsCard } from "../../components/CoreValueCard/AllToolsCard";
 import MemberDashboard from "./member/MemberDashboard";
-// import { NewwebsiteCard } from "../../components/CoreValueCard/NewwebsiteCard";
 import CodeComplex from "../toolboxpage/premiumtoolbox/CodeComplex";
 import { UpgradeToAccessTools } from "../../components/UpgradeToAccessTools";
-// import { PendingConfirmation } from "../../components/payment/PendingConfirmation";
 import TakeTestFolder from "./takeTest/TakeTestFolder";
 import CompleteOnboarding from "./CompleteOnbording";
 import { isAboveSixMonths } from "../../../utils/isAboveSixMonths";
@@ -98,7 +92,77 @@ import NotEligibleForTraining from "../../../utils/statusMessages";
 import { getToolAccessMessage } from "../../../redux/utils/toolAccessManager";
 import { useFreeTierTools } from "../../../hooks/useFreeTierTools";
 import OrganizationDashboard from "./OrganizationDashboard/OrganizationDashboard";
-// import { TestNotifications } from "./TestNotifications";
+import ClassRoomAlt from "./ClassRoomAlt";
+
+// Simple Popup Component for Organization Onboarding
+const OnboardingPopup = ({
+  onClose,
+  onGoToSettings,
+}: {
+  onClose: () => void;
+  onGoToSettings: () => void;
+}) => (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(0,0,0,0.7)",
+      zIndex: 9999,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div
+      style={{
+        background: "white",
+        padding: "30px",
+        borderRadius: "12px",
+        maxWidth: "400px",
+        textAlign: "center",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+      }}
+    >
+      <h3 style={{ marginTop: 0, color: "#071d69" }}>Complete Your Profile</h3>
+      <p style={{ color: "#555", marginBottom: "20px" }}>
+        Welcome! To get the most out of your Organization Dashboard, please
+        complete your profile details (Address, Phone, etc.).
+      </p>
+      <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <button
+          onClick={onGoToSettings}
+          style={{
+            padding: "10px 20px",
+            background: "#071d69",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          Go to Settings
+        </button>
+        <button
+          onClick={onClose}
+          style={{
+            padding: "10px 20px",
+            background: "#f0f0f0",
+            color: "#555",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          Later
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 const calculators = [
   {
@@ -154,13 +218,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   );
 
   const isAboveSixMonth = isAboveSixMonths(staffInfo?.staffStartDate);
-
-  // const [selectedMenuItem, setSelectedMenuItem] = useState<null | {
-  //   title: string;
-  //   content: string;
-  //   icon: ReactNode;
-  // }>(null);
-  // const [input, setInput] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const grossPay = Number.parseFloat(staffDetails?.staffGrossPay ?? "0");
   const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
@@ -172,30 +229,47 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [freeTierWarning, setFreeTierWarning] = useState<string | null>(null);
 
+  // Popup State
+  const [showOrgOnboardingPopup, setShowOrgOnboardingPopup] = useState(false);
+
+  // Check for Organization Profile Completeness on Mount
+  useEffect(() => {
+    if (userDetails.userType === "Organisation") {
+      // Check basic fields required for orgs
+      const isComplete =
+        userDetails.phone &&
+        userDetails.streetName &&
+        userDetails.city &&
+        userDetails.country;
+
+      if (!isComplete) {
+        // Simple check to not annoy user every single refresh if desired,
+        // but requirement says "when apps launch"
+        setShowOrgOnboardingPopup(true);
+      }
+    }
+  }, [userDetails]);
+
   const filteredTools = Alltools.filter(
     (tool) =>
       tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tool.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // ... [Tool handling functions remain the same] ...
   const handleLaunchTool = (toolComponent: string, isPremium?: boolean) => {
     if (isPremium) {
       const access = checkToolAccess(toolComponent, true);
-
       if (!access.canAccess) {
         setShowUpgradePrompt(toolComponent);
         return;
       }
-
       const warningMessage = getToolAccessMessage(access, toolComponent);
       if (warningMessage) {
         setFreeTierWarning(warningMessage);
       }
-
-      // Record usage for this tool
       recordToolUsage(toolComponent);
     }
-
     setActiveTool(toolComponent);
   };
 
@@ -215,8 +289,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         />
       );
     }
-
-    // Show free tier warning banner if applicable
     const warningBanner = freeTierWarning && (
       <div
         style={{
@@ -233,6 +305,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       </div>
     );
 
+    // ... [Switch case for tools remains the same] ...
     switch (activeTool) {
       case "ImageResizing":
         return (
@@ -353,13 +426,14 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   };
 
   const renderCalculatorComponent = () => {
+    // ... [Calculator switch case remains the same] ...
     switch (activeCalculator) {
       case "ScientificCalculator":
         return <ScientificCalculator onClose={handleCloseCalculator} />;
       case "Bmi":
         return <Bmi onClose={handleCloseCalculator} />;
       case "OhmslawCalculator":
-        return null; // <UnderDevelopmentPage /> avoided to prevent import error if not used
+        return null;
       default:
         return null;
     }
@@ -374,7 +448,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         setIsSidebarOpen(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
@@ -419,8 +492,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const menuItems = [
     ...(isUserRole ? [{ label: "Users", icon: FaUser }] : []),
     {
-      label: "Personal Details",
-      icon: FaUser,
+      // CONDITIONAL LABEL: Organization vs Personal
+      label:
+        userType === "Organisation"
+          ? "Organization Details"
+          : "Personal Details",
+      icon: userType === "Organisation" ? FaBuilding : FaUser,
     },
     { label: "Progressions", icon: FaChartLine },
 
@@ -472,8 +549,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             </Section>
           );
         case "Organisation":
-          // The specific dashboard logic (School vs Business vs NGO) is now handled
-          // inside the OrganizationDashboard component itself.
           return <OrganizationDashboard />;
         case "Member":
           return (
@@ -496,8 +571,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       }
     }
 
-    // Handle Specific Menu Items (Sidebar Clicks)
     switch (selectedMenu) {
+      // NEW CASE for Organization Details
+      case "Organization Details":
+        return (
+          <Section
+            title="Organization Profile"
+            isActive={selectedMenu === "Organization Details"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <OrganizationDetails />
+          </Section>
+        );
       case "Users":
         return (
           <Section
@@ -518,6 +603,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <PersonalDetails />
           </Section>
         );
+      // ... [Keep other cases: Tasks, Payslips, Onboarding, Training, Progressions, Schedules, Notifications, Tool Box, Calculate, Say It, etc.] ...
       case "Tasks":
         return (
           <Section
@@ -628,7 +714,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <p style={{ color: "#000000", marginBottom: "20px" }}>
               Access various tools for your tasks
             </p>
-
             {!activeTool && !showUpgradePrompt && (
               <input
                 type="text"
@@ -645,7 +730,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 }}
               />
             )}
-
             {activeTool || showUpgradePrompt ? (
               <div>
                 <button
@@ -684,7 +768,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                     className="process-card"
                   />
                 ))}
-
                 {filteredTools.length === 0 && (
                   <p style={{ color: "#888", marginTop: "10px" }}>
                     No tools found
@@ -768,7 +851,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             onHomeClick={() => setSelectedMenu(null)}
           >
             <SayIt />
-            {/* <TestNotifications /> */}
           </Section>
         );
 
@@ -780,7 +862,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             isActive={selectedMenu === "Classroom"}
             onHomeClick={() => setSelectedMenu(null)}
           >
-            <ClassRoom />
+            {/* <ClassRoom /> */}
+            <ClassRoomAlt />
           </Section>
         );
       case "Staffs":
@@ -963,6 +1046,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <TakeTestFolder />
           </Section>
         );
+
       default:
         return (
           <Section
@@ -978,6 +1062,17 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   return (
     <div className={styles.dashboardContainer}>
+      {/* Onboarding Popup for Organizations */}
+      {showOrgOnboardingPopup && (
+        <OnboardingPopup
+          onClose={() => setShowOrgOnboardingPopup(false)}
+          onGoToSettings={() => {
+            setShowOrgOnboardingPopup(false);
+            setSelectedMenu("Organization Details");
+          }}
+        />
+      )}
+
       <aside
         className={`${styles.sidebar} ${
           isSidebarOpen ? styles.sidebarOpen : ""
@@ -1020,7 +1115,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         </nav>
         <br />
         <br />
-
         <button className={styles.signOutButton} onClick={handleSignOut}>
           Sign Out
         </button>
