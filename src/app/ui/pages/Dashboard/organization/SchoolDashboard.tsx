@@ -1,339 +1,190 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaChalkboard,
   FaUsers,
   FaBookOpen,
   FaWallet,
-  FaCalendar,
+  FaCalendarAlt,
   FaUserGraduate,
   FaBell,
-  FaChartLine,
-  FaTrophy,
+  FaClock,
+  FaBolt,
+  FaClipboardList,
 } from "react-icons/fa";
-import "../staff/StaffUserHomePage.css";
-import { StatCard } from "../micro-ui/stat-card";
-type QuickActionCardProps = {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ size?: number }>;
-  onClick?: () => void;
-  variant?: string;
-};
-
-const QuickActionCard = ({
-  title,
-  description,
-  icon: Icon,
-  onClick,
-  variant = "default",
-}: QuickActionCardProps) => (
-  <div className={`shp-quick-action ${variant}`} onClick={onClick}>
-    <div className="shp-action-icon">
-      <Icon size={20} />
-    </div>
-    <div className="shp-action-content">
-      <h4 className="shp-action-title">{title}</h4>
-      <p className="shp-action-description">{description}</p>
-    </div>
-  </div>
-);
-
-type NotificationItemProps = {
-  title: string;
-  message: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-};
-
-const NotificationItem = ({
-  title,
-  message,
-  time,
-  type,
-  isRead,
-}: NotificationItemProps) => (
-  <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
-    <div className={`shp-notification-indicator ${type}`}></div>
-    <div className="shp-notification-content">
-      <h5 className="shp-notification-title">{title}</h5>
-      <p className="shp-notification-message">{message}</p>
-      <span className="shp-notification-time">{time}</span>
-    </div>
-  </div>
-);
-
-type RecentActivityItemProps = {
-  action: string;
-  details: string;
-  time: string;
-  icon: React.ComponentType<{ size?: number }>;
-};
-
-const RecentActivityItem = ({
-  action,
-  details,
-  time,
-  icon: Icon,
-}: RecentActivityItemProps) => (
-  <div className="shp-activity-item">
-    <div className="shp-activity-icon">
-      <Icon size={16} />
-    </div>
-    <div className="shp-activity-content">
-      <p className="shp-activity-action">{action}</p>
-      <p className="shp-activity-details">{details}</p>
-      <span className="shp-activity-time">{time}</span>
-    </div>
-  </div>
-);
+import styles from "./SchoolDashboard.module.css";
+import { authService } from "../../../../redux/configuration/auth.service";
 
 const SchoolDashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
+  const [stats, setStats] = useState({ totalStudents: 0, activeClasses: 0 });
 
-  const schoolStats = [
+  useEffect(() => {
+    // Fetch real stats on mount
+    const fetchStats = async () => {
+      const data = await authService.getSchoolStats();
+      setStats(data);
+    };
+    fetchStats();
+  }, []);
+
+  // --- Data Objects ---
+  const statsData = [
     {
-      title: "Total Students",
-      value: "1,245",
-      change: "45 new admissions",
+      label: "Total Students",
+      value: stats.totalStudents.toLocaleString(), // Real Data
+      change: "+0 this month", 
       icon: FaUserGraduate,
-      color: "blue",
+      bgClass: styles.bgBlue,
+      trend: "positive",
     },
     {
-      title: "Teaching Staff",
-      value: "78",
-      change: "5 new teachers",
+      label: "Teaching Staff",
+      value: "0", // Could fetch employee count if needed
+      change: "0 new hires",
       icon: FaUsers,
-      color: "green",
+      bgClass: styles.bgGreen,
+      trend: "positive",
     },
     {
-      title: "Active Classes",
-      value: "32",
-      change: "All sessions running",
+      label: "Active Classes",
+      value: stats.activeClasses.toString(), // Real Data
+      change: "100% Operational",
       icon: FaChalkboard,
-      color: "purple",
+      bgClass: styles.bgPurple,
+      trend: "neutral",
     },
     {
-      title: "Library Books",
-      value: "8,450",
-      change: "200 new additions",
+      label: "Library Assets",
+      value: "0",
+      change: "+0 new books",
       icon: FaBookOpen,
-      color: "orange",
+      bgClass: styles.bgOrange,
+      trend: "positive",
     },
   ];
 
-  const schoolQuickActions = [
+  const quickActions = [
+    { title: "Manage Classes", icon: FaChalkboard, color: "#2563eb" },
+    { title: "Admit Student", icon: FaUserGraduate, color: "#059669" },
+    { title: "Staff Payroll", icon: FaWallet, color: "#7c3aed" },
+    { title: "Timetable", icon: FaCalendarAlt, color: "#ea580c" },
+    { title: "Library", icon: FaBookOpen, color: "#db2777" },
+  ];
+
+  const activities = [
+    // Placeholder activities
     {
-      title: "Classroom Management",
-      description: "Manage classes and schedules",
-      icon: FaChalkboard,
-      variant: "primary",
-    },
-    {
-      title: "Staff Directory",
-      description: "View and manage teaching staff",
-      icon: FaUsers,
-      variant: "secondary",
-    },
-    {
-      title: "Library System",
-      description: "Manage books and resources",
-      icon: FaBookOpen,
-      variant: "success",
-    },
-    {
-      title: "Financial Management",
-      description: "Track fees and expenses",
-      icon: FaWallet,
-      variant: "default",
-    },
-    {
-      title: "Student Records",
-      description: "Manage student information",
-      icon: FaUserGraduate,
-      variant: "primary",
-    },
-    {
-      title: "Academic Reports",
-      description: "Generate performance reports",
-      icon: FaChartLine,
-      variant: "secondary",
+      title: "System Ready",
+      desc: "Dashboard initialized successfully.",
+      time: "Just now",
+      icon: FaBolt,
     },
   ];
 
-  const schoolNotifications = [
+  const notifications = [
     {
-      title: "Parent-Teacher Meeting",
-      message: "Scheduled for Grade 10 students this Friday",
-      time: "1 hour ago",
-      type: "info",
-      isRead: false,
-    },
-    {
-      title: "New Student Admission",
-      message: "5 new students enrolled in Grade 8",
-      time: "3 hours ago",
-      type: "success",
-      isRead: false,
-    },
-    {
-      title: "Library Book Return",
-      message: "15 books overdue, reminders sent to students",
-      time: "1 day ago",
-      type: "warning",
-      isRead: true,
-    },
-    {
-      title: "Fee Collection Update",
-      message: "Monthly fee collection completed for 95% students",
-      time: "2 days ago",
-      type: "success",
-      isRead: true,
+      title: "Welcome",
+      desc: "Welcome to your new School Dashboard.",
+      time: "Now",
+      type: styles.notifInfo,
     },
   ];
 
-  const schoolActivities = [
-    {
-      action: "Class Scheduled",
-      details: "Mathematics exam scheduled for Grade 12 next week",
-      time: "2 hours ago",
-      icon: FaCalendar,
-    },
-    {
-      action: "New Teacher Joined",
-      details: "Ms. Sarah Wilson joined as English Literature teacher",
-      time: "1 day ago",
-      icon: FaUsers,
-    },
-    {
-      action: "Library Updated",
-      details: "Added 50 new science textbooks to the collection",
-      time: "3 days ago",
-      icon: FaBookOpen,
-    },
-    {
-      action: "Student Achievement",
-      details: "Grade 11 students won inter-school science competition",
-      time: "1 week ago",
-      icon: FaTrophy,
-    },
-  ];
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+  const formattedDate = currentTime.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div className="shp-homepage-container">
-      {/* Welcome Header */}
-      <div className="shp-welcome-header">
-        <div className="shp-welcome-content">
-          <div className="shp-greeting">
-            <h1 className="shp-welcome-title">School Management System</h1>
-          </div>
-          <div className="shp-time-info">
-            <div className="shp-current-time">{formatTime(currentTime)}</div>
-            <div className="shp-current-date">{formatDate(currentTime)}</div>
-          </div>
+    <div className={styles.dashboardContainer}>
+      <div className={styles.headerSection}>
+        <div>
+          <h1 className={styles.welcomeTitle}>School Overview</h1>
+          <p className={styles.subTitle}>Welcome back, Administrator.</p>
+        </div>
+        <div className={styles.dateBadge}>
+          <FaClock /> {formattedDate}
         </div>
       </div>
 
-      {/* School Quick Actions */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Quick Actions</h2>
-        <div className="shp-quick-actions-grid">
-          {schoolQuickActions.map((action, index) => (
-            <QuickActionCard
-              key={index}
-              title={action.title}
-              description={action.description}
-              icon={action.icon}
-              variant={action.variant}
-              onClick={() => console.log(`Clicked: ${action.title}`)}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* School Stats */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">School Overview</h2>
-        <div className="shp-stats-grid">
-          {schoolStats.map((stat, index) => (
-            <StatCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              change={stat.change}
-              icon={stat.icon}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Two Column Layout */}
-      <div className="shp-two-column">
-        {/* Recent Activity */}
-        <div className="shp-activity-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent School Activity</h3>
-              <button className="shp-view-all-btn">View All</button>
-            </div>
-            <div className="shp-activity-list">
-              {schoolActivities.map((activity, index) => (
-                <RecentActivityItem
-                  key={index}
-                  action={activity.action}
-                  details={activity.details}
-                  time={activity.time}
-                  icon={activity.icon}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Notifications */}
-        <div className="shp-notifications-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">
-                <FaBell size={18} />
-                School Notifications
-              </h3>
-              <span className="shp-notification-count">
-                {schoolNotifications.filter((n) => !n.isRead).length}
+      <div className={styles.statsGrid}>
+        {statsData.map((stat, idx) => (
+          <div key={idx} className={styles.statCard}>
+            <div className={styles.statInfo}>
+              <h4>{stat.label}</h4>
+              <p className={styles.statValue}>{stat.value}</p>
+              <span className={`${styles.statChange} ${styles[stat.trend]}`}>
+                {stat.change}
               </span>
             </div>
-            <div className="shp-notifications-list">
-              {schoolNotifications.map((notification, index) => (
-                <NotificationItem
-                  key={index}
-                  title={notification.title}
-                  message={notification.message}
-                  time={notification.time}
-                  type={notification.type}
-                  isRead={notification.isRead}
-                />
-              ))}
+            <div className={`${styles.iconBox} ${stat.bgClass}`}>
+              <stat.icon />
             </div>
-            <button className="shp-view-all-notifications">
-              View All Notifications
-            </button>
+          </div>
+        ))}
+      </div>
+
+      <h3 className={styles.sectionTitle}>
+        <FaBolt color="#f59e0b" /> Quick Actions
+      </h3>
+      <div className={styles.actionsGrid}>
+        {quickActions.map((action, idx) => (
+          <div key={idx} className={styles.actionCard}>
+            <div
+              className={styles.actionIcon}
+              style={{ backgroundColor: action.color }}
+            >
+              <action.icon />
+            </div>
+            <p className={styles.actionTitle}>{action.title}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.contentSplit}>
+        <div className={styles.cardPanel}>
+          <div className={styles.cardHeader}>
+            <h3>
+              <FaClipboardList color="#4b5563" /> Recent Activity
+            </h3>
+            <button className={styles.viewAllBtn}>View Log</button>
+          </div>
+          <div className={styles.listContainer}>
+            {activities.map((item, idx) => (
+              <div key={idx} className={styles.listItem}>
+                <div className={styles.listIcon}>
+                  <item.icon />
+                </div>
+                <div className={styles.listContent}>
+                  <p className={styles.listTitle}>{item.title}</p>
+                  <p className={styles.listDesc}>{item.desc}</p>
+                  <span className={styles.listTime}>{item.time}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.cardPanel}>
+          <div className={styles.cardHeader}>
+            <h3>
+              <FaBell color="#4b5563" /> Notifications
+            </h3>
+            <button className={styles.viewAllBtn}>Clear</button>
+          </div>
+          <div className={styles.listContainer}>
+            {notifications.map((notif, idx) => (
+              <div key={idx} className={styles.listItem}>
+                <div className={`${styles.notifIndicator} ${notif.type}`} />
+                <div className={styles.listContent}>
+                  <p className={styles.listTitle}>{notif.title}</p>
+                  <p className={styles.listDesc}>{notif.desc}</p>
+                  <span className={styles.listTime}>{notif.time}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

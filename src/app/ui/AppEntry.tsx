@@ -99,7 +99,9 @@ const AppEntry: React.FunctionComponent<any> = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const hideFooter = location.pathname === "/auth/dashboard"; // Check if the current path is '/auth/dashboard'
+  const hideFooter =
+    location.pathname.startsWith("/auth/dashboard") ||
+    location.pathname.startsWith("/auth/organization/dashboard");
 
   return (
     <div>

@@ -183,6 +183,7 @@ export enum RoutePaths {
   MemberLogin = "/auth/member-login",
   MobilePhone = "/mobile",
   DashBoard = "/auth/dashboard",
+  OrganizationDashboard = "/auth/organization/dashboard", // Added Organization Dashboard Route
   Spinner = "/auth/dashboard/spinner",
 
   // Animation Routes
@@ -245,7 +246,17 @@ export const dropdownItems: DropdownItems = {
 };
 
 const Index: React.FunctionComponent = () => {
-  const userId = useSelector((state: RootState) => state.user.uniqueId);
+  const { uniqueId: userId, userType } = useSelector(
+    (state: RootState) => state.user
+  );
+
+  // Helper to determine where to redirect logged-in users
+  const getDashboardRoute = () => {
+    return userType === "Organisation"
+      ? RoutePaths.OrganizationDashboard
+      : RoutePaths.DashBoard;
+  };
+
   return (
     // <BrowserRouter>
     <Routes>
@@ -253,7 +264,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.Home}
         element={
           userId !== "" ? (
-            <Navigate to={RoutePaths.DashBoard} replace />
+            <Navigate to={getDashboardRoute()} replace />
           ) : (
             <Home />
           )
@@ -381,7 +392,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.StaffLogin}
         element={
           userId !== "" ? (
-            <Navigate to={RoutePaths.DashBoard} replace />
+            <Navigate to={getDashboardRoute()} replace />
           ) : (
             <StaffLogin />
           )
@@ -392,7 +403,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.MemberLogin}
         element={
           userId !== "" ? (
-            <Navigate to={RoutePaths.DashBoard} replace />
+            <Navigate to={getDashboardRoute()} replace />
           ) : (
             <MemberLogin />
           )
@@ -402,7 +413,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.OrganizationLogin}
         element={
           userId !== "" ? (
-            <Navigate to={RoutePaths.DashBoard} replace />
+            <Navigate to={getDashboardRoute()} replace />
           ) : (
             <OrganizationLogin />
           )
@@ -458,6 +469,17 @@ const Index: React.FunctionComponent = () => {
           </ProtectedRoute>
         }
       />
+
+      {/* Organization Dashboard Route */}
+      <Route
+        path={RoutePaths.OrganizationDashboard}
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path={RoutePaths.Spinner}
         element={
