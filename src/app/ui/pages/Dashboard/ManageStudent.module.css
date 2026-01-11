@@ -1,0 +1,371 @@
+.container {
+  padding: 32px;
+  background-color: #f8fafc;
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: #071d69;
+}
+
+.studentHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.largeAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #071d69;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.studentName h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1e293b;
+}
+
+.studentName p {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* Layout */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Form Styles */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #071d69;
+  box-shadow: 0 0 0 2px rgba(7, 29, 105, 0.1);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.saveBtn {
+  background: #071d69;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s;
+}
+
+.saveBtn:hover {
+  background: #0a2585;
+}
+
+.saveBtn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Document Styles */
+.uploadBox {
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.uploadBox:hover {
+  border-color: #071d69;
+  background: #f1f5f9;
+}
+
+.uploadBox.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.uploadText {
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.fileInput {
+  display: none;
+}
+
+/* Loader Styles */
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #071d69;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.docList {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.docItem {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  gap: 12px;
+}
+
+.docIcon {
+  color: #071d69;
+  flex-shrink: 0;
+}
+
+.docInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.docName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.docMeta {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.docActions {
+  display: flex;
+  gap: 8px;
+}
+
+.iconActionBtn {
+  background: white;
+  border: 1px solid #e2e8f0;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.iconActionBtn:hover {
+  border-color: #071d69;
+  background: white !important;
+  color: #071d69 !important;
+}
+
+.deleteBtn:hover {
+  border-color: #ef4444;
+  background: white !important;
+  color: #ef4444 !important;
+}
+
+/* Empty State for Docs */
+.noDocs {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.modalInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modalCancel {
+  background: #f1f5f9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Modal Upload Button */
+.uploadBtnModal {
+  background: #071d69;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.uploadBtnModal:hover {
+  background: #0a2585;
+}
+
+.uploadBtnModal.disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

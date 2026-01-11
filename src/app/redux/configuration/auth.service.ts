@@ -47,6 +47,7 @@ import { setCalculate, setSchedules, setToolBox } from "../slices/TSCSlice";
 import { logoutUser, setUser } from "../slices/User";
 import { store } from "../Store";
 
+// --- TYPES ---
 type Entry = {
   email: string;
   employeeId?: string;
@@ -54,189 +55,40 @@ type Entry = {
   type: "Sign In" | "Sign Out";
 };
 
-type DroidAccount = {
-  user: {
-    primaryInformation: {
-      firstName: string;
-      lastName: string;
-      initials: string;
-      userType: string;
-      uniqueId: string;
-      email: string;
-      agreeToPolicy: boolean;
-      isLoggedIn: boolean;
-      agreedToTerms: boolean;
-      middleName: string;
-      phone: string;
-      gender: string;
-      dateOfBirth: string;
-      disability: boolean;
-      disabilityType: string;
-      photoUrl: string;
-      educationalLevel: string;
-      referralName: string;
-      secondaryEmail: string;
-      securityQuestion: string;
-      securityAnswer: string;
-      verifiedEmail: boolean;
-      verifyPhoneNumber: boolean;
-      twoFactorSettings: boolean;
-      password: string;
-      role: string;
-      organisationalType: string; // Added Type
-    };
-    location: {
-      locationFromDevice: any;
-      currentdateTime: {
-        date: number;
-        month: number;
-        year: number;
-        time: string;
-        formattedDateTime: string;
-      };
-    };
-    affiliates: {
-      knowledgeCity: {
-        user: boolean;
-        kCoin?: {
-          amount: number;
-          storeCardDetails: boolean;
-          mineCoins: {
-            numberOfReferals: number;
-            numberOfAdsWatched: number;
-          };
-        };
-        courses?: any[];
-        notifications?: any[];
-        schedules?: any[];
-        diaries?: any[];
-        lunchBox?: {
-          events: any[];
-          jobs: any[];
-        };
-      };
-      nerves: {
-        user: boolean;
-      };
-      muzik: {
-        user: boolean;
-      };
-    };
-  };
-  knowledgeCity: {
-    kCoin: {
-      amount: number;
-      storeCardDetails: boolean;
-      mineCoins: {
-        numberOfReferals: number;
-        numberOfAdsWatched: number;
-      };
-    };
-    courses: Record<string, unknown>;
-    notifications: Record<string, unknown>;
-    schedules: Record<string, unknown>;
-    diaries: {
-      diaryTitle: string;
-      description: string;
-      startDate: string;
-      endDate: string;
-    }[];
-    lunchBox: {
-      events: {
-        eventTitle: string;
-        description: string;
-        imageLink: string;
-        attendees: number;
-        createdTime: string;
-        createdDate: string;
-      }[];
-      jobs: {
-        jobTitle: string;
-        description: string;
-        imageLink: string;
-        peopleApplied: number;
-        createdTime: string;
-        createdDate: string;
-      }[];
-    };
-  };
-  staff: {
-    staffSignInAndOut: any[];
-  };
-  forms: {
-    userForms: any[];
-  };
-  toolBox: {
-    toolBoxInfo: any[];
-  };
-  muzik: {
-    muzikData: any[];
-  };
-  calculate: {
-    calculators: any[];
-  };
-  schedules: {
-    schedule: any[];
-  };
-  nerves: {
-    items: any[];
-  };
-  announcements: {
-    notifications: any[];
-  };
-  sayit: {
-    sayIt: any[];
-  };
-  tasks: {
-    task: any[];
-  };
-  payslips: {
-    paySlip: any[];
-  };
-  onboarding: {
-    onboarding: any[];
-  };
-  training: {
-    trainings: any[];
-  };
-  progression: {
-    progressions: any[];
-  };
-  resources: {
-    resorceses: any[];
-  };
-};
+export interface Notification {
+  id: number;
+  title: string;
+  message: string;
+  date: string;
+  time: string;
+  type: string;
+  isRead: boolean;
+}
 
-function getCurrentUserOnce(timeoutMs = 3000): Promise<User | null> {
-  const auth = getAuth();
-  return new Promise((resolve) => {
-    if (auth.currentUser) {
-      resolve(auth.currentUser);
-      return;
-    }
+interface SecuritySettings {
+  twoFactorEnabled: boolean;
+  loginAlerts: boolean;
+  lastUpdated?: string;
+}
 
-    let resolved = false;
-    const unlisten = onAuthStateChanged(auth, (user) => {
-      if (!resolved) {
-        resolved = true;
-        unlisten();
-        resolve(user);
-      }
-    });
+// --- HELPER FUNCTIONS ---
 
-    setTimeout(() => {
-      if (!resolved) {
-        resolved = true;
-        unlisten();
-        resolve(auth.currentUser);
-      }
-    }, timeoutMs);
+function getCurrentUserPromise(): Promise<User> {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        unsubscribe();
+        if (user) resolve(user);
+        else reject(new Error("User not authenticated"));
+      },
+      reject
+    );
   });
 }
 
 const getCurrentDateTime = () => {
   const now = new Date();
-
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
   const date = now.getDate();
@@ -260,6 +112,20 @@ const getCurrentDateTime = () => {
   };
 };
 
+function removeUndefined(obj: any): any {
+  if (Array.isArray(obj)) {
+    return obj.map(removeUndefined);
+  } else if (obj && typeof obj === "object") {
+    return Object.entries(obj)
+      .filter(([, value]) => value !== undefined)
+      .reduce((acc, [key, value]) => {
+        acc[key] = removeUndefined(value);
+        return acc;
+      }, {} as any);
+  }
+  return obj;
+}
+
 type LogEntry = {
   email: string;
   employeeId?: string;
@@ -276,6 +142,8 @@ function parseDate(timestamp: string): Date {
   const [day, month, year] = datePart.split("/");
   return new Date(`${year}-${month}-${day}T${timePart}`);
 }
+
+// --- EXPORTED FUNCTIONS ---
 
 export function calculateNetSalary(
   logs: LogEntry[],
@@ -361,6 +229,14 @@ export function calculateNetSalary(
   };
 }
 
+export function calculateTaxPercentage(grossPay: number, tax: number): number {
+  if (grossPay === 0) {
+    throw new Error("Gross pay cannot be zero.");
+  }
+  const percentage = (tax / grossPay) * 100;
+  return parseFloat(percentage.toFixed(2));
+}
+
 export async function getUserDocByUniqueId(uniqueId: string) {
   const currentUser = auth.currentUser;
 
@@ -384,80 +260,17 @@ export async function getUserDocByUniqueId(uniqueId: string) {
   return docSnap;
 }
 
-export function calculateTaxPercentage(grossPay: number, tax: number): number {
-  if (grossPay === 0) {
-    throw new Error("Gross pay cannot be zero.");
-  }
-  const percentage = (tax / grossPay) * 100;
-  return parseFloat(percentage.toFixed(2));
-}
-
-const addDaysToDate = (dateInput: string, daysToAdd: number) => {
-  const initialDate = new Date(dateInput);
-
-  if (isNaN(initialDate.getTime())) {
-    throw new Error("Invalid date input. Please provide a valid date.");
-  }
-
-  initialDate.setDate(initialDate.getDate() + daysToAdd);
-
-  const newDate = {
-    year: initialDate.getFullYear(),
-    month: initialDate.getMonth() + 1,
-    day: initialDate.getDate(),
-    fullDate: initialDate.toISOString().split("T")[0],
-  };
-
-  return newDate;
-};
-
-function removeUndefined(obj: any): any {
-  if (Array.isArray(obj)) {
-    return obj.map(removeUndefined);
-  } else if (obj && typeof obj === "object") {
-    return Object.entries(obj)
-      .filter(([, value]) => value !== undefined)
-      .reduce((acc, [key, value]) => {
-        acc[key] = removeUndefined(value);
-        return acc;
-      }, {} as any);
-  }
-  return obj;
-}
-
-function getCurrentUser(): Promise<User> {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (user) => {
-        unsubscribe();
-        if (user) resolve(user);
-        else reject(new Error("User not authenticated"));
-      },
-      reject
-    );
-  });
-}
-
-// Notification interface for type safety
-export interface Notification {
-  id: number;
-  title: string;
-  message: string;
-  date: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-}
-
-// security interface for type safety
-interface SecuritySettings {
-  twoFactorEnabled: boolean;
-  loginAlerts: boolean;
-  lastUpdated?: string;
-}
+// --- AUTH SERVICE CLASS ---
 
 export class AuthService {
+  async getCurrentUser(): Promise<User> {
+    return getCurrentUserPromise();
+  }
+
+  // ==========================================
+  //  1. AUTHENTICATION & REGISTRATION
+  // ==========================================
+
   async handleUserRegistration(
     userData: UserType,
     locationData: LocationState
@@ -471,8 +284,6 @@ export class AuthService {
       const user = res.user;
       const currentDateTime = getCurrentDateTime();
 
-      // Determine Display Name
-      // If Organisation, use firstName (mapped to Org Name). If individual, use Full Name.
       const displayName =
         userData.userType === "Organisation"
           ? userData.firstName
@@ -490,7 +301,6 @@ export class AuthService {
 
       const isOrganisation = userData.userType === "Organisation";
 
-      // Initialize Notifications list with appropriate Onboarding prompts
       let initialNotifications: any[] = [];
 
       if (isStaff) {
@@ -504,13 +314,13 @@ export class AuthService {
       const droidAccount = {
         user: {
           primaryInformation: {
-            firstName: userData.firstName, // Contains Org Name if isOrganisation
-            lastName: isOrganisation ? "Organisation" : userData.lastName, // Fallback for Org
+            firstName: userData.firstName,
+            lastName: isOrganisation ? "Organisation" : userData.lastName,
             initials: isOrganisation
               ? userData.firstName.substring(0, 2).toUpperCase()
               : `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase(),
             userType: userData.userType,
-            organisationalType: userData.organisationalType || "", // ✅ Added Organisation Type
+            organisationalType: userData.organisationalType || "",
             staffId: userData.uniqueId,
             uniqueId: user.uid,
             email: userData.email,
@@ -533,7 +343,7 @@ export class AuthService {
             verifyPhoneNumber: false,
             twoFactorSettings: false,
             password: "",
-            role: userData.role || "", // Ensure role is captured
+            role: userData.role || "",
             streetNumber: "",
             streetName: "",
             city: "",
@@ -546,15 +356,9 @@ export class AuthService {
           },
           security: {},
           affiliates: {
-            knowledgeCity: {
-              user: false,
-            },
-            nerves: {
-              user: false,
-            },
-            muzik: {
-              user: false,
-            },
+            knowledgeCity: { user: false },
+            nerves: { user: false },
+            muzik: { user: false },
           },
           onboard: {
             onboarding: [],
@@ -573,24 +377,17 @@ export class AuthService {
             tasks: [],
             tests: [],
           },
-          // Placeholder for potential future Organisation specific data fields
           organisation: isOrganisation
             ? {
                 employees: [],
                 departments: [],
-                classrooms: [], // NEW: Initialize Classrooms Array
+                classrooms: [],
               }
             : {},
         },
-        toolBox: {
-          toolBoxInfo: [],
-        },
-        calculate: {
-          calculators: [],
-        },
-        schedules: {
-          mySchedles: [],
-        },
+        toolBox: { toolBoxInfo: [] },
+        calculate: { calculators: [] },
+        schedules: { mySchedles: [] },
       };
 
       await setDoc(userDocRef, droidAccount);
@@ -625,44 +422,6 @@ export class AuthService {
     }
   }
 
-  // Create onboarding notification template for Staff
-  private createOnboardingNotification() {
-    return {
-      id: Date.now(),
-      title: "Complete Your Onboarding",
-      message:
-        "Please complete your staff onboarding information to access all features.",
-      type: "warning",
-      date: new Date().toISOString().split("T")[0],
-      time: new Date().toISOString(),
-      isRead: false,
-    };
-  }
-
-  // Create onboarding notification template for Organizations
-  private createOrgOnboardingNotification() {
-    return {
-      id: Date.now() + 1, // Ensure distinct ID
-      title: "Complete Organization Profile",
-      message:
-        "Your organization profile is incomplete. Please add your address and contact details in Organization Details to enable full features.",
-      type: "info",
-      date: new Date().toISOString().split("T")[0],
-      time: new Date().toISOString(),
-      isRead: false,
-    };
-  }
-
-  async getAllUsersFromFirestore() {
-    try {
-      const user = auth.currentUser;
-      console.log(user);
-    } catch (error: any) {
-      console.error("Error fetching users:", error.message);
-    }
-  }
-
-  // UPDATED: Now accepts expectedRole instead of isStaff boolean
   async handleUserLogin(
     email: string,
     password: string,
@@ -686,7 +445,7 @@ export class AuthService {
         const primaryInformation = fetchedUserData.user?.primaryInformation;
         const userType = primaryInformation?.userType;
 
-        // --- Role Validation Logic ---
+        // Role Validation
         if (expectedRole === "Staff") {
           const isStaffAccount =
             userType?.toLowerCase() === "staff" ||
@@ -707,7 +466,7 @@ export class AuthService {
           }
         }
 
-        // --- Check for Missing Organization Details on Login ---
+        // Check for Missing Organization Details
         if (userType === "Organisation") {
           const { phone, streetName, city, country } = primaryInformation;
           const isProfileComplete = phone && streetName && city && country;
@@ -716,7 +475,6 @@ export class AuthService {
             fetchedUserData.user?.onboard?.notifications || [];
 
           if (!isProfileComplete) {
-            // Check if notification already exists to avoid duplicates
             const hasNotification = currentNotifications.some(
               (n: any) => n.title === "Complete Organization Profile"
             );
@@ -725,12 +483,10 @@ export class AuthService {
               const orgNotif = this.createOrgOnboardingNotification();
               currentNotifications = [orgNotif, ...currentNotifications];
 
-              // Persist the new notification
               await updateDoc(userDocRef, {
                 "user.onboard.notifications": currentNotifications,
               });
 
-              // Update local object so it syncs to Redux below
               if (updatedData?.user?.onboard) {
                 updatedData.user.onboard.notifications = currentNotifications;
               }
@@ -738,48 +494,29 @@ export class AuthService {
           }
         }
 
+        // Dispatch Data
         const updatedEntries =
           updatedData?.user?.staff?.staffSignInAndOut || [];
-        const updatedStaffDetails = {
-          staffGrossPay:
-            updatedData?.user?.staff?.staffDetails?.staffGrossPay || "",
-          staffTax: updatedData?.user?.staff?.staffDetails?.staffTax || "",
-          staffPosition:
-            updatedData?.user?.staff?.staffDetails?.staffPosition || "",
-          staffBank: updatedData?.user?.staff?.staffDetails?.staffBank || "",
-          staffAccountNmber:
-            updatedData?.user?.staff?.staffDetails?.staffAccountNmber || "",
-          staffAccountName:
-            updatedData?.user?.staff?.staffDetails?.staffAccountName || "",
-          staffStartDate:
-            updatedData?.user?.staff?.staffDetails?.staffStartDate || "",
-        };
+        const updatedStaffDetails =
+          updatedData?.user?.staff?.staffDetails || {};
         const updatedStaffDocuments = updatedData?.user?.staff?.staffDoc || {};
         const updatedStaffLeave = updatedData?.user?.staff?.staffLeave || [];
         const updatedKnowledgeCity = updatedData?.user?.knowledgeCity || {};
-        const updatedOnboarding = updatedData?.user?.onboard?.onboarding || [];
-        const updatedMemberStatus =
-          updatedData?.user?.onboard?.memberStatus || [];
         const updatedTrainings = updatedData?.user?.trainings || [];
         const updatedPayslips = updatedData?.user?.payslips?.paySlip || [];
         const updatedProgressions = updatedData?.user?.progressions || [];
         const schedleData = updatedData?.schedules?.mySchedules || [];
         const toolBoxData = updatedData?.toolBox?.toolBoxInfo || [];
         const calculateData = updatedData?.calculate?.calculators || [];
-
-        // FIXED: Get notifications from correct path
         const firestoreNotifications =
           updatedData?.user?.onboard?.notifications || [];
 
-        // Update all Redux states
         store.dispatch(setPayslipData(updatedPayslips));
         store.dispatch(setKnowledgeCity(updatedKnowledgeCity));
         store.dispatch(setTrainings(updatedTrainings));
         store.dispatch(setAllMilestones(updatedProgressions));
         store.dispatch(setSignInAndOutData(updatedEntries));
         store.dispatch(setStaffDetails(updatedStaffDetails));
-
-        // Set notifications from Firestore to Redux
         store.dispatch(setNotifications(firestoreNotifications));
 
         try {
@@ -796,7 +533,6 @@ export class AuthService {
           setUser({ ...primaryInformation, role: primaryInformation.role })
         );
 
-        // Initialize notification service AFTER setting Firestore data
         try {
           const { notificationsService } = await import(
             "../../ui/notificationService/notifications.service"
@@ -807,10 +543,7 @@ export class AuthService {
         }
 
         toast.success(`We have successfully logged you into your account.`, {
-          style: {
-            background: "#4BB543",
-            color: "#fff",
-          },
+          style: { background: "#4BB543", color: "#fff" },
         });
 
         return userCredential;
@@ -819,20 +552,47 @@ export class AuthService {
       }
     } catch (err: any) {
       toast.error(err.message || "Login failed", {
-        style: {
-          background: "#ff4d4f",
-          color: "#fff",
-        },
+        style: { background: "#ff4d4f", color: "#fff" },
       });
       throw err;
     }
   }
 
-  // --- NEW: Search for a Member by their Unique ID (DT-XXXX-M) ---
+  async handleUserSignout(): Promise<void> {
+    await signOut(auth)
+      .then(() => {
+        store.dispatch(logoutUser());
+        toast.success(`You have successfully signed out`, {
+          style: { background: "#4BB543", color: "#fff" },
+        });
+      })
+      .catch((err) => {
+        toast.error(`Error signing out - ${err.message}`, {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+      });
+  }
+
+  async handlePasswordReset(email: string): Promise<void> {
+    await sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success(`Password reset email sent to: ${email}`, {
+          style: { background: "#4BB543", color: "#fff" },
+        });
+      })
+      .catch((error: any) => {
+        toast.error(`${error.message}`, {
+          style: { background: "#ff4d4f", color: "#fff" },
+        });
+      });
+  }
+
+  // ==========================================
+  //  2. ORGANIZATION & STAFF MANAGEMENT
+  // ==========================================
 
   async searchMemberByUniqueId(uniqueId: string) {
     try {
-      // FIX: Query 'staffId' (where DT- IDs are stored), NOT 'uniqueId' (Auth UID)
       const q = query(
         collection(db, "droidaccount"),
         where("user.primaryInformation.staffId", "==", uniqueId)
@@ -847,17 +607,13 @@ export class AuthService {
         return null;
       }
 
-      // Return the first match
       const docSnap = querySnapshot.docs[0];
       const userData = docSnap.data();
 
-      // Basic validation to ensure they are a Member
       if (userData.user.primaryInformation.userType !== "Member") {
         toast.error(
           "This ID belongs to an Organization or Staff, not a Member.",
-          {
-            style: { background: "#faad14", color: "#fff" },
-          }
+          { style: { background: "#faad14", color: "#fff" } }
         );
         return null;
       }
@@ -869,15 +625,12 @@ export class AuthService {
       };
     } catch (error: any) {
       console.error("Error searching member:", error);
-      // Detailed error for debugging
       toast.error(`Search failed: ${error.message}`, {
         style: { background: "#ff4d4f", color: "#fff" },
       });
       return null;
     }
   }
-
-  // --- NEW: Add the Member to the Organization ---
 
   async addStaffToOrganization(
     memberUid: string,
@@ -893,12 +646,10 @@ export class AuthService {
       if (!currentUser)
         throw new Error("You must be logged in as an Organization.");
 
-      // 1. Get Organization Data (Current User)
       const orgRef = doc(db, "droidaccount", currentUser.uid);
       const orgSnap = await getDoc(orgRef);
       if (!orgSnap.exists()) throw new Error("Organization profile not found.");
 
-      // 2. Get Member Data (Read-Only)
       const memberRef = doc(db, "droidaccount", memberUid);
       const memberSnap = await getDoc(memberRef);
       if (!memberSnap.exists()) throw new Error("Member profile not found.");
@@ -906,7 +657,6 @@ export class AuthService {
       const memberData = memberSnap.data();
       const memberInfo = memberData.user.primaryInformation;
 
-      // 3. Create the Employee Object for the Organization's List
       const newEmployeeEntry = {
         uid: memberUid,
         uniqueId: memberInfo.uniqueId,
@@ -919,20 +669,13 @@ export class AuthService {
         status: "Active",
       };
 
-      // 4. Update Organization Doc: Add to 'organisation.employees' array
-      // We ONLY update the Organization's own document now.
       await updateDoc(orgRef, {
         "user.organisation.employees": arrayUnion(newEmployeeEntry),
       });
 
-      // REMOVED: Step 5 (Updating the Member's document) is deleted.
-      // The member's profile remains untouched.
-
       toast.success(
         `${memberInfo.firstName} successfully added to your staff list!`,
-        {
-          style: { background: "#4BB543", color: "#fff" },
-        }
+        { style: { background: "#4BB543", color: "#fff" } }
       );
 
       return newEmployeeEntry;
@@ -944,7 +687,7 @@ export class AuthService {
       throw error;
     }
   }
-  // --- NEW: Fetch Organization's Staff List ---
+
   async getOrganizationEmployees() {
     try {
       const currentUser = auth.currentUser;
@@ -963,11 +706,10 @@ export class AuthService {
     }
   }
 
-  // ==================================================================
-  //  NEW: CLASSROOM & SCHOOL MANAGEMENT HIERARCHY (EDIT/DELETE ADDED)
-  // ==================================================================
+  // ==========================================
+  //  3. CLASSROOM & STUDENT HIERARCHY
+  // ==========================================
 
-  // 1. Get All Classrooms
   async getOrganizationClassrooms() {
     try {
       const currentUser = auth.currentUser;
@@ -984,7 +726,6 @@ export class AuthService {
     }
   }
 
-  // 2. Add a new Classroom
   async addClassroom(classroomName: string, description: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1009,7 +750,6 @@ export class AuthService {
     }
   }
 
-  // 3. Edit Classroom Name
   async updateClassroom(classroomId: string, newName: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1034,7 +774,6 @@ export class AuthService {
     }
   }
 
-  // 4. Delete Classroom (And all nested data)
   async deleteClassroom(classroomId: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1059,7 +798,6 @@ export class AuthService {
     }
   }
 
-  // 5. Add a Class to a Classroom
   async addClassToClassroom(classroomId: string, className: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1094,7 +832,6 @@ export class AuthService {
     }
   }
 
-  // 6. Edit Class Name
   async updateClass(classroomId: string, classId: string, newName: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1124,7 +861,6 @@ export class AuthService {
     }
   }
 
-  // 7. Delete Class
   async deleteClass(classroomId: string, classId: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1154,7 +890,6 @@ export class AuthService {
     }
   }
 
-  // 8. Add a Student to a Class
   async addStudentToClass(
     classroomId: string,
     classId: string,
@@ -1193,12 +928,10 @@ export class AuthService {
       });
       return true;
     } catch (error) {
-      console.error("Error adding student:", error);
       throw error;
     }
   }
 
-  // 9. Edit Student
   async updateStudent(
     classroomId: string,
     classId: string,
@@ -1239,7 +972,6 @@ export class AuthService {
     }
   }
 
-  // 10. Delete Student
   async deleteStudent(classroomId: string, classId: string, studentId: string) {
     try {
       const currentUser = auth.currentUser;
@@ -1275,7 +1007,114 @@ export class AuthService {
     }
   }
 
-  // 11. Get Aggregate Stats for Dashboard
+  // --- New Methods for Manage Student & Documents ---
+
+  async updateStudentDetails(
+    classroomId: string,
+    classId: string,
+    studentId: string,
+    studentDetails: any
+  ) {
+    return this.updateStudent(classroomId, classId, studentId, studentDetails);
+  }
+
+  // UPDATED: Now saves Base64 directly to Firestore array
+  async addStudentDocument(
+    classroomId: string,
+    classId: string,
+    studentId: string,
+    documentData: { name: string; fileData: string; type: string; size: number }
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+      const classrooms = data?.user.organisation.classrooms || [];
+
+      const newDoc = {
+        id: crypto.randomUUID(),
+        ...documentData,
+        dateAdded: new Date().toISOString(),
+      };
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              const updatedStudents = (cl.students || []).map((s: any) => {
+                if (s.id === studentId) {
+                  return { ...s, documents: [...(s.documents || []), newDoc] };
+                }
+                return s;
+              });
+              return { ...cl, students: updatedStudents };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return newDoc;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // UPDATED: Deletes from Firestore array only
+  async deleteStudentDocument(
+    classroomId: string,
+    classId: string,
+    studentId: string,
+    documentId: string
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+      const classrooms = data?.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              const updatedStudents = (cl.students || []).map((s: any) => {
+                if (s.id === studentId) {
+                  const updatedDocs = (s.documents || []).filter(
+                    (d: any) => d.id !== documentId
+                  );
+                  return { ...s, documents: updatedDocs };
+                }
+                return s;
+              });
+              return { ...cl, students: updatedStudents };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getSchoolStats() {
     try {
       const classrooms = await this.getOrganizationClassrooms();
@@ -1299,74 +1138,20 @@ export class AuthService {
     }
   }
 
-  async handlePasswordReset(email: string): Promise<void> {
-    await sendPasswordResetEmail(auth, email)
-      .then(() => {
-        toast.success(
-          `Password reset email sent to: ${email}. Please check your inbox.`,
-          {
-            style: {
-              background: "#4BB543",
-              color: "#fff",
-            },
-          }
-        );
-      })
-      .catch((error: any) => {
-        toast.error(`${error.message}`, {
-          style: {
-            background: "#ff4d4f",
-            color: "#fff",
-          },
-        });
-      });
-  }
-
-  async handleUserSignout(): Promise<void> {
-    await signOut(auth)
-      .then(() => {
-        store.dispatch(logoutUser());
-        toast.success(
-          `You have successfully signed out of your D'roid Account`,
-          {
-            style: {
-              background: "#4BB543",
-              color: "#fff",
-            },
-          }
-        );
-      })
-      .catch((err) => {
-        toast.error(`Error creating your D'roid Account - ${err.message}`, {
-          style: {
-            background: "#ff4d4f",
-            color: "#fff",
-          },
-        });
-      });
-  }
+  // ==========================================
+  //  4. UTILITY METHODS (Fixes missing errors)
+  // ==========================================
 
   async updatePrimaryInformation(partialUpdateData: Partial<UserType>) {
     try {
       const currentUser = auth.currentUser;
-
-      if (!currentUser) {
-        toast.error("User not authenticated", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return;
-      }
+      if (!currentUser) throw new Error("User not authenticated");
 
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
       const userSnapshot = await getDoc(userDocRef);
 
-      if (!userSnapshot.exists()) {
-        toast.error("User not found", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return;
-      }
+      if (!userSnapshot.exists()) throw new Error("User not found");
 
       const currentData = userSnapshot.data();
       const updatedPrimaryInfo = {
@@ -1379,170 +1164,29 @@ export class AuthService {
       });
 
       store.dispatch(setUser(updatedPrimaryInfo));
-
       toast.success("User information updated successfully", {
         style: { background: "#4BB543", color: "#fff" },
       });
     } catch (error: any) {
-      console.error("Failed to update user information:", error.message);
-      toast.error("Failed to update user information", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
-    }
-  }
-
-  async logStaffSignInOut(entry: Entry) {
-    try {
-      const currentUser = auth.currentUser;
-
-      if (!currentUser) {
-        toast.error("No authenticated user found.", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return null;
-      }
-
-      const userId = currentUser.uid;
-      const userDocRef = doc(db, "droidaccount", userId);
-      const userSnapshot = await getDoc(userDocRef);
-
-      if (!userSnapshot.exists()) {
-        toast.error("User document not found.", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return null;
-      }
-
-      const data = userSnapshot.data();
-      const existingEntries = data?.staff?.staffSignInAndOut || [];
-
-      await updateDoc(userDocRef, {
-        "user.staff.staffSignInAndOut": arrayUnion(entry),
-      });
-
-      const updatedSnapshot = await getDoc(userDocRef);
-      const updatedData = updatedSnapshot.data();
-      const updatedEntries = updatedData?.staff?.staffSignInAndOut || [];
-      const updatedStaffDetails = {
-        staffGrossPay: updatedData?.staff?.staffDetails?.staffGrossPay || "",
-        staffTax: updatedData?.staff?.staffDetails?.staffTax || "",
-        staffPosition: updatedData?.staff?.staffDetails?.staffPosition || "",
-        staffBank: updatedData?.staff?.staffDetails?.staffBank || "",
-        staffAccountNmber:
-          updatedData?.staff?.staffDetails?.staffAccountNmber || "",
-        staffAccountName:
-          updatedData?.staff?.staffDetails?.staffAccountName || "",
-      };
-      const updatedStaffDocuments = updatedData?.staff?.staffDoc || {};
-      const updatedStaffLeave = updatedData?.staff?.staffLeave || [];
-
-      store.dispatch(setSignInAndOutData(updatedEntries));
-      store.dispatch(setStaffDetails(updatedStaffDetails));
-      store.dispatch(setStaffDocuments(updatedStaffDocuments));
-      store.dispatch(setStaffLeave(updatedStaffLeave));
-
-      toast.success(`${entry.type} recorded at ${entry.timestamp}`, {
-        style: { background: "#4BB543", color: "#fff" },
-      });
-
-      return entry;
-    } catch (error: any) {
-      toast.error(`Error logging staff entry: ${error.message}`, {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
-      return null;
-    }
-  }
-
-  async updateStaffPayslip(payslip: PaySlip) {
-    try {
-      const currentUser = auth.currentUser;
-
-      if (!currentUser) {
-        toast.error("No authenticated user found.", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return null;
-      }
-
-      const userId = currentUser.uid;
-      const userDocRef = doc(db, "droidaccount", userId);
-      const userSnapshot = await getDoc(userDocRef);
-
-      if (!userSnapshot.exists()) {
-        toast.error("User document not found.", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return null;
-      }
-
-      const data = userSnapshot.data();
-      const existingPayslips = data?.payslips?.paySlip || [];
-
-      const duplicate = existingPayslips.some(
-        (item: PaySlip) =>
-          item.payPeriod.monthOfPay === payslip.payPeriod.monthOfPay
-      );
-
-      if (duplicate) {
-        toast.error(
-          `Payslip for ${payslip.payPeriod.monthOfPay} already exists.`,
-          {
-            style: { background: "#faad14", color: "#fff" },
-          }
-        );
-        return null;
-      }
-
-      await updateDoc(userDocRef, {
-        "payslips.paySlip": arrayUnion(payslip),
-      });
-
-      const updatedSnapshot = await getDoc(userDocRef);
-      const updatedData = updatedSnapshot.data();
-      const updatedPayslips = updatedData?.payslips?.paySlip || [];
-
-      store.dispatch(setPayslipData(updatedPayslips));
-
-      toast.success(
-        `Payslip for ${payslip.payPeriod.monthOfPay} updated successfully.`,
-        {
-          style: { background: "#4BB543", color: "#fff" },
-        }
-      );
-
-      return payslip;
-    } catch (error: any) {
-      toast.error(`Error updating payslip: ${error.message}`, {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
-      return null;
+      console.error("Failed to update user info:", error);
+      toast.error("Failed to update user information");
     }
   }
 
   async updateStaffOnboardingDetails(partialDetails: Partial<StaffDetails>) {
     try {
-      console.log(auth.currentUser);
-
-      const currentUser = await getCurrentUser();
+      const currentUser = await getCurrentUserPromise();
       const userId = currentUser.uid;
-
       const staffDocRef = doc(db, "droidaccount", userId);
       const staffSnapshot = await getDoc(staffDocRef);
 
-      if (!staffSnapshot.exists()) {
-        toast.error("Staff record not found", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return;
-      }
+      if (!staffSnapshot.exists()) throw new Error("Staff record not found");
 
       const currentData = staffSnapshot.data();
       const updatedDetails = {
         ...currentData?.staff?.staffDetails,
         ...partialDetails,
       };
-      console.log("Updated Firestore data:", updatedDetails);
 
       await updateDoc(staffDocRef, {
         "user.staff.staffDetails": updatedDetails,
@@ -1550,35 +1194,25 @@ export class AuthService {
       });
 
       store.dispatch(setStaffDetails(updatedDetails));
+      try {
+        const { setStaffInfo } = await import("../slices/onboarding");
+        store.dispatch(setStaffInfo(updatedDetails));
+      } catch (_) {}
 
-      const { setStaffInfo } = await import("../slices/onboarding");
-      store.dispatch(setStaffInfo(updatedDetails));
-
-      toast.success("Staff details updated successfully", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
+      toast.success("Staff details updated successfully");
     } catch (error: any) {
-      console.error("Error updating staff details:", error?.message || error);
-      toast.error(error?.message || "Failed to update staff details", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+      toast.error(error?.message || "Failed to update staff details");
     }
   }
 
   async updateAffiliatesData(partialAffiliates: any) {
     try {
-      const currentUser = await getCurrentUser();
+      const currentUser = await this.getCurrentUser();
       const userId = currentUser.uid;
-
       const userDocRef = doc(db, "droidaccount", userId);
-      const userSnapshot = await getDoc(userDocRef);
 
-      if (!userSnapshot.exists()) {
-        toast.error("User record not found", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return;
-      }
+      const userSnapshot = await getDoc(userDocRef);
+      if (!userSnapshot.exists()) throw new Error("User not found");
 
       const currentData = userSnapshot.data();
       const currentAffiliates = currentData?.user?.affiliates || {};
@@ -1588,146 +1222,25 @@ export class AuthService {
           ...currentAffiliates.knowledgeCity,
           ...partialAffiliates.knowledgeCity,
         },
-        nerves: {
-          ...currentAffiliates.nerves,
-          ...partialAffiliates.nerves,
-        },
-        muzik: {
-          ...currentAffiliates.muzik,
-          ...partialAffiliates.muzik,
-        },
+        nerves: { ...currentAffiliates.nerves, ...partialAffiliates.nerves },
+        muzik: { ...currentAffiliates.muzik, ...partialAffiliates.muzik },
       };
 
-      console.log("✅ Updated affiliates data:", updatedAffiliates);
-
-      // Update Firestore
-      await updateDoc(userDocRef, {
-        "user.affiliates": updatedAffiliates,
-      });
-
-      // Send appropriate notifications based on changes
-      await this.sendAffiliateNotifications(
-        partialAffiliates,
-        currentAffiliates
-      );
-
+      await updateDoc(userDocRef, { "user.affiliates": updatedAffiliates });
       return updatedAffiliates;
     } catch (error: any) {
-      console.error("🔥 Error updating affiliates:", error?.message || error);
-      toast.error(error?.message || "Failed to update connected apps", {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+      toast.error("Failed to update affiliates");
       throw error;
     }
-  }
-
-  private async sendAffiliateNotifications(
-    newAffiliates: any,
-    oldAffiliates: any
-  ) {
-    try {
-      const { enhancedNotifications } = await import(
-        "../../ui/notificationService/notifications.service"
-      );
-
-      // Notify for Knowledge City changes
-      if (
-        newAffiliates.knowledgeCity?.user !== undefined &&
-        newAffiliates.knowledgeCity.user !== oldAffiliates.knowledgeCity?.user
-      ) {
-        await enhancedNotifications.addSilent({
-          title: "Knowledge City Connection Updated",
-          message: newAffiliates.knowledgeCity.user
-            ? "Knowledge City has been connected to your account"
-            : "Knowledge City has been disconnected from your account",
-          type: newAffiliates.knowledgeCity.user ? "success" : "info",
-          date: new Date().toISOString().split("T")[0],
-          time: new Date().toISOString(),
-          isRead: false,
-        });
-      }
-
-      // Notify for Nerves changes
-      if (
-        newAffiliates.nerves?.user !== undefined &&
-        newAffiliates.nerves.user !== oldAffiliates.nerves?.user
-      ) {
-        await enhancedNotifications.addSilent({
-          title: "Nerves Connection Updated",
-          message: newAffiliates.nerves.user
-            ? "Nerves has been connected to your account"
-            : "Nerves has been disconnected from your account",
-          type: newAffiliates.nerves.user ? "success" : "info",
-          date: new Date().toISOString().split("T")[0],
-          time: new Date().toISOString(),
-          isRead: false,
-        });
-      }
-
-      // Notify for Muzik changes
-      if (
-        newAffiliates.muzik?.user !== undefined &&
-        newAffiliates.muzik.user !== oldAffiliates.muzik?.user
-      ) {
-        await enhancedNotifications.addSilent({
-          title: "Muzik Connection Updated",
-          message: newAffiliates.muzik.user
-            ? "Muzik has been connected to your account"
-            : "Muzik has been disconnected from your account",
-          type: newAffiliates.muzik.user ? "success" : "info",
-          date: new Date().toISOString().split("T")[0],
-          time: new Date().toISOString(),
-          isRead: false,
-        });
-      }
-
-      // Special notification when all apps are connected
-      const allConnected =
-        (newAffiliates.knowledgeCity?.user ??
-          oldAffiliates.knowledgeCity?.user) &&
-        (newAffiliates.nerves?.user ?? oldAffiliates.nerves?.user) &&
-        (newAffiliates.muzik?.user ?? oldAffiliates.muzik?.user);
-
-      const wereAllConnected =
-        oldAffiliates.knowledgeCity?.user &&
-        oldAffiliates.nerves?.user &&
-        oldAffiliates.muzik?.user;
-
-      if (allConnected && !wereAllConnected) {
-        await enhancedNotifications.addSilent({
-          title: "All Apps Connected! 🎉",
-          message:
-            "All affiliated applications are now connected to your account",
-          type: "success",
-          date: new Date().toISOString().split("T")[0],
-          time: new Date().toISOString(),
-          isRead: false,
-        });
-      }
-    } catch (error) {
-      console.error("Failed to send affiliate notifications:", error);
-    }
-  }
-
-  async getCurrentUser(): Promise<User> {
-    return getCurrentUser();
   }
 
   async updateSecuritySettings(partialSecurity: Partial<SecuritySettings>) {
     try {
       const currentUser = await this.getCurrentUser();
       const userId = currentUser.uid;
-
       const userDocRef = doc(db, "droidaccount", userId);
+
       const userSnapshot = await getDoc(userDocRef);
-
-      if (!userSnapshot.exists()) {
-        toast.error("User record not found", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-        return;
-      }
-
       const currentData = userSnapshot.data();
       const currentSecurity = currentData?.user?.security || {};
 
@@ -1737,82 +1250,62 @@ export class AuthService {
         lastUpdated: new Date().toISOString(),
       };
 
-      console.log("✅ Updated security data:", updatedSecurity);
-
-      // Update Firestore
-      await updateDoc(userDocRef, {
-        "user.security": updatedSecurity,
-      });
-
-      await this.sendSecurityNotifications(partialSecurity, currentSecurity);
-
-      // Don't show toast for real-time updates, only for final submission
-      if (Object.keys(partialSecurity).length > 1) {
-        toast.success("Security settings updated successfully", {
-          style: { background: "#4BB543", color: "#fff" },
-        });
-      }
-
+      await updateDoc(userDocRef, { "user.security": updatedSecurity });
       return updatedSecurity;
     } catch (error: any) {
-      console.error("🔥 Error updating security:", error?.message || error);
-
-      // Only show error toast for significant failures
-      if (Object.keys(partialSecurity).length > 1) {
-        toast.error(error?.message || "Failed to update security settings", {
-          style: { background: "#ff4d4f", color: "#fff" },
-        });
-      }
-
+      toast.error("Failed to update security settings");
       throw error;
     }
   }
 
-  // Helper method to send security notifications
-  private async sendSecurityNotifications(
-    newSettings: Partial<SecuritySettings>,
-    oldSettings: any
-  ) {
+  async updateStaffPayslip(payslip: PaySlip) {
     try {
-      const { enhancedNotifications } = await import(
-        "../../ui/notificationService/notifications.service"
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("No authenticated user");
+
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      await updateDoc(userDocRef, {
+        "user.payslips.paySlip": arrayUnion(payslip),
+      });
+
+      // Update Redux
+      const updatedSnapshot = await getDoc(userDocRef);
+      const updatedData = updatedSnapshot.data();
+      store.dispatch(
+        setPayslipData(updatedData?.user?.payslips?.paySlip || [])
       );
 
-      // Notify for 2FA changes
-      if (
-        newSettings.twoFactorEnabled !== undefined &&
-        newSettings.twoFactorEnabled !== oldSettings.twoFactorEnabled
-      ) {
-        await enhancedNotifications.addSilent({
-          title: "2FA Settings Updated",
-          message: newSettings.twoFactorEnabled
-            ? "Two-factor authentication has been enabled"
-            : "Two-factor authentication has been disabled",
-          type: newSettings.twoFactorEnabled ? "success" : "warning",
-          date: new Date().toISOString().split("T")[0],
-          time: new Date().toISOString(),
-          isRead: false,
-        });
-      }
+      toast.success("Payslip generated successfully");
+      return payslip;
+    } catch (error: any) {
+      toast.error(error.message);
+      return null;
+    }
+  }
 
-      // Notify for login alerts changes
-      if (
-        newSettings.loginAlerts !== undefined &&
-        newSettings.loginAlerts !== oldSettings.loginAlerts
-      ) {
-        await enhancedNotifications.addSilent({
-          title: "Login Alerts Updated",
-          message: newSettings.loginAlerts
-            ? "Login alerts have been enabled"
-            : "Login alerts have been disabled",
-          type: newSettings.loginAlerts ? "success" : "info",
-          date: new Date().toISOString().split("T")[0],
-          time: new Date().toISOString(),
-          isRead: false,
-        });
-      }
-    } catch (error) {
-      console.error("Failed to send security notifications:", error);
+  async logStaffSignInOut(entry: Entry) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("No authenticated user");
+
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      await updateDoc(userDocRef, {
+        "user.staff.staffSignInAndOut": arrayUnion(entry),
+      });
+
+      store.dispatch(
+        setSignInAndOutData(
+          (await getDoc(userDocRef)).data()?.user?.staff?.staffSignInAndOut ||
+            []
+        )
+      );
+      toast.success(`${entry.type} recorded`, {
+        style: { background: "#4BB543", color: "#fff" },
+      });
+      return entry;
+    } catch (error: any) {
+      toast.error(error.message);
+      return null;
     }
   }
 
@@ -1821,26 +1314,18 @@ export class AuthService {
       const currentUser = auth.currentUser;
       if (!currentUser) throw new Error("No authenticated user");
 
-      const userId = currentUser.uid;
-      const userDocRef = doc(db, "droidaccount", userId);
-
       const cleanedTask = removeUndefined(task);
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
 
       await updateDoc(userDocRef, {
         "schedules.mySchedles": arrayUnion(cleanedTask),
       });
 
       store.dispatch(addTask(cleanedTask));
-
-      toast.success("Task added successfully! 🎉", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
-
+      toast.success("Task added!");
       return cleanedTask;
     } catch (error: any) {
-      toast.error(`Error creating task: ${error.message}`, {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+      toast.error(error.message);
       return null;
     }
   }
@@ -1849,17 +1334,11 @@ export class AuthService {
     try {
       const currentUser = auth.currentUser;
       if (!currentUser) throw new Error("No authenticated user");
-      const userId = currentUser.uid;
-      const userDocRef = doc(db, "droidaccount", userId);
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
       const userSnapshot = await getDoc(userDocRef);
-
-      if (!userSnapshot.exists()) {
-        throw new Error("User document not found");
-      }
-
+      if (!userSnapshot.exists()) throw new Error("User document not found");
       const data = userSnapshot.data();
       const tasks = data?.schedules?.mySchedles || [];
-
       return tasks.map((t: any) => ({
         id: t.id || crypto.randomUUID(),
         title: t.title || "",
@@ -1879,38 +1358,19 @@ export class AuthService {
     try {
       const currentUser = auth.currentUser;
       if (!currentUser) throw new Error("No authenticated user");
-
-      const userId = currentUser.uid;
-      const userDocRef = doc(db, "droidaccount", userId);
-
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
       const userSnapshot = await getDoc(userDocRef);
-      if (!userSnapshot.exists()) throw new Error("User document not found");
-
       const tasks: Task[] = userSnapshot.data()?.schedules?.mySchedles || [];
-
       const taskToDelete = tasks.find((t) => t.id === taskId);
-      if (!taskToDelete) {
-        toast.error("Task not found", {
-          style: { background: "#faad14", color: "#fff" },
-        });
-        return null;
-      }
-
+      if (!taskToDelete) return null;
       await updateDoc(userDocRef, {
         "schedules.mySchedles": arrayRemove(taskToDelete),
       });
-
       store.dispatch(deleteThisTask(taskId));
-
-      toast.success("Task deleted successfully 🗑️", {
-        style: { background: "#4BB543", color: "#fff" },
-      });
-
+      toast.success("Task deleted");
       return taskId;
     } catch (error: any) {
-      toast.error(`Error deleting task: ${error.message}`, {
-        style: { background: "#ff4d4f", color: "#fff" },
-      });
+      toast.error(error.message);
       return null;
     }
   }
@@ -1919,48 +1379,33 @@ export class AuthService {
     try {
       const currentUser = auth.currentUser;
       if (!currentUser) throw new Error("No authenticated user");
-
-      const userId = currentUser.uid;
-      const userDocRef = doc(db, "droidaccount", userId);
-
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
       const userSnapshot = await getDoc(userDocRef);
-      if (!userSnapshot.exists()) throw new Error("User document not found");
-
       const tasks: TaskMain[] =
         userSnapshot.data()?.schedules?.mySchedles ?? [];
-
       const updatedTasks = tasks.map((t) =>
         t.id === updatedTask.id ? updatedTask : t
       );
-
       await updateDoc(userDocRef, { "schedules.mySchedles": updatedTasks });
-
       store.dispatch(deleteThisTask(updatedTask.id));
       store.dispatch(addTask(updatedTask));
-
       return updatedTask;
     } catch (error: any) {
       throw new Error(error.message || "Failed to update task");
     }
   }
 
-  // ==================== UPDATED NOTIFICATION METHODS ====================
-
+  // --- Notification Sync ---
   async syncNotificationsToBackend(notifications: Notification[]) {
     try {
       const currentUser = await this.getCurrentUser();
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
-
-      // FIXED: Use correct Firestore path
       await updateDoc(userDocRef, {
         "user.onboard.notifications": notifications,
       });
-
-      console.log("✅ Notifications synced to Firestore");
       return true;
-    } catch (error: any) {
-      console.error("🔥 Error syncing notifications to backend:", error);
+    } catch (error) {
       throw error;
     }
   }
@@ -1971,54 +1416,55 @@ export class AuthService {
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
       const userSnapshot = await getDoc(userDocRef);
-
-      if (!userSnapshot.exists()) {
-        return [];
-      }
-
+      if (!userSnapshot.exists()) return [];
       const data = userSnapshot.data();
-      // FIXED: Get from correct path
-      const backendNotifications = data?.user?.onboard?.notifications || [];
-
-      return this.migrateNotifications(backendNotifications);
-    } catch (error: any) {
-      console.error("🔥 Error fetching notifications from backend:", error);
+      return this.migrateNotifications(
+        data?.user?.onboard?.notifications || []
+      );
+    } catch (error) {
       return [];
     }
   }
 
   private migrateNotifications(notifications: any[]): Notification[] {
-    if (!Array.isArray(notifications)) {
-      return [];
-    }
-
+    if (!Array.isArray(notifications)) return [];
     return notifications
-      .map((notification, index) => {
-        if (!notification || typeof notification !== "object") {
-          return null;
-        }
-
-        let validTime = notification.time;
-        if (!notification.time) {
-          validTime = new Date().toISOString();
-        } else {
-          const timeDate = new Date(notification.time);
-          if (isNaN(timeDate.getTime())) {
-            validTime = new Date().toISOString();
-          }
-        }
-
-        return {
-          id: notification.id || index + 1,
-          title: notification.title || "Untitled",
-          message: notification.message || "",
-          date: notification.date || new Date().toISOString().split("T")[0],
-          time: validTime,
-          type: notification.type || "info",
-          isRead: notification.isRead || false,
-        };
-      })
+      .map((n, i) => ({
+        id: n.id || i + 1,
+        title: n.title || "Untitled",
+        message: n.message || "",
+        date: n.date || new Date().toISOString().split("T")[0],
+        time: n.time || new Date().toISOString(),
+        type: n.type || "info",
+        isRead: n.isRead || false,
+      }))
       .filter((n) => n !== null) as Notification[];
+  }
+
+  private createOnboardingNotification() {
+    return {
+      id: Date.now(),
+      title: "Complete Your Onboarding",
+      message:
+        "Please complete your staff onboarding information to access all features.",
+      type: "warning",
+      date: new Date().toISOString().split("T")[0],
+      time: new Date().toISOString(),
+      isRead: false,
+    };
+  }
+
+  private createOrgOnboardingNotification() {
+    return {
+      id: Date.now() + 1,
+      title: "Complete Organization Profile",
+      message:
+        "Your organization profile is incomplete. Please add your address and contact details.",
+      type: "info",
+      date: new Date().toISOString().split("T")[0],
+      time: new Date().toISOString(),
+      isRead: false,
+    };
   }
 }
 
