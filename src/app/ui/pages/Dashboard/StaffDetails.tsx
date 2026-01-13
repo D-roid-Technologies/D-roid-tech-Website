@@ -8,8 +8,11 @@ import {
   BookOpen,
   Users,
   Award,
+  Trash2,
 } from "lucide-react";
 import styles from "./StaffDetails.module.css";
+import { authService } from "../../../redux/configuration/auth.service";
+import toast from "react-hot-toast";
 
 interface StaffMember {
   title: string;
@@ -201,6 +204,21 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({
     fetchStaffDetails();
   }, [staffId, staffMembers]); // Make sure staffId is in the dependency array
 
+  const handleDelete = async () => {
+    if (
+      window.confirm(
+        `Are you sure you want to remove ${staffDetails?.firstName} ${staffDetails?.lastName} from your staff list?`
+      )
+    ) {
+      try {
+        await authService.deleteStaffFromOrganization(staffId!);
+        onBack(); // Go back to list, which should refresh
+      } catch (error) {
+        // Error handled in service
+      }
+    }
+  };
+
   if (loading) {
     return (
       <div className={styles.staffDetailsContainer}>
@@ -233,6 +251,25 @@ const StaffDetails: React.FC<StaffDetailsProps> = ({
         <button className={styles.backButton} onClick={onBack}>
           <ArrowLeft size={20} />
           Back to Staff List
+        </button>
+
+        <button
+          onClick={handleDelete}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            padding: "8px 16px",
+            backgroundColor: "#fee2e2",
+            color: "#dc2626",
+            border: "1px solid #fecaca",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontWeight: 500,
+          }}
+        >
+          <Trash2 size={18} />
+          Remove Staff
         </button>
       </div>
 

@@ -10,6 +10,8 @@ import {
 import styles from "./AddStaff.module.css";
 import { authService } from "../../../redux/configuration/auth.service";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/Store";
 
 interface AddStaffProps {
   onBack: () => void;
@@ -17,6 +19,9 @@ interface AddStaffProps {
 }
 
 const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
+  const user = useSelector((state: RootState) => state.user);
+  const isSchool = user.organisationalType?.toLowerCase() === "school";
+
   const [step, setStep] = useState<"search" | "details">("search");
   const [searchId, setSearchId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +32,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
     jobTitle: "",
     role: "Staff", // Default access level
     startDate: new Date().toISOString().split("T")[0],
+    staffCategory: "", // New field for Teaching/Non-Teaching
   });
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -51,6 +57,11 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
   const handleOnboard = async () => {
     if (!staffDetails.jobTitle || !staffDetails.department) {
       toast.error("Please fill in Job Title and Department");
+      return;
+    }
+
+    if (isSchool && !staffDetails.staffCategory) {
+      toast.error("Please select a Staff Category (Teaching/Non-Teaching)");
       return;
     }
 
@@ -194,6 +205,25 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
                   <option value="Admin">Admin</option>
                 </select>
               </div>
+
+              {isSchool && (
+                <div className={styles.field}>
+                  <label>Staff Category</label>
+                  <select
+                    value={staffDetails.staffCategory}
+                    onChange={(e) =>
+                      setStaffDetails({
+                        ...staffDetails,
+                        staffCategory: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="">Select Category</option>
+                    <option value="Teaching">Teaching Staff</option>
+                    <option value="Non-Teaching">Non-Teaching Staff</option>
+                  </select>
+                </div>
+              )}
             </div>
 
             <div className={styles.actions}>

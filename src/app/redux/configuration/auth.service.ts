@@ -108,7 +108,7 @@ const getCurrentDateTime = () => {
     month,
     date,
     time: formattedTime,
-    formattedDateTime: `${formattedDate} ${formattedTime}`,
+    formattedDateTime: ` `,
   };
 };
 
@@ -140,7 +140,7 @@ function parseDate(timestamp: string): Date {
 
   const [datePart, timePart] = timestamp.split(", ");
   const [day, month, year] = datePart.split("/");
-  return new Date(`${year}-${month}-${day}T${timePart}`);
+  return new Date(`--T`);
 }
 
 // --- EXPORTED FUNCTIONS ---
@@ -576,7 +576,7 @@ export class AuthService {
   async handlePasswordReset(email: string): Promise<void> {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
-        toast.success(`Password reset email sent to: ${email}`, {
+        toast.success(`Password reset email sent to: `, {
           style: { background: "#4BB543", color: "#fff" },
         });
       })
@@ -639,6 +639,7 @@ export class AuthService {
       role: string;
       jobTitle: string;
       startDate: string;
+      staffCategory?: string; // Added optional staffCategory
     }
   ) {
     try {
@@ -703,6 +704,39 @@ export class AuthService {
     } catch (error) {
       console.error("Error fetching employees:", error);
       return [];
+    }
+  }
+
+  async deleteStaffFromOrganization(staffUid: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+
+      const orgRef = doc(db, "droidaccount", currentUser.uid);
+      const orgSnap = await getDoc(orgRef);
+
+      if (orgSnap.exists()) {
+        const employees = orgSnap.data().user?.organisation?.employees || [];
+        const updatedEmployees = employees.filter(
+          (emp: any) => emp.uid !== staffUid
+        );
+
+        await updateDoc(orgRef, {
+          "user.organisation.employees": updatedEmployees,
+        });
+
+        toast.success("Staff member removed successfully", {
+          style: { background: "#4BB543", color: "#fff" },
+        });
+        return true;
+      }
+      return false;
+    } catch (error: any) {
+      console.error("Error deleting staff:", error);
+      toast.error(`Failed to remove staff: ${error.message}`, {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+      throw error;
     }
   }
 
