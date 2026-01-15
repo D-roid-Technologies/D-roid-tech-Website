@@ -108,7 +108,7 @@ const getCurrentDateTime = () => {
     month,
     date,
     time: formattedTime,
-    formattedDateTime: ` `,
+    formattedDateTime: `${formattedDate} ${formattedTime}`,
   };
 };
 
@@ -140,7 +140,7 @@ function parseDate(timestamp: string): Date {
 
   const [datePart, timePart] = timestamp.split(", ");
   const [day, month, year] = datePart.split("/");
-  return new Date(`--T`);
+  return new Date(`${year}-${month}-${day}T${timePart}`);
 }
 
 // --- EXPORTED FUNCTIONS ---
@@ -150,13 +150,6 @@ export function calculateNetSalary(
   grossSalary: number
 ): { netSalary: number; grossSalary: number; totalDeductions: number } {
   if (!grossSalary || grossSalary <= 0) {
-    toast.error(
-      `Gross pay cannot be zero or negative - Fill up form in Onboarding first 🚫`,
-      {
-        style: { background: "#ff4d4f", color: "#fff" },
-      }
-    );
-
     return {
       netSalary: 0,
       grossSalary: 0,
@@ -239,23 +232,16 @@ export function calculateTaxPercentage(grossPay: number, tax: number): number {
 
 export async function getUserDocByUniqueId(uniqueId: string) {
   const currentUser = auth.currentUser;
-
   if (!currentUser) {
-    toast.error("No authenticated user found.", {
-      style: { background: "#ff4d4f", color: "#fff" },
-    });
     return null;
   }
-
   const droidAccountCollection = collection(db, "droidaccount");
   const q = query(
     droidAccountCollection,
     where("user.primaryInformation.uniqueId", "==", uniqueId)
   );
   const querySnapshot = await getDocs(q);
-
   if (querySnapshot.empty) return null;
-
   const docSnap = querySnapshot.docs[0];
   return docSnap;
 }
@@ -576,7 +562,7 @@ export class AuthService {
   async handlePasswordReset(email: string): Promise<void> {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
-        toast.success(`Password reset email sent to: `, {
+        toast.success(`Password reset email sent to: ${email}`, {
           style: { background: "#4BB543", color: "#fff" },
         });
       })
@@ -632,6 +618,7 @@ export class AuthService {
     }
   }
 
+  // UPDATED: Now accepts optional assignedClass
   async addStaffToOrganization(
     memberUid: string,
     staffDetails: {
@@ -639,8 +626,9 @@ export class AuthService {
       role: string;
       jobTitle: string;
       startDate: string;
-      staffCategory?: string; // Added optional staffCategory
-    }
+      staffCategory?: string;
+    },
+    assignedClass?: { id: string; name: string; classroomId: string } | null
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -666,13 +654,25 @@ export class AuthService {
         email: memberInfo.email,
         photoUrl: memberInfo.photoUrl,
         ...staffDetails,
+        assignedClass: assignedClass || null, // Link Class
         dateAdded: new Date().toISOString(),
         status: "Active",
       };
 
+      // 1. Add to Employees
       await updateDoc(orgRef, {
         "user.organisation.employees": arrayUnion(newEmployeeEntry),
       });
+
+      // 2. If Class Assigned, Update the Classroom
+      if (assignedClass) {
+        await this.assignStaffToClass(
+          assignedClass.classroomId,
+          assignedClass.id,
+          memberUid,
+          `${memberInfo.firstName} ${memberInfo.lastName}`
+        );
+      }
 
       toast.success(
         `${memberInfo.firstName} successfully added to your staff list!`,
@@ -736,6 +736,73 @@ export class AuthService {
       toast.error(`Failed to remove staff: ${error.message}`, {
         style: { background: "#ff4d4f", color: "#fff" },
       });
+      throw error;
+    }
+  }
+
+  // --- NEW: Assign Staff to Class (Bi-directional Update) ---
+  async assignStaffToClass(
+    classroomId: string,
+    classId: string,
+    staffId: string,
+    staffName?: string
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("Organization data not found");
+      const data = docSnap.data();
+
+      let classrooms = data.user.organisation.classrooms || [];
+      let employees = data.user.organisation.employees || [];
+
+      // 1. Update Classroom: Find class and set teacherId
+      let className = "";
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              className = `${cr.name} - ${cl.name}`;
+              return {
+                ...cl,
+                teacherId: staffId,
+                teacherName: staffName || "Assigned Teacher",
+              };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      // 2. Update Employee: Find staff and set assignedClass
+      const updatedEmployees = employees.map((emp: any) => {
+        if (emp.uid === staffId) {
+          return {
+            ...emp,
+            assignedClass: {
+              id: classId,
+              classroomId: classroomId,
+              name: className,
+            },
+          };
+        }
+        return emp;
+      });
+
+      // 3. Write both updates
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+        "user.organisation.employees": updatedEmployees,
+      });
+
+      return true;
+    } catch (error) {
+      console.error("Error assigning staff:", error);
       throw error;
     }
   }
@@ -849,6 +916,7 @@ export class AuthService {
             id: crypto.randomUUID(),
             name: className,
             students: [],
+            teacherId: null, // Initialize teacherId
             dateCreated: new Date().toISOString(),
           };
           return { ...cr, classes: [...(cr.classes || []), newClass] };
@@ -1102,7 +1170,6 @@ export class AuthService {
     }
   }
 
-  // UPDATED: Deletes from Firestore array only
   async deleteStudentDocument(
     classroomId: string,
     classId: string,
@@ -1124,10 +1191,12 @@ export class AuthService {
             if (cl.id === classId) {
               const updatedStudents = (cl.students || []).map((s: any) => {
                 if (s.id === studentId) {
-                  const updatedDocs = (s.documents || []).filter(
-                    (d: any) => d.id !== documentId
-                  );
-                  return { ...s, documents: updatedDocs };
+                  return {
+                    ...s,
+                    documents: (s.documents || []).filter(
+                      (d: any) => d.id !== documentId
+                    ),
+                  };
                 }
                 return s;
               });
@@ -1139,13 +1208,11 @@ export class AuthService {
         }
         return cr;
       });
-
       await updateDoc(userDocRef, {
         "user.organisation.classrooms": updatedClassrooms,
       });
-      return true;
-    } catch (error) {
-      throw error;
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -1154,18 +1221,14 @@ export class AuthService {
       const classrooms = await this.getOrganizationClassrooms();
       let totalStudents = 0;
       let activeClasses = 0;
-
       classrooms.forEach((cr: any) => {
         if (cr.classes) {
           activeClasses += cr.classes.length;
           cr.classes.forEach((cl: any) => {
-            if (cl.students) {
-              totalStudents += cl.students.length;
-            }
+            if (cl.students) totalStudents += cl.students.length;
           });
         }
       });
-
       return { totalStudents, activeClasses };
     } catch (error) {
       return { totalStudents: 0, activeClasses: 0 };

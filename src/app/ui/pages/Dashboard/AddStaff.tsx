@@ -1,12 +1,5 @@
-// AddStaff.tsx
-import React, { useState } from "react";
-import {
-  FaSearch,
-  FaUserCheck,
-  FaArrowLeft,
-  FaIdCard,
-  FaSpinner,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaSearch, FaUserCheck, FaArrowLeft, FaIdCard } from "react-icons/fa";
 import styles from "./AddStaff.module.css";
 import { authService } from "../../../redux/configuration/auth.service";
 import toast from "react-hot-toast";
@@ -27,13 +20,41 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [foundUser, setFoundUser] = useState<any>(null);
 
+  // Class Assignment State
+  const [availableClasses, setAvailableClasses] = useState<any[]>([]);
+  const [selectedClassId, setSelectedClassId] = useState("");
+
   const [staffDetails, setStaffDetails] = useState({
     department: "",
     jobTitle: "",
-    role: "Staff", // Default access level
+    role: "Staff",
     startDate: new Date().toISOString().split("T")[0],
-    staffCategory: "", // New field for Teaching/Non-Teaching
+    staffCategory: "",
   });
+
+  // Load Classes for Assignment
+  useEffect(() => {
+    const loadClasses = async () => {
+      const classrooms = await authService.getOrganizationClassrooms();
+      const flatClasses: any[] = [];
+      classrooms.forEach((cr: any) => {
+        if (cr.classes) {
+          cr.classes.forEach((cl: any) => {
+            flatClasses.push({
+              id: cl.id,
+              name: `${cr.name} - ${cl.name}`,
+              classroomId: cr.id,
+            });
+          });
+        }
+      });
+      setAvailableClasses(flatClasses);
+    };
+
+    if (isSchool) {
+      loadClasses();
+    }
+  }, [isSchool]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +62,6 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
 
     setIsLoading(true);
     try {
-      // Use the exact ID typed by user (e.g. DT-NEE9L-M)
       const user = await authService.searchMemberByUniqueId(searchId.trim());
       if (user) {
         setFoundUser(user);
@@ -61,21 +81,29 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
     }
 
     if (isSchool && !staffDetails.staffCategory) {
-      toast.error("Please select a Staff Category (Teaching/Non-Teaching)");
+      toast.error("Please select a Staff Category");
       return;
     }
 
     setIsLoading(true);
     try {
+      // Prepare assigned class object
+      let assignedClass = null;
+      if (selectedClassId) {
+        const cls = availableClasses.find((c) => c.id === selectedClassId);
+        if (cls) assignedClass = cls;
+      }
+
       const newStaff = await authService.addStaffToOrganization(
         foundUser.uid,
-        staffDetails
+        staffDetails,
+        assignedClass
       );
-      // Pass the new data back so Staffs.tsx can update immediately
+
       onSubmit(newStaff);
       onBack();
     } catch (error) {
-      // Error is handled in service
+      // Error handled in service
     } finally {
       setIsLoading(false);
     }
@@ -118,26 +146,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
                   className={styles.searchBtn}
                   disabled={isLoading}
                 >
-                  {isLoading ? (
-                    // Spinner SVG
-                    // <svg
-                    //   xmlns="http://www.w3.org/2000/svg"
-                    //   viewBox="0 0 24 24"
-                    //   fill="none"
-                    //   stroke="currentColor"
-                    //   strokeWidth="2"
-                    //   strokeLinecap="round"
-                    //   strokeLinejoin="round"
-                    //   className={styles.spin} // Keeps your existing rotation animation
-                    //   style={{ width: "1em", height: "1em" }}
-                    // >
-                    //   <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-                    // </svg>
-                    <span> please wait</span>
-                  ) : (
-                    // Search Icon SVG
-                    <span> Search</span>
-                  )}
+                  {isLoading ? <span>Waiting...</span> : <span>Search</span>}
                 </button>
               </div>
             </form>
@@ -169,7 +178,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
                 <label>Department</label>
                 <input
                   type="text"
-                  placeholder="e.g. IT, Sales"
+                  placeholder="e.g. Science"
                   value={staffDetails.department}
                   onChange={(e) =>
                     setStaffDetails({
@@ -183,7 +192,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
                 <label>Job Title</label>
                 <input
                   type="text"
-                  placeholder="e.g. Developer"
+                  placeholder="e.g. Teacher"
                   value={staffDetails.jobTitle}
                   onChange={(e) =>
                     setStaffDetails({
@@ -207,22 +216,51 @@ const AddStaff: React.FC<AddStaffProps> = ({ onBack, onSubmit }) => {
               </div>
 
               {isSchool && (
-                <div className={styles.field}>
-                  <label>Staff Category</label>
-                  <select
-                    value={staffDetails.staffCategory}
-                    onChange={(e) =>
-                      setStaffDetails({
-                        ...staffDetails,
-                        staffCategory: e.target.value,
-                      })
-                    }
-                  >
-                    <option value="">Select Category</option>
-                    <option value="Teaching">Teaching Staff</option>
-                    <option value="Non-Teaching">Non-Teaching Staff</option>
-                  </select>
-                </div>
+                <>
+                  <div className={styles.field}>
+                    <label>Staff Category</label>
+                    <select
+                      value={staffDetails.staffCategory}
+                      onChange={(e) =>
+                        setStaffDetails({
+                          ...staffDetails,
+                          staffCategory: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="">Select Category</option>
+                      <option value="Teaching">Teaching Staff</option>
+                      <option value="Non-Teaching">Non-Teaching Staff</option>
+                    </select>
+                  </div>
+
+                  {/* Assign to Class Dropdown */}
+                  {availableClasses.length > 0 && (
+                    <div className={styles.field}>
+                      <label>Assign to Class (Optional)</label>
+                      <select
+                        value={selectedClassId}
+                        onChange={(e) => setSelectedClassId(e.target.value)}
+                      >
+                        <option value="">No Class Assignment</option>
+                        {availableClasses.map((cls: any) => (
+                          <option key={cls.id} value={cls.id}>
+                            {cls.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  {availableClasses.length === 0 && (
+                    <div className={styles.field}>
+                      <label>Assign to Class</label>
+                      <p style={{ fontSize: 12, color: "#666", marginTop: 5 }}>
+                        No classes available. Create classes in "Classroom" to
+                        assign later.
+                      </p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
 
