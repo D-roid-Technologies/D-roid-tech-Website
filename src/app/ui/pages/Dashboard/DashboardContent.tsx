@@ -232,23 +232,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   // Popup State
   const [showOrgOnboardingPopup, setShowOrgOnboardingPopup] = useState(false);
 
+  const isOrgProfileComplete =
+    userDetails.userType !== "Organisation" ||
+    (!!userDetails.phone &&
+      !!userDetails.streetName &&
+      !!userDetails.city &&
+      !!userDetails.country);
+
   // Check for Organization Profile Completeness on Mount
   useEffect(() => {
-    if (userDetails.userType === "Organisation") {
-      // Check basic fields required for orgs
-      const isComplete =
-        userDetails.phone &&
-        userDetails.streetName &&
-        userDetails.city &&
-        userDetails.country;
-
-      if (!isComplete) {
-        // Simple check to not annoy user every single refresh if desired,
-        // but requirement says "when apps launch"
-        setShowOrgOnboardingPopup(true);
-      }
+    if (userDetails.userType === "Organisation" && !isOrgProfileComplete) {
+      setShowOrgOnboardingPopup(true);
     }
-  }, [userDetails]);
+  }, [userDetails.userType, isOrgProfileComplete]);
 
   const filteredTools = Alltools.filter(
     (tool) =>
@@ -1099,19 +1095,33 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         </div>
 
         <nav className={styles.sidebarNav}>
-          {menuItems.map((item) => (
-            <button
-              key={item.label}
-              className={`${styles.navItem} ${
-                selectedMenu === item.label ? styles.navItemActive : ""
-              }`}
-              onClick={() => handleMenuClick(item.label)}
-            >
-              {/* @ts-ignore */}
-              {item.icon && <item.icon className={styles.navIcon} />}
-              <span>{item.label}</span>
-            </button>
-          ))}
+          {menuItems.map((item) => {
+            const isDisabled =
+              !isOrgProfileComplete && item.label !== "Organization Details";
+            return (
+              <button
+                key={item.label}
+                className={`${styles.navItem} ${
+                  selectedMenu === item.label ? styles.navItemActive : ""
+                }`}
+                onClick={() => !isDisabled && handleMenuClick(item.label)}
+                title={
+                  isDisabled
+                    ? `Complete organization details to access ${item.label}`
+                    : ""
+                }
+                style={
+                  isDisabled
+                    ? { opacity: 0.5, cursor: "not-allowed" }
+                    : {}
+                }
+              >
+                {/* @ts-ignore */}
+                {item.icon && <item.icon className={styles.navIcon} />}
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
         </nav>
         <br />
         <br />

@@ -47,7 +47,7 @@ const Staffs: React.FC = () => {
         description: `${emp.jobTitle} • ${emp.department}`,
         imageSrc:
           emp.photoUrl ||
-          "https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg",
+          `https://ui-avatars.com/api/?name=${emp.firstName}+${emp.lastName}&background=random&color=fff`,
         url: `/staff/${emp.uid}`,
         uid: emp.uid,
       }));
@@ -171,6 +171,7 @@ const Staffs: React.FC = () => {
             onBack={() => {
               setShowStaffDetails(false);
               setShowContent(true);
+              fetchStaff(); // Refresh list on back in case of deletion
             }}
             staffMembers={staffMembers}
           />

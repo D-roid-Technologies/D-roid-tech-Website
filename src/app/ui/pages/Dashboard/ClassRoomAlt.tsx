@@ -12,15 +12,17 @@ import {
   FolderOpen,
   Presentation,
   Settings,
+  UserCog,
 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { authService } from "../../../redux/configuration/auth.service";
 import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
-import ManageStudent from "./ManageStudent"; // Import the new component
+import ManageStudent from "./ManageStudent";
 import styles from "./ClassRoomAlt.module.css";
 import toast from "react-hot-toast";
 
+// ... (Interfaces) ...
 interface Student {
   id: string;
   name: string;
@@ -32,6 +34,8 @@ interface ClassItem {
   id: string;
   name: string;
   students: Student[];
+  teacherId?: string;
+  teacherName?: string;
 }
 interface Classroom {
   id: string;
@@ -40,6 +44,8 @@ interface Classroom {
   classes: ClassItem[];
 }
 
+// ... (Helper Components: InputPanel, EmptyState, EditModal, DeleteModal) ...
+// [Keep previous helper component definitions here]
 const InputPanel = ({
   title,
   placeholder,
@@ -49,7 +55,6 @@ const InputPanel = ({
   onCancel,
   loading,
 }: any) => {
-  /*...*/
   return (
     <div className={styles.inputPanel}>
       <h4>{title}</h4>
@@ -175,10 +180,50 @@ const DeleteModal = ({
   );
 };
 
+// NEW: Teacher Assignment Modal
+const AssignTeacherModal = ({ isOpen, onClose, staffList, onAssign }: any) => {
+  const [selectedStaffId, setSelectedStaffId] = useState("");
+  if (!isOpen) return null;
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <h3 className={styles.modalTitle}>Assign Class Teacher</h3>
+        <p style={{ fontSize: 13, color: "#666", marginBottom: 15 }}>
+          Select a staff member to manage this class.
+        </p>
+        <select
+          className={styles.inputField}
+          style={{ width: "100%", marginBottom: 20 }}
+          value={selectedStaffId}
+          onChange={(e) => setSelectedStaffId(e.target.value)}
+        >
+          <option value="">Select Staff Member...</option>
+          {staffList.map((s: any) => (
+            <option key={s.uid} value={s.uid}>
+              {s.firstName} {s.lastName} ({s.jobTitle})
+            </option>
+          ))}
+        </select>
+        <div className={styles.modalActions}>
+          <button onClick={onClose} className={styles.cancelBtn}>
+            Cancel
+          </button>
+          <button
+            onClick={() => onAssign(selectedStaffId)}
+            className={styles.saveBtn}
+            disabled={!selectedStaffId}
+          >
+            Assign
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ClassRoomAlt: React.FC = () => {
   const userDetails = useSelector((state: RootState) => state.user);
 
-  // Updated State to include MANAGE_STUDENT view
   const [view, setView] = useState<
     | "MAIN"
     | "ALL_STUDENTS"
@@ -191,7 +236,7 @@ const ClassRoomAlt: React.FC = () => {
     null
   );
   const [selectedClass, setSelectedClass] = useState<ClassItem | null>(null);
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // New State
+  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   const [classrooms, setClassrooms] = useState<Classroom[]>([]);
   const [loading, setLoading] = useState(false);
@@ -209,6 +254,10 @@ const ClassRoomAlt: React.FC = () => {
   } | null>(null);
   const [deleteConfirmationInput, setDeleteConfirmationInput] = useState("");
 
+  // Teacher Assignment State
+  const [showTeacherModal, setShowTeacherModal] = useState(false);
+  const [staffList, setStaffList] = useState<any[]>([]);
+
   const fetchData = async () => {
     setLoading(true);
     const data = await authService.getOrganizationClassrooms();
@@ -220,8 +269,7 @@ const ClassRoomAlt: React.FC = () => {
     fetchData();
   }, []);
 
-  // ... [Keep CRUD Handlers (handleCreateClassroomCheck, createClassroom, createClass, addStudent, refreshSelection, handleEdit, handleDelete)] ...
-  // [Assuming these functions are present as defined in previous file]
+  // ... (Keep existing CRUD handlers: handleCreateClassroomCheck, createClassroom, createClass, addStudent) ...
   const handleCreateClassroomCheck = () => {
     const { phone, streetName, city, country } = userDetails;
     if (!phone || !streetName || !city || !country) {
@@ -282,6 +330,7 @@ const ClassRoomAlt: React.FC = () => {
       setLoading(false);
     }
   };
+
   const refreshSelection = async () => {
     const data = await authService.getOrganizationClassrooms();
     setClassrooms(data);
@@ -298,6 +347,8 @@ const ClassRoomAlt: React.FC = () => {
       }
     }
   };
+
+  // ... (Keep edit/delete handlers) ...
   const handleEdit = async () => {
     if (!editMode || !editMode.name.trim()) return;
     try {
@@ -362,11 +413,39 @@ const ClassRoomAlt: React.FC = () => {
     }
   };
 
+  // New Handlers for Teacher Assignment
+  const openAssignTeacher = async () => {
+    const staff = await authService.getOrganizationEmployees();
+    setStaffList(staff);
+    setShowTeacherModal(true);
+  };
+
+  const handleAssignTeacher = async (staffId: string) => {
+    if (!selectedClassroom || !selectedClass) return;
+    setLoading(true);
+    try {
+      const staff = staffList.find((s) => s.uid === staffId);
+      await authService.assignStaffToClass(
+        selectedClassroom.id,
+        selectedClass.id,
+        staffId,
+        `${staff.firstName} ${staff.lastName}`
+      );
+      setShowTeacherModal(false);
+      toast.success("Teacher assigned successfully!");
+      refreshSelection();
+    } catch (e) {
+      toast.error("Failed to assign teacher");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // --- Views ---
 
-  // ... [Keep Main, All Students, Classrooms List, Single Classroom views unchanged] ...
+  // (Main, All Students, Classrooms List, Single Classroom views remain mostly same as previous)
   if (view === "MAIN") {
-    /* ... */ return (
+    return (
       <div className={styles.container}>
         {" "}
         <div className={styles.headerWrapper}>
@@ -523,7 +602,7 @@ const ClassRoomAlt: React.FC = () => {
     );
   }
   if (view === "CLASSROOMS_LIST") {
-    /* ... (Same as before) ... */ return (
+    return (
       <div className={styles.container}>
         {" "}
         <div className={styles.actionsBar}>
@@ -581,11 +660,6 @@ const ClassRoomAlt: React.FC = () => {
                         name: cr.name,
                       });
                     }}
-                    style={{
-                      width: "auto",
-                      padding: "0 15px",
-                      gap: "4px",
-                    }}
                     className={styles.iconBtn}
                   >
                     <Pencil size={14} />
@@ -600,11 +674,6 @@ const ClassRoomAlt: React.FC = () => {
                       });
                     }}
                     className={`${styles.iconBtn} ${styles.deleteIcon}`}
-                    style={{
-                      width: "auto",
-                      padding: "0 15px",
-                      gap: "4px",
-                    }}
                   >
                     <Trash2 size={14} />
                   </button>{" "}
@@ -640,7 +709,7 @@ const ClassRoomAlt: React.FC = () => {
     );
   }
   if (view === "SINGLE_CLASSROOM" && selectedClassroom) {
-    /* ... (Same as before) ... */ return (
+    return (
       <div className={styles.container}>
         {" "}
         <div className={styles.breadcrumb}>
@@ -709,11 +778,6 @@ const ClassRoomAlt: React.FC = () => {
                       e.stopPropagation();
                       setEditMode({ type: "class", id: cl.id, name: cl.name });
                     }}
-                    style={{
-                      width: "auto",
-                      padding: "0 15px",
-                      gap: "4px",
-                    }}
                     className={styles.iconBtn}
                   >
                     <Pencil size={14} />
@@ -726,11 +790,6 @@ const ClassRoomAlt: React.FC = () => {
                         id: cl.id,
                         name: cl.name,
                       });
-                    }}
-                    style={{
-                      width: "auto",
-                      padding: "0 15px",
-                      gap: "4px",
                     }}
                     className={`${styles.iconBtn} ${styles.deleteIcon}`}
                   >
@@ -768,7 +827,7 @@ const ClassRoomAlt: React.FC = () => {
     );
   }
 
-  // 5. Single Class -> Students
+  // 5. Single Class -> Students (Updated with Assign Teacher)
   if (view === "SINGLE_CLASS" && selectedClass && selectedClassroom) {
     return (
       <div className={styles.container}>
@@ -797,18 +856,59 @@ const ClassRoomAlt: React.FC = () => {
           >
             <ArrowLeft size={16} /> Back
           </button>
-          <button
-            onClick={() => setShowInput(!showInput)}
-            className={styles.createButton}
-          >
-            {showInput ? (
-              "Close"
-            ) : (
-              <>
-                <Plus size={16} /> Add Student
-              </>
-            )}
-          </button>
+
+          <div style={{ display: "flex", gap: 10 }}>
+            <button
+              onClick={openAssignTeacher}
+              className={styles.createButton}
+              style={{
+                background: "white",
+                color: "#071d69",
+                border: "1px solid #071d69",
+              }}
+            >
+              <UserCog size={16} />{" "}
+              {selectedClass.teacherName ? "Change Teacher" : "Assign Teacher"}
+            </button>
+            <button
+              onClick={() => setShowInput(!showInput)}
+              className={styles.createButton}
+            >
+              {showInput ? (
+                "Close"
+              ) : (
+                <>
+                  <Plus size={16} /> Add Student
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Teacher Info Banner */}
+        <div
+          style={{
+            background: "#eef2ff",
+            padding: "12px 16px",
+            borderRadius: 10,
+            marginBottom: 20,
+            border: "1px solid #c7d2fe",
+            color: "#3730a3",
+            fontSize: 14,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <UserCog size={18} />
+          <strong>Class Teacher:</strong>
+          {selectedClass.teacherName ? (
+            selectedClass.teacherName
+          ) : (
+            <span style={{ fontStyle: "italic", color: "#666" }}>
+              No teacher assigned yet
+            </span>
+          )}
         </div>
 
         {showInput && (
@@ -850,7 +950,6 @@ const ClassRoomAlt: React.FC = () => {
                     </td>
                     <td style={{ textAlign: "right" }}>
                       <div className={styles.actionIcons}>
-                        {/* MANAGE BUTTON (New) */}
                         <button
                           onClick={() => {
                             setSelectedStudent(s);
@@ -866,19 +965,6 @@ const ClassRoomAlt: React.FC = () => {
                         >
                           <Settings size={14} /> Manage
                         </button>
-                        {/* 
-                        <button
-                          onClick={() =>
-                            setEditMode({
-                              type: "student",
-                              id: s.id,
-                              name: s.name,
-                            })
-                          }
-                          className={styles.iconBtn}
-                        >
-                          <Pencil size={14} />
-                        </button> */}
                         <button
                           onClick={() =>
                             setDeleteMode({
@@ -904,10 +990,11 @@ const ClassRoomAlt: React.FC = () => {
             </table>
           </div>
         )}
-        <EditModal
-          editMode={editMode}
-          setEditMode={setEditMode}
-          handleEdit={handleEdit}
+        <AssignTeacherModal
+          isOpen={showTeacherModal}
+          onClose={() => setShowTeacherModal(false)}
+          staffList={staffList}
+          onAssign={handleAssignTeacher}
         />
         <DeleteModal
           deleteMode={deleteMode}
@@ -920,7 +1007,7 @@ const ClassRoomAlt: React.FC = () => {
     );
   }
 
-  // 6. MANAGE STUDENT VIEW (New)
+  // 6. MANAGE STUDENT VIEW
   if (
     view === "MANAGE_STUDENT" &&
     selectedStudent &&
@@ -933,7 +1020,7 @@ const ClassRoomAlt: React.FC = () => {
         classId={selectedClass.id}
         classroomId={selectedClassroom.id}
         onBack={() => {
-          refreshSelection(); // Refresh data to show changes
+          refreshSelection();
           setView("SINGLE_CLASS");
         }}
       />
