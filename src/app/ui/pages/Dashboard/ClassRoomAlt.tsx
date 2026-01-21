@@ -13,6 +13,7 @@ import {
   Presentation,
   Settings,
   UserCog,
+  Coins,
 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
@@ -36,16 +37,18 @@ interface ClassItem {
   students: Student[];
   teacherId?: string;
   teacherName?: string;
+  schoolFees?: string;
 }
 interface Classroom {
   id: string;
   name: string;
   description: string;
   classes: ClassItem[];
+  headTeacherId?: string;
+  headTeacherName?: string;
 }
 
 // ... (Helper Components: InputPanel, EmptyState, EditModal, DeleteModal) ...
-// [Keep previous helper component definitions here]
 const InputPanel = ({
   title,
   placeholder,
@@ -93,8 +96,8 @@ const EditModal = ({ editMode, setEditMode, handleEdit }: any) => {
           {editMode.type === "classroom"
             ? "Classroom"
             : editMode.type === "class"
-            ? "Class"
-            : "Student"}
+              ? "Class"
+              : "Student"}
         </h3>
         <input
           type="text"
@@ -180,17 +183,22 @@ const DeleteModal = ({
   );
 };
 
-// NEW: Teacher Assignment Modal
-const AssignTeacherModal = ({ isOpen, onClose, staffList, onAssign }: any) => {
+// Teacher Assignment Modal (Reusable for Head Teacher)
+const AssignStaffModal = ({
+  isOpen,
+  onClose,
+  staffList,
+  onAssign,
+  title,
+  label,
+}: any) => {
   const [selectedStaffId, setSelectedStaffId] = useState("");
   if (!isOpen) return null;
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h3 className={styles.modalTitle}>Assign Class Teacher</h3>
-        <p style={{ fontSize: 13, color: "#666", marginBottom: 15 }}>
-          Select a staff member to manage this class.
-        </p>
+        <h3 className={styles.modalTitle}>{title}</h3>
+        <p style={{ fontSize: 13, color: "#666", marginBottom: 15 }}>{label}</p>
         <select
           className={styles.inputField}
           style={{ width: "100%", marginBottom: 20 }}
@@ -221,6 +229,50 @@ const AssignTeacherModal = ({ isOpen, onClose, staffList, onAssign }: any) => {
   );
 };
 
+// School Fees Modal
+const SetFeesModal = ({ isOpen, onClose, currentFees, onSave }: any) => {
+  const [amount, setAmount] = useState(currentFees || "");
+  if (!isOpen) return null;
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <h3 className={styles.modalTitle}>Set School Fees</h3>
+        <p style={{ fontSize: 13, color: "#666", marginBottom: 15 }}>
+          Set the tuition fee for this class.
+        </p>
+        <div style={{ marginBottom: 20 }}>
+          <label
+            style={{
+              display: "block",
+              fontSize: 12,
+              marginBottom: 5,
+              fontWeight: 600,
+            }}
+          >
+            Amount (NGN)
+          </label>
+          <input
+            type="number"
+            className={styles.inputField}
+            style={{ width: "100%" }}
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="e.g. 50000"
+          />
+        </div>
+        <div className={styles.modalActions}>
+          <button onClick={onClose} className={styles.cancelBtn}>
+            Cancel
+          </button>
+          <button onClick={() => onSave(amount)} className={styles.saveBtn}>
+            Save Fee
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ClassRoomAlt: React.FC = () => {
   const userDetails = useSelector((state: RootState) => state.user);
 
@@ -233,7 +285,7 @@ const ClassRoomAlt: React.FC = () => {
     | "MANAGE_STUDENT"
   >("MAIN");
   const [selectedClassroom, setSelectedClassroom] = useState<Classroom | null>(
-    null
+    null,
   );
   const [selectedClass, setSelectedClass] = useState<ClassItem | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
@@ -254,8 +306,10 @@ const ClassRoomAlt: React.FC = () => {
   } | null>(null);
   const [deleteConfirmationInput, setDeleteConfirmationInput] = useState("");
 
-  // Teacher Assignment State
+  // Modals State
   const [showTeacherModal, setShowTeacherModal] = useState(false);
+  const [showHeadTeacherModal, setShowHeadTeacherModal] = useState(false);
+  const [showFeesModal, setShowFeesModal] = useState(false);
   const [staffList, setStaffList] = useState<any[]>([]);
 
   const fetchData = async () => {
@@ -269,7 +323,7 @@ const ClassRoomAlt: React.FC = () => {
     fetchData();
   }, []);
 
-  // ... (Keep existing CRUD handlers: handleCreateClassroomCheck, createClassroom, createClass, addStudent) ...
+  // ... (CRUD handlers) ...
   const handleCreateClassroomCheck = () => {
     const { phone, streetName, city, country } = userDetails;
     if (!phone || !streetName || !city || !country) {
@@ -318,7 +372,7 @@ const ClassRoomAlt: React.FC = () => {
       await authService.addStudentToClass(
         selectedClassroom.id,
         selectedClass.id,
-        studentData
+        studentData,
       );
       setNewItemName("");
       setShowInput(false);
@@ -336,19 +390,18 @@ const ClassRoomAlt: React.FC = () => {
     setClassrooms(data);
     if (selectedClassroom) {
       const updatedCR = data.find(
-        (c: Classroom) => c.id === selectedClassroom.id
+        (c: Classroom) => c.id === selectedClassroom.id,
       );
       setSelectedClassroom(updatedCR || null);
       if (selectedClass && updatedCR) {
         const updatedCL = updatedCR.classes.find(
-          (c: ClassItem) => c.id === selectedClass.id
+          (c: ClassItem) => c.id === selectedClass.id,
         );
         setSelectedClass(updatedCL || null);
       }
     }
   };
 
-  // ... (Keep edit/delete handlers) ...
   const handleEdit = async () => {
     if (!editMode || !editMode.name.trim()) return;
     try {
@@ -359,7 +412,7 @@ const ClassRoomAlt: React.FC = () => {
         await authService.updateClass(
           selectedClassroom.id,
           editMode.id,
-          editMode.name
+          editMode.name,
         );
       } else if (
         editMode.type === "student" &&
@@ -370,7 +423,7 @@ const ClassRoomAlt: React.FC = () => {
           selectedClassroom.id,
           selectedClass.id,
           editMode.id,
-          { name: editMode.name }
+          { name: editMode.name },
         );
       }
       setEditMode(null);
@@ -399,7 +452,7 @@ const ClassRoomAlt: React.FC = () => {
         await authService.deleteStudent(
           selectedClassroom.id,
           selectedClass.id,
-          deleteMode.id
+          deleteMode.id,
         );
       }
       setDeleteMode(null);
@@ -413,11 +466,22 @@ const ClassRoomAlt: React.FC = () => {
     }
   };
 
-  // New Handlers for Teacher Assignment
-  const openAssignTeacher = async () => {
+  // Handlers for Staff & Fees
+  const fetchStaff = async () => {
     const staff = await authService.getOrganizationEmployees();
     setStaffList(staff);
+  };
+
+  const openAssignTeacher = async () => {
+    await fetchStaff();
     setShowTeacherModal(true);
+  };
+  const openAssignHeadTeacher = async () => {
+    await fetchStaff();
+    setShowHeadTeacherModal(true);
+  };
+  const openSetFees = () => {
+    setShowFeesModal(true);
   };
 
   const handleAssignTeacher = async (staffId: string) => {
@@ -429,7 +493,7 @@ const ClassRoomAlt: React.FC = () => {
         selectedClassroom.id,
         selectedClass.id,
         staffId,
-        `${staff.firstName} ${staff.lastName}`
+        `${staff.firstName} ${staff.lastName}`,
       );
       setShowTeacherModal(false);
       toast.success("Teacher assigned successfully!");
@@ -441,9 +505,47 @@ const ClassRoomAlt: React.FC = () => {
     }
   };
 
+  const handleAssignHeadTeacher = async (staffId: string) => {
+    if (!selectedClassroom) return;
+    setLoading(true);
+    try {
+      const staff = staffList.find((s) => s.uid === staffId);
+      await authService.assignHeadTeacherToClassroom(
+        selectedClassroom.id,
+        staffId,
+        `${staff.firstName} ${staff.lastName}`,
+      );
+      setShowHeadTeacherModal(false);
+      toast.success("Head Teacher assigned!");
+      refreshSelection();
+    } catch (e) {
+      toast.error("Failed to assign Head Teacher");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSetFees = async (amount: string) => {
+    if (!selectedClassroom || !selectedClass) return;
+    setLoading(true);
+    try {
+      await authService.updateClassFees(
+        selectedClassroom.id,
+        selectedClass.id,
+        amount,
+      );
+      setShowFeesModal(false);
+      toast.success("School fees updated!");
+      refreshSelection();
+    } catch (e) {
+      toast.error("Failed to update fees");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // --- Views ---
 
-  // (Main, All Students, Classrooms List, Single Classroom views remain mostly same as previous)
   if (view === "MAIN") {
     return (
       <div className={styles.container}>
@@ -527,8 +629,8 @@ const ClassRoomAlt: React.FC = () => {
           ...s,
           className: cl.name,
           classroomName: cr.name,
-        }))
-      )
+        })),
+      ),
     );
     return (
       <div className={styles.container}>
@@ -562,7 +664,8 @@ const ClassRoomAlt: React.FC = () => {
                 {" "}
                 <tr>
                   {" "}
-                  <th>Student Name</th> <th>ID</th> <th>Classroom / Class</th>{" "}
+                  <th>Student Name</th> <th>ID</th>{" "}
+                  <th>Classroom / Class</th>{" "}
                 </tr>{" "}
               </thead>{" "}
               <tbody>
@@ -577,7 +680,9 @@ const ClassRoomAlt: React.FC = () => {
                         <div className={styles.avatar}>
                           {s.name.charAt(0)}
                         </div>{" "}
-                        <span className={styles.studentName}>{s.name}</span>{" "}
+                        <span className={styles.studentName}>
+                          {s.name}
+                        </span>{" "}
                       </div>{" "}
                     </td>{" "}
                     <td className={styles.studentId}>
@@ -708,12 +813,12 @@ const ClassRoomAlt: React.FC = () => {
       </div>
     );
   }
+
+  // 4. Single Classroom -> Classes (Updated with Head Teacher)
   if (view === "SINGLE_CLASSROOM" && selectedClassroom) {
     return (
       <div className={styles.container}>
-        {" "}
         <div className={styles.breadcrumb}>
-          {" "}
           <span
             onClick={() => setView("CLASSROOMS_LIST")}
             className={styles.crumbLink}
@@ -721,30 +826,70 @@ const ClassRoomAlt: React.FC = () => {
             Classrooms
           </span>{" "}
           <ChevronRight size={14} />{" "}
-          <span className={styles.crumbActive}>{selectedClassroom.name}</span>{" "}
-        </div>{" "}
+          <span className={styles.crumbActive}>{selectedClassroom.name}</span>
+        </div>
         <div className={styles.actionsBar}>
-          {" "}
           <button
             className={styles.backButton}
             onClick={() => setView("CLASSROOMS_LIST")}
           >
             <ArrowLeft size={16} /> Back
-          </button>{" "}
-          <button
-            onClick={() => setShowInput(!showInput)}
-            className={styles.createButton}
-          >
-            {" "}
-            {showInput ? (
-              "Close"
-            ) : (
-              <>
-                <Plus size={16} /> Add Class
-              </>
-            )}{" "}
-          </button>{" "}
-        </div>{" "}
+          </button>
+          <div style={{ display: "flex", gap: 10 }}>
+            <button
+              onClick={openAssignHeadTeacher}
+              className={styles.createButton}
+              style={{
+                background: "white",
+                color: "#071d69",
+                border: "1px solid #071d69",
+              }}
+            >
+              <UserCog size={16} />{" "}
+              {selectedClassroom.headTeacherName
+                ? "Change Head Teacher"
+                : "Assign Head Teacher"}
+            </button>
+            <button
+              onClick={() => setShowInput(!showInput)}
+              className={styles.createButton}
+            >
+              {" "}
+              {showInput ? (
+                "Close"
+              ) : (
+                <>
+                  <Plus size={16} /> Add Class
+                </>
+              )}{" "}
+            </button>
+          </div>
+        </div>
+        {/* Head Teacher Banner */}
+        <div
+          style={{
+            background: "#f0fdf4",
+            padding: "12px 16px",
+            borderRadius: 10,
+            marginBottom: 20,
+            border: "1px solid #bbf7d0",
+            color: "#166534",
+            fontSize: 14,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <UserCog size={18} />
+          <strong>Head Teacher:</strong>
+          {selectedClassroom.headTeacherName ? (
+            selectedClassroom.headTeacherName
+          ) : (
+            <span style={{ fontStyle: "italic", color: "#666" }}>
+              Not assigned
+            </span>
+          )}
+        </div>
         {showInput && (
           <InputPanel
             title={`Add Class to ${selectedClassroom.name}`}
@@ -755,7 +900,7 @@ const ClassRoomAlt: React.FC = () => {
             onCancel={() => setShowInput(false)}
             loading={loading}
           />
-        )}{" "}
+        )}
         {(selectedClassroom.classes || []).length === 0 && !showInput ? (
           <EmptyState message="No classes yet." />
         ) : (
@@ -822,12 +967,20 @@ const ClassRoomAlt: React.FC = () => {
           handleDelete={handleDelete}
           deleteConfirmationInput={deleteConfirmationInput}
           setDeleteConfirmationInput={setDeleteConfirmationInput}
-        />{" "}
+        />
+        <AssignStaffModal
+          isOpen={showHeadTeacherModal}
+          onClose={() => setShowHeadTeacherModal(false)}
+          staffList={staffList}
+          onAssign={handleAssignHeadTeacher}
+          title="Assign Head Teacher"
+          label="Select a staff member to be the Head Teacher."
+        />
       </div>
     );
   }
 
-  // 5. Single Class -> Students (Updated with Assign Teacher)
+  // 5. Single Class -> Students (Updated with Fees)
   if (view === "SINGLE_CLASS" && selectedClass && selectedClassroom) {
     return (
       <div className={styles.container}>
@@ -837,15 +990,15 @@ const ClassRoomAlt: React.FC = () => {
             className={styles.crumbLink}
           >
             Classrooms
-          </span>
-          <ChevronRight size={14} />
+          </span>{" "}
+          <ChevronRight size={14} />{" "}
           <span
             onClick={() => setView("SINGLE_CLASSROOM")}
             className={styles.crumbLink}
           >
             {selectedClassroom.name}
-          </span>
-          <ChevronRight size={14} />
+          </span>{" "}
+          <ChevronRight size={14} />{" "}
           <span className={styles.crumbActive}>{selectedClass.name}</span>
         </div>
 
@@ -858,6 +1011,17 @@ const ClassRoomAlt: React.FC = () => {
           </button>
 
           <div style={{ display: "flex", gap: 10 }}>
+            <button
+              onClick={openSetFees}
+              className={styles.createButton}
+              style={{
+                background: "white",
+                color: "#071d69",
+                border: "1px solid #071d69",
+              }}
+            >
+              <Coins size={16} /> Set Fees
+            </button>
             <button
               onClick={openAssignTeacher}
               className={styles.createButton}
@@ -885,30 +1049,63 @@ const ClassRoomAlt: React.FC = () => {
           </div>
         </div>
 
-        {/* Teacher Info Banner */}
+        {/* Class Info Banners */}
         <div
           style={{
-            background: "#eef2ff",
-            padding: "12px 16px",
-            borderRadius: 10,
-            marginBottom: 20,
-            border: "1px solid #c7d2fe",
-            color: "#3730a3",
-            fontSize: 14,
             display: "flex",
-            alignItems: "center",
-            gap: 8,
+            gap: 15,
+            marginBottom: 20,
+            flexWrap: "wrap",
           }}
         >
-          <UserCog size={18} />
-          <strong>Class Teacher:</strong>
-          {selectedClass.teacherName ? (
-            selectedClass.teacherName
-          ) : (
-            <span style={{ fontStyle: "italic", color: "#666" }}>
-              No teacher assigned yet
-            </span>
-          )}
+          <div
+            style={{
+              flex: 1,
+              background: "#eef2ff",
+              padding: "12px 16px",
+              borderRadius: 10,
+              border: "1px solid #c7d2fe",
+              color: "#3730a3",
+              fontSize: 14,
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <UserCog size={18} />
+            <strong>Class Teacher:</strong>
+            {selectedClass.teacherName ? (
+              selectedClass.teacherName
+            ) : (
+              <span style={{ fontStyle: "italic", color: "#666" }}>
+                Not assigned
+              </span>
+            )}
+          </div>
+          <div
+            style={{
+              flex: 1,
+              background: "#fff7ed",
+              padding: "12px 16px",
+              borderRadius: 10,
+              border: "1px solid #fed7aa",
+              color: "#9a3412",
+              fontSize: 14,
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <Coins size={18} />
+            <strong>School Fees:</strong>
+            {selectedClass.schoolFees ? (
+              `₦${Number(selectedClass.schoolFees).toLocaleString()}`
+            ) : (
+              <span style={{ fontStyle: "italic", color: "#666" }}>
+                Not set
+              </span>
+            )}
+          </div>
         </div>
 
         {showInput && (
@@ -990,11 +1187,19 @@ const ClassRoomAlt: React.FC = () => {
             </table>
           </div>
         )}
-        <AssignTeacherModal
+        <AssignStaffModal
           isOpen={showTeacherModal}
           onClose={() => setShowTeacherModal(false)}
           staffList={staffList}
           onAssign={handleAssignTeacher}
+          title="Assign Class Teacher"
+          label="Select a staff member to manage this class."
+        />
+        <SetFeesModal
+          isOpen={showFeesModal}
+          onClose={() => setShowFeesModal(false)}
+          currentFees={selectedClass.schoolFees}
+          onSave={handleSetFees}
         />
         <DeleteModal
           deleteMode={deleteMode}
@@ -1007,7 +1212,6 @@ const ClassRoomAlt: React.FC = () => {
     );
   }
 
-  // 6. MANAGE STUDENT VIEW
   if (
     view === "MANAGE_STUDENT" &&
     selectedStudent &&

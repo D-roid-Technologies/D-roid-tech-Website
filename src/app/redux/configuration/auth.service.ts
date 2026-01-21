@@ -82,7 +82,7 @@ function getCurrentUserPromise(): Promise<User> {
         if (user) resolve(user);
         else reject(new Error("User not authenticated"));
       },
-      reject
+      reject,
     );
   });
 }
@@ -97,10 +97,10 @@ const getCurrentDateTime = () => {
   const seconds = now.getSeconds();
 
   const formattedDate = `${year}-${String(month).padStart(2, "0")}-${String(
-    date
+    date,
   ).padStart(2, "0")}`;
   const formattedTime = `${String(hours).padStart(2, "0")}:${String(
-    minutes
+    minutes,
   ).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
   return {
@@ -147,7 +147,7 @@ function parseDate(timestamp: string): Date {
 
 export function calculateNetSalary(
   logs: LogEntry[],
-  grossSalary: number
+  grossSalary: number,
 ): { netSalary: number; grossSalary: number; totalDeductions: number } {
   if (!grossSalary || grossSalary <= 0) {
     return {
@@ -185,7 +185,7 @@ export function calculateNetSalary(
 
   for (const date in logsByDay) {
     const events = logsByDay[date].sort(
-      (a, b) => a.date.getTime() - b.date.getTime()
+      (a, b) => a.date.getTime() - b.date.getTime(),
     );
     let totalHours = 0;
     for (let i = 0; i < events.length - 1; i += 2) {
@@ -200,7 +200,7 @@ export function calculateNetSalary(
   }
 
   const qualifyingDays = Object.values(dailyDurations).filter(
-    (h) => h >= 6.5
+    (h) => h >= 6.5,
   ).length;
   let totalDeduction = 0;
 
@@ -238,7 +238,7 @@ export async function getUserDocByUniqueId(uniqueId: string) {
   const droidAccountCollection = collection(db, "droidaccount");
   const q = query(
     droidAccountCollection,
-    where("user.primaryInformation.uniqueId", "==", uniqueId)
+    where("user.primaryInformation.uniqueId", "==", uniqueId),
   );
   const querySnapshot = await getDocs(q);
   if (querySnapshot.empty) return null;
@@ -259,13 +259,13 @@ export class AuthService {
 
   async handleUserRegistration(
     userData: UserType,
-    locationData: LocationState
+    locationData: LocationState,
   ) {
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
         userData.email,
-        userData.password
+        userData.password,
       );
       const user = res.user;
       const currentDateTime = getCurrentDateTime();
@@ -411,17 +411,17 @@ export class AuthService {
   async handleUserLogin(
     email: string,
     password: string,
-    expectedRole: "Staff" | "Organisation" | "Member"
+    expectedRole: "Staff" | "Organisation" | "Member",
   ) {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       const userDocRef = doc(
         collection(db, "droidaccount"),
-        userCredential.user.uid
+        userCredential.user.uid,
       );
       const userDocSnap = await getDoc(userDocRef);
       const updatedData = userDocSnap.data();
@@ -439,7 +439,7 @@ export class AuthService {
           if (!isStaffAccount) {
             await auth.signOut();
             throw new Error(
-              "This is a Staff Portal. Please use the Member or Organization login."
+              "This is a Staff Portal. Please use the Member or Organization login.",
             );
           }
         } else if (expectedRole === "Organisation") {
@@ -447,7 +447,7 @@ export class AuthService {
           if (!isOrgAccount) {
             await auth.signOut();
             throw new Error(
-              "This is an Organization Portal. Please use the Staff or Member login."
+              "This is an Organization Portal. Please use the Staff or Member login.",
             );
           }
         }
@@ -462,7 +462,7 @@ export class AuthService {
 
           if (!isProfileComplete) {
             const hasNotification = currentNotifications.some(
-              (n: any) => n.title === "Complete Organization Profile"
+              (n: any) => n.title === "Complete Organization Profile",
             );
 
             if (!hasNotification) {
@@ -516,13 +516,12 @@ export class AuthService {
         store.dispatch(setSchedules(schedleData));
         store.dispatch(setStaffLeave(updatedStaffLeave));
         store.dispatch(
-          setUser({ ...primaryInformation, role: primaryInformation.role })
+          setUser({ ...primaryInformation, role: primaryInformation.role }),
         );
 
         try {
-          const { notificationsService } = await import(
-            "../../ui/notificationService/notifications.service"
-          );
+          const { notificationsService } =
+            await import("../../ui/notificationService/notifications.service");
           await notificationsService.initializeNotifications();
         } catch (error) {
           console.error("Failed to initialize notifications:", error);
@@ -581,7 +580,7 @@ export class AuthService {
     try {
       const q = query(
         collection(db, "droidaccount"),
-        where("user.primaryInformation.staffId", "==", uniqueId)
+        where("user.primaryInformation.staffId", "==", uniqueId),
       );
 
       const querySnapshot = await getDocs(q);
@@ -599,7 +598,7 @@ export class AuthService {
       if (userData.user.primaryInformation.userType !== "Member") {
         toast.error(
           "This ID belongs to an Organization or Staff, not a Member.",
-          { style: { background: "#faad14", color: "#fff" } }
+          { style: { background: "#faad14", color: "#fff" } },
         );
         return null;
       }
@@ -628,7 +627,7 @@ export class AuthService {
       startDate: string;
       staffCategory?: string;
     },
-    assignedClass?: { id: string; name: string; classroomId: string } | null
+    assignedClass?: { id: string; name: string; classroomId: string } | null,
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -670,13 +669,13 @@ export class AuthService {
           assignedClass.classroomId,
           assignedClass.id,
           memberUid,
-          `${memberInfo.firstName} ${memberInfo.lastName}`
+          `${memberInfo.firstName} ${memberInfo.lastName}`,
         );
       }
 
       toast.success(
         `${memberInfo.firstName} successfully added to your staff list!`,
-        { style: { background: "#4BB543", color: "#fff" } }
+        { style: { background: "#4BB543", color: "#fff" } },
       );
 
       return newEmployeeEntry;
@@ -718,7 +717,7 @@ export class AuthService {
       if (orgSnap.exists()) {
         const employees = orgSnap.data().user?.organisation?.employees || [];
         const updatedEmployees = employees.filter(
-          (emp: any) => emp.uid !== staffUid
+          (emp: any) => emp.uid !== staffUid,
         );
 
         await updateDoc(orgRef, {
@@ -745,7 +744,7 @@ export class AuthService {
     classroomId: string,
     classId: string,
     staffId: string,
-    staffName?: string
+    staffName?: string,
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -807,6 +806,72 @@ export class AuthService {
     }
   }
 
+  // --- NEW: Assign Head Teacher to Classroom (Level 1) ---
+  async assignHeadTeacherToClassroom(
+    classroomId: string,
+    staffId: string,
+    staffName: string,
+  ) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("Organization data not found");
+      const data = docSnap.data();
+      let classrooms = data.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          return { ...cr, headTeacherId: staffId, headTeacherName: staffName };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // --- NEW: Update School Fees for Class (Level 2) ---
+  async updateClassFees(classroomId: string, classId: string, amount: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const docSnap = await getDoc(userDocRef);
+      if (!docSnap.exists()) throw new Error("Organization data not found");
+      const data = docSnap.data();
+      let classrooms = data.user.organisation.classrooms || [];
+
+      const updatedClassrooms = classrooms.map((cr: any) => {
+        if (cr.id === classroomId) {
+          const updatedClasses = (cr.classes || []).map((cl: any) => {
+            if (cl.id === classId) {
+              return { ...cl, schoolFees: amount };
+            }
+            return cl;
+          });
+          return { ...cr, classes: updatedClasses };
+        }
+        return cr;
+      });
+
+      await updateDoc(userDocRef, {
+        "user.organisation.classrooms": updatedClassrooms,
+      });
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   // ==========================================
   //  3. CLASSROOM & STUDENT HIERARCHY
   // ==========================================
@@ -863,7 +928,7 @@ export class AuthService {
       const classrooms = data.user.organisation.classrooms || [];
 
       const updatedClassrooms = classrooms.map((cr: any) =>
-        cr.id === classroomId ? { ...cr, name: newName } : cr
+        cr.id === classroomId ? { ...cr, name: newName } : cr,
       );
 
       await updateDoc(userDocRef, {
@@ -887,7 +952,7 @@ export class AuthService {
       const classrooms = data.user.organisation.classrooms || [];
 
       const updatedClassrooms = classrooms.filter(
-        (cr: any) => cr.id !== classroomId
+        (cr: any) => cr.id !== classroomId,
       );
 
       await updateDoc(userDocRef, {
@@ -947,7 +1012,7 @@ export class AuthService {
       const updatedClassrooms = classrooms.map((cr: any) => {
         if (cr.id === classroomId) {
           const updatedClasses = (cr.classes || []).map((cl: any) =>
-            cl.id === classId ? { ...cl, name: newName } : cl
+            cl.id === classId ? { ...cl, name: newName } : cl,
           );
           return { ...cr, classes: updatedClasses };
         }
@@ -976,7 +1041,7 @@ export class AuthService {
       const updatedClassrooms = classrooms.map((cr: any) => {
         if (cr.id === classroomId) {
           const updatedClasses = (cr.classes || []).filter(
-            (cl: any) => cl.id !== classId
+            (cl: any) => cl.id !== classId,
           );
           return { ...cr, classes: updatedClasses };
         }
@@ -995,7 +1060,7 @@ export class AuthService {
   async addStudentToClass(
     classroomId: string,
     classId: string,
-    studentData: any
+    studentData: any,
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -1038,7 +1103,7 @@ export class AuthService {
     classroomId: string,
     classId: string,
     studentId: string,
-    newData: any
+    newData: any,
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -1054,7 +1119,7 @@ export class AuthService {
           const updatedClasses = (cr.classes || []).map((cl: any) => {
             if (cl.id === classId) {
               const updatedStudents = (cl.students || []).map((s: any) =>
-                s.id === studentId ? { ...s, ...newData } : s
+                s.id === studentId ? { ...s, ...newData } : s,
               );
               return { ...cl, students: updatedStudents };
             }
@@ -1089,7 +1154,7 @@ export class AuthService {
           const updatedClasses = (cr.classes || []).map((cl: any) => {
             if (cl.id === classId) {
               const updatedStudents = (cl.students || []).filter(
-                (s: any) => s.id !== studentId
+                (s: any) => s.id !== studentId,
               );
               return { ...cl, students: updatedStudents };
             }
@@ -1115,7 +1180,7 @@ export class AuthService {
     classroomId: string,
     classId: string,
     studentId: string,
-    studentDetails: any
+    studentDetails: any,
   ) {
     return this.updateStudent(classroomId, classId, studentId, studentDetails);
   }
@@ -1125,7 +1190,12 @@ export class AuthService {
     classroomId: string,
     classId: string,
     studentId: string,
-    documentData: { name: string; fileData: string; type: string; size: number }
+    documentData: {
+      name: string;
+      fileData: string;
+      type: string;
+      size: number;
+    },
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -1174,7 +1244,7 @@ export class AuthService {
     classroomId: string,
     classId: string,
     studentId: string,
-    documentId: string
+    documentId: string,
   ) {
     try {
       const currentUser = auth.currentUser;
@@ -1194,7 +1264,7 @@ export class AuthService {
                   return {
                     ...s,
                     documents: (s.documents || []).filter(
-                      (d: any) => d.id !== documentId
+                      (d: any) => d.id !== documentId,
                     ),
                   };
                 }
@@ -1369,7 +1439,7 @@ export class AuthService {
       const updatedSnapshot = await getDoc(userDocRef);
       const updatedData = updatedSnapshot.data();
       store.dispatch(
-        setPayslipData(updatedData?.user?.payslips?.paySlip || [])
+        setPayslipData(updatedData?.user?.payslips?.paySlip || []),
       );
 
       toast.success("Payslip generated successfully");
@@ -1393,8 +1463,8 @@ export class AuthService {
       store.dispatch(
         setSignInAndOutData(
           (await getDoc(userDocRef)).data()?.user?.staff?.staffSignInAndOut ||
-            []
-        )
+            [],
+        ),
       );
       toast.success(`${entry.type} recorded`, {
         style: { background: "#4BB543", color: "#fff" },
@@ -1481,7 +1551,7 @@ export class AuthService {
       const tasks: TaskMain[] =
         userSnapshot.data()?.schedules?.mySchedles ?? [];
       const updatedTasks = tasks.map((t) =>
-        t.id === updatedTask.id ? updatedTask : t
+        t.id === updatedTask.id ? updatedTask : t,
       );
       await updateDoc(userDocRef, { "schedules.mySchedles": updatedTasks });
       store.dispatch(deleteThisTask(updatedTask.id));
@@ -1516,7 +1586,7 @@ export class AuthService {
       if (!userSnapshot.exists()) return [];
       const data = userSnapshot.data();
       return this.migrateNotifications(
-        data?.user?.onboard?.notifications || []
+        data?.user?.onboard?.notifications || [],
       );
     } catch (error) {
       return [];
