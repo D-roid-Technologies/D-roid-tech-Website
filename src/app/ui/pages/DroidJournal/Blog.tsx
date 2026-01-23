@@ -53,7 +53,8 @@ const Blog: React.FC = () => {
       title: "Tech News",
       status: "",
       // descriptionUrl: "https://kcity-c8580.web.app/",
-      descriptionUrl: `${RoutePaths.UnderDevelopment}`,
+      descriptionUrl: `${RoutePaths.Blog}/tech`,
+
       summary:
         "Empower your Learning Journey with Knowledge City Whether you're a student, educator, or professional, our platform is designed to deliver an engaging and seamless learning experience.",
       startDate: "2023-01-10",
