@@ -90,6 +90,7 @@ import AiBuilder from "../ui/components/toolboxfolder/aibuilder/AiBuilder";
 import QrCodeScanner from "../ui/components/toolboxfolder/qrcode/QrCodeScanner";
 import SpinnerPage from "../ui/pages/Dashboard/SpinnerPage";
 import OrganizationLogin from "../ui/components/orgabizationLogin/OrganizationLogin";
+import DevDive from "../ui/pages/devDive/devDive";
 
 // Define an enum for all route paths
 
@@ -162,6 +163,7 @@ export enum RoutePaths {
   TrainingPage = "/training",
   TrainingDescriptionPage = "/training/description",
   QuizePage = "/training/quize",
+  devDive = "/devdive",
   TestDetail = "/training/test-detail",
   DevTools = "/devtools",
   DroidIcons = "/droidicons",
@@ -240,14 +242,14 @@ export const dropdownItems: DropdownItems = {
     { title: "Pricing", link: RoutePaths.Pricing },
     { title: "Partners", link: RoutePaths.Partners },
     { title: "Contact", link: RoutePaths.Contact },
-    // { title: "Gallery", link: RoutePaths.Contact },
+    { title: "DevDive", link: RoutePaths.devDive },
     { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
   ],
 };
 
 const Index: React.FunctionComponent = () => {
   const { uniqueId: userId, userType } = useSelector(
-    (state: RootState) => state.user
+    (state: RootState) => state.user,
   );
 
   // Helper to determine where to redirect logged-in users
@@ -300,9 +302,7 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.AnimationDescriptionPage}
         element={<AnimationDescriptionPage />}
       />
-
       <Route path={RoutePaths.Consulting} element={<ConsultingPage />} />
-
       {/* Resources Routes */}
       <Route path={RoutePaths.Toolbox} element={<ToolBoxPage />} />
       <Route path={RoutePaths.ToolImageResizer} element={<ImageResizer />} />
@@ -331,7 +331,6 @@ const Index: React.FunctionComponent = () => {
       <Route path={RoutePaths.BulkImage} element={<BulkImage />} />
       <Route path={RoutePaths.AiBuilderPage} element={<AiBuilder />} />
       <Route path={RoutePaths.QrCodeScannerPage} element={<QrCodeScanner />} />
-
       {/* Calculators */}
       <Route path={RoutePaths.Calculators} element={<CalculatorPage />} />
       <Route
@@ -373,6 +372,8 @@ const Index: React.FunctionComponent = () => {
         element={<TrainingDescriptionPage />}
       />
       <Route path={RoutePaths.QuizePage} element={<QuizePage />} />
+      //devdive route
+      <Route path={RoutePaths.devDive} element={<DevDive />} />
       <Route path={RoutePaths.TestDetail} element={<TestDetailPage />} />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />
@@ -459,7 +460,6 @@ const Index: React.FunctionComponent = () => {
         path={RoutePaths.CrossPlatformApps}
         element={<CrossplatformApp />}
       />
-
       {/* Private Routes */}
       <Route
         path={RoutePaths.DashBoard}
@@ -469,7 +469,6 @@ const Index: React.FunctionComponent = () => {
           </ProtectedRoute>
         }
       />
-
       {/* Organization Dashboard Route */}
       <Route
         path={RoutePaths.OrganizationDashboard}
@@ -479,7 +478,6 @@ const Index: React.FunctionComponent = () => {
           </ProtectedRoute>
         }
       />
-
       <Route
         path={RoutePaths.Spinner}
         element={

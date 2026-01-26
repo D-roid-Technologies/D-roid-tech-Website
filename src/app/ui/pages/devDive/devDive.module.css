@@ -1,0 +1,450 @@
+/* devDive.module.css */
+
+.container {
+  width: 100%;
+  overflow-x: hidden;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+}
+
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  /* Dark gradient background */
+  background: linear-gradient(135deg, #050a30 0%, #071d69 100%);
+  color: white;
+  padding: 140px 20px 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle circuit pattern overlay using a data URI SVG */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm57-13c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.heroContent {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3; /* Ensure text is above icons */
+}
+
+/* Container for the floating tech icons */
+.techIconContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Between background and text */
+  pointer-events: none; /* Ensure they don't block clicks */
+  overflow: hidden;
+}
+
+/* Base style for individual tech icons */
+.techIcon {
+  position: absolute;
+  font-size: 4rem; /* Default size for larger screens */
+  opacity: 0.2; /* Semi-transparent so they aren't too distracting */
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Floating animation keyframes */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.heroSubtitle {
+  font-size: 1.35rem;
+  font-weight: 400;
+  opacity: 0.95;
+  margin-bottom: 3rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: #00d4ff; /* Brighter accent color */
+  color: #071d69;
+  padding: 18px 54px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+}
+
+.ctaButton:hover {
+  background-color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 212, 255, 0.4);
+}
+
+/* --- CONTENT SECTIONS --- */
+.whiteSection {
+  background-color: #ffffff;
+}
+
+.greySection {
+  background-color: #f4f6f8;
+}
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.textBlock {
+  flex: 1;
+  min-width: 300px;
+}
+
+.sectionTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #071d69;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #00d4ff; /* Accent color */
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+.paragraph {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.highlightBox {
+  background: #eef2ff;
+  border-left: 5px solid #071d69;
+  padding: 25px;
+  border-radius: 0 8px 8px 0;
+  margin: 30px 0;
+}
+
+.highlightText {
+  font-style: italic;
+  color: #071d69;
+  font-weight: 500;
+}
+
+/* --- CARDS GRID (Certification) --- */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.cardIcon {
+  font-size: 2rem;
+  color: #071d69;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* --- ELIGIBILITY SECTION --- */
+.eligibilityList {
+  list-style: none;
+  padding: 0;
+}
+
+.eligibilityList li {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.checkIcon {
+  color: #10b981; /* Green */
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* --- BOTTOM CTA --- */
+.bottomCta {
+  background-color: #071d69;
+  background-image: linear-gradient(135deg, #050a30 0%, #071d69 100%);
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.bottomCta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+/* --- MODAL STYLES --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  padding: 20px;
+}
+
+.modalContent {
+  background-color: white;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+.modalHeader h2 {
+  font-size: 1.8rem;
+  color: #071d69;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  color: #ff4d4f;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.formGroup label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  padding: 14px;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s;
+  background-color: #fdfdfd;
+  font-family: inherit;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #071d69;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(7, 29, 105, 0.1);
+}
+
+.submitButton {
+  background-color: #071d69;
+  color: white;
+  border: none;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #051650;
+}
+
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+  .techIcon {
+    font-size: 3rem;
+  } /* Smaller icons on tablets */
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 120px 20px 80px;
+  }
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+  .heroSubtitle {
+    font-size: 1.15rem;
+  }
+  .techIcon {
+    font-size: 2.5rem;
+    opacity: 0.15;
+  } /* Even smaller on mobile */
+  .hideMobile {
+    display: none;
+  } /* Hide some icons to reduce clutter */
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .modalContent {
+    padding: 25px;
+  }
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  .ctaButton {
+    padding: 14px 36px;
+    font-size: 1rem;
+  }
+  .techIcon {
+    font-size: 2rem;
+  }
+}
