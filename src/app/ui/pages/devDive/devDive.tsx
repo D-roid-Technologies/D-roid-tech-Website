@@ -14,9 +14,12 @@ import {
   FaGitAlt,
 } from "react-icons/fa";
 
+import devDiveImg1 from "../../../images/png/devDive.jpg";
+import devDiveImg2 from "../../../images/png/devDive2.jpg";
+import { db } from "../../../../firebase";
+
 // Firebase Imports
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../../../../firebase";
 
 // Email Imports
 import emailjs from "emailjs-com";
@@ -195,9 +198,10 @@ const DevDive: React.FC = () => {
             <span style={{ color: "#00d4ff" }}>DevDive</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            A comprehensive, tuition-free 6-month internship program designed to
-            bridge the gap between theoretical knowledge and professional
-            software development in Nigeria.
+            Building Tech Careers in Reality, Not Just Theory. A comprehensive,
+            tuition-free 3-month internship program designed to bridge the gap
+            between theoretical knowledge and professional software development
+            in Nigeria.
           </p>
           <button
             className={styles.ctaButton}
@@ -214,24 +218,30 @@ const DevDive: React.FC = () => {
           <div className={styles.textBlock}>
             <h2 className={styles.sectionTitle}>The Tech Barrier</h2>
             <p className={styles.paragraph}>
-              While young people are frequently encouraged to "learn a skill,"
-              the barrier to entry has become insurmountable for the majority.
-              Between the crippling costs of mobile data, unreliable
-              electricity, and securing decent hardware, adding a commercial
-              bootcamp fee often ranging from{" "}
-              <strong>₦689,000 to ₦5.9 million</strong> makes a tech career an
-              impossible dream for some of our brightest minds.
+              We know the story well: You have the motivation to learn, but the
+              "reality" of building a tech career in Nigeria often gets in the
+              way. Between unstable power, fluctuating bandwidth, and the high
+              cost of quality training, many talented beginners are filtered out
+              before they even get a chance to start.
             </p>
             <div className={styles.highlightBox}>
               <p className={styles.highlightText}>
-                "At D’roid Technologies, we have decided to stop ignoring this
-                systemic failure."
+                "At D’roid Technologies, we believe that if we lose motivated
+                people at the starting line, we all lose."
               </p>
             </div>
             <p className={styles.paragraph}>
-              We aim to remove the financial barriers currently stifling local
-              tech talent and solve the industry’s infamous experience paradox.
+              That is why we are launching DevDive, a program designed
+              specifically to handle the real obstacles you face.
             </p>
+          </div>
+          {/* Image 1 placement */}
+          <div className={styles.imageBlock}>
+            <img
+              src={devDiveImg2}
+              alt="Tech Barrier Illustration"
+              className={styles.sectionImage}
+            />
           </div>
         </div>
       </section>
@@ -239,125 +249,178 @@ const DevDive: React.FC = () => {
       {/* --- THE SOLUTION (WORK SIMULATION) --- */}
       <section className={`${styles.section} ${styles.greySection}`}>
         <div className={styles.textBlock} style={{ textAlign: "center" }}>
-          <h2 className={styles.sectionTitle}>
-            A New Model for Tech Education
-          </h2>
+          <h2 className={styles.sectionTitle}>Real Work, Real Resilience</h2>
           <p
             className={styles.paragraph}
             style={{ maxWidth: "800px", margin: "0 auto 40px" }}
           >
-            DevDive is not a traditional school environment. It is a full-scale
-            <strong> work simulation</strong>.
+            DevDive is built on the belief that learning to code is one thing,
+            but delivering software while navigating infrastructure challenges
+            is another. Our program doesn't just teach syntax; it builds
+            resilience.
           </p>
         </div>
 
         <div className={styles.cardsGrid}>
           <div className={styles.card}>
             <Briefcase className={styles.cardIcon} />
-            <h3 className={styles.cardTitle}>Real Work, Real Agile</h3>
+            <h3 className={styles.cardTitle}>Production Paced</h3>
             <p className={styles.paragraph}>
-              From week one, interns are treated as junior staff members. You
-              will manage real tickets, participate in sprint reviews, and
-              handle merge conflicts in an agile environment.
+              You won't be working on simulations. You will join a real remote
+              team, working on actual product backlogs.
             </p>
           </div>
           <div className={styles.card}>
             <Zap className={styles.cardIcon} />
-            <h3 className={styles.cardTitle}>Deploy Live Features</h3>
+            <h3 className={styles.cardTitle}>Offline Tolerant</h3>
             <p className={styles.paragraph}>
-              Stop writing isolated lines of code. Face the pressure (and
-              reward) of deploying live features for real organizations and
-              users.
+              We simulate the true rhythm of distributed work, teaching you to
+              build "offline-tolerant" and cost-aware solutions.
             </p>
           </div>
           <div className={styles.card}>
             <Users className={styles.cardIcon} />
-            <h3 className={styles.cardTitle}>Future Colleagues</h3>
+            <h3 className={styles.cardTitle}>Grit Driven Access</h3>
             <p className={styles.paragraph}>
-              We are not optimizing for 'students' to fill seats in a classroom;
-              we are optimizing for future colleagues who can contribute to our
-              projects.
+              We are replacing the price gate with a practice gate. We select
+              based on aptitude and commitment, not wallet size.
             </p>
           </div>
         </div>
       </section>
 
-      {/* --- DUAL CERTIFICATION --- */}
+      {/* --- DUAL CERTIFICATION & EVIDENCE --- */}
       <section className={`${styles.section} ${styles.whiteSection}`}>
-        <h2 className={styles.sectionTitle}>Dual Certification</h2>
-        <p className={styles.paragraph}>
-          Address the issue of generic certificates. Upon successful completion
-          of the six months, interns receive:
-        </p>
-
-        <div className={styles.cardsGrid}>
-          <div
-            className={styles.card}
-            style={{ borderLeft: "4px solid #071d69" }}
-          >
-            <Award className={styles.cardIcon} />
-            <h3 className={styles.cardTitle}>Certificate of Learning</h3>
-            <p className={styles.paragraph}>
-              Proving mastery of the technology stack.
-            </p>
-          </div>
-          <div
-            className={styles.card}
-            style={{ borderLeft: "4px solid #00d4ff" }}
-          >
-            <Briefcase
-              className={styles.cardIcon}
-              style={{ color: "#00d4ff" }}
+        <div className={styles.flexContainer}>
+          {/* Image 2 placement - Order switched for visual variety */}
+          <div className={styles.imageBlock} style={{ order: 2 }}>
+            <img
+              src={devDiveImg1}
+              alt="DevDive Portfolio Building"
+              className={styles.sectionImage}
             />
-            <h3 className={styles.cardTitle}>Certificate of Work Experience</h3>
+          </div>
+          <div className={styles.textBlock} style={{ order: 1 }}>
+            <h2 className={styles.sectionTitle}>Evidence Over Certificates</h2>
             <p className={styles.paragraph}>
-              A verifiable professional reference letter confirming six months
-              of hands-on history at Droid Technologies.
+              Employers today aren't just asking, "What did you study?" They are
+              asking, "What have you shipped?"
             </p>
+            <p className={styles.paragraph}>
+              By the end of DevDive, you won’t just have a certificate. You will
+              have a verifiable portfolio of linked repositories, merged pull
+              requests, and sprint boards.
+            </p>
+
+            <div
+              className={styles.cardsGrid}
+              style={{ marginTop: "30px", gridTemplateColumns: "1fr" }}
+            >
+              <div
+                className={styles.card}
+                style={{ borderLeft: "4px solid #00d4ff", padding: "20px" }}
+              >
+                <Award
+                  className={styles.cardIcon}
+                  style={{ color: "#00d4ff", fontSize: "1.5rem" }}
+                />
+                <h3 className={styles.cardTitle} style={{ fontSize: "1.2rem" }}>
+                  Dual Certification
+                </h3>
+                <p className={styles.paragraph} style={{ fontSize: "0.95rem" }}>
+                  Receive a Certificate of Learning (Mastery) AND a Certificate
+                  of Work Experience (Professional Reference).
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <p className={styles.paragraph} style={{ marginTop: "30px" }}>
-          This includes a verifiable portfolio containing linked repositories,
-          merged Pull Requests (PRs), sprint boards, and stakeholder feedback
-          that hiring managers can audit quickly.
-        </p>
       </section>
 
       {/* --- ELIGIBILITY --- */}
       <section className={`${styles.section} ${styles.greySection}`}>
-        <h2 className={styles.sectionTitle}>Eligibility & Application</h2>
-        <p className={styles.paragraph}>
-          Candidates must fulfil the following requirements for consideration:
-        </p>
+        <h2 className={styles.sectionTitle}>Program Details & How to Join</h2>
 
-        <ul className={styles.eligibilityList}>
-          <li>
-            <CheckCircle className={styles.checkIcon} size={24} />
-            <p>
-              Foundational programming knowledge in HTML, CSS, and JavaScript or
-              relevant tools depending on the chosen field (e.g Figma for
-              UI/UX).
-            </p>
-          </li>
-          <li>
-            <CheckCircle className={styles.checkIcon} size={24} />
-            <p>
-              Exhibit strong learning potential, technical aptitude, and
-              alignment with D'roid values of innovation and excellence.
-            </p>
-          </li>
-        </ul>
+        <div
+          className={styles.flexContainer}
+          style={{ alignItems: "flex-start" }}
+        >
+          <div className={styles.textBlock}>
+            <h3>Program Details</h3>
+            <ul className={styles.eligibilityList}>
+              <li>
+                <Briefcase className={styles.checkIcon} size={24} />
+                <div>
+                  <strong>Who is it for?</strong>
+                  <p>
+                    Motivated beginners or early-career candidates with basic
+                    computer literacy. You will need a modern laptop and a
+                    commitment to solving problems.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <Zap className={styles.checkIcon} size={24} />
+                <div>
+                  <strong>The Commitment</strong>
+                  <p>
+                    A six-month runway. Expect regular stand-ups, code reviews,
+                    and weekly demos across front-end, back-end, and DevOps.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <Award className={styles.checkIcon} size={24} />
+                <div>
+                  <strong>The Outcome</strong>
+                  <p>
+                    A production-ready portfolio and the discipline of a remote
+                    software engineer.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-        <p className={styles.paragraph}>
-          The selection process is rigorous but transparent. Interested
-          candidates must complete a detailed application form to demonstrate
-          their drive, followed by a technical and behavioral interview.
-        </p>
+          <div className={styles.textBlock}>
+            <h3>Your Path to Joining</h3>
+            <ul className={styles.eligibilityList}>
+              <li>
+                <CheckCircle className={styles.checkIcon} size={24} />
+                <p>
+                  <strong>1. Online Application:</strong> Share your motivation
+                  and profile.
+                </p>
+              </li>
+              <li>
+                <CheckCircle className={styles.checkIcon} size={24} />
+                <p>
+                  <strong>2. Aptitude Test:</strong> A short check of your
+                  practical logic.
+                </p>
+              </li>
+              <li>
+                <CheckCircle className={styles.checkIcon} size={24} />
+                <p>
+                  <strong>3. Culture Interview:</strong> We discuss
+                  collaboration and reliability.
+                </p>
+              </li>
+              <li>
+                <CheckCircle className={styles.checkIcon} size={24} />
+                <p>
+                  <strong>4. Onboarding:</strong> You join a team and start your
+                  first sprint.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       {/* --- BOTTOM CTA --- */}
       <section className={styles.bottomCta}>
-        <h2>Ready to Dive In?</h2>
+        <h2>Ready to move from "learning" to "shipping"?</h2>
         <button
           className={styles.ctaButton}
           onClick={() => setIsModalOpen(true)}

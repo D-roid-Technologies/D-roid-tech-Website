@@ -51,7 +51,7 @@
   max-width: 900px;
   margin: 0 auto;
   position: relative;
-  z-index: 3; /* Ensure text is above icons */
+  z-index: 3;
 }
 
 /* Container for the floating tech icons */
@@ -61,16 +61,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2; /* Between background and text */
-  pointer-events: none; /* Ensure they don't block clicks */
+  z-index: 2;
+  pointer-events: none;
   overflow: hidden;
 }
 
 /* Base style for individual tech icons */
 .techIcon {
   position: absolute;
-  font-size: 4rem; /* Default size for larger screens */
-  opacity: 0.2; /* Semi-transparent so they aren't too distracting */
+  font-size: 4rem;
+  opacity: 0.2;
   animation: float 6s ease-in-out infinite;
 }
 
@@ -130,7 +130,6 @@
 .whiteSection {
   background-color: #ffffff;
 }
-
 .greySection {
   background-color: #f4f6f8;
 }
@@ -148,6 +147,27 @@
   min-width: 300px;
 }
 
+/* New Image Block Styles */
+.imageBlock {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.sectionImage:hover {
+  transform: scale(1.02);
+}
+
 .sectionTitle {
   font-size: 2.2rem;
   font-weight: 700;
@@ -162,7 +182,7 @@
   display: block;
   width: 60px;
   height: 4px;
-  background-color: #00d4ff; /* Accent color */
+  background-color: #00d4ff;
   margin-top: 8px;
   border-radius: 2px;
 }
@@ -187,7 +207,7 @@
   font-weight: 500;
 }
 
-/* --- CARDS GRID (Certification) --- */
+/* --- CARDS GRID --- */
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -239,7 +259,7 @@
 }
 
 .checkIcon {
-  color: #10b981; /* Green */
+  color: #10b981;
   flex-shrink: 0;
   margin-top: 4px;
 }
@@ -391,7 +411,6 @@
 .submitButton:hover {
   background-color: #051650;
 }
-
 .submitButton:disabled {
   background-color: #ccc;
   cursor: not-allowed;
@@ -404,7 +423,7 @@
   }
   .techIcon {
     font-size: 3rem;
-  } /* Smaller icons on tablets */
+  }
 }
 
 @media (max-width: 768px) {
@@ -420,10 +439,10 @@
   .techIcon {
     font-size: 2.5rem;
     opacity: 0.15;
-  } /* Even smaller on mobile */
+  }
   .hideMobile {
     display: none;
-  } /* Hide some icons to reduce clutter */
+  }
 
   .formGrid {
     grid-template-columns: 1fr;
@@ -433,6 +452,18 @@
   }
   .sectionTitle {
     font-size: 1.8rem;
+  }
+
+  /* Stack images properly on mobile */
+  .flexContainer {
+    flex-direction: column;
+  }
+  .imageBlock {
+    margin-top: 30px;
+    order: 2 !important; /* Ensure images are always below text on mobile */
+  }
+  .textBlock {
+    order: 1 !important;
   }
 }
 
