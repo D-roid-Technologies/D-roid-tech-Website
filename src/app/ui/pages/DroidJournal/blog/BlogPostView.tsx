@@ -129,7 +129,7 @@ const BlogPostView: React.FC = () => {
 
             {/* APPLY NOW BUTTON (Redirects to Landing Page) */}
             {post.category === "Tech" &&
-              post.title.includes("Droid Technologies Opens") && (
+              post.title.includes("Introducing DevDive") && (
                 <div className={styles.applySection}>
                   <h3>Ready to Start Your Journey?</h3>
                   <p>
@@ -149,8 +149,7 @@ const BlogPostView: React.FC = () => {
 
         {/* HIDE SIDEBAR for the specific Tech post */}
         {!(
-          post.category === "Tech" &&
-          post.title.includes("Droid Technologies Opens")
+          post.category === "Tech" && post.title.includes("Introducing DevDive")
         ) && (
           <aside className={styles.blogSidebar}>
             <h3>Related Posts</h3>
