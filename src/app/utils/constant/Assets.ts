@@ -215,6 +215,7 @@ export const Assets = {
     events: require("../../images/png/events.png"),
     cumsaEvent: require("../../images/png/cumsaEvent.jpg"),
     mustTechEvent: require("../../images/png/tech-mixer.png"),
+    devDive: require("../../images/png/devDive.jpg"),
     chessOne: require("../../images/png/chess-one.png"),
     chessTwo: require("../../images/png/chess-two.png"),
     nationalICT: require("../../images/png/ICT-ONE.png"),

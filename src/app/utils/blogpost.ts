@@ -1,7 +1,5 @@
 import { Assets } from "./constant/Assets";
 
-
-
 export interface BlogPost {
   id: number;
   title: string;
@@ -34,32 +32,30 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     title:
-      "Droid Technologies Opens Applications for DevDive, a Tuition-Free 6-Month Internship Program",
+      "Introducing DevDive: Building Tech Careers in Reality, Not Just Theory",
     excerpt:
-      "D’roid Technologies is a software innovation and digital transformation company specializing in custom software development...",
+      "We know the story well: You have the motivation to learn, but the reality of building a tech career in Nigeria often gets in the way. Between unstable power...",
     date: "Jan 22, 2026",
     author: "D'roid Technologies",
     authorAvatar: "https://randomuser.me/api/portraits/lego/5.jpg",
     category: "Tech",
     readTime: "8 min read",
-    image:
-      "https://plus.unsplash.com/premium_photo-1676637656166-cb7b3a43b81a?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: Assets.images.devDive,
     featured: true,
-    content: [ "D’roid Technologies is a software innovation and digital transformation company specializing in custom software development and technology training and we are launching  the DevDive program. This comprehensive, tuition-free six-month internship program is designed to bridge the widening gap between theoretical knowledge and professional software development in Nigeria.",
-      "The initiative aims to remove the financial barriers currently stifling local tech talent and solve the industry’s infamous experience paradox. In a candid assessment of the ecosystem, we have noted that while young people are frequently encouraged to learn a skill, the barrier to entry has become insurmountable for the majority.",
-      "​Between the crippling costs of mobile data, unreliable electricity, and securing decent hardware, adding a commercial bootcamp fee often ranging from ₦689,000 to ₦5.9 million for a 3-12 month program makes a tech career an impossible dream for some of our brightest minds. At D’roid Technologies, we have decided to stop ignoring this systemic failure.",
-      "A New Model for Tech Education - DevDive is not as a traditional school environment, but as a full-scale work simulation. The program is created to counter the cycle of passive learning, where aspiring developers/ tech enthusiasts follow online guides without understanding how to engineer deployable, scalable solutions.",
-      "From the first week, selected interns will be treated as junior staff members within an agile development environment. Rather than writing isolated lines of code, participants will manage real tickets, participate in sprint reviews, handle complex merge conflicts, and face the pressure of deploying live features for real organizations. We are not optimizing for ‘students’ to fill seats in a classroom; we are optimizing for future colleagues who can contribute to our projects.",
-      "Dual Certification and Career Readiness - A key differentiator of our DevDive program is its focus on employability in a skeptical labor market. To address the issue of generic certificates that only prove attendance, D'roid Technologies has introduced a Dual Certification model.",
-     "Upon successful completion of the six months, interns will receive:\n\nA Certificate of Learning: Proving mastery of the technology stack.\nA Certificate of Work Experience: A verifiable professional reference letter confirming six months of hands-on history at Droid Technologies.",
-     "This includes a verifiable portfolio containing linked repositories, merged Pull Requests (PRs), sprint boards, and stakeholder feedback that hiring managers can audit quickly.",   
-     "Eligibility and How to Apply Candidates must fulfil the following requirements for consideration: - Candidates must have foundational programming knowledge in HTML, CSS, and JavaScript or relevant tools depending on the chosen field (e.g Figma for UI/UX applicants). - Candidates should exhibit strong learning potential, technical aptitude, and alignment with D'roid values of innovation and excellence.",
-     "The selection process is rigorous but transparent. Interested candidates must complete a detailed application form to demonstrate their drive, followed by a technical and behavioral interview. Successful applicants will be inducted into the free cohort immediately, where they will receive senior mentorship and a professional environment.",
-     "Applications are currently open for the next cohort.",
-     ],
+    content: [
+      "We know the story well: You have the motivation to learn, but the reality of building a tech career in Nigeria often gets in the way. Between unstable power, fluctuating bandwidth, and the high cost of quality training, many talented beginners are filtered out before they even get a chance to start.",
+      "At D’roid Technologies, we believe that if we lose motivated people at the starting line, we all lose. That is why we are launching DevDive, a program designed specifically to handle the real obstacles you face.",
+      "Real Work, Real Resilience - DevDive is built on the belief that learning to code is one thing, but delivering software while navigating infrastructure challenges is another. Our program doesn't just teach syntax; it builds resilience. You won't be working on simulations. You will join a real remote team, working on actual product backlogs",
+      "We simulate the true rhythm of distributed work, asynchronous communication, issue tracking, and meeting deadlines even when conditions aren't perfect. This teaches you to build offline-tolerant and cost-aware solutions, turning the daily challenges of our environment into a unique professional strength.",
+      "Access Driven by Grit, Not Wallet Size - We are replacing the price gate with a practice gate. While high-quality training often comes with a heavy financial burden, DevDive selects based on aptitude and commitment. We are looking for people with the stamina to stick with a six-month, production-paced schedule",
+      'Evidence Over Certificates - Employers today aren\'t just asking, "What did you study?" They are asking, "What have you shipped?"',
+      "By the end of DevDive, you won’t just have a certificate. You will have a verifiable portfolio of linked repositories, merged pull requests, and sprint boards. You will walk into interviews with the evidence hiring managers trust, ready to show that you are productive from day one.",
+      "DevDive Program Details \n\n Who is it for? Motivated beginners or early-career candidates with basic computer literacy. You will need a modern laptop and a commitment to solving problems. \n\n The Commitment: A six-month runway. Expect regular stand-ups, code reviews, and weekly demos across front-end, back-end, and DevOps. \n\n The Outcome: A production-ready portfolio and the discipline of a remote software engineer.",
+      'How to Join \n\n We are looking for builders. If you are ready to move from "learning" to "shipping," here is your path:\nOnline Application: Share your motivation and profile.\nAptitude Test: A short check of your practical logic.\nCulture Interview: We discuss collaboration and reliability.\nOnboarding: You join a team and start your first sprint.\n\n Online Application: Share your motivation and profile. \n\n Aptitude Test: A short check of your practical logic. \n\n Culture Interview: We discuss collaboration and reliability. \n\nOnboarding: You join a team and start your first sprint',
+    ],
     readMoreLink: generateBlogLink(
       "tech",
-      "Droid Technologies Opens Applications for DevDive, a Tuition-Free 6-Month Internship Program",
+      "Introducing DevDive: Building Tech Careers in Reality, Not Just Theory",
     ),
   },
 ];
