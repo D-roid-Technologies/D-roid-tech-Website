@@ -19,13 +19,13 @@ import PrivacyPolicy from "../ui/pages/privacy/PrivacyPolicy";
 import TrainingPrograms from "../ui/pages/training/trainingprograms/TrainingPrograms";
 import Details from "../ui/pages/details/Details";
 import Website from "../ui/pages/website/Website";
-import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
+// import WebWelcome from "../ui/pages/website/webwelcome/WebWelcome";
 import KnowledgeCityDetails from "../ui/pages/animations/knowledgecitydetailspage/KnowledgeCityDetails";
-import Cashbasket from "../ui/pages/animations/cashbasket/Cashbasket";
-import Dome from "../ui/pages/animations/dome/Dome";
-import WebOverview from "../ui/pages/website/weboverview/WebOverview";
-import Project from "../ui/pages/website/project/Project";
-import WebFoarm from "../ui/pages/website/webfoarm/WebFoarm";
+// import Cashbasket from "../ui/pages/animations/cashbasket/Cashbasket";
+// import Dome from "../ui/pages/animations/dome/Dome";
+// import WebOverview from "../ui/pages/website/weboverview/WebOverview";
+// import Project from "../ui/pages/website/project/Project";
+// import WebFoarm from "../ui/pages/website/webfoarm/WebFoarm";
 import StartProjectPage from "../ui/pages/startproject/StartProjectPage";
 import CareersPage from "../ui/pages/careers/CareersPage";
 import SoftwareDevelopmentPage from "../ui/pages/softwareDevelopment/SoftwareDevelopmentPage";
@@ -36,7 +36,7 @@ import ToolBoxPage from "../ui/pages/toolboxpage/ToolBoxPage";
 import CalculatorPage from "../ui/pages/calculator/CalculatorPage";
 import SchedulePage from "../ui/pages/schedule/SchedulePage";
 import UnderDevelopmentPage from "../ui/pages/underDevelopment/UnderDevelopmentPage";
-import Muzik from "../ui/pages/muzik/Muzik";
+// import Muzik from "../ui/pages/muzik/Muzik";
 import KnowledgeCity from "../ui/pages/animations/knowledgecity/KnowledgeCity";
 import DroidJournalPage from "../ui/pages/DroidJournal/DroidJournalPage";
 import Products from "../ui/pages/products/Products";
@@ -77,7 +77,7 @@ import PdfEditor from "../ui/pages/pdfeditor/PdfEditor";
 import CodeComplexity from "../ui/pages/codecomplexity/CodeComplexity";
 import BulkImage from "../ui/pages/bulkimage/BulkImage";
 import CurrencyConverter from "../ui/pages/toolboxpage/currencyconverter/CurrencyConverter";
-import { userInfo } from "os";
+// import { userInfo } from "os";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/Store";
 import UpcomingEventsPage from "../ui/pages/underDevelopment/UpcomingEventsPage";
@@ -91,6 +91,7 @@ import QrCodeScanner from "../ui/components/toolboxfolder/qrcode/QrCodeScanner";
 import SpinnerPage from "../ui/pages/Dashboard/SpinnerPage";
 import OrganizationLogin from "../ui/components/orgabizationLogin/OrganizationLogin";
 import DevDive from "../ui/pages/devDive/devDive";
+import LiftOff from "../ui/pages/LiftOff/LiftOff";
 
 // Define an enum for all route paths
 
@@ -164,6 +165,7 @@ export enum RoutePaths {
   TrainingDescriptionPage = "/training/description",
   QuizePage = "/training/quize",
   devDive = "/devdive",
+  liftOff = "/liftoff",
   TestDetail = "/training/test-detail",
   DevTools = "/devtools",
   DroidIcons = "/droidicons",
@@ -243,6 +245,7 @@ export const dropdownItems: DropdownItems = {
     { title: "Partners", link: RoutePaths.Partners },
     { title: "Contact", link: RoutePaths.Contact },
     { title: "DevDive", link: RoutePaths.devDive },
+    { title: "Lift-Off Confernce", link: RoutePaths.liftOff },
     { title: "Join Our Community", link: RoutePaths.JoinOurCommunity },
   ],
 };
@@ -372,8 +375,10 @@ const Index: React.FunctionComponent = () => {
         element={<TrainingDescriptionPage />}
       />
       <Route path={RoutePaths.QuizePage} element={<QuizePage />} />
-      //devdive route
+      {/* //devdive route */}
       <Route path={RoutePaths.devDive} element={<DevDive />} />
+      {/* //liftoff route */}
+      <Route path={RoutePaths.liftOff} element={<LiftOff />} />
       <Route path={RoutePaths.TestDetail} element={<TestDetailPage />} />
       <Route path={RoutePaths.DevTools} element={<Drone />} />
       <Route path={RoutePaths.DroidIcons} element={<Equipments />} />

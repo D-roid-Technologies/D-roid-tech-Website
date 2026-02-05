@@ -364,8 +364,9 @@ const DevDive: React.FC = () => {
                 <div>
                   <strong>The Commitment</strong>
                   <p>
-                    A six-month runway. Expect regular stand-ups, code reviews,
-                    and weekly demos across front-end, back-end, and DevOps.
+                    A three-month runway. Expect regular stand-ups, code
+                    reviews, and weekly demos across front-end, back-end, and
+                    DevOps.
                   </p>
                 </div>
               </li>
