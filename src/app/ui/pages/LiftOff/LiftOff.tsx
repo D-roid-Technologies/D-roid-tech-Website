@@ -12,9 +12,12 @@ import {
   Mic,
   Heart,
   ChevronLeft,
-  CheckCircle,
 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
+
+// Firebase Imports
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../../../../firebase";
 
 // Placeholder images for slideshow
 const backgroundImages = [
@@ -34,8 +37,57 @@ const LiftOff: React.FC = () => {
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "right",
   );
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // --- COUNTDOWN LOGIC ---
+  // --- FORM STATE ---
+  // Unified state for all forms to keep it simple
+  const [formData, setFormData] = useState({
+    // Common
+    fullName: "",
+    email: "",
+    phone: "",
+    organization: "",
+
+    // Participant specific
+    expectations: "",
+
+    // Volunteer specific
+    cityState: "",
+    ageRange: "18-24",
+    volunteerDepartment: "Content & Speakers (Liaison)",
+    hasVolunteerExp: false,
+    volunteerExpDesc: "",
+    availability: "Event Day Only",
+    agreeToBriefing: false,
+    hasSmartphone: false,
+
+    // Speaker specific
+    jobTitle: "",
+    linkedin: "",
+    website: "",
+    talkTitle: "",
+    talkSummary: "",
+    keyTakeaways: "",
+    talkFormat: "Keynote Speech",
+    availableInJune: false,
+    accommodationRequired: false,
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
+    const { name, value, type } = e.target;
+    const val =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: val,
+    }));
+  };
+
   function calculateTimeLeft() {
     const difference = +new Date("2026-06-27") - +new Date();
     let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -65,6 +117,12 @@ const LiftOff: React.FC = () => {
 
   // --- MODAL HANDLERS ---
   const openModal = (view: RegistrationView = "selection") => {
+    if (/Android/i.test(navigator.userAgent)) {
+      window.location.href =
+        "https://play.google.com/store/apps/details?id=com.devekene.DroidOne&hl=en";
+      return;
+    }
+
     setModalView(view);
     setIsModalOpen(true);
   };
@@ -76,15 +134,104 @@ const LiftOff: React.FC = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setModalView("selection"); // Reset on close
+    setModalView("selection");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Registration Submitted Successfully!", {
-      style: { background: "#071d69", color: "#fff" },
-    });
-    closeModal();
+    setIsSubmitting(true);
+
+    try {
+      let payload: any = {
+        role: modalView,
+        submittedAt: serverTimestamp(),
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+      };
+
+      if (modalView === "participant") {
+        payload = {
+          ...payload,
+          organization: formData.organization,
+          expectations: formData.expectations,
+        };
+      } else if (modalView === "volunteer") {
+        payload = {
+          ...payload,
+          cityState: formData.cityState,
+          ageRange: formData.ageRange,
+          department: formData.volunteerDepartment,
+          hasExperience: formData.hasVolunteerExp,
+          experienceDescription: formData.volunteerExpDesc,
+          availability: formData.availability,
+          agreeToBriefing: formData.agreeToBriefing,
+          hasSmartphone: formData.hasSmartphone,
+        };
+      } else if (modalView === "speaker") {
+        payload = {
+          ...payload,
+          organization: formData.organization,
+          jobTitle: formData.jobTitle,
+          linkedin: formData.linkedin,
+          website: formData.website,
+          proposal: {
+            title: formData.talkTitle,
+            summary: formData.talkSummary,
+            takeaways: formData.keyTakeaways,
+            format: formData.talkFormat,
+          },
+          logistics: {
+            availableInJune: formData.availableInJune,
+            accommodationRequired: formData.accommodationRequired,
+          },
+        };
+      }
+
+      // 2. Send to Firebase
+      await addDoc(collection(db, "liftoff_registrations"), payload);
+
+      toast.success(`Registered as ${modalView} successfully!`, {
+        style: { background: "#071d69", color: "#fff" },
+      });
+
+      closeModal();
+
+      // Reset form data slightly after closing
+      setTimeout(() => {
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          organization: "",
+          expectations: "",
+          cityState: "",
+          ageRange: "18-24",
+          volunteerDepartment: "Content & Speakers (Liaison)",
+          hasVolunteerExp: false,
+          volunteerExpDesc: "",
+          availability: "Event Day Only",
+          agreeToBriefing: false,
+          hasSmartphone: false,
+          jobTitle: "",
+          linkedin: "",
+          website: "",
+          talkTitle: "",
+          talkSummary: "",
+          keyTakeaways: "",
+          talkFormat: "Keynote Speech",
+          availableInJune: false,
+          accommodationRequired: false,
+        });
+      }, 500);
+    } catch (error) {
+      console.error("Error registering:", error);
+      toast.error("Registration failed. Please try again.", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -287,38 +434,65 @@ const LiftOff: React.FC = () => {
                 <form onSubmit={handleSubmit} className={styles.formStack}>
                   <div className={styles.inputGroup}>
                     <label>Full Name</label>
-                    <input type="text" required placeholder="John Doe" />
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="John Doe"
+                    />
                   </div>
                   <div className={styles.row}>
                     <div className={styles.inputGroup}>
                       <label>Email Address</label>
                       <input
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         required
                         placeholder="john@example.com"
                       />
                     </div>
                     <div className={styles.inputGroup}>
                       <label>Phone Number</label>
-                      <input type="tel" required placeholder="+234..." />
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="+234..."
+                      />
                     </div>
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Organization / School</label>
                     <input
                       type="text"
+                      name="organization"
+                      value={formData.organization}
+                      onChange={handleInputChange}
                       placeholder="Company or University Name"
                     />
                   </div>
                   <div className={styles.inputGroup}>
                     <label>What do you hope to gain?</label>
                     <textarea
+                      name="expectations"
+                      value={formData.expectations}
+                      onChange={handleInputChange}
                       rows={3}
                       placeholder="Networking, new skills, etc."
                     />
                   </div>
-                  <button type="submit" className={styles.submitBtn}>
-                    Complete Registration
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={styles.submitBtn}
+                  >
+                    {isSubmitting ? "Processing..." : "Complete Registration"}
                   </button>
                 </form>
               )}
@@ -332,28 +506,70 @@ const LiftOff: React.FC = () => {
                   <div className={styles.row}>
                     <div className={styles.inputGroup}>
                       <label>Full Name</label>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                     <div className={styles.inputGroup}>
                       <label>Email</label>
-                      <input type="email" required />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                   </div>
                   <div className={styles.row}>
                     <div className={styles.inputGroup}>
                       <label>WhatsApp Number</label>
-                      <input type="tel" required />
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                     <div className={styles.inputGroup}>
                       <label>City / State</label>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        name="cityState"
+                        value={formData.cityState}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Age Range</label>
+                    <select
+                      name="ageRange"
+                      value={formData.ageRange}
+                      onChange={handleInputChange}
+                      className={styles.selectInput}
+                    >
+                      <option>18-24</option>
+                      <option>25-30</option>
+                      <option>30+</option>
+                    </select>
                   </div>
 
                   <div className={styles.sectionLabel}>Role Interest</div>
                   <div className={styles.inputGroup}>
                     <label>Preferred Department</label>
-                    <select className={styles.selectInput}>
+                    <select
+                      name="volunteerDepartment"
+                      value={formData.volunteerDepartment}
+                      onChange={handleInputChange}
+                      className={styles.selectInput}
+                    >
                       <option>Content & Speakers (Liaison)</option>
                       <option>Operations & Logistics (Venue/Catering)</option>
                       <option>Marketing & Publicity (Socials/PR)</option>
@@ -367,30 +583,67 @@ const LiftOff: React.FC = () => {
                   </div>
                   <div className={styles.checkboxGroup}>
                     <label>
-                      <input type="checkbox" /> I have previous volunteering
-                      experience.
+                      <input
+                        type="checkbox"
+                        name="hasVolunteerExp"
+                        checked={formData.hasVolunteerExp}
+                        onChange={handleInputChange}
+                      />{" "}
+                      I have previous volunteering experience.
                     </label>
                   </div>
+                  {formData.hasVolunteerExp && (
+                    <div className={styles.inputGroup}>
+                      <label>Brief Description</label>
+                      <textarea
+                        name="volunteerExpDesc"
+                        value={formData.volunteerExpDesc}
+                        onChange={handleInputChange}
+                        rows={2}
+                      />
+                    </div>
+                  )}
                   <div className={styles.inputGroup}>
                     <label>Availability</label>
-                    <select className={styles.selectInput}>
+                    <select
+                      name="availability"
+                      value={formData.availability}
+                      onChange={handleInputChange}
+                      className={styles.selectInput}
+                    >
                       <option>Event Day Only</option>
                       <option>Pre-event & Event Day</option>
                     </select>
                   </div>
                   <div className={styles.checkboxGroup}>
                     <label>
-                      <input type="checkbox" required /> I agree to attend the
-                      briefing.
+                      <input
+                        type="checkbox"
+                        name="agreeToBriefing"
+                        checked={formData.agreeToBriefing}
+                        onChange={handleInputChange}
+                        required
+                      />{" "}
+                      I agree to attend the briefing.
                     </label>
                     <label>
-                      <input type="checkbox" required /> I have a smartphone &
-                      internet access.
+                      <input
+                        type="checkbox"
+                        name="hasSmartphone"
+                        checked={formData.hasSmartphone}
+                        onChange={handleInputChange}
+                        required
+                      />{" "}
+                      I have a smartphone & internet access.
                     </label>
                   </div>
 
-                  <button type="submit" className={styles.submitBtn}>
-                    Submit Application
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={styles.submitBtn}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Application"}
                   </button>
                 </form>
               )}
@@ -402,22 +655,77 @@ const LiftOff: React.FC = () => {
                   <div className={styles.row}>
                     <div className={styles.inputGroup}>
                       <label>Full Name</label>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.row}>
+                    <div className={styles.inputGroup}>
+                      <label>Phone Number</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                     <div className={styles.inputGroup}>
                       <label>Job Title</label>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        name="jobTitle"
+                        value={formData.jobTitle}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                   </div>
                   <div className={styles.row}>
                     <div className={styles.inputGroup}>
                       <label>Organization</label>
-                      <input type="text" required />
+                      <input
+                        type="text"
+                        name="organization"
+                        value={formData.organization}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                     <div className={styles.inputGroup}>
                       <label>LinkedIn URL</label>
-                      <input type="url" required />
+                      <input
+                        type="url"
+                        name="linkedin"
+                        value={formData.linkedin}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Website (Optional)</label>
+                    <input
+                      type="url"
+                      name="website"
+                      value={formData.website}
+                      onChange={handleInputChange}
+                    />
                   </div>
 
                   <div className={styles.sectionLabel}>Talk Details</div>
@@ -425,6 +733,9 @@ const LiftOff: React.FC = () => {
                     <label>Talk Title</label>
                     <input
                       type="text"
+                      name="talkTitle"
+                      value={formData.talkTitle}
+                      onChange={handleInputChange}
                       required
                       placeholder="Catchy and relevant title"
                     />
@@ -432,6 +743,9 @@ const LiftOff: React.FC = () => {
                   <div className={styles.inputGroup}>
                     <label>Summary (150-300 words)</label>
                     <textarea
+                      name="talkSummary"
+                      value={formData.talkSummary}
+                      onChange={handleInputChange}
                       rows={4}
                       required
                       placeholder="What is your session about?"
@@ -440,6 +754,9 @@ const LiftOff: React.FC = () => {
                   <div className={styles.inputGroup}>
                     <label>Key Takeaways</label>
                     <textarea
+                      name="keyTakeaways"
+                      value={formData.keyTakeaways}
+                      onChange={handleInputChange}
                       rows={2}
                       required
                       placeholder="What will the audience learn?"
@@ -447,7 +764,12 @@ const LiftOff: React.FC = () => {
                   </div>
                   <div className={styles.inputGroup}>
                     <label>Preferred Format</label>
-                    <select className={styles.selectInput}>
+                    <select
+                      name="talkFormat"
+                      value={formData.talkFormat}
+                      onChange={handleInputChange}
+                      className={styles.selectInput}
+                    >
                       <option>Keynote Speech</option>
                       <option>Panel Discussion</option>
                       <option>Fireside Chat</option>
@@ -458,15 +780,31 @@ const LiftOff: React.FC = () => {
                   <div className={styles.sectionLabel}>Logistics</div>
                   <div className={styles.checkboxGroup}>
                     <label>
-                      <input type="checkbox" /> Available in June 2026?
+                      <input
+                        type="checkbox"
+                        name="availableInJune"
+                        checked={formData.availableInJune}
+                        onChange={handleInputChange}
+                      />{" "}
+                      Available in June 2026?
                     </label>
                     <label>
-                      <input type="checkbox" /> Accommodation Required?
+                      <input
+                        type="checkbox"
+                        name="accommodationRequired"
+                        checked={formData.accommodationRequired}
+                        onChange={handleInputChange}
+                      />{" "}
+                      Accommodation Required?
                     </label>
                   </div>
 
-                  <button type="submit" className={styles.submitBtn}>
-                    Submit Proposal
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={styles.submitBtn}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Proposal"}
                   </button>
                 </form>
               )}

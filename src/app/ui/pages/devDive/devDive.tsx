@@ -45,6 +45,19 @@ const DevDive: React.FC = () => {
   const TEMPLATE_ID = "template_p8h58ur";
   const PUBLIC_KEY = "hcj3DsJ8MfNfUrE8J";
 
+  const handleOpenModal = () => {
+    const userAgent =
+      navigator.userAgent || navigator.vendor || (window as any).opera;
+
+    if (/android/i.test(userAgent)) {
+      // Redirect to Play Store
+      window.location.href =
+        "https://play.google.com/store/apps/details?id=com.devekene.DroidOne&hl=en";
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -203,10 +216,7 @@ const DevDive: React.FC = () => {
             between theoretical knowledge and professional software development
             in Nigeria.
           </p>
-          <button
-            className={styles.ctaButton}
-            onClick={() => setIsModalOpen(true)}
-          >
+          <button className={styles.ctaButton} onClick={handleOpenModal}>
             Apply Now
           </button>
         </div>
@@ -422,10 +432,7 @@ const DevDive: React.FC = () => {
       {/* --- BOTTOM CTA --- */}
       <section className={styles.bottomCta}>
         <h2>Ready to move from "learning" to "shipping"?</h2>
-        <button
-          className={styles.ctaButton}
-          onClick={() => setIsModalOpen(true)}
-        >
+        <button className={styles.ctaButton} onClick={handleOpenModal}>
           Apply Now
         </button>
       </section>
