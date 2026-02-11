@@ -246,21 +246,28 @@ export async function getUserDocByUniqueId(uniqueId: string) {
   return docSnap;
 }
 
-// --- AUTH SERVICE CLASS ---
 
 export class AuthService {
   async getCurrentUser(): Promise<User> {
     return getCurrentUserPromise();
   }
 
-  // ==========================================
   //  1. AUTHENTICATION & REGISTRATION
-  // ==========================================
 
   async handleUserRegistration(
     userData: UserType,
     locationData: LocationState,
   ) {
+    if (
+      typeof navigator !== "undefined" &&
+      /Android/i.test(navigator.userAgent) &&
+      (userData.userType === "Member" || userData.userType === "Staff")
+    ) {
+      window.location.href =
+        "https://play.google.com/store/apps/details?id=com.devekene.DroidOne&hl=en";
+      return new Promise<any>(() => {});
+    }
+
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
@@ -572,9 +579,7 @@ export class AuthService {
       });
   }
 
-  // ==========================================
   //  2. ORGANIZATION & STAFF MANAGEMENT
-  // ==========================================
 
   async searchMemberByUniqueId(uniqueId: string) {
     try {
@@ -872,9 +877,7 @@ export class AuthService {
     }
   }
 
-  // ==========================================
   //  3. CLASSROOM & STUDENT HIERARCHY
-  // ==========================================
 
   async getOrganizationClassrooms() {
     try {
@@ -1305,9 +1308,7 @@ export class AuthService {
     }
   }
 
-  // ==========================================
   //  4. UTILITY METHODS (Fixes missing errors)
-  // ==========================================
 
   async updatePrimaryInformation(partialUpdateData: Partial<UserType>) {
     try {
