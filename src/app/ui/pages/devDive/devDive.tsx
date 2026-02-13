@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./devDive.module.css";
 import NavBar from "../../components/navbar/NavBar";
 import { CheckCircle, Award, Briefcase, Zap, X, Users } from "lucide-react";
-// New Icon Imports for Hero Background
 import {
   FaReact,
   FaHtml5,
@@ -23,7 +22,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 // Email Imports
 import emailjs from "emailjs-com";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const DevDive: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,11 +30,13 @@ const DevDive: React.FC = () => {
 
   // Form State
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     country: "",
-    field: "UI/UX Design",
-    experience: "Beginner",
+    field: "Front-end Development",
+    experience: "",
     languages: "",
     reason: "",
   });
@@ -50,7 +51,6 @@ const DevDive: React.FC = () => {
       navigator.userAgent || navigator.vendor || (window as any).opera;
 
     if (/android/i.test(userAgent)) {
-      // Redirect to Play Store
       window.location.href =
         "https://play.google.com/store/apps/details?id=com.devekene.DroidOne&hl=en";
     } else {
@@ -81,17 +81,19 @@ const DevDive: React.FC = () => {
 
       // 2. Send Email via EmailJS
       const templateParams = {
-        name: "Applicant",
-        title: `DevDive Application: ${formData.field} (${formData.experience})`,
+        name: formData.firstName,
         email: formData.email,
-        message: `
-          New DevDive Application Received:
-          Phone: ${formData.phone}
-          Country: ${formData.country}
-          Field: ${formData.field}
-          Experience: ${formData.experience}
-          Languages: ${formData.languages}
-          Reason: ${formData.reason}
+        title: `
+          Congratulations and welcome to the DevDive Internship Program! \n
+          We’re excited to have you on board and truly appreciate your interest in being part of this experience. DevDive is designed to provide hands-on learning, real-world exposure, and structured mentorship to help you grow as a developer and sharpen your technical skills. \n
+          Over the coming days, we will be sharing important information regarding:
+          Program schedule and structure
+          Onboarding instructions
+          Required tools and preparation materials
+          Next steps to officially commence the internship \n
+          Please keep a close eye on your email (including your spam/junk folder) so you don’t miss any important updates from our team. \n
+          We’re looking forward to an engaging and impactful journey together. \n
+          Welcome once again to DevDive!
         `,
       };
 
@@ -103,6 +105,8 @@ const DevDive: React.FC = () => {
 
       // Reset & Close
       setFormData({
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
         country: "",
@@ -125,7 +129,6 @@ const DevDive: React.FC = () => {
   return (
     <div className={styles.container}>
       <NavBar />
-      <Toaster position="top-right" />
 
       {/* --- HERO SECTION --- */}
       <section className={styles.hero}>
@@ -458,6 +461,31 @@ const DevDive: React.FC = () => {
 
             <form onSubmit={handleApplySubmit}>
               <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    required
+                    className={styles.formInput}
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="John"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    required
+                    className={styles.formInput}
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Deo"
+                  />
+                </div>
                 {/* Email */}
                 <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                   <label>Email Address</label>
@@ -509,14 +537,9 @@ const DevDive: React.FC = () => {
                     value={formData.field}
                     onChange={handleInputChange}
                   >
-                    <option value="UI/UX Design">UI/UX Design</option>
                     <option value="Front-end Development">
                       Front-end Development
                     </option>
-                    <option value="Back-end Development">
-                      Back-end Development
-                    </option>
-                    <option value="Graphic Design">Graphic Design</option>
                   </select>
                 </div>
 

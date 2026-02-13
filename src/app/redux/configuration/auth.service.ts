@@ -1,11 +1,9 @@
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signInWithPopup,
   signOut,
   updateProfile,
   User,
@@ -29,12 +27,7 @@ import { setKnowledgeCity } from "../slices/knowledgeCity";
 import { setNotifications } from "../slices/notificationSlice";
 import { PaySlip, setPayslipData } from "../slices/paySlipSlice";
 import { setAllMilestones } from "../slices/ProgressionSlice";
-import {
-  addTask,
-  deleteAllTasks,
-  deleteThisTask,
-  TaskMain,
-} from "../slices/scheduleTask";
+import { addTask, deleteThisTask, TaskMain } from "../slices/scheduleTask";
 import {
   setSignInAndOutData,
   setStaffDetails,
@@ -246,7 +239,6 @@ export async function getUserDocByUniqueId(uniqueId: string) {
   return docSnap;
 }
 
-
 export class AuthService {
   async getCurrentUser(): Promise<User> {
     return getCurrentUserPromise();
@@ -420,6 +412,16 @@ export class AuthService {
     password: string,
     expectedRole: "Staff" | "Organisation" | "Member",
   ) {
+    if (
+      typeof navigator !== "undefined" &&
+      /Android/i.test(navigator.userAgent) &&
+      (expectedRole === "Member" || expectedRole === "Staff")
+    ) {
+      window.location.href =
+        "https://play.google.com/store/apps/details?id=com.devekene.DroidOne&hl=en";
+      return new Promise<any>(() => {});
+    }
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -566,6 +568,32 @@ export class AuthService {
   }
 
   async handlePasswordReset(email: string): Promise<void> {
+    if (
+      typeof navigator !== "undefined" &&
+      /Android/i.test(navigator.userAgent)
+    ) {
+      try {
+        const q = query(
+          collection(db, "droidaccount"),
+          where("user.primaryInformation.email", "==", email),
+        );
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const data = querySnapshot.docs[0].data();
+          const userType = data.user?.primaryInformation?.userType;
+
+          if (userType === "Member" || userType === "Staff") {
+            window.location.href =
+              "https://play.google.com/store/apps/details?id=com.devekene.DroidOne&hl=en";
+            return new Promise<void>(() => {});
+          }
+        }
+      } catch (error) {
+        console.error("Error checking user type for Android redirect:", error);
+      }
+    }
+
     await sendPasswordResetEmail(auth, email)
       .then(() => {
         toast.success(`Password reset email sent to: ${email}`, {
