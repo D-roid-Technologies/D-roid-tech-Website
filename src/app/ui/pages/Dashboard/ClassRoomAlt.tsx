@@ -3,7 +3,7 @@ import {
   School,
   Users,
   Layers,
-  GraduationCap,
+  // GraduationCap,
   ArrowLeft,
   Plus,
   ChevronRight,
@@ -18,7 +18,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/Store";
 import { authService } from "../../../redux/configuration/auth.service";
-import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
+// import { DashboardCard } from "../../components/dashboard-card/DashboardCard";
 import ManageStudent from "./ManageStudent";
 import styles from "./ClassRoomAlt.module.css";
 import toast from "react-hot-toast";
@@ -27,8 +27,8 @@ import toast from "react-hot-toast";
 interface Student {
   id: string;
   name: string;
-  age?: string;
-  gender?: string;
+  email?: string;
+  customFields?: { label: string; value: string }[];
   dateAdded?: string;
 }
 interface ClassItem {

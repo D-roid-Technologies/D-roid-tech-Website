@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   ArrowLeft,
   Upload,
@@ -27,14 +27,12 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
 }) => {
   const [formData, setFormData] = useState({
     fullName: student.name || "",
-    age: student.age || "",
     email: student.email || "",
-    guardianEmail: student.guardianEmail || "",
-    guardianPhone: student.guardianPhone || "",
-    address: student.address || "",
-    gender: student.gender || "Select Gender",
-    dateOfBirth: student.dateOfBirth || "",
   });
+
+  const [customFields, setCustomFields] = useState<
+    { label: string; value: string }[]
+  >(student.customFields || []);
 
   const [documents, setDocuments] = useState<any[]>(student.documents || []);
   const [isSaving, setIsSaving] = useState(false);
@@ -52,9 +50,29 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const addCustomField = () => {
+    setCustomFields([...customFields, { label: "", value: "" }]);
+  };
+
+  const removeCustomField = (index: number) => {
+    const updated = [...customFields];
+    updated.splice(index, 1);
+    setCustomFields(updated);
+  };
+
+  const handleCustomFieldChange = (
+    index: number,
+    field: "label" | "value",
+    value: string,
+  ) => {
+    const updated = [...customFields];
+    updated[index][field] = value;
+    setCustomFields(updated);
   };
 
   const handleSaveProfile = async () => {
@@ -62,7 +80,8 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
     try {
       await authService.updateStudentDetails(classroomId, classId, student.id, {
         name: formData.fullName,
-        ...formData,
+        email: formData.email,
+        customFields,
       });
       toast.success("Profile updated successfully");
     } catch (error) {
@@ -102,10 +121,10 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
           student.id,
           {
             name: docName || file.name,
-            fileData: base64Data, 
+            fileData: base64Data,
             type: file.type,
             size: file.size,
-          }
+          },
         );
 
         setDocuments([...documents, newDoc]);
@@ -138,7 +157,7 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
         classroomId,
         classId,
         student.id,
-        docId
+        docId,
       );
       setDocuments(documents.filter((d) => d.id !== docId));
       toast.success("Document deleted");
@@ -179,29 +198,6 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
                 className={styles.input}
               />
             </div>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Age</label>
-              <input
-                name="age"
-                value={formData.age}
-                onChange={handleInputChange}
-                className={styles.input}
-                type="number"
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Gender</label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                className={styles.input}
-              >
-                <option>Select Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
             <div className={`${styles.formGroup} ${styles.fullWidth}`}>
               <label className={styles.label}>Student Email (Optional)</label>
               <input
@@ -211,32 +207,165 @@ const ManageStudent: React.FC<ManageStudentProps> = ({
                 className={styles.input}
               />
             </div>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Guardian Email</label>
-              <input
-                name="guardianEmail"
-                value={formData.guardianEmail}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Guardian Phone</label>
-              <input
-                name="guardianPhone"
-                value={formData.guardianPhone}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
-            </div>
-            <div className={`${styles.formGroup} ${styles.fullWidth}`}>
-              <label className={styles.label}>Home Address</label>
-              <input
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                className={styles.input}
-              />
+
+            {/* Custom Fields Section */}
+            <div
+              style={{
+                gridColumn: "1 / -1",
+                marginTop: "10px",
+                borderTop: "1px solid #f1f5f9",
+                paddingTop: "20px",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "15px",
+                }}
+              >
+                <h4
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    color: "#475569",
+                    margin: 0,
+                  }}
+                >
+                  Additional Information
+                </h4>
+              </div>
+
+              {customFields.length === 0 && (
+                <div
+                  style={{
+                    padding: "20px",
+                    background: "#f8fafc",
+                    borderRadius: "8px",
+                    border: "1px dashed #cbd5e1",
+                    textAlign: "center",
+                    color: "#64748b",
+                    fontSize: "13px",
+                    marginBottom: "15px",
+                  }}
+                >
+                  No custom fields added. Add specific details like Blood Group,
+                  Genotype, etc.
+                </div>
+              )}
+
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+              >
+                {customFields.map((field, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 40px",
+                      gap: "12px",
+                      alignItems: "end",
+                      background: "#fff",
+                      padding: "0",
+                    }}
+                  >
+                    <div>
+                      <label
+                        className={styles.label}
+                        style={{ fontSize: "12px", marginBottom: "4px" }}
+                      >
+                        Label
+                      </label>
+                      <input
+                        value={field.label}
+                        onChange={(e) =>
+                          handleCustomFieldChange(index, "label", e.target.value)
+                        }
+                        className={styles.input}
+                        placeholder="e.g. Genotype"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className={styles.label}
+                        style={{ fontSize: "12px", marginBottom: "4px" }}
+                      >
+                        Value
+                      </label>
+                      <input
+                        value={field.value}
+                        onChange={(e) =>
+                          handleCustomFieldChange(index, "value", e.target.value)
+                        }
+                        className={styles.input}
+                        placeholder="e.g. AA"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <button
+                      onClick={() => removeCustomField(index)}
+                      style={{
+                        height: "42px",
+                        width: "40px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        border: "1px solid #fee2e2",
+                        background: "#fff1f2",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        color: "#e11d48",
+                        transition: "all 0.2s",
+                      }}
+                      title="Remove Field"
+                      onMouseOver={(e) =>
+                        (e.currentTarget.style.backgroundColor = "#ffe4e6")
+                      }
+                      onMouseOut={(e) =>
+                        (e.currentTarget.style.backgroundColor = "#fff1f2")
+                      }
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={addCustomField}
+                style={{
+                  marginTop: "15px",
+                  width: "100%",
+                  padding: "10px",
+                  border: "1px dashed #94a3b8",
+                  borderRadius: "8px",
+                  background: "transparent",
+                  color: "#475569",
+                  fontSize: "13px",
+                  fontWeight: "500",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "6px",
+                  transition: "all 0.2s",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = "#071d69";
+                  e.currentTarget.style.color = "#071d69";
+                  e.currentTarget.style.backgroundColor = "#f8fafc";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = "#94a3b8";
+                  e.currentTarget.style.color = "#475569";
+                  e.currentTarget.style.backgroundColor = "transparent";
+                }}
+              >
+                <Plus size={16} /> Add New Field
+              </button>
             </div>
           </div>
           <button
