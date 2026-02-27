@@ -6,7 +6,6 @@ import { addHeight, addWidth } from "../redux/slices/Dimension";
 import { useSelector } from "react-redux";
 import {
   updateModal,
-  updateModalContent,
   updateToast,
   updateToastTitle,
 } from "../redux/slices/AppEntrySlice";
@@ -19,7 +18,7 @@ import { HiX } from "react-icons/hi";
 const AppEntry: React.FunctionComponent<any> = () => {
   const [shake, setShake] = useState(false);
   const [toastMessage, setToastMessage] = React.useState<string>(
-    "Hi There, I'm still being developed!"
+    "Hi There, I'm still being developed!",
   );
   const appEntry = useSelector((state: RootState) => state.appEntry);
   const [nToast, setNToast] = React.useState<boolean>(false);

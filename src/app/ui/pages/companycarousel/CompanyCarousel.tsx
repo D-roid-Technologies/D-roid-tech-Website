@@ -19,12 +19,12 @@ const slides: Slide[] = [
     title: "Innovative Tech Solutions",
     description:
       "We deliver cutting-edge technology solutions tailored to your business needs.",
-    bgImage: Assets.images.homeBannerSlideOne,
+    bgImage: Assets.images.homeBannerSlideTwo,
   },
   {
     title: "Trusted By Industry Leaders",
     description: "Partnering with Fortune 500 companies down to startups.",
-    bgImage: Assets.images.homeBannerSlideTwo,
+    bgImage: Assets.images.homeBannerSlideOne,
   },
   {
     title: "Digital Workbench",
@@ -33,16 +33,31 @@ const slides: Slide[] = [
   },
 ];
 
+const extendedSlides = [...slides, slides[0]];
+
 const CompanyCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+      setIsTransitioning(true);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (currentIndex === slides.length) {
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(0);
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex]);
 
   return (
     <section className="company-carousel">
@@ -50,9 +65,10 @@ const CompanyCarousel: React.FC = () => {
         className="carousel-track"
         style={{
           transform: `translateX(-${currentIndex * 100}%)`,
+          transition: isTransitioning ? "transform 0.5s ease-in-out" : "none",
         }}
       >
-        {slides.map((slide, index) => (
+        {extendedSlides.map((slide, index) => (
           <div
             key={index}
             className="slide"
