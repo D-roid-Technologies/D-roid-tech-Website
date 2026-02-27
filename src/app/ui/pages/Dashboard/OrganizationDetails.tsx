@@ -9,6 +9,10 @@ import {
   FaInfoCircle,
   FaSave,
   FaCheckCircle,
+  FaFileUpload,
+  FaFileAlt,
+  FaTrash,
+  FaDownload,
 } from "react-icons/fa";
 import styles from "./OrganizationDetails.module.css";
 import toast from "react-hot-toast";
@@ -20,12 +24,24 @@ const OrganizationDetails: React.FC = () => {
   const [formData, setFormData] = useState<UserType | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Document State
+  const [documents, setDocuments] = useState<any[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
+
   useEffect(() => {
     setFormData({ ...userDetails });
+    fetchDocuments();
   }, [userDetails]);
 
+  const fetchDocuments = async () => {
+    const docs = await authService.getOrganizationDocuments();
+    setDocuments(docs);
+  };
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     if (!formData) return;
     const { name, value } = e.target;
@@ -51,7 +67,7 @@ const OrganizationDetails: React.FC = () => {
           time: now.toISOString(),
           type: "success",
           isRead: false,
-        })
+        }),
       );
 
       toast.success("Organization profile updated!");
@@ -62,6 +78,64 @@ const OrganizationDetails: React.FC = () => {
     }
   };
 
+  // --- Document Handlers ---
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      // 5MB limit
+      toast.error("File size too large (max 5MB)");
+      return;
+    }
+
+    setIsUploading(true);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async () => {
+      try {
+        const base64 = reader.result as string;
+        await authService.addOrganizationDocument({
+          name: file.name,
+          fileData: base64,
+          type: file.type,
+          size: file.size,
+        });
+        toast.success("Document uploaded successfully");
+        fetchDocuments();
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to upload document");
+      } finally {
+        setIsUploading(false);
+        // Reset input
+        e.target.value = "";
+      }
+    };
+  };
+
+  const handleDeleteDocument = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this document?"))
+      return;
+    try {
+      await authService.deleteOrganizationDocument(id);
+      setDocuments(documents.filter((d) => d.id !== id));
+      toast.success("Document deleted");
+    } catch (e) {
+      toast.error("Failed to delete document");
+    }
+  };
+
+  const handleDownload = (doc: any) => {
+    const link = document.createElement("a");
+    link.href = doc.fileData;
+    link.download = doc.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   if (!formData) return <div>Loading...</div>;
 
   return (
@@ -69,7 +143,8 @@ const OrganizationDetails: React.FC = () => {
       <div className={styles.header}>
         <h1 className={styles.title}>Organization Profile</h1>
         <p className={styles.subtitle}>
-          Manage your organization's public information and settings.
+          Manage your organization's public information, verification documents,
+          and settings.
         </p>
       </div>
 
@@ -109,17 +184,76 @@ const OrganizationDetails: React.FC = () => {
                   />
                 </div>
 
-                {/* Website (using referralName as placeholder or add new field if backend supports) */}
+                {/* Website */}
                 <div className={styles.inputGroup}>
                   <label className={styles.inputLabel}>Website</label>
                   <input
-                    name="website" // Assuming a field or using a custom one
+                    name="website"
                     type="text"
-                    // Note: 'website' isn't in UserType yet, using a placeholder logic or referralName if unused
                     value={(formData as any).website || ""}
                     onChange={handleChange}
                     className={styles.inputField}
                     placeholder="https://www.example.com"
+                  />
+                </div>
+
+                {/* Industry/Sector */}
+                {/* <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>Industry / Sector</label>
+                  <select
+                    name="industry"
+                    value={(formData as any).industry || ""}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  >
+                    <option value="">Select Industry</option>
+                    <option value="Education">Education</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Non-Profit">Non-Profit</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div> */}
+
+                {/* Registration Details */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>
+                    RC Number (Reg. No)
+                  </label>
+                  <input
+                    name="rcNumber"
+                    type="text"
+                    value={(formData as any).rcNumber || ""}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                    placeholder="e.g. RC123456"
+                  />
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>Tax ID (TIN)</label>
+                  <input
+                    name="tin"
+                    type="text"
+                    value={(formData as any).tin || ""}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                    placeholder="e.g. 12345678-0001"
+                  />
+                </div>
+
+                {/* Description */}
+                <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
+                  <label className={styles.inputLabel}>
+                    About Organization
+                  </label>
+                  <textarea
+                    name="description"
+                    value={(formData as any).description || ""}
+                    onChange={handleChange}
+                    className={`${styles.inputField} ${styles.textarea}`}
+                    placeholder="Brief description of your organization..."
                   />
                 </div>
 
@@ -187,6 +321,77 @@ const OrganizationDetails: React.FC = () => {
                     className={styles.inputField}
                   />
                 </div>
+              </div>
+
+              {/* Document Upload Section */}
+              <div className={styles.uploadSection}>
+                <div className={styles.uploadHeader}>
+                  <h4 className={styles.uploadTitle}>Verification Documents</h4>
+                  <label className={styles.uploadButton}>
+                    {isUploading ? (
+                      "Uploading..."
+                    ) : (
+                      <>
+                        <FaFileUpload /> Upload Document
+                      </>
+                    )}
+                    <input
+                      type="file"
+                      className={styles.hiddenInput}
+                      onChange={handleFileUpload}
+                      disabled={isUploading}
+                      accept=".pdf,.jpg,.jpeg,.png"
+                    />
+                  </label>
+                </div>
+
+                {documents.length === 0 ? (
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "#888",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    No documents uploaded. Please upload Certificate of
+                    Incorporation, Valid ID, or Proof of Address.
+                  </p>
+                ) : (
+                  <div className={styles.documentList}>
+                    {documents.map((doc) => (
+                      <div key={doc.id} className={styles.documentItem}>
+                        <div className={styles.docInfo}>
+                          <FaFileAlt className={styles.docIcon} />
+                          <div>
+                            <span className={styles.docName}>{doc.name}</span>
+                            <span className={styles.docMeta}>
+                              {(doc.size / 1024).toFixed(1)} KB •{" "}
+                              {new Date(doc.dateAdded).toLocaleDateString()}
+                            </span>
+                          </div>
+                        </div>
+                        <div className={styles.docActions}>
+                          <button
+                            type="button"
+                            className={`${styles.iconBtn} ${styles.downloadDocBtn}`}
+                            onClick={() => handleDownload(doc)}
+                            title="Download"
+                          >
+                            <FaDownload />
+                          </button>
+                          <button
+                            type="button"
+                            className={`${styles.iconBtn} ${styles.deleteDocBtn}`}
+                            onClick={() => handleDeleteDocument(doc.id)}
+                            title="Delete"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className={styles.actionBar}>
