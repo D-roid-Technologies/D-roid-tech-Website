@@ -1591,6 +1591,75 @@ export class AuthService {
     }
   }
 
+  // --- Organization Documents ---
+
+  async addOrganizationDocument(documentData: {
+    name: string;
+    fileData: string;
+    type: string;
+    size: number;
+  }) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const newDoc = {
+        id: crypto.randomUUID(),
+        ...documentData,
+        dateAdded: new Date().toISOString(),
+      };
+
+      await updateDoc(userDocRef, {
+        "user.organisation.documents": arrayUnion(newDoc),
+      });
+      return newDoc;
+    } catch (error: any) {
+      console.error("Error adding org document:", error);
+      throw error;
+    }
+  }
+
+  async getOrganizationDocuments() {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) return [];
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      const snap = await getDoc(userDocRef);
+      if (snap.exists()) {
+        return snap.data().user?.organisation?.documents || [];
+      }
+      return [];
+    } catch (error) {
+      console.error("Error fetching org documents:", error);
+      return [];
+    }
+  }
+
+  async deleteOrganizationDocument(documentId: string) {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser) throw new Error("Not authenticated");
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+
+      const snap = await getDoc(userDocRef);
+      if (!snap.exists()) throw new Error("User not found");
+
+      const documents = snap.data().user?.organisation?.documents || [];
+      const updatedDocuments = documents.filter(
+        (d: any) => d.id !== documentId,
+      );
+
+      await updateDoc(userDocRef, {
+        "user.organisation.documents": updatedDocuments,
+      });
+      return true;
+    } catch (error: any) {
+      console.error("Error deleting org document:", error);
+      throw error;
+    }
+  }
+
   // --- Notification Sync ---
   async syncNotificationsToBackend(notifications: Notification[]) {
     try {

@@ -188,6 +188,125 @@
   cursor: not-allowed;
 }
 
+
+.uploadSection {
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 24px;
+}
+
+.uploadHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.uploadTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #f0f2f5;
+  color: #071d69;
+  border: 1px dashed #071d69;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.uploadButton:hover {
+  background-color: #e6e9f0;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.documentList {
+  display: grid;
+  gap: 12px;
+}
+
+.documentItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.docInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.docIcon {
+  color: #666;
+}
+
+.docName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: block;
+}
+
+.docMeta {
+  font-size: 12px;
+  color: #888;
+}
+
+.docActions {
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:hover {
+  background-color: #f5f5f5;
+}
+
+.deleteDocBtn {
+  color: #ff4d4f;
+}
+
+.deleteDocBtn:hover {
+  background-color: #fff1f0;
+}
+
+.downloadDocBtn {
+  color: #071d69;
+}
+
+.downloadDocBtn:hover {
+  background-color: #f0f2f5;
+}
+
+
 /* Responsive */
 @media (max-width: 900px) {
   .gridContainer {
@@ -208,3 +327,4 @@
     padding: 16px;
   }
 }
+
