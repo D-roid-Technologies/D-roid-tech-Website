@@ -663,9 +663,7 @@ export class AuthService {
     assignedClass?: { id: string; name: string; classroomId: string } | null,
   ) {
     try {
-      const currentUser = auth.currentUser;
-      if (!currentUser)
-        throw new Error("You must be logged in as an Organization.");
+      const currentUser = await this.getCurrentUser();
 
       const orgRef = doc(db, "droidaccount", currentUser.uid);
       const orgSnap = await getDoc(orgRef);
@@ -741,8 +739,7 @@ export class AuthService {
 
   async deleteStaffFromOrganization(staffUid: string) {
     try {
-      const currentUser = auth.currentUser;
-      if (!currentUser) throw new Error("Not authenticated");
+      const currentUser = await this.getCurrentUser();
 
       const orgRef = doc(db, "droidaccount", currentUser.uid);
       const orgSnap = await getDoc(orgRef);
@@ -1340,8 +1337,7 @@ export class AuthService {
 
   async updatePrimaryInformation(partialUpdateData: Partial<UserType>) {
     try {
-      const currentUser = auth.currentUser;
-      if (!currentUser) throw new Error("User not authenticated");
+      const currentUser = await this.getCurrentUser();
 
       const userId = currentUser.uid;
       const userDocRef = doc(db, "droidaccount", userId);
@@ -1600,8 +1596,7 @@ export class AuthService {
     size: number;
   }) {
     try {
-      const currentUser = auth.currentUser;
-      if (!currentUser) throw new Error("Not authenticated");
+      const currentUser = await this.getCurrentUser();
       const userDocRef = doc(db, "droidaccount", currentUser.uid);
 
       const newDoc = {
@@ -1622,8 +1617,7 @@ export class AuthService {
 
   async getOrganizationDocuments() {
     try {
-      const currentUser = auth.currentUser;
-      if (!currentUser) return [];
+      const currentUser = await this.getCurrentUser();
       const userDocRef = doc(db, "droidaccount", currentUser.uid);
       const snap = await getDoc(userDocRef);
       if (snap.exists()) {
@@ -1638,8 +1632,7 @@ export class AuthService {
 
   async deleteOrganizationDocument(documentId: string) {
     try {
-      const currentUser = auth.currentUser;
-      if (!currentUser) throw new Error("Not authenticated");
+      const currentUser = await this.getCurrentUser();
       const userDocRef = doc(db, "droidaccount", currentUser.uid);
 
       const snap = await getDoc(userDocRef);
