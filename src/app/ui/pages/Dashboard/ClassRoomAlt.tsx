@@ -199,30 +199,55 @@ const AssignStaffModal = ({
       <div className={styles.modalContent}>
         <h3 className={styles.modalTitle}>{title}</h3>
         <p style={{ fontSize: 13, color: "#666", marginBottom: 15 }}>{label}</p>
-        <select
-          className={styles.inputField}
-          style={{ width: "100%", marginBottom: 20 }}
-          value={selectedStaffId}
-          onChange={(e) => setSelectedStaffId(e.target.value)}
-        >
-          <option value="">Select Staff Member...</option>
-          {staffList.map((s: any) => (
-            <option key={s.uid} value={s.uid}>
-              {s.firstName} {s.lastName} ({s.jobTitle})
-            </option>
-          ))}
-        </select>
+        {staffList.length === 0 ? (
+          <div
+            style={{
+              padding: "20px",
+              background: "#f8fafc",
+              border: "1px dashed #cbd5e1",
+              borderRadius: "8px",
+              color: "#64748b",
+              fontSize: "14px",
+              marginBottom: "20px",
+              textAlign: "center",
+            }}
+          >
+            <p style={{ marginBottom: "5px", fontWeight: 600 }}>
+              No staff data found.
+            </p>
+            <p style={{ fontSize: "13px" }}>
+              Please add staff via the <strong>Staffs</strong> option on the
+              sidebar.
+            </p>
+          </div>
+        ) : (
+          <select
+            className={styles.inputField}
+            style={{ width: "100%", marginBottom: 20 }}
+            value={selectedStaffId}
+            onChange={(e) => setSelectedStaffId(e.target.value)}
+          >
+            <option value="">Select Staff Member...</option>
+            {staffList.map((s: any) => (
+              <option key={s.uid} value={s.uid}>
+                {s.firstName} {s.lastName} ({s.jobTitle})
+              </option>
+            ))}
+          </select>
+        )}
         <div className={styles.modalActions}>
           <button onClick={onClose} className={styles.cancelBtn}>
-            Cancel
+            {staffList.length === 0 ? "Close" : "Cancel"}
           </button>
-          <button
-            onClick={() => onAssign(selectedStaffId)}
-            className={styles.saveBtn}
-            disabled={!selectedStaffId}
-          >
-            Assign
-          </button>
+          {staffList.length > 0 && (
+            <button
+              onClick={() => onAssign(selectedStaffId)}
+              className={styles.saveBtn}
+              disabled={!selectedStaffId}
+            >
+              Assign
+            </button>
+          )}
         </div>
       </div>
     </div>
