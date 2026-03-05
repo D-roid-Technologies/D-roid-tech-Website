@@ -187,7 +187,6 @@
   margin: 0;
 }
 
-/* --- ACTION BUTTONS (FIXED VISIBILITY) --- */
 .cardActionsOverlay {
   position: absolute;
   top: 16px;
@@ -195,35 +194,36 @@
   display: flex;
   gap: 8px;
   z-index: 10;
-  /* Removed opacity: 0 so they are always visible */
 }
 
 .iconBtn {
-  width: 32px;
-  height: 32px;
+  width: 52px;
+  height: 36px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  /* border: 1px solid #e5e7eb; */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
   background: white;
-  color: #64748b; /* Slate-500 */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  color: #64748b; 
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.05); */
+  padding: 0 !important;
 }
 
 .iconBtn:hover {
-  background: var(--primary-light);
-  color: var(--primary);
-  border-color: var(--primary-light);
+  background: none !important;
+  color: #64748b !important;
+  /* border-color: var(--primary-light); */
 }
 
+/* 
 .deleteIcon:hover {
   background: var(--danger-light);
   color: var(--danger);
   border-color: var(--danger-light);
-}
+} */
 
 /* --- Table Styles --- */
 .tableContainer {
