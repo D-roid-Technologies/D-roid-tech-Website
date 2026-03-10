@@ -182,7 +182,7 @@ export const eventsPosts: BlogPost[] = [
     authorAvatar: "https://randomuser.me/api/portraits/lego/5.jpg",
     category: "Community",
     readTime: "3 min read",
-       image: Assets.images.cumsaEvent,
+       image: "https://images.unsplash.com/photo-1620479589423-0abc990883cb?q=80&w=1026&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 
     readMoreLink: generateBlogLink(
       "events",
