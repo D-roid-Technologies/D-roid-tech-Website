@@ -174,6 +174,30 @@ export const eventsPosts: BlogPost[] = [
   },
   {
     id: 12,
+    title: "iLead Tech Community — Join the Global Collective",
+    excerpt:
+      "Where AI meets ambition. iLead is a global greenhouse for Value Architects who use technology and strategic thinking to build wealth and reclaim their time.",
+    date: "Open Enrollment — 2026",
+    author: "iLead Community Team",
+    authorAvatar: "https://randomuser.me/api/portraits/lego/5.jpg",
+    category: "Community",
+    readTime: "3 min read",
+       image: "https://images.unsplash.com/photo-1620479589423-0abc990883cb?q=80&w=1026&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+    readMoreLink: generateBlogLink(
+      "events",
+      "iLead Tech Community — Join the Global Collective",
+    ),
+    content: [
+      "iLead is not another tech group. It is a global collective built at the intersection of high-level technology, artificial intelligence, and strategic wealth building. We believe that true leadership in the digital age isn't just about understanding systems — it's about coding your life's trajectory to align with your highest potential.",
+      "Our community is a greenhouse for 'Value Architects': individuals who leverage AI to buy back their time, and personal investment to secure their future. If you are here to consume, iLead may not be for you. If you are here to build, contribute, and grow — welcome home.",
+      "The iLead ecosystem runs on three pillars. iLead X is our high-octane exploration wing where we dive into emerging tech, AI breakthroughs, and the 'What's Next' of the digital frontier. iLead Network is your global boardroom — a curated space to connect with like-minded innovators, mentors, and partners who trade in ideas and real opportunities. iLead Innovation is the laboratory where we move from theory to execution, building sustainable income streams and digital assets that fund your purpose.",
+      "Joining iLead requires more than interest — it requires intent. Members are expected to share insights not just links, focus 80% on execution and 20% on theory, and maintain a culture of respect and privacy. What is shared in the network stays in the network. Spam and self-promotion without value are a fast track out.",
+      "To apply, you will share your professional background, your current focus, your iLead interest area — whether that's AI & Automation, Personal Finance & Investing, Product Development & Startups, or Leadership & Growth Mindset — and most importantly, your 'Why': how you want tech to help you achieve financial independence, and your 'Give': the skill or knowledge you bring to the table. We don't just build systems. We build systems that build us.",
+    ],
+  },
+  {
+    id: 13,
     title: "Lift Off - Tech Conference",
     excerpt:
       "Highlights and key takeaways from this year's premier developer event.",
@@ -197,7 +221,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 13,
+    id: 14,
     title: "Tech Conference Calabar",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -217,7 +241,7 @@ export const eventsPosts: BlogPost[] = [
   },
 
   {
-    id: 14,
+    id: 15,
     title: "Clash of Kings - Chess Tournament[2022/2023]",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -239,7 +263,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 15,
+    id: 16,
     title: "Clash of Kings - Chess Tournament[2021/2022]",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -261,7 +285,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 16,
+    id: 17,
     title: "National ICT Competition 2020",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -280,7 +304,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 17,
+    id: 18,
     title: "National ICT Competition 2022",
     excerpt:
       "A fast-paced event packed with learning opportunities for tech enthusiasts.",
@@ -299,7 +323,7 @@ export const eventsPosts: BlogPost[] = [
     ],
   },
   {
-    id: 18,
+    id: 19,
     title: "Outreach at State Primary School Rukpokwu, Rivers State",
     excerpt:
       "Photos of the outreach held on 07/10/25 at State Primary School Rukpokwu, Rivers State — supported by D'ROID Technologies. It was all shades of amazing!",

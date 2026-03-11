@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styles from "./BlogPostView.module.css";
 import { allPosts, generateSlug } from "../../../../utils/blogpost";
 import ChessRegistration from "../chessR/ChessRegistration";
+import ILeadRegistrationModal from "./ILeadRegistrationModal";
 
 const BlogPostView: React.FC = () => {
   const { title } = useParams<{ title: string }>();
   const navigate = useNavigate();
+  const [isILeadModalOpen, setIsILeadModalOpen] = useState(false);
 
   if (!title) {
     return (
@@ -144,12 +146,29 @@ const BlogPostView: React.FC = () => {
                   </button>
                 </div>
               )}
+
+            {/* iLead Registration Button */}
+            {post.title.includes("iLead Tech Community") && (
+              <div className={styles.applySection}>
+                <h3>Ready to Build?</h3>
+                <p>Join the global collective of Value Architects.</p>
+                <button
+                  className={styles.applyButton}
+                  onClick={() => setIsILeadModalOpen(true)}
+                >
+                  Join the Collective
+                </button>
+              </div>
+            )}
           </article>
         </main>
 
         {/* HIDE SIDEBAR for the specific Tech post */}
         {!(
-          post.category === "Tech" && post.title.includes("Introducing DevDive")
+          (post.category === "Tech" &&
+            post.title.includes("Introducing DevDive")) ||
+          (post.category === "Community" &&
+            post.title.includes("iLead Tech Community"))
         ) && (
           <aside className={styles.blogSidebar}>
             <h3>Related Posts</h3>
@@ -175,6 +194,10 @@ const BlogPostView: React.FC = () => {
           </aside>
         )}
       </div>
+
+      {isILeadModalOpen && (
+        <ILeadRegistrationModal onClose={() => setIsILeadModalOpen(false)} />
+      )}
     </>
   );
 };

@@ -1,0 +1,374 @@
+/* src/app/ui/pages/DroidJournal/blog/ILeadRegistrationModal.module.css */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  background: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.modalHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8fafc;
+}
+
+.modalHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.modalBody {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.stepIndicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.stepIndicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+.stepBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #64748b;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.stepBadgeActive {
+  border-color: #003366;
+  background: #003366;
+  color: #fff;
+}
+
+.stepBadgeCompleted {
+  border-color: #003366;
+  background: #003366;
+  color: #fff;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.input, .select, .textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  background-color: #fff;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: #003366;
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.half {
+  flex: 1;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+/* Interest Grid */
+.interestGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.interestCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.interestCard:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.interestCardSelected {
+  border-color: #003366;
+  background: #f0f9ff;
+  box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.1);
+}
+
+.interestIcon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.interestLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.interestDesc {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Commitment */
+.commitmentCard {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.commitmentCard:hover {
+  background: #f8fafc;
+}
+
+.commitmentCardSelected {
+  border-color: #003366;
+  background: #f0f9ff;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkboxChecked {
+  background: #003366;
+  border-color: #003366;
+  color: #fff;
+}
+
+.commitmentText {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Guidelines */
+.guidelinesCard {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.guidelinesHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #003366;
+}
+
+.guidelineRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.guidelineNum {
+  width: 24px;
+  height: 24px;
+  background: #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.guidelineContent h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 2px 0;
+  color: #334155;
+}
+
+.guidelineContent p {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.modalFooter {
+  padding: 20px 24px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.backButton {
+  padding: 10px 20px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #475569;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  background: #f1f5f9;
+}
+
+.nextButton {
+  padding: 10px 24px;
+  background: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nextButton:hover {
+  background: #002244;
+}
+
+.nextButton:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .modalContent {
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
