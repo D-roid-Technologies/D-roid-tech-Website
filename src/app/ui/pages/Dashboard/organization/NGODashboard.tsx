@@ -1,339 +1,212 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  FaHandsHelping,
-  FaDonate,
-  FaBullhorn,
-  FaHeart,
   FaUsers,
-  FaChartLine,
-  FaGlobe,
+  FaDonate,
+  FaCalendarAlt,
+  FaTasks,
   FaBell,
+  FaClock,
+  FaBolt,
+  FaClipboardList,
+  FaClipboardCheck,
+  FaHandHoldingUsd,
+  FaHeart,
+  FaGlobeAmericas,
 } from "react-icons/fa";
-import "../staff/StaffUserHomePage.css";
-import { StatCard } from "../micro-ui/stat-card";
+import styles from "./NGODashboard.module.css";
+// import { authService } from "../../../../redux/configuration/auth.service"; 
 
-type QuickActionCardProps = {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ size?: number }>;
-  onClick?: () => void;
-  variant?: string;
-};
-
-const QuickActionCard = ({
-  title,
-  description,
-  icon: Icon,
-  onClick,
-  variant = "default",
-}: QuickActionCardProps) => (
-  <div className={`shp-quick-action ${variant}`} onClick={onClick}>
-    <div className="shp-action-icon">
-      <Icon size={20} />
-    </div>
-    <div className="shp-action-content">
-      <h4 className="shp-action-title">{title}</h4>
-      <p className="shp-action-description">{description}</p>
-    </div>
-  </div>
-);
-
-type NotificationItemProps = {
-  title: string;
-  message: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-};
-
-const NotificationItem = ({
-  title,
-  message,
-  time,
-  type,
-  isRead,
-}: NotificationItemProps) => (
-  <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
-    <div className={`shp-notification-indicator ${type}`}></div>
-    <div className="shp-notification-content">
-      <h5 className="shp-notification-title">{title}</h5>
-      <p className="shp-notification-message">{message}</p>
-      <span className="shp-notification-time">{time}</span>
-    </div>
-  </div>
-);
-
-type RecentActivityItemProps = {
-  action: string;
-  details: string;
-  time: string;
-  icon: React.ComponentType<{ size?: number }>;
-};
-
-const RecentActivityItem = ({
-  action,
-  details,
-  time,
-  icon: Icon,
-}: RecentActivityItemProps) => (
-  <div className="shp-activity-item">
-    <div className="shp-activity-icon">
-      <Icon size={16} />
-    </div>
-    <div className="shp-activity-content">
-      <p className="shp-activity-action">{action}</p>
-      <p className="shp-activity-details">{details}</p>
-      <span className="shp-activity-time">{time}</span>
-    </div>
-  </div>
-);
 
 const NGODashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
+  const [stats, setStats] = useState({ totalVolunteers: 124, activeCampaigns: 5, totalDonations: 45000, beneficiaries: 1200 });
 
-  const ngoStats = [
+  useEffect(() => {
+    // Fetch real stats on mount
+    const fetchStats = async () => {
+      // const data = await authService.getNGOStats();
+      // setStats(data);
+    };
+    fetchStats();
+  }, []);
+
+  // --- Data Objects ---
+  const statsData = [
     {
-      title: "Active Volunteers",
-      value: "156",
-      change: "12 new this month",
-      icon: FaHandsHelping,
-      color: "green",
+      label: "Total Volunteers",
+      value: stats.totalVolunteers.toLocaleString(),
+      change: "+12 this month", 
+      icon: FaUsers,
+      bgClass: styles.bgBlue,
+      trend: "positive",
     },
     {
-      title: "Total Donations",
-      value: "$45,230",
-      change: "15% increase",
+      label: "Total Donations ($)",
+      value: `$${stats.totalDonations.toLocaleString()}`,
+      change: "+$2,400 this week",
       icon: FaDonate,
-      color: "blue",
+      bgClass: styles.bgGreen,
+      trend: "positive",
     },
     {
-      title: "Ongoing Projects",
-      value: "8",
-      change: "3 launching soon",
+      label: "Active Campaigns",
+      value: stats.activeCampaigns.toString(),
+      change: "100% On Track",
+      icon: FaGlobeAmericas,
+      bgClass: styles.bgPurple,
+      trend: "neutral",
+    },
+    {
+      label: "Beneficiaries Reached",
+      value: stats.beneficiaries.toLocaleString(),
+      change: "+150 this month",
       icon: FaHeart,
-      color: "red",
-    },
-    {
-      title: "People Helped",
-      value: "2,340",
-      change: "This quarter",
-      icon: FaUsers,
-      color: "purple",
+      bgClass: styles.bgOrange,
+      trend: "positive",
     },
   ];
 
-  const ngoQuickActions = [
+  // Updated Quick Actions as requested
+  const quickActions = [
+    { title: "Attendance", icon: FaClipboardCheck, color: "#2563eb" },
+    { title: "Compensations", icon: FaHandHoldingUsd, color: "#059669" },
+    { title: "Manage Volunteers", icon: FaUsers, color: "#7c3aed" },
+    { title: "Manage Donations", icon: FaDonate, color: "#ea580c" },
+    { title: "Manage Rota", icon: FaCalendarAlt, color: "#db2777" },
+    { title: "Tasks", icon: FaTasks, color: "#4b5563" },
+  ];
+
+  const activities = [
     {
-      title: "Manage Volunteers",
-      description: "View and organize volunteer activities",
-      icon: FaHandsHelping,
-      variant: "primary",
-    },
-    {
-      title: "Track Donations",
-      description: "Monitor incoming donations",
+      title: "New Donation Received",
+      desc: "Anonymous donor contributed $500.",
+      time: "10 mins ago",
       icon: FaDonate,
-      variant: "success",
     },
     {
-      title: "Create Campaign",
-      description: "Launch new outreach campaign",
-      icon: FaBullhorn,
-      variant: "secondary",
+      title: "Rota Updated",
+      desc: "Weekend outreach schedule finalized.",
+      time: "1 hour ago",
+      icon: FaCalendarAlt,
     },
     {
-      title: "Impact Report",
-      description: "Generate impact assessment",
-      icon: FaChartLine,
-      variant: "default",
-    },
-    {
-      title: "Partner Network",
-      description: "Manage partner organizations",
+      title: "Volunteer Onboarded",
+      desc: "Sarah Jenkins completed orientation.",
+      time: "3 hours ago",
       icon: FaUsers,
-      variant: "primary",
-    },
-    {
-      title: "Community Groups",
-      description: "Organize community groups",
-      icon: FaGlobe,
-      variant: "success",
     },
   ];
 
-  const ngoNotifications = [
-    {
-      title: "New Volunteer Application",
-      message: "Sarah Johnson applied for the education program",
-      time: "1 hour ago",
-      type: "info",
-      isRead: false,
-    },
-    {
-      title: "Donation Received",
-      message: "Anonymous donor contributed $500 to clean water project",
-      time: "3 hours ago",
-      type: "success",
-      isRead: false,
-    },
+  const notifications = [
     {
       title: "Campaign Milestone",
-      message: "Food drive campaign reached 75% of target",
-      time: "1 day ago",
-      type: "warning",
-      isRead: true,
+      desc: "Clean Water Initiative reached 50% funding.",
+      time: "Now",
+      type: styles.notifSuccess,
     },
     {
-      title: "Partner Meeting",
-      message: "Quarterly meeting with local partners scheduled",
-      time: "2 days ago",
-      type: "info",
-      isRead: true,
-    },
-  ];
-
-  const ngoActivities = [
-    {
-      action: "Volunteer Registered",
-      details: "New volunteer joined the environmental cleanup team",
+      title: "Pending Compensations",
+      desc: "3 volunteer travel stipends await approval.",
       time: "2 hours ago",
-      icon: FaHandsHelping,
-    },
-    {
-      action: "Campaign Launched",
-      details: "Started 'Books for All' literacy campaign",
-      time: "1 day ago",
-      icon: FaBullhorn,
-    },
-    {
-      action: "Impact Assessment",
-      details: "Completed quarterly impact report for education program",
-      time: "3 days ago",
-      icon: FaChartLine,
-    },
-    {
-      action: "Partnership Formed",
-      details: "New collaboration with Local Community Center",
-      time: "1 week ago",
-      icon: FaUsers,
+      type: styles.notifWarning,
     },
   ];
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+  const formattedDate = currentTime.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div className="shp-homepage-container">
-      {/* Welcome Header */}
-      <div className="shp-welcome-header">
-        <div className="shp-welcome-content">
-          <div className="shp-greeting">
-            <h1 className="shp-welcome-title">NGO Management Dashboard</h1>
-          </div>
-          <div className="shp-time-info">
-            <div className="shp-current-time">{formatTime(currentTime)}</div>
-            <div className="shp-current-date">{formatDate(currentTime)}</div>
-          </div>
+    <div className={styles.dashboardContainer}>
+      <div className={styles.headerSection}>
+        <div>
+          <h1 className={styles.welcomeTitle}>NGO Overview</h1>
+          <p className={styles.subTitle}>Welcome back, Coordinator.</p>
+        </div>
+        <div className={styles.dateBadge}>
+          <FaClock /> {formattedDate}
         </div>
       </div>
 
-      {/* NGO Quick Actions */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Quick Actions</h2>
-        <div className="shp-quick-actions-grid">
-          {ngoQuickActions.map((action, index) => (
-            <QuickActionCard
-              key={index}
-              title={action.title}
-              description={action.description}
-              icon={action.icon}
-              variant={action.variant}
-              onClick={() => console.log(`Clicked: ${action.title}`)}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* NGO Stats */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Impact Overview</h2>
-        <div className="shp-stats-grid">
-          {ngoStats.map((stat, index) => (
-            <StatCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              change={stat.change}
-              icon={stat.icon}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Two Column Layout */}
-      <div className="shp-two-column">
-        {/* Recent Activity */}
-        <div className="shp-activity-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent NGO Activity</h3>
-              <button className="shp-view-all-btn">View All</button>
-            </div>
-            <div className="shp-activity-list">
-              {ngoActivities.map((activity, index) => (
-                <RecentActivityItem
-                  key={index}
-                  action={activity.action}
-                  details={activity.details}
-                  time={activity.time}
-                  icon={activity.icon}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Notifications */}
-        <div className="shp-notifications-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">
-                <FaBell size={18} />
-                NGO Notifications
-              </h3>
-              <span className="shp-notification-count">
-                {ngoNotifications.filter((n) => !n.isRead).length}
+      <div className={styles.statsGrid}>
+        {statsData.map((stat, idx) => (
+          <div key={idx} className={styles.statCard}>
+            <div className={styles.statInfo}>
+              <h4>{stat.label}</h4>
+              <p className={styles.statValue}>{stat.value}</p>
+              <span className={`${styles.statChange} ${styles[stat.trend]}`}>
+                {stat.change}
               </span>
             </div>
-            <div className="shp-notifications-list">
-              {ngoNotifications.map((notification, index) => (
-                <NotificationItem
-                  key={index}
-                  title={notification.title}
-                  message={notification.message}
-                  time={notification.time}
-                  type={notification.type}
-                  isRead={notification.isRead}
-                />
-              ))}
+            <div className={`${styles.iconBox} ${stat.bgClass}`}>
+              <stat.icon />
             </div>
-            <button className="shp-view-all-notifications">
-              View All Notifications
-            </button>
+          </div>
+        ))}
+      </div>
+
+      <h3 className={styles.sectionTitle}>
+        <FaBolt color="#f59e0b" /> Quick Actions
+      </h3>
+      <div className={styles.actionsGrid}>
+        {quickActions.map((action, idx) => (
+          <div key={idx} className={styles.actionCard}>
+            <div
+              className={styles.actionIcon}
+              style={{ backgroundColor: action.color }}
+            >
+              <action.icon />
+            </div>
+            <p className={styles.actionTitle}>{action.title}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.contentSplit}>
+        <div className={styles.cardPanel}>
+          <div className={styles.cardHeader}>
+            <h3>
+              <FaClipboardList color="#4b5563" /> Recent Activity
+            </h3>
+            <button className={styles.viewAllBtn}>View Log</button>
+          </div>
+          <div className={styles.listContainer}>
+            {activities.map((item, idx) => (
+              <div key={idx} className={styles.listItem}>
+                <div className={styles.listIcon}>
+                  <item.icon />
+                </div>
+                <div className={styles.listContent}>
+                  <p className={styles.listTitle}>{item.title}</p>
+                  <p className={styles.listDesc}>{item.desc}</p>
+                  <span className={styles.listTime}>{item.time}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.cardPanel}>
+          <div className={styles.cardHeader}>
+            <h3>
+              <FaBell color="#4b5563" /> Notifications
+            </h3>
+            <button className={styles.viewAllBtn}>Clear</button>
+          </div>
+          <div className={styles.listContainer}>
+            {notifications.map((notif, idx) => (
+              <div key={idx} className={styles.listItem}>
+                <div className={`${styles.notifIndicator} ${notif.type}`} />
+                <div className={styles.listContent}>
+                  <p className={styles.listTitle}>{notif.title}</p>
+                  <p className={styles.listDesc}>{notif.desc}</p>
+                  <span className={styles.listTime}>{notif.time}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

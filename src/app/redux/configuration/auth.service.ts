@@ -385,7 +385,6 @@ export class AuthService {
         store.dispatch(setUser({ ...primaryInformation }));
 
         await sendEmailVerification(user);
-        await signOut(auth);
 
         toast.success(`Your D'roid Account has been successfully created`, {
           style: { background: "#4BB543", color: "#fff" },
@@ -1361,7 +1360,9 @@ export class AuthService {
       });
     } catch (error: any) {
       console.error("Failed to update user info:", error);
-      toast.error("Failed to update user information");
+      toast.error(error?.message || "Failed to update user information", {
+        style: { background: "#ff4d4f", color: "#fff" },
+      });
     }
   }
 
