@@ -4,7 +4,7 @@ import Section from "../Section";
 
 // Importing the specific dashboards
 import SchoolDashboard from "../organization/SchoolDashboard";
-import BusinessDashboard from "../organization/BusinessDashboard";
+// import BusinessDashboard from "../organization/BusinessDashboard";
 import NGODashboard from "../organization/NGODashboard";
 import { RootState } from "../../../../redux/Store";
 
@@ -21,7 +21,6 @@ const OrganizationDashboard: React.FC = () => {
         return <SchoolDashboard />;
 
       case "business":
-        // --- BUSINESS DASHBOARD (Future Placeholder) ---
         return (
           <div style={placeholderStyle}>
             <h3>Business Dashboard</h3>
@@ -31,14 +30,7 @@ const OrganizationDashboard: React.FC = () => {
         );
 
       case "ngo":
-        // --- NGO DASHBOARD (Future Placeholder) ---
-        return (
-          <div style={placeholderStyle}>
-            <h3>NGO Dashboard</h3>
-            <p>Work in progress. This space is reserved for NGO logic.</p>
-            {/* <NGODashboard /> */}
-          </div>
-        );
+         return <NGODashboard />;
 
       default:
         // Fallback if type is missing or undefined
