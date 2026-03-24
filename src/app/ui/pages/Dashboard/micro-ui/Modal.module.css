@@ -1,5 +1,5 @@
 /* Overlay background */
-.modal {
+.microModalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,42 +9,31 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(3px);
-  animation: fadeIn 0.25s ease-in-out;
+  animation: microFadeIn 0.25s ease-in-out;
   padding: 16px;
+  box-sizing: border-box;
 }
 
 /* Modal container */
-.modalContent {
+.microModalBox {
   background: #ffffff;
   border-radius: 16px;
   width: 100%;
-  max-width: 600px;
-  /* max-width: 420px; */
+  /* FIX: Set a solid max-width and removed the media queries that were shrinking it */
+  max-width: 550px; 
   padding: 24px 28px;
   position: relative;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  animation: slideUp 0.3s ease-out;
+  animation: microSlideUp 0.3s ease-out;
   max-height: 90vh;
-  /* max-height: 50vh; */
   overflow-y: auto;
-}
-
-/* Responsive sizing */
-@media (min-width: 640px) {
-  .modalContent {
-    max-width: 400px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .modalContent {
-    max-width: 380px;
-  }
+  box-sizing: border-box;
 }
 
 /* Close button */
-.modalClose {
+.microModalCloseBtn {
   position: absolute;
   top: 14px;
   right: 14px;
@@ -58,96 +47,61 @@
   background-color: transparent !important;
 }
 
-.modalClose:hover {
+.microModalCloseBtn:hover {
   transform: rotate(90deg);
 }
 
-.modalCloseIcon {
-  color: #111827; /* was #ffffff */
+.microModalCloseIcon {
+  color: #111827;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  transition: color 0.2s ease;
 }
 
-.modalCloseIcon:hover {
+.microModalCloseIcon:hover {
   color: crimson;
 }
+
 /* Header section */
-.modalHeader {
-  margin-bottom: 16px;
+.microModalHeader {
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.modalTitle {
+.microModalTitle {
   font-size: 1.4rem;
   font-weight: 600;
   color: #000000;
   margin: 0;
+  line-height: 1.2;
 }
 
-.modalDescription {
+.microModalDesc {
   font-size: 0.95rem;
-  color: #000000;
-  /* color: #6b7280; */
-  margin-top: 8px;
+  color: #4b5563;
+  margin: 8px 0 0 0;
+  line-height: 1.4;
 }
 
-.modalBody {
+/* Body */
+.microModalBody {
   color: #000000;
 }
 
-.modalActions {
+/* Actions */
+.microModalActions {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
   gap: 12px;
 }
 
-/* Primary button styling */
-.primaryButton {
-  background-color: #3b82f6;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+/* Unique Keyframes to prevent global animation conflicts */
+@keyframes microFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.primaryButton:hover {
-  background-color: #2563eb;
-}
-
-.primaryButton:active {
-  background-color: #1d4ed8;
-}
-
-/* Secondary button styling */
-.secondaryButton {
-  background-color: transparent;
-  color: #000000;
-  border: 1px solid #d1d5db;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.secondaryButton:hover {
-  background-color: #f3f4f6;
-  /* border-color: #9ca3af; */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
+@keyframes microSlideUp {
   from {
     transform: translateY(25px);
     opacity: 0;

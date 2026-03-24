@@ -25,7 +25,6 @@ import EventPosts from "../../../components/blogPosts/Events";
 import { setNotifications } from "../../../../redux/slices/notificationSlice";
 import { getRelativeTime } from "../../../../utils/timeUtils";
 import SocialNotification from "../../../components/socialLink/SocialNotification";
-import SpinnerModal from "../../../components/spinner/SpinnerModale";
 
 type QuickActionCardProps = {
   title: string;
@@ -126,16 +125,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     change: string;
     icon: React.ComponentType;
   } | null>(null);
-  const [showSpinnerModal, setShowSpinnerModal] = useState(false);
 
   const memberStats = useSelector((state: RootState) => state.memberStatus);
   const user = useSelector((state: RootState) => state.user);
   const userId = user?.uniqueId || user?.email || "guest";
-
-  // Check if user has already spun
-  const userSpin = useSelector(
-    (state: RootState) => state.spinner?.userSpins?.[userId] ?? null
-  );
 
   type Notification = {
     title: string;
@@ -150,11 +143,11 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
   const trainings = useSelector((state: RootState) => state.trainings as any[]);
   const progression = useSelector(
     (state: RootState) =>
-      (state as any).progression as { currentPosition?: string }
+      (state as any).progression as { currentPosition?: string },
   );
   const membershipTier = useSelector(
     (state: RootState) =>
-      (state as any).membershipTier as { tier?: string; nextTier?: string }
+      (state as any).membershipTier as { tier?: string; nextTier?: string },
   );
 
   const memberQuickActions = [
@@ -303,25 +296,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       day: "numeric",
     });
 
-  // Show spinner modal after 2 seconds if user hasn't spun yet
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // Only show modal if user hasn't spun yet
-      if (!userSpin) {
-        setShowSpinnerModal(true);
-      }
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [userSpin]);
-
-  const handleSpinComplete = (outcome: number, giftAwarded: boolean) => {
-    console.log(
-      `Spin completed! Outcome: ${outcome}, Gift awarded: ${giftAwarded}`
-    );
-    // The Redux state is already updated by the spinnerSlice
-  };
-
   // Update member stats
   useEffect(() => {
     // Membership Status
@@ -340,7 +314,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
       String(new Date().getFullYear());
     const statusChange = `Member since ${joinYear}`;
     store.dispatch(
-      updateStat({ index: 0, value: membershipStatus, change: statusChange })
+      updateStat({ index: 0, value: membershipStatus, change: statusChange }),
     );
 
     // Points Balance (from performanceScore)
@@ -351,7 +325,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         index: 1,
         value: String(points),
         change: `${points || 0} points earned this week`,
-      })
+      }),
     );
 
     // Events Attended (completed trainings)
@@ -363,7 +337,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         index: 2,
         value: String(eventsAttended),
         change: `${eventsAttended || 0} events this quarter`,
-      })
+      }),
     );
 
     // Member Level (from membershipTier slice)
@@ -374,7 +348,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         index: 3,
         value: tier,
         change: nextTier ? `Next level: ${nextTier}` : "",
-      })
+      }),
     );
   }, [user, trainings, membershipTier]);
 
@@ -457,7 +431,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
           {memberStats
             .filter(
               (s) =>
-                s.title !== "Points Balance" && s.title !== "Events Attended"
+                s.title !== "Points Balance" && s.title !== "Events Attended",
             )
             .map((stat, index) => (
               <StatCard
@@ -498,16 +472,12 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
           <EventPosts posts={eventsPosts} />
         </div>
       </div>
-
-      {/* Spinner Modal */}
-      <SpinnerModal
-        userId={userId}
-        isOpen={showSpinnerModal}
-        onClose={() => setShowSpinnerModal(false)}
-        onSpinComplete={handleSpinComplete}
-      />
     </div>
   );
 };
 
 export default MemberDashboard;
+
+
+
+ 

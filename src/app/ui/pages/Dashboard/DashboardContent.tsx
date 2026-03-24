@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../../../redux/Store";
@@ -53,7 +53,7 @@ import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater";
 import { FaWallet } from "react-icons/fa6";
-import ClassRoom from "./ClassRoom";
+// import ClassRoom from "./ClassRoom";
 import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
@@ -128,7 +128,7 @@ const OnboardingPopup = ({
     >
       <h3 style={{ marginTop: 0, color: "#071d69" }}>Complete Your Profile</h3>
       <p style={{ color: "#555", marginBottom: "20px" }}>
-        Welcome! To get the most out of your Organization Dashboard, please
+        Welcome! To unlock and access your full Organization Dashboard menus, please
         complete your profile details (Address, Phone, etc.).
       </p>
       <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
@@ -234,9 +234,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   const isOrgProfileComplete =
     userDetails.userType !== "Organisation" ||
-    (!!userDetails.phone &&
+    (!!userDetails.firstName &&
+      !!userDetails.phone &&
+      !!userDetails.streetNumber &&
       !!userDetails.streetName &&
       !!userDetails.city &&
+      !!userDetails.state &&
       !!userDetails.country);
 
   // Check for Organization Profile Completeness on Mount
@@ -1098,23 +1101,16 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => {
             const isDisabled =
               !isOrgProfileComplete && item.label !== "Organization Details";
+              
+            if (isDisabled) return null;
+            
             return (
               <button
                 key={item.label}
                 className={`${styles.navItem} ${
                   selectedMenu === item.label ? styles.navItemActive : ""
                 }`}
-                onClick={() => !isDisabled && handleMenuClick(item.label)}
-                title={
-                  isDisabled
-                    ? `Complete organization details to access ${item.label}`
-                    : ""
-                }
-                style={
-                  isDisabled
-                    ? { opacity: 0.5, cursor: "not-allowed" }
-                    : {}
-                }
+                onClick={() => handleMenuClick(item.label)}
               >
                 {/* @ts-ignore */}
                 {item.icon && <item.icon className={styles.navIcon} />}

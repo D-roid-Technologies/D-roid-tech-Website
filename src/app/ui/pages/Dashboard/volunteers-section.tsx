@@ -1,510 +1,470 @@
-"use client"
+import React, { useState, useEffect, useMemo } from "react";
+import { Plus, Users, Clock, UserCheck, Award, Edit, Trash2, Search, UserPlus } from "lucide-react";
+import styles from "./volunteers.module.css";
+import { Modal } from "./micro-ui/modal";
+import { ConfirmationDialog } from "./micro-ui/confirmation-dialog";
+import { EmptyState } from "./micro-ui/empty-state";
+import { StatCard } from "./micro-ui/stat-card";
+import { SearchFilter } from "./micro-ui/search-filter";
+import toast from "react-hot-toast";
 
-import type React from "react"
-import { Plus, Users, Clock, UserCheck, Award, Edit, Trash2 } from "lucide-react"
-import { StatCard } from "./micro-ui/stat-card"
-import styles from "./dashboard.module.css"
-import componentStyles from "./components.module.css"
-import { useState, useMemo } from "react"
-import { ConfirmationDialog } from "./micro-ui/confirmation-dialog"
-import { EmptyState } from "./micro-ui/empty-state"
-import { Modal } from "./micro-ui/modal"
-import { type ValidationRules, emailPattern, validateForm } from "./validation/validation"
-import { SearchFilter } from "./micro-ui/search-filter"
-import toast from "react-hot-toast"
+// Firebase Imports
+import { doc, getDoc, updateDoc, arrayUnion, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../../../../firebase";
+import { authService } from "../../../redux/configuration/auth.service";
 
-interface Volunteer {
-  id: number
-  name: string
-  email: string
-  phone: string
-  skills: string
-  hours: number
-  status: "Active" | "Inactive" | "Pending"
-  joinDate: string
-  availability: string
+export interface Volunteer {
+  id: string; // Unique string ID for the array
+  uid?: string; // If added via Unique ID
+  name: string;
+  email: string;
+  phone: string;
+  department: string;
+  skills: string;
+  hours: number;
+  status: "Active" | "Inactive" | "Pending";
+  joinDate: string;
+  availability: string;
+  isManual: boolean;
 }
-
-const initialVolunteers: Volunteer[] = [
-  {
-    id: 1,
-    name: "Alice Cooper",
-    email: "alice@email.com",
-    phone: "+1-555-0101",
-    skills: "Teaching, Mentoring",
-    hours: 45,
-    status: "Active",
-    joinDate: "2024-01-01",
-    availability: "Weekends",
-  },
-  {
-    id: 2,
-    name: "Bob Martinez",
-    email: "bob@email.com",
-    phone: "+1-555-0102",
-    skills: "Construction, Logistics",
-    hours: 32,
-    status: "Active",
-    joinDate: "2024-01-05",
-    availability: "Weekdays",
-  },
-  {
-    id: 3,
-    name: "Carol White",
-    email: "carol@email.com",
-    phone: "+1-555-0103",
-    skills: "Healthcare, First Aid",
-    hours: 28,
-    status: "Inactive",
-    joinDate: "2023-12-15",
-    availability: "Flexible",
-  },
-  {
-    id: 4,
-    name: "David Brown",
-    email: "david@email.com",
-    phone: "+1-555-0104",
-    skills: "IT Support, Training",
-    hours: 52,
-    status: "Active",
-    joinDate: "2023-11-20",
-    availability: "Evenings",
-  },
-]
 
 const statusOptions = [
   { label: "Active", value: "Active" },
   { label: "Inactive", value: "Inactive" },
   { label: "Pending", value: "Pending" },
-]
+];
 
 const availabilityOptions = [
   { label: "Weekends", value: "Weekends" },
   { label: "Weekdays", value: "Weekdays" },
   { label: "Evenings", value: "Evenings" },
   { label: "Flexible", value: "Flexible" },
-]
-
-const validationRules: ValidationRules = {
-  name: { required: true, minLength: 2, maxLength: 100 },
-  email: { required: true, pattern: emailPattern },
-  phone: { required: true, minLength: 10 },
-  skills: { required: true, minLength: 3 },
-  availability: { required: true },
-}
+];
 
 export const VolunteersSection: React.FC = () => {
-  const [volunteers, setVolunteers] = useState<Volunteer[]>(initialVolunteers)
-  const [modalOpen, setModalOpen] = useState(false)
-  const [editingVolunteer, setEditingVolunteer] = useState<Volunteer | null>(null)
-  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
-  const [volunteerToDelete, setVolunteerToDelete] = useState<number | null>(null)
-  const [searchValue, setSearchValue] = useState("")
-  const [filterValue, setFilterValue] = useState("")
-  const [formData, setFormData] = useState<{
-    name: string
-    email: string
-    phone: string
-    skills: string
-    availability: string
-    status: "Pending" | "Active" | "Inactive"
-  }>({
+  const [volunteers, setVolunteers] = useState<Volunteer[]>([]);
+  const [departments, setDepartments] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Modal & UI State
+  const [modalOpen, setModalOpen] = useState(false);
+  const [addMode, setAddMode] = useState<"search" | "manual">("search");
+  const [editingVolunteer, setEditingVolunteer] = useState<Volunteer | null>(null);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [volunteerToDelete, setVolunteerToDelete] = useState<string | null>(null);
+  
+  // Filters
+  const [searchValue, setSearchValue] = useState("");
+  const [filterValue, setFilterValue] = useState("");
+
+  // Add via Unique ID State
+  const [searchUniqueId, setSearchUniqueId] = useState("");
+  const [searchedUser, setSearchedUser] = useState<any | null>(null);
+  const [isSearchingId, setIsSearchingId] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    department: "",
     skills: "",
     availability: "",
-    status: "Pending",
-  })
-  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+    status: "Pending" as "Pending" | "Active" | "Inactive",
+  });
 
+  // --- 1. FETCH DATA (REAL-TIME) ---
+  useEffect(() => {
+    const fetchOrgData = () => {
+      const currentUser = auth.currentUser;
+      if (!currentUser) return;
+
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      
+      const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const orgData = data.user?.organisation || {};
+          
+          setVolunteers(orgData.volunteers || []);
+          setDepartments(orgData.departments || []);
+        }
+        setIsLoading(false);
+      });
+
+      return () => unsubscribe();
+    };
+
+    fetchOrgData();
+  }, []);
+
+  // --- 2. DERIVED DATA ---
   const filteredVolunteers = useMemo(() => {
     return volunteers.filter((volunteer) => {
       const matchesSearch =
         volunteer.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         volunteer.email.toLowerCase().includes(searchValue.toLowerCase()) ||
-        volunteer.skills.toLowerCase().includes(searchValue.toLowerCase())
-      const matchesFilter = !filterValue || volunteer.status === filterValue
-      return matchesSearch && matchesFilter
-    })
-  }, [volunteers, searchValue, filterValue])
+        volunteer.department.toLowerCase().includes(searchValue.toLowerCase());
+      const matchesFilter = !filterValue || volunteer.status === filterValue;
+      return matchesSearch && matchesFilter;
+    });
+  }, [volunteers, searchValue, filterValue]);
 
   const stats = useMemo(() => {
-    const activeVolunteers = volunteers.filter((v) => v.status === "Active").length
-    const totalHours = volunteers.reduce((sum, v) => sum + v.hours, 0)
-    const pendingApplications = volunteers.filter((v) => v.status === "Pending").length
-    const retentionRate = Math.round((activeVolunteers / volunteers.length) * 100) || 0
+    const active = volunteers.filter((v) => v.status === "Active").length;
+    const totalHrs = volunteers.reduce((sum, v) => sum + (v.hours || 0), 0);
+    const pending = volunteers.filter((v) => v.status === "Pending").length;
+    const retentionRate = volunteers.length > 0 ? Math.round((active / volunteers.length) * 100) : 0;
+    
     return {
-      activeVolunteers: activeVolunteers.toString(),
-      totalHours: totalHours.toString(),
-      pendingApplications: pendingApplications.toString(),
+      activeVolunteers: active.toString(),
+      totalHours: totalHrs.toString(),
+      pendingApplications: pending.toString(),
       retentionRate: `${retentionRate}%`,
+    };
+  }, [volunteers]);
+
+  // --- 3. SEARCH BY UNIQUE ID ---
+  const handleSearchUniqueId = async () => {
+    if (!searchUniqueId.trim()) return toast.error("Please enter a Unique ID");
+    
+    setIsSearchingId(true);
+    setSearchedUser(null);
+
+    try {
+      const user = await authService.searchMemberByUniqueId(searchUniqueId);
+      if (user) {
+        setSearchedUser(user);
+        // Pre-fill form with found data
+        setFormData(prev => ({
+          ...prev,
+          name: `${user.firstName} ${user.lastName}`,
+          email: user.email,
+          phone: user.phone || "",
+        }));
+        toast.success("Member found!", { style: { background: "#4BB543", color: "#fff" }});
+      }
+    } catch (error) {
+      // Error handled by authService
+    } finally {
+      setIsSearchingId(false);
     }
-  }, [volunteers])
+  };
 
-  const resetForm = () => {
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      skills: "",
-      availability: "",
-      status: "Pending",
-    })
-    setFormErrors({})
-    setEditingVolunteer(null)
-  }
-
+  // --- 4. FORM HANDLERS ---
   const openModal = (volunteer?: Volunteer) => {
     if (volunteer) {
-      setEditingVolunteer(volunteer)
+      setEditingVolunteer(volunteer);
+      setAddMode(volunteer.isManual ? "manual" : "search");
       setFormData({
         name: volunteer.name,
         email: volunteer.email,
         phone: volunteer.phone,
+        department: volunteer.department,
         skills: volunteer.skills,
         availability: volunteer.availability,
         status: volunteer.status,
-      })
+      });
+      if (!volunteer.isManual) {
+        setSearchedUser({ firstName: volunteer.name.split(" ")[0], lastName: volunteer.name.split(" ")[1], email: volunteer.email });
+      }
     } else {
-      resetForm()
+      resetForm();
     }
-    setModalOpen(true)
-  }
+    setModalOpen(true);
+  };
 
   const closeModal = () => {
-    setModalOpen(false)
-    resetForm()
-  }
+    setModalOpen(false);
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setFormData({ name: "", email: "", phone: "", department: "", skills: "", availability: "", status: "Pending" });
+    setEditingVolunteer(null);
+    setSearchedUser(null);
+    setSearchUniqueId("");
+    setAddMode("search");
+  };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-    if (formErrors[field]) {
-      setFormErrors((prev) => ({ ...prev, [field]: "" }))
-    }
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const errors = validateForm(formData, validationRules)
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors)
-      return
-    }
-    const volunteerData: Volunteer = {
-      id: editingVolunteer?.id || Date.now(),
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      skills: formData.skills,
-      availability: formData.availability,
-      status: formData.status,
-      hours: editingVolunteer?.hours || 0,
-      joinDate: editingVolunteer?.joinDate || new Date().toISOString().split("T")[0],
-    }
-    if (editingVolunteer) {
-      setVolunteers((prev) => prev.map((v) => (v.id === editingVolunteer.id ? volunteerData : v)))
-      toast.success("The volunteer information has been successfully updated.", {
-        style: { background: "#4BB543", color: "#fff" },
-      })
-    } else {
-      setVolunteers((prev) => [...prev, volunteerData])
-      toast.success("The volunteer has been successfully registered.", {
-        style: { background: "#4BB543", color: "#fff" },
-      })
-    }
-    closeModal()
-  }
+  // --- 5. SAVE TO FIREBASE ---
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const currentUser = auth.currentUser;
+    if (!currentUser) return;
 
-  const handleDelete = (id: number) => {
-    setVolunteerToDelete(id)
-    setDeleteConfirmOpen(true)
-  }
+    if (!formData.department) return toast.error("Please select or enter a department");
+    if (addMode === "search" && !searchedUser && !editingVolunteer) return toast.error("Please search and select a valid member first.");
 
-  const confirmDelete = () => {
-    if (volunteerToDelete) {
-      setVolunteers((prev) => prev.filter((v) => v.id !== volunteerToDelete))
-      toast.success("The volunteer has been successfully removed.", { style: { background: "#4BB543", color: "#fff" } })
-      setVolunteerToDelete(null)
-    }
-  }
+    try {
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      const userSnap = await getDoc(userDocRef);
+      const currentVols = userSnap.data()?.user?.organisation?.volunteers || [];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Active":
-        return componentStyles.badgeSuccess
-      case "Pending":
-        return componentStyles.badgeWarning
-      case "Inactive":
-        return componentStyles.badgeSecondary
-      default:
-        return componentStyles.badgeSecondary
+      if (editingVolunteer) {
+        // Update
+        const updatedVols = currentVols.map((v: Volunteer) => 
+          v.id === editingVolunteer.id 
+            ? { ...v, ...formData } 
+            : v
+        );
+        await updateDoc(userDocRef, { "user.organisation.volunteers": updatedVols });
+        toast.success("Volunteer updated successfully");
+      } else {
+        // Add New
+        const newVolunteer: Volunteer = {
+          id: crypto.randomUUID(),
+          uid: addMode === "search" ? searchedUser.uniqueId : undefined,
+          isManual: addMode === "manual",
+          ...formData,
+          hours: 0,
+          joinDate: new Date().toISOString(),
+        };
+        await updateDoc(userDocRef, { "user.organisation.volunteers": arrayUnion(newVolunteer) });
+        toast.success("Volunteer added successfully");
+      }
+      closeModal();
+    } catch (error: any) {
+      toast.error(`Error saving volunteer: ${error.message}`);
     }
-  }
+  };
+
+  // --- 6. DELETE LOGIC ---
+  const confirmDelete = async () => {
+    const currentUser = auth.currentUser;
+    if (!currentUser || !volunteerToDelete) return;
+
+    try {
+      const userDocRef = doc(db, "droidaccount", currentUser.uid);
+      const updatedVols = volunteers.filter((v) => v.id !== volunteerToDelete);
+      await updateDoc(userDocRef, { "user.organisation.volunteers": updatedVols });
+      
+      toast.success("Volunteer removed successfully");
+      setVolunteerToDelete(null);
+      setDeleteConfirmOpen(false);
+    } catch (error: any) {
+      toast.error(`Failed to delete: ${error.message}`);
+    }
+  };
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.sectionHeader}>
         <div>
           <h1 className={styles.sectionTitle}>Volunteers</h1>
-          <p className={styles.sectionDescription}>Manage volunteer recruitment and activities</p>
+          <p className={styles.sectionDescription}>Manage volunteer recruitment, departments, and activities</p>
         </div>
-        <button className={`${componentStyles.button} ${componentStyles.buttonPrimary}`} onClick={() => openModal()}>
-          <Plus size={16} />
-          Add Volunteer
+        <button className={`${styles.button} ${styles.buttonPrimary}`} onClick={() => openModal()}>
+          <Plus size={16} /> Add Volunteer
         </button>
       </div>
 
       <div className={styles.statsGrid}>
-        <StatCard title="Active Volunteers" value={stats.activeVolunteers} change="+12 this month" icon={Users} />
-        <StatCard title="Total Hours" value={stats.totalHours} change="This month" icon={Clock} />
-        <StatCard title="New Applications" value={stats.pendingApplications} change="Pending review" icon={UserCheck} />
-        <StatCard title="Retention Rate" value={stats.retentionRate} change="+3% from last year" icon={Award} />
+        <StatCard title="Active Volunteers" value={isLoading ? "..." : stats.activeVolunteers} change="Currently Active" icon={Users} />
+        <StatCard title="Total Hours" value={isLoading ? "..." : stats.totalHours} change="Logged contribution" icon={Clock} />
+        <StatCard title="Pending Applications" value={isLoading ? "..." : stats.pendingApplications} change="Awaiting approval" icon={UserCheck} />
+        <StatCard title="Retention Rate" value={isLoading ? "..." : stats.retentionRate} change="Overall retention" icon={Award} />
       </div>
 
-      <div className={componentStyles.card}>
-        <div className={componentStyles.cardHeader}>
-          <h2 className={componentStyles.cardTitle}>Volunteer Directory ({filteredVolunteers.length})</h2>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <h2 className={styles.cardTitle}>Volunteer Directory ({filteredVolunteers.length})</h2>
           <SearchFilter
             searchValue={searchValue}
             onSearchChange={setSearchValue}
             filterValue={filterValue}
             onFilterChange={setFilterValue}
             filterOptions={statusOptions}
-            placeholder="Search volunteers..."
+            placeholder="Search name, email, department..."
             filterLabel="Filter by status"
           />
         </div>
-        <div className={componentStyles.cardContent}>
-          {filteredVolunteers.length === 0 ? (
+        
+        <div className={styles.cardContent}>
+          {isLoading ? (
+             <div className={styles.emptyState}>Loading volunteers...</div>
+          ) : filteredVolunteers.length === 0 ? (
             <EmptyState
               title="No volunteers found"
-              description={
-                searchValue || filterValue
-                  ? "Try adjusting your search or filter criteria."
-                  : "No volunteers have been registered yet."
-              }
+              description={searchValue || filterValue ? "Try adjusting your search criteria." : "No volunteers have been registered yet."}
             />
           ) : (
-            <div className={componentStyles.responsiveTableContainer}>
-              {/* Desktop Table View */}
-              <div className={componentStyles.desktopTable}>
-                <table className={componentStyles.table}>
-                  <thead className={componentStyles.tableHeader}>
-                    <tr>
-                      <th className={componentStyles.tableHeaderCell}>Name</th>
-                      <th className={componentStyles.tableHeaderCell}>Email</th>
-                      <th className={componentStyles.tableHeaderCell}>Phone</th>
-                      <th className={componentStyles.tableHeaderCell}>Skills</th>
-                      <th className={componentStyles.tableHeaderCell}>Hours</th>
-                      <th className={componentStyles.tableHeaderCell}>Status</th>
-                      <th className={componentStyles.tableHeaderCell}>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredVolunteers.map((volunteer) => (
-                      <tr key={volunteer.id} className={componentStyles.tableRow}>
-                        <td className={`${componentStyles.tableCell} ${componentStyles.tableCellBold}`}>
-                          {volunteer.name}
-                        </td>
-                        <td className={componentStyles.tableCell}>{volunteer.email}</td>
-                        <td className={componentStyles.tableCell}>{volunteer.phone}</td>
-                        <td className={componentStyles.tableCell}>{volunteer.skills}</td>
-                        <td className={componentStyles.tableCell}>{volunteer.hours}h</td>
-                        <td className={componentStyles.tableCell}>
-                          <span className={`${componentStyles.badge} ${getStatusColor(volunteer.status)}`}>
-                            {volunteer.status}
-                          </span>
-                        </td>
-                        <td className={componentStyles.tableCell}>
-                          <div className={componentStyles.tableActions}>
-                            <button
-                              className={componentStyles.actionButton}
-                              onClick={() => openModal(volunteer)}
-                              title="Edit volunteer"
-                            >
-                              <Edit size={16} />
-                            </button>
-                            <button
-                              className={`${componentStyles.actionButton} ${componentStyles.actionButtonDanger}`}
-                              onClick={() => handleDelete(volunteer.id)}
-                              title="Delete volunteer"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Mobile Card View */}
-              <div className={componentStyles.mobileCards}>
-                {filteredVolunteers.map((volunteer) => (
-                  <div key={volunteer.id} className={componentStyles.departmentCard}>
-                    <div className={componentStyles.cardHeader}>
-                      <div className={componentStyles.cardTitleSection}>
-                        <h3 className={componentStyles.cardTitle}>{volunteer.name}</h3>
-                        <span className={`${componentStyles.badge} ${getStatusColor(volunteer.status)}`}>
+            <div className={styles.responsiveTableContainer}>
+              <table className={styles.table}>
+                <thead className={styles.tableHeader}>
+                  <tr>
+                    <th className={styles.tableHeaderCell}>Name</th>
+                    <th className={styles.tableHeaderCell}>Department</th>
+                    <th className={styles.tableHeaderCell}>Contact Info</th>
+                    <th className={styles.tableHeaderCell}>Skills & Avail.</th>
+                    <th className={styles.tableHeaderCell}>Hours</th>
+                    <th className={styles.tableHeaderCell}>Status</th>
+                    <th className={styles.tableHeaderCell}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredVolunteers.map((volunteer) => (
+                    <tr key={volunteer.id} className={styles.tableRow}>
+                      <td className={`${styles.tableCell} ${styles.tableCellBold}`}>
+                        {volunteer.name}
+                        {volunteer.isManual && <span className={styles.manualTag}> (Manual)</span>}
+                      </td>
+                      <td className={styles.tableCell}>{volunteer.department}</td>
+                      <td className={styles.tableCell}>
+                        <div>{volunteer.email}</div>
+                        <div className={styles.subText}>{volunteer.phone}</div>
+                      </td>
+                      <td className={styles.tableCell}>
+                        <div>{volunteer.skills}</div>
+                        <div className={styles.subText}>{volunteer.availability}</div>
+                      </td>
+                      <td className={styles.tableCell}>{volunteer.hours}h</td>
+                      <td className={styles.tableCell}>
+                        <span className={`${styles.badge} ${styles[`badge${volunteer.status}`]}`}>
                           {volunteer.status}
                         </span>
-                      </div>
-                      <div className={componentStyles.cardActions}>
-                        <button
-                          className={componentStyles.actionButton}
-                          onClick={() => openModal(volunteer)}
-                          title="Edit volunteer"
-                        >
-                          <Edit size={16} />
-                        </button>
-                        <button
-                          className={`${componentStyles.actionButton} ${componentStyles.actionButtonDanger}`}
-                          onClick={() => handleDelete(volunteer.id)}
-                          title="Delete volunteer"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className={componentStyles.cardBody}>
-                      <div className={componentStyles.cardRow}>
-                        <div className={componentStyles.cardField}>
-                          <span className={componentStyles.fieldLabel}>Email</span>
-                          <span className={componentStyles.fieldValue}>{volunteer.email}</span>
+                      </td>
+                      <td className={styles.tableCell}>
+                        <div className={styles.tableActions}>
+                          <button className={styles.actionButton} onClick={() => openModal(volunteer)}><Edit size={16} /></button>
+                          <button className={`${styles.actionButton} ${styles.actionButtonDanger}`} onClick={() => { setVolunteerToDelete(volunteer.id); setDeleteConfirmOpen(true); }}><Trash2 size={16} /></button>
                         </div>
-                        <div className={componentStyles.cardField}>
-                          <span className={componentStyles.fieldLabel}>Phone</span>
-                          <span className={componentStyles.fieldValue}>{volunteer.phone}</span>
-                        </div>
-                      </div>
-
-                      <div className={componentStyles.cardRow}>
-                        <div className={componentStyles.cardField}>
-                          <span className={componentStyles.fieldLabel}>Skills</span>
-                          <span className={componentStyles.fieldValue}>{volunteer.skills}</span>
-                        </div>
-                        <div className={componentStyles.cardField}>
-                          <span className={componentStyles.fieldLabel}>Hours</span>
-                          <span className={componentStyles.fieldValue}>{volunteer.hours}h</span>
-                        </div>
-                      </div>
-
-                      <div className={componentStyles.cardRow}>
-                        <div className={componentStyles.cardField}>
-                          <span className={componentStyles.fieldLabel}>Availability</span>
-                          <span className={componentStyles.fieldValue}>{volunteer.availability}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
       </div>
 
+      {/* --- ADD / EDIT MODAL --- */}
       <Modal
         isOpen={modalOpen}
         onClose={closeModal}
         title={editingVolunteer ? "Edit Volunteer" : "Add New Volunteer"}
-        description={editingVolunteer ? "Update volunteer information" : "Register a new volunteer"}
+        description="Assign a volunteer to a department"
       >
-        <form onSubmit={handleSubmit}>
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Full Name *</label>
-            <input
-              className={`${componentStyles.input} ${formErrors.name ? componentStyles.inputError : ""}`}
-              placeholder="Enter full name"
-              value={formData.name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-            />
-            {formErrors.name && <div className={componentStyles.errorText}>{formErrors.name}</div>}
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Email *</label>
-            <input
-              type="email"
-              className={`${componentStyles.input} ${formErrors.email ? componentStyles.inputError : ""}`}
-              placeholder="volunteer@email.com"
-              value={formData.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
-            />
-            {formErrors.email && <div className={componentStyles.errorText}>{formErrors.email}</div>}
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Phone *</label>
-            <input
-              type="tel"
-              className={`${componentStyles.input} ${formErrors.phone ? componentStyles.inputError : ""}`}
-              placeholder="+1-555-0123"
-              value={formData.phone}
-              onChange={(e) => handleInputChange("phone", e.target.value)}
-            />
-            {formErrors.phone && <div className={componentStyles.errorText}>{formErrors.phone}</div>}
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Skills *</label>
-            <input
-              className={`${componentStyles.input} ${formErrors.skills ? componentStyles.inputError : ""}`}
-              placeholder="Teaching, Healthcare, IT..."
-              value={formData.skills}
-              onChange={(e) => handleInputChange("skills", e.target.value)}
-            />
-            {formErrors.skills && <div className={componentStyles.errorText}>{formErrors.skills}</div>}
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Availability *</label>
-            <select
-              className={`${componentStyles.select} ${formErrors.availability ? componentStyles.inputError : ""}`}
-              value={formData.availability}
-              onChange={(e) => handleInputChange("availability", e.target.value)}
+        {!editingVolunteer && (
+          <div className={styles.modeToggle}>
+            <button 
+              type="button" 
+              className={`${styles.modeBtn} ${addMode === "search" ? styles.modeActive : ""}`} 
+              onClick={() => setAddMode("search")}
             >
-              <option value="">Select availability</option>
-              {availabilityOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            {formErrors.availability && <div className={componentStyles.errorText}>{formErrors.availability}</div>}
-          </div>
-
-          <div className={componentStyles.formGroup}>
-            <label className={componentStyles.label}>Status</label>
-            <select
-              className={componentStyles.select}
-              value={formData.status}
-              onChange={(e) => handleInputChange("status", e.target.value)}
-            >
-              {statusOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-end", marginTop: "1.5rem" }}>
-            <button
-              type="button"
-              className={`${componentStyles.button} ${componentStyles.buttonSecondary}`}
-              onClick={closeModal}
-            >
-              Cancel
+              <Search size={16} /> Link via Unique ID
             </button>
-            <button type="submit" className={`${componentStyles.button} ${componentStyles.buttonPrimary}`}>
-              {editingVolunteer ? "Update Volunteer" : "Add Volunteer"}
+            <button 
+              type="button" 
+              className={`${styles.modeBtn} ${addMode === "manual" ? styles.modeActive : ""}`} 
+              onClick={() => setAddMode("manual")}
+            >
+              <UserPlus size={16} /> Enter Manually
             </button>
           </div>
-        </form>
+        )}
+
+        {/* Search Input Section (Only if adding via ID) */}
+        {!editingVolunteer && addMode === "search" && !searchedUser && (
+          <div className={styles.searchSection}>
+            <label className={styles.label}>Member Unique ID</label>
+            <div className={styles.searchRow}>
+              <input
+                className={styles.input}
+                placeholder="Enter D'roid Member ID"
+                value={searchUniqueId}
+                onChange={(e) => setSearchUniqueId(e.target.value)}
+              />
+              <button 
+                type="button" 
+                className={`${styles.button} ${styles.buttonPrimary}`} 
+                onClick={handleSearchUniqueId}
+                disabled={isSearchingId}
+              >
+                {isSearchingId ? "Searching..." : "Search"}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Found User Preview */}
+        {addMode === "search" && searchedUser && (
+          <div className={styles.foundUserCard}>
+             <p className={styles.foundUserName}>{searchedUser.firstName} {searchedUser.lastName}</p>
+             <p className={styles.foundUserEmail}>{searchedUser.email}</p>
+             {!editingVolunteer && <button type="button" className={styles.linkBtn} onClick={() => setSearchedUser(null)}>Change Member</button>}
+          </div>
+        )}
+
+        {/* The Form */}
+        {((addMode === "search" && searchedUser) || addMode === "manual") && (
+          <form onSubmit={handleSubmit} className={styles.formStack}>
+            
+            {addMode === "manual" && (
+              <>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Full Name *</label>
+                  <input className={styles.input} required value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Email *</label>
+                  <input type="email" className={styles.input} required value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Phone Number *</label>
+                  <input type="tel" className={styles.input} required value={formData.phone} onChange={(e) => handleInputChange("phone", e.target.value)} />
+                </div>
+              </>
+            )}
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Department / Team *</label>
+              {departments.length > 0 ? (
+                 <select className={styles.select} required value={formData.department} onChange={(e) => handleInputChange("department", e.target.value)}>
+                   <option value="">Select a Department</option>
+                   {departments.map((dep, idx) => (
+                     <option key={idx} value={dep.name}>{dep.name}</option>
+                   ))}
+                   <option value="General">General / Unassigned</option>
+                 </select>
+              ) : (
+                <input className={styles.input} required placeholder="e.g., Medical Team, Logistics..." value={formData.department} onChange={(e) => handleInputChange("department", e.target.value)} />
+              )}
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Skills *</label>
+              <input className={styles.input} required placeholder="e.g. Teaching, Nursing, Driving..." value={formData.skills} onChange={(e) => handleInputChange("skills", e.target.value)} />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Availability *</label>
+              <select className={styles.select} required value={formData.availability} onChange={(e) => handleInputChange("availability", e.target.value)}>
+                <option value="">Select availability</option>
+                {availabilityOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+              </select>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Status</label>
+              <select className={styles.select} value={formData.status} onChange={(e) => handleInputChange("status", e.target.value as any)}>
+                {statusOptions.map((opt) => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+              </select>
+            </div>
+
+            <div className={styles.modalActions}>
+              <button type="button" className={`${styles.button} ${styles.buttonSecondary}`} onClick={closeModal}>Cancel</button>
+              <button type="submit" className={`${styles.button} ${styles.buttonPrimary}`}>
+                {editingVolunteer ? "Update Volunteer" : "Save Volunteer"}
+              </button>
+            </div>
+          </form>
+        )}
       </Modal>
 
       <ConfirmationDialog
@@ -518,5 +478,5 @@ export const VolunteersSection: React.FC = () => {
         type="danger"
       />
     </div>
-  )
-}
+  );
+};
