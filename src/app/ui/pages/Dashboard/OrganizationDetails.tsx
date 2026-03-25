@@ -23,6 +23,7 @@ const OrganizationDetails: React.FC = () => {
 
   const [formData, setFormData] = useState<UserType | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
   // Document State
   const [documents, setDocuments] = useState<any[]>([]);
@@ -48,9 +49,48 @@ const OrganizationDetails: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    if (!formData) return false;
+
+    const requiredFields = [
+      { key: "firstName", label: "Organization Name" },
+      { key: "phone", label: "Phone Number" },
+      { key: "streetNumber", label: "Street Number" },
+      { key: "streetName", label: "Street Name" },
+      { key: "city", label: "City" },
+      { key: "state", label: "State/Province" },
+      { key: "country", label: "Country" },
+    ];
+
+    const newErrors: string[] = [];
+    const missingLabels: string[] = [];
+    
+    requiredFields.forEach((field) => {
+      const value = (formData as any)[field.key];
+      if (!value || String(value).trim() === "") {
+        newErrors.push(field.key);
+        missingLabels.push(field.label);
+      }
+    });
+
+    setErrors(newErrors);
+        
+    if (missingLabels.length > 0) {
+      toast.error(`Please complete the remaining required fields:\n• ${missingLabels.join("\n• ")}`, {
+        duration: 5000,
+      });
+    }
+        
+    return newErrors.length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData) return;
+
+    if (!validateForm()) {
+      return;
+    }
 
     setIsSubmitting(true);
     try {
@@ -70,9 +110,9 @@ const OrganizationDetails: React.FC = () => {
         }),
       );
 
-      toast.success("Organization profile updated!");
+      // toast.success("Organization profile updated!");
     } catch (error) {
-      toast.error("Failed to update profile.");
+      // toast.error("Failed to update profile.");
     } finally {
       setIsSubmitting(false);
     }
@@ -160,26 +200,28 @@ const OrganizationDetails: React.FC = () => {
               <div className={styles.formGrid}>
                 {/* Organization Name */}
                 <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-                  <label className={styles.inputLabel}>Organization Name</label>
+                  <label className={styles.inputLabel}>Organization Name <span style={{color: "red"}}>*</span></label>
                   <input
                     name="firstName" // Mapped to firstName in backend
                     type="text"
                     value={formData.firstName || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("firstName") ? { borderColor: "red" } : {}}
                     placeholder="e.g. D'roid Technologies Ltd"
                   />
                 </div>
 
                 {/* Phone */}
                 <div className={styles.inputGroup}>
-                  <label className={styles.inputLabel}>Phone Number</label>
+                  <label className={styles.inputLabel}>Phone Number <span style={{color: "red"}}>*</span></label>
                   <input
                     name="phone"
                     type="tel"
                     value={formData.phone || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("phone") ? { borderColor: "red" } : {}}
                     placeholder="+1 234 567 8900"
                   />
                 </div>
@@ -268,57 +310,62 @@ const OrganizationDetails: React.FC = () => {
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label className={styles.inputLabel}>Street Number</label>
+                  <label className={styles.inputLabel}>Street Number <span style={{color: "red"}}>*</span></label>
                   <input
                     name="streetNumber"
                     type="text"
                     value={formData.streetNumber || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("streetNumber") ? { borderColor: "red" } : {}}
                   />
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label className={styles.inputLabel}>Street Name</label>
+                  <label className={styles.inputLabel}>Street Name <span style={{color: "red"}}>*</span></label>
                   <input
                     name="streetName"
                     type="text"
                     value={formData.streetName || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("streetName") ? { borderColor: "red" } : {}}
                   />
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label className={styles.inputLabel}>City</label>
+                  <label className={styles.inputLabel}>City <span style={{color: "red"}}>*</span></label>
                   <input
                     name="city"
                     type="text"
                     value={formData.city || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("city") ? { borderColor: "red" } : {}}
                   />
                 </div>
 
                 <div className={styles.inputGroup}>
-                  <label className={styles.inputLabel}>State/Province</label>
+                  <label className={styles.inputLabel}>State/Province <span style={{color: "red"}}>*</span></label>
                   <input
                     name="state"
                     type="text"
                     value={formData.state || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("state") ? { borderColor: "red" } : {}}
                   />
                 </div>
 
                 <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-                  <label className={styles.inputLabel}>Country</label>
+                  <label className={styles.inputLabel}>Country <span style={{color: "red"}}>*</span></label>
                   <input
                     name="country"
                     type="text"
                     value={formData.country || ""}
                     onChange={handleChange}
                     className={styles.inputField}
+                    style={errors.includes("country") ? { borderColor: "red" } : {}}
                   />
                 </div>
               </div>

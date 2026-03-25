@@ -293,7 +293,7 @@ export class AuthService {
       }
 
       if (isOrganisation) {
-        initialNotifications.push(this.createOrgOnboardingNotification());
+        initialNotifications.push(this.createOrgOnboardingNotification(["Phone Number", "Street Number", "Street Name", "City", "State/Province", "Country"]));
       }
 
       const droidAccount = {
@@ -462,8 +462,18 @@ export class AuthService {
 
         // Check for Missing Organization Details
         if (userType === "Organisation") {
-          const { phone, streetName, city, country } = primaryInformation;
-          const isProfileComplete = phone && streetName && city && country;
+          const { firstName, phone, streetNumber, streetName, city, state, country } = primaryInformation;
+          
+          const missingFields: string[] = [];
+          if (!firstName) missingFields.push("Organization Name");
+          if (!phone) missingFields.push("Phone Number");
+          if (!streetNumber) missingFields.push("Street Number");
+          if (!streetName) missingFields.push("Street Name");
+          if (!city) missingFields.push("City");
+          if (!state) missingFields.push("State/Province");
+          if (!country) missingFields.push("Country");
+
+          const isProfileComplete = missingFields.length === 0;
 
           let currentNotifications =
             fetchedUserData.user?.onboard?.notifications || [];
@@ -474,7 +484,7 @@ export class AuthService {
             );
 
             if (!hasNotification) {
-              const orgNotif = this.createOrgOnboardingNotification();
+              const orgNotif = this.createOrgOnboardingNotification(missingFields);
               currentNotifications = [orgNotif, ...currentNotifications];
 
               await updateDoc(userDocRef, {
@@ -1713,13 +1723,17 @@ export class AuthService {
     };
   }
 
-  private createOrgOnboardingNotification() {
+  private createOrgOnboardingNotification(missingFields?: string[]) {
+    const missingText = missingFields && missingFields.length > 0
+      ? ` Missing required fields: ${missingFields.join(", ")}.`
+      : "";
+
     return {
       id: Date.now() + 1,
       title: "Complete Organization Profile",
       message:
-        "Your organization profile is incomplete. Please add your address and contact details.",
-      type: "info",
+        `Your organization profile is incomplete.${missingText} Please add your details to unlock all menu features.`,
+      type: "warning",
       date: new Date().toISOString().split("T")[0],
       time: new Date().toISOString(),
       isRead: false,

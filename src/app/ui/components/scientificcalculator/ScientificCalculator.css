@@ -242,7 +242,7 @@
   grid-gap: 6px;
 }
 
-button {
+.keypad button {
   background-color: var(--button-color);
   border: none;
   border-radius: 5px;
@@ -260,46 +260,46 @@ button {
   font-weight: 500;
 }
 
-button:hover {
+.keypad button:hover {
   background-color: var(--button-hover);
 }
 
-button:active {
+.keypad button:active {
   transform: translateY(1px);
 }
 
-button.number {
+.keypad button.number {
   background-color: var(--number-button-color);
 }
 
-button.number:hover {
+.keypad button.number:hover {
   background-color: var(--number-button-hover);
 }
 
-button.operator {
+.keypad button.operator {
   background-color: var(--operator-button-color);
   font-weight: 700;
 }
 
-button.operator:hover {
+.keypad button.operator:hover {
   background-color: var(--operator-button-hover);
 }
 
-button.equals {
+.keypad button.equals {
   background-color: var(--equals-button-color);
   grid-row: span 2;
   font-weight: 700;
 }
 
-button.equals:hover {
+.keypad button.equals:hover {
   background-color: var(--equals-button-hover);
 }
 
-button.zero {
+.keypad button.zero {
   grid-column: span 2;
 }
 
-button.active {
+.keypad button.active {
   background-color: var(--accent-color);
   color: white;
 }
@@ -407,7 +407,7 @@ button.active {
     max-width: 420px;
   }
 
-  button {
+  .keypad button {
     font-size: 15px;
     min-height: 42px;
   }
@@ -430,7 +430,7 @@ button.active {
     max-width: 450px;
   }
 
-  button {
+  .keypad button {
     font-size: 16px;
     min-height: 44px;
   }
@@ -446,7 +446,7 @@ button.active {
     max-width: 480px;
   }
 
-  button {
+  .keypad button {
     font-size: 16px;
     min-height: 46px;
     padding: 12px 6px;
@@ -492,7 +492,7 @@ button.active {
     padding: 6px;
   }
 
-  button {
+  .keypad button {
     min-height: 32px;
     padding: 4px 2px;
     font-size: 12px;
@@ -517,7 +517,7 @@ button.active {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  button {
+  .keypad button {
     min-height: 36px;
     font-size: 12px;
   }
@@ -540,7 +540,7 @@ button.active {
     font-size: 40px;
   }
 
-  button {
+  .keypad button {
     font-size: 18px;
     min-height: 50px;
     padding: 14px 8px;
@@ -549,7 +549,7 @@ button.active {
 
 /* High DPI displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  button {
+  .keypad button {
     border: 0.5px solid rgba(255, 255, 255, 0.1);
   }
 }
@@ -563,7 +563,7 @@ button.active {
 
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
-  button,
+  .keypad button,
   .angle-mode,
   .history-toggle {
     transition: none;

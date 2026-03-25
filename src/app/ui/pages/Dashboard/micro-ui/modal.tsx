@@ -6,7 +6,7 @@ import { useEffect } from "react";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   description?: string;
   children: React.ReactNode;
   actions?: React.ReactNode;
@@ -55,26 +55,29 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className={styles.modal} onClick={handleOverlayClick}>
-      <div className={styles.modalContent} onClick={handleContentClick}>
+    <div className={styles.microModalOverlay} onClick={handleOverlayClick}>
+      <div className={styles.microModalBox} onClick={handleContentClick}>
         <button
-          className={styles.modalClose}
+          className={styles.microModalCloseBtn}
           onClick={(e) => {
             e.stopPropagation();
             onClose();
           }}
           aria-label="Close modal"
         >
-          <X size={20} className={styles.modalCloseIcon} />
+          <X size={20} className={styles.microModalCloseIcon} />
         </button>
-        <div className={styles.modalHeader}>
-          {title && <h2 className={styles.modalTitle}>{title}</h2>}
+        
+        <div className={styles.microModalHeader}>
+          {title && <h2 className={styles.microModalTitle}>{title}</h2>}
           {description && (
-            <p className={styles.modalDescription}>{description}</p>
+            <p className={styles.microModalDesc}>{description}</p>
           )}
         </div>
-        <div className={styles.modalBody}>{children}</div>
-        {actions && <div className={styles.modalActions}>{actions}</div>}
+        
+        <div className={styles.microModalBody}>{children}</div>
+        
+        {actions && <div className={styles.microModalActions}>{actions}</div>}
       </div>
     </div>
   );
