@@ -1,349 +1,194 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  FaBriefcase,
-  FaFolderOpen,
-  FaUsers,
-  FaFileInvoiceDollar,
-  FaChartLine,
-  FaCalendar,
-  FaTasks,
-  FaCog,
-  FaBuilding,
-  FaCheckCircle,
   FaClock,
+  FaClipboardCheck,
+  FaWallet,
+  FaUsers,
+  FaProjectDiagram,
+  FaBoxes,
   FaBell,
-  FaChevronRight,
-  FaDownload,
-  FaPlus,
-  FaEye,
-  FaDollarSign,
+  FaBolt,
+  FaClipboardList,
 } from "react-icons/fa";
-import "../staff/StaffUserHomePage.css";
+import styles from "./BusinessDashboard.module.css";
 import { StatCard } from "../micro-ui/stat-card";
-
-type QuickActionCardProps = {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ size?: number }>;
-  onClick?: () => void;
-  variant?: string;
-};
-
-const QuickActionCard = ({
-  title,
-  description,
-  icon: Icon,
-  onClick,
-  variant = "default",
-}: QuickActionCardProps) => (
-  <div className={`shp-quick-action ${variant}`} onClick={onClick}>
-    <div className="shp-action-icon">
-      <Icon size={20} />
-    </div>
-    <div className="shp-action-content">
-      <h4 className="shp-action-title">{title}</h4>
-      <p className="shp-action-description">{description}</p>
-    </div>
-  </div>
-);
-
-type NotificationItemProps = {
-  title: string;
-  message: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-};
-
-const NotificationItem = ({
-  title,
-  message,
-  time,
-  type,
-  isRead,
-}: NotificationItemProps) => (
-  <div className={`shp-notification-item ${isRead ? "read" : "unread"}`}>
-    <div className={`shp-notification-indicator ${type}`}></div>
-    <div className="shp-notification-content">
-      <h5 className="shp-notification-title">{title}</h5>
-      <p className="shp-notification-message">{message}</p>
-      <span className="shp-notification-time">{time}</span>
-    </div>
-  </div>
-);
-
-type RecentActivityItemProps = {
-  action: string;
-  details: string;
-  time: string;
-  icon: React.ComponentType<{ size?: number }>;
-};
-
-const RecentActivityItem = ({
-  action,
-  details,
-  time,
-  icon: Icon,
-}: RecentActivityItemProps) => (
-  <div className="shp-activity-item">
-    <div className="shp-activity-icon">
-      <Icon size={16} />
-    </div>
-    <div className="shp-activity-content">
-      <p className="shp-activity-action">{action}</p>
-      <p className="shp-activity-details">{details}</p>
-      <span className="shp-activity-time">{time}</span>
-    </div>
-  </div>
-);
 
 const BusinessDashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
+  const [stats, setStats] = useState({
+    activeProjects: 0,
+    totalRevenue: 0,
+    teamSize: 0,
+    inventoryLevel: 0,
+  });
 
-  const businessStats = [
-    {
-      title: "Active Projects",
-      value: "24",
-      change: "5 new this month",
-      icon: FaFolderOpen,
-      color: "blue",
-    },
-    {
-      title: "Total Revenue",
-      value: "₦125,430",
-      change: "22% increase",
-      icon: FaDollarSign,
-      color: "green",
-    },
-    {
-      title: "Team Members",
-      value: "87",
-      change: "8 new hires",
-      icon: FaUsers,
-      color: "purple",
-    },
-    {
-      title: "Client Satisfaction",
-      value: "94%",
-      change: "Above target",
-      icon: FaDollarSign,
-      color: "orange",
-    },
-  ];
+  useEffect(() => {
+    const fetchBusinessData = async () => {
+      // Backend fetch logic goes here
+      // For now, it stays at 0
+      setStats({
+        activeProjects: 0,
+        totalRevenue: 0,
+        teamSize: 0,
+        inventoryLevel: 0,
+      });
+    };
+    fetchBusinessData();
+  }, []);
 
-  const businessQuickActions = [
+  const statsData = [
     {
-      title: "Manage Departments",
-      description: "Organize teams and departments",
-      icon: FaBriefcase,
-      variant: "primary",
+      label: "Active Projects",
+      value: stats.activeProjects.toString(),
+      change: "0 this week",
+      icon: FaProjectDiagram,
     },
     {
-      title: "Project Overview",
-      description: "Track project progress and deadlines",
-      icon: FaFolderOpen,
-      variant: "secondary",
+      label: "Total Revenue",
+      value: `₦${stats.totalRevenue.toLocaleString()}`,
+      change: "0% increase",
+      icon: FaWallet,
     },
     {
-      title: "Client Management",
-      description: "Manage client relationships",
-      icon: FaUsers,
-      variant: "success",
-    },
-    {
-      title: "Financial Reports",
-      description: "View revenue and expense reports",
-      icon: FaFileInvoiceDollar,
-      variant: "default",
-    },
-    {
-      title: "Analytics Dashboard",
-      description: "Business performance metrics",
-      icon: FaChartLine,
-      variant: "primary",
-    },
-    {
-      title: "Resource Planning",
-      description: "Allocate resources efficiently",
-      icon: FaCog,
-      variant: "secondary",
-    },
-  ];
-
-  const businessNotifications = [
-    {
-      title: "Project Deadline",
-      message: "Mobile app development project due in 3 days",
-      time: "30 minutes ago",
-      type: "warning",
-      isRead: false,
-    },
-    {
-      title: "New Client Onboarded",
-      message: "TechCorp signed annual contract worth ₦50,000",
-      time: "2 hours ago",
-      type: "success",
-      isRead: false,
-    },
-    {
-      title: "Team Meeting",
-      message: "Weekly standup scheduled for tomorrow 10 AM",
-      time: "4 hours ago",
-      type: "info",
-      isRead: true,
-    },
-    {
-      title: "Invoice Approved",
-      message: "Client payment of ₦15,000 has been processed",
-      time: "1 day ago",
-      type: "success",
-      isRead: true,
-    },
-  ];
-
-  const businessActivities = [
-    {
-      action: "Project Completed",
-      details: "E-commerce website delivered to RetailPlus",
-      time: "1 hour ago",
-      icon: FaCheckCircle,
-    },
-    {
-      action: "New Contract Signed",
-      details: "Annual maintenance contract with StartupXYZ",
-      time: "4 hours ago",
-      icon: FaFileInvoiceDollar,
-    },
-    {
-      action: "Team Expansion",
-      details: "Hired 3 new developers for the mobile team",
-      time: "2 days ago",
+      label: "Team Size",
+      value: stats.teamSize.toString(),
+      change: "0 pending invites",
       icon: FaUsers,
     },
     {
-      action: "Quarterly Review",
-      details: "Completed Q4 performance analysis and planning",
-      time: "1 week ago",
-      icon: FaChartLine,
+      label: "Inventory Level",
+      value: `${stats.inventoryLevel}%`,
+      change: "Checking...",
+      icon: FaBoxes,
     },
   ];
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
+  // Limited to 4 Quick Actions
+  const quickActions = [
+    { title: "Timer & Clocking", icon: FaClock, color: "#2563eb" },
+    { title: "Attendance", icon: FaClipboardCheck, color: "#059669" },
+    { title: "Payroll", icon: FaWallet, color: "#7c3aed" },
+    { title: "Staff", icon: FaUsers, color: "#ea580c" },
+  ];
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+  const activities: any[] = [];
+  const notifications: any[] = [];
+
+  const formattedDate = currentTime.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div className="shp-homepage-container">
-      {/* Welcome Header */}
-      <div className="shp-welcome-header">
-        <div className="shp-welcome-content">
-          <div className="shp-greeting">
-            <h1 className="shp-welcome-title">
-              Business Management
-            </h1>
-           
-          </div>
-          <div className="shp-time-info">
-            <div className="shp-current-time">{formatTime(currentTime)}</div>
-            <div className="shp-current-date">{formatDate(currentTime)}</div>
-          </div>
+    <div className={styles.dashboardContainer}>
+      <div className={styles.headerSection}>
+        <div>
+          <h1 className={styles.welcomeTitle}>Business Management</h1>
+          <p className={styles.subTitle}>Corporate Operations Overview</p>
+        </div>
+        <div className={styles.dateBadge}>
+          <FaClock /> {formattedDate}
         </div>
       </div>
 
-      {/* Business Quick Actions */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Quick Actions</h2>
-        <div className="shp-quick-actions-grid">
-          {businessQuickActions.map((action, index) => (
-            <QuickActionCard
-              key={index}
-              title={action.title}
-              description={action.description}
-              icon={action.icon}
-              variant={action.variant}
-              onClick={() => console.log(`Clicked: ${action.title}`)}
-            />
-          ))}
-        </div>
+      <div className={styles.statsGrid}>
+        {statsData.map((stat, idx) => (
+          <StatCard
+            key={idx}
+            title={stat.label}
+            value={stat.value}
+            change={stat.change}
+            icon={stat.icon}
+          />
+        ))}
       </div>
 
-      {/* Business Stats */}
-      <div className="shp-section">
-        <h2 className="shp-section-title">Business Performance</h2>
-        <div className="shp-stats-grid">
-          {businessStats.map((stat, index) => (
-            <StatCard
-              key={index}
-              title={stat.title}
-              value={stat.value}
-              change={stat.change}
-              icon={stat.icon}
-            />
-          ))}
-        </div>
+      <h3 className={styles.sectionTitle}>
+        <FaBolt color="#f59e0b" /> Operations & Quick Actions
+      </h3>
+      <div className={styles.actionsGrid}>
+        {quickActions.map((action, idx) => (
+          <div key={idx} className={styles.actionCard}>
+            <div
+              className={styles.actionIcon}
+              style={{ backgroundColor: action.color }}
+            >
+              <action.icon />
+            </div>
+            <p className={styles.actionTitle}>{action.title}</p>
+          </div>
+        ))}
       </div>
 
-      {/* Two Column Layout */}
-      <div className="shp-two-column">
-        {/* Recent Activity */}
-        <div className="shp-activity-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">Recent Business Activity</h3>
-              <button className="shp-view-all-btn">View All</button>
-            </div>
-            <div className="shp-activity-list">
-              {businessActivities.map((activity, index) => (
-                <RecentActivityItem
-                  key={index}
-                  action={activity.action}
-                  details={activity.details}
-                  time={activity.time}
-                  icon={activity.icon}
-                />
-              ))}
-            </div>
+      <div className={styles.contentSplit}>
+        <div className={styles.cardPanel}>
+          <div className={styles.cardHeader}>
+            <h3>
+              <FaClipboardList color="#4b5563" /> Recent Activity{" "}
+              {/* Color for icon */}
+            </h3>
+            <button className={styles.viewAllBtn}>View All</button>
+          </div>
+          <div className={styles.listContainer}>
+            {activities.length > 0 ? (
+              activities.map((item, idx) => (
+                <div key={idx} className={styles.listItem}>
+                  <div className={styles.listIcon}>
+                    <item.icon />
+                  </div>
+                  <div className={styles.listContent}>
+                    <p className={styles.listTitle}>{item.title}</p>
+                    <p className={styles.listDesc}>{item.desc}</p>
+                    <span className={styles.listTime}>{item.time}</span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p
+                style={{
+                  padding: "20px",
+                  color: "#6b7280",
+                  textAlign: "center",
+                }}
+              >
+                No recent activity.
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Notifications */}
-        <div className="shp-notifications-section">
-          <div className="shp-card">
-            <div className="shp-card-header">
-              <h3 className="shp-card-title">
-                <FaBell size={18} />
-                Business Notifications
-              </h3>
-              <span className="shp-notification-count">{businessNotifications.filter(n => !n.isRead).length}</span>
-            </div>
-            <div className="shp-notifications-list">
-              {businessNotifications.map((notification, index) => (
-                <NotificationItem
-                  key={index}
-                  title={notification.title}
-                  message={notification.message}
-                  time={notification.time}
-                  type={notification.type}
-                  isRead={notification.isRead}
-                />
-              ))}
-            </div>
-            <button className="shp-view-all-notifications">
-              View All Notifications
-            </button>
+        <div className={styles.cardPanel}>
+          <div className={styles.cardHeader}>
+            <h3>
+              <FaBell color="#4b5563" /> Notifications {/* Color for icon */}
+            </h3>
+            <button className={styles.viewAllBtn}>Clear</button>
+          </div>
+          <div className={styles.listContainer}>
+            {notifications.length > 0 ? (
+              notifications.map((notif, idx) => (
+                <div key={idx} className={styles.listItem}>
+                  <div className={`${styles.notifIndicator} ${notif.type}`} />
+                  <div className={styles.listContent}>
+                    <p className={styles.listTitle}>{notif.title}</p>
+                    <p className={styles.listDesc}>{notif.desc}</p>
+                    <span className={styles.listTime}>{notif.time}</span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p
+                style={{
+                  padding: "20px",
+                  color: "#6b7280",
+                  textAlign: "center",
+                }}
+              >
+                No new notifications.
+              </p>
+            )}
           </div>
         </div>
       </div>

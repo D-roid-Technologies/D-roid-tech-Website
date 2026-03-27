@@ -26,7 +26,12 @@ import {
   FaDonate,
   FaServicestack,
   FaPencilAlt,
-  FaBuilding, // Added icon for Organization Details
+  FaBuilding,
+  FaClock,
+  FaClipboardCheck,
+  FaMoneyBillAlt,
+  FaProjectDiagram,
+  FaBoxes, // FIX: Added missing FaBoxes import for Inventory
 } from "react-icons/fa";
 import PersonalDetails from "./PersonalDetails";
 import OrganizationDetails from "./OrganizationDetails";
@@ -53,7 +58,6 @@ import CurrencyConvert from "../toolboxpage/premiumtoolbox/CurrencyConvert";
 import ImageMark from "../toolboxpage/premiumtoolbox/ImageMark";
 import JsonFormatter from "../../components/toolboxfolder/jsonformat/JsonFormater";
 import { FaWallet } from "react-icons/fa6";
-// import ClassRoom from "./ClassRoom";
 import Staffs from "./Staffs";
 import Library from "./Library";
 import Finance from "./Finance";
@@ -74,6 +78,7 @@ import { VolunteersSection } from "./volunteers-section";
 import { DonationsSection } from "./donations-section";
 import { GroupsSection } from "./groups-section";
 import { ImpactSection } from "./impact-section";
+import { InventorySection } from "./InventorySection";
 import { OutreachSection } from "./outreach-section";
 import { PartnersSection } from "./partners-section";
 import { ClientsSection } from "./clients-section";
@@ -128,8 +133,8 @@ const OnboardingPopup = ({
     >
       <h3 style={{ marginTop: 0, color: "#071d69" }}>Complete Your Profile</h3>
       <p style={{ color: "#555", marginBottom: "20px" }}>
-        Welcome! To unlock and access your full Organization Dashboard menus, please
-        complete your profile details (Address, Phone, etc.).
+        Welcome! To unlock and access your full Organization Dashboard menus,
+        please complete your profile details (Address, Phone, etc.).
       </p>
       <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
         <button
@@ -211,10 +216,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   const userDetails: UserType = useSelector((state: RootState) => state.user);
   const staffDetails = useSelector(
-    (state: RootState) => state.SignInO.staffDetails
+    (state: RootState) => state.SignInO.staffDetails,
   );
   const staffInfo = useSelector(
-    (state: RootState) => state.onboarding.staffInfo
+    (state: RootState) => state.onboarding.staffInfo,
   );
 
   const isAboveSixMonth = isAboveSixMonths(staffInfo?.staffStartDate);
@@ -224,7 +229,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
   const [activeTool, setActiveTool] = useState<string | null>(null);
   const [showUpgradePrompt, setShowUpgradePrompt] = useState<string | null>(
-    null
+    null,
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [freeTierWarning, setFreeTierWarning] = useState<string | null>(null);
@@ -252,10 +257,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const filteredTools = Alltools.filter(
     (tool) =>
       tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tool.description.toLowerCase().includes(searchQuery.toLowerCase())
+      tool.description.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  // ... [Tool handling functions remain the same] ...
   const handleLaunchTool = (toolComponent: string, isPremium?: boolean) => {
     if (isPremium) {
       const access = checkToolAccess(toolComponent, true);
@@ -304,7 +308,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       </div>
     );
 
-    // ... [Switch case for tools remains the same] ...
     switch (activeTool) {
       case "ImageResizing":
         return (
@@ -425,7 +428,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   };
 
   const renderCalculatorComponent = () => {
-    // ... [Calculator switch case remains the same] ...
     switch (activeCalculator) {
       case "ScientificCalculator":
         return <ScientificCalculator onClose={handleCloseCalculator} />;
@@ -471,12 +473,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       { label: "Library", icon: FaBookOpen },
       { label: "Finance", icon: FaWallet },
     ],
+    // FIX: Re-mapped the exact requested business menu items & un-commented Inventory
     business: [
-      { label: "Departments", icon: FaBriefcase },
-      { label: "Projects", icon: FaFolderOpen },
-      { label: "Clients", icon: FaUsers },
-      { label: "Finance", icon: FaFileInvoiceDollar },
-      { label: "Reports", icon: FaChartLine },
+      { label: "Timer & clocking in/out", icon: FaClock },
+      { label: "Attendance", icon: FaClipboardCheck },
+      { label: "Payroll", icon: FaWallet },
+      { label: "Staff", icon: FaUsers },
+      { label: "Funding", icon: FaMoneyBillAlt },
+      { label: "Schedule", icon: FaCalendarAlt },
+      { label: "Task", icon: FaTasks },
+      { label: "Onboarding", icon: FaUserPlus },
+      { label: "Projects", icon: FaProjectDiagram },
+      { label: "Inventory", icon: FaBoxes },
     ],
     ngo: [
       { label: "Volunteers", icon: FaHandsHelping },
@@ -491,7 +499,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   const menuItems = [
     ...(isUserRole ? [{ label: "Users", icon: FaUser }] : []),
     {
-      // CONDITIONAL LABEL: Organization vs Personal
       label:
         userType === "Organisation"
           ? "Organization Details"
@@ -503,11 +510,17 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     ...(userType === "Organisation" && orgType && orgSpecificItems[orgType]
       ? orgSpecificItems[orgType]
       : []),
-    { label: "Services", icon: FaServicestack },
-    { label: "Careers", icon: FaBriefcase },
-    { label: "Schedules", icon: FaCalendarAlt },
+    ...(orgType !== "business"
+      ? [
+          { label: "Services", icon: FaServicestack },
+          { label: "Careers", icon: FaBriefcase },
+          { label: "Schedules", icon: FaCalendarAlt },
+        ]
+      : []),
     { label: "Tool Box", icon: FaToolbox },
-    { label: "Calculate", icon: FaCalculator },
+    ...(orgType !== "business"
+      ? [{ label: "Calculate", icon: FaCalculator }]
+      : []),
     { label: "Say It", icon: FaCommentDots },
     ...(isUserStaff
       ? [
@@ -571,7 +584,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     }
 
     switch (selectedMenu) {
-      // NEW CASE for Organization Details
       case "Organization Details":
         return (
           <Section
@@ -602,7 +614,49 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <PersonalDetails />
           </Section>
         );
-      // ... [Keep other cases: Tasks, Payslips, Onboarding, Training, Progressions, Schedules, Notifications, Tool Box, Calculate, Say It, etc.] ...
+
+      // FIX: Ensure Business Menu specific cases match the requested labels
+      case "Payroll":
+        return (
+          <Section
+            title="Payroll"
+            isActive={selectedMenu === "Payroll"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <Finance />
+          </Section>
+        );
+      case "Staff":
+        return (
+          <Section
+            title="Your Staff"
+            isActive={selectedMenu === "Staff"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <Staffs />
+          </Section>
+        );
+      case "Schedule":
+        return (
+          <Section
+            title="Your Schedule"
+            isActive={selectedMenu === "Schedule"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <AdminScheduleTool />
+          </Section>
+        );
+      case "Task":
+        return (
+          <Section
+            title="Tasks"
+            isActive={selectedMenu === "Task"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <Tasks />
+          </Section>
+        );
+
       case "Tasks":
         return (
           <Section
@@ -853,6 +907,20 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           </Section>
         );
 
+      case "Timer & clocking in/out":
+        return (
+          <Section
+            title="Timer & Clocking"
+            isActive={selectedMenu === "Timer & clocking in/out"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <p style={{ color: "#000000" }}>
+              Manage your work hours and clock in/out.
+            </p>
+            <SignInOut />
+          </Section>
+        );
+
       // --- SCHOOL MENU ITEMS ---
       case "Classroom":
         return (
@@ -861,7 +929,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             isActive={selectedMenu === "Classroom"}
             onHomeClick={() => setSelectedMenu(null)}
           >
-            {/* <ClassRoom /> */}
             <ClassRoomAlt />
           </Section>
         );
@@ -912,6 +979,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             isActive={selectedMenu === "Finance"}
             onHomeClick={() => setSelectedMenu(null)}
           >
+            <Finance />
+          </Section>
+        );
+      case "Funding":
+        return (
+          <Section
+            title="Your Funding"
+            isActive={selectedMenu === "Funding"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <p style={{ color: "#000000" }}>
+              Manage your business funding and financial overview.
+            </p>
             <Finance />
           </Section>
         );
@@ -1009,6 +1089,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             <ProjectsSection />
           </Section>
         );
+
+      // FIX: Fixed the Syntax Error by correctly closing the Section tag.
+      case "Inventory":
+        return (
+          <Section
+            title="Your Inventory"
+            isActive={selectedMenu === "Inventory"}
+            onHomeClick={() => setSelectedMenu(null)}
+          >
+            <InventorySection />
+          </Section>
+        );
+
       case "Reports":
         return (
           <Section
@@ -1050,7 +1143,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         return (
           <Section
             title="Dashboard"
-            isActive={selectedMenu === "Dashboard"}
+            isActive={false}
             onHomeClick={() => setSelectedMenu(null)}
           >
             <TakeTestFolder />
@@ -1073,9 +1166,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
       )}
 
       <aside
-        className={`${styles.sidebar} ${
-          isSidebarOpen ? styles.sidebarOpen : ""
-        }`}
+        className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""}`}
       >
         <div className={styles.userInfo}>
           <h3>
@@ -1083,8 +1174,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             {currentTime.getHours() < 12
               ? "Morning"
               : currentTime.getHours() < 18
-              ? "Afternoon"
-              : "Evening"}
+                ? "Afternoon"
+                : "Evening"}
             , {userDetails.firstName}
           </h3>
           <p>{userDetails.email}</p>
@@ -1101,9 +1192,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
           {menuItems.map((item) => {
             const isDisabled =
               !isOrgProfileComplete && item.label !== "Organization Details";
-              
+
             if (isDisabled) return null;
-            
+
             return (
               <button
                 key={item.label}

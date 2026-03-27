@@ -19,15 +19,15 @@ import styles from "./NGODashboard.module.css";
 
 const NGODashboard: React.FC = () => {
   const [currentTime] = useState(new Date());
-  const [stats, setStats] = useState({ totalVolunteers: 124, activeCampaigns: 5, totalDonations: 45000, beneficiaries: 1200 });
+  const [stats] = useState({ totalVolunteers: 0, activeCampaigns: 0, totalDonations: 0, beneficiaries: 0 });
 
   useEffect(() => {
     // Fetch real stats on mount
-    const fetchStats = async () => {
-      // const data = await authService.getNGOStats();
-      // setStats(data);
-    };
-    fetchStats();
+    // const fetchStats = async () => {
+    //   // const data = await authService.getNGOStats();
+    //   // setStats(data);
+    // };
+    // fetchStats();
   }, []);
 
   // --- Data Objects ---
@@ -35,7 +35,7 @@ const NGODashboard: React.FC = () => {
     {
       label: "Total Volunteers",
       value: stats.totalVolunteers.toLocaleString(),
-      change: "+12 this month", 
+      change: "0 this month", 
       icon: FaUsers,
       bgClass: styles.bgBlue,
       trend: "positive",
@@ -43,7 +43,7 @@ const NGODashboard: React.FC = () => {
     {
       label: "Total Donations ($)",
       value: `$${stats.totalDonations.toLocaleString()}`,
-      change: "+$2,400 this week",
+      change: "+$0 this week",
       icon: FaDonate,
       bgClass: styles.bgGreen,
       trend: "positive",
@@ -59,7 +59,7 @@ const NGODashboard: React.FC = () => {
     {
       label: "Beneficiaries Reached",
       value: stats.beneficiaries.toLocaleString(),
-      change: "+150 this month",
+      change: "+0 this month",
       icon: FaHeart,
       bgClass: styles.bgOrange,
       trend: "positive",

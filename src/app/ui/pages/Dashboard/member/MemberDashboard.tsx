@@ -6,7 +6,6 @@ import { type RootState, store } from "../../../../redux/Store";
 import {
   FaUser,
   FaCalendarAlt,
-  FaBell,
   FaServicestack,
   FaBriefcase,
   FaToolbox,
@@ -15,16 +14,10 @@ import {
 } from "react-icons/fa";
 
 import { StatCard } from "../micro-ui/stat-card";
-import { FiActivity } from "react-icons/fi";
-import { IoIosNotifications } from "react-icons/io";
-import { Modal } from "../micro-ui/modal";
 import { FaPenToSquare } from "react-icons/fa6";
 import { eventsPosts } from "../../../../utils/blogpost";
 import { updateStat } from "../../../../redux/slices/memberStatus";
 import EventPosts from "../../../components/blogPosts/Events";
-import { setNotifications } from "../../../../redux/slices/notificationSlice";
-import { getRelativeTime } from "../../../../utils/timeUtils";
-import SocialNotification from "../../../components/socialLink/SocialNotification";
 
 type QuickActionCardProps = {
   title: string;
@@ -52,62 +45,6 @@ const QuickActionCard = ({
   </div>
 );
 
-type NotificationItemProps = {
-  title: string;
-  message: string;
-  time: string;
-  type: string;
-  isRead: boolean;
-  onClick?: () => void;
-};
-
-const NotificationItem = ({
-  title,
-  message,
-  time,
-  type,
-  isRead,
-  onClick,
-}: NotificationItemProps) => (
-  <div
-    className={`shp-notification-item ${isRead ? "read" : "unread"}`}
-    onClick={onClick}
-    style={{ cursor: onClick ? "pointer" : "default" }}
-  >
-    <div className={`shp-notification-indicator ${type}`}></div>
-    <div className="shp-notification-content">
-      <h5 className="shp-notification-title">{title}</h5>
-      <p className="shp-notification-message">{message}</p>
-      <span className="shp-notification-time">{time}</span>
-    </div>
-  </div>
-);
-
-type RecentActivityItemProps = {
-  action: string;
-  details: string;
-  time: string;
-  icon: React.ComponentType<{ size?: number }>;
-};
-
-const RecentActivityItem = ({
-  action,
-  details,
-  time,
-  icon: Icon,
-}: RecentActivityItemProps) => (
-  <div className="shp-activity-item">
-    <div className="shp-activity-icon">
-      <Icon size={16} />
-    </div>
-    <div className="shp-activity-content">
-      <p className="shp-activity-action">{action}</p>
-      <p className="shp-activity-details">{details}</p>
-      <span className="shp-activity-time">{time}</span>
-    </div>
-  </div>
-);
-
 type MemberDashboardProps = {
   setSelectedMenu: React.Dispatch<React.SetStateAction<string | null>>;
 };
@@ -116,38 +53,14 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
   setSelectedMenu,
 }) => {
   const [currentTime] = useState(new Date());
-  const [notesModalOpen, setNotesModalOpen] = useState(false);
-  const [notificationModalOpen, setNotificationModalOpen] = useState(false);
-  const [statModalOpen, setStatModalOpen] = useState(false);
-  const [selectedStat, setSelectedStat] = useState<{
-    title: string;
-    value: string;
-    change: string;
-    icon: React.ComponentType;
-  } | null>(null);
 
   const memberStats = useSelector((state: RootState) => state.memberStatus);
   const user = useSelector((state: RootState) => state.user);
-  const userId = user?.uniqueId || user?.email || "guest";
-
-  type Notification = {
-    title: string;
-    message: string;
-    time: string;
-    type: string;
-    isRead: boolean;
-    id: number;
-    date: string;
-  };
 
   const trainings = useSelector((state: RootState) => state.trainings as any[]);
-  const progression = useSelector(
-    (state: RootState) =>
-      (state as any).progression as { currentPosition?: string },
-  );
   const membershipTier = useSelector(
     (state: RootState) =>
-      (state as any).membershipTier as { tier?: string; nextTier?: string },
+      (state as any).membershipTier as { tier?: string; nextTier?: string }
   );
 
   const memberQuickActions = [
@@ -201,84 +114,10 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
     },
   ];
 
-  const memberActivities = [
-    {
-      action: "Profile Updated",
-      details: "Changed contact information",
-      time: "2 days ago",
-      icon: FaUser,
-    },
-    {
-      action: "Service Accessed",
-      details: "Requested training support service",
-      time: "5 days ago",
-      icon: FaServicestack,
-    },
-    {
-      action: "Career Application",
-      details: "Applied for Software Developer role",
-      time: "1 week ago",
-      icon: FaBriefcase,
-    },
-    {
-      action: "Schedule Added",
-      details: "Booked mentoring session with advisor",
-      time: "2 weeks ago",
-      icon: FaCalendarAlt,
-    },
-    {
-      action: "Announcement Read",
-      details: "Checked notice on policy updates",
-      time: "3 weeks ago",
-      icon: FaBullhorn,
-    },
-    {
-      action: "Feedback Submitted",
-      details: "Shared feedback on member portal",
-      time: "1 month ago",
-      icon: FaCommentDots,
-    },
-  ];
-
-  const recentActivitiesCount = memberActivities.length;
-
-  const activityToMenu: Record<string, string> = {
-    "Profile Updated": "Personal Details",
-    "Service Accessed": "Services",
-    "Career Application": "Careers",
-    "Schedule Added": "Schedules",
-    "Notifications Read": "Notifications",
-    "Feedback Submitted": "Say It",
-  };
-
-  const handleActivityClick = (action: string) => {
-    const menu = activityToMenu[action];
-    if (menu) {
-      setSelectedMenu(menu);
-      setNotesModalOpen(false);
-    }
-  };
-
-  // Handle notification click
-  const handleNotificationClick = (notificationTitle: string) => {
-    if (notificationTitle === "Complete Your Profile") {
-      setSelectedMenu("Personal Details");
-      setNotificationModalOpen(false);
-    } else {
-      // For all other notifications (including task notifications), navigate to Notifications page
-      setSelectedMenu("Notifications");
-      setNotificationModalOpen(false);
-    }
-  };
-  const handleViewAllNotification = () => {
-    setSelectedMenu("Notifications");
-    setNotificationModalOpen(false);
-  };
-
   // Handle stat card click
   const handleStatClick = (stat: (typeof memberStats)[0]) => {
-    setSelectedStat(stat);
-    setStatModalOpen(true);
+    // Basic logic for stat details based on title
+    console.log(`Details for ${stat.title}:`, stat.value);
   };
 
   const formatTime = (date: Date) =>
@@ -354,48 +193,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 
   const handleUpgradeClick = () => {
     setSelectedMenu("Progressions");
-    setStatModalOpen(false);
-  };
-
-  const getStatDetails = (title: string) => {
-    switch (title) {
-      case "Membership Status":
-        return {
-          description: "",
-        };
-      case "Points Balance":
-        return {
-          description:
-            "Accumulated points from events, activities, and contributions.",
-          history: [
-            {
-              date: "This Week",
-              event: `Earned ${user?.performanceScore || 0} points`,
-            },
-            { date: "Last Month", event: "Redeemed 500 points" },
-            { date: "3 Months Ago", event: "Bonus: 200 points" },
-          ],
-        };
-      case "Events Attended":
-        return {
-          description:
-            "Total events and training sessions you've participated in.",
-          history: trainings
-            .filter((t: any) => t?.completed)
-            .slice(0, 5)
-            .map((t: any) => ({
-              date: t.date || "Recent",
-              event: t.name || "Training Session",
-            })),
-        };
-      case "Member Level":
-        return {
-          button: true,
-          nextTier: membershipTier?.nextTier || "Platinum",
-        };
-      default:
-        return { description: "", history: [] };
-    }
   };
 
   return (
@@ -408,10 +205,6 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
               <div className="shp-welcome-content">
                 <div className="shp-greeting">
                   <h1 className="shp-welcome-title">Member Portal</h1>
-                  {/* <div className="shp-head-icons-container">
-                    {/* Social Notification 
-                    <SocialNotification />
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -424,7 +217,7 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
         </div>
       </div>
 
-      {/* Member Stats */}
+      {/* Membership Overview */}
       <div className="shp-section">
         <h2 className="shp-section-title">Membership Overview</h2>
         <div className="shp-stats-grid">
@@ -477,7 +270,3 @@ const MemberDashboard: React.FC<MemberDashboardProps> = ({
 };
 
 export default MemberDashboard;
-
-
-
- 
